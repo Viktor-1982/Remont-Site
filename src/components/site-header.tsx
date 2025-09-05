@@ -28,7 +28,7 @@ export function SiteHeader() {
                     <Link href="/" className="text-sm text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition">Главная</Link>
                     <Link href="/tags/novinki" className="text-sm text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition">Новинки</Link>
                     <Link href="/tags/diy" className="text-sm text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition">DIY</Link>
-                    <Link href="/tags/smety" className="text-sm text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition">Сметы</Link>
+                    <Link href="/tags/smety" className="text-sm text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition"></Link>
                 </nav>
 
                 {/* Правая часть */}

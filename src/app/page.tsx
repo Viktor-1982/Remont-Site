@@ -18,7 +18,7 @@ export default function HomePage() {
 
             {/* Контент */}
             <div className="container py-10">
-                <h1 className="text-3xl font-bold mb-8">Блог о ремонте</h1>
+                <h1 className="text-3xl font-bold mb-8">Блог о ремонте и строительстве</h1>
 
                 {/* Сетка карточек статей */}
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -3,7 +3,7 @@
         <footer className="border-t bg-background">
             <div className="container grid gap-6 py-10 md:grid-cols-3">
                 <div>
-                    <div className="font-semibold">Ремонт без боли</div>
+                    <div className="font-semibold">PRO ремонт</div>
                     <p className="mt-2 text-sm text-muted-foreground">
                         Гайды, сметы, лайфхаки и обзоры материалов.
                     </p>
