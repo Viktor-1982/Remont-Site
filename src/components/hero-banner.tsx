@@ -23,7 +23,7 @@ export function HeroBanner() {
                         Ремонт без боли
                     </h1>
                     <p className="text-lg md:text-xl text-gray-200 mb-6">
-                        Фото-гайды, сметы, лайфхаки и обзоры материалов для дома и ремонта
+                        Фото-гайды, лайфхаки и обзоры материалов для дома и ремонта
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link

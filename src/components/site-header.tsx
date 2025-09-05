@@ -20,7 +20,7 @@ export function SiteHeader() {
                 {/* Логотип */}
                 <Link href="/" className="flex items-center gap-2 font-bold text-lg">
                     <Hammer className="h-6 w-6 text-primary" />
-                    <span>Ремонт без боли</span>
+                    <span>Pro ремонт</span>
                 </Link>
 
                 {/* Навигация (десктоп) */}

@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div className="border-t py-4 text-center text-xs text-muted-foreground">
-                © {new Date().getFullYear()} Ремонт без боли
+                © {new Date().getFullYear()} Pro ремонт
             </div>
         </footer>
     )

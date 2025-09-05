@@ -8,7 +8,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 
 export const metadata: Metadata = {
-    title: "Ремонт без боли — блог о ремонте",
+    title: "Pro ремонт — блог о ремонте и строительстве",
     description: "Фото-гайды, сметы, лайфхаки и обзоры материалов.",
 }
 
