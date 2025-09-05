@@ -1,7 +1,7 @@
 ﻿export function SiteFooter() {
     return (
         <footer className="border-t bg-background">
-            <div className="container grid gap-6 py-10 md:grid-cols-3">
+            <div className="container grid gap-6 px-4 py-10 md:grid-cols-3">
                 <div>
                     <div className="font-semibold">PRO ремонт</div>
                     <p className="mt-2 text-sm text-muted-foreground">
@@ -26,7 +26,8 @@
                     </p>
                 </div>
             </div>
-            <div className="border-t py-4 text-center text-xs text-muted-foreground">
+
+            <div className="border-t px-4 py-4 text-center text-xs text-muted-foreground">
                 © {new Date().getFullYear()} PRO ремонт
             </div>
         </footer>

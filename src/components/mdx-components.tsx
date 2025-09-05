@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Image from "next/image"
+import { PaintCalculator } from "@/components/paint-calculator"
 
 export const MDXComponents = {
     // Картинки
@@ -16,6 +17,13 @@ export const MDXComponents = {
           sizes="(max-width: 768px) 100vw, 600px"
       />
     </span>
+    ),
+
+    // Калькулятор краски
+    PaintCalculator: () => (
+        <div className="my-8">
+            <PaintCalculator />
+        </div>
     ),
 
     // Заголовки
@@ -37,7 +45,10 @@ export const MDXComponents = {
 
     // Абзацы
     p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
-        <p className="leading-7 text-muted-foreground [&:not(:first-child)]:mt-4" {...props} />
+        <p
+            className="leading-7 text-muted-foreground [&:not(:first-child)]:mt-4"
+            {...props}
+        />
     ),
 
     // Списки
@@ -51,6 +62,9 @@ export const MDXComponents = {
 
     // Цитаты
     blockquote: (props: React.HTMLAttributes<HTMLElement>) => (
-        <blockquote className="mt-6 border-l-2 pl-6 italic text-muted-foreground" {...props} />
+        <blockquote
+            className="mt-6 border-l-2 pl-6 italic text-muted-foreground"
+            {...props}
+        />
     ),
 }
