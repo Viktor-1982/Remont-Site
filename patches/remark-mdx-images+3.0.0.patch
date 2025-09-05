@@ -1,0 +1,157 @@
+diff --git a/node_modules/remark-mdx-images/index.ts b/node_modules/remark-mdx-images/index.ts
+index e502738..52dff55 100644
+--- a/node_modules/remark-mdx-images/index.ts
++++ b/node_modules/remark-mdx-images/index.ts
+@@ -23,81 +23,89 @@ const relativePathPattern = /\.\.?\//
+  * A Remark plugin for converting Markdown images to MDX images using imports for the image source.
+  */
+ const remarkMdxImages: Plugin<[RemarkMdxImagesOptions?], Root> =
+-  ({ resolve = true } = {}) =>
+-  (ast) => {
+-    const imports: ImportDeclaration[] = []
+-    const imported = new Map<string, string>()
++    ({ resolve = true } = {}) =>
++        (ast) => {
++          const imports: ImportDeclaration[] = []
++          const imported = new Map<string, string>()
+ 
+-    visit(ast, 'image', (node, index, parent) => {
+-      let { alt = null, title, url } = node
+-      url = decodeURIComponent(url)
+-      if (urlPattern.test(url)) {
+-        return
+-      }
+-      if (!relativePathPattern.test(url) && resolve) {
+-        url = `./${url}`
+-      }
++          visit(ast, 'image', (node, index, parent) => {
++            let { alt = null, title, url } = node
++            url = decodeURIComponent(url)
++            if (urlPattern.test(url)) {
++              return
++            }
++            if (!relativePathPattern.test(url) && resolve) {
++              url = `./${url}`
++            }
+ 
+-      let name = imported.get(url)
+-      if (!name) {
+-        name = `__${imported.size}_${url.replaceAll(/\W/g, '_')}__`
++            let name = imported.get(url)
++            if (!name) {
++              name = `__${imported.size}_${url.replaceAll(/\W/g, '_')}__`
+ 
+-        imports.push({
+-          type: 'ImportDeclaration',
+-          source: { type: 'Literal', value: url },
+-          specifiers: [
+-            {
+-              type: 'ImportDefaultSpecifier',
+-              local: { type: 'Identifier', name }
++              imports.push({
++                type: 'ImportDeclaration',
++                source: {type: 'Literal', value: url},
++                specifiers: [
++                  {
++                    type: 'ImportDefaultSpecifier',
++                    local: {type: 'Identifier', name}
++                  }
++                ],
++                attributes: []
++              })
++              imported.set(url, name)
+             }
+-          ]
+-        })
+-        imported.set(url, name)
+-      }
+ 
+-      const textElement: MdxJsxTextElement = {
+-        type: 'mdxJsxTextElement',
+-        name: 'img',
+-        children: [],
+-        attributes: [
+-          { type: 'mdxJsxAttribute', name: 'alt', value: alt },
+-          {
+-            type: 'mdxJsxAttribute',
+-            name: 'src',
+-            value: {
+-              type: 'mdxJsxAttributeValueExpression',
+-              value: name,
++            // 🔹 Исправлено: убрали строгую типизацию и добавили "as MdxJsxTextElement"
++            const textElement = {
++              type: 'mdxJsxTextElement',
++              name: 'img',
++              children: [],
++              attributes: [
++                { type: 'mdxJsxAttribute', name: 'alt', value: alt },
++                {
++                  type: 'mdxJsxAttribute',
++                  name: 'src',
++                  value: {
++                    type: 'mdxJsxAttributeValueExpression',
++                    value: name,
++                    data: {
++                      estree: {
++                        type: 'Program',
++                        sourceType: 'module',
++                        comments: [],
++                        body: [
++                          {
++                            type: 'ExpressionStatement',
++                            expression: { type: 'Identifier', name }
++                          }
++                        ]
++                      }
++                    }
++                  }
++                }
++              ]
++            } as MdxJsxTextElement
++
++            if (title) {
++              textElement.attributes.push({ type: 'mdxJsxAttribute', name: 'title', value: title })
++            }
++            parent!.children.splice(index!, 1, textElement)
++          })
++
++          if (imports.length) {
++            ast.children.unshift({
++              type: 'mdxjsEsm',
++              value: '',
+               data: {
+                 estree: {
+                   type: 'Program',
+                   sourceType: 'module',
+-                  comments: [],
+-                  body: [{ type: 'ExpressionStatement', expression: { type: 'Identifier', name } }]
++                  body: imports
+                 }
+               }
+-            }
+-          }
+-        ]
+-      }
+-      if (title) {
+-        textElement.attributes.push({ type: 'mdxJsxAttribute', name: 'title', value: title })
+-      }
+-      parent!.children.splice(index!, 1, textElement)
+-    })
+-
+-    if (imports.length) {
+-      ast.children.unshift({
+-        type: 'mdxjsEsm',
+-        value: '',
+-        data: {
+-          estree: {
+-            type: 'Program',
+-            sourceType: 'module',
+-            body: imports
++            })
+           }
+         }
+-      })
+-    }
+-  }
+ 
+ export default remarkMdxImages
