@@ -81,7 +81,7 @@ export const Post = defineDocumentType(() => ({
             type: "date",
             resolve: (doc) => toDate((doc as any).updated || null)
         },
-        toc: {
+        headings: {
             type: "json",
             resolve: (doc) => extractHeadings(doc.body.raw)
         },

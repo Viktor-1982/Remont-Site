@@ -32,7 +32,7 @@ export type Post = {
   url: string
   dateParsed: date
   updatedParsed: date
-  toc: json
+  headings: json
   readingTime: json
 }  
 
