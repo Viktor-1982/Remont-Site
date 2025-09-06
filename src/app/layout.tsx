@@ -6,10 +6,11 @@ import "./globals.css"
 import { ThemeProvider } from "@/app/theme-provider"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { RepairAssistant } from "@/components/repair-assistant" // Виртуальный помощник
 
 export const metadata: Metadata = {
     title: "PRO ремонт — блог о ремонте и строительстве",
-    description: "Фото-гайды, сметы, лайфхаки и обзоры материалов.",
+    description: "Фото-гайды, лайфхаки и обзоры материалов.",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -23,8 +24,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <SiteHeader />
             <main className="w-full py-8 px-4">{children}</main>
-
             <SiteFooter />
+
+            {/* Виртуальный помощник */}
+            <RepairAssistant />
         </ThemeProvider>
         </body>
         </html>
