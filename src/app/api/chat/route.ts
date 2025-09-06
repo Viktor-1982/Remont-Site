@@ -1,5 +1,20 @@
 ﻿import { NextRequest, NextResponse } from "next/server"
 
+interface ChatCompletionChoice {
+    message: {
+        role: string
+        content: string
+    }
+}
+
+interface ChatCompletionResponse {
+    choices?: ChatCompletionChoice[]
+    error?: {
+        message: string
+        code: number | string
+    }
+}
+
 const FREE_MODELS = [
     "deepseek/deepseek-r1:free",
     "meta-llama/llama-3.2-3b-instruct:free",
@@ -11,23 +26,22 @@ export async function POST(req: NextRequest) {
     try {
         const { messages } = await req.json()
 
-        let data: any = null
-        let lastError: any = null
+        let data: ChatCompletionResponse | null = null
+        let lastError: string | null = null
 
-        // Перебираем free-модели по очереди
         for (const model of FREE_MODELS) {
             const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-                    "HTTP-Referer": "https://pro-remont.netlify.app/", 
+                    "HTTP-Referer": "https://pro-remont.com",
                     "X-Title": "PRO-remont",
                 },
                 body: JSON.stringify({ model, messages }),
             })
 
-            data = await res.json()
+            data = (await res.json()) as ChatCompletionResponse
             console.log(`Model tried: ${model}`, data)
 
             if (res.ok && data.choices && data.choices[0]) {
@@ -37,7 +51,6 @@ export async function POST(req: NextRequest) {
             lastError = data?.error?.message || "неизвестная ошибка"
         }
 
-        // Если все free-модели отвалились
         return NextResponse.json(
             { reply: `❌ Все бесплатные модели перегружены. Ошибка: ${lastError}` },
             { status: 429 }
