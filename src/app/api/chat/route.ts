@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-                    "HTTP-Referer": "https://pro-remont.com",
+                    "HTTP-Referer": "https://pro-remont.netlify.app",
                     "X-Title": "PRO-remont",
                 },
                 body: JSON.stringify({ model, messages }),

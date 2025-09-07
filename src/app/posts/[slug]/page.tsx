@@ -7,45 +7,65 @@ import { TableOfContents } from "@/components/table-of-contents"
 import { ArticleCard } from "@/components/article-card"
 import { MDXRenderer } from "@/components/mdx-renderer"
 
-// 🔹 Генерация путей
+// 🔹 Генерация статических путей
 export const generateStaticParams = async () => {
     return allPosts.map((p) => ({ slug: p.slug }))
 }
 
-// 🔹 SEO
+// 🔹 SEO-метаданные для каждой статьи
 export async function generateMetadata(
-    { params }: { params: Promise<{ slug: string }> }
+    { params }: { params: { slug: string } }
 ): Promise<Metadata> {
-    const { slug } = await params
+    const { slug } = params
     const post = allPosts.find((p) => p.slug === slug)
     if (!post) return {}
 
+    const siteName = "PRO ремонт"
+    const baseUrl = "https://pro-remont.netlify.app" // ⚠️ имя домена 
+
     return {
-        title: post.title,
+        title: `${post.title} | ${siteName}`,
         description: post.description,
+        keywords: post.tags?.join(", "),
+        authors: [{ name: post.author ?? "repair-blog" }],
         openGraph: {
             title: post.title,
             description: post.description,
-            images: post.cover ? [post.cover] : [],
+            url: `${baseUrl}/posts/${post.slug}`,
+            siteName,
+            images: post.cover
+                ? [
+                    {
+                        url: `${baseUrl}${post.cover}`,
+                        width: 1200,
+                        height: 630,
+                        alt: post.title,
+                    },
+                ]
+                : [],
             type: "article",
-            authors: [post.author ?? "repair-blog"],
-            tags: post.tags ?? [],
             publishedTime: post.date,
+            tags: post.tags ?? [],
         },
         twitter: {
             card: "summary_large_image",
             title: post.title,
             description: post.description,
-            images: post.cover ? [post.cover] : [],
+            images: post.cover ? [`${baseUrl}${post.cover}`] : [],
+        },
+        alternates: {
+            canonical: `${baseUrl}/posts/${post.slug}`,
+        },
+        robots: {
+            index: true,
+            follow: true,
         },
     }
 }
 
 // 🔹 Страница статьи
-export default async function PostPage(
-    { params }: { params: Promise<{ slug: string }> }
-) {
-    const { slug } = await params
+export default function PostPage({ params }: { params: { slug: string } }) {
+    const { slug } = params
     const post = allPosts.find((p) => p.slug === slug)
     if (!post) return notFound()
 
@@ -60,6 +80,7 @@ export default async function PostPage(
     return (
         <div className="container flex flex-col lg:flex-row gap-10 py-10">
             <div className="flex-1 space-y-8">
+                {/* Заголовок, картинка, дата */}
                 <ArticleHero post={post} />
 
                 {/* Контент статьи */}
@@ -67,7 +88,7 @@ export default async function PostPage(
                     <MDXRenderer code={post.body.code} />
                 </article>
 
-                {/* Читайте также */}
+                {/* Блок «Читайте также» */}
                 {relatedPosts.length > 0 && (
                     <div className="mt-12 border-t pt-6">
                         <h2 className="text-xl font-semibold mb-4">Читайте также:</h2>
@@ -80,6 +101,7 @@ export default async function PostPage(
                 )}
             </div>
 
+            {/* Навигация по статье */}
             <aside>
                 <TableOfContents post={post} />
             </aside>
