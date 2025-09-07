@@ -8,11 +8,11 @@ import { ArticleCard } from "@/components/article-card"
 import { MDXRenderer } from "@/components/mdx-renderer"
 
 // 🔹 Генерация статических путей
-export const generateStaticParams = async () => {
+export function generateStaticParams(): { slug: string }[] {
     return allPosts.map((p) => ({ slug: p.slug }))
 }
 
-// 🔹 SEO-метаданные для каждой статьи
+// 🔹 SEO-метаданные
 export async function generateMetadata(
     { params }: { params: { slug: string } }
 ): Promise<Metadata> {
@@ -21,13 +21,12 @@ export async function generateMetadata(
     if (!post) return {}
 
     const siteName = "PRO ремонт"
-    const baseUrl = "https://pro-remont.netlify.app" // ⚠️ имя домена 
+    const baseUrl = "https://pro-remont.netlify.app"
 
     return {
         title: `${post.title} | ${siteName}`,
         description: post.description,
         keywords: post.tags?.join(", "),
-        authors: [{ name: post.author ?? "repair-blog" }],
         openGraph: {
             title: post.title,
             description: post.description,
@@ -45,7 +44,7 @@ export async function generateMetadata(
                 : [],
             type: "article",
             publishedTime: post.date,
-            tags: post.tags ?? [],
+            authors: [post.author ?? siteName],
         },
         twitter: {
             card: "summary_large_image",
@@ -69,6 +68,8 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     const post = allPosts.find((p) => p.slug === slug)
     if (!post) return notFound()
 
+    const baseUrl = "https://pro-remont.netlify.app"
+
     const relatedPosts = allPosts
         .filter(
             (p) =>
@@ -80,6 +81,27 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     return (
         <div className="container flex flex-col lg:flex-row gap-10 py-10">
             <div className="flex-1 space-y-8">
+                {/* JSON-LD микроразметка */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "Article",
+                            headline: post.title,
+                            description: post.description,
+                            image: `${baseUrl}${post.cover}`,
+                            author: {
+                                "@type": "Person",
+                                name: post.author ?? "PRO ремонт",
+                            },
+                            datePublished: post.date,
+                            dateModified: post.date,
+                            mainEntityOfPage: `${baseUrl}/posts/${post.slug}`,
+                        }),
+                    }}
+                />
+
                 {/* Заголовок, картинка, дата */}
                 <ArticleHero post={post} />
 

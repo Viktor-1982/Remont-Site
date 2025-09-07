@@ -28,7 +28,8 @@ export function SiteHeader() {
                     <Link href="/" className="text-sm text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition">Главная</Link>
                     <Link href="/tags/novinki" className="text-sm text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition">Новинки</Link>
                     <Link href="/tags/diy" className="text-sm text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition">DIY</Link>
-                    <Link href="/tags/smety" className="text-sm text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition"></Link>
+                    <Link href="/tags/smety" className="text-sm text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition">Сметы</Link>
+                    <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground hover:underline underline-offset-4 transition">О проекте</Link>
                 </nav>
 
                 {/* Правая часть */}
@@ -67,6 +68,7 @@ export function SiteHeader() {
                         <Link href="/tags/novinki" onClick={() => setIsOpen(false)}>Новинки</Link>
                         <Link href="/tags/diy" onClick={() => setIsOpen(false)}>DIY</Link>
                         <Link href="/tags/smety" onClick={() => setIsOpen(false)}>Сметы</Link>
+                        <Link href="/about" onClick={() => setIsOpen(false)}>О проекте</Link>
                     </nav>
                 </div>
             )}
