@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     verification: {
         // ⚠️ сюда добавляем код из Google Search Console
         google: "OdLk95jAgxGIRILtuubNzlM5qcoo6leKRWka7i_PcEg",
+        yandex: "989aba303b8eb47e"
     },
 }
 
