@@ -3,6 +3,7 @@
 import * as React from "react"
 import Image from "next/image"
 import { PaintCalculator } from "@/components/paint-calculator"
+import { slugify } from "@/lib/slugify"
 
 export const MDXComponents = {
     // Картинки
@@ -27,21 +28,28 @@ export const MDXComponents = {
     ),
 
     // Заголовки
-    h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-        <h2
-            id={String(props.children)?.toLowerCase().replace(/\s+/g, "-")}
-            className="mt-10 scroll-m-20 border-b pb-2 text-2xl font-semibold"
-            {...props}
-        />
-    ),
+    h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+        const text = String(props.children)
+        return (
+            <h2
+                id={slugify(text)}
+                className="mt-10 scroll-m-20 border-b pb-2 text-2xl font-semibold"
+                {...props}
+            />
+        )
+    },
 
-    h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-        <h3
-            id={String(props.children)?.toLowerCase().replace(/\s+/g, "-")}
-            className="mt-8 scroll-m-20 text-xl font-semibold"
-            {...props}
-        />
-    ),
+    h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+        const text = String(props.children)
+        return (
+            <h3
+                id={slugify(text)}
+                className="mt-8 scroll-m-20 text-xl font-semibold"
+                {...props}
+            />
+        )
+    },
+
 
     // Абзацы
     p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (

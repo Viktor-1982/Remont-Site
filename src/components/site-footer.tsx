@@ -5,7 +5,7 @@
                 <div>
                     <div className="font-semibold">PRO ремонт</div>
                     <p className="mt-2 text-sm text-muted-foreground">
-                        Гайды, лайфхаки и обзоры материалов.
+                        Гайды, сметы, лайфхаки и обзоры материалов.
                     </p>
                 </div>
 
