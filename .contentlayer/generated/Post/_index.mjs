@@ -3,5 +3,6 @@
 import posts__interiorTrends_2025Mdx from './posts__interior-trends-2025.mdx.json' with { type: 'json' }
 import posts__pokraskaStenPodgotovkaMdx from './posts__pokraska-sten-podgotovka.mdx.json' with { type: 'json' }
 import posts__pokraskaStenMdx from './posts__pokraska-sten.mdx.json' with { type: 'json' }
+import posts__remontSovety_5Mdx from './posts__remont-sovety-5.mdx.json' with { type: 'json' }
 
-export const allPosts = [posts__interiorTrends_2025Mdx, posts__pokraskaStenPodgotovkaMdx, posts__pokraskaStenMdx]
+export const allPosts = [posts__interiorTrends_2025Mdx, posts__pokraskaStenPodgotovkaMdx, posts__pokraskaStenMdx, posts__remontSovety_5Mdx]
