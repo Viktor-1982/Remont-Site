@@ -1,4 +1,4 @@
-﻿// @ts-ignore
+﻿
 import { PaintCalculator } from "@/components/widgets/paint-calculator"
 
 export default function PaintCalculatorPage() {
