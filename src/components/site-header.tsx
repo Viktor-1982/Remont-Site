@@ -1,20 +1,15 @@
 ﻿"use client"
 
 import Link from "next/link"
-import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
-import { Moon, Sun, Hammer, Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Hammer, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { usePathname } from "next/navigation"
+import { useState } from "react"
+import { ThemeSwitcher } from "@/components/theme-switcher"
 
 export function SiteHeader() {
-    const { theme, setTheme } = useTheme()
-    const [mounted, setMounted] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const pathname = usePathname()
-
-    useEffect(() => setMounted(true), [])
 
     const links = [
         { href: "/", label: "Главная" },
@@ -22,15 +17,15 @@ export function SiteHeader() {
         { href: "/tags/diy", label: "DIY" },
         { href: "/tags/smety", label: "Сметы" },
         { href: "/about", label: "О проекте" },
+        { href: "/calculators", label: "Калькуляторы" },
+
     ]
 
     return (
         <header
             className={cn(
                 "sticky top-0 z-50 w-full border-b shadow-sm transition-all duration-300",
-                // ✨ Glass effect с fallback
                 "bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60",
-                // для Android оптимизация
                 "will-change-transform"
             )}
         >
@@ -64,21 +59,8 @@ export function SiteHeader() {
 
                 {/* Правая часть */}
                 <div className="flex items-center gap-2">
-                    {/* Переключатель темы */}
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        aria-label="Toggle theme"
-                        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                        className="hover:scale-110 transition-transform"
-                    >
-                        {mounted && (
-                            <>
-                                <Sun className={cn("h-5 w-5", theme === "dark" && "hidden")} />
-                                <Moon className={cn("h-5 w-5", theme !== "dark" && "hidden")} />
-                            </>
-                        )}
-                    </Button>
+                    {/* Переключатель тем */}
+                    <ThemeSwitcher />
 
                     {/* Бургер (мобилка) */}
                     <button

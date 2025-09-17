@@ -2,8 +2,12 @@
 
 import * as React from "react"
 import Image from "next/image"
-import { PaintCalculator } from "@/components/paint-calculator"
 import { slugify } from "@/lib/slugify"
+
+// Импорты калькуляторов
+import { PaintCalculator } from "@/components/widgets/paint-calculator"
+import { TileCalculator } from "@/components/widgets/tile-calculator"
+import { WallpaperCalculator } from "@/components/widgets/wallpaper-calculator"
 
 export const MDXComponents = {
     // Картинки
@@ -20,10 +24,20 @@ export const MDXComponents = {
     </span>
     ),
 
-    // Калькулятор краски
+    // Калькуляторы
     PaintCalculator: () => (
         <div className="my-8">
             <PaintCalculator />
+        </div>
+    ),
+    TileCalculator: () => (
+        <div className="my-8">
+            <TileCalculator />
+        </div>
+    ),
+    WallpaperCalculator: () => (
+        <div className="my-8">
+            <WallpaperCalculator />
         </div>
     ),
 
@@ -49,7 +63,6 @@ export const MDXComponents = {
             />
         )
     },
-
 
     // Абзацы
     p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (

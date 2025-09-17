@@ -81,6 +81,37 @@
   --sidebar-ring: oklch(0.705 0.015 286.067);
 }
 
+/* Sepia */
+html.sepia {
+  --background: #f4ecd8;
+  --foreground: #3b2e20;
+  --card: #fdfaf4;
+  --card-foreground: #3b2e20;
+  --primary: #a0522d;
+  --primary-foreground: #fffaf0;
+  --accent: #deb887;
+  --accent-foreground: #3b2e20;
+  --border: #d2c4a3;
+  --muted: #e8dcc5;
+  --muted-foreground: #5c4631;
+}
+
+/* Контрастная */
+html.contrast {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #000000;
+  --card-foreground: #ffffff;
+  --primary: #ffcc00;
+  --primary-foreground: #000000;
+  --accent: #ff0066;
+  --accent-foreground: #ffffff;
+  --border: #ffffff;
+  --muted: #1a1a1a;
+  --muted-foreground: #e5e5e5;
+}
+
+
 .dark {
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);

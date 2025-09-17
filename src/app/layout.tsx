@@ -26,7 +26,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             className={`${GeistSans.variable} ${GeistMono.variable}`}
         >
         <body className="min-h-screen bg-background text-foreground font-sans">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            value={{
+                light: "light",
+                dark: "dark",
+                sepia: "sepia",
+                contrast: "contrast",
+            }}>
             <SiteHeader />
             <main className="w-full py-8 px-4">{children}</main>
             <SiteFooter />
