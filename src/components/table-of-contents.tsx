@@ -4,13 +4,19 @@ import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 import { ChevronDown, ListOrdered } from "lucide-react"
 
-type Heading = {
+export type Heading = {
     level: number
     text: string
-    slug?: string
+    slug: string
 }
 
-export function TableOfContents({ items }: { items: Heading[] }) {
+export function TableOfContents({
+                                    items,
+                                    onLinkClick,
+                                }: {
+    items: Heading[]
+    onLinkClick?: () => void
+}) {
     const [activeId, setActiveId] = useState<string | null>(null)
     const [isOpen, setIsOpen] = useState(false)
     const [lastScrollY, setLastScrollY] = useState(0)
@@ -29,9 +35,9 @@ export function TableOfContents({ items }: { items: Heading[] }) {
             { rootMargin: "-20% 0px -60% 0px" }
         )
 
+        observer.disconnect()
         items.forEach((h) => {
-            const id = h.slug ?? h.text
-            const el = document.getElementById(id)
+            const el = document.getElementById(h.slug)
             if (el) observer.observe(el)
         })
 
@@ -43,16 +49,11 @@ export function TableOfContents({ items }: { items: Heading[] }) {
         const handleScroll = () => {
             const currentY = window.scrollY
             if (currentY > lastScrollY + 10) {
-                // скроллим вниз
-                setIsOpen(false)
+                setIsOpen(false) // вниз
             } else if (currentY < lastScrollY - 10) {
-                // скроллим вверх
-                setIsOpen(true)
+                setIsOpen(true) // вверх
             }
-
-            // показываем плавающую кнопку, если прокрутили вниз > 400px
             setShowFab(currentY > 400)
-
             setLastScrollY(currentY)
         }
 
@@ -60,7 +61,7 @@ export function TableOfContents({ items }: { items: Heading[] }) {
         return () => window.removeEventListener("scroll", handleScroll)
     }, [lastScrollY])
 
-    if (!items || items.length === 0) return null
+    if (!items?.length) return null
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
         e.preventDefault()
@@ -68,7 +69,8 @@ export function TableOfContents({ items }: { items: Heading[] }) {
         if (target) {
             target.scrollIntoView({ behavior: "smooth", block: "start" })
             history.pushState(null, "", `#${id}`)
-            setIsOpen(false) // закрываем меню на мобилке после выбора
+            setIsOpen(false)
+            if (onLinkClick) onLinkClick() // 👈 закрыть панель TocToggle
         }
     }
 
@@ -91,30 +93,27 @@ export function TableOfContents({ items }: { items: Heading[] }) {
 
                 <div
                     className={cn(
-                        "transition-all duration-500 overflow-hidden",
+                        "transition-all duration-500 ease-in-out overflow-hidden",
                         isOpen ? "max-h-[500px] opacity-100 mt-2" : "max-h-0 opacity-0"
                     )}
                 >
                     <ul className="space-y-1 rounded-lg border p-3 bg-card text-sm">
-                        {items.map((h) => {
-                            const id = h.slug ?? h.text
-                            return (
-                                <li key={id} className={h.level === 3 ? "ml-4" : "ml-0"}>
-                                    <a
-                                        href={`#${id}`}
-                                        onClick={(e) => handleClick(e, id)}
-                                        className={cn(
-                                            "block transition-colors hover:text-foreground",
-                                            activeId === id
-                                                ? "text-primary font-semibold"
-                                                : "text-muted-foreground"
-                                        )}
-                                    >
-                                        {h.text}
-                                    </a>
-                                </li>
-                            )
-                        })}
+                        {items.map((h) => (
+                            <li key={h.slug} className={h.level === 3 ? "ml-4" : "ml-0"}>
+                                <a
+                                    href={`#${h.slug}`}
+                                    onClick={(e) => handleClick(e, h.slug)}
+                                    className={cn(
+                                        "block transition-colors hover:text-foreground",
+                                        activeId === h.slug
+                                            ? "text-primary font-semibold"
+                                            : "text-muted-foreground"
+                                    )}
+                                >
+                                    {h.text}
+                                </a>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>
@@ -123,25 +122,22 @@ export function TableOfContents({ items }: { items: Heading[] }) {
             <nav className="sticky top-24 hidden lg:block max-h-[70vh] w-64 shrink-0 overflow-auto rounded-xl border p-4 text-sm bg-card">
                 <div className="mb-2 font-semibold">Оглавление</div>
                 <ul className="space-y-1">
-                    {items.map((h) => {
-                        const id = h.slug ?? h.text
-                        return (
-                            <li key={id} className={h.level === 3 ? "ml-4" : "ml-0"}>
-                                <a
-                                    href={`#${id}`}
-                                    onClick={(e) => handleClick(e, id)}
-                                    className={cn(
-                                        "transition-colors hover:text-foreground",
-                                        activeId === id
-                                            ? "text-primary font-semibold"
-                                            : "text-muted-foreground"
-                                    )}
-                                >
-                                    {h.text}
-                                </a>
-                            </li>
-                        )
-                    })}
+                    {items.map((h) => (
+                        <li key={h.slug} className={h.level === 3 ? "ml-4" : "ml-0"}>
+                            <a
+                                href={`#${h.slug}`}
+                                onClick={(e) => handleClick(e, h.slug)}
+                                className={cn(
+                                    "transition-colors hover:text-foreground",
+                                    activeId === h.slug
+                                        ? "text-primary font-semibold"
+                                        : "text-muted-foreground"
+                                )}
+                            >
+                                {h.text}
+                            </a>
+                        </li>
+                    ))}
                 </ul>
             </nav>
 
@@ -149,7 +145,7 @@ export function TableOfContents({ items }: { items: Heading[] }) {
             {showFab && (
                 <button
                     onClick={() => setIsOpen((prev) => !prev)}
-                    className="lg:hidden fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-primary px-4 py-3 text-white shadow-lg transition hover:scale-105"
+                    className="lg:hidden fixed bottom-20 right-6 z-50 flex items-center gap-2 rounded-full bg-primary px-4 py-3 text-white shadow-lg transition hover:scale-105"
                 >
                     <ListOrdered className="h-5 w-5" />
                     <span className="text-sm font-semibold">

@@ -7,7 +7,13 @@ export function ArticleHero({ post }: { post: Post }) {
         <div className="space-y-6">
             {/* Дата + время чтения */}
             <div className="text-sm text-muted-foreground">
-                {post.date ? new Date(post.date).toLocaleDateString("ru-RU") : null}
+                {post.date
+                    ? new Date(post.date).toLocaleDateString("ru-RU", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                    })
+                    : null}
                 {post.readingTime?.minutes
                     ? ` · ${post.readingTime.minutes} мин чтения`
                     : null}
@@ -28,11 +34,11 @@ export function ArticleHero({ post }: { post: Post }) {
                 <div className="relative aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden rounded-xl border">
                     <Image
                         src={post.cover}
-                        alt={post.title ?? "Обложка статьи"}
+                        alt={`Обложка статьи: ${post.title}`}
                         fill
                         priority
                         className="object-cover object-center"
-                        sizes="100vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                     />
                 </div>
             )}

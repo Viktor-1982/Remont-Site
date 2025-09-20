@@ -14,9 +14,9 @@ export function generateStaticParams(): { slug: string }[] {
 
 // 🔹 SEO-метаданные
 export async function generateMetadata(
-    { params }: { params: Promise<{ slug: string }> }
+    { params }: { params: { slug: string } }
 ): Promise<Metadata> {
-    const { slug } = await params
+    const { slug } = params
     const post = allPosts.find((p) => p.slug === slug)
     if (!post) return {}
 
@@ -64,16 +64,13 @@ export async function generateMetadata(
 
 // 🔹 Страница статьи
 export default async function PostPage(
-    { params }: { params: Promise<{ slug: string }> }
+    { params }: { params: { slug: string } }
 ) {
-    const { slug } = await params
+    const { slug } = params
     const post = allPosts.find((p) => p.slug === slug)
     if (!post) return notFound()
 
     const baseUrl = "https://pro-remont.netlify.app"
-
-    // ✅ Проверка оглавления
-    console.log("HEADINGS:", post.headings)
 
     // Похожие статьи по тегам
     let relatedPosts = allPosts
@@ -84,10 +81,8 @@ export default async function PostPage(
         )
         .slice(0, 2)
 
-    // Заголовок блока
     let relatedTitle = "Похожие статьи"
 
-    // Если совпадений нет → берём последние статьи
     if (relatedPosts.length === 0) {
         relatedPosts = allPosts
             .filter((p) => p.slug !== post.slug)
@@ -145,8 +140,8 @@ export default async function PostPage(
                 )}
             </div>
 
-            {/* Навигация по статье */}
-            <aside className="w-full lg:w-80">
+            {/* Навигация по статье (только на десктопе) */}
+            <aside className="hidden lg:block w-80">
                 <TableOfContents items={post.headings} />
             </aside>
         </div>

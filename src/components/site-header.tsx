@@ -18,7 +18,6 @@ export function SiteHeader() {
         { href: "/tags/smety", label: "Сметы" },
         { href: "/about", label: "О проекте" },
         { href: "/calculators", label: "Калькуляторы" },
-
     ]
 
     return (
@@ -40,14 +39,14 @@ export function SiteHeader() {
                 </Link>
 
                 {/* Навигация (десктоп) */}
-                <nav className="hidden md:flex gap-6">
+                <nav aria-label="Main navigation" className="hidden md:flex gap-6">
                     {links.map((link) => (
                         <Link
                             key={link.href}
                             href={link.href}
                             className={cn(
                                 "text-sm hover:text-foreground hover:underline underline-offset-4 transition",
-                                pathname === link.href
+                                pathname.startsWith(link.href)
                                     ? "text-primary font-semibold"
                                     : "text-muted-foreground"
                             )}
@@ -59,7 +58,6 @@ export function SiteHeader() {
 
                 {/* Правая часть */}
                 <div className="flex items-center gap-2">
-                    {/* Переключатель тем */}
                     <ThemeSwitcher />
 
                     {/* Бургер (мобилка) */}
@@ -67,6 +65,7 @@ export function SiteHeader() {
                         className="md:hidden p-2 rounded hover:bg-muted transition"
                         onClick={() => setIsOpen(!isOpen)}
                         aria-label="Toggle menu"
+                        aria-expanded={isOpen}
                     >
                         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
                     </button>
@@ -75,15 +74,15 @@ export function SiteHeader() {
 
             {/* Мобильное меню */}
             {isOpen && (
-                <div className="absolute top-16 left-0 right-0 border-t bg-background/95 backdrop-blur md:hidden animate-in slide-in-from-top duration-300 shadow-lg">
-                    <nav className="flex flex-col gap-4 p-4">
+                <div className="absolute top-16 left-0 right-0 border-t bg-background/95 backdrop-blur md:hidden animate-in slide-in-from-top fade-in-80 duration-300 shadow-lg">
+                    <nav aria-label="Mobile navigation" className="flex flex-col gap-4 p-4">
                         {links.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
                                 onClick={() => setIsOpen(false)}
                                 className={cn(
-                                    pathname === link.href
+                                    pathname.startsWith(link.href)
                                         ? "text-primary font-semibold"
                                         : "text-foreground"
                                 )}

@@ -2,24 +2,27 @@
 
 import * as React from "react"
 import Image from "next/image"
-import { slugify } from "@/lib/slugify"
+import GitHubSlugger from "github-slugger"
+import type { MDXComponents } from "mdx/types"
 
 // Импорты калькуляторов
 import { PaintCalculator } from "@/components/widgets/paint-calculator"
 import { TileCalculator } from "@/components/widgets/tile-calculator"
 import { WallpaperCalculator } from "@/components/widgets/wallpaper-calculator"
 
-export const MDXComponents = {
+const slugger = new GitHubSlugger()
+
+export const mdxComponents: MDXComponents = {
     // Картинки
     img: ({ alt, src }: { alt?: string; src: string }) => (
-        <span className="relative block overflow-hidden rounded-xl border max-w-xl mx-auto">
+        <span className="relative block overflow-hidden rounded-xl border max-w-3xl mx-auto">
       <Image
           alt={alt ?? ""}
           src={src}
-          width={600}
-          height={600}
-          className="h-auto w-full object-cover aspect-square"
-          sizes="(max-width: 768px) 100vw, 600px"
+          width={1200}
+          height={800}
+          className="h-auto w-full object-contain rounded-lg"
+          sizes="(max-width: 768px) 100vw, 1200px"
       />
     </span>
     ),
@@ -44,9 +47,10 @@ export const MDXComponents = {
     // Заголовки
     h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
         const text = String(props.children)
+        const id = slugger.slug(text)
         return (
             <h2
-                id={slugify(text)}
+                id={id}
                 className="mt-10 scroll-m-20 border-b pb-2 text-2xl font-semibold"
                 {...props}
             />
@@ -55,9 +59,10 @@ export const MDXComponents = {
 
     h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
         const text = String(props.children)
+        const id = slugger.slug(text)
         return (
             <h3
-                id={slugify(text)}
+                id={id}
                 className="mt-8 scroll-m-20 text-xl font-semibold"
                 {...props}
             />

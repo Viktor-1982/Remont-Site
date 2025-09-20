@@ -2,12 +2,23 @@
 
 import { useMDXComponent } from "next-contentlayer2/hooks"
 import type { MDXComponents } from "mdx/types"
-import { MDXComponents as CustomMDXComponents } from "@/components/mdx-components"
+import { mdxComponents } from "@/components/mdx-components"
 
-export function MDXRenderer({ code }: { code: string }) {
+export function MDXRenderer({
+                                code,
+                                components,
+                            }: {
+    code: string
+    components?: MDXComponents
+}) {
     const MDXContent = useMDXComponent(code)
 
     return (
-        <MDXContent components={CustomMDXComponents as MDXComponents} />
+        <MDXContent
+            components={{
+                ...mdxComponents,
+                ...components,
+            }}
+        />
     )
 }

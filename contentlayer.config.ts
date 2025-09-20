@@ -3,6 +3,7 @@ import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import remarkGfm from "remark-gfm"
 import remarkMdxImages from "remark-mdx-images"
+import GitHubSlugger from "github-slugger"
 
 // ─── helpers ──────────────────────────────────────────────────────────────────
 const toDate = (input?: string | Date | null) => {
@@ -21,27 +22,23 @@ const estimateReadingTime = (text: string) => {
     return { words, minutes }
 }
 
-// Оглавление по H2/H3 с полноценной Unicode-нормализацией
-function slugifyUnicode(text: string) {
-    return text
-        .toLowerCase()
-        .normalize("NFKD")
-        // оставляем любые буквы/цифры/пробел/дефис
-        .replace(/[^\p{L}\p{N}\s-]/gu, "")
-        .trim()
-        .replace(/\s+/g, "-")
-}
-
+// Оглавление по H2/H3, совпадающее с rehype-slug
 function extractHeadings(raw: string) {
     const lines = raw.split(/\n/)
     const out: { level: number; text: string; slug: string }[] = []
+    const slugger = new GitHubSlugger()
+    slugger.reset()
+
     for (const line of lines) {
         const m2 = line.match(/^##\s+(.+)/)
         const m3 = line.match(/^###\s+(.+)/)
         const hit = m2 ? { level: 2, text: m2[1].trim() } : m3 ? { level: 3, text: m3[1].trim() } : null
         if (hit) {
-            const slug = slugifyUnicode(hit.text)
-            out.push({ level: hit.level, text: hit.text, slug })
+            out.push({
+                level: hit.level,
+                text: hit.text,
+                slug: slugger.slug(hit.text),
+            })
         }
     }
     return out
@@ -50,21 +47,19 @@ function extractHeadings(raw: string) {
 // ─── Document: Post ───────────────────────────────────────────────────────────
 export const Post = defineDocumentType(() => ({
     name: "Post",
-    filePathPattern: `posts/**/*.mdx`,   // файлы лежат в content/posts/**/*
+    filePathPattern: `posts/**/*.mdx`,
     contentType: "mdx",
     fields: {
-        title:        { type: "string", required: true, description: "Заголовок" },
-        description:  { type: "string", required: true, description: "Краткое описание" },
-        date:         { type: "date",   required: true, description: "YYYY-MM-DD" },
-        updated:      { type: "date",   required: false, description: "Дата обновления" },
-        cover:        { type: "string", required: false, description: "Путь от /public" },
-        tags:         { type: "list",   of: { type: "string" }, required: false },
-        draft:        { type: "boolean", required: false, default: false },
-        author:       { type: "string", required: false, default: "repair-blog" },
-        // ВНИМАНИЕ: readingTime НЕ поле, а computedField ниже
+        title:       { type: "string", required: true, description: "Заголовок" },
+        description: { type: "string", required: true, description: "Краткое описание" },
+        date:        { type: "date",   required: true, description: "YYYY-MM-DD" },
+        updated:     { type: "date",   required: false, description: "Дата обновления" },
+        cover:       { type: "string", required: false, description: "Путь от /public" },
+        tags:        { type: "list",   of: { type: "string" }, required: false },
+        draft:       { type: "boolean", required: false, default: false },
+        author:      { type: "string", required: false, default: "repair-blog" },
     },
     computedFields: {
-        // Превращаем content/posts/painting/prepare-walls.mdx → painting/prepare-walls
         slug: {
             type: "string",
             resolve: (doc) => doc._raw.flattenedPath.replace(/^posts\//, "")
@@ -98,13 +93,7 @@ export default makeSource({
     documentTypes: [Post],
     disableImportAliasWarning: true,
     mdx: {
-        remarkPlugins: [
-            remarkGfm,
-            remarkMdxImages
-        ],
-        rehypePlugins: [
-            rehypeSlug,
-            [rehypeAutolinkHeadings, { behavior: "append" }]
-        ]
+        remarkPlugins: [remarkGfm, remarkMdxImages],
+        rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: "append" }]]
     }
 })
