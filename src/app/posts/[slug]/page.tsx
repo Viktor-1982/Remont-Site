@@ -4,6 +4,7 @@ import { allPosts } from ".contentlayer/generated"
 
 import { ArticleHero } from "@/components/article-hero"
 import { TableOfContents } from "@/components/table-of-contents"
+import { TocToggle } from "@/components/toc-toggle"
 import { ArticleCard } from "@/components/article-card"
 import { MDXRenderer } from "@/components/mdx-renderer"
 
@@ -14,9 +15,9 @@ export function generateStaticParams(): { slug: string }[] {
 
 // 🔹 SEO-метаданные
 export async function generateMetadata(
-    { params }: { params: { slug: string } }
+    { params }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
-    const { slug } = params
+    const { slug } = await params
     const post = allPosts.find((p) => p.slug === slug)
     if (!post) return {}
 
@@ -64,9 +65,9 @@ export async function generateMetadata(
 
 // 🔹 Страница статьи
 export default async function PostPage(
-    { params }: { params: { slug: string } }
+    { params }: { params: Promise<{ slug: string }> }
 ) {
-    const { slug } = params
+    const { slug } = await params
     const post = allPosts.find((p) => p.slug === slug)
     if (!post) return notFound()
 
@@ -140,8 +141,9 @@ export default async function PostPage(
                 )}
             </div>
 
-            {/* Навигация по статье (только на десктопе) */}
-            <aside className="hidden lg:block w-80">
+            {/* Оглавление */}
+            <TocToggle items={post.headings} /> {/* 📱 мобилка */}
+            <aside className="hidden lg:block w-80"> {/* 💻 десктоп */}
                 <TableOfContents items={post.headings} />
             </aside>
         </div>
