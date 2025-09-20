@@ -72,6 +72,9 @@ export default async function PostPage(
 
     const baseUrl = "https://pro-remont.netlify.app"
 
+    // ✅ Проверка оглавления
+    console.log("HEADINGS:", post.headings)
+
     // Похожие статьи по тегам
     let relatedPosts = allPosts
         .filter(
@@ -143,8 +146,8 @@ export default async function PostPage(
             </div>
 
             {/* Навигация по статье */}
-            <aside>
-                <TableOfContents post={post} />
+            <aside className="w-full lg:w-80">
+                <TableOfContents items={post.headings} />
             </aside>
         </div>
     )
