@@ -4,7 +4,6 @@ import { allPosts } from ".contentlayer/generated"
 
 import { ArticleHero } from "@/components/article-hero"
 import { TableOfContents } from "@/components/table-of-contents"
-import { TocToggle } from "@/components/toc-toggle"
 import { ArticleCard } from "@/components/article-card"
 import { MDXRenderer } from "@/components/mdx-renderer"
 
@@ -141,9 +140,8 @@ export default async function PostPage(
                 )}
             </div>
 
-            {/* Оглавление */}
-            <TocToggle items={post.headings} /> {/* 📱 мобилка */}
-            <aside className="hidden lg:block w-80"> {/* 💻 десктоп */}
+            {/* Оглавление: универсальный компонент */}
+            <aside className="w-full lg:w-80">
                 <TableOfContents items={post.headings} />
             </aside>
         </div>

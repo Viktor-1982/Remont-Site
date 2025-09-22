@@ -15,18 +15,17 @@ const slugger = new GitHubSlugger()
 export const mdxComponents: MDXComponents = {
     // Картинки
     img: ({ alt, src }: { alt?: string; src: string }) => (
-        <span className="relative block overflow-hidden rounded-xl border max-w-3xl mx-auto">
-      <Image
-          alt={alt ?? ""}
-          src={src}
-          width={1200}
-          height={800}
-          className="h-auto w-full object-contain rounded-lg"
-          sizes="(max-width: 768px) 100vw, 1200px"
-      />
-    </span>
+        <span className="relative block overflow-hidden rounded-xl mx-auto bg-background">
+    <Image
+        alt={alt ?? ""}
+        src={src}
+        width={800}
+        height={600}
+        className="w-[500px] h-[400px] object-contain rounded-lg"
+    />
+  </span>
     ),
-
+    
     // Калькуляторы
     PaintCalculator: () => (
         <div className="my-8">
