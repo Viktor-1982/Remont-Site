@@ -14,10 +14,10 @@ export function TableOfContents({ items }: { items: Heading[] }) {
     const [open, setOpen] = useState(false)
     const [activeId, setActiveId] = useState<string | null>(null)
 
-    if (!items?.length) return null
-
     // Подсветка активного заголовка
     useEffect(() => {
+        if (!items?.length) return
+
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -45,6 +45,9 @@ export function TableOfContents({ items }: { items: Heading[] }) {
             setOpen(false)
         }
     }
+
+    // ⚡️ Условный рендер — теперь после хуков
+    if (!items?.length) return null
 
     return (
         <>
