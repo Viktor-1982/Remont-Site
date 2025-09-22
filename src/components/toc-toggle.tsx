@@ -1,58 +1,132 @@
 ﻿"use client"
 
 import { useState, useEffect } from "react"
-import { TableOfContents, Heading } from "@/components/table-of-contents"
-import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { ListOrdered, X } from "lucide-react"
 
-export function TocToggle({ items }: { items: Heading[] }) {
+export type Heading = {
+    level: number
+    text: string
+    slug: string
+}
+
+export function TableOfContents({
+                                    items,
+                                    onLinkClick,
+                                }: {
+    items: Heading[]
+    onLinkClick?: () => void // 👈 новый проп
+}) {
     const [open, setOpen] = useState(false)
+    const [activeId, setActiveId] = useState<string | null>(null)
 
-    // Закрытие по Esc
+    // Подсветка активного заголовка
     useEffect(() => {
-        const onKey = (e: KeyboardEvent) => {
-            if (e.key === "Escape") setOpen(false)
+        if (!items?.length) return
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveId(entry.target.id)
+                    }
+                })
+            },
+            { rootMargin: "-20% 0px -60% 0px" }
+        )
+
+        items.forEach((h) => {
+            const el = document.getElementById(h.slug)
+            if (el) observer.observe(el)
+        })
+
+        return () => observer.disconnect()
+    }, [items])
+
+    const handleClick = (id: string) => {
+        const target = document.getElementById(id)
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" })
+            history.pushState(null, "", `#${id}`)
+            setOpen(false)
+
+            if (onLinkClick) onLinkClick() // 👈 вызываем внешний обработчик
         }
-        window.addEventListener("keydown", onKey)
-        return () => window.removeEventListener("keydown", onKey)
-    }, [])
+    }
+
+    if (!items?.length) return null
 
     return (
         <>
-            {/* Кнопка сверху (под хедером) только на мобильных */}
-            <div className="fixed top-16 left-0 right-0 flex justify-center lg:hidden z-40">
-                <Button
-                    variant="default"
-                    onClick={() => setOpen(true)}
-                    aria-expanded={open}
-                    className="flex items-center gap-2 shadow-md px-6 py-2 rounded-full"
-                >
-                    <Menu className="w-4 h-4" />
-                    Оглавление
-                </Button>
+            {/* 📱 Кнопка сверху справа (только мобилка) */}
+            <button
+                onClick={() => setOpen(!open)}
+                className="fixed top-20 right-4 z-50 flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-white shadow-md transition hover:scale-105 lg:hidden"
+            >
+                {open ? <X className="h-5 w-5" /> : <ListOrdered className="h-5 w-5" />}
+                <span className="text-sm font-semibold">
+          {open ? "Скрыть" : "Оглавление"}
+        </span>
+            </button>
+
+            {/* 📱 Панель справа */}
+            <div
+                className={cn(
+                    "fixed top-16 bottom-0 right-0 w-64 bg-background border-l shadow-lg transform transition-transform duration-300 lg:hidden overflow-y-auto",
+                    open ? "translate-x-0" : "translate-x-full"
+                )}
+            >
+                <div className="p-4">
+                    <h2 className="font-semibold mb-2">Содержание</h2>
+                    <ul className="space-y-1 text-sm">
+                        {items.map((h) => (
+                            <li key={h.slug} className={h.level === 3 ? "ml-4" : "ml-0"}>
+                                <a
+                                    href={`#${h.slug}`}
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        handleClick(h.slug)
+                                    }}
+                                    className={cn(
+                                        "block transition-colors hover:text-primary",
+                                        activeId === h.slug
+                                            ? "text-primary font-semibold"
+                                            : "text-muted-foreground"
+                                    )}
+                                >
+                                    {h.text}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
 
-            {/* Панель с оглавлением */}
-            {open && (
-                <div className="fixed inset-0 bg-background/95 z-50 p-4 overflow-y-auto max-w-full lg:hidden animate-in slide-in-from-bottom duration-300">
-                    <div className="max-w-md mx-auto">
-                        <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-xl font-bold">Содержание</h2>
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                onClick={() => setOpen(false)}
+            {/* 💻 Десктопная версия */}
+            <nav className="sticky top-24 hidden lg:block max-h-[70vh] w-64 shrink-0 overflow-auto rounded-xl border p-4 text-sm bg-card">
+                <div className="mb-2 font-semibold">Оглавление</div>
+                <ul className="space-y-1">
+                    {items.map((h) => (
+                        <li key={h.slug} className={h.level === 3 ? "ml-4" : "ml-0"}>
+                            <a
+                                href={`#${h.slug}`}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    handleClick(h.slug)
+                                }}
+                                className={cn(
+                                    "transition-colors hover:text-foreground",
+                                    activeId === h.slug
+                                        ? "text-primary font-semibold"
+                                        : "text-muted-foreground"
+                                )}
                             >
-                                <X className="w-5 h-5" />
-                            </Button>
-                        </div>
-                        <TableOfContents
-                            items={items}
-                            onLinkClick={() => setOpen(false)} // 👈 закрываем при клике на пункт
-                        />
-                    </div>
-                </div>
-            )}
+                                {h.text}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
         </>
     )
 }
