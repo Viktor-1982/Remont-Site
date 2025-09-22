@@ -6,6 +6,8 @@ export default function robots(): MetadataRoute.Robots {
             userAgent: "*",
             allow: "/",
         },
-        sitemap: "https://pro-remont.netlify.app/sitemap.xml",
+        sitemap: "https://renohacks.com/sitemap.xml",
+        host: "https://renohacks.com",
     }
 }
+

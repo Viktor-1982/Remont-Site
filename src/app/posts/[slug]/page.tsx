@@ -70,7 +70,7 @@ export default async function PostPage(
     const post = allPosts.find((p) => p.slug === slug)
     if (!post) return notFound()
 
-    const baseUrl = "https://pro-remont.netlify.app"
+    const baseUrl = "https://renohacks.com"
 
     // Похожие статьи по тегам
     let relatedPosts = allPosts

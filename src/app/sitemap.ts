@@ -2,7 +2,7 @@
 import { allPosts } from ".contentlayer/generated"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = "https://pro-remont.netlify.app" // твой домен
+    const baseUrl = "https://renohacks.com" // новый домен ✅
 
     const posts = allPosts.map((post) => ({
         url: `${baseUrl}/posts/${post.slug}`,

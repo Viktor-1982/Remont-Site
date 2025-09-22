@@ -11,7 +11,7 @@ import { RepairAssistant } from "@/components/repair-assistant"
 import Script from "next/script"
 
 export const metadata: Metadata = {
-    title: "PRO ремонт — блог о ремонте и строительстве",
+    title: "renohacks.com — блог о ремонте и строительстве",
     description: "Фото-гайды, лайфхаки и обзоры материалов.",
     verification: {
         google: "OdLk95jAgxGIRILtuubNzlM5qcoo6leKRWka7i_PcEg",

@@ -21,7 +21,7 @@ export function HeroBanner() {
             <div className="relative z-10 flex h-full items-center justify-center text-center px-4">
                 <div className="max-w-2xl">
                     <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 animate-in fade-in slide-in-from-bottom duration-700">
-                        PRO ремонт
+                        renohacks.com
                     </h1>
                     <p className="text-lg md:text-xl text-gray-200 mb-6 animate-in fade-in slide-in-from-bottom duration-700 delay-200">
                         Фото-гайды, лайфхаки и обзоры материалов для дома и ремонта

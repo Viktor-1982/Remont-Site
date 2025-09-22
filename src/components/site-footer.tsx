@@ -6,7 +6,7 @@ export function SiteFooter() {
             <div className="container grid gap-6 px-4 py-10 sm:grid-cols-2 md:grid-cols-3">
                 {/* О проекте */}
                 <div>
-                    <div className="font-semibold">PRO ремонт</div>
+                    <div className="font-semibold">renohacks.com</div>
                     <p className="mt-2 text-sm text-muted-foreground">
                         Гайды, сметы, лайфхаки и обзоры материалов.
                     </p>

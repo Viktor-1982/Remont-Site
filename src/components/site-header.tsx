@@ -35,7 +35,7 @@ export function SiteHeader() {
                     className="flex items-center gap-2 font-bold text-lg hover:scale-105 transition-transform"
                 >
                     <Hammer className="h-6 w-6 text-primary" />
-                    <span>PRO ремонт</span>
+                    <span>renohacks.com</span>
                 </Link>
 
                 {/* Навигация (десктоп) */}
