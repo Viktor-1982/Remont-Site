@@ -1,4 +1,5 @@
 ﻿import Image from "next/image"
+import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import type { Post } from ".contentlayer/generated"
 
@@ -7,26 +8,28 @@ export function ArticleHero({ post }: { post: Post }) {
         <div className="space-y-6">
             {/* Дата + время чтения */}
             <div className="text-sm text-muted-foreground">
-                {post.date
-                    ? new Date(post.date).toLocaleDateString("ru-RU", {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                    })
-                    : null}
-                {post.readingTime?.minutes
-                    ? ` · ${post.readingTime.minutes} мин чтения`
-                    : null}
+                {post.date && (
+                    <time dateTime={post.date}>
+                        {new Date(post.date).toLocaleDateString("ru-RU", {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                        })}
+                    </time>
+                )}
+                {post.readingTime?.minutes && ` · ${post.readingTime.minutes} мин чтения`}
             </div>
 
             {/* Заголовок */}
-            <h1 className="text-3xl font-bold leading-tight md:text-4xl">
+            <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
                 {post.title}
             </h1>
 
             {/* Описание */}
             {post.description && (
-                <p className="text-muted-foreground text-lg">{post.description}</p>
+                <p className="text-muted-foreground text-lg max-w-3xl leading-relaxed">
+                    {post.description}
+                </p>
             )}
 
             {/* Обложка */}
@@ -47,13 +50,14 @@ export function ArticleHero({ post }: { post: Post }) {
             {post.tags && post.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                     {post.tags.map((t) => (
-                        <Badge
-                            key={t}
-                            variant="secondary"
-                            className="text-sm px-3 py-1 rounded-full"
-                        >
-                            #{t}
-                        </Badge>
+                        <Link key={t} href={`/tags/${t}`}>
+                            <Badge
+                                variant="secondary"
+                                className="text-sm px-3 py-1 rounded-full cursor-pointer hover:bg-primary hover:text-white transition"
+                            >
+                                #{t}
+                            </Badge>
+                        </Link>
                     ))}
                 </div>
             )}
