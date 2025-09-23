@@ -20,8 +20,8 @@ export async function generateMetadata(
     const post = allPosts.find((p) => p.slug === slug)
     if (!post) return {}
 
-    const siteName = "PRO ремонт"
-    const baseUrl = "https://pro-remont.netlify.app"
+    const siteName = "Renohacks.com"
+    const baseUrl = "https://renohacks.com/"
 
     return {
         title: `${post.title} | ${siteName}`,
@@ -110,7 +110,7 @@ export default async function PostPage(
                             image: `${baseUrl}${post.cover}`,
                             author: {
                                 "@type": "Person",
-                                name: post.author ?? "PRO ремонт",
+                                name: post.author ?? "renohacks.com",
                             },
                             datePublished: post.date,
                             dateModified: post.date,
