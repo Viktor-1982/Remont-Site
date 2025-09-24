@@ -32,7 +32,7 @@ export function SiteHeader() {
                 "will-change-transform"
             )}
         >
-            <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto flex min-h-[64px] items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Логотип */}
                 <Link
                     href="/"
@@ -42,7 +42,7 @@ export function SiteHeader() {
                     <span>renohacks.com</span>
                 </Link>
 
-                {/* Навигация (десктоп) */}
+                {/* Навигация (desktop) */}
                 <nav aria-label="Main navigation" className="hidden md:flex gap-6">
                     {links.map((link) => (
                         <Link
@@ -62,11 +62,11 @@ export function SiteHeader() {
                 </nav>
 
                 {/* Правая часть */}
-                <div className="flex items-center gap-3">
-                    {/* Соцсети (десктоп) */}
+                <div className="flex items-center gap-2 flex-nowrap">
+                    {/* Соцсети (только от sm) */}
                     <div className="hidden sm:flex items-center gap-3">
                         <Link
-                            href="https://instagram.com/yourchannel"
+                            href="https://www.instagram.com/reno.hacks"
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Instagram"
@@ -75,7 +75,7 @@ export function SiteHeader() {
                             <Instagram className="h-5 w-5" />
                         </Link>
                         <Link
-                            href="https://pinterest.com/yourchannel"
+                            href="https://pinterest.com/RenoHacks"
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Pinterest"
@@ -88,7 +88,7 @@ export function SiteHeader() {
                     {/* Переключатель темы */}
                     <ThemeSwitcher />
 
-                    {/* Бургер (мобилка) */}
+                    {/* Бургер (mob) */}
                     <button
                         className="md:hidden p-2 rounded hover:bg-muted transition"
                         onClick={() => setIsOpen(!isOpen)}
@@ -103,7 +103,7 @@ export function SiteHeader() {
             {/* Мобильное меню */}
             <div
                 className={cn(
-                    "absolute top-16 left-0 right-0 border-t bg-background/95 backdrop-blur md:hidden shadow-lg transition-all duration-300 overflow-hidden",
+                    "absolute top-[64px] left-0 right-0 border-t bg-background/95 backdrop-blur md:hidden shadow-lg transition-all duration-300 overflow-hidden",
                     isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                 )}
             >
@@ -125,10 +125,10 @@ export function SiteHeader() {
                         </Link>
                     ))}
 
-                    {/* Соцсети (мобилка) */}
+                    {/* Соцсети (mob) */}
                     <div className="flex gap-4 px-4 py-3">
                         <Link
-                            href="https://instagram.com/yourchannel"
+                            href="https://www.instagram.com/reno.hacks"
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Instagram"
@@ -137,7 +137,7 @@ export function SiteHeader() {
                             <Instagram className="h-6 w-6" />
                         </Link>
                         <Link
-                            href="https://pinterest.com/yourchannel"
+                            href="https://pinterest.com/RenoHacks"
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Pinterest"
