@@ -11,20 +11,21 @@ export function ArticleGrid({ posts }: { posts: Post[] }) {
     }
 
     return (
-        <section className="grid gap-6">
-            {/* Первая статья — широкая карточка */}
-            {posts[0] && (
-                <div className="sm:col-span-2 lg:col-span-3">
-                    <ArticleCard post={posts[0]} />
-                </div>
-            )}
-
-            {/* Остальные статьи в сетке */}
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {posts.slice(1).map((post) => (
-                    <ArticleCard key={post.url} post={post} />
-                ))}
-            </div>
+        <section
+            className="
+                grid gap-6
+                grid-cols-1
+                sm:grid-cols-2
+                lg:grid-cols-3
+                xl:grid-cols-4
+            "
+            aria-label="Список статей блога"
+        >
+            {posts.map((post) => (
+                <article key={post.url}>
+                    <ArticleCard post={post} />
+                </article>
+            ))}
         </section>
     )
 }

@@ -1,4 +1,5 @@
-﻿import type { Metadata } from "next"
+﻿// app/posts/[slug]/page.tsx
+import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { allPosts } from ".contentlayer/generated"
 
@@ -21,7 +22,7 @@ export async function generateMetadata(
     if (!post) return {}
 
     const siteName = "Renohacks.com"
-    const baseUrl = "https://renohacks.com/"
+    const baseUrl = "https://renohacks.com"
 
     return {
         title: `${post.title} | ${siteName}`,
@@ -55,10 +56,6 @@ export async function generateMetadata(
         alternates: {
             canonical: `${baseUrl}/posts/${post.slug}`,
         },
-        robots: {
-            index: true,
-            follow: true,
-        },
     }
 }
 
@@ -72,12 +69,11 @@ export default async function PostPage(
 
     const baseUrl = "https://renohacks.com"
 
-    // Похожие статьи по тегам
+    // Похожие статьи
     let relatedPosts = allPosts
         .filter(
             (p) =>
-                p.slug !== post.slug &&
-                p.tags?.some((t) => post.tags?.includes(t))
+                p.slug !== post.slug && p.tags?.some((t) => post.tags?.includes(t))
         )
         .slice(0, 2)
 
@@ -86,10 +82,7 @@ export default async function PostPage(
     if (relatedPosts.length === 0) {
         relatedPosts = allPosts
             .filter((p) => p.slug !== post.slug)
-            .sort(
-                (a, b) =>
-                    new Date(b.date).getTime() - new Date(a.date).getTime()
-            )
+            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
             .slice(0, 2)
 
         relatedTitle = "Последние статьи"
@@ -107,10 +100,10 @@ export default async function PostPage(
                             "@type": "Article",
                             headline: post.title,
                             description: post.description,
-                            image: `${baseUrl}${post.cover}`,
+                            image: post.cover ? `${baseUrl}${post.cover}` : undefined,
                             author: {
                                 "@type": "Person",
-                                name: post.author ?? "renohacks.com",
+                                name: post.author ?? "Renohacks.com",
                             },
                             datePublished: post.date,
                             dateModified: post.date,
@@ -140,7 +133,7 @@ export default async function PostPage(
                 )}
             </div>
 
-            {/* Оглавление: универсальный компонент */}
+            {/* Оглавление */}
             <aside className="w-full lg:w-80">
                 <TableOfContents items={post.headings} />
             </aside>

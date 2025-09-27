@@ -17,7 +17,8 @@ export function ArticleHero({ post }: { post: Post }) {
                         })}
                     </time>
                 )}
-                {post.readingTime?.minutes && ` · ${post.readingTime.minutes} мин чтения`}
+                {post.readingTime?.minutes &&
+                    ` · ${post.readingTime.minutes} мин чтения`}
             </div>
 
             {/* Заголовок */}
@@ -34,10 +35,10 @@ export function ArticleHero({ post }: { post: Post }) {
 
             {/* Обложка */}
             {post.cover && (
-                <div className="relative aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden rounded-xl border">
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border">
                     <Image
                         src={post.cover}
-                        alt={`Обложка статьи: ${post.title}`}
+                        alt={`${post.title} — блог о ремонте и строительстве`}
                         fill
                         priority
                         className="object-cover object-center"

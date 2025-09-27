@@ -3,20 +3,24 @@
 import { useState, useRef, useEffect } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { MessageCircle, X } from "lucide-react"
+import { MessageCircle, X, Send } from "lucide-react"
+
+type ChatMessage = { role: "user" | "assistant"; content: string }
 
 export function RepairAssistant() {
     const [isOpen, setIsOpen] = useState(false)
-    const [messages, setMessages] = useState<{ role: string; content: string }[]>([])
+    const [messages, setMessages] = useState<ChatMessage[]>([])
     const [input, setInput] = useState("")
+    const [loading, setLoading] = useState(false)
     const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
     const sendMessage = async () => {
-        if (!input.trim()) return
+        if (!input.trim() || loading) return
 
-        const userMessage = { role: "user", content: input }
+        const userMessage: ChatMessage = { role: "user", content: input }
         setMessages((prev) => [...prev, userMessage])
         setInput("")
+        setLoading(true)
 
         try {
             const res = await fetch("/api/chat", {
@@ -44,7 +48,7 @@ export function RepairAssistant() {
                 return
             }
 
-            const aiMessage = { role: "assistant", content: data.reply }
+            const aiMessage: ChatMessage = { role: "assistant", content: data.reply }
             setMessages((prev) => [...prev, aiMessage])
         } catch (err) {
             console.error("Ошибка запроса:", err)
@@ -52,6 +56,8 @@ export function RepairAssistant() {
                 ...prev,
                 { role: "assistant", content: "❌ Не удалось подключиться к серверу." },
             ])
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -68,6 +74,7 @@ export function RepairAssistant() {
             {!isOpen && (
                 <button
                     onClick={() => setIsOpen(true)}
+                    aria-label="Открыть помощника по ремонту"
                     className="fixed bottom-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-amber-500 text-white shadow-lg hover:bg-amber-600 transition"
                 >
                     <MessageCircle className="h-6 w-6" />
@@ -80,7 +87,11 @@ export function RepairAssistant() {
                     {/* Заголовок */}
                     <div className="flex items-center justify-between p-3 border-b bg-amber-500 text-white rounded-t-xl">
                         <h2 className="font-semibold">Мастер ремонта</h2>
-                        <button onClick={() => setIsOpen(false)}>
+                        <button
+                            onClick={() => setIsOpen(false)}
+                            aria-label="Закрыть чат"
+                            className="hover:opacity-80"
+                        >
                             <X className="h-5 w-5" />
                         </button>
                     </div>
@@ -115,13 +126,16 @@ export function RepairAssistant() {
                             onChange={(e) => setInput(e.target.value)}
                             placeholder="Задай вопрос..."
                             className="bg-white text-gray-900"
+                            aria-label="Поле ввода для вопроса"
                             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
                         />
                         <Button
                             onClick={sendMessage}
+                            disabled={!input.trim() || loading}
+                            aria-label="Отправить сообщение"
                             className="bg-amber-500 hover:bg-amber-600 text-white"
                         >
-                            ➡️
+                            <Send className="h-5 w-5" />
                         </Button>
                     </div>
                 </div>

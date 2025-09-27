@@ -1,5 +1,151 @@
 {
   "cacheItemsMap": {
+    "posts/five-interior-tips-en.mdx": {
+      "document": {
+        "title": "5 tips for choosing colors in interior design",
+        "description": "Interior design color tips: practical advice for choosing the right colors at home — lighting, atmosphere, neutral tones, testing paint, and adding accents.",
+        "date": "2025-09-27T00:00:00.000Z",
+        "cover": "/images/five-interior-tips/five-interior-tips.png",
+        "tags": [
+          "interior design",
+          "tips",
+          "color",
+          "home",
+          "decor"
+        ],
+        "draft": false,
+        "author": "repair-blog",
+        "body": {
+          "raw": "\n\n\n# 5 tips for choosing colors in interior design\n\nColor is one of the key elements of interior design. It influences not only the style of the room but also the mood of the people in it. To create a harmonious and cozy space, follow these 5 proven tips.\n\n## 1. Consider the lighting\n\nWarm light makes a space feel cozy and soft, while cool light refreshes and brings more energy. Before choosing a color, think about how the lighting in the room will interact with the paint on the walls and furniture.\n\n## 2. Think about the atmosphere\n\nAsk yourself: what feelings do you want to experience in this room? Calm, energy, joy, or focus? Colors directly affect emotions: blue calms, green balances, yellow energizes.\n\n## 3. Use a neutral tone as the base\n\nIt’s best to use neutral shades as a foundation: beige, gray, white. They create a harmonious background that can be easily combined with other colors. Neutral walls and furniture allow you to change the mood with textiles and décor.\n\n## 4. Test the paint\n\nBefore painting the entire room, apply paint samples on the walls in several spots. Observe how the color looks under different lighting — during the day and at night. This helps avoid unpleasant surprises.\n\n## 5. Add accents\n\nUse bright colors sparingly: decorative pillows, rugs, artwork, or vases. They bring life to the interior without overwhelming the space. The main rule is balance.\n\n---\n\n💡 These tips will help you avoid common mistakes and create a harmonious interior where it’s a pleasure to spend time every day.\n",
+          "code": "var Component=(()=>{var p=Object.create;var r=Object.defineProperty;var g=Object.getOwnPropertyDescriptor;var u=Object.getOwnPropertyNames;var m=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var b=(i,e)=>()=>(e||i((e={exports:{}}).exports,e),e.exports),y=(i,e)=>{for(var t in e)r(i,t,{get:e[t],enumerable:!0})},s=(i,e,t,a)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let o of u(e))!f.call(i,o)&&o!==t&&r(i,o,{get:()=>e[o],enumerable:!(a=g(e,o))||a.enumerable});return i};var w=(i,e,t)=>(t=i!=null?p(m(i)):{},s(e||!i||!i.__esModule?r(t,\"default\",{value:i,enumerable:!0}):t,i)),k=i=>s(r({},\"__esModule\",{value:!0}),i);var l=b((T,h)=>{h.exports=_jsx_runtime});var v={};y(v,{default:()=>d,frontmatter:()=>x});var n=w(l()),x={title:\"5 tips for choosing colors in interior design\",description:\"Interior design color tips: practical advice for choosing the right colors at home \\u2014 lighting, atmosphere, neutral tones, testing paint, and adding accents.\",date:\"2025-09-27\",tags:[\"interior design\",\"tips\",\"color\",\"home\",\"decor\"],cover:\"/images/five-interior-tips/five-interior-tips.png\"};function c(i){let e={a:\"a\",h1:\"h1\",h2:\"h2\",hr:\"hr\",p:\"p\",span:\"span\",...i.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)(e.h1,{id:\"5-tips-for-choosing-colors-in-interior-design\",children:[\"5 tips for choosing colors in interior design\",(0,n.jsx)(e.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#5-tips-for-choosing-colors-in-interior-design\",children:(0,n.jsx)(e.span,{className:\"icon icon-link\"})})]}),`\n`,(0,n.jsx)(e.p,{children:\"Color is one of the key elements of interior design. It influences not only the style of the room but also the mood of the people in it. To create a harmonious and cozy space, follow these 5 proven tips.\"}),`\n`,(0,n.jsxs)(e.h2,{id:\"1-consider-the-lighting\",children:[\"1. Consider the lighting\",(0,n.jsx)(e.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#1-consider-the-lighting\",children:(0,n.jsx)(e.span,{className:\"icon icon-link\"})})]}),`\n`,(0,n.jsx)(e.p,{children:\"Warm light makes a space feel cozy and soft, while cool light refreshes and brings more energy. Before choosing a color, think about how the lighting in the room will interact with the paint on the walls and furniture.\"}),`\n`,(0,n.jsxs)(e.h2,{id:\"2-think-about-the-atmosphere\",children:[\"2. Think about the atmosphere\",(0,n.jsx)(e.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#2-think-about-the-atmosphere\",children:(0,n.jsx)(e.span,{className:\"icon icon-link\"})})]}),`\n`,(0,n.jsx)(e.p,{children:\"Ask yourself: what feelings do you want to experience in this room? Calm, energy, joy, or focus? Colors directly affect emotions: blue calms, green balances, yellow energizes.\"}),`\n`,(0,n.jsxs)(e.h2,{id:\"3-use-a-neutral-tone-as-the-base\",children:[\"3. Use a neutral tone as the base\",(0,n.jsx)(e.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#3-use-a-neutral-tone-as-the-base\",children:(0,n.jsx)(e.span,{className:\"icon icon-link\"})})]}),`\n`,(0,n.jsx)(e.p,{children:\"It\\u2019s best to use neutral shades as a foundation: beige, gray, white. They create a harmonious background that can be easily combined with other colors. Neutral walls and furniture allow you to change the mood with textiles and d\\xE9cor.\"}),`\n`,(0,n.jsxs)(e.h2,{id:\"4-test-the-paint\",children:[\"4. Test the paint\",(0,n.jsx)(e.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#4-test-the-paint\",children:(0,n.jsx)(e.span,{className:\"icon icon-link\"})})]}),`\n`,(0,n.jsx)(e.p,{children:\"Before painting the entire room, apply paint samples on the walls in several spots. Observe how the color looks under different lighting \\u2014 during the day and at night. This helps avoid unpleasant surprises.\"}),`\n`,(0,n.jsxs)(e.h2,{id:\"5-add-accents\",children:[\"5. Add accents\",(0,n.jsx)(e.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#5-add-accents\",children:(0,n.jsx)(e.span,{className:\"icon icon-link\"})})]}),`\n`,(0,n.jsx)(e.p,{children:\"Use bright colors sparingly: decorative pillows, rugs, artwork, or vases. They bring life to the interior without overwhelming the space. The main rule is balance.\"}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.p,{children:\"\\u{1F4A1} These tips will help you avoid common mistakes and create a harmonious interior where it\\u2019s a pleasure to spend time every day.\"})]})}function d(i={}){let{wrapper:e}=i.components||{};return e?(0,n.jsx)(e,{...i,children:(0,n.jsx)(c,{...i})}):c(i)}return k(v);})();\n;return Component;"
+        },
+        "_id": "posts/five-interior-tips-en.mdx",
+        "_raw": {
+          "sourceFilePath": "posts/five-interior-tips-en.mdx",
+          "sourceFileName": "five-interior-tips-en.mdx",
+          "sourceFileDir": "posts",
+          "contentType": "mdx",
+          "flattenedPath": "posts/five-interior-tips-en"
+        },
+        "type": "Post",
+        "slug": "five-interior-tips-en",
+        "url": "/posts/five-interior-tips-en",
+        "dateParsed": "2025-09-27T00:00:00.000Z",
+        "updatedParsed": null,
+        "headings": [
+          {
+            "level": 2,
+            "text": "1. Consider the lighting",
+            "slug": "1-consider-the-lighting"
+          },
+          {
+            "level": 2,
+            "text": "2. Think about the atmosphere",
+            "slug": "2-think-about-the-atmosphere"
+          },
+          {
+            "level": 2,
+            "text": "3. Use a neutral tone as the base",
+            "slug": "3-use-a-neutral-tone-as-the-base"
+          },
+          {
+            "level": 2,
+            "text": "4. Test the paint",
+            "slug": "4-test-the-paint"
+          },
+          {
+            "level": 2,
+            "text": "5. Add accents",
+            "slug": "5-add-accents"
+          }
+        ],
+        "readingTime": {
+          "words": 266,
+          "minutes": 1
+        }
+      },
+      "documentHash": "1758993989590",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    },
+    "posts/interior-design-trends-2026-en.mdx": {
+      "document": {
+        "title": "Real interior design trends 2026: what’s already shaping style",
+        "description": "An overview of the most reliable interior trends of 2026 — colors, materials, functionality, and technology at the core.",
+        "date": "2025-09-23T00:00:00.000Z",
+        "cover": "/images/trends-2026/cover-en.png",
+        "tags": [
+          "design",
+          "interior",
+          "2026",
+          "trends",
+          "materials"
+        ],
+        "draft": false,
+        "author": "repair-blog",
+        "body": {
+          "raw": "\n# Real interior design trends 2026\n\nInteriors in 2026 are all about balance: between coziness and functionality, nature and technology. Design becomes a tool that helps cope with the fast pace of life, creates comfort, and reflects the homeowner’s values. Below are the key directions shaping the style of the future.\n\n---\n\n## 1. A new approach to color\n\n- **New neutrals**: instead of pure white and gray — soft greens (sage, eucalyptus), pale blue, delicate pink, earthy browns. These shades feel calmer and cozier while remaining versatile.\n- **Accent colors**: deep berry tones, terracotta, lime green, dark wine. They bring energy and individuality but are applied sparingly.\n\n**How to apply:**\n- use neutral backgrounds for walls and large furniture;\n- add accents through pillows, textiles, rugs, artwork.\n\n**Avoid:** overly bright combinations across the entire interior — an accent should stand out, not overwhelm.\n\n![New neutrals and accent colors](/images/trends-2026/colors.png)\n\n---\n\n## 2. Warm minimalism and comfort\n\n- **Materials**: matte-textured wood, raw stone, textured fabrics (bouclé, linen, wool, mohair).\n- **Colors**: beige, sandy, caramel, soft terracotta.\n\n**How to apply:**\n- replace glossy surfaces and metal with wood, stone, and fabrics;\n- choose simple-shaped furniture with pleasant textures;\n- add rugs, textured plaster, and light curtains made of natural fabrics.\n\n**Avoid:** sterile white surfaces with no details — minimalism in 2026 should be cozy, not “clinical.”\n\n![Warm minimalism](/images/trends-2026/warm-minimalism.png)\n\n---\n\n## 3. Nature and sustainability\n\n- **Biophilic design**: plants, living walls, large windows for natural light.\n- **Sustainability**: furniture from recycled materials, upcycled textiles, handmade ceramics.\n\n**How to apply:**\n- bring in several large plants (philodendron, ficus, olive tree);\n- use natural wood with minimal processing;\n- choose paints and finishes with low chemical content.\n\n**Avoid:** artificial plastic imitations of wood or stone — they instantly break the concept.\n\n![Biophilic interior](/images/trends-2026/biophilic.png)\n\n---\n\n## 4. Multi-tasking spaces\n\n- **Flexible layouts**: a living room doubles as a home office during the day and a relaxation area at night.\n- **Functional furniture**: transformers, folding partitions, console tables.\n- **Hidden storage**: everything that disrupts visual lightness should go into cabinets.\n\n**How to apply:**\n- use modular sofas that can be rearranged;\n- plan for a workspace that can be closed off or hidden in a cabinet;\n- keep tech in niches so it doesn’t clutter when unused.\n\n**Avoid:** clutter — multifunctionality ≠ chaos; it actually requires more organization.\n\n![Multi-functional space](/images/trends-2026/multifunctional.png)\n\n---\n\n## 5. Technology built into details\n\n- **Smart systems**: adjustable lighting warmth, hidden speakers, climate control.\n- **Integration**: appliances don’t stand out but are built into furniture or finishes.\n\n**How to apply:**\n- install smart lighting systems controlled via app;\n- integrate acoustics into ceilings or furniture;\n- use hidden outlets and charging stations that don’t spoil the aesthetics.\n\n**Avoid:** visible gadget overload — the 2026 trend is about technology being there but not seen.\n\n![Tech integration](/images/trends-2026/smart-tech.png)\n\n---\n\n## 6. Uniqueness, textures, and history\n\n- **Artisan pieces**: handmade furniture and décor.\n- **Vintage**: statement items from the ’70s and ’90s, updated for modern living.\n- **Textures**: ornaments, frescoes, textured wallpapers.\n\n**How to apply:**\n- add a vintage chair, mirror, or rug as a focal point;\n- use handmade décor like ceramics, textiles, or lamps;\n- mix smooth surfaces with textured ones for contrast.\n\n**Avoid:** turning the home into a “museum of antiques” — vintage should be a highlight, not the entire style.\n\n![Unique textures and history](/images/trends-2026/vintage.png)\n\n---\n\n## Conclusion\n\nThe trends of 2026 are not about fashion for fashion’s sake but about practicality and comfort. They help create interiors that are:\n- sustainable and eco-friendly,\n- adaptive to different life scenarios,\n- tech-integrated without being flashy,\n- unique and reflective of the owner’s personality.\n\nChoose what resonates with you and build a space that will stay relevant not only in 2026 but for years to come.\n",
+          "code": "var Component=(()=>{var u=Object.create;var a=Object.defineProperty;var g=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var m=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var y=(i,n)=>()=>(n||i((n={exports:{}}).exports,n),n.exports),b=(i,n)=>{for(var r in n)a(i,r,{get:n[r],enumerable:!0})},s=(i,n,r,l)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let t of p(n))!f.call(i,t)&&t!==r&&a(i,t,{get:()=>n[t],enumerable:!(l=g(n,t))||l.enumerable});return i};var w=(i,n,r)=>(r=i!=null?u(m(i)):{},s(n||!i||!i.__esModule?a(r,\"default\",{value:i,enumerable:!0}):r,i)),x=i=>s(a({},\"__esModule\",{value:!0}),i);var c=y((A,o)=>{o.exports=_jsx_runtime});var k={};b(k,{default:()=>h,frontmatter:()=>v});var e=w(c()),v={title:\"Real interior design trends 2026: what\\u2019s already shaping style\",description:\"An overview of the most reliable interior trends of 2026 \\u2014 colors, materials, functionality, and technology at the core.\",date:\"2025-09-23\",cover:\"/images/trends-2026/cover-en.png\",tags:[\"design\",\"interior\",\"2026\",\"trends\",\"materials\"]};function d(i){let n={a:\"a\",h1:\"h1\",h2:\"h2\",hr:\"hr\",img:\"img\",li:\"li\",p:\"p\",span:\"span\",strong:\"strong\",ul:\"ul\",...i.components};return(0,e.jsxs)(e.Fragment,{children:[(0,e.jsxs)(n.h1,{id:\"real-interior-design-trends-2026\",children:[\"Real interior design trends 2026\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#real-interior-design-trends-2026\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsx)(n.p,{children:\"Interiors in 2026 are all about balance: between coziness and functionality, nature and technology. Design becomes a tool that helps cope with the fast pace of life, creates comfort, and reflects the homeowner\\u2019s values. Below are the key directions shaping the style of the future.\"}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"1-a-new-approach-to-color\",children:[\"1. A new approach to color\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#1-a-new-approach-to-color\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"New neutrals\"}),\": instead of pure white and gray \\u2014 soft greens (sage, eucalyptus), pale blue, delicate pink, earthy browns. These shades feel calmer and cozier while remaining versatile.\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Accent colors\"}),\": deep berry tones, terracotta, lime green, dark wine. They bring energy and individuality but are applied sparingly.\"]}),`\n`]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:\"How to apply:\"})}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsx)(n.li,{children:\"use neutral backgrounds for walls and large furniture;\"}),`\n`,(0,e.jsx)(n.li,{children:\"add accents through pillows, textiles, rugs, artwork.\"}),`\n`]}),`\n`,(0,e.jsxs)(n.p,{children:[(0,e.jsx)(n.strong,{children:\"Avoid:\"}),\" overly bright combinations across the entire interior \\u2014 an accent should stand out, not overwhelm.\"]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/trends-2026/colors.png\",alt:\"New neutrals and accent colors\"})}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"2-warm-minimalism-and-comfort\",children:[\"2. Warm minimalism and comfort\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#2-warm-minimalism-and-comfort\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Materials\"}),\": matte-textured wood, raw stone, textured fabrics (boucl\\xE9, linen, wool, mohair).\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Colors\"}),\": beige, sandy, caramel, soft terracotta.\"]}),`\n`]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:\"How to apply:\"})}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsx)(n.li,{children:\"replace glossy surfaces and metal with wood, stone, and fabrics;\"}),`\n`,(0,e.jsx)(n.li,{children:\"choose simple-shaped furniture with pleasant textures;\"}),`\n`,(0,e.jsx)(n.li,{children:\"add rugs, textured plaster, and light curtains made of natural fabrics.\"}),`\n`]}),`\n`,(0,e.jsxs)(n.p,{children:[(0,e.jsx)(n.strong,{children:\"Avoid:\"}),\" sterile white surfaces with no details \\u2014 minimalism in 2026 should be cozy, not \\u201Cclinical.\\u201D\"]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/trends-2026/warm-minimalism.png\",alt:\"Warm minimalism\"})}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"3-nature-and-sustainability\",children:[\"3. Nature and sustainability\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#3-nature-and-sustainability\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Biophilic design\"}),\": plants, living walls, large windows for natural light.\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Sustainability\"}),\": furniture from recycled materials, upcycled textiles, handmade ceramics.\"]}),`\n`]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:\"How to apply:\"})}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsx)(n.li,{children:\"bring in several large plants (philodendron, ficus, olive tree);\"}),`\n`,(0,e.jsx)(n.li,{children:\"use natural wood with minimal processing;\"}),`\n`,(0,e.jsx)(n.li,{children:\"choose paints and finishes with low chemical content.\"}),`\n`]}),`\n`,(0,e.jsxs)(n.p,{children:[(0,e.jsx)(n.strong,{children:\"Avoid:\"}),\" artificial plastic imitations of wood or stone \\u2014 they instantly break the concept.\"]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/trends-2026/biophilic.png\",alt:\"Biophilic interior\"})}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"4-multi-tasking-spaces\",children:[\"4. Multi-tasking spaces\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#4-multi-tasking-spaces\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Flexible layouts\"}),\": a living room doubles as a home office during the day and a relaxation area at night.\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Functional furniture\"}),\": transformers, folding partitions, console tables.\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Hidden storage\"}),\": everything that disrupts visual lightness should go into cabinets.\"]}),`\n`]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:\"How to apply:\"})}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsx)(n.li,{children:\"use modular sofas that can be rearranged;\"}),`\n`,(0,e.jsx)(n.li,{children:\"plan for a workspace that can be closed off or hidden in a cabinet;\"}),`\n`,(0,e.jsx)(n.li,{children:\"keep tech in niches so it doesn\\u2019t clutter when unused.\"}),`\n`]}),`\n`,(0,e.jsxs)(n.p,{children:[(0,e.jsx)(n.strong,{children:\"Avoid:\"}),\" clutter \\u2014 multifunctionality \\u2260 chaos; it actually requires more organization.\"]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/trends-2026/multifunctional.png\",alt:\"Multi-functional space\"})}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"5-technology-built-into-details\",children:[\"5. Technology built into details\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#5-technology-built-into-details\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Smart systems\"}),\": adjustable lighting warmth, hidden speakers, climate control.\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Integration\"}),\": appliances don\\u2019t stand out but are built into furniture or finishes.\"]}),`\n`]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:\"How to apply:\"})}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsx)(n.li,{children:\"install smart lighting systems controlled via app;\"}),`\n`,(0,e.jsx)(n.li,{children:\"integrate acoustics into ceilings or furniture;\"}),`\n`,(0,e.jsx)(n.li,{children:\"use hidden outlets and charging stations that don\\u2019t spoil the aesthetics.\"}),`\n`]}),`\n`,(0,e.jsxs)(n.p,{children:[(0,e.jsx)(n.strong,{children:\"Avoid:\"}),\" visible gadget overload \\u2014 the 2026 trend is about technology being there but not seen.\"]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/trends-2026/smart-tech.png\",alt:\"Tech integration\"})}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"6-uniqueness-textures-and-history\",children:[\"6. Uniqueness, textures, and history\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#6-uniqueness-textures-and-history\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Artisan pieces\"}),\": handmade furniture and d\\xE9cor.\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Vintage\"}),\": statement items from the \\u201970s and \\u201990s, updated for modern living.\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Textures\"}),\": ornaments, frescoes, textured wallpapers.\"]}),`\n`]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:\"How to apply:\"})}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsx)(n.li,{children:\"add a vintage chair, mirror, or rug as a focal point;\"}),`\n`,(0,e.jsx)(n.li,{children:\"use handmade d\\xE9cor like ceramics, textiles, or lamps;\"}),`\n`,(0,e.jsx)(n.li,{children:\"mix smooth surfaces with textured ones for contrast.\"}),`\n`]}),`\n`,(0,e.jsxs)(n.p,{children:[(0,e.jsx)(n.strong,{children:\"Avoid:\"}),\" turning the home into a \\u201Cmuseum of antiques\\u201D \\u2014 vintage should be a highlight, not the entire style.\"]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/trends-2026/vintage.png\",alt:\"Unique textures and history\"})}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"conclusion\",children:[\"Conclusion\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#conclusion\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsx)(n.p,{children:\"The trends of 2026 are not about fashion for fashion\\u2019s sake but about practicality and comfort. They help create interiors that are:\"}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsx)(n.li,{children:\"sustainable and eco-friendly,\"}),`\n`,(0,e.jsx)(n.li,{children:\"adaptive to different life scenarios,\"}),`\n`,(0,e.jsx)(n.li,{children:\"tech-integrated without being flashy,\"}),`\n`,(0,e.jsx)(n.li,{children:\"unique and reflective of the owner\\u2019s personality.\"}),`\n`]}),`\n`,(0,e.jsx)(n.p,{children:\"Choose what resonates with you and build a space that will stay relevant not only in 2026 but for years to come.\"})]})}function h(i={}){let{wrapper:n}=i.components||{};return n?(0,e.jsx)(n,{...i,children:(0,e.jsx)(d,{...i})}):d(i)}return x(k);})();\n;return Component;"
+        },
+        "_id": "posts/interior-design-trends-2026-en.mdx",
+        "_raw": {
+          "sourceFilePath": "posts/interior-design-trends-2026-en.mdx",
+          "sourceFileName": "interior-design-trends-2026-en.mdx",
+          "sourceFileDir": "posts",
+          "contentType": "mdx",
+          "flattenedPath": "posts/interior-design-trends-2026-en"
+        },
+        "type": "Post",
+        "slug": "interior-design-trends-2026-en",
+        "url": "/posts/interior-design-trends-2026-en",
+        "dateParsed": "2025-09-23T00:00:00.000Z",
+        "updatedParsed": null,
+        "headings": [
+          {
+            "level": 2,
+            "text": "1. A new approach to color",
+            "slug": "1-a-new-approach-to-color"
+          },
+          {
+            "level": 2,
+            "text": "2. Warm minimalism and comfort",
+            "slug": "2-warm-minimalism-and-comfort"
+          },
+          {
+            "level": 2,
+            "text": "3. Nature and sustainability",
+            "slug": "3-nature-and-sustainability"
+          },
+          {
+            "level": 2,
+            "text": "4. Multi-tasking spaces",
+            "slug": "4-multi-tasking-spaces"
+          },
+          {
+            "level": 2,
+            "text": "5. Technology built into details",
+            "slug": "5-technology-built-into-details"
+          },
+          {
+            "level": 2,
+            "text": "6. Uniqueness, textures, and history",
+            "slug": "6-uniqueness-textures-and-history"
+          },
+          {
+            "level": 2,
+            "text": "Conclusion",
+            "slug": "conclusion"
+          }
+        ],
+        "readingTime": {
+          "words": 630,
+          "minutes": 3
+        }
+      },
+      "documentHash": "1759001894900",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    },
     "posts/interior-trends-2025.mdx": {
       "document": {
         "title": "🌟 8 главных интерьерных трендов 2025",
@@ -84,6 +230,79 @@
         }
       },
       "documentHash": "1757362838372",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    },
+    "posts/pokraska-sten-podgotovka-en.mdx": {
+      "document": {
+        "title": "Preparing walls for painting",
+        "description": "Steps for surface preparation: covering, filling, sanding, and priming.",
+        "date": "2025-09-03T00:00:00.000Z",
+        "cover": "/images/podgotovka/cover.png",
+        "tags": [
+          "walls",
+          "preparation",
+          "painting",
+          "renovation",
+          "interior"
+        ],
+        "draft": false,
+        "author": "repair-blog",
+        "body": {
+          "raw": "\n# Preparing walls for painting\n\nEven the most expensive paint won’t give a smooth and long-lasting result if the walls are not prepared.  \nThese simple steps will help you avoid mistakes and extra costs.\n\n---\n\n## 1. Covering the floor and furniture\n![Covering the floor and furniture](/images/podgotovka/step1.png)\n\nBefore starting, protect the floor with a plastic sheet or thick fabric. This will save it from stains.  \nIf you can’t move the furniture — cover it with polyethylene and secure the sheet with masking tape.\n\n💡 **Tip:** use construction tape with attached film — it saves time and nerves.\n\n---\n\n## 2. Taping corners and baseboards\n![Taping corners and baseboards](/images/podgotovka/step2.png)\n\nMasking tape is essential for clean paint edges. Use it to cover baseboards, window frames, sockets, and switches.\n\n- The tape should stick firmly, otherwise paint will leak.\n- Remove the tape right after painting, while the paint is still slightly wet.\n\n💡 **Tip:** choose quality tape — cheap ones leave marks and tear apart.\n\n---\n\n## 3. Filling cracks and seams with putty\n![Filling cracks with putty](/images/podgotovka/step3.png)\n\nAll defects must be filled with putty: cracks, chips, uneven areas.\n\n1. Clean the crack from dust.\n2. Fill it with putty using a spatula.\n3. Remove excess and smooth the surface.\n4. After drying, sand lightly.\n\n💡 **Tip:** for deep cracks, apply several thin layers — thick ones may crack.\n\n---\n\n## 4. Sanding the surface\n![Sanding the wall](/images/podgotovka/step4.png)\n\nSanding removes unevenness and leftover coatings.\n\n- Use fine-grit sandpaper (P120–P180) or sanding mesh.\n- Work evenly, without too much pressure.\n- After sanding, remove dust with a damp sponge or a vacuum cleaner.\n\n💡 **Tip:** fix sandpaper on a sanding block or use a sander — faster and smoother results.\n\n---\n\n## 5. Priming the walls\n![Applying primer](/images/podgotovka/step5.png)\n\nPrimer strengthens the surface and improves paint adhesion.\n\n1. Stir the primer.\n2. Apply with a roller over the entire surface, and a brush in the corners.\n3. Let it dry (usually 4–6 hours).\n\n💡 **Tip:** don’t skimp on primer — it reduces paint consumption and extends durability.\n\n---\n\n## 📐 Paint calculator\n\nBefore painting, calculate how many liters of paint you’ll need for the room:\n\n<PaintCalculator />\n\nExample: a 5×3 m room, 2.7 m height, without large windows = about **24 liters** of paint.\n\n---\n\n# ✅ Conclusion\nPreparation takes more time than painting itself, but it determines the quality of the result.  \nFollow these steps — and the paint will go on smoothly, without drips or bubbles, and the walls will look great for years.\n",
+          "code": "var Component=(()=>{var p=Object.create;var t=Object.defineProperty;var g=Object.getOwnPropertyDescriptor;var u=Object.getOwnPropertyNames;var m=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var w=(i,n)=>()=>(n||i((n={exports:{}}).exports,n),n.exports),v=(i,n)=>{for(var r in n)t(i,r,{get:n[r],enumerable:!0})},l=(i,n,r,s)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let a of u(n))!f.call(i,a)&&a!==r&&t(i,a,{get:()=>n[a],enumerable:!(s=g(n,a))||s.enumerable});return i};var k=(i,n,r)=>(r=i!=null?p(m(i)):{},l(n||!i||!i.__esModule?t(r,\"default\",{value:i,enumerable:!0}):r,i)),b=i=>l(t({},\"__esModule\",{value:!0}),i);var c=w((I,o)=>{o.exports=_jsx_runtime});var P={};v(P,{default:()=>d,frontmatter:()=>y});var e=k(c()),y={title:\"Preparing walls for painting\",description:\"Steps for surface preparation: covering, filling, sanding, and priming.\",date:\"2025-09-03\",tags:[\"walls\",\"preparation\",\"painting\",\"renovation\",\"interior\"],cover:\"/images/podgotovka/cover.png\"};function h(i){let n={a:\"a\",br:\"br\",h1:\"h1\",h2:\"h2\",hr:\"hr\",img:\"img\",li:\"li\",ol:\"ol\",p:\"p\",span:\"span\",strong:\"strong\",ul:\"ul\",...i.components},{PaintCalculator:r}=n;return r||x(\"PaintCalculator\",!0),(0,e.jsxs)(e.Fragment,{children:[(0,e.jsxs)(n.h1,{id:\"preparing-walls-for-painting\",children:[\"Preparing walls for painting\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#preparing-walls-for-painting\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsxs)(n.p,{children:[\"Even the most expensive paint won\\u2019t give a smooth and long-lasting result if the walls are not prepared.\",(0,e.jsx)(n.br,{}),`\n`,\"These simple steps will help you avoid mistakes and extra costs.\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"1-covering-the-floor-and-furniture\",children:[\"1. Covering the floor and furniture\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#1-covering-the-floor-and-furniture\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/podgotovka/step1.png\",alt:\"Covering the floor and furniture\"})}),`\n`,(0,e.jsxs)(n.p,{children:[\"Before starting, protect the floor with a plastic sheet or thick fabric. This will save it from stains.\",(0,e.jsx)(n.br,{}),`\n`,\"If you can\\u2019t move the furniture \\u2014 cover it with polyethylene and secure the sheet with masking tape.\"]}),`\n`,(0,e.jsxs)(n.p,{children:[\"\\u{1F4A1} \",(0,e.jsx)(n.strong,{children:\"Tip:\"}),\" use construction tape with attached film \\u2014 it saves time and nerves.\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"2-taping-corners-and-baseboards\",children:[\"2. Taping corners and baseboards\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#2-taping-corners-and-baseboards\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/podgotovka/step2.png\",alt:\"Taping corners and baseboards\"})}),`\n`,(0,e.jsx)(n.p,{children:\"Masking tape is essential for clean paint edges. Use it to cover baseboards, window frames, sockets, and switches.\"}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsx)(n.li,{children:\"The tape should stick firmly, otherwise paint will leak.\"}),`\n`,(0,e.jsx)(n.li,{children:\"Remove the tape right after painting, while the paint is still slightly wet.\"}),`\n`]}),`\n`,(0,e.jsxs)(n.p,{children:[\"\\u{1F4A1} \",(0,e.jsx)(n.strong,{children:\"Tip:\"}),\" choose quality tape \\u2014 cheap ones leave marks and tear apart.\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"3-filling-cracks-and-seams-with-putty\",children:[\"3. Filling cracks and seams with putty\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#3-filling-cracks-and-seams-with-putty\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/podgotovka/step3.png\",alt:\"Filling cracks with putty\"})}),`\n`,(0,e.jsx)(n.p,{children:\"All defects must be filled with putty: cracks, chips, uneven areas.\"}),`\n`,(0,e.jsxs)(n.ol,{children:[`\n`,(0,e.jsx)(n.li,{children:\"Clean the crack from dust.\"}),`\n`,(0,e.jsx)(n.li,{children:\"Fill it with putty using a spatula.\"}),`\n`,(0,e.jsx)(n.li,{children:\"Remove excess and smooth the surface.\"}),`\n`,(0,e.jsx)(n.li,{children:\"After drying, sand lightly.\"}),`\n`]}),`\n`,(0,e.jsxs)(n.p,{children:[\"\\u{1F4A1} \",(0,e.jsx)(n.strong,{children:\"Tip:\"}),\" for deep cracks, apply several thin layers \\u2014 thick ones may crack.\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"4-sanding-the-surface\",children:[\"4. Sanding the surface\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#4-sanding-the-surface\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/podgotovka/step4.png\",alt:\"Sanding the wall\"})}),`\n`,(0,e.jsx)(n.p,{children:\"Sanding removes unevenness and leftover coatings.\"}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsx)(n.li,{children:\"Use fine-grit sandpaper (P120\\u2013P180) or sanding mesh.\"}),`\n`,(0,e.jsx)(n.li,{children:\"Work evenly, without too much pressure.\"}),`\n`,(0,e.jsx)(n.li,{children:\"After sanding, remove dust with a damp sponge or a vacuum cleaner.\"}),`\n`]}),`\n`,(0,e.jsxs)(n.p,{children:[\"\\u{1F4A1} \",(0,e.jsx)(n.strong,{children:\"Tip:\"}),\" fix sandpaper on a sanding block or use a sander \\u2014 faster and smoother results.\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"5-priming-the-walls\",children:[\"5. Priming the walls\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#5-priming-the-walls\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/podgotovka/step5.png\",alt:\"Applying primer\"})}),`\n`,(0,e.jsx)(n.p,{children:\"Primer strengthens the surface and improves paint adhesion.\"}),`\n`,(0,e.jsxs)(n.ol,{children:[`\n`,(0,e.jsx)(n.li,{children:\"Stir the primer.\"}),`\n`,(0,e.jsx)(n.li,{children:\"Apply with a roller over the entire surface, and a brush in the corners.\"}),`\n`,(0,e.jsx)(n.li,{children:\"Let it dry (usually 4\\u20136 hours).\"}),`\n`]}),`\n`,(0,e.jsxs)(n.p,{children:[\"\\u{1F4A1} \",(0,e.jsx)(n.strong,{children:\"Tip:\"}),\" don\\u2019t skimp on primer \\u2014 it reduces paint consumption and extends durability.\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"-paint-calculator\",children:[\"\\u{1F4D0} Paint calculator\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#-paint-calculator\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsx)(n.p,{children:\"Before painting, calculate how many liters of paint you\\u2019ll need for the room:\"}),`\n`,(0,e.jsx)(r,{}),`\n`,(0,e.jsxs)(n.p,{children:[\"Example: a 5\\xD73 m room, 2.7 m height, without large windows = about \",(0,e.jsx)(n.strong,{children:\"24 liters\"}),\" of paint.\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h1,{id:\"-conclusion\",children:[\"\\u2705 Conclusion\",(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#-conclusion\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})})]}),`\n`,(0,e.jsxs)(n.p,{children:[\"Preparation takes more time than painting itself, but it determines the quality of the result.\",(0,e.jsx)(n.br,{}),`\n`,\"Follow these steps \\u2014 and the paint will go on smoothly, without drips or bubbles, and the walls will look great for years.\"]})]})}function d(i={}){let{wrapper:n}=i.components||{};return n?(0,e.jsx)(n,{...i,children:(0,e.jsx)(h,{...i})}):h(i)}function x(i,n){throw new Error(\"Expected \"+(n?\"component\":\"object\")+\" `\"+i+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return b(P);})();\n;return Component;"
+        },
+        "_id": "posts/pokraska-sten-podgotovka-en.mdx",
+        "_raw": {
+          "sourceFilePath": "posts/pokraska-sten-podgotovka-en.mdx",
+          "sourceFileName": "pokraska-sten-podgotovka-en.mdx",
+          "sourceFileDir": "posts",
+          "contentType": "mdx",
+          "flattenedPath": "posts/pokraska-sten-podgotovka-en"
+        },
+        "type": "Post",
+        "slug": "pokraska-sten-podgotovka-en",
+        "url": "/posts/pokraska-sten-podgotovka-en",
+        "dateParsed": "2025-09-03T00:00:00.000Z",
+        "updatedParsed": null,
+        "headings": [
+          {
+            "level": 2,
+            "text": "1. Covering the floor and furniture",
+            "slug": "1-covering-the-floor-and-furniture"
+          },
+          {
+            "level": 2,
+            "text": "2. Taping corners and baseboards",
+            "slug": "2-taping-corners-and-baseboards"
+          },
+          {
+            "level": 2,
+            "text": "3. Filling cracks and seams with putty",
+            "slug": "3-filling-cracks-and-seams-with-putty"
+          },
+          {
+            "level": 2,
+            "text": "4. Sanding the surface",
+            "slug": "4-sanding-the-surface"
+          },
+          {
+            "level": 2,
+            "text": "5. Priming the walls",
+            "slug": "5-priming-the-walls"
+          },
+          {
+            "level": 2,
+            "text": "📐 Paint calculator",
+            "slug": "-paint-calculator"
+          }
+        ],
+        "readingTime": {
+          "words": 422,
+          "minutes": 2
+        }
+      },
+      "documentHash": "1758999522954",
       "hasWarnings": false,
       "documentTypeName": "Post"
     },

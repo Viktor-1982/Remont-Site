@@ -10,22 +10,20 @@ import { PaintCalculator } from "@/components/widgets/paint-calculator"
 import { TileCalculator } from "@/components/widgets/tile-calculator"
 import { WallpaperCalculator } from "@/components/widgets/wallpaper-calculator"
 
-const slugger = new GitHubSlugger()
-
 export const mdxComponents: MDXComponents = {
     // Картинки
     img: ({ alt, src }: { alt?: string; src: string }) => (
         <span className="relative block overflow-hidden rounded-xl mx-auto bg-background">
-    <Image
-        alt={alt ?? ""}
-        src={src}
-        width={800}
-        height={600}
-        className="w-[500px] h-[400px] object-contain rounded-lg"
-    />
-  </span>
+      <Image
+          alt={alt && alt.trim() !== "" ? alt : "Изображение по теме ремонта"}
+          src={src}
+          width={1200}
+          height={800}
+          className="w-full h-auto object-contain rounded-lg"
+      />
+    </span>
     ),
-    
+
     // Калькуляторы
     PaintCalculator: () => (
         <div className="my-8">
@@ -45,11 +43,13 @@ export const mdxComponents: MDXComponents = {
 
     // Заголовки
     h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+        const slugger = new GitHubSlugger()
         const text = String(props.children)
         const id = slugger.slug(text)
         return (
             <h2
                 id={id}
+                aria-label={text}
                 className="mt-10 scroll-m-20 border-b pb-2 text-2xl font-semibold"
                 {...props}
             />
@@ -57,11 +57,13 @@ export const mdxComponents: MDXComponents = {
     },
 
     h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+        const slugger = new GitHubSlugger()
         const text = String(props.children)
         const id = slugger.slug(text)
         return (
             <h3
                 id={id}
+                aria-label={text}
                 className="mt-8 scroll-m-20 text-xl font-semibold"
                 {...props}
             />
@@ -80,7 +82,6 @@ export const mdxComponents: MDXComponents = {
     ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
         <ul className="ml-6 list-disc [&>li]:mt-2" {...props} />
     ),
-
     ol: (props: React.HTMLAttributes<HTMLOListElement>) => (
         <ol className="ml-6 list-decimal [&>li]:mt-2" {...props} />
     ),

@@ -9,12 +9,12 @@ export function HeroBanner() {
             <div className="absolute inset-0">
                 <Image
                     src="/images/pokraska/header.png"
-                    alt="Фон блога о ремонте"
+                    alt="Ремонт квартиры — фон блога о ремонте"
                     fill
                     priority
                     className="object-cover"
                 />
-                {/* overlay с хорошей контрастностью */}
+                {/* overlay */}
                 <div className="absolute inset-0 bg-black/60" />
             </div>
 
@@ -23,16 +23,12 @@ export function HeroBanner() {
                 <div className="max-w-3xl">
                     {/* Главный заголовок */}
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">
-                        Блог о ремонте и строительстве —{" "}
-                        <span className="text-primary">renohacks.com</span>
-                        <span className="sr-only">
-              : фото-гайды, лайфхаки, сметы и калькуляторы для ремонта
-            </span>
+                        Блог о ремонте и строительстве
                     </h1>
 
                     {/* Подзаголовок */}
                     <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 mb-8">
-                        Фото-гайды, лайфхаки и обзоры материалов для дома и ремонта
+                        Renohacks.com — фото-гайды, лайфхаки, сметы и калькуляторы для ремонта и дома
                     </p>
 
                     {/* Кнопки */}
@@ -42,7 +38,7 @@ export function HeroBanner() {
                             size="lg"
                             className="transition-transform hover:scale-105 hover:shadow-lg"
                         >
-                            <Link href="/tags/novinki">Новинки</Link>
+                            <Link href="/tags/novinki">Новинки ремонта</Link>
                         </Button>
                         <Button
                             asChild
@@ -50,7 +46,7 @@ export function HeroBanner() {
                             variant="outline"
                             className="transition-transform hover:scale-105 hover:shadow-lg"
                         >
-                            <Link href="/tags/diy">DIY проекты</Link>
+                            <Link href="/tags/diy">DIY проекты по ремонту</Link>
                         </Button>
                     </div>
                 </div>

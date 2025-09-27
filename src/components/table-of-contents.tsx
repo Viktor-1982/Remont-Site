@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
-import { ListOrdered, X } from "lucide-react"
+import { TOCToggle } from "@/components/toc-toggle"
 
 export type Heading = {
     level: number
@@ -10,7 +10,13 @@ export type Heading = {
     slug: string
 }
 
-export function TableOfContents({ items }: { items: Heading[] }) {
+export function TableOfContents({
+                                    items,
+                                    onLinkClick,
+                                }: {
+    items: Heading[]
+    onLinkClick?: () => void
+}) {
     const [open, setOpen] = useState(false)
     const [activeId, setActiveId] = useState<string | null>(null)
 
@@ -43,27 +49,20 @@ export function TableOfContents({ items }: { items: Heading[] }) {
             target.scrollIntoView({ behavior: "smooth", block: "start" })
             history.pushState(null, "", `#${id}`)
             setOpen(false)
+            if (onLinkClick) onLinkClick()
         }
     }
 
-    // ⚡️ Условный рендер — теперь после хуков
     if (!items?.length) return null
 
     return (
         <>
-            {/* 📱 Кнопка сверху справа (только мобилка) */}
-            <button
-                onClick={() => setOpen(!open)}
-                className="fixed top-20 right-4 z-50 flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-white shadow-md transition hover:scale-105 lg:hidden"
-            >
-                {open ? <X className="h-5 w-5" /> : <ListOrdered className="h-5 w-5" />}
-                <span className="text-sm font-semibold">
-          {open ? "Скрыть" : "Оглавление"}
-        </span>
-            </button>
+            {/* 📱 Кнопка toggle */}
+            <TOCToggle open={open} onToggle={() => setOpen(!open)} />
 
             {/* 📱 Панель справа */}
-            <div
+            <nav
+                aria-label="Оглавление статьи (мобильное)"
                 className={cn(
                     "fixed top-16 bottom-0 right-0 w-64 bg-background border-l shadow-lg transform transition-transform duration-300 lg:hidden overflow-y-auto",
                     open ? "translate-x-0" : "translate-x-full"
@@ -80,6 +79,7 @@ export function TableOfContents({ items }: { items: Heading[] }) {
                                         e.preventDefault()
                                         handleClick(h.slug)
                                     }}
+                                    aria-current={activeId === h.slug ? "true" : undefined}
                                     className={cn(
                                         "block transition-colors hover:text-primary",
                                         activeId === h.slug
@@ -93,10 +93,13 @@ export function TableOfContents({ items }: { items: Heading[] }) {
                         ))}
                     </ul>
                 </div>
-            </div>
+            </nav>
 
             {/* 💻 Десктопная версия */}
-            <nav className="sticky top-24 hidden lg:block max-h-[70vh] w-64 shrink-0 overflow-auto rounded-xl border p-4 text-sm bg-card">
+            <nav
+                aria-label="Оглавление статьи"
+                className="sticky top-24 hidden lg:block max-h-[70vh] w-64 shrink-0 overflow-auto rounded-xl border p-4 text-sm bg-card"
+            >
                 <div className="mb-2 font-semibold">Оглавление</div>
                 <ul className="space-y-1">
                     {items.map((h) => (
@@ -107,6 +110,7 @@ export function TableOfContents({ items }: { items: Heading[] }) {
                                     e.preventDefault()
                                     handleClick(h.slug)
                                 }}
+                                aria-current={activeId === h.slug ? "true" : undefined}
                                 className={cn(
                                     "transition-colors hover:text-foreground",
                                     activeId === h.slug

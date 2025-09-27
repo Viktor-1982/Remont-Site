@@ -13,12 +13,12 @@ export function SiteHeader() {
     const pathname = usePathname()
 
     const links = [
-        { href: "/", label: "Главная" },
-        { href: "/tags/novinki", label: "Новинки" },
-        { href: "/tags/diy", label: "DIY" },
-        { href: "/tags/smety", label: "Сметы" },
-        { href: "/about", label: "О проекте" },
-        { href: "/calculators", label: "Калькуляторы" },
+        { href: "/", label: "Главная", title: "Главная страница Renohacks" },
+        { href: "/tags/novinki", label: "Новинки", title: "Новинки в ремонте и дизайне" },
+        { href: "/tags/diy", label: "DIY", title: "DIY проекты по ремонту" },
+        { href: "/tags/smety", label: "Сметы", title: "Сметы и расчёты ремонта" },
+        { href: "/about", label: "О проекте", title: "Информация о Renohacks" },
+        { href: "/calculators", label: "Калькуляторы", title: "Онлайн калькуляторы для ремонта" },
     ]
 
     const isActive = (href: string) =>
@@ -39,7 +39,10 @@ export function SiteHeader() {
                     className="flex items-center gap-2 font-bold text-lg hover:scale-105 transition-transform"
                 >
                     <Hammer className="h-6 w-6 text-primary" />
-                    <span>renohacks.com</span>
+                    <span>
+            renohacks.com
+            <span className="sr-only"> — блог о ремонте и строительстве</span>
+          </span>
                 </Link>
 
                 {/* Навигация (desktop) */}
@@ -48,6 +51,7 @@ export function SiteHeader() {
                         <Link
                             key={link.href}
                             href={link.href}
+                            title={link.title}
                             aria-current={isActive(link.href) ? "page" : undefined}
                             className={cn(
                                 "text-sm hover:text-foreground hover:underline underline-offset-4 transition",
@@ -63,13 +67,14 @@ export function SiteHeader() {
 
                 {/* Правая часть */}
                 <div className="flex items-center gap-2 flex-nowrap">
-                    {/* Соцсети (только от sm) */}
+                    {/* Соцсети (desktop) */}
                     <div className="hidden sm:flex items-center gap-3">
                         <Link
                             href="https://www.instagram.com/reno.hacks"
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Instagram"
+                            title="Наш Instagram"
                             className="text-muted-foreground hover:text-[#E1306C] transition"
                         >
                             <Instagram className="h-5 w-5" />
@@ -79,6 +84,7 @@ export function SiteHeader() {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Pinterest"
+                            title="Наш Pinterest"
                             className="text-muted-foreground hover:text-[#BD081C] transition"
                         >
                             <FaPinterest className="h-5 w-5" />
@@ -112,6 +118,7 @@ export function SiteHeader() {
                         <Link
                             key={link.href}
                             href={link.href}
+                            title={link.title}
                             aria-current={isActive(link.href) ? "page" : undefined}
                             onClick={() => setIsOpen(false)}
                             className={cn(
@@ -132,6 +139,7 @@ export function SiteHeader() {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Instagram"
+                            title="Наш Instagram"
                             className="text-muted-foreground hover:text-[#E1306C] transition"
                         >
                             <Instagram className="h-6 w-6" />
@@ -141,9 +149,10 @@ export function SiteHeader() {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Pinterest"
+                            title="Наш Pinterest"
                             className="text-muted-foreground hover:text-[#BD081C] transition"
                         >
-                            <FaPinterest className="h-6 w-6" />
+                            <FaPinterest className="h-6 w-5" />
                         </Link>
                     </div>
                 </nav>

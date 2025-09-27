@@ -24,9 +24,8 @@ export const metadata: Metadata = {
         url: "https://renohacks.com",
         siteName: "Renohacks.com",
         locale: "ru_RU",
-        alternateLocale: ["en_US", "de_DE"], // 👈 для будущей мультиязычности
         type: "website",
-        images: ["/images/og-default.png"], // ⚡️ создай картинку 1200x630 в /public/images
+        images: ["/images/og-default.png"],
     },
     twitter: {
         card: "summary_large_image",
@@ -36,10 +35,14 @@ export const metadata: Metadata = {
     },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+                                       children,
+                                   }: {
+    children: React.ReactNode
+}) {
     return (
         <html
-            lang="ru" // 👈 потом можно сделать динамическим (ru/en/de)
+            lang="ru"
             suppressHydrationWarning
             className={`${GeistSans.variable} ${GeistMono.variable}`}
         >
@@ -55,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
             </Script>
         </head>
-        <body className="min-h-screen bg-background text-foreground font-sans">
+        <body className="min-h-screen bg-background text-foreground font-sans antialiased">
         {/* GTM noscript для браузеров без JS */}
         <noscript>
             <iframe
@@ -66,10 +69,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             ></iframe>
         </noscript>
 
+        {/* Провайдер тем */}
         <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
+            disableTransitionOnChange
             value={{
                 light: "light",
                 dark: "dark",
