@@ -1,22 +1,7 @@
 ﻿import Link from "next/link"
+import { DeepLink } from "@/components/deep-link"
 
 export function SiteFooter() {
-    const openPinterest = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault()
-        window.location.href = "pinterest://www.pinterest.com/RenoHacks/"
-        setTimeout(() => {
-            window.open("https://www.pinterest.com/RenoHacks/", "_blank")
-        }, 500)
-    }
-
-    const openInstagram = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault()
-        window.location.href = "instagram://user?username=reno.hacks"
-        setTimeout(() => {
-            window.open("https://www.instagram.com/reno.hacks", "_blank")
-        }, 500)
-    }
-
     return (
         <footer role="contentinfo" className="border-t bg-background">
             <div className="container grid gap-8 px-4 py-10 sm:grid-cols-2 md:grid-cols-3">
@@ -93,24 +78,26 @@ export function SiteFooter() {
                         </a>
                     </p>
                     <div className="mt-3 flex gap-4">
-                        <a
-                            href="instagram://user?username=reno.hacks"
-                            onClick={openInstagram}
-                            aria-label="Instagram"
+                        <DeepLink
+                            appUrl="instagram://user?username=reno.hacks"
+                            webUrl="https://www.instagram.com/reno.hacks"
+                            ariaLabel="Instagram"
                             title="Наш Instagram"
+                            analyticsEvent="instagram_click_footer"
                             className="text-muted-foreground hover:text-[#E1306C] transition"
                         >
                             Instagram
-                        </a>
-                        <a
-                            href="pinterest://www.pinterest.com/RenoHacks/"
-                            onClick={openPinterest}
-                            aria-label="Pinterest"
+                        </DeepLink>
+                        <DeepLink
+                            appUrl="pinterest://www.pinterest.com/RenoHacks/"
+                            webUrl="https://www.pinterest.com/RenoHacks/"
+                            ariaLabel="Pinterest"
                             title="Наш Pinterest"
+                            analyticsEvent="pinterest_click_footer"
                             className="text-muted-foreground hover:text-[#BD081C] transition"
                         >
                             Pinterest
-                        </a>
+                        </DeepLink>
                     </div>
                 </div>
             </div>

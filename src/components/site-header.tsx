@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { ThemeSwitcher } from "@/components/theme-switcher"
+import { DeepLink } from "@/components/deep-link"
 
 export function SiteHeader() {
     const [isOpen, setIsOpen] = useState(false)
@@ -23,22 +24,6 @@ export function SiteHeader() {
 
     const isActive = (href: string) =>
         pathname === href || pathname.startsWith(href + "/")
-
-    const openPinterest = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault()
-        window.location.href = "pinterest://www.pinterest.com/RenoHacks/"
-        setTimeout(() => {
-            window.open("https://www.pinterest.com/RenoHacks/", "_blank")
-        }, 500)
-    }
-
-    const openInstagram = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault()
-        window.location.href = "instagram://user?username=reno.hacks"
-        setTimeout(() => {
-            window.open("https://www.instagram.com/reno.hacks", "_blank")
-        }, 500)
-    }
 
     return (
         <header
@@ -85,24 +70,26 @@ export function SiteHeader() {
                 <div className="flex items-center gap-2 flex-nowrap">
                     {/* Соцсети (desktop) */}
                     <div className="hidden sm:flex items-center gap-3">
-                        <a
-                            href="instagram://user?username=reno.hacks"
-                            onClick={openInstagram}
-                            aria-label="Instagram"
+                        <DeepLink
+                            appUrl="instagram://user?username=reno.hacks"
+                            webUrl="https://www.instagram.com/reno.hacks"
+                            ariaLabel="Instagram"
                             title="Наш Instagram"
+                            analyticsEvent="instagram_click"
                             className="text-muted-foreground hover:text-[#E1306C] transition"
                         >
                             <Instagram className="h-5 w-5" />
-                        </a>
-                        <a
-                            href="pinterest://www.pinterest.com/RenoHacks/"
-                            onClick={openPinterest}
-                            aria-label="Pinterest"
+                        </DeepLink>
+                        <DeepLink
+                            appUrl="pinterest://www.pinterest.com/RenoHacks/"
+                            webUrl="https://www.pinterest.com/RenoHacks/"
+                            ariaLabel="Pinterest"
                             title="Наш Pinterest"
+                            analyticsEvent="pinterest_click"
                             className="text-muted-foreground hover:text-[#BD081C] transition"
                         >
                             <FaPinterest className="h-5 w-5" />
-                        </a>
+                        </DeepLink>
                     </div>
 
                     {/* Переключатель темы */}
@@ -148,24 +135,26 @@ export function SiteHeader() {
 
                     {/* Соцсети (mob) */}
                     <div className="flex gap-4 px-4 py-3">
-                        <a
-                            href="instagram://user?username=reno.hacks"
-                            onClick={openInstagram}
-                            aria-label="Instagram"
+                        <DeepLink
+                            appUrl="instagram://user?username=reno.hacks"
+                            webUrl="https://www.instagram.com/reno.hacks"
+                            ariaLabel="Instagram"
                             title="Наш Instagram"
+                            analyticsEvent="instagram_click_mobile"
                             className="text-muted-foreground hover:text-[#E1306C] transition"
                         >
                             <Instagram className="h-6 w-6" />
-                        </a>
-                        <a
-                            href="pinterest://www.pinterest.com/RenoHacks/"
-                            onClick={openPinterest}
-                            aria-label="Pinterest"
+                        </DeepLink>
+                        <DeepLink
+                            appUrl="pinterest://www.pinterest.com/RenoHacks/"
+                            webUrl="https://www.pinterest.com/RenoHacks/"
+                            ariaLabel="Pinterest"
                             title="Наш Pinterest"
+                            analyticsEvent="pinterest_click_mobile"
                             className="text-muted-foreground hover:text-[#BD081C] transition"
                         >
                             <FaPinterest className="h-6 w-5" />
-                        </a>
+                        </DeepLink>
                     </div>
                 </nav>
             </div>
