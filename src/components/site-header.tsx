@@ -76,6 +76,7 @@ export function SiteHeader() {
                             ariaLabel="Instagram"
                             title="Наш Instagram"
                             analyticsEvent="instagram_click"
+                            location="header"
                             className="text-muted-foreground hover:text-[#E1306C] transition"
                         >
                             <Instagram className="h-5 w-5" />
@@ -86,6 +87,7 @@ export function SiteHeader() {
                             ariaLabel="Pinterest"
                             title="Наш Pinterest"
                             analyticsEvent="pinterest_click"
+                            location="header"
                             className="text-muted-foreground hover:text-[#BD081C] transition"
                         >
                             <FaPinterest className="h-5 w-5" />
@@ -141,6 +143,7 @@ export function SiteHeader() {
                             ariaLabel="Instagram"
                             title="Наш Instagram"
                             analyticsEvent="instagram_click_mobile"
+                            location="header_mobile"
                             className="text-muted-foreground hover:text-[#E1306C] transition"
                         >
                             <Instagram className="h-6 w-6" />
@@ -151,6 +154,7 @@ export function SiteHeader() {
                             ariaLabel="Pinterest"
                             title="Наш Pinterest"
                             analyticsEvent="pinterest_click_mobile"
+                            location="header_mobile"
                             className="text-muted-foreground hover:text-[#BD081C] transition"
                         >
                             <FaPinterest className="h-6 w-5" />

@@ -1,5 +1,6 @@
 ﻿import Link from "next/link"
 import { DeepLink } from "@/components/deep-link"
+import { FaInstagram, FaPinterest } from "react-icons/fa"
 
 export function SiteFooter() {
     return (
@@ -65,7 +66,7 @@ export function SiteFooter() {
                         Контакты
                     </div>
                     <p className="mt-3 text-sm text-muted-foreground">
-                        Вопросы и предложения: пишите нам на почту.
+                        Есть идеи или вопросы? Напишите нам:
                     </p>
                     <p className="mt-2 text-sm">
                         <a
@@ -73,20 +74,22 @@ export function SiteFooter() {
                             aria-label="Написать на info@renohacks.com"
                             title="Связаться с renohacks.com"
                             className="hover:underline"
+                            rel="noopener noreferrer"
                         >
                             info@renohacks.com
                         </a>
                     </p>
-                    <div className="mt-3 flex gap-4">
+                    <div className="mt-3 flex gap-6">
                         <DeepLink
                             appUrl="instagram://user?username=reno.hacks"
                             webUrl="https://www.instagram.com/reno.hacks"
                             ariaLabel="Instagram"
                             title="Наш Instagram"
                             analyticsEvent="instagram_click_footer"
-                            className="text-muted-foreground hover:text-[#E1306C] transition"
+                            location="footer"
+                            className="flex items-center gap-2 text-muted-foreground hover:text-[#E1306C] transition"
                         >
-                            Instagram
+                            <FaInstagram size={18} /> Instagram
                         </DeepLink>
                         <DeepLink
                             appUrl="pinterest://www.pinterest.com/RenoHacks/"
@@ -94,9 +97,10 @@ export function SiteFooter() {
                             ariaLabel="Pinterest"
                             title="Наш Pinterest"
                             analyticsEvent="pinterest_click_footer"
-                            className="text-muted-foreground hover:text-[#BD081C] transition"
+                            location="footer"
+                            className="flex items-center gap-2 text-muted-foreground hover:text-[#BD081C] transition"
                         >
-                            Pinterest
+                            <FaPinterest size={18} /> Pinterest
                         </DeepLink>
                     </div>
                 </div>
