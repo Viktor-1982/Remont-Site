@@ -69,7 +69,7 @@ export function SiteHeader() {
                 <div className="flex items-center gap-2 flex-nowrap">
                     {/* Соцсети (desktop) */}
                     <div className="hidden sm:flex items-center gap-3">
-                        <Link
+                        <a
                             href="https://www.instagram.com/reno.hacks"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -78,8 +78,8 @@ export function SiteHeader() {
                             className="text-muted-foreground hover:text-[#E1306C] transition"
                         >
                             <Instagram className="h-5 w-5" />
-                        </Link>
-                        <Link
+                        </a>
+                        <a
                             href="https://pinterest.com/RenoHacks"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -88,7 +88,7 @@ export function SiteHeader() {
                             className="text-muted-foreground hover:text-[#BD081C] transition"
                         >
                             <FaPinterest className="h-5 w-5" />
-                        </Link>
+                        </a>
                     </div>
 
                     {/* Переключатель темы */}
@@ -134,7 +134,7 @@ export function SiteHeader() {
 
                     {/* Соцсети (mob) */}
                     <div className="flex gap-4 px-4 py-3">
-                        <Link
+                        <a
                             href="https://www.instagram.com/reno.hacks"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -143,8 +143,8 @@ export function SiteHeader() {
                             className="text-muted-foreground hover:text-[#E1306C] transition"
                         >
                             <Instagram className="h-6 w-6" />
-                        </Link>
-                        <Link
+                        </a>
+                        <a
                             href="https://pinterest.com/RenoHacks"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -153,7 +153,7 @@ export function SiteHeader() {
                             className="text-muted-foreground hover:text-[#BD081C] transition"
                         >
                             <FaPinterest className="h-6 w-5" />
-                        </Link>
+                        </a>
                     </div>
                 </nav>
             </div>

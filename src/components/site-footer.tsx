@@ -8,7 +8,8 @@ export function SiteFooter() {
                 <div>
                     <div className="font-bold text-lg">renohacks.com</div>
                     <p className="mt-2 text-sm text-muted-foreground">
-                        Renohacks — блог о ремонте и строительстве. Фото-гайды, сметы, лайфхаки и обзоры материалов для дома.
+                        Renohacks — блог о ремонте и строительстве. Фото-гайды, сметы,
+                        лайфхаки и обзоры материалов для дома.
                     </p>
                 </div>
 
@@ -66,17 +67,17 @@ export function SiteFooter() {
                         Вопросы и предложения: пишите нам на почту.
                     </p>
                     <p className="mt-2 text-sm">
-                        <Link
+                        <a
                             href="mailto:info@renohacks.com"
                             aria-label="Написать на info@renohacks.com"
                             title="Связаться с renohacks.com"
                             className="hover:underline"
                         >
                             info@renohacks.com
-                        </Link>
+                        </a>
                     </p>
                     <div className="mt-3 flex gap-4">
-                        <Link
+                        <a
                             href="https://www.instagram.com/reno.hacks"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -85,8 +86,8 @@ export function SiteFooter() {
                             className="text-muted-foreground hover:text-[#E1306C] transition"
                         >
                             Instagram
-                        </Link>
-                        <Link
+                        </a>
+                        <a
                             href="https://pinterest.com/RenoHacks"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -95,7 +96,7 @@ export function SiteFooter() {
                             className="text-muted-foreground hover:text-[#BD081C] transition"
                         >
                             Pinterest
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </div>
