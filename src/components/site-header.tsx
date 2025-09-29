@@ -24,6 +24,22 @@ export function SiteHeader() {
     const isActive = (href: string) =>
         pathname === href || pathname.startsWith(href + "/")
 
+    const openPinterest = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        window.location.href = "pinterest://www.pinterest.com/RenoHacks/"
+        setTimeout(() => {
+            window.open("https://www.pinterest.com/RenoHacks/", "_blank")
+        }, 500)
+    }
+
+    const openInstagram = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        window.location.href = "instagram://user?username=reno.hacks"
+        setTimeout(() => {
+            window.open("https://www.instagram.com/reno.hacks", "_blank")
+        }, 500)
+    }
+
     return (
         <header
             className={cn(
@@ -70,9 +86,8 @@ export function SiteHeader() {
                     {/* Соцсети (desktop) */}
                     <div className="hidden sm:flex items-center gap-3">
                         <a
-                            href="https://www.instagram.com/reno.hacks"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="instagram://user?username=reno.hacks"
+                            onClick={openInstagram}
                             aria-label="Instagram"
                             title="Наш Instagram"
                             className="text-muted-foreground hover:text-[#E1306C] transition"
@@ -80,9 +95,8 @@ export function SiteHeader() {
                             <Instagram className="h-5 w-5" />
                         </a>
                         <a
-                            href="https://pinterest.com/RenoHacks"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="pinterest://www.pinterest.com/RenoHacks/"
+                            onClick={openPinterest}
                             aria-label="Pinterest"
                             title="Наш Pinterest"
                             className="text-muted-foreground hover:text-[#BD081C] transition"
@@ -135,9 +149,8 @@ export function SiteHeader() {
                     {/* Соцсети (mob) */}
                     <div className="flex gap-4 px-4 py-3">
                         <a
-                            href="https://www.instagram.com/reno.hacks"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="instagram://user?username=reno.hacks"
+                            onClick={openInstagram}
                             aria-label="Instagram"
                             title="Наш Instagram"
                             className="text-muted-foreground hover:text-[#E1306C] transition"
@@ -145,9 +158,8 @@ export function SiteHeader() {
                             <Instagram className="h-6 w-6" />
                         </a>
                         <a
-                            href="https://pinterest.com/RenoHacks"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="pinterest://www.pinterest.com/RenoHacks/"
+                            onClick={openPinterest}
                             aria-label="Pinterest"
                             title="Наш Pinterest"
                             className="text-muted-foreground hover:text-[#BD081C] transition"
