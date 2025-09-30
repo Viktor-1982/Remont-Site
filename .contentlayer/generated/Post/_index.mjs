@@ -7,6 +7,7 @@ import posts__pokraskaStenPodgotovkaMdx from './posts__pokraska-sten-podgotovka.
 import posts__pokraskaStenMdx from './posts__pokraska-sten.mdx.json' with { type: 'json' }
 import posts__preparingWallsForPaintingEnMdx from './posts__preparing-walls-for-painting-en.mdx.json' with { type: 'json' }
 import posts__remontSovety_5Mdx from './posts__remont-sovety-5.mdx.json' with { type: 'json' }
+import posts__remontVannoyMdx from './posts__remont-vannoy.mdx.json' with { type: 'json' }
 import posts__trends_2026Mdx from './posts__trends-2026.mdx.json' with { type: 'json' }
 
-export const allPosts = [posts__fiveInteriorTipsEnMdx, posts__interiorDesignTrends_2026EnMdx, posts__interiorTrends_2025Mdx, posts__pokraskaStenPodgotovkaMdx, posts__pokraskaStenMdx, posts__preparingWallsForPaintingEnMdx, posts__remontSovety_5Mdx, posts__trends_2026Mdx]
+export const allPosts = [posts__fiveInteriorTipsEnMdx, posts__interiorDesignTrends_2026EnMdx, posts__interiorTrends_2025Mdx, posts__pokraskaStenPodgotovkaMdx, posts__pokraskaStenMdx, posts__preparingWallsForPaintingEnMdx, posts__remontSovety_5Mdx, posts__remontVannoyMdx, posts__trends_2026Mdx]
