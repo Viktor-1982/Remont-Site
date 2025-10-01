@@ -10,23 +10,28 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
+import navData from "@/messages/nav.json"
 
 export function ThemeSwitcher() {
     const { theme, setTheme, resolvedTheme } = useTheme()
     const [mounted, setMounted] = useState(false)
+    const pathname = usePathname()
 
-    // 🔹 Чтобы избежать "hydration mismatch"
+    // ✅ универсальная проверка языка
+    const isEnglish = /^\/en(\/|$)/.test(pathname) || pathname.includes("-en")
+    const t = (navData as any)[isEnglish ? "en" : "ru"].theme
+
     useEffect(() => setMounted(true), [])
 
     if (!mounted) {
         return (
-            <Button variant="ghost" size="icon" aria-label="Переключить тему">
+            <Button variant="ghost" size="icon" aria-label={t.ariaLabel}>
                 <Sun className="h-5 w-5" />
             </Button>
         )
     }
 
-    // Определяем иконку текущей темы
     const getIcon = () => {
         switch (theme ?? resolvedTheme) {
             case "light":
@@ -45,25 +50,25 @@ export function ThemeSwitcher() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" aria-label="Переключить тему">
+                <Button variant="ghost" size="icon" aria-label={t.ariaLabel}>
                     {getIcon()}
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => setTheme("light")}>
-                    <Sun className="mr-2 h-4 w-4" /> Светлая
+                    <Sun className="mr-2 h-4 w-4" /> {t.light}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setTheme("dark")}>
-                    <Moon className="mr-2 h-4 w-4" /> Тёмная
+                    <Moon className="mr-2 h-4 w-4" /> {t.dark}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setTheme("system")}>
-                    <Monitor className="mr-2 h-4 w-4" /> Системная
+                    <Monitor className="mr-2 h-4 w-4" /> {t.system}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setTheme("sepia")}>
-                    <Palette className="mr-2 h-4 w-4" /> Сепия
+                    <Palette className="mr-2 h-4 w-4" /> {t.sepia}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setTheme("contrast")}>
-                    <Contrast className="mr-2 h-4 w-4" /> Контрастная
+                    <Contrast className="mr-2 h-4 w-4" /> {t.contrast}
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

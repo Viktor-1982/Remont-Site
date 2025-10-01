@@ -1,0 +1,142 @@
+﻿{
+  "ru": {
+    "navLabels": {
+      "desktop": "Основная навигация",
+      "mobile": "Мобильная навигация"
+    },
+    "links": [
+      { "href": "/", "label": "Главная", "title": "Главная страница Renohacks" },
+      { "href": "/tags/novinki", "label": "Новинки", "title": "Новинки в ремонте и дизайне" },
+      { "href": "/tags/diy", "label": "DIY", "title": "DIY проекты по ремонту" },
+      { "href": "/tags/smety", "label": "Сметы", "title": "Сметы и расчёты ремонта" },
+      { "href": "/about", "label": "О проекте", "title": "Информация о Renohacks" },
+      { "href": "/calculators", "label": "Калькуляторы", "title": "Онлайн калькуляторы для ремонта" }
+    ],
+    "social": {
+      "instagram": "Наш Instagram",
+      "pinterest": "Наш Pinterest"
+    },
+    "header": {
+      "socialLabel": "Социальные ссылки",
+      "ariaMenuOpen": "Открыть меню",
+      "ariaMenuClose": "Закрыть меню"
+    },
+    "toc": {
+      "open": "Оглавление",
+      "close": "Скрыть",
+      "ariaOpen": "Открыть оглавление",
+      "ariaClose": "Скрыть оглавление",
+      "mobile": "Содержание"
+    },
+    "theme": {
+      "ariaLabel": "Переключить тему",
+      "light": "Светлая",
+      "dark": "Тёмная",
+      "system": "Системная",
+      "sepia": "Сепия",
+      "contrast": "Контрастная"
+    },
+    "articles": {
+      "empty": "Пока нет статей 📝",
+      "list": "Список статей блога",
+      "listMobile": "Статьи",
+      "minRead": "мин чтения",
+      "words": "слов",
+      "related": "Похожие статьи",
+      "latest": "Последние статьи",
+      "tagLabel": "Тег"
+    },
+    "footer": {
+      "about": "Renohacks — блог о ремонте и строительстве. Фото-гайды, сметы, лайфхаки и обзоры материалов для дома.",
+      "sectionsTitle": "Разделы",
+      "sectionsTitleMobile": "Разделы (моб.)",
+      "sections": {
+        "kitchen": { "href": "/tags/kitchen", "label": "Кухня", "title": "Ремонт кухни" },
+        "bathroom": { "href": "/tags/bathroom", "label": "Ванная", "title": "Ремонт ванной комнаты" },
+        "floor": { "href": "/tags/floor", "label": "Полы", "title": "Отделка полов" },
+        "walls": { "href": "/tags/walls", "label": "Стены", "title": "Дизайн и отделка стен" }
+      },
+      "contactsTitle": "Контакты",
+      "contactsTitleMobile": "Контакты (моб.)",
+      "contactsText": "Есть идеи или вопросы? Напишите нам:",
+      "socialLabel": "Социальные ссылки",
+      "rights": "© 2025 renohacks.com. Все права защищены."
+    },
+    "hero": {
+      "title": "Блог о ремонте и строительстве",
+      "subtitle": "Renohacks.com — фото-гайды, лайфхаки, сметы и калькуляторы для ремонта и дома",
+      "ctaTrends": "Новинки ремонта",
+      "ctaDiy": "DIY проекты по ремонту"
+    }
+  },
+  "en": {
+    "navLabels": {
+      "desktop": "Main navigation",
+      "mobile": "Mobile navigation"
+    },
+    "links": [
+      { "href": "/en", "label": "Home", "title": "Renohacks home page" },
+      { "href": "/en/tags/trends", "label": "Trends", "title": "Trends in renovation and design" },
+      { "href": "/en/tags/diy", "label": "DIY", "title": "DIY renovation projects" },
+      { "href": "/en/tags/costs", "label": "Costs", "title": "Renovation estimates and budgets" },
+      { "href": "/en/about", "label": "About", "title": "About Renohacks project" },
+      { "href": "/en/calculators", "label": "Calculators", "title": "Online renovation calculators" }
+    ],
+    "social": {
+      "instagram": "Our Instagram",
+      "pinterest": "Our Pinterest"
+    },
+    "header": {
+      "socialLabel": "Social links",
+      "ariaMenuOpen": "Open menu",
+      "ariaMenuClose": "Close menu"
+    },
+    "toc": {
+      "open": "Table of contents",
+      "close": "Hide",
+      "ariaOpen": "Open table of contents",
+      "ariaClose": "Hide table of contents",
+      "mobile": "Contents"
+    },
+    "theme": {
+      "ariaLabel": "Toggle theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System",
+      "sepia": "Sepia",
+      "contrast": "High contrast"
+    },
+    "articles": {
+      "empty": "No articles yet 📝",
+      "list": "Blog articles list",
+      "listMobile": "Articles",
+      "minRead": "min read",
+      "words": "words",
+      "related": "Related articles",
+      "latest": "Latest articles",
+      "tagLabel": "Tag"
+    },
+    "footer": {
+      "about": "Renohacks — renovation and construction blog. Photo guides, estimates, DIY tips and material reviews.",
+      "sectionsTitle": "Sections",
+      "sectionsTitleMobile": "Sections (mobile)",
+      "sections": {
+        "kitchen": { "href": "/en/tags/kitchen", "label": "Kitchen", "title": "Kitchen renovation" },
+        "bathroom": { "href": "/en/tags/bathroom", "label": "Bathroom", "title": "Bathroom renovation" },
+        "floor": { "href": "/en/tags/floor", "label": "Flooring", "title": "Flooring and finishes" },
+        "walls": { "href": "/en/tags/walls", "label": "Walls", "title": "Wall design and finishes" }
+      },
+      "contactsTitle": "Contacts",
+      "contactsTitleMobile": "Contacts (mobile)",
+      "contactsText": "Have ideas or questions? Contact us:",
+      "socialLabel": "Social links",
+      "rights": "© 2025 renohacks.com. All rights reserved."
+    },
+    "hero": {
+      "title": "Home renovation & design blog",
+      "subtitle": "Renohacks.com — photo guides, hacks, budgets and calculators for your home renovation",
+      "ctaTrends": "Trends",
+      "ctaDiy": "DIY projects"
+    }
+  }
+}

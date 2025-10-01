@@ -1,57 +1,69 @@
 ﻿"use client"
+
+import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Calculator } from "lucide-react"
+import calcData from "@/messages/calc.json"
 
 export function WallpaperCalculator() {
-    const [length, setLength] = useState("")
-    const [width, setWidth] = useState("")
-    const [height, setHeight] = useState("")
-    const [roll, setRoll] = useState("")
+    const pathname = usePathname()
+    const isEnglish = pathname.startsWith("/en")
+    const t = (calcData as any)[isEnglish ? "en" : "ru"].calc.wallpaper || {
+        title: isEnglish ? "Wallpaper Calculator" : "Калькулятор обоев",
+        inputLabel: isEnglish ? "Wall area in m²" : "Площадь стен в м²",
+        result: isEnglish ? "Rolls needed:" : "Необходимо рулонов:",
+    }
+
+    const [area, setArea] = useState("")
+    const [rollCoverage, setRollCoverage] = useState("5") // м² на 1 рулон
     const [result, setResult] = useState<number | null>(null)
 
-    const handleCalc = () => {
-        const l = parseFloat(length)
-        const w = parseFloat(width)
-        const h = parseFloat(height)
-        const r = parseFloat(roll)
-        if (!isNaN(l) && !isNaN(w) && !isNaN(h) && !isNaN(r) && r > 0) {
-            const perimeter = 2 * (l + w)
-            const wallArea = perimeter * h
-            setResult(Math.ceil(wallArea / r * 1.1)) // +10% запас
-        }
+    const calculate = () => {
+        const a = parseFloat(area.replace(",", "."))
+        const r = parseFloat(rollCoverage.replace(",", "."))
+        if (!a || !r) return
+        setResult(a / r)
     }
 
     return (
-        <div className="space-y-4">
-            <Input
-                type="number"
-                placeholder="Длина комнаты (м)"
-                value={length}
-                onChange={(e) => setLength(e.target.value)}
-            />
-            <Input
-                type="number"
-                placeholder="Ширина комнаты (м)"
-                value={width}
-                onChange={(e) => setWidth(e.target.value)}
-            />
-            <Input
-                type="number"
-                placeholder="Высота потолка (м)"
-                value={height}
-                onChange={(e) => setHeight(e.target.value)}
-            />
-            <Input
-                type="number"
-                placeholder="Площадь рулона (м²)"
-                value={roll}
-                onChange={(e) => setRoll(e.target.value)}
-            />
-            <Button onClick={handleCalc}>Рассчитать</Button>
+        <div className="max-w-md mx-auto border rounded-lg p-4 shadow-sm space-y-4">
+            <h2 className="flex items-center gap-2 text-xl font-semibold">
+                <Calculator className="w-5 h-5 text-primary" /> {t.title}
+            </h2>
+
+            <div>
+                <label className="block text-sm font-medium mb-1">
+                    {t.inputLabel}
+                </label>
+                <Input
+                    type="number"
+                    value={area}
+                    onChange={(e) => setArea(e.target.value)}
+                    placeholder="25"
+                />
+            </div>
+
+            <div>
+                <label className="block text-sm font-medium mb-1">
+                    {isEnglish ? "Roll coverage (m²)" : "Покрытие 1 рулона (м²)"}
+                </label>
+                <Input
+                    type="number"
+                    value={rollCoverage}
+                    onChange={(e) => setRollCoverage(e.target.value)}
+                    placeholder="5"
+                />
+            </div>
+
+            <Button onClick={calculate} className="w-full">
+                {isEnglish ? "Calculate" : "Рассчитать"}
+            </Button>
+
             {result !== null && (
-                <p className="text-lg font-semibold">
-                    Нужно примерно {result} рулонов
+                <p className="text-lg font-medium">
+                    {t.result} <b>{Math.ceil(result)}</b>
                 </p>
             )}
         </div>

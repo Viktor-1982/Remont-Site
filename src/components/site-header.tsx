@@ -8,22 +8,33 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import { DeepLink } from "@/components/deep-link"
+import { LanguageSwitcher } from "@/components/language-switcher"
+import navData from "@/messages/nav.json"
 
 export function SiteHeader() {
     const [isOpen, setIsOpen] = useState(false)
     const pathname = usePathname()
 
-    const links = [
-        { href: "/", label: "Главная", title: "Главная страница Renohacks" },
-        { href: "/tags/novinki", label: "Новинки", title: "Новинки в ремонте и дизайне" },
-        { href: "/tags/diy", label: "DIY", title: "DIY проекты по ремонту" },
-        { href: "/tags/smety", label: "Сметы", title: "Сметы и расчёты ремонта" },
-        { href: "/about", label: "О проекте", title: "Информация о Renohacks" },
-        { href: "/calculators", label: "Калькуляторы", title: "Онлайн калькуляторы для ремонта" },
-    ]
+    // ✅ определяем язык
+    const isEnglish = pathname.startsWith("/en") || pathname.endsWith("-en")
+    const locale = isEnglish ? "en" : "ru"
+    const { navLabels, links, social, header: h } = (navData as any)[locale]
 
-    const isActive = (href: string) =>
-        pathname === href || pathname.startsWith(href + "/")
+    // 🔹 Проверка активной ссылки
+    const isActive = (href: string) => {
+        const cleanPath = pathname.replace(/\/$/, "")
+        const cleanHref = href.replace(/\/$/, "")
+        return cleanPath === cleanHref || cleanPath.startsWith(cleanHref + "/")
+    }
+
+    // 🔹 Функция для корректного href
+    const localizeHref = (href: string) => {
+        if (isEnglish) {
+            return href.startsWith("/en") ? href : "/en" + href
+        } else {
+            return href.replace(/^\/en/, "")
+        }
+    }
 
     return (
         <header
@@ -34,29 +45,34 @@ export function SiteHeader() {
             )}
         >
             <div className="mx-auto flex min-h-[64px] items-center justify-between px-4 sm:px-6 lg:px-8">
-                {/* Логотип */}
+                {/* 🏠 Логотип */}
                 <Link
-                    href="/"
+                    href={isEnglish ? "/en" : "/"}
                     className="flex items-center gap-2 font-bold text-lg hover:scale-105 transition-transform"
+                    aria-label={isEnglish ? "Go to homepage" : "Перейти на главную"}
                 >
-                    <Hammer className="h-6 w-6 text-primary" />
+                    <Hammer className="h-6 w-6 text-primary" aria-hidden="true" />
                     <span>
             renohacks.com
-            <span className="sr-only"> — блог о ремонте и строительстве</span>
+            <span className="sr-only">
+              {isEnglish
+                  ? " — renovation and construction blog"
+                  : " — блог о ремонте и строительстве"}
+            </span>
           </span>
                 </Link>
 
-                {/* Навигация (desktop) */}
-                <nav aria-label="Main navigation" className="hidden md:flex gap-6">
-                    {links.map((link) => (
+                {/* 📂 Навигация (desktop) */}
+                <nav aria-label={navLabels.desktop} className="hidden md:flex gap-6">
+                    {links.map((link: any) => (
                         <Link
                             key={link.href}
-                            href={link.href}
+                            href={localizeHref(link.href)}
                             title={link.title}
-                            aria-current={isActive(link.href) ? "page" : undefined}
+                            aria-current={isActive(localizeHref(link.href)) ? "page" : undefined}
                             className={cn(
                                 "text-sm hover:text-foreground hover:underline underline-offset-4 transition",
-                                isActive(link.href)
+                                isActive(localizeHref(link.href))
                                     ? "text-primary font-semibold"
                                     : "text-muted-foreground"
                             )}
@@ -66,67 +82,78 @@ export function SiteHeader() {
                     ))}
                 </nav>
 
-                {/* Правая часть */}
+                {/* 🔧 Правая часть */}
                 <div className="flex items-center gap-2 flex-nowrap">
-                    {/* Соцсети (desktop) */}
-                    <div className="hidden sm:flex items-center gap-3">
+                    {/* 🌍 Переключатель языка */}
+                    <LanguageSwitcher />
+
+                    {/* 🌍 Соцсети (desktop) */}
+                    <div className="hidden sm:flex items-center gap-3" aria-label={h.socialLabel}>
                         <DeepLink
                             appUrl="instagram://user?username=reno.hacks"
                             webUrl="https://www.instagram.com/reno.hacks"
                             ariaLabel="Instagram"
-                            title=" Instagram"
+                            title={social.instagram}
                             analyticsEvent="instagram_click"
                             location="header"
                             className="text-muted-foreground hover:text-[#E1306C] transition"
                         >
-                            <Instagram className="h-5 w-5" />
+                            <Instagram className="h-5 w-5" aria-hidden="true" />
+                            <span className="sr-only">Instagram</span>
                         </DeepLink>
                         <DeepLink
                             appUrl="pinterest://www.pinterest.com/RenoHacks/"
                             webUrl="https://www.pinterest.com/RenoHacks/"
                             ariaLabel="Pinterest"
-                            title="Pinterest"
+                            title={social.pinterest}
                             analyticsEvent="pinterest_click"
                             location="header"
                             className="text-muted-foreground hover:text-[#BD081C] transition"
                         >
-                            <FaPinterest className="h-5 w-5" />
+                            <FaPinterest className="h-5 w-5" aria-hidden="true" />
+                            <span className="sr-only">Pinterest</span>
                         </DeepLink>
                     </div>
 
-                    {/* Переключатель темы */}
+                    {/* 🌗 Переключатель темы */}
                     <ThemeSwitcher />
 
-                    {/* Бургер (mob) */}
+                    {/* 🍔 Бургер (mob) */}
                     <button
                         className="md:hidden p-2 rounded hover:bg-muted transition"
                         onClick={() => setIsOpen(!isOpen)}
-                        aria-label="Toggle menu"
+                        aria-label={isOpen ? h.ariaMenuClose : h.ariaMenuOpen}
                         aria-expanded={isOpen}
+                        aria-controls="mobile-menu"
                     >
-                        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                        {isOpen ? (
+                            <X className="h-6 w-6" aria-hidden="true" />
+                        ) : (
+                            <Menu className="h-6 w-6" aria-hidden="true" />
+                        )}
                     </button>
                 </div>
             </div>
 
-            {/* Мобильное меню */}
+            {/* 📱 Мобильное меню */}
             <div
+                id="mobile-menu"
                 className={cn(
-                    "absolute top-[64px] left-0 right-0 border-t bg-background/95 backdrop-blur md:hidden shadow-lg transition-all duration-300 overflow-hidden",
-                    isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                    "absolute top-[64px] left-0 right-0 border-t bg-background/95 backdrop-blur md:hidden shadow-lg overflow-hidden transform transition-all duration-300",
+                    isOpen ? "max-h-96 opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2"
                 )}
             >
-                <nav aria-label="Mobile navigation" className="flex flex-col divide-y">
-                    {links.map((link) => (
+                <nav aria-label={navLabels.mobile} className="flex flex-col divide-y">
+                    {links.map((link: any) => (
                         <Link
                             key={link.href}
-                            href={link.href}
+                            href={localizeHref(link.href)}
                             title={link.title}
-                            aria-current={isActive(link.href) ? "page" : undefined}
+                            aria-current={isActive(localizeHref(link.href)) ? "page" : undefined}
                             onClick={() => setIsOpen(false)}
                             className={cn(
                                 "px-4 py-3 text-base transition hover:bg-muted",
-                                isActive(link.href)
+                                isActive(localizeHref(link.href))
                                     ? "text-primary font-semibold"
                                     : "text-foreground"
                             )}
@@ -135,30 +162,9 @@ export function SiteHeader() {
                         </Link>
                     ))}
 
-                    {/* Соцсети (mob) */}
-                    <div className="flex gap-4 px-4 py-3">
-                        <DeepLink
-                            appUrl="instagram://user?username=reno.hacks"
-                            webUrl="https://www.instagram.com/reno.hacks"
-                            ariaLabel="Instagram"
-                            title="Наш Instagram"
-                            analyticsEvent="instagram_click_mobile"
-                            location="header_mobile"
-                            className="text-muted-foreground hover:text-[#E1306C] transition"
-                        >
-                            <Instagram className="h-6 w-6" />
-                        </DeepLink>
-                        <DeepLink
-                            appUrl="pinterest://www.pinterest.com/RenoHacks/"
-                            webUrl="https://www.pinterest.com/RenoHacks/"
-                            ariaLabel="Pinterest"
-                            title="Наш Pinterest"
-                            analyticsEvent="pinterest_click_mobile"
-                            location="header_mobile"
-                            className="text-muted-foreground hover:text-[#BD081C] transition"
-                        >
-                            <FaPinterest className="h-6 w-5" />
-                        </DeepLink>
+                    {/* 🌍 Переключатель языка (mob) */}
+                    <div className="px-4 py-3">
+                        <LanguageSwitcher />
                     </div>
                 </nav>
             </div>

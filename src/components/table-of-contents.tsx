@@ -1,8 +1,10 @@
 ﻿"use client"
 
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { TOCToggle } from "@/components/toc-toggle"
+import navData from "@/messages/nav.json"
 
 export type Heading = {
     level: number
@@ -20,7 +22,11 @@ export function TableOfContents({
     const [open, setOpen] = useState(false)
     const [activeId, setActiveId] = useState<string | null>(null)
 
-    // Подсветка активного заголовка
+    const pathname = usePathname()
+    const locale = pathname.startsWith("/en") ? "en" : "ru"
+    const t = (navData as any)[locale].toc
+
+    // 🔹 Подсветка активного заголовка
     useEffect(() => {
         if (!items?.length) return
 
@@ -58,18 +64,23 @@ export function TableOfContents({
     return (
         <>
             {/* 📱 Кнопка toggle */}
-            <TOCToggle open={open} onToggle={() => setOpen(!open)} />
+            <TOCToggle
+                open={open}
+                onToggle={() => setOpen(!open)}
+                label={open ? t.close : t.open}
+                ariaLabel={open ? t.ariaClose : t.ariaOpen}
+            />
 
-            {/* 📱 Панель справа */}
+            {/* 📱 Мобильная панель справа */}
             <nav
-                aria-label="Оглавление статьи (мобильное)"
+                aria-label={t.mobile}
                 className={cn(
                     "fixed top-16 bottom-0 right-0 w-64 bg-background border-l shadow-lg transform transition-transform duration-300 lg:hidden overflow-y-auto",
                     open ? "translate-x-0" : "translate-x-full"
                 )}
             >
                 <div className="p-4">
-                    <h2 className="font-semibold mb-2">Содержание</h2>
+                    <h2 className="font-semibold mb-2">{t.mobile}</h2>
                     <ul className="space-y-1 text-sm">
                         {items.map((h) => (
                             <li key={h.slug} className={h.level === 3 ? "ml-4" : "ml-0"}>
@@ -97,10 +108,10 @@ export function TableOfContents({
 
             {/* 💻 Десктопная версия */}
             <nav
-                aria-label="Оглавление статьи"
+                aria-label={t.open}
                 className="sticky top-24 hidden lg:block max-h-[70vh] w-64 shrink-0 overflow-auto rounded-xl border p-4 text-sm bg-card"
             >
-                <div className="mb-2 font-semibold">Оглавление</div>
+                <div className="mb-2 font-semibold">{t.open}</div>
                 <ul className="space-y-1">
                     {items.map((h) => (
                         <li key={h.slug} className={h.level === 3 ? "ml-4" : "ml-0"}>

@@ -2,15 +2,15 @@
 import { PaintCalculator } from "@/components/widgets/paint-calculator"
 
 export const metadata: Metadata = {
-    title: "Калькулятор краски онлайн — рассчитать расход краски | PRO ремонт",
+    title: "Калькулятор краски онлайн — рассчитать расход краски | Renohacks",
     description:
-        "Онлайн калькулятор краски: введите размеры комнаты и узнайте, сколько литров краски нужно для ремонта. Удобный инструмент PRO ремонт.",
+        "Онлайн калькулятор краски: введите размеры комнаты и узнайте, сколько литров краски нужно. Удобный инструмент Renohacks.",
     openGraph: {
-        title: "Калькулятор краски онлайн — PRO ремонт",
+        title: "Калькулятор краски онлайн — Renohacks",
         description:
             "Рассчитайте, сколько литров краски понадобится для вашей комнаты. Бесплатный онлайн калькулятор.",
-        url: "https://pro-remont.netlify.app/calculators/paint",
-        siteName: "PRO ремонт",
+        url: "https://renohacks.com/calculators/paint",
+        siteName: "Renohacks",
         locale: "ru_RU",
         type: "website",
     },

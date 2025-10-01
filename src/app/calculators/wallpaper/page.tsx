@@ -2,15 +2,15 @@
 import { WallpaperCalculator } from "@/components/widgets/wallpaper-calculator"
 
 export const metadata: Metadata = {
-    title: "Калькулятор обоев онлайн — рассчитать количество рулонов | PRO ремонт",
+    title: "Калькулятор обоев онлайн — рассчитать количество рулонов | Renohacks",
     description:
-        "Онлайн калькулятор обоев: рассчитайте количество рулонов обоев для комнаты. Учитывает размеры стен, высоту и запас на подгонку рисунка.",
+        "Онлайн калькулятор обоев: введите размеры стен и узнайте, сколько рулонов обоев понадобится. Удобный инструмент Renohacks.",
     openGraph: {
-        title: "Калькулятор обоев онлайн — PRO ремонт",
+        title: "Калькулятор обоев онлайн — Renohacks",
         description:
-            "Бесплатный калькулятор обоев: посчитайте, сколько рулонов нужно для вашей комнаты. С учётом высоты потолка и запаса.",
-        url: "https://pro-remont.netlify.app/calculators/wallpaper",
-        siteName: "PRO ремонт",
+            "Рассчитайте, сколько рулонов обоев нужно для вашего ремонта. Бесплатный онлайн калькулятор.",
+        url: "https://renohacks.com/calculators/wallpaper",
+        siteName: "Renohacks",
         locale: "ru_RU",
         type: "website",
     },

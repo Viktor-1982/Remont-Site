@@ -1,0 +1,30 @@
+﻿{
+  "ru": {
+    "calc": {
+      "paint": {
+        "title": "Калькулятор краски",
+        "inputLabel": "Площадь в м²",
+        "result": "Необходимо литров краски:"
+      },
+      "tiles": {
+        "title": "Калькулятор плитки",
+        "inputLabel": "Площадь пола в м²",
+        "result": "Необходимо плитки:"
+      }
+    }
+  },
+  "en": {
+    "calc": {
+      "paint": {
+        "title": "Paint Calculator",
+        "inputLabel": "Area in m²",
+        "result": "Liters of paint needed:"
+      },
+      "tiles": {
+        "title": "Tile Calculator",
+        "inputLabel": "Floor area in m²",
+        "result": "Tiles needed:"
+      }
+    }
+  }
+}

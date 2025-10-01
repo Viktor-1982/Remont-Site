@@ -1,41 +1,65 @@
 ﻿"use client"
+
+import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Calculator } from "lucide-react"
+import calcData from "@/messages/calc.json"
 
 export function TileCalculator() {
+    const pathname = usePathname()
+    const isEnglish = pathname.startsWith("/en")
+    const t = (calcData as any)[isEnglish ? "en" : "ru"].calc.tiles
+
     const [area, setArea] = useState("")
-    const [tileSize, setTileSize] = useState("")
+    const [tileSize, setTileSize] = useState("0.25") // м² на 1 плитку
     const [result, setResult] = useState<number | null>(null)
 
-    const handleCalc = () => {
-        const m2 = parseFloat(area)
-        const tile = parseFloat(tileSize)
-        if (!isNaN(m2) && !isNaN(tile) && tile > 0) {
-            // площадь плитки в м² (например 30x30см = 0.09 м²)
-            const tileArea = (tile * tile) / 10000
-            setResult(Math.ceil(m2 / tileArea * 1.05)) // +5% запас
-        }
+    const calculate = () => {
+        const a = parseFloat(area.replace(",", "."))
+        const s = parseFloat(tileSize.replace(",", "."))
+        if (!a || !s) return
+        setResult(a / s)
     }
 
     return (
-        <div className="space-y-4">
-            <Input
-                type="number"
-                placeholder="Площадь поверхности (м²)"
-                value={area}
-                onChange={(e) => setArea(e.target.value)}
-            />
-            <Input
-                type="number"
-                placeholder="Размер плитки (см, например 30 = 30x30)"
-                value={tileSize}
-                onChange={(e) => setTileSize(e.target.value)}
-            />
-            <Button onClick={handleCalc}>Рассчитать</Button>
+        <div className="max-w-md mx-auto border rounded-lg p-4 shadow-sm space-y-4">
+            <h2 className="flex items-center gap-2 text-xl font-semibold">
+                <Calculator className="w-5 h-5 text-primary" /> {t.title}
+            </h2>
+
+            <div>
+                <label className="block text-sm font-medium mb-1">
+                    {t.inputLabel}
+                </label>
+                <Input
+                    type="number"
+                    value={area}
+                    onChange={(e) => setArea(e.target.value)}
+                    placeholder="15"
+                />
+            </div>
+
+            <div>
+                <label className="block text-sm font-medium mb-1">
+                    {isEnglish ? "Tile size (m²)" : "Размер плитки (м²)"}
+                </label>
+                <Input
+                    type="number"
+                    value={tileSize}
+                    onChange={(e) => setTileSize(e.target.value)}
+                    placeholder="0.25"
+                />
+            </div>
+
+            <Button onClick={calculate} className="w-full">
+                {isEnglish ? "Calculate" : "Рассчитать"}
+            </Button>
+
             {result !== null && (
-                <p className="text-lg font-semibold">
-                    Нужно примерно {result} плиток
+                <p className="text-lg font-medium">
+                    {t.result} <b>{Math.ceil(result)}</b>
                 </p>
             )}
         </div>

@@ -1,20 +1,27 @@
-﻿import Link from "next/link"
+﻿"use client"
+
+import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { usePathname } from "next/navigation"
+import navData from "@/messages/nav.json"
 
 export function HeroBanner() {
+    const pathname = usePathname()
+    const isEnglish = pathname.startsWith("/en")
+    const t = (navData as any)[isEnglish ? "en" : "ru"].hero
+
     return (
         <section className="relative left-1/2 right-1/2 w-screen -ml-[50vw] -mr-[50vw] min-h-[420px] md:min-h-[360px] overflow-hidden rounded-b-2xl flex items-center">
             {/* Фон */}
             <div className="absolute inset-0">
                 <Image
                     src="/images/pokraska/header.png"
-                    alt="Ремонт квартиры — фон блога о ремонте"
+                    alt="Renohacks.com hero banner"
                     fill
                     priority
                     className="object-cover"
                 />
-                {/* overlay */}
                 <div className="absolute inset-0 bg-black/60" />
             </div>
 
@@ -23,12 +30,12 @@ export function HeroBanner() {
                 <div className="max-w-3xl">
                     {/* Главный заголовок */}
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">
-                        Блог о ремонте и строительстве
+                        {t.title}
                     </h1>
 
                     {/* Подзаголовок */}
-                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 mb-8">
-                        Renohacks.com — фото-гайды, лайфхаки, сметы и калькуляторы для ремонта и дома
+                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 mb-8 max-w-2xl mx-auto">
+                        {t.subtitle}
                     </p>
 
                     {/* Кнопки */}
@@ -38,7 +45,9 @@ export function HeroBanner() {
                             size="lg"
                             className="transition-transform hover:scale-105 hover:shadow-lg"
                         >
-                            <Link href="/tags/novinki">Новинки ремонта</Link>
+                            <Link href={isEnglish ? "/en/tags/trends" : "/tags/novinki"}>
+                                {t.ctaTrends}
+                            </Link>
                         </Button>
                         <Button
                             asChild
@@ -46,7 +55,9 @@ export function HeroBanner() {
                             variant="outline"
                             className="transition-transform hover:scale-105 hover:shadow-lg"
                         >
-                            <Link href="/tags/diy">DIY проекты по ремонту</Link>
+                            <Link href={isEnglish ? "/en/tags/diy" : "/tags/diy"}>
+                                {t.ctaDiy}
+                            </Link>
                         </Button>
                     </div>
                 </div>

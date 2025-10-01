@@ -2,15 +2,15 @@
 import { TileCalculator } from "@/components/widgets/tile-calculator"
 
 export const metadata: Metadata = {
-    title: "Калькулятор плитки онлайн — рассчитать количество плитки | PRO ремонт",
+    title: "Калькулятор плитки онлайн — рассчитать количество плитки | Renohacks",
     description:
-        "Бесплатный онлайн калькулятор плитки: рассчитайте количество плитки для комнаты с учётом запаса 5%. Удобный инструмент для ремонта.",
+        "Онлайн калькулятор плитки: введите размеры комнаты и плитки, чтобы узнать, сколько плитки нужно. Удобный инструмент Renohacks.",
     openGraph: {
-        title: "Калькулятор плитки онлайн — PRO ремонт",
+        title: "Калькулятор плитки онлайн — Renohacks",
         description:
-            "Онлайн калькулятор плитки: помогает рассчитать количество плитки с запасом в 5%.",
-        url: "https://pro-remont.netlify.app/calculators/tile",
-        siteName: "PRO ремонт",
+            "Рассчитайте, сколько плитки понадобится для вашего ремонта. Бесплатный онлайн калькулятор.",
+        url: "https://renohacks.com/calculators/tile",
+        siteName: "Renohacks",
         locale: "ru_RU",
         type: "website",
     },

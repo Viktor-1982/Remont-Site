@@ -18,8 +18,10 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@/content/*": ["content/*"]
     }
+    
   },
   "include": [
     "**/*.ts",

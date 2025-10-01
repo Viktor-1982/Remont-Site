@@ -13,19 +13,15 @@ export type Post = {
   _id: string
   _raw: Local.RawDocumentData
   type: 'Post'
-  /** Заголовок */
   title: string
-  /** Краткое описание */
   description: string
-  /** YYYY-MM-DD */
   date: IsoDateTimeString
-  /** Дата обновления */
   updated?: IsoDateTimeString | undefined
-  /** Путь от /public */
   cover?: string | undefined
   tags?: string[] | undefined
   draft: boolean
   author: string
+  alternates?: any | undefined
   /** MDX file body */
   body: MDX
   slug: string
