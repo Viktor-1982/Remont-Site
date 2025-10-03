@@ -4,13 +4,28 @@ import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { TOCToggle } from "@/components/toc-toggle"
-import navData from "@/messages/nav.json"
+import navDataJson from "@/messages/nav.json"
 
 export type Heading = {
     level: number
     text: string
     slug: string
 }
+
+type Locale = "ru" | "en"
+
+interface TOCDict {
+    open: string
+    close: string
+    ariaOpen: string
+    ariaClose: string
+    mobile: string
+}
+
+type NavData = Record<Locale, { toc: TOCDict }>
+
+// ✅ Жёсткая типизация JSON
+const navData: NavData = navDataJson as NavData
 
 export function TableOfContents({
                                     items,
@@ -23,29 +38,23 @@ export function TableOfContents({
     const [activeId, setActiveId] = useState<string | null>(null)
 
     const pathname = usePathname()
-    const locale = pathname.startsWith("/en") ? "en" : "ru"
-    const t = (navData as any)[locale].toc
+    const locale: Locale = pathname.startsWith("/en") ? "en" : "ru"
+    const t = navData[locale].toc
 
-    // 🔹 Подсветка активного заголовка
     useEffect(() => {
         if (!items?.length) return
-
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setActiveId(entry.target.id)
-                    }
+                    if (entry.isIntersecting) setActiveId(entry.target.id)
                 })
             },
             { rootMargin: "-20% 0px -60% 0px" }
         )
-
         items.forEach((h) => {
             const el = document.getElementById(h.slug)
             if (el) observer.observe(el)
         })
-
         return () => observer.disconnect()
     }, [items])
 
@@ -53,7 +62,7 @@ export function TableOfContents({
         const target = document.getElementById(id)
         if (target) {
             target.scrollIntoView({ behavior: "smooth", block: "start" })
-            history.pushState(null, "", `#${id}`)
+            window.location.hash = id
             setOpen(false)
             if (onLinkClick) onLinkClick()
         }
@@ -63,7 +72,7 @@ export function TableOfContents({
 
     return (
         <>
-            {/* 📱 Кнопка toggle */}
+            {/* 📱 Toggle */}
             <TOCToggle
                 open={open}
                 onToggle={() => setOpen(!open)}
@@ -71,7 +80,7 @@ export function TableOfContents({
                 ariaLabel={open ? t.ariaClose : t.ariaOpen}
             />
 
-            {/* 📱 Мобильная панель справа */}
+            {/* 📱 Mobile */}
             <nav
                 aria-label={t.mobile}
                 className={cn(
@@ -106,7 +115,7 @@ export function TableOfContents({
                 </div>
             </nav>
 
-            {/* 💻 Десктопная версия */}
+            {/* 💻 Desktop */}
             <nav
                 aria-label={t.open}
                 className="sticky top-24 hidden lg:block max-h-[70vh] w-64 shrink-0 overflow-auto rounded-xl border p-4 text-sm bg-card"

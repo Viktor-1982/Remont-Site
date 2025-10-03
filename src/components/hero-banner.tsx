@@ -4,12 +4,30 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { usePathname } from "next/navigation"
-import navData from "@/messages/nav.json"
+import navDataJson from "@/messages/nav.json"
+
+// 🔹 типизация nav.json
+type Locale = "ru" | "en"
+
+type HeroDict = {
+    title: string
+    subtitle: string
+    ctaTrends: string
+    ctaDiy: string
+}
+
+type NavData = {
+    [key in Locale]: {
+        hero: HeroDict
+    }
+}
+
+const navData = navDataJson as NavData
 
 export function HeroBanner() {
     const pathname = usePathname()
     const isEnglish = pathname.startsWith("/en")
-    const t = (navData as any)[isEnglish ? "en" : "ru"].hero
+    const t = navData[isEnglish ? "en" : "ru"].hero
 
     return (
         <section className="relative left-1/2 right-1/2 w-screen -ml-[50vw] -mr-[50vw] min-h-[420px] md:min-h-[360px] overflow-hidden rounded-b-2xl flex items-center">

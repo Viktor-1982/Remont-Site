@@ -1,66 +1,55 @@
-﻿import type { Metadata } from "next"
+﻿import { getPageMetadata } from "@/lib/seo"
 import Link from "next/link"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 
-export const metadata: Metadata = {
+export const metadata = getPageMetadata("/calculators", {
     title: "Онлайн калькуляторы для ремонта | Renohacks",
-    description: "Бесплатные калькуляторы ремонта: краска, обои, плитка. Удобные инструменты для расчётов.",
-    openGraph: {
-        title: "Онлайн калькуляторы для ремонта | Renohacks",
-        description: "Рассчитайте расход краски, обоев и плитки с помощью наших бесплатных онлайн-калькуляторов.",
-        url: "https://renohacks.com/calculators",
-        siteName: "Renohacks",
-        locale: "ru_RU",
-        type: "website",
-    },
-}
-
-const calculators = [
-    {
-        href: "/calculators/paint",
-        icon: "🎨",
-        title: "Калькулятор краски",
-        desc: "Рассчитайте, сколько литров краски нужно для комнаты.",
-    },
-    {
-        href: "/calculators/wallpaper",
-        icon: "🪟",
-        title: "Калькулятор обоев",
-        desc: "Узнайте, сколько рулонов обоев понадобится для стен.",
-    },
-    {
-        href: "/calculators/tile",
-        icon: "🧱",
-        title: "Калькулятор плитки",
-        desc: "Подсчитайте количество плитки для пола или стен.",
-    },
-]
+    description:
+        "Бесплатные калькуляторы для ремонта: краска, обои, плитка. Удобные инструменты для расчётов материалов.",
+    cover: "/images/og-default.png",
+    type: "website",
+})
 
 export default function CalculatorsIndexPage() {
+    const calculators = [
+        {
+            href: "/calculators/paint",
+            label: "🎨 Калькулятор краски",
+            desc: "Рассчитайте расход краски по размерам комнаты",
+            color: "bg-rose-100 dark:bg-rose-900/40",
+        },
+        {
+            href: "/calculators/wallpaper",
+            label: "🪟 Калькулятор обоев",
+            desc: "Узнайте, сколько рулонов обоев потребуется",
+            color: "bg-emerald-100 dark:bg-emerald-900/40",
+        },
+        {
+            href: "/calculators/tile",
+            label: "🧱 Калькулятор плитки",
+            desc: "Подсчитайте количество плитки для пола или стен",
+            color: "bg-sky-100 dark:bg-sky-900/40",
+        },
+    ]
+
     return (
         <main className="container py-12">
-            <h1 className="text-3xl font-bold mb-6">Калькуляторы ремонта</h1>
-            <p className="mb-8 text-muted-foreground">
+            <h1 className="text-3xl font-bold mb-8">Калькуляторы ремонта</h1>
+            <p className="mb-6 text-muted-foreground">
                 Выберите калькулятор и быстро рассчитайте количество материалов для вашего ремонта:
             </p>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {calculators.map((calc) => (
-                    <Card key={calc.href} className="flex flex-col">
-                        <CardHeader>
-                            <CardTitle className="flex items-center gap-2 text-xl">
-                                <span>{calc.icon}</span> {calc.title}
-                            </CardTitle>
-                            <CardDescription>{calc.desc}</CardDescription>
-                        </CardHeader>
-                        <CardContent className="flex-grow" />
-                        <CardFooter>
-                            <Button asChild className="w-full">
-                                <Link href={calc.href}>Перейти</Link>
-                            </Button>
-                        </CardFooter>
-                    </Card>
+                    <Link
+                        key={calc.href}
+                        href={calc.href}
+                        className={`rounded-xl p-6 shadow-sm hover:shadow-md transition ${calc.color}`}
+                    >
+                        <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                            {calc.label}
+                        </h2>
+                        <p className="text-sm text-gray-700 dark:text-gray-300">{calc.desc}</p>
+                    </Link>
                 ))}
             </div>
         </main>

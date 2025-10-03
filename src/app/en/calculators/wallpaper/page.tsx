@@ -1,26 +1,19 @@
-﻿import type { Metadata } from "next"
+﻿import { getPageMetadata } from "@/lib/seo"
 import { WallpaperCalculator } from "@/components/widgets/wallpaper-calculator"
 
-export const metadata: Metadata = {
-    title: "Wallpaper calculator online — calculate wallpaper rolls | Renohacks",
+export const metadata = getPageMetadata("/en/calculators/wallpaper", {
+    title: "Wallpaper Calculator Online — calculate rolls needed | Renohacks",
     description:
-        "Online wallpaper calculator: enter wall dimensions to find out how many rolls you need. Free renovation tool.",
-    openGraph: {
-        title: "Wallpaper calculator online — Renohacks",
-        description:
-            "Easily calculate how many wallpaper rolls you’ll need for your renovation project.",
-        url: "https://renohacks.com/en/calculators/wallpaper",
-        siteName: "Renohacks",
-        locale: "en_US",
-        type: "website",
-    },
-}
+        "Online wallpaper calculator: enter your wall area and find out how many rolls of wallpaper you need. A handy tool by Renohacks.",
+    cover: "/images/og-default.png",
+    type: "website",
+})
 
-export default function WallpaperCalculatorPage() {
+export default function WallpaperCalculatorPageEn() {
     return (
-        <div className="max-w-2xl mx-auto py-10 px-4">
-            <h1 className="text-2xl font-bold mb-6">Wallpaper calculator</h1>
+        <main className="max-w-2xl mx-auto py-10 px-4">
+            <h1 className="text-2xl font-bold mb-6">Wallpaper Calculator</h1>
             <WallpaperCalculator />
-        </div>
+        </main>
     )
 }

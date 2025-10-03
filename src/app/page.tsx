@@ -1,13 +1,15 @@
+// src/app/page.tsx
 import type { Metadata } from "next"
-import { allPosts } from ".contentlayer/generated"
+import { allPosts, type Post } from ".contentlayer/generated"
 import { ArticleGrid } from "@/components/article-grid"
+import { HeroBanner } from "@/components/hero-banner"
 
 export const metadata: Metadata = {
-    title: "Renohacks.com — блог о ремонте и строительстве",
-    description: "Фото-гайды, лайфхаки, сметы и обзоры материалов.",
+    title: "Renohacks.com — блог о ремонте и дизайне",
+    description: "Фото-гайды, DIY лайфхаки, калькуляторы и обзоры материалов.",
     openGraph: {
-        title: "Renohacks.com — блог о ремонте и строительстве",
-        description: "Фото-гайды, лайфхаки, сметы и обзоры материалов.",
+        title: "Renohacks.com — блог о ремонте и дизайне",
+        description: "Фото-гайды, DIY лайфхаки, калькуляторы и обзоры материалов.",
         url: "https://renohacks.com/",
         siteName: "Renohacks.com",
         locale: "ru_RU",
@@ -25,15 +27,25 @@ export const metadata: Metadata = {
 }
 
 export default function HomePage() {
-    // 🇷🇺 только русские статьи (без -en)
-    const posts = allPosts
-        .filter((p) => !p.url.endsWith("-en"))
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    const posts: Post[] = allPosts
+        .filter((p) => p.locale === "ru")
+        .filter((p) => !p.draft)
+        .sort((a, b) => {
+            const ta = a.date ? new Date(a.date).getTime() : 0
+            const tb = b.date ? new Date(b.date).getTime() : 0
+            return tb - ta
+        })
 
     return (
-        <main className="container py-10">
-            <h1 className="text-3xl font-bold mb-6">Статьи о ремонте и дизайне</h1>
-            <ArticleGrid posts={posts} />
+        <main className="container py-10 space-y-12">
+            {/* 🏠 Баннер */}
+            <HeroBanner />
+
+            {/* 📑 Статьи */}
+            <section>
+                <h1 className="text-3xl font-bold mb-6">Статьи о ремонте и дизайне</h1>
+                <ArticleGrid posts={posts} />
+            </section>
         </main>
     )
 }

@@ -4,24 +4,31 @@ import * as React from "react"
 import Image from "next/image"
 import GitHubSlugger from "github-slugger"
 import type { MDXComponents } from "mdx/types"
+import { useMDXComponent } from "next-contentlayer2/hooks"
 
 // Импорты калькуляторов
 import { PaintCalculator } from "@/components/widgets/paint-calculator"
 import { TileCalculator } from "@/components/widgets/tile-calculator"
 import { WallpaperCalculator } from "@/components/widgets/wallpaper-calculator"
 
+// 🔹 Словарь компонентов, доступных в MDX
 export const mdxComponents: MDXComponents = {
     // Картинки
     img: ({ alt, src }: { alt?: string; src: string }) => (
-        <span className="relative block overflow-hidden rounded-xl mx-auto bg-background">
-      <Image
-          alt={alt && alt.trim() !== "" ? alt : "Изображение по теме ремонта"}
-          src={src}
-          width={1200}
-          height={800}
-          className="w-full h-auto object-contain rounded-lg"
-      />
-    </span>
+        <div className="relative block overflow-hidden rounded-xl mx-auto my-6 bg-background max-w-3xl w-full">
+            <Image
+                alt={alt && alt.trim() !== "" ? alt : "Изображение по теме ремонта"}
+                src={src}
+                width={1200}
+                height={800}
+                className="w-full h-auto object-cover rounded-lg"
+            />
+            {alt && (
+                <div className="mt-2 text-center text-sm text-muted-foreground">
+                    {alt}
+                </div>
+            )}
+        </div>
     ),
 
     // Калькуляторы
@@ -55,7 +62,6 @@ export const mdxComponents: MDXComponents = {
             />
         )
     },
-
     h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
         const slugger = new GitHubSlugger()
         const text = String(props.children)
@@ -70,13 +76,33 @@ export const mdxComponents: MDXComponents = {
         )
     },
 
-    // Абзацы
-    p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
-        <p
-            className="leading-7 text-muted-foreground [&:not(:first-child)]:mt-4"
-            {...props}
-        />
-    ),
+    // Абзацы — фикс чтобы картинки не попадали в <p>
+    p: (props: React.HTMLAttributes<HTMLParagraphElement>) => {
+        let onlyChild: React.ReactElement | null = null
+
+        try {
+            onlyChild = React.Children.only(props.children) as React.ReactElement
+        } catch {
+            onlyChild = null
+        }
+
+        if (
+            onlyChild &&
+            (onlyChild.type === "img" ||
+                (React.isValidElement(onlyChild) &&
+                    "src" in (onlyChild.props as Record<string, unknown>)))
+        ) {
+            // 🚫 Если в параграфе только картинка → заменяем <p> на <div>
+            return <div {...props} />
+        }
+
+        return (
+            <p
+                className="leading-7 text-muted-foreground [&:not(:first-child)]:mt-4"
+                {...props}
+            />
+        )
+    },
 
     // Списки
     ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
@@ -93,4 +119,14 @@ export const mdxComponents: MDXComponents = {
             {...props}
         />
     ),
+}
+
+// 🔹 Обёртка для рендера MDX
+export function Mdx({ code }: { code: string }) {
+    const MDXContent = useMDXComponent(code)
+    return (
+        <div className="prose dark:prose-invert max-w-none">
+            <MDXContent components={mdxComponents} />
+        </div>
+    )
 }

@@ -4,17 +4,49 @@ import Link from "next/link"
 import { DeepLink } from "@/components/deep-link"
 import { FaInstagram, FaPinterest } from "react-icons/fa"
 import { usePathname } from "next/navigation"
-import { LanguageSwitcher } from "@/components/language-switcher"
-import navData from "@/messages/nav.json"
+import LanguageSwitcher from "./language-switcher"
+import navDataJson from "@/messages/nav.json"
 
+// 🔹 Типизация JSON
+type Locale = "ru" | "en"
+
+type FooterSections = {
+    [key: string]: { href: string; label: string; title: string }
+}
+
+type FooterData = {
+    about: string
+    sectionsTitle: string
+    sections: FooterSections
+    contactsTitle: string
+    contactsText: string
+    socialLabel: string
+    rights: string
+}
+
+type Social = {
+    instagram: string
+    pinterest: string
+}
+
+type NavData = {
+    [key in Locale]: {
+        footer: FooterData
+        social: Social
+    }
+}
+
+const navData = navDataJson as NavData
+
+// 🔹 Именованный экспорт
 export function SiteFooter() {
     const pathname = usePathname()
     const isEnglish = pathname.startsWith("/en") || pathname.endsWith("-en")
-    const locale = isEnglish ? "en" : "ru"
+    const locale: Locale = isEnglish ? "en" : "ru"
 
-    const { footer, social } = (navData as any)[locale]
+    const { footer, social } = navData[locale]
 
-    // 🔹 Функция для корректного href
+    // Функция для корректного href
     const localizeHref = (href: string) => {
         if (isEnglish) {
             return href.startsWith("/en") ? href : "/en" + href
@@ -43,7 +75,7 @@ export function SiteFooter() {
                         {footer.sectionsTitle}
                     </h2>
                     <ul className="mt-3 space-y-1 text-sm text-muted-foreground">
-                        {Object.values(footer.sections).map((section: any) => (
+                        {Object.values(footer.sections).map((section) => (
                             <li key={section.href}>
                                 <Link
                                     href={localizeHref(section.href)}
@@ -65,7 +97,9 @@ export function SiteFooter() {
                     >
                         {footer.contactsTitle}
                     </h2>
-                    <p className="mt-3 text-sm text-muted-foreground">{footer.contactsText}</p>
+                    <p className="mt-3 text-sm text-muted-foreground">
+                        {footer.contactsText}
+                    </p>
                     <p className="mt-2 text-sm">
                         <a
                             href="mailto:info@renohacks.com"

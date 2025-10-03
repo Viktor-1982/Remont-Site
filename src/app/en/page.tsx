@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { allPosts } from ".contentlayer/generated"
+import { sortPosts } from "@/lib/utils"
 import { ArticleGrid } from "@/components/article-grid"
+import { HeroBanner } from "@/components/hero-banner"
 
 export const metadata: Metadata = {
     title: "Renohacks.com — renovation and interior design blog",
@@ -25,13 +27,13 @@ export const metadata: Metadata = {
 }
 
 export default function HomePageEn() {
-    // 🇬🇧 только английские статьи (url оканчивается на -en)
-    const posts = allPosts
-        .filter((p) => p.url.endsWith("-en"))
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    const posts = sortPosts(allPosts).filter(
+        (p) => p.locale === "en" && !p.draft
+    )
 
     return (
         <main className="container py-10">
+            <HeroBanner />
             <h1 className="text-3xl font-bold mb-6">Renovation & Interior Design Articles</h1>
             <ArticleGrid posts={posts} />
         </main>

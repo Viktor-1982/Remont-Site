@@ -1,10 +1,17 @@
-﻿export function slugify(text: string): string {
-    return text
+﻿// src/lib/slugify.ts
+
+/**
+ * Преобразует строку в slug (чистый URL-friendly)
+ * Убирает спецсимволы, пробелы → "-"
+ * Поддерживает кириллицу и латиницу
+ */
+export function slugify(str: string): string {
+    return str
         .toLowerCase()
+        .normalize("NFD") // убираем диакритику
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zа-я0-9\s-]/g, "")
         .trim()
-        .replace(/[^\wа-яё\s-]/gi, "") // убираем всё лишнее
-        .replace(/\s+/g, "-")          // пробелы → дефисы
-        .replace(/-+/g, "-")           // несколько дефисов → один
-        .replace(/^-+/, "")            // убираем дефисы в начале
-        .replace(/-+$/, "")            // убираем дефисы в конце
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-")
 }

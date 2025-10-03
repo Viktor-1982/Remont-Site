@@ -67,6 +67,12 @@
       "subtitle": "Renohacks.com — фото-гайды, лайфхаки, сметы и калькуляторы для ремонта и дома",
       "ctaTrends": "Новинки ремонта",
       "ctaDiy": "DIY проекты по ремонту"
+    },
+    "assistant": {
+      "title": "Помощник по ремонту",
+      "subtitle": "Задай вопрос про сметы, материалы или лайфхаки",
+      "inputPlaceholder": "Введите ваш вопрос...",
+      "button": "Отправить"
     }
   },
   "en": {
@@ -137,6 +143,12 @@
       "subtitle": "Renohacks.com — photo guides, hacks, budgets and calculators for your home renovation",
       "ctaTrends": "Trends",
       "ctaDiy": "DIY projects"
+    },
+    "assistant": {
+      "title": "Repair Assistant",
+      "subtitle": "Ask about budgets, materials or hacks",
+      "inputPlaceholder": "Type your question...",
+      "button": "Send"
     }
   }
 }

@@ -5,19 +5,21 @@ import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Calculator } from "lucide-react"
-import calcData from "@/messages/calc.json"
+import calcDataJson from "@/messages/calc.json"
+import type { Locale, CalcData, WallpaperCalcDict, ButtonsDict } from "@/types/calc"
+
+const calcData = calcDataJson as CalcData
 
 export function WallpaperCalculator() {
     const pathname = usePathname()
-    const isEnglish = pathname.startsWith("/en")
-    const t = (calcData as any)[isEnglish ? "en" : "ru"].calc.wallpaper || {
-        title: isEnglish ? "Wallpaper Calculator" : "Калькулятор обоев",
-        inputLabel: isEnglish ? "Wall area in m²" : "Площадь стен в м²",
-        result: isEnglish ? "Rolls needed:" : "Необходимо рулонов:",
-    }
+    const isEnglish = pathname.startsWith("/en") || pathname.endsWith("-en")
+    const locale: Locale = isEnglish ? "en" : "ru"
+
+    const t: WallpaperCalcDict = calcData[locale].calc.wallpaper
+    const b: ButtonsDict = calcData[locale].calc.buttons
 
     const [area, setArea] = useState("")
-    const [rollCoverage, setRollCoverage] = useState("5") // м² на 1 рулон
+    const [rollCoverage, setRollCoverage] = useState("5")
     const [result, setResult] = useState<number | null>(null)
 
     const calculate = () => {
@@ -28,43 +30,27 @@ export function WallpaperCalculator() {
     }
 
     return (
-        <div className="max-w-md mx-auto border rounded-lg p-4 shadow-sm space-y-4">
+        <div className="max-w-md mx-auto border rounded-lg p-4 shadow-sm space-y-4 bg-card">
             <h2 className="flex items-center gap-2 text-xl font-semibold">
                 <Calculator className="w-5 h-5 text-primary" /> {t.title}
             </h2>
 
-            <div>
-                <label className="block text-sm font-medium mb-1">
-                    {t.inputLabel}
-                </label>
-                <Input
-                    type="number"
-                    value={area}
-                    onChange={(e) => setArea(e.target.value)}
-                    placeholder="25"
-                />
-            </div>
-
-            <div>
-                <label className="block text-sm font-medium mb-1">
-                    {isEnglish ? "Roll coverage (m²)" : "Покрытие 1 рулона (м²)"}
-                </label>
-                <Input
-                    type="number"
-                    value={rollCoverage}
-                    onChange={(e) => setRollCoverage(e.target.value)}
-                    placeholder="5"
-                />
-            </div>
+            <Input placeholder={t.inputLabel} value={area} onChange={(e) => setArea(e.target.value)} />
+            <Input placeholder={t.rollCoverage} value={rollCoverage} onChange={(e) => setRollCoverage(e.target.value)} />
 
             <Button onClick={calculate} className="w-full">
-                {isEnglish ? "Calculate" : "Рассчитать"}
+                {b.calculate}
             </Button>
 
             {result !== null && (
-                <p className="text-lg font-medium">
-                    {t.result} <b>{Math.ceil(result)}</b>
-                </p>
+                <div className="mt-4 p-3 rounded-lg bg-muted">
+                    <p className="text-lg font-semibold">
+                        {t.result} <b>{Math.ceil(result)}</b> 📦
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                        {isEnglish ? "We recommend buying 1 extra roll just in case." : "Рекомендуем взять +1 рулон про запас."}
+                    </p>
+                </div>
             )}
         </div>
     )

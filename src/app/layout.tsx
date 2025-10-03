@@ -1,3 +1,4 @@
+// src/app/layout.tsx
 import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
@@ -9,6 +10,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { RepairAssistant } from "@/components/repair-assistant"
 
 import Script from "next/script"
+import { headers } from "next/headers"
 
 export const metadata: Metadata = {
     title: "Renohacks.com — блог о ремонте и строительстве",
@@ -20,6 +22,7 @@ export const metadata: Metadata = {
         url: "https://renohacks.com/",
         siteName: "Renohacks.com",
         images: ["/images/og-default.png"],
+        locale: "ru_RU",
         type: "website",
     },
     alternates: {
@@ -32,19 +35,22 @@ export const metadata: Metadata = {
     },
 }
 
-export default function RootLayout({
-                                       children,
-                                   }: {
+export default async function RootLayout({
+                                             children,
+                                         }: {
     children: React.ReactNode
 }) {
+    const hdrs = await headers()
+    const pathname = hdrs.get("x-invoke-path") || hdrs.get("next-url") || "/"
+    const lang = pathname.startsWith("/en") ? "en" : "ru"
+
     return (
         <html
-            lang="ru"
+            lang={lang}
             suppressHydrationWarning
             className={`${GeistSans.variable} ${GeistMono.variable}`}
         >
         <head>
-            {/* Google Tag Manager */}
             <Script id="gtm-script" strategy="afterInteractive">
                 {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -53,6 +59,7 @@ export default function RootLayout({
           })(window,document,'script','dataLayer','GTM-N2Z2CSMS');`}
             </Script>
         </head>
+
         <body className="min-h-screen bg-background text-foreground font-sans antialiased">
         <noscript>
             <iframe

@@ -1,24 +1,36 @@
 ﻿"use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 import { Hammer, Menu, X, Instagram } from "lucide-react"
 import { FaPinterest } from "react-icons/fa"
 import { cn } from "@/lib/utils"
-import { usePathname } from "next/navigation"
-import { useState } from "react"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import { DeepLink } from "@/components/deep-link"
 import { LanguageSwitcher } from "@/components/language-switcher"
-import navData from "@/messages/nav.json"
+import navData, { Locale } from "@/types/nav"
 
 export function SiteHeader() {
     const [isOpen, setIsOpen] = useState(false)
-    const pathname = usePathname()
+    const pathname = usePathname() || "/"
+
+    // ✅ блокировка скролла при открытом меню
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add("overflow-hidden")
+        } else {
+            document.body.classList.remove("overflow-hidden")
+        }
+        return () => {
+            document.body.classList.remove("overflow-hidden")
+        }
+    }, [isOpen])
 
     // ✅ определяем язык
     const isEnglish = pathname.startsWith("/en") || pathname.endsWith("-en")
-    const locale = isEnglish ? "en" : "ru"
-    const { navLabels, links, social, header: h } = (navData as any)[locale]
+    const locale: Locale = isEnglish ? "en" : "ru"
+    const { navLabels, links, social, header: h } = navData[locale]
 
     // 🔹 Проверка активной ссылки
     const isActive = (href: string) => {
@@ -64,7 +76,7 @@ export function SiteHeader() {
 
                 {/* 📂 Навигация (desktop) */}
                 <nav aria-label={navLabels.desktop} className="hidden md:flex gap-6">
-                    {links.map((link: any) => (
+                    {links.map((link) => (
                         <Link
                             key={link.href}
                             href={localizeHref(link.href)}
@@ -140,11 +152,11 @@ export function SiteHeader() {
                 id="mobile-menu"
                 className={cn(
                     "absolute top-[64px] left-0 right-0 border-t bg-background/95 backdrop-blur md:hidden shadow-lg overflow-hidden transform transition-all duration-300",
-                    isOpen ? "max-h-96 opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2"
+                    isOpen ? "max-h-[90vh] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2"
                 )}
             >
                 <nav aria-label={navLabels.mobile} className="flex flex-col divide-y">
-                    {links.map((link: any) => (
+                    {links.map((link) => (
                         <Link
                             key={link.href}
                             href={localizeHref(link.href)}
@@ -166,8 +178,43 @@ export function SiteHeader() {
                     <div className="px-4 py-3">
                         <LanguageSwitcher />
                     </div>
+
+                    {/* 🌗 Переключатель темы (mob) */}
+                    <div className="px-4 py-3">
+                        <ThemeSwitcher />
+                    </div>
+
+                    {/* 📱 Соцсети (mob) */}
+                    <div className="flex justify-center gap-6 py-4">
+                        <DeepLink
+                            appUrl="instagram://user?username=reno.hacks"
+                            webUrl="https://www.instagram.com/reno.hacks"
+                            ariaLabel="Instagram"
+                            title={social.instagram}
+                            analyticsEvent="instagram_click"
+                            location="header_mobile"
+                            className="text-muted-foreground hover:text-[#E1306C] transition"
+                        >
+                            <Instagram className="h-6 w-6" aria-hidden="true" />
+                            <span className="sr-only">Instagram</span>
+                        </DeepLink>
+                        <DeepLink
+                            appUrl="pinterest://www.pinterest.com/RenoHacks/"
+                            webUrl="https://www.pinterest.com/RenoHacks/"
+                            ariaLabel="Pinterest"
+                            title={social.pinterest}
+                            analyticsEvent="pinterest_click"
+                            location="header_mobile"
+                            className="text-muted-foreground hover:text-[#BD081C] transition"
+                        >
+                            <FaPinterest className="h-6 w-6" aria-hidden="true" />
+                            <span className="sr-only">Pinterest</span>
+                        </DeepLink>
+                    </div>
                 </nav>
             </div>
         </header>
     )
 }
+
+export default SiteHeader

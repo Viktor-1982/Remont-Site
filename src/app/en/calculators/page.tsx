@@ -1,66 +1,52 @@
-﻿import type { Metadata } from "next"
+﻿import { getPageMetadata } from "@/lib/seo"
 import Link from "next/link"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 
-export const metadata: Metadata = {
+export const metadata = getPageMetadata("/en/calculators", {
     title: "Online renovation calculators | Renohacks",
-    description: "Free renovation calculators: paint, wallpaper, tile. Calculate materials for your home renovation easily.",
-    openGraph: {
-        title: "Online renovation calculators | Renohacks",
-        description: "Calculate paint, wallpaper, and tile for your home renovation with our free online tools.",
-        url: "https://renohacks.com/en/calculators",
-        siteName: "Renohacks",
-        locale: "en_US",
-        type: "website",
-    },
-}
+    description:
+        "Free renovation calculators: paint, wallpaper, tile. Calculate materials for your home renovation easily.",
+    cover: "/images/og-default.png",
+    type: "website",
+})
 
-const calculators = [
-    {
-        href: "/en/calculators/paint",
-        icon: "🎨",
-        title: "Paint calculator",
-        desc: "Estimate how many liters of paint you need for your room.",
-    },
-    {
-        href: "/en/calculators/wallpaper",
-        icon: "🪟",
-        title: "Wallpaper calculator",
-        desc: "Find out how many rolls of wallpaper are required for your walls.",
-    },
-    {
-        href: "/en/calculators/tile",
-        icon: "🧱",
-        title: "Tile calculator",
-        desc: "Calculate how many tiles you’ll need for your floor or walls.",
-    },
-]
+export default function CalculatorsIndexPageEn() {
+    const calculators = [
+        {
+            href: "/en/calculators/paint",
+            label: "🎨 Paint Calculator",
+            desc: "Estimate paint needed by room size",
+            color: "bg-rose-100 dark:bg-rose-900/40",
+        },
+        {
+            href: "/en/calculators/wallpaper",
+            label: "🪟 Wallpaper Calculator",
+            desc: "Find out how many rolls of wallpaper you need",
+            color: "bg-emerald-100 dark:bg-emerald-900/40",
+        },
+        {
+            href: "/en/calculators/tile",
+            label: "🧱 Tile Calculator",
+            desc: "Calculate tiles needed for walls or floors",
+            color: "bg-sky-100 dark:bg-sky-900/40",
+        },
+    ]
 
-export default function CalculatorsIndexPage() {
     return (
         <main className="container py-12">
-            <h1 className="text-3xl font-bold mb-6">Renovation calculators</h1>
-            <p className="mb-8 text-muted-foreground">
-                Choose a calculator and quickly estimate how much material you need for your project:
-            </p>
+            <h1 className="text-3xl font-bold mb-8">Renovation calculators</h1>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {calculators.map((calc) => (
-                    <Card key={calc.href} className="flex flex-col">
-                        <CardHeader>
-                            <CardTitle className="flex items-center gap-2 text-xl">
-                                <span>{calc.icon}</span> {calc.title}
-                            </CardTitle>
-                            <CardDescription>{calc.desc}</CardDescription>
-                        </CardHeader>
-                        <CardContent className="flex-grow" />
-                        <CardFooter>
-                            <Button asChild className="w-full">
-                                <Link href={calc.href}>Open</Link>
-                            </Button>
-                        </CardFooter>
-                    </Card>
+                    <Link
+                        key={calc.href}
+                        href={calc.href}
+                        className={`rounded-xl p-6 shadow-sm hover:shadow-md transition ${calc.color}`}
+                    >
+                        <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                            {calc.label}
+                        </h2>
+                        <p className="text-sm text-gray-700 dark:text-gray-300">{calc.desc}</p>
+                    </Link>
                 ))}
             </div>
         </main>

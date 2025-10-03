@@ -11,7 +11,7 @@ export async function generateMetadata({
     params: Promise<{ slug: string }>
 }): Promise<Metadata> {
     const { slug } = await params
-    const post = allPosts.find((p) => p.slug === slug && p.locale === "ru")
+    const post = allPosts.find((p) => p.slug === slug && p.locale === "en")
 
     if (!post) return {}
 
@@ -21,16 +21,16 @@ export async function generateMetadata({
         openGraph: {
             title: post.title,
             description: post.description,
-            url: `https://renohacks.com/posts/${slug}`,
+            url: `https://renohacks.com/en/posts/${slug}`,
             images: [post.cover || "/images/og-default.png"],
         },
         alternates: {
-            canonical: `https://renohacks.com/posts/${slug}`,
+            canonical: `https://renohacks.com/en/posts/${slug}`,
             languages: {
-                ru: `https://renohacks.com/posts/${slug}`,
-                en: post.translationOf
-                    ? `https://renohacks.com/en/posts/${post.translationOf}`
-                    : "https://renohacks.com/en",
+                en: `https://renohacks.com/en/posts/${slug}`,
+                ru: post.translationOf
+                    ? `https://renohacks.com/posts/${post.translationOf}`
+                    : "https://renohacks.com/",
             },
         },
     }
@@ -42,7 +42,7 @@ export default async function PostPage({
     params: Promise<{ slug: string }>
 }) {
     const { slug } = await params
-    const post = allPosts.find((p) => p.slug === slug && p.locale === "ru")
+    const post = allPosts.find((p) => p.slug === slug && p.locale === "en")
 
     if (!post) return notFound()
 

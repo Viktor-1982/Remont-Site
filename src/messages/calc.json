@@ -3,13 +3,29 @@
     "calc": {
       "paint": {
         "title": "Калькулятор краски",
-        "inputLabel": "Площадь в м²",
+        "length": "Длина комнаты (м)",
+        "width": "Ширина комнаты (м)",
+        "height": "Высота потолка (м)",
+        "doors": "Количество дверей",
+        "windows": "Количество окон",
+        "layers": "Количество слоёв",
+        "coverage": "Расход (м² на 1 литр)",
         "result": "Необходимо литров краски:"
       },
       "tiles": {
         "title": "Калькулятор плитки",
         "inputLabel": "Площадь пола в м²",
+        "tileSize": "Размер плитки (м²)",
         "result": "Необходимо плитки:"
+      },
+      "wallpaper": {
+        "title": "Калькулятор обоев",
+        "inputLabel": "Площадь стен в м²",
+        "rollCoverage": "Покрытие 1 рулона (м²)",
+        "result": "Необходимо рулонов:"
+      },
+      "buttons": {
+        "calculate": "Рассчитать"
       }
     }
   },
@@ -17,13 +33,29 @@
     "calc": {
       "paint": {
         "title": "Paint Calculator",
-        "inputLabel": "Area in m²",
+        "length": "Room length (m)",
+        "width": "Room width (m)",
+        "height": "Ceiling height (m)",
+        "doors": "Number of doors",
+        "windows": "Number of windows",
+        "layers": "Number of layers",
+        "coverage": "Coverage (m² per liter)",
         "result": "Liters of paint needed:"
       },
       "tiles": {
         "title": "Tile Calculator",
         "inputLabel": "Floor area in m²",
+        "tileSize": "Tile size (m²)",
         "result": "Tiles needed:"
+      },
+      "wallpaper": {
+        "title": "Wallpaper Calculator",
+        "inputLabel": "Wall area in m²",
+        "rollCoverage": "Roll coverage (m²)",
+        "result": "Rolls needed:"
+      },
+      "buttons": {
+        "calculate": "Calculate"
       }
     }
   }

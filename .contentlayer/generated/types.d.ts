@@ -16,20 +16,19 @@ export type Post = {
   title: string
   description: string
   date: IsoDateTimeString
-  updated?: IsoDateTimeString | undefined
   cover?: string | undefined
   tags?: string[] | undefined
+  author?: string | undefined
+  translationOf?: string | undefined
   draft: boolean
-  author: string
-  alternates?: any | undefined
   /** MDX file body */
   body: MDX
   slug: string
+  locale: string
   url: string
-  dateParsed: date
-  updatedParsed: date
   headings: json
-  readingTime: json
+  dateParsed: string
+  readingTime: number
 }  
 
 /** Nested types */

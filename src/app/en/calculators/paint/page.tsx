@@ -1,26 +1,19 @@
-﻿import type { Metadata } from "next"
+﻿import { getPageMetadata } from "@/lib/seo"
 import { PaintCalculator } from "@/components/widgets/paint-calculator"
 
-export const metadata: Metadata = {
-    title: "Paint calculator online — calculate paint consumption | Renohacks",
+export const metadata = getPageMetadata("/en/calculators/paint", {
+    title: "Paint Calculator Online — calculate paint consumption | Renohacks",
     description:
-        "Online paint calculator: enter the room size and find out how many liters of paint you need. Free tool from Renohacks.",
-    openGraph: {
-        title: "Paint calculator online — Renohacks",
-        description:
-            "Easily calculate how much paint you need for your renovation project.",
-        url: "https://renohacks.com/en/calculators/paint",
-        siteName: "Renohacks",
-        locale: "en_US",
-        type: "website",
-    },
-}
+        "Online paint calculator: enter your room dimensions and find out how many liters of paint you need. A handy tool by Renohacks.",
+    cover: "/images/og-default.png",
+    type: "website",
+})
 
-export default function PaintCalculatorPage() {
+export default function PaintCalculatorPageEn() {
     return (
-        <div className="max-w-2xl mx-auto py-10 px-4">
-            <h1 className="text-2xl font-bold mb-6">Paint calculator</h1>
+        <main className="max-w-2xl mx-auto py-10 px-4">
+            <h1 className="text-2xl font-bold mb-6">Paint Calculator</h1>
             <PaintCalculator />
-        </div>
+        </main>
     )
 }

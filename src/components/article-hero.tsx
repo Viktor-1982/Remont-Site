@@ -4,85 +4,74 @@ import Image from "next/image"
 import { Calendar } from "lucide-react"
 import { TagList } from "@/components/tag-list"
 import type { Post } from ".contentlayer/generated"
-import navData from "@/messages/nav.json"
+import navDataJson from "@/messages/nav.json"
 
-export function ArticleHero({
-                                post,
-                                clickableTags = false,
-                            }: {
-    post: Post
-    clickableTags?: boolean
-}) {
-    // 🔹 определяем язык по URL (исправлено)
-    const isEnglish =
-        post.url.startsWith("/en/") || post.url.endsWith("-en")
-    const locale = isEnglish ? "en" : "ru"
-    const t = (navData as any)[locale].articles
+// Типизация для nav.json
+type Locale = "ru" | "en"
 
-    // 🔹 форматирование даты
+interface ArticlesDict {
+    minRead: string
+    tagLabel: string
+    words?: string
+}
+
+type NavData = Record<Locale, { articles: ArticlesDict }>
+
+const navData: NavData = navDataJson as NavData
+
+export function ArticleHero({ post }: { post: Post }) {
+    const isEnglish = post.locale === "en"
+    const locale: Locale = isEnglish ? "en" : "ru"
+    const t = navData[locale].articles
+
     const formattedDate = post.date
-        ? new Date(post.date).toLocaleDateString(
-            isEnglish ? "en-US" : "ru-RU",
-            {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-            }
-        )
+        ? new Date(post.date).toLocaleDateString(isEnglish ? "en-US" : "ru-RU", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+        })
         : null
 
     return (
         <section className="flex flex-col gap-6">
             {/* 🖼️ Обложка */}
             {post.cover && (
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
+                <div className="relative aspect-[16/9] w-full max-h-[360px] overflow-hidden rounded-lg mx-auto">
                     <Image
                         src={post.cover}
-                        alt={post.description || post.title}
+                        alt={post.title}
                         fill
-                        priority
                         className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
+                        priority
                     />
                 </div>
             )}
 
-            {/* 📝 Заголовок + дата */}
+            {/* 📄 Заголовок + инфо */}
             <header className="space-y-3">
-                <h1 className="text-3xl sm:text-4xl font-bold">{post.title}</h1>
+                <h1 className="text-3xl font-bold tracking-tight">{post.title}</h1>
+                <p className="text-muted-foreground">{post.description}</p>
 
-                {formattedDate && (
-                    <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                        <Calendar className="h-4 w-4" aria-hidden="true" />
-                        <time dateTime={post.date}>{formattedDate}</time>
-                        {post.readingTime && (
-                            <>
-                                <span>·</span>
-                                <span>
-                  {post.readingTime.minutes} {t.minRead} (
-                                    {post.readingTime.words} {t.words})
-                </span>
-                            </>
-                        )}
-                    </div>
-                )}
+                <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+                    {formattedDate && (
+                        <>
+                            <Calendar className="h-4 w-4" />
+                            <time dateTime={post.date}>{formattedDate}</time>
+                        </>
+                    )}
+                    {post.readingTime && (
+                        <>
+                            <span>·</span>
+                            <span>
+                {post.readingTime} {t.minRead}
+              </span>
+                        </>
+                    )}
+                </div>
             </header>
 
-            {/* 📖 Описание */}
-            {post.description && (
-                <p className="text-lg text-muted-foreground">{post.description}</p>
-            )}
-
-            {/* 🏷️ Теги */}
-            {post.tags && post.tags.length > 0 && (
-                <nav aria-label={t.tagLabel}>
-                    <TagList
-                        tags={post.tags}
-                        isEnglish={isEnglish}
-                        clickable={clickableTags}
-                    />
-                </nav>
-            )}
+            {/* 🏷️ Теги (только вывод, без кликабельности) */}
+            {post.tags && <TagList tags={post.tags} isEnglish={isEnglish} />}
         </section>
     )
 }
