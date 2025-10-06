@@ -33,6 +33,8 @@ export const Post = defineDocumentType(() => ({
         author: { type: "string" },
         translationOf: { type: "string", required: false },
         draft: { type: "boolean", default: false },
+        keywords: { type: "list", of: { type: "string" }, required: false },
+
     },
     computedFields: {
         slug: {

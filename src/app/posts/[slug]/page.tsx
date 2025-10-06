@@ -49,10 +49,46 @@ export default async function PostPage({
     return (
         <article className="container py-12">
             <ArticleHero post={post} />
+
             <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
                 <Mdx code={post.body.code} />
                 <TableOfContents items={post.headings} />
             </div>
+
+            {/* 🟡 SEO: Structured Data (JSON-LD) */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Article",
+                        headline: post.title,
+                        description: post.description,
+                        image: [`https://renohacks.com${post.cover}`],
+                        author: {
+                            "@type": "Organization",
+                            name: "Renohacks",
+                            url: "https://renohacks.com",
+                        },
+                        publisher: {
+                            "@type": "Organization",
+                            name: "Renohacks",
+                            logo: {
+                                "@type": "ImageObject",
+                                url: "https://renohacks.com/images/logo.png",
+                            },
+                        },
+                        datePublished: post.date,
+                        dateModified: post.date,
+                        mainEntityOfPage: {
+                            "@type": "WebPage",
+                            "@id": `https://renohacks.com/posts/${slug}`,
+                        },
+                        keywords: post.tags?.join(", "),
+                        inLanguage: "ru",
+                    }),
+                }}
+            />
         </article>
     )
 }

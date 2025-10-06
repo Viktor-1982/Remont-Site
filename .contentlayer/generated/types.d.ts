@@ -21,6 +21,7 @@ export type Post = {
   author?: string | undefined
   translationOf?: string | undefined
   draft: boolean
+  keywords?: string[] | undefined
   /** MDX file body */
   body: MDX
   slug: string

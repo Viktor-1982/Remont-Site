@@ -7,6 +7,7 @@ import posts__pokraskaStenMdx from './posts__pokraska-sten.mdx.json' with { type
 import posts__remontSovety_5Mdx from './posts__remont-sovety-5.mdx.json' with { type: 'json' }
 import posts__remontVannoyMdx from './posts__remont-vannoy.mdx.json' with { type: 'json' }
 import posts__trends_2026Mdx from './posts__trends-2026.mdx.json' with { type: 'json' }
+import posts__vidyOboyevMdx from './posts__vidy-oboyev.mdx.json' with { type: 'json' }
 import posts__zhilayaZonaVSkaleMdx from './posts__zhilaya-zona-v-skale.mdx.json' with { type: 'json' }
 import posts__en__caveLivingMdx from './posts__en__cave-living.mdx.json' with { type: 'json' }
 import posts__en__diyBathroomMakeoverMdx from './posts__en__diy-bathroom-makeover.mdx.json' with { type: 'json' }
@@ -14,5 +15,6 @@ import posts__en__fiveInteriorTipsMdx from './posts__en__five-interior-tips.mdx.
 import posts__en__interiorDesignTrends_2026Mdx from './posts__en__interior-design-trends-2026.mdx.json' with { type: 'json' }
 import posts__en__kitchenMakeoverMdx from './posts__en__kitchen-makeover.mdx.json' with { type: 'json' }
 import posts__en__preparingWallsForPaintingMdx from './posts__en__preparing-walls-for-painting.mdx.json' with { type: 'json' }
+import posts__en__wallpaperTypesMdx from './posts__en__wallpaper-types.mdx.json' with { type: 'json' }
 
-export const allPosts = [posts__interiorTrends_2025Mdx, posts__malenkayaKuhnyaMdx, posts__pokraskaStenPodgotovkaMdx, posts__pokraskaStenMdx, posts__remontSovety_5Mdx, posts__remontVannoyMdx, posts__trends_2026Mdx, posts__zhilayaZonaVSkaleMdx, posts__en__caveLivingMdx, posts__en__diyBathroomMakeoverMdx, posts__en__fiveInteriorTipsMdx, posts__en__interiorDesignTrends_2026Mdx, posts__en__kitchenMakeoverMdx, posts__en__preparingWallsForPaintingMdx]
+export const allPosts = [posts__interiorTrends_2025Mdx, posts__malenkayaKuhnyaMdx, posts__pokraskaStenPodgotovkaMdx, posts__pokraskaStenMdx, posts__remontSovety_5Mdx, posts__remontVannoyMdx, posts__trends_2026Mdx, posts__vidyOboyevMdx, posts__zhilayaZonaVSkaleMdx, posts__en__caveLivingMdx, posts__en__diyBathroomMakeoverMdx, posts__en__fiveInteriorTipsMdx, posts__en__interiorDesignTrends_2026Mdx, posts__en__kitchenMakeoverMdx, posts__en__preparingWallsForPaintingMdx, posts__en__wallpaperTypesMdx]
