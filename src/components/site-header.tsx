@@ -10,14 +10,15 @@ import { LanguageSwitcher } from "@/components/language-switcher"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import { DeepLink } from "@/components/deep-link"
 import { FaInstagram, FaPinterest } from "react-icons/fa"
-import navData from "@/messages/nav.json"
+import navData from "@/types/nav"
+import type { NavData, Locale, NavLink } from "@/types/nav"
 import { useState } from "react"
 
 export function SiteHeader() {
     const pathname = usePathname()
     const isEnglish = pathname.startsWith("/en")
-    const locale = isEnglish ? "en" : "ru"
-    const { links, social, header } = (navData as any)[locale]
+    const locale: Locale = isEnglish ? "en" : "ru"
+    const { links, social, header } = (navData as NavData)[locale]
     const [open, setOpen] = useState(false)
 
     const isActive = (href: string): boolean => {
@@ -39,7 +40,7 @@ export function SiteHeader() {
 
                 {/* 🧭 Навигация — десктоп */}
                 <nav className="hidden md:flex items-center gap-6">
-                    {Object.values(links).map((link: any) => (
+                    {links.map((link: NavLink) => (
                         <Link
                             key={link.href}
                             href={link.href}
@@ -95,7 +96,7 @@ export function SiteHeader() {
                             variant="ghost"
                             size="icon"
                             className="md:hidden"
-                            aria-label={open ? header?.ariaMenuClose : header?.ariaMenuOpen}
+                            aria-label={open ? header.ariaMenuClose : header.ariaMenuOpen}
                         >
                             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                         </Button>
@@ -103,7 +104,7 @@ export function SiteHeader() {
 
                     <SheetContent side="right" className="p-6">
                         <nav className="flex flex-col gap-4">
-                            {Object.values(links).map((link: any) => (
+                            {links.map((link: NavLink) => (
                                 <Link
                                     key={link.href}
                                     href={link.href}
