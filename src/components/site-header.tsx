@@ -2,90 +2,51 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect, useState } from "react"
-import { Hammer, Menu, X, Instagram } from "lucide-react"
-import { FaPinterest } from "react-icons/fa"
 import { cn } from "@/lib/utils"
+import { Menu, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { LanguageSwitcher } from "@/components/language-switcher"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import { DeepLink } from "@/components/deep-link"
-import { LanguageSwitcher } from "@/components/language-switcher"
-import navData, { Locale } from "@/types/nav"
+import { FaInstagram, FaPinterest } from "react-icons/fa"
+import navData from "@/messages/nav.json"
+import { useState } from "react"
 
 export function SiteHeader() {
-    const [isOpen, setIsOpen] = useState(false)
-    const pathname = usePathname() || "/"
+    const pathname = usePathname()
+    const isEnglish = pathname.startsWith("/en")
+    const locale = isEnglish ? "en" : "ru"
+    const { links, social, header } = (navData as any)[locale]
+    const [open, setOpen] = useState(false)
 
-    // ✅ блокировка скролла при открытом меню
-    useEffect(() => {
-        if (isOpen) {
-            document.body.classList.add("overflow-hidden")
-        } else {
-            document.body.classList.remove("overflow-hidden")
-        }
-        return () => {
-            document.body.classList.remove("overflow-hidden")
-        }
-    }, [isOpen])
-
-    // ✅ определяем язык
-    const isEnglish = pathname.startsWith("/en") || pathname.endsWith("-en")
-    const locale: Locale = isEnglish ? "en" : "ru"
-    const { navLabels, links, social, header: h } = navData[locale]
-
-    // 🔹 Проверка активной ссылки
-    const isActive = (href: string) => {
-        const cleanPath = pathname.replace(/\/$/, "")
-        const cleanHref = href.replace(/\/$/, "")
-        return cleanPath === cleanHref || cleanPath.startsWith(cleanHref + "/")
-    }
-
-    // 🔹 Функция для корректного href
-    const localizeHref = (href: string) => {
-        if (isEnglish) {
-            return href.startsWith("/en") ? href : "/en" + href
-        } else {
-            return href.replace(/^\/en/, "")
-        }
+    const isActive = (href: string): boolean => {
+        if (href === "/" && !isEnglish) return pathname === "/"
+        if (href === "/en" && isEnglish) return pathname === "/en"
+        return pathname === href || pathname.startsWith(`${href}/`)
     }
 
     return (
-        <header
-            className={cn(
-                "sticky top-0 z-50 w-full border-b shadow-sm transition-all duration-300",
-                "bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60",
-                "will-change-transform"
-            )}
-        >
-            <div className="mx-auto flex min-h-[64px] items-center justify-between px-4 sm:px-6 lg:px-8">
+        <header className="sticky top-0 z-50 bg-background/80 backdrop-blur border-b transition-all">
+            <div className="container flex items-center justify-between h-14 px-4 sm:px-6">
                 {/* 🏠 Логотип */}
                 <Link
                     href={isEnglish ? "/en" : "/"}
-                    className="flex items-center gap-2 font-bold text-lg hover:scale-105 transition-transform"
-                    aria-label={isEnglish ? "Go to homepage" : "Перейти на главную"}
+                    className="font-bold text-lg hover:text-primary transition-colors"
                 >
-                    <Hammer className="h-6 w-6 text-primary" aria-hidden="true" />
-                    <span>
-            renohacks.com
-            <span className="sr-only">
-              {isEnglish
-                  ? " — renovation and construction blog"
-                  : " — блог о ремонте и строительстве"}
-            </span>
-          </span>
+                    renohacks.com
                 </Link>
 
-                {/* 📂 Навигация (desktop) */}
-                <nav aria-label={navLabels.desktop} className="hidden md:flex gap-6">
-                    {links.map((link) => (
+                {/* 🧭 Навигация — десктоп */}
+                <nav className="hidden md:flex items-center gap-6">
+                    {Object.values(links).map((link: any) => (
                         <Link
                             key={link.href}
-                            href={localizeHref(link.href)}
-                            title={link.title}
-                            aria-current={isActive(localizeHref(link.href)) ? "page" : undefined}
+                            href={link.href}
                             className={cn(
-                                "text-sm hover:text-foreground hover:underline underline-offset-4 transition",
-                                isActive(localizeHref(link.href))
-                                    ? "text-primary font-semibold"
+                                "transition-colors hover:text-primary",
+                                isActive(link.href)
+                                    ? "text-primary font-semibold underline underline-offset-4"
                                     : "text-muted-foreground"
                             )}
                         >
@@ -94,127 +55,98 @@ export function SiteHeader() {
                     ))}
                 </nav>
 
-                {/* 🔧 Правая часть */}
-                <div className="flex items-center gap-2 flex-nowrap">
-                    {/* 🌍 Переключатель языка */}
+                {/* 🔘 Переключатели и соцсети */}
+                <div className="hidden md:flex items-center gap-3">
                     <LanguageSwitcher />
-
-                    {/* 🌍 Соцсети (desktop) */}
-                    <div className="hidden sm:flex items-center gap-3" aria-label={h.socialLabel}>
-                        <DeepLink
-                            appUrl="instagram://user?username=reno.hacks"
-                            webUrl="https://www.instagram.com/reno.hacks"
-                            ariaLabel="Instagram"
-                            title={social.instagram}
-                            analyticsEvent="instagram_click"
-                            location="header"
-                            className="text-muted-foreground hover:text-[#E1306C] transition"
-                        >
-                            <Instagram className="h-5 w-5" aria-hidden="true" />
-                            <span className="sr-only">Instagram</span>
-                        </DeepLink>
-                        <DeepLink
-                            appUrl="pinterest://www.pinterest.com/RenoHacks/"
-                            webUrl="https://www.pinterest.com/RenoHacks/"
-                            ariaLabel="Pinterest"
-                            title={social.pinterest}
-                            analyticsEvent="pinterest_click"
-                            location="header"
-                            className="text-muted-foreground hover:text-[#BD081C] transition"
-                        >
-                            <FaPinterest className="h-5 w-5" aria-hidden="true" />
-                            <span className="sr-only">Pinterest</span>
-                        </DeepLink>
-                    </div>
-
-                    {/* 🌗 Переключатель темы */}
                     <ThemeSwitcher />
 
-                    {/* 🍔 Бургер (mob) */}
-                    <button
-                        className="md:hidden p-2 rounded hover:bg-muted transition"
-                        onClick={() => setIsOpen(!isOpen)}
-                        aria-label={isOpen ? h.ariaMenuClose : h.ariaMenuOpen}
-                        aria-expanded={isOpen}
-                        aria-controls="mobile-menu"
-                    >
-                        {isOpen ? (
-                            <X className="h-6 w-6" aria-hidden="true" />
-                        ) : (
-                            <Menu className="h-6 w-6" aria-hidden="true" />
-                        )}
-                    </button>
-                </div>
-            </div>
-
-            {/* 📱 Мобильное меню */}
-            <div
-                id="mobile-menu"
-                className={cn(
-                    "absolute top-[64px] left-0 right-0 border-t bg-background/95 backdrop-blur md:hidden shadow-lg overflow-hidden transform transition-all duration-300",
-                    isOpen ? "max-h-[90vh] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2"
-                )}
-            >
-                <nav aria-label={navLabels.mobile} className="flex flex-col divide-y">
-                    {links.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={localizeHref(link.href)}
-                            title={link.title}
-                            aria-current={isActive(localizeHref(link.href)) ? "page" : undefined}
-                            onClick={() => setIsOpen(false)}
-                            className={cn(
-                                "px-4 py-3 text-base transition hover:bg-muted",
-                                isActive(localizeHref(link.href))
-                                    ? "text-primary font-semibold"
-                                    : "text-foreground"
-                            )}
-                        >
-                            {link.label}
-                        </Link>
-                    ))}
-
-                    {/* 🌍 Переключатель языка (mob) */}
-                    <div className="px-4 py-3">
-                        <LanguageSwitcher />
-                    </div>
-
-                    {/* 🌗 Переключатель темы (mob) */}
-                    <div className="px-4 py-3">
-                        <ThemeSwitcher />
-                    </div>
-
-                    {/* 📱 Соцсети (mob) */}
-                    <div className="flex justify-center gap-6 py-4">
+                    {/* 🔗 Соцсети */}
+                    <div className="flex items-center gap-4 pl-3 border-l border-border/50 ml-3">
+                        {/* Instagram */}
                         <DeepLink
-                            appUrl="instagram://user?username=reno.hacks"
-                            webUrl="https://www.instagram.com/reno.hacks"
+                            href={social.instagram}
                             ariaLabel="Instagram"
-                            title={social.instagram}
-                            analyticsEvent="instagram_click"
-                            location="header_mobile"
-                            className="text-muted-foreground hover:text-[#E1306C] transition"
+                            analyticsEvent="click_instagram_header"
+                            location="header"
+                            className="text-muted-foreground hover:text-[#E1306C] transition-all hover:scale-110"
                         >
-                            <Instagram className="h-6 w-6" aria-hidden="true" />
+                            <FaInstagram size={18} aria-hidden="true" />
                             <span className="sr-only">Instagram</span>
                         </DeepLink>
+
+                        {/* Pinterest — как в Footer */}
                         <DeepLink
-                            appUrl="pinterest://www.pinterest.com/RenoHacks/"
-                            webUrl="https://www.pinterest.com/RenoHacks/"
+                            href={social.pinterest}
                             ariaLabel="Pinterest"
-                            title={social.pinterest}
-                            analyticsEvent="pinterest_click"
-                            location="header_mobile"
-                            className="text-muted-foreground hover:text-[#BD081C] transition"
+                            analyticsEvent="click_pinterest_header"
+                            location="header"
+                            className="text-muted-foreground hover:text-[#BD081C] transition-all hover:scale-110"
                         >
-                            <FaPinterest className="h-6 w-6" aria-hidden="true" />
+                            <FaPinterest size={18} aria-hidden="true" />
                             <span className="sr-only">Pinterest</span>
                         </DeepLink>
                     </div>
-                </nav>
+                </div>
+
+                {/* 📱 Мобильное меню */}
+                <Sheet open={open} onOpenChange={setOpen}>
+                    <SheetTrigger asChild>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="md:hidden"
+                            aria-label={open ? header?.ariaMenuClose : header?.ariaMenuOpen}
+                        >
+                            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                        </Button>
+                    </SheetTrigger>
+
+                    <SheetContent side="right" className="p-6">
+                        <nav className="flex flex-col gap-4">
+                            {Object.values(links).map((link: any) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={() => setOpen(false)}
+                                    className={cn(
+                                        "text-lg font-medium transition-colors hover:text-primary",
+                                        isActive(link.href)
+                                            ? "text-primary underline underline-offset-4"
+                                            : "text-muted-foreground"
+                                    )}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+
+                            {/* 🔗 Соцсети в мобильном меню */}
+                            <div className="flex items-center gap-4 mt-6">
+                                <DeepLink
+                                    href={social.instagram}
+                                    ariaLabel="Instagram"
+                                    title="Instagram"
+                                    className="text-muted-foreground hover:text-[#E1306C] transition-colors"
+                                >
+                                    Instagram
+                                </DeepLink>
+                                <DeepLink
+                                    href={social.pinterest}
+                                    ariaLabel="Pinterest"
+                                    title="Pinterest"
+                                    className="text-muted-foreground hover:text-[#BD081C] transition-colors"
+                                >
+                                    Pinterest
+                                </DeepLink>
+                            </div>
+
+                            <div className="flex items-center justify-between mt-6">
+                                <LanguageSwitcher />
+                                <ThemeSwitcher />
+                            </div>
+                        </nav>
+                    </SheetContent>
+                </Sheet>
             </div>
         </header>
     )
 }
-
-export default SiteHeader

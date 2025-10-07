@@ -13,8 +13,8 @@
       { "href": "/calculators", "label": "Калькуляторы", "title": "Онлайн калькуляторы для ремонта" }
     ],
     "social": {
-      "instagram": "Наш Instagram",
-      "pinterest": "Наш Pinterest"
+      "instagram": "https://www.instagram.com/reno.hacks",
+      "pinterest": "https://www.pinterest.com/RenoHacks/"
     },
     "header": {
       "socialLabel": "Социальные ссылки",
@@ -59,14 +59,15 @@
       "contactsTitle": "Контакты",
       "contactsTitleMobile": "Контакты (моб.)",
       "contactsText": "Есть идеи или вопросы? Напишите нам:",
-      "socialLabel": "Социальные ссылки",
+      "socialLabel": "Мы в соцсетях",
       "rights": "© 2025 renohacks.com. Все права защищены."
     },
     "hero": {
       "title": "Блог о ремонте и строительстве",
       "subtitle": "Renohacks.com — фото-гайды, лайфхаки, сметы и калькуляторы для ремонта и дома",
       "ctaTrends": "Новинки ремонта",
-      "ctaDiy": "DIY проекты по ремонту"
+      "ctaDiy": "DIY / Ремонт своими руками"
+
     },
     "assistant": {
       "title": "Помощник по ремонту",
@@ -89,8 +90,8 @@
       { "href": "/en/calculators", "label": "Calculators", "title": "Online renovation calculators" }
     ],
     "social": {
-      "instagram": "Our Instagram",
-      "pinterest": "Our Pinterest"
+      "instagram": "https://www.instagram.com/reno.hacks",
+      "pinterest": "https://www.pinterest.com/RenoHacks/"
     },
     "header": {
       "socialLabel": "Social links",
@@ -135,7 +136,7 @@
       "contactsTitle": "Contacts",
       "contactsTitleMobile": "Contacts (mobile)",
       "contactsText": "Have ideas or questions? Contact us:",
-      "socialLabel": "Social links",
+      "socialLabel": "Follow us",
       "rights": "© 2025 renohacks.com. All rights reserved."
     },
     "hero": {

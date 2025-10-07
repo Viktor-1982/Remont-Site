@@ -4,6 +4,9 @@ import { sortPosts } from "@/lib/utils"
 import { ArticleGrid } from "@/components/article-grid"
 import { HeroBanner } from "@/components/hero-banner"
 
+// 🔄 Автообновление контента раз в минуту
+export const revalidate = 60
+
 export const metadata: Metadata = {
     title: "Renohacks.com — renovation and interior design blog",
     description: "Photo guides, DIY hacks, calculators, and material reviews.",
@@ -32,10 +35,20 @@ export default function HomePageEn() {
     )
 
     return (
-        <main className="container py-10">
+        <main>
+            {/* 🌍 Full-width banner */}
             <HeroBanner />
-            <h1 className="text-3xl font-bold mb-6">Renovation & Interior Design Articles</h1>
-            <ArticleGrid posts={posts} />
+
+            {/* 📄 Main content inside container */}
+            <div className="container py-10 space-y-12">
+                {/* ✅ anchor for the scroll arrow */}
+                <section id="articles">
+                    <h1 className="text-3xl font-bold mb-6 text-balance">
+                        Inspiring Renovation & Design Ideas
+                    </h1>
+                    <ArticleGrid posts={posts} />
+                </section>
+            </div>
         </main>
     )
 }

@@ -4,12 +4,17 @@ import { allPosts, type Post } from ".contentlayer/generated"
 import { ArticleGrid } from "@/components/article-grid"
 import { HeroBanner } from "@/components/hero-banner"
 
+// 🔄 Автоматическое обновление страницы каждые 60 сек
+export const revalidate = 60
+
 export const metadata: Metadata = {
     title: "Renohacks.com — блог о ремонте и дизайне",
-    description: "Фото-гайды, DIY лайфхаки, калькуляторы и обзоры материалов.",
+    description:
+        "Фото-гайды, DIY лайфхаки, калькуляторы и обзоры материалов.",
     openGraph: {
         title: "Renohacks.com — блог о ремонте и дизайне",
-        description: "Фото-гайды, DIY лайфхаки, калькуляторы и обзоры материалов.",
+        description:
+            "Фото-гайды, DIY лайфхаки, калькуляторы и обзоры материалов.",
         url: "https://renohacks.com/",
         siteName: "Renohacks.com",
         locale: "ru_RU",
@@ -37,15 +42,20 @@ export default function HomePage() {
         })
 
     return (
-        <main className="container py-10 space-y-12">
-            {/* 🏠 Баннер */}
+        <main>
+            {/* 🏠 Баннер во всю ширину */}
             <HeroBanner />
 
-            {/* 📑 Статьи */}
-            <section>
-                <h1 className="text-3xl font-bold mb-6">Статьи о ремонте и дизайне</h1>
-                <ArticleGrid posts={posts} />
-            </section>
+            {/* 📑 Контент внутри контейнера */}
+            <div className="container py-10 space-y-12">
+                {/* ✅ Якорь для стрелки */}
+                <section id="articles">
+                    <h1 className="text-3xl font-bold mb-6 text-balance">
+                        Идеи и советы по ремонту и дизайну
+                    </h1>
+                    <ArticleGrid posts={posts} />
+                </section>
+            </div>
         </main>
     )
 }

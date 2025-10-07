@@ -3,17 +3,19 @@
 import { ReactNode } from "react"
 
 type DeepLinkProps = {
-    appUrl: string
-    webUrl: string
+    href?: string
+    appUrl?: string
+    webUrl?: string
     children: ReactNode
     className?: string
-    ariaLabel?: string
+    ariaLabel?: string // 
     title?: string
-    analyticsEvent?: string // название события для аналитики
-    location?: string       // место на сайте: footer, header и т.д.
+    analyticsEvent?: string
+    location?: string
 }
 
 export function DeepLink({
+                             href,
                              appUrl,
                              webUrl,
                              children,
@@ -23,38 +25,52 @@ export function DeepLink({
                              analyticsEvent,
                              location,
                          }: DeepLinkProps) {
-    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault()
+    const finalAppUrl = appUrl || href
+    const finalWebUrl = webUrl || href
+    const safeHref = finalWebUrl || "/" // ✅ предотвращает TS2322 (undefined → Url)
 
-        // 👉 Отправляем событие в GTM через dataLayer
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        // 🔹 Google Tag Manager event
         if (typeof window !== "undefined") {
             window.dataLayer = window.dataLayer || []
             window.dataLayer.push({
                 event: "deep_link_click",
                 category: "DeepLink",
                 label: analyticsEvent ?? "",
-                url: appUrl,
+                url: finalAppUrl,
                 location: location ?? "unknown",
             })
         }
 
-        // 👉 Пробуем открыть приложение
-        window.location.href = appUrl
+        // 🔹 Пробуем открыть приложение
+        if (appUrl) {
+            e.preventDefault()
+            window.location.href = appUrl
 
-        // 👉 Если приложения нет → fallback на сайт
-        setTimeout(() => {
-            window.open(webUrl, "_blank", "noopener,noreferrer")
-        }, 500)
+            // fallback на сайт, если приложение не установлено
+            if (finalWebUrl) {
+                setTimeout(() => {
+                    window.open(finalWebUrl, "_blank", "noopener,noreferrer")
+                }, 500)
+            }
+        }
+        // 🔹 Если внешняя ссылка (https://instagram.com/...)
+        else if (finalWebUrl && !finalWebUrl.startsWith("/")) {
+            e.preventDefault()
+            window.open(finalWebUrl, "_blank", "noopener,noreferrer")
+        }
+        // 🔹 Внутренние ссылки ("/about" и т.п.) — работают нативно
     }
 
     return (
         <a
-            href={webUrl} // ✅ для SEO и fallback
+            href={safeHref} // ✅ безопасный URL (всегда string)
             onClick={handleClick}
             aria-label={ariaLabel}
             title={title}
             className={className}
             rel="noopener noreferrer"
+            target={finalWebUrl?.startsWith("http") ? "_blank" : undefined} // 🔹 откроет внешние ссылки в новой вкладке
         >
             {children}
         </a>

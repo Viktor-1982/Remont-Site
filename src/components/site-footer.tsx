@@ -1,59 +1,22 @@
 ﻿"use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { DeepLink } from "@/components/deep-link"
 import { FaInstagram, FaPinterest } from "react-icons/fa"
-import { usePathname } from "next/navigation"
-import LanguageSwitcher from "./language-switcher"
-import navDataJson from "@/messages/nav.json"
+import { LanguageSwitcher } from "@/components/language-switcher"
+import navData from "@/types/nav" // ✅ типизированный импорт
+import type { NavData, Locale } from "@/types/nav"
 
-// 🔹 Типизация JSON
-type Locale = "ru" | "en"
-
-type FooterSections = {
-    [key: string]: { href: string; label: string; title: string }
-}
-
-type FooterData = {
-    about: string
-    sectionsTitle: string
-    sections: FooterSections
-    contactsTitle: string
-    contactsText: string
-    socialLabel: string
-    rights: string
-}
-
-type Social = {
-    instagram: string
-    pinterest: string
-}
-
-type NavData = {
-    [key in Locale]: {
-        footer: FooterData
-        social: Social
-    }
-}
-
-const navData = navDataJson as NavData
-
-// 🔹 Именованный экспорт
 export function SiteFooter() {
     const pathname = usePathname()
-    const isEnglish = pathname.startsWith("/en") || pathname.endsWith("-en")
+    const isEnglish = pathname.startsWith("/en")
     const locale: Locale = isEnglish ? "en" : "ru"
+    const { footer, social } = (navData as NavData)[locale]
 
-    const { footer, social } = navData[locale]
-
-    // Функция для корректного href
-    const localizeHref = (href: string) => {
-        if (isEnglish) {
-            return href.startsWith("/en") ? href : "/en" + href
-        } else {
-            return href.replace(/^\/en/, "")
-        }
-    }
+    // 🔹 Локализованный href
+    const localizeHref = (href: string) =>
+        isEnglish ? (href.startsWith("/en") ? href : `/en${href}`) : href.replace(/^\/en/, "")
 
     return (
         <footer role="contentinfo" className="border-t bg-background">
@@ -97,9 +60,7 @@ export function SiteFooter() {
                     >
                         {footer.contactsTitle}
                     </h2>
-                    <p className="mt-3 text-sm text-muted-foreground">
-                        {footer.contactsText}
-                    </p>
+                    <p className="mt-3 text-sm text-muted-foreground">{footer.contactsText}</p>
                     <p className="mt-2 text-sm">
                         <a
                             href="mailto:info@renohacks.com"
@@ -111,26 +72,23 @@ export function SiteFooter() {
                         </a>
                     </p>
 
-                    {/* 🔗 Соцсети */}
+                    {/* 🔗 Соцсети (та же логика, что в Header) */}
                     <div className="mt-3 flex gap-6" aria-label={footer.socialLabel}>
                         <DeepLink
-                            appUrl="instagram://user?username=reno.hacks"
-                            webUrl="https://www.instagram.com/reno.hacks"
+                            href={social.instagram}
                             ariaLabel="Instagram"
-                            title={social.instagram}
-                            analyticsEvent="instagram_click_footer"
+                            analyticsEvent="click_instagram_footer"
                             location="footer"
                             className="flex items-center gap-2 text-muted-foreground hover:text-[#E1306C] transition"
                         >
                             <FaInstagram size={18} aria-hidden="true" />
                             <span className="sr-only">Instagram</span>
                         </DeepLink>
+
                         <DeepLink
-                            appUrl="pinterest://www.pinterest.com/RenoHacks/"
-                            webUrl="https://www.pinterest.com/RenoHacks/"
+                            href={social.pinterest}
                             ariaLabel="Pinterest"
-                            title={social.pinterest}
-                            analyticsEvent="pinterest_click_footer"
+                            analyticsEvent="click_pinterest_footer"
                             location="footer"
                             className="flex items-center gap-2 text-muted-foreground hover:text-[#BD081C] transition"
                         >
@@ -142,9 +100,8 @@ export function SiteFooter() {
             </div>
 
             {/* 🔻 Нижняя часть */}
-            <div className="border-t px-4 py-4 text-center text-xs text-muted-foreground flex items-center justify-center gap-4">
+            <div className="border-t px-4 py-4 text-center text-xs text-muted-foreground flex items-center justify-center gap-4 flex-wrap">
                 <span>{footer.rights}</span>
-                {/* 🌍 Переключатель языка */}
                 <LanguageSwitcher />
             </div>
         </footer>
