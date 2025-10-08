@@ -1,6 +1,8 @@
 ﻿import { MetadataRoute } from "next"
 
 export default function robots(): MetadataRoute.Robots {
+    const baseUrl = "https://renohacks.com"
+
     return {
         rules: [
             {
@@ -10,12 +12,14 @@ export default function robots(): MetadataRoute.Robots {
                     "/api/",
                     "/_next/",
                     "/private/",
-                    "/404", // 🚫 кастомная страница ошибки
-                    "/500", // 🚫 если есть страница 500
+                    "/404",
+                    "/500",
+                    "/drafts",
+                    "/temp",
                 ],
             },
         ],
-        sitemap: "https://renohacks.com/sitemap.xml",
-        host: "https://renohacks.com",
+        sitemap: `${baseUrl}/sitemap.xml`,
+        host: baseUrl,
     }
 }

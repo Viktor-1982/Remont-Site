@@ -1,6 +1,7 @@
 ﻿import { MetadataRoute } from "next"
 import { allPosts } from ".contentlayer/generated"
 
+// 🔹 Основные теги сайта
 const tags = ["novinki", "diy", "smety", "kitchen", "bathroom", "floor", "walls"]
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -11,52 +12,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `${baseUrl}${post.url}`,
         lastModified: post.date ? new Date(post.date) : new Date(),
         changefreq: "monthly" as const,
-        priority: 0.6,
+        priority: 0.7,
     }))
 
-    // 🔹 Основные страницы
+    // 🔹 Основные страницы (русская + английская версии)
     const pages = [
         {
             path: "",
             priority: 1.0,
             changefreq: "daily" as const,
-            lastModified: new Date("2025-09-01"),
         },
         {
             path: "/about",
-            priority: 0.7,
+            priority: 0.8,
             changefreq: "monthly" as const,
-            lastModified: new Date("2025-09-01"),
         },
         {
             path: "/calculators",
-            priority: 0.7,
+            priority: 0.8,
             changefreq: "monthly" as const,
-            lastModified: new Date("2025-09-01"),
         },
-        // 🔹 Страницы ошибок
-        {
-            path: "/404",
-            priority: 0.0,
-            changefreq: "yearly" as const,
-            lastModified: new Date("2025-09-01"),
-        },
-        {
-            path: "/500",
-            priority: 0.0,
-            changefreq: "yearly" as const,
-            lastModified: new Date("2025-09-01"),
-        },
-    ].flatMap(({ path, priority, changefreq, lastModified }) => [
+    ].flatMap(({ path, priority, changefreq }) => [
         {
             url: `${baseUrl}${path}`,
-            lastModified,
+            lastModified: new Date(),
             changefreq,
             priority,
         },
         {
             url: `${baseUrl}/en${path}`,
-            lastModified,
+            lastModified: new Date(),
             changefreq,
             priority,
         },
@@ -68,13 +53,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
             url: `${baseUrl}/calculators/${calc}`,
             lastModified: new Date("2025-09-01"),
             changefreq: "monthly" as const,
-            priority: 0.7,
+            priority: 0.8,
         },
         {
             url: `${baseUrl}/en/calculators/${calc}`,
             lastModified: new Date("2025-09-01"),
             changefreq: "monthly" as const,
-            priority: 0.7,
+            priority: 0.8,
         },
     ])
 
@@ -86,17 +71,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
                 url: `${baseUrl}/tags/${tag}`,
                 lastModified: getTagLastModified(tag),
                 changefreq: "weekly" as const,
-                priority: 0.7,
+                priority: tag === "novinki" || tag === "diy" ? 0.8 : 0.7,
             },
             {
                 url: `${baseUrl}/en/tags/${enTag}`,
                 lastModified: getTagLastModified(tag),
                 changefreq: "weekly" as const,
-                priority: 0.7,
+                priority: tag === "novinki" || tag === "diy" ? 0.8 : 0.7,
             },
         ]
     })
 
+    // ✅ Финальный массив для sitemap.xml
     return [...pages, ...calculators, ...tagPages, ...posts]
 }
 
