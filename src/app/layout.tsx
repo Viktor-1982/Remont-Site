@@ -74,32 +74,43 @@ export default async function RootLayout({
             {/* ✅ Google Tag Manager */}
             <Script id="gtm-script" strategy="afterInteractive">
                 {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-N2Z2CSMS');`}
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                    })(window,document,'script','dataLayer','GTM-N2Z2CSMS');`}
             </Script>
 
             {/* ✅ Yandex.Metrika */}
             <Script id="yandex-metrika" strategy="afterInteractive">
                 {`(function(m,e,t,r,i,k,a){
-              m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-              m[i].l=1*new Date();
-              for (var j=0;j<document.scripts.length;j++){
-                if(document.scripts[j].src===r){return;}
-              }
-              k=e.createElement(t),a=e.getElementsByTagName(t)[0],
-              k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-            })(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
+                        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                        m[i].l=1*new Date();
+                        for (var j=0;j<document.scripts.length;j++){
+                            if(document.scripts[j].src===r){return;}
+                        }
+                        k=e.createElement(t),a=e.getElementsByTagName(t)[0],
+                        k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+                    })(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
 
-            ym(104537151,'init',{
-              ssr:true,
-              webvisor:true,
-              clickmap:true,
-              ecommerce:"dataLayer",
-              accurateTrackBounce:true,
-              trackLinks:true
-            });`}
+                    ym(104537151,'init',{
+                        ssr:true,
+                        webvisor:true,
+                        clickmap:true,
+                        ecommerce:"dataLayer",
+                        accurateTrackBounce:true,
+                        trackLinks:true
+                    });`}
+            </Script>
+
+            {/* ✅ Microsoft Clarity */}
+            <Script id="microsoft-clarity" strategy="afterInteractive">
+                {`
+                        (function(c,l,a,r,i,t,y){
+                            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+                        })(window, document, "clarity", "script", "tn17h47mta");
+                    `}
             </Script>
         </head>
 
