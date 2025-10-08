@@ -29,6 +29,7 @@ const navData = navDataJson as NavData
 export function HeroBanner() {
     const pathname = usePathname()
     const isEnglish = pathname.startsWith("/en")
+    const isHomePage = pathname === "/" || pathname === "/en"
     const t = navData[isEnglish ? "en" : "ru"].hero
 
     const ref = useRef(null)
@@ -84,9 +85,15 @@ export function HeroBanner() {
                     transition={{ duration: 0.9, ease: "easeOut" }}
                     className="max-w-3xl"
                 >
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white dark:text-white leading-tight drop-shadow-[0_6px_12px_rgba(0,0,0,0.55)] mb-6">
-                        {t.title}
-                    </h1>
+                    {isHomePage ? (
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white dark:text-white leading-tight drop-shadow-[0_6px_12px_rgba(0,0,0,0.55)] mb-6">
+                            {t.title}
+                        </h1>
+                    ) : (
+                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white dark:text-white leading-tight drop-shadow-[0_6px_12px_rgba(0,0,0,0.55)] mb-6">
+                            {t.title}
+                        </h2>
+                    )}
 
                     <p className="text-lg sm:text-xl md:text-2xl text-white/90 dark:text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed">
                         {t.subtitle}
@@ -98,9 +105,9 @@ export function HeroBanner() {
                             asChild
                             size="lg"
                             className="rounded-full px-8 py-3 text-base font-semibold 
-                         bg-white text-gray-900 dark:bg-white/90 dark:text-black
-                         hover:bg-gray-100 dark:hover:bg-white 
-                         hover:shadow-lg hover:scale-105 transition-all duration-300"
+              bg-white text-gray-900 dark:bg-white/90 dark:text-black
+              hover:bg-gray-100 dark:hover:bg-white 
+              hover:shadow-lg hover:scale-105 transition-all duration-300"
                         >
                             <Link href={isEnglish ? "/en/tags/trends" : "/tags/novinki"}>
                                 {t.ctaTrends} →
@@ -113,10 +120,10 @@ export function HeroBanner() {
                             size="lg"
                             variant="outline"
                             className="rounded-full px-8 py-3 text-base font-semibold 
-                         border border-gray-200 text-gray-900 
-                         dark:border-white dark:text-white
-                         hover:bg-gray-50 dark:hover:bg-white/10 
-                         hover:shadow-lg hover:scale-105 transition-all duration-300"
+              border border-gray-200 text-gray-900 
+              dark:border-white dark:text-white
+              hover:bg-gray-50 dark:hover:bg-white/10 
+              hover:shadow-lg hover:scale-105 transition-all duration-300"
                         >
                             <Link href={isEnglish ? "/en/tags/diy" : "/tags/diy"}>
                                 {t.ctaDiy}
