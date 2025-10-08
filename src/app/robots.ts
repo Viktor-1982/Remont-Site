@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
         rules: [
             {
                 userAgent: "*",
-                allow: ["/"], // можно массивом, чтобы расширять в будущем
+                allow: ["/"],
                 disallow: [
                     "/api/",
                     "/_next/",
@@ -20,7 +20,11 @@ export default function robots(): MetadataRoute.Robots {
                 ],
             },
         ],
-        sitemap: [`${baseUrl}/sitemap.xml`],
-        host: "renohacks.com", 
+        sitemap: [
+            `${baseUrl}/sitemap.xml`,
+            `${baseUrl}/feed.xml`,
+            `${baseUrl}/feed-en.xml`,
+        ],
+        host: "renohacks.com", // ✅ без https:// — важно для Яндекса
     }
 }
