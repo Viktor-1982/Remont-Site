@@ -1,4 +1,5 @@
-﻿import { MetadataRoute } from "next"
+﻿// src/app/robots.ts
+import { MetadataRoute } from "next"
 
 export default function robots(): MetadataRoute.Robots {
     const baseUrl = "https://renohacks.com"
@@ -7,19 +8,19 @@ export default function robots(): MetadataRoute.Robots {
         rules: [
             {
                 userAgent: "*",
-                allow: "/",
+                allow: ["/"], // можно массивом, чтобы расширять в будущем
                 disallow: [
                     "/api/",
                     "/_next/",
                     "/private/",
                     "/404",
                     "/500",
-                    "/drafts",
-                    "/temp",
+                    "/drafts/",
+                    "/temp/",
                 ],
             },
         ],
-        sitemap: `${baseUrl}/sitemap.xml`,
-        host: baseUrl,
+        sitemap: [`${baseUrl}/sitemap.xml`],
+        host: "renohacks.com", 
     }
 }
