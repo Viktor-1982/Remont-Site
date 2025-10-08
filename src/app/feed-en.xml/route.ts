@@ -3,6 +3,13 @@ import { NextResponse } from "next/server"
 
 export const revalidate = 3600
 
+function escapeXml(str: string): string {
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+}
+
 export async function GET() {
     const baseUrl = "https://renohacks.com"
 
@@ -15,14 +22,14 @@ export async function GET() {
         .map(
             (p) => `
       <item>
-        <title><![CDATA[${p.title}]]></title>
-        <link>${baseUrl}${p.url}</link>
-        <guid>${baseUrl}${p.url}</guid>
+        <title><![CDATA[${escapeXml(p.title)}]]></title>
+        <link>${escapeXml(`${baseUrl}${p.url}`)}</link>
+        <guid>${escapeXml(`${baseUrl}${p.url}`)}</guid>
         <pubDate>${new Date(p.date).toUTCString()}</pubDate>
-        <description><![CDATA[${p.description || ""}]]></description>
+        <description><![CDATA[${escapeXml(p.description || "")}]]></description>
         ${
                 p.cover
-                    ? `<media:content url="${baseUrl}${p.cover}" medium="image" />`
+                    ? `<media:content url="${escapeXml(baseUrl + p.cover)}" medium="image" />`
                     : ""
             }
       </item>`
@@ -32,7 +39,7 @@ export async function GET() {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
   <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
     <channel>
-      <title>Renohacks — home renovation & interior design</title>
+      <title>Renohacks — home renovation &amp; interior design</title>
       <link>${baseUrl}/en</link>
       <description>Latest DIY renovation and design tips</description>
       <language>en</language>
