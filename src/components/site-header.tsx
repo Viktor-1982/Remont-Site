@@ -38,6 +38,11 @@ export function SiteHeader() {
                     renohacks.com
                 </Link>
 
+                {/* 🌐 Языковой переключатель — всегда видим */}
+                <div className="flex items-center gap-2 md:hidden">
+                    <LanguageSwitcher />
+                </div>
+
                 {/* 🧭 Навигация — десктоп */}
                 <nav className="hidden md:flex items-center gap-6">
                     {links.map((link: NavLink) => (
@@ -56,14 +61,11 @@ export function SiteHeader() {
                     ))}
                 </nav>
 
-                {/* 🔘 Переключатели и соцсети */}
+                {/* 🔘 Переключатели и соцсети — десктоп */}
                 <div className="hidden md:flex items-center gap-3">
                     <LanguageSwitcher />
                     <ThemeSwitcher />
-
-                    {/* 🔗 Соцсети */}
                     <div className="flex items-center gap-4 pl-3 border-l border-border/50 ml-3">
-                        {/* Instagram */}
                         <DeepLink
                             href={social.instagram}
                             ariaLabel="Instagram"
@@ -72,10 +74,7 @@ export function SiteHeader() {
                             className="text-muted-foreground hover:text-[#E1306C] transition-all hover:scale-110"
                         >
                             <FaInstagram size={18} aria-hidden="true" />
-                            <span className="sr-only">Instagram</span>
                         </DeepLink>
-
-                        {/* Pinterest — как в Footer */}
                         <DeepLink
                             href={social.pinterest}
                             ariaLabel="Pinterest"
@@ -84,69 +83,67 @@ export function SiteHeader() {
                             className="text-muted-foreground hover:text-[#BD081C] transition-all hover:scale-110"
                         >
                             <FaPinterest size={18} aria-hidden="true" />
-                            <span className="sr-only">Pinterest</span>
                         </DeepLink>
                     </div>
                 </div>
 
                 {/* 📱 Мобильное меню */}
-                <Sheet open={open} onOpenChange={setOpen}>
-                    <SheetTrigger asChild>
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            className="md:hidden"
-                            aria-label={open ? header.ariaMenuClose : header.ariaMenuOpen}
-                        >
-                            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-                        </Button>
-                    </SheetTrigger>
+                <div className="flex items-center md:hidden gap-2">
+                    {/* 🎨 Переключатель темы — рядом с меню */}
+                    <ThemeSwitcher />
 
-                    <SheetContent side="right" className="p-6">
-                        <nav className="flex flex-col gap-4">
-                            {links.map((link: NavLink) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    onClick={() => setOpen(false)}
-                                    className={cn(
-                                        "text-lg font-medium transition-colors hover:text-primary",
-                                        isActive(link.href)
-                                            ? "text-primary underline underline-offset-4"
-                                            : "text-muted-foreground"
-                                    )}
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
+                    <Sheet open={open} onOpenChange={setOpen}>
+                        <SheetTrigger asChild>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="md:hidden"
+                                aria-label={open ? header.ariaMenuClose : header.ariaMenuOpen}
+                            >
+                                {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                            </Button>
+                        </SheetTrigger>
 
-                            {/* 🔗 Соцсети в мобильном меню */}
-                            <div className="flex items-center gap-4 mt-6">
-                                <DeepLink
-                                    href={social.instagram}
-                                    ariaLabel="Instagram"
-                                    title="Instagram"
-                                    className="text-muted-foreground hover:text-[#E1306C] transition-colors"
-                                >
-                                    Instagram
-                                </DeepLink>
-                                <DeepLink
-                                    href={social.pinterest}
-                                    ariaLabel="Pinterest"
-                                    title="Pinterest"
-                                    className="text-muted-foreground hover:text-[#BD081C] transition-colors"
-                                >
-                                    Pinterest
-                                </DeepLink>
-                            </div>
+                        <SheetContent side="right" className="p-6">
+                            <nav className="flex flex-col gap-4">
+                                {links.map((link: NavLink) => (
+                                    <Link
+                                        key={link.href}
+                                        href={link.href}
+                                        onClick={() => setOpen(false)}
+                                        className={cn(
+                                            "text-lg font-medium transition-colors hover:text-primary",
+                                            isActive(link.href)
+                                                ? "text-primary underline underline-offset-4"
+                                                : "text-muted-foreground"
+                                        )}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ))}
 
-                            <div className="flex items-center justify-between mt-6">
-                                <LanguageSwitcher />
-                                <ThemeSwitcher />
-                            </div>
-                        </nav>
-                    </SheetContent>
-                </Sheet>
+                                <div className="flex items-center gap-4 mt-6">
+                                    <DeepLink
+                                        href={social.instagram}
+                                        ariaLabel="Instagram"
+                                        title="Instagram"
+                                        className="text-muted-foreground hover:text-[#E1306C] transition-colors"
+                                    >
+                                        Instagram
+                                    </DeepLink>
+                                    <DeepLink
+                                        href={social.pinterest}
+                                        ariaLabel="Pinterest"
+                                        title="Pinterest"
+                                        className="text-muted-foreground hover:text-[#BD081C] transition-colors"
+                                    >
+                                        Pinterest
+                                    </DeepLink>
+                                </div>
+                            </nav>
+                        </SheetContent>
+                    </Sheet>
+                </div>
             </div>
         </header>
     )
