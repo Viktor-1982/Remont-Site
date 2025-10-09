@@ -34,7 +34,10 @@ export default function CalculatorsIndexPageEn() {
     return (
         <main className="container py-12">
             <h1 className="text-3xl font-bold mb-8">Renovation calculators</h1>
-
+            <p className="mb-6 text-muted-foreground">
+                Choose a calculator to quickly estimate materials for your renovation:
+            </p>
+            
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {calculators.map((calc) => (
                     <Link
