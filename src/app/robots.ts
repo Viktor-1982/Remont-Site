@@ -20,11 +20,7 @@ export default function robots(): MetadataRoute.Robots {
                 ],
             },
         ],
-        sitemap: [
-            `${baseUrl}/sitemap.xml`,
-            `${baseUrl}/feed.xml`,
-            `${baseUrl}/feed-en.xml`,
-        ],
-        host: "renohacks.com", // ✅ без https:// — важно для Яндекса
+        sitemap: [`${baseUrl}/sitemap.xml`], // ✅  sitemap!
+        host: "renohacks.com", // ✅ 
     }
 }

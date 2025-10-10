@@ -10,6 +10,14 @@ export const metadata: Metadata = {
             en: "https://renohacks.com/en",
             ru: "https://renohacks.com/",
         },
+        types: {
+            "application/rss+xml": [
+                {
+                    title: "Renohacks RSS (EN)",
+                    url: "https://renohacks.com/feed-en.xml",
+                },
+            ],
+        },
     },
     openGraph: {
         title: "Renohacks — home renovation & DIY",
