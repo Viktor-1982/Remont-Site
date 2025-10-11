@@ -9,7 +9,7 @@ import navDataJson from "@/messages/nav.json"
 export type Heading = {
     level: number
     text: string
-    slug: string
+    slug?: string
 }
 
 type Locale = "ru" | "en"
@@ -24,7 +24,6 @@ interface TOCDict {
 
 type NavData = Record<Locale, { toc: TOCDict }>
 
-// ✅ Жёсткая типизация JSON
 const navData: NavData = navDataJson as NavData
 
 export function TableOfContents({
@@ -41,6 +40,10 @@ export function TableOfContents({
     const locale: Locale = pathname.startsWith("/en") ? "en" : "ru"
     const t = navData[locale].toc
 
+    // 🧠 Функция для генерации якоря
+    const makeSlug = (text: string) =>
+        text.toLowerCase().replace(/[^\wа-яё\s-]/gi, "").trim().replace(/\s+/g, "-")
+
     useEffect(() => {
         if (!items?.length) return
         const observer = new IntersectionObserver(
@@ -52,7 +55,7 @@ export function TableOfContents({
             { rootMargin: "-20% 0px -60% 0px" }
         )
         items.forEach((h) => {
-            const el = document.getElementById(h.slug)
+            const el = document.getElementById(makeSlug(h.text))
             if (el) observer.observe(el)
         })
         return () => observer.disconnect()
@@ -91,26 +94,29 @@ export function TableOfContents({
                 <div className="p-4">
                     <h2 className="font-semibold mb-2">{t.mobile}</h2>
                     <ul className="space-y-1 text-sm">
-                        {items.map((h) => (
-                            <li key={h.slug} className={h.level === 3 ? "ml-4" : "ml-0"}>
-                                <a
-                                    href={`#${h.slug}`}
-                                    onClick={(e) => {
-                                        e.preventDefault()
-                                        handleClick(h.slug)
-                                    }}
-                                    aria-current={activeId === h.slug ? "true" : undefined}
-                                    className={cn(
-                                        "block transition-colors hover:text-primary",
-                                        activeId === h.slug
-                                            ? "text-primary font-semibold"
-                                            : "text-muted-foreground"
-                                    )}
-                                >
-                                    {h.text}
-                                </a>
-                            </li>
-                        ))}
+                        {items.map((h, i) => {
+                            const slug = makeSlug(h.text)
+                            return (
+                                <li key={`${slug}-${i}`} className={h.level === 3 ? "ml-4" : "ml-0"}>
+                                    <a
+                                        href={`#${slug}`}
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            handleClick(slug)
+                                        }}
+                                        aria-current={activeId === slug ? "true" : undefined}
+                                        className={cn(
+                                            "block transition-colors hover:text-primary",
+                                            activeId === slug
+                                                ? "text-primary font-semibold"
+                                                : "text-muted-foreground"
+                                        )}
+                                    >
+                                        {h.text}
+                                    </a>
+                                </li>
+                            )
+                        })}
                     </ul>
                 </div>
             </nav>
@@ -122,26 +128,29 @@ export function TableOfContents({
             >
                 <div className="mb-2 font-semibold">{t.open}</div>
                 <ul className="space-y-1">
-                    {items.map((h) => (
-                        <li key={h.slug} className={h.level === 3 ? "ml-4" : "ml-0"}>
-                            <a
-                                href={`#${h.slug}`}
-                                onClick={(e) => {
-                                    e.preventDefault()
-                                    handleClick(h.slug)
-                                }}
-                                aria-current={activeId === h.slug ? "true" : undefined}
-                                className={cn(
-                                    "transition-colors hover:text-foreground",
-                                    activeId === h.slug
-                                        ? "text-primary font-semibold"
-                                        : "text-muted-foreground"
-                                )}
-                            >
-                                {h.text}
-                            </a>
-                        </li>
-                    ))}
+                    {items.map((h, i) => {
+                        const slug = makeSlug(h.text)
+                        return (
+                            <li key={`${slug}-${i}`} className={h.level === 3 ? "ml-4" : "ml-0"}>
+                                <a
+                                    href={`#${slug}`}
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        handleClick(slug)
+                                    }}
+                                    aria-current={activeId === slug ? "true" : undefined}
+                                    className={cn(
+                                        "transition-colors hover:text-foreground",
+                                        activeId === slug
+                                            ? "text-primary font-semibold"
+                                            : "text-muted-foreground"
+                                    )}
+                                >
+                                    {h.text}
+                                </a>
+                            </li>
+                        )
+                    })}
                 </ul>
             </nav>
         </>

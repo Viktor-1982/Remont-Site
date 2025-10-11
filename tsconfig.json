@@ -19,9 +19,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@/content/*": ["content/*"]
+      "@/content/*": ["content/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     }
-    
   },
   "include": [
     "**/*.ts",
@@ -29,7 +29,7 @@
     ".contentlayer/generated",
     "next-env.d.ts",
     ".next/types/**/*.ts",
-    "global.d.ts"            
+    "global.d.ts"
   ],
   "exclude": ["node_modules", ".next"]
 }

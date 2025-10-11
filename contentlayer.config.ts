@@ -1,79 +1,77 @@
-﻿// contentlayer.config.ts
-import { defineDocumentType, makeSource } from "contentlayer2/source-files";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import remarkGfm from "remark-gfm";
-import remarkMdxImages from "remark-mdx-images";
+﻿import { defineDocumentType, makeSource } from "contentlayer2/source-files"
+import readingTime from "reading-time"
 
-function extractHeadings(raw: string) {
-    const lines = raw.split(/\n/);
-    const out: { level: number; text: string; slug: string }[] = [];
-    for (const line of lines) {
-        const m2 = line.match(/^##\s+(.+)/);
-        const m3 = line.match(/^###\s+(.+)/);
-        const hit = m2 ? { level: 2, text: m2[1].trim() } : m3 ? { level: 3, text: m3[1].trim() } : null;
-        if (hit) {
-            const slug = hit.text.toLowerCase().replace(/[^\wа-яё\s-]/gi, "").replace(/\s+/g, "-");
-            out.push({ level: hit.level, text: hit.text, slug });
-        }
-    }
-    return out;
-}
+/**
+ * Конфигурация типа Post для контента Renohacks.com
+ * Работает с двумя папками:
+ *   /content/posts/...         → RU
+ *   /content/posts/en/...      → EN
+ */
 
 export const Post = defineDocumentType(() => ({
     name: "Post",
-    filePathPattern: `posts/**/*.mdx`,
+    filePathPattern: "**/*.mdx",
     contentType: "mdx",
     fields: {
         title: { type: "string", required: true },
         description: { type: "string", required: true },
-        date: { type: "date", required: true }, // YYYY-MM-DD
-        cover: { type: "string" },
+        date: { type: "date", required: true },
         tags: { type: "list", of: { type: "string" } },
-        author: { type: "string" },
-        translationOf: { type: "string", required: false },
+        cover: { type: "string", required: true },
+        author: { type: "string", required: true },
+        translationOf: { type: "string" },
         draft: { type: "boolean", default: false },
-        keywords: { type: "list", of: { type: "string" }, required: false },
-
+        keywords: { type: "list", of: { type: "string" } },
     },
+
     computedFields: {
-        slug: {
-            type: "string",
-            resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, ""),
-        },
+        // 🧭 Язык статьи: en или ru
         locale: {
             type: "string",
-            resolve: (doc) => (doc._raw.flattenedPath.startsWith("posts/en/") ? "en" : "ru"),
+            resolve: (post) =>
+                /(^|[\\/])en[\\/]/.test(post._raw.sourceFilePath) ? "en" : "ru",
         },
+
+        // 🔗 Слаг — используется для slug и url
+        slug: {
+            type: "string",
+            resolve: (post) =>
+                post._raw.flattenedPath
+                    .replace(/^posts[\\/]/, "")
+                    .replace(/^en[\\/]/, ""),
+        },
+
+        // 🌐 Полный URL статьи
         url: {
             type: "string",
-            resolve: (doc) => {
-                const slug = doc._raw.sourceFileName.replace(/\.mdx$/, "");
-                return doc._raw.flattenedPath.startsWith("posts/en/") ? `/en/posts/${slug}` : `/posts/${slug}`;
-            },
+            resolve: (post) =>
+                /(^|[\\/])en[\\/]/.test(post._raw.sourceFilePath)
+                    ? `/en/posts/${post._raw.flattenedPath.replace(/^en[\\/]/, "")}`
+                    : `/posts/${post._raw.flattenedPath}`,
         },
-        headings: { type: "json", resolve: (doc) => extractHeadings(doc.body.raw) },
-        dateParsed: {
-            type: "string",
-            resolve: (doc) => (doc.date ? new Date(doc.date).toISOString() : null),
-        },
+
+        // ⏱️ Время чтения
         readingTime: {
-            type: "number",
-            resolve: (doc) => {
-                const words = doc.body.raw ? doc.body.raw.split(/\s+/).length : 0;
-                const minutes = Math.max(1, Math.ceil(words / 200));
-                return minutes;
-            },
+            type: "string",
+            resolve: (post) =>
+                Math.ceil(readingTime(post.body.raw).minutes) + " мин",
+        },
+
+        // 📚 Оглавление для TableOfContents
+        headings: {
+            type: "json",
+            resolve: (doc) =>
+                Array.from(doc.body.raw.matchAll(/^###?\s+(.*)$/gm)).map(
+                    ([, text]) => ({
+                        text,
+                        level: text.startsWith("##") ? 2 : 3,
+                    })
+                ),
         },
     },
-}));
+}))
 
 export default makeSource({
-    contentDirPath: "content",
+    contentDirPath: "content/posts",
     documentTypes: [Post],
-    disableImportAliasWarning: true,
-    mdx: {
-        remarkPlugins: [remarkGfm, remarkMdxImages],
-        rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
-    },
-});
+})

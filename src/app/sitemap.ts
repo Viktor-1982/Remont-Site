@@ -5,7 +5,7 @@ import { allPosts } from ".contentlayer/generated"
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = "https://renohacks.com"
 
-    
+
     const posts: MetadataRoute.Sitemap = allPosts.map((post) => ({
         url: `${baseUrl}${post.url}`,
         lastModified: post.date,
@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }))
 
-    
+
     const staticPages: MetadataRoute.Sitemap = [
         "",
         "/about",

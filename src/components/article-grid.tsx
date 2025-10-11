@@ -1,4 +1,4 @@
-"use client" // Компонент сетки статей с выделенным постом
+"use client"
 
 import type { Post } from ".contentlayer/generated"
 import { ArticleCard } from "@/components/article-card"
