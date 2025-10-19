@@ -1,7 +1,25 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+    webpack: (config, { isServer, webpack }) => {
+        // 👇 создаём безопасный полифил для process
+        config.plugins.push(
+            new webpack.ProvidePlugin({
+                process: "process/browser",
+            })
+        )
 
-export default nextConfig;
+        if (!isServer) {
+            config.resolve.fallback = {
+                ...config.resolve.fallback,
+                fs: false,
+                path: false,
+                os: false,
+            }
+        }
+
+        return config
+    },
+}
+
+export default nextConfig

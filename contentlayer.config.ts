@@ -2,8 +2,8 @@
 import readingTime from "reading-time"
 
 /**
- * Конфигурация типа Post для контента Renohacks.com
- * Работает с двумя папками:
+ * 🧱 Конфигурация типа Post для Renohacks.com
+ * Поддерживает двуязычную структуру:
  *   /content/posts/...         → RU
  *   /content/posts/en/...      → EN
  */
@@ -25,14 +25,14 @@ export const Post = defineDocumentType(() => ({
     },
 
     computedFields: {
-        // 🧭 Язык статьи: en или ru
+        // 🌍 Определяем язык статьи
         locale: {
             type: "string",
             resolve: (post) =>
                 /(^|[\\/])en[\\/]/.test(post._raw.sourceFilePath) ? "en" : "ru",
         },
 
-        // 🔗 Слаг — используется для slug и url
+        // 🧭 Слаг без /posts/ и /en/
         slug: {
             type: "string",
             resolve: (post) =>
@@ -41,7 +41,7 @@ export const Post = defineDocumentType(() => ({
                     .replace(/^en[\\/]/, ""),
         },
 
-        // 🌐 Полный URL статьи
+        // 🌐 Полный URL
         url: {
             type: "string",
             resolve: (post) =>
@@ -57,16 +57,21 @@ export const Post = defineDocumentType(() => ({
                 Math.ceil(readingTime(post.body.raw).minutes) + " мин",
         },
 
-        // 📚 Оглавление для TableOfContents
+        // 📚 Извлечение заголовков для оглавления (ToC)
         headings: {
             type: "json",
-            resolve: (doc) =>
-                Array.from(doc.body.raw.matchAll(/^###?\s+(.*)$/gm)).map(
-                    ([, text]) => ({
-                        text,
-                        level: text.startsWith("##") ? 2 : 3,
-                    })
-                ),
+            resolve: (doc) => {
+                const headingRegex = /^#{2,3}\s+(?:[^\wА-Яа-я]*)(.+)$/gmu
+                const matches = Array.from(doc.body.raw.matchAll(headingRegex))
+
+                return matches.map(([, text]) => {
+                    const level = text.startsWith("#") ? 3 : 2
+                    return {
+                        text: text.trim(),
+                        level,
+                    }
+                })
+            },
         },
     },
 }))
