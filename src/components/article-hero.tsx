@@ -6,17 +6,13 @@ import { TagList } from "@/components/tag-list"
 import type { Post } from ".contentlayer/generated"
 import navDataJson from "@/messages/nav.json"
 
-// Типизация для nav.json
 type Locale = "ru" | "en"
-
 interface ArticlesDict {
     minRead: string
     tagLabel: string
     words?: string
 }
-
 type NavData = Record<Locale, { articles: ArticlesDict }>
-
 const navData: NavData = navDataJson as NavData
 
 export function ArticleHero({ post }: { post: Post }) {
@@ -34,7 +30,6 @@ export function ArticleHero({ post }: { post: Post }) {
 
     return (
         <section className="flex flex-col gap-6">
-            {/* 🖼️ Обложка */}
             {post.cover && (
                 <div className="relative aspect-[16/9] w-full max-h-[360px] overflow-hidden rounded-lg mx-auto">
                     <Image
@@ -47,7 +42,6 @@ export function ArticleHero({ post }: { post: Post }) {
                 </div>
             )}
 
-            {/* 📄 Заголовок + инфо */}
             <header className="space-y-3">
                 <h1 className="text-3xl font-bold tracking-tight">{post.title}</h1>
                 <p className="text-muted-foreground">{post.description}</p>
@@ -63,14 +57,15 @@ export function ArticleHero({ post }: { post: Post }) {
                         <>
                             <span>·</span>
                             <span>
-                {post.readingTime} {t.minRead}
+                {locale === "en"
+                    ? post.readingTime.replace("мин", "min read")
+                    : `${post.readingTime} чтения`}
               </span>
                         </>
                     )}
                 </div>
             </header>
 
-            {/* 🏷️ Теги (только вывод, без кликабельности) */}
             {post.tags && <TagList tags={post.tags} isEnglish={isEnglish} />}
         </section>
     )

@@ -2,8 +2,8 @@
 import readingTime from "reading-time"
 
 /**
- * 🧱 Конфигурация типа Post для Renohacks.com
- * Поддерживает двуязычную структуру:
+ * Конфигурация типа Post для контента Renohacks.com
+ * Работает с двумя папками:
  *   /content/posts/...         → RU
  *   /content/posts/en/...      → EN
  */
@@ -25,14 +25,14 @@ export const Post = defineDocumentType(() => ({
     },
 
     computedFields: {
-        // 🌍 Определяем язык статьи
+        // 🧭 Язык статьи: en или ru
         locale: {
             type: "string",
             resolve: (post) =>
                 /(^|[\\/])en[\\/]/.test(post._raw.sourceFilePath) ? "en" : "ru",
         },
 
-        // 🧭 Слаг без /posts/ и /en/
+        // 🔗 Слаг — используется для slug и url
         slug: {
             type: "string",
             resolve: (post) =>
@@ -41,7 +41,7 @@ export const Post = defineDocumentType(() => ({
                     .replace(/^en[\\/]/, ""),
         },
 
-        // 🌐 Полный URL
+        // 🌐 Полный URL статьи
         url: {
             type: "string",
             resolve: (post) =>
@@ -57,21 +57,16 @@ export const Post = defineDocumentType(() => ({
                 Math.ceil(readingTime(post.body.raw).minutes) + " мин",
         },
 
-        // 📚 Извлечение заголовков для оглавления (ToC)
+        // 📚 Оглавление для TableOfContents
         headings: {
             type: "json",
-            resolve: (doc) => {
-                const headingRegex = /^#{2,3}\s+(?:[^\wА-Яа-я]*)(.+)$/gmu
-                const matches = Array.from(doc.body.raw.matchAll(headingRegex))
-
-                return matches.map(([, text]) => {
-                    const level = text.startsWith("#") ? 3 : 2
-                    return {
-                        text: text.trim(),
-                        level,
-                    }
-                })
-            },
+            resolve: (doc) =>
+                Array.from(doc.body.raw.matchAll(/^###?\s+(.*)$/gm)).map(
+                    ([, text]) => ({
+                        text,
+                        level: text.startsWith("##") ? 2 : 3,
+                    })
+                ),
         },
     },
 }))
