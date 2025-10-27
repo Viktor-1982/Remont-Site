@@ -61,7 +61,7 @@ export default function BudgetPlannerPageEn() {
                     <li>Get the total cost including unexpected expenses</li>
                 </ol>
                 <p className="mt-3 text-sm text-muted-foreground">
-                    💰 Renovation usually costs 20–30% more than planned. It's better to include a reserve from the start!
+                    💰 Renovation usually costs 20–30% more than planned. It&apos;s better to include a reserve from the start!
                 </p>
             </div>
         </main>
