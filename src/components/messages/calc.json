@@ -26,6 +26,20 @@
       },
       "buttons": {
         "calculate": "Рассчитать"
+      },
+      "budget": {
+        "title": "Планировщик бюджета",
+        "category": "Категория работ",
+        "cost": "Стоимость",
+        "addCategory": "Добавить категорию",
+        "remove": "Удалить",
+        "reserve": "Резерв (%)",
+        "currency": "Валюта",
+        "selectCurrency": "Выберите валюту",
+        "calculate": "Рассчитать",
+        "subtotal": "Итого без резерва",
+        "reserveAmount": "Резерв",
+        "total": "Полная сумма"
       }
     }
   },
@@ -56,6 +70,20 @@
       },
       "buttons": {
         "calculate": "Calculate"
+      },
+      "budget": {
+        "title": "Budget Planner",
+        "category": "Work category",
+        "cost": "Cost",
+        "addCategory": "Add category",
+        "remove": "Remove",
+        "reserve": "Reserve (%)",
+        "currency": "Currency",
+        "selectCurrency": "Select currency",
+        "calculate": "Calculate",
+        "subtotal": "Subtotal",
+        "reserveAmount": "Reserve",
+        "total": "Total"
       }
     }
   }

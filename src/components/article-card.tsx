@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import type { Post } from ".contentlayer/generated"
 import { TagList } from "@/components/tag-list"
-import navDataJson from "@/messages/nav.json"
+import navDataJson from "@/components/messages/nav.json"
 
 type Locale = "ru" | "en"
 interface ArticlesDict {

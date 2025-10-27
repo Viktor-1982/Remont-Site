@@ -1,4 +1,4 @@
-﻿import navDataJson from "@/messages/nav.json"
+﻿import navDataJson from "@/components/messages/nav.json"
 
 export type Locale = "ru" | "en"
 

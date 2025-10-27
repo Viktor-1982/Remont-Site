@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { TOCToggle } from "@/components/toc-toggle"
-import navDataJson from "@/messages/nav.json"
+import navDataJson from "@/components/messages/nav.json"
 
 export type Heading = {
     level: number

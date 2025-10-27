@@ -4,8 +4,9 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import "./globals.css"
 
-import { ClientLayout } from "@/components/client-layout"
-
+import { ThemeProvider } from "@/app/theme-provider"
+import { SiteHeader } from "@/components/site-header"
+import { SiteFooter } from "@/components/site-footer"
 import Script from "next/script"
 import { headers } from "next/headers"
 
@@ -123,7 +124,11 @@ export default async function RootLayout({
             </div>
         </noscript>
 
-        <ClientLayout>{children}</ClientLayout>
+        <ThemeProvider>
+            <SiteHeader />
+            <main className="w-full py-8 px-4">{children}</main>
+            <SiteFooter />
+        </ThemeProvider>
         </body>
         </html>
     )

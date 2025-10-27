@@ -6,7 +6,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
-import navDataJson from "@/messages/nav.json"
+import navDataJson from "@/components/messages/nav.json"
 
 type Locale = "ru" | "en"
 type ThemeDict = { ariaLabel: string; light: string; dark: string; system: string; sepia: string; contrast: string }

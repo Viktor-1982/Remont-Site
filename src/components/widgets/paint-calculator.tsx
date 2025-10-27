@@ -5,7 +5,7 @@ import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Calculator } from "lucide-react"
-import calcDataJson from "@/messages/calc.json"
+import calcDataJson from "@/components/messages/calc.json"
 import type { Locale, CalcData, PaintCalcDict, ButtonsDict } from "@/types/calc"
 
 const calcData = calcDataJson as CalcData

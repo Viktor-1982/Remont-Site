@@ -29,6 +29,12 @@ export default function CalculatorsIndexPageEn() {
             desc: "Calculate tiles needed for walls or floors",
             color: "bg-sky-100 dark:bg-sky-900/40",
         },
+        {
+            href: "/en/calculators/budget",
+            label: "💰 Budget Planner",
+            desc: "Calculate total renovation cost with reserve",
+            color: "bg-amber-100 dark:bg-amber-900/40",
+        },
     ]
 
     return (

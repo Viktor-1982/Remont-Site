@@ -1,7 +1,7 @@
 ﻿"use client"
 
 import { Badge } from "@/components/ui/badge"
-import navDataJson from "@/messages/nav.json"
+import navDataJson from "@/components/messages/nav.json"
 
 type Locale = "ru" | "en"
 
