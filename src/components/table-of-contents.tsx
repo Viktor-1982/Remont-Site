@@ -87,12 +87,12 @@ export function TableOfContents({
             <nav
                 aria-label={t.mobile}
                 className={cn(
-                    "fixed top-16 bottom-0 right-0 w-64 bg-background border-l shadow-lg transform transition-transform duration-300 lg:hidden overflow-y-auto",
+                    "fixed top-16 bottom-0 right-0 w-64 bg-card text-card-foreground border-l shadow-lg transform transition-transform duration-300 lg:hidden overflow-y-auto",
                     open ? "translate-x-0" : "translate-x-full"
                 )}
             >
                 <div className="p-4">
-                    <h2 className="font-semibold mb-2">{t.mobile}</h2>
+                    <h2 className="font-semibold mb-2 text-foreground">{t.mobile}</h2>
                     <ul className="space-y-1 text-sm">
                         {items.map((h, i) => {
                             const slug = makeSlug(h.text)
@@ -109,7 +109,7 @@ export function TableOfContents({
                                             "block transition-colors hover:text-primary",
                                             activeId === slug
                                                 ? "text-primary font-semibold"
-                                                : "text-muted-foreground"
+                                                : "text-foreground"
                                         )}
                                     >
                                         {h.text}
