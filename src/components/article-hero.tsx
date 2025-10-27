@@ -4,21 +4,12 @@ import Image from "next/image"
 import { Calendar } from "lucide-react"
 import { TagList } from "@/components/tag-list"
 import type { Post } from ".contentlayer/generated"
-import navDataJson from "@/messages/nav.json"
 
 type Locale = "ru" | "en"
-interface ArticlesDict {
-    minRead: string
-    tagLabel: string
-    words?: string
-}
-type NavData = Record<Locale, { articles: ArticlesDict }>
-const navData: NavData = navDataJson as NavData
 
 export function ArticleHero({ post }: { post: Post }) {
     const isEnglish = post.locale === "en"
     const locale: Locale = isEnglish ? "en" : "ru"
-    const t = navData[locale].articles
 
     const formattedDate = post.date
         ? new Date(post.date).toLocaleDateString(isEnglish ? "en-US" : "ru-RU", {

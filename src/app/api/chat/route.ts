@@ -24,7 +24,16 @@ const FREE_MODELS = [
 
 export async function POST(req: NextRequest) {
     try {
-        const { messages } = await req.json()
+        const { messages, locale } = await req.json()
+
+        const systemPrompt = locale === "en" 
+            ? "You are a helpful renovation assistant for Renohacks.com. Provide practical DIY tips for home renovation, painting, bathroom and kitchen remodeling. Keep answers concise and actionable."
+            : "Ты помощник по ремонту для Renohacks.com. Давай практические советы по DIY ремонту, покраске, ремонту ванной и кухни. Отвечай кратко и по делу."
+
+        const messagesWithSystem = [
+            { role: "system", content: systemPrompt },
+            ...messages,
+        ]
 
         let data: ChatCompletionResponse | null = null
         let lastError: string | null = null
@@ -36,9 +45,9 @@ export async function POST(req: NextRequest) {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
                     "HTTP-Referer": "https://renohacks.com",
-                    "X-Title": "PRO-remont",
+                    "X-Title": "Renohacks Repair Assistant",
                 },
-                body: JSON.stringify({ model, messages }),
+                body: JSON.stringify({ model, messages: messagesWithSystem }),
             })
 
             data = (await res.json()) as ChatCompletionResponse
@@ -52,7 +61,10 @@ export async function POST(req: NextRequest) {
         }
 
         return NextResponse.json(
-            { reply: `❌ Все бесплатные модели перегружены. Ошибка: ${lastError}` },
+            { reply: locale === "en" 
+                ? `❌ All free models are busy. Error: ${lastError}` 
+                : `❌ Все бесплатные модели перегружены. Ошибка: ${lastError}` 
+            },
             { status: 429 }
         )
     } catch (err) {

@@ -1,0 +1,83 @@
+{
+  "title": "5 Renovation Tips to Stay Sane",
+  "description": "Planning, budget, material selection, and quality control — proven steps to renovate without chaos and extra costs.",
+  "date": "2025-09-12T00:00:00.000Z",
+  "tags": [
+    "renovation",
+    "lifestyle",
+    "interior",
+    "stress-free renovation",
+    "renovation plan",
+    "diy"
+  ],
+  "cover": "/images/remont-sovety-5/remont-lifehacks.png",
+  "author": "Renohacks",
+  "translationOf": "remont-sovety-5",
+  "draft": false,
+  "keywords": [
+    "renovation tips",
+    "how to plan renovation",
+    "stress-free renovation",
+    "apartment renovation plan",
+    "renovation mistakes",
+    "renovation budget",
+    "renovation hacks",
+    "renovation quality control",
+    "diy renovation",
+    "how to stay sane during renovation",
+    "organizing renovation",
+    "choosing renovation materials",
+    "apartment renovation stages"
+  ],
+  "body": {
+    "raw": "\n![Renovation without chaos — Renohacks tips](/images/remont-sovety-5/remont-lifehacks.png)\n\n> **TL;DR:** planning, +20% to budget, quality materials, room-by-room approach, and on-site quality checks — these five pillars will keep your renovation sane and stress-free.\n\nRenovation rarely goes perfectly smoothly. But with a solid plan and common sense, you can preserve your nerves, money, and even relationships.\n\n---\n\n## 1. Start with a Plan (Otherwise Chaos is Guaranteed)\n\nRenovation without a plan turns into a series of surprises: outlets end up in the wrong places, or furniture doesn't fit through doorways.  \nEven a simple checklist with stages and materials will save you from chaos and shave weeks off your timeline.\n\n![Renovation plan: checklist of stages, materials, electrical points](/images/remont-sovety-5/remont-plan.png)\n\n---\n\n## 2. Budget Always Exceeds Initial Estimates\n\nHowever accurate your initial estimate, reality usually adds another 20% to it.  \nThe reasons vary: delivery fees, moving materials upstairs, additional tools, small issues you forgot about.\n\n💡 **Pro tip:** build a buffer into your budget from the start. It's better to have money left over than to have to cut corners mid-project.\n\n![Renovation budget with 20% reserve: money and expense table](/images/remont-sovety-5/remont-budget.png)\n\n---\n\n## 3. Materials Are the Foundation of the Result\n\nCheap paint or tile may look fine in the store, but in reality you often get streaks, chips, or color fading.  \nQuality materials cost more initially, but they determine how long your finish will last and how your space will look.\n\n💡 **Pro tip:** choose materials not just by price, but also by reviews from contractors and customers. Look at real photos after use.\n\n![Choosing quality materials: paint, tile, and finish samples](/images/remont-sovety-5/remont-materials.png)\n\n---\n\n## 4. Renovate Room by Room\n\nTrying to redo the entire apartment at once turns your home into a construction site: noise, dust, and no normal living conditions.  \nIt's much wiser to renovate one room at a time — that way you can live in one part while the other is being renovated.\n\n💡 **Pro tip:** start with the most critical zones (e.g., bathroom or kitchen), then move to the rest.\n\n![Room-by-room renovation: one done, another in progress](/images/remont-sovety-5/remont-rooms.png)\n\n---\n\n## 5. Check Quality as You Go\n\nErrors made during construction are expensive and complicated to fix later.  \nRegular on-site quality checks will prevent such surprises.\n\n💡 **Pro tip:** check important details as work progresses, not just by eye after the work is done.\n\n![Quality check: using level to verify tile installation in bathroom](/images/remont-sovety-5/remont-check.png)\n\n---\n\n## Pre-Launch Checklist\n\n- Work plan by stages and rooms\n- Budget + **20% reserve**\n- Material list + alternatives\n- Delivery and contractor schedule\n- Quality checkpoints: electrical, plumbing, geometry, seams, surface prep\n\n---\n\n## 💬 FAQ: Quick Answers\n\n**How to calculate the reserve?**  \nTake your estimate and multiply by 1.2 — that's your working ceiling.\n\n**Which room to start with?**  \nUsually the critical zones: **bathroom → kitchen → bedrooms/living room**.\n\n**Where shouldn't you cut costs?**  \nWall prep, waterproofing, and quality paint — mistakes here come back quickly.\n\n---\n\n## 🏁 Bottom Line\n\nRenovation almost always involves dust and stress, but with the right approach it stops being a nightmare.  \nA clear plan, reasonable budget, reliable materials, and quality control turn the process into something predictable and successful.\n\n👉 Share your experience in the comments and check out the tag [#renovation](/en/tags/renovation).\n\n![Happy family enjoying their newly renovated apartment](/images/remont-sovety-5/remont-happy.png)\n\n---\n\n📸 *Photos: Renohacks.com collection*  \n🏷️ *Tags:* `renovation`, `lifestyle`, `interior`\n\n",
+    "code": "var Component=(()=>{var m=Object.create;var i=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var u=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,y=Object.prototype.hasOwnProperty;var v=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),b=(t,e)=>{for(var o in e)i(t,o,{get:e[o],enumerable:!0})},s=(t,e,o,a)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let r of u(e))!y.call(t,r)&&r!==o&&i(t,r,{get:()=>e[r],enumerable:!(a=p(e,r))||a.enumerable});return t};var f=(t,e,o)=>(o=t!=null?m(g(t)):{},s(e||!t||!t.__esModule?i(o,\"default\",{value:t,enumerable:!0}):o,t)),k=t=>s(i({},\"__esModule\",{value:!0}),t);var c=v((q,l)=>{l.exports=_jsx_runtime});var R={};b(R,{default:()=>d,frontmatter:()=>w});var n=f(c()),w={title:\"5 Renovation Tips to Stay Sane\",description:\"Planning, budget, material selection, and quality control \\u2014 proven steps to renovate without chaos and extra costs.\",date:\"2025-09-12\",tags:[\"renovation\",\"lifestyle\",\"interior\",\"stress-free renovation\",\"renovation plan\",\"diy\"],cover:\"/images/remont-sovety-5/remont-lifehacks.png\",author:\"Renohacks\",translationOf:\"remont-sovety-5\",draft:!1,keywords:[\"renovation tips\",\"how to plan renovation\",\"stress-free renovation\",\"apartment renovation plan\",\"renovation mistakes\",\"renovation budget\",\"renovation hacks\",\"renovation quality control\",\"diy renovation\",\"how to stay sane during renovation\",\"organizing renovation\",\"choosing renovation materials\",\"apartment renovation stages\"]};function h(t){let e={a:\"a\",blockquote:\"blockquote\",br:\"br\",code:\"code\",em:\"em\",h2:\"h2\",hr:\"hr\",img:\"img\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{src:\"/images/remont-sovety-5/remont-lifehacks.png\",alt:\"Renovation without chaos \\u2014 Renohacks tips\"})}),`\n`,(0,n.jsxs)(e.blockquote,{children:[`\n`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:\"TL;DR:\"}),\" planning, +20% to budget, quality materials, room-by-room approach, and on-site quality checks \\u2014 these five pillars will keep your renovation sane and stress-free.\"]}),`\n`]}),`\n`,(0,n.jsx)(e.p,{children:\"Renovation rarely goes perfectly smoothly. But with a solid plan and common sense, you can preserve your nerves, money, and even relationships.\"}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h2,{children:\"1. Start with a Plan (Otherwise Chaos is Guaranteed)\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"Renovation without a plan turns into a series of surprises: outlets end up in the wrong places, or furniture doesn't fit through doorways.\",(0,n.jsx)(e.br,{}),`\n`,\"Even a simple checklist with stages and materials will save you from chaos and shave weeks off your timeline.\"]}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{src:\"/images/remont-sovety-5/remont-plan.png\",alt:\"Renovation plan: checklist of stages, materials, electrical points\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h2,{children:\"2. Budget Always Exceeds Initial Estimates\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"However accurate your initial estimate, reality usually adds another 20% to it.\",(0,n.jsx)(e.br,{}),`\n`,\"The reasons vary: delivery fees, moving materials upstairs, additional tools, small issues you forgot about.\"]}),`\n`,(0,n.jsxs)(e.p,{children:[\"\\u{1F4A1} \",(0,n.jsx)(e.strong,{children:\"Pro tip:\"}),\" build a buffer into your budget from the start. It's better to have money left over than to have to cut corners mid-project.\"]}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{src:\"/images/remont-sovety-5/remont-budget.png\",alt:\"Renovation budget with 20% reserve: money and expense table\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h2,{children:\"3. Materials Are the Foundation of the Result\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"Cheap paint or tile may look fine in the store, but in reality you often get streaks, chips, or color fading.\",(0,n.jsx)(e.br,{}),`\n`,\"Quality materials cost more initially, but they determine how long your finish will last and how your space will look.\"]}),`\n`,(0,n.jsxs)(e.p,{children:[\"\\u{1F4A1} \",(0,n.jsx)(e.strong,{children:\"Pro tip:\"}),\" choose materials not just by price, but also by reviews from contractors and customers. Look at real photos after use.\"]}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{src:\"/images/remont-sovety-5/remont-materials.png\",alt:\"Choosing quality materials: paint, tile, and finish samples\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h2,{children:\"4. Renovate Room by Room\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"Trying to redo the entire apartment at once turns your home into a construction site: noise, dust, and no normal living conditions.\",(0,n.jsx)(e.br,{}),`\n`,\"It's much wiser to renovate one room at a time \\u2014 that way you can live in one part while the other is being renovated.\"]}),`\n`,(0,n.jsxs)(e.p,{children:[\"\\u{1F4A1} \",(0,n.jsx)(e.strong,{children:\"Pro tip:\"}),\" start with the most critical zones (e.g., bathroom or kitchen), then move to the rest.\"]}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{src:\"/images/remont-sovety-5/remont-rooms.png\",alt:\"Room-by-room renovation: one done, another in progress\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h2,{children:\"5. Check Quality as You Go\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"Errors made during construction are expensive and complicated to fix later.\",(0,n.jsx)(e.br,{}),`\n`,\"Regular on-site quality checks will prevent such surprises.\"]}),`\n`,(0,n.jsxs)(e.p,{children:[\"\\u{1F4A1} \",(0,n.jsx)(e.strong,{children:\"Pro tip:\"}),\" check important details as work progresses, not just by eye after the work is done.\"]}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{src:\"/images/remont-sovety-5/remont-check.png\",alt:\"Quality check: using level to verify tile installation in bathroom\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h2,{children:\"Pre-Launch Checklist\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"Work plan by stages and rooms\"}),`\n`,(0,n.jsxs)(e.li,{children:[\"Budget + \",(0,n.jsx)(e.strong,{children:\"20% reserve\"})]}),`\n`,(0,n.jsx)(e.li,{children:\"Material list + alternatives\"}),`\n`,(0,n.jsx)(e.li,{children:\"Delivery and contractor schedule\"}),`\n`,(0,n.jsx)(e.li,{children:\"Quality checkpoints: electrical, plumbing, geometry, seams, surface prep\"}),`\n`]}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h2,{children:\"\\u{1F4AC} FAQ: Quick Answers\"}),`\n`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:\"How to calculate the reserve?\"}),(0,n.jsx)(e.br,{}),`\n`,\"Take your estimate and multiply by 1.2 \\u2014 that's your working ceiling.\"]}),`\n`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:\"Which room to start with?\"}),(0,n.jsx)(e.br,{}),`\n`,\"Usually the critical zones: \",(0,n.jsx)(e.strong,{children:\"bathroom \\u2192 kitchen \\u2192 bedrooms/living room\"}),\".\"]}),`\n`,(0,n.jsxs)(e.p,{children:[(0,n.jsx)(e.strong,{children:\"Where shouldn't you cut costs?\"}),(0,n.jsx)(e.br,{}),`\n`,\"Wall prep, waterproofing, and quality paint \\u2014 mistakes here come back quickly.\"]}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h2,{children:\"\\u{1F3C1} Bottom Line\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"Renovation almost always involves dust and stress, but with the right approach it stops being a nightmare.\",(0,n.jsx)(e.br,{}),`\n`,\"A clear plan, reasonable budget, reliable materials, and quality control turn the process into something predictable and successful.\"]}),`\n`,(0,n.jsxs)(e.p,{children:[\"\\u{1F449} Share your experience in the comments and check out the tag \",(0,n.jsx)(e.a,{href:\"/en/tags/renovation\",children:\"#renovation\"}),\".\"]}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{src:\"/images/remont-sovety-5/remont-happy.png\",alt:\"Happy family enjoying their newly renovated apartment\"})}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsxs)(e.p,{children:[\"\\u{1F4F8} \",(0,n.jsx)(e.em,{children:\"Photos: Renohacks.com collection\"}),(0,n.jsx)(e.br,{}),`\n`,\"\\u{1F3F7}\\uFE0F \",(0,n.jsx)(e.em,{children:\"Tags:\"}),\" \",(0,n.jsx)(e.code,{children:\"renovation\"}),\", \",(0,n.jsx)(e.code,{children:\"lifestyle\"}),\", \",(0,n.jsx)(e.code,{children:\"interior\"})]})]})}function d(t={}){let{wrapper:e}=t.components||{};return e?(0,n.jsx)(e,{...t,children:(0,n.jsx)(h,{...t})}):h(t)}return k(R);})();\n;return Component;"
+  },
+  "_id": "en/renovation-tips-5.mdx",
+  "_raw": {
+    "sourceFilePath": "en/renovation-tips-5.mdx",
+    "sourceFileName": "renovation-tips-5.mdx",
+    "sourceFileDir": "en",
+    "contentType": "mdx",
+    "flattenedPath": "en/renovation-tips-5"
+  },
+  "type": "Post",
+  "locale": "en",
+  "slug": "renovation-tips-5",
+  "url": "/en/posts/renovation-tips-5",
+  "readingTime": "3 мин",
+  "headings": [
+    {
+      "text": "1. Start with a Plan (Otherwise Chaos is Guaranteed)",
+      "level": 3
+    },
+    {
+      "text": "2. Budget Always Exceeds Initial Estimates",
+      "level": 3
+    },
+    {
+      "text": "3. Materials Are the Foundation of the Result",
+      "level": 3
+    },
+    {
+      "text": "4. Renovate Room by Room",
+      "level": 3
+    },
+    {
+      "text": "5. Check Quality as You Go",
+      "level": 3
+    },
+    {
+      "text": "Pre-Launch Checklist",
+      "level": 3
+    },
+    {
+      "text": "💬 FAQ: Quick Answers",
+      "level": 3
+    },
+    {
+      "text": "🏁 Bottom Line",
+      "level": 3
+    }
+  ]
+}

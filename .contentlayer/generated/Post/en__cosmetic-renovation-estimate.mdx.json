@@ -1,0 +1,65 @@
+{
+  "title": "💸 Cosmetic Renovation Estimate: Budget Option",
+  "description": "How much does a cosmetic renovation cost? Detailed estimate of work and materials for updating the interior without major changes.",
+  "date": "2025-01-20T00:00:00.000Z",
+  "tags": [
+    "estimates",
+    "cosmetic renovation",
+    "savings",
+    "budget"
+  ],
+  "cover": "/images/remont-chernovoy/rough-renovation-guide-cover.jpg",
+  "author": "Renohacks",
+  "draft": false,
+  "body": {
+    "raw": "\n# 💸 Cosmetic Renovation Estimate: Budget Option\n\nWant to refresh your apartment but a full renovation is too expensive? A cosmetic renovation is a great solution! This article contains a ready estimate with prices for all work and materials.\n\n---\n\n## 🏠 What is a Cosmetic Renovation?\n\n**Cosmetic renovation** — refreshing the interior without major changes:\n- Painting walls and ceilings\n- Replacing flooring\n- Updating decor\n- Replacing outlets and switches\n\n**What's NOT included:**\n- Re-wiring electricity\n- Re-planning\n- Major plumbing work\n\n---\n\n## 📊 Specifications\n\n- **Apartment area:** 40 m² (1-bedroom)\n- **Ceiling height:** 2.7 m\n- **Condition:** requires interior refresh\n\n---\n\n## 💰 Estimate by Category\n\n### 🎨 Wall Painting (30 m²)\n\n| Material | Quantity | Price per unit | Total |\n|----------|----------|----------------|-------|\n| Interior paint | 20 L | $63/10L bucket | $1,260 |\n| Primer | 10 L | $70/10L bucket | $700 |\n| Brushes, rollers | set | — | $210 |\n| Masking tape | 5 rolls | $28 | $140 |\n| **Labor cost** | 30 m² | $42/m² | **$1,260** |\n| **Total materials** | | | **$2,310** |\n\n---\n\n### 🏗️ Ceiling Painting (30 m²)\n\n| Material | Quantity | Price per unit | Total |\n|----------|----------|----------------|-------|\n| Ceiling paint | 15 L | $84/10L bucket | $1,260 |\n| Primer | 5 L | $70/bucket | $350 |\n| Ceiling roller | 1 pc | $70 | $70 |\n| **Labor cost** | 30 m² | $49/m² | **$1,470** |\n| **Total materials** | | | **$1,680** |\n\n---\n\n## 📊 Total Estimate\n\n| Category | Materials | Labor | Total |\n|----------|-----------|-------|-------|\n| Wall painting | $2,310 | $1,260 | **$3,570** |\n| Ceiling painting | $1,680 | $1,470 | **$3,150** |\n| **TOTAL** | **$3,990** | **$2,730** | **$6,720** |\n\n> 💡 **Note:** Prices converted from Russian rubles (~$7,000). Actual costs in US/UK/EU may differ based on regional rates and material availability.\n\n---\n\n## 💡 How to Save?\n\n1. **Do the work yourself** — save **$2,730** on labor\n2. **Buy materials on sale** — discounts up to 30%\n3. **Use budget materials**\n4. **Spread out the work over time**\n\n---\n\n## 📝 Summary\n\n**Cosmetic renovation 40 m²**\n\n- **With contractors:** $7,000\n- **Do-it-yourself:** $4,000\n- **With savings:** $2,800\n\n**Cost per m²:**\n- With labor: **$175/m²**\n- Without labor: **$100/m²**\n- With savings: **$70/m²**\n\n---\n\n**💡 Regional pricing guide:**\n- **US:** $5,000–$10,000 for similar scope\n- **UK:** £4,000–£8,000\n- **EU:** €4,000–€9,000\n- Prices vary by location and contractor rates\n\n*Original estimate: ~100,000 ₽ in Russia. Prices converted at market rates.*\n",
+    "code": "var Component=(()=>{var g=Object.create;var l=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var u=Object.getOwnPropertyNames;var p=Object.getPrototypeOf,$=Object.prototype.hasOwnProperty;var v=(r,n)=>()=>(n||r((n={exports:{}}).exports,n),n.exports),b=(r,n)=>{for(var e in n)l(r,e,{get:n[e],enumerable:!0})},c=(r,n,e,o)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let t of u(n))!$.call(r,t)&&t!==e&&l(r,t,{get:()=>n[t],enumerable:!(o=m(n,t))||o.enumerable});return r};var f=(r,n,e)=>(e=r!=null?g(p(r)):{},c(n||!r||!r.__esModule?l(e,\"default\",{value:r,enumerable:!0}):e,r)),y=r=>c(l({},\"__esModule\",{value:!0}),r);var h=v((L,a)=>{a.exports=_jsx_runtime});var k={};b(k,{default:()=>d,frontmatter:()=>C});var i=f(h()),C={title:\"\\u{1F4B8} Cosmetic Renovation Estimate: Budget Option\",description:\"How much does a cosmetic renovation cost? Detailed estimate of work and materials for updating the interior without major changes.\",date:\"2025-01-20\",tags:[\"estimates\",\"cosmetic renovation\",\"savings\",\"budget\"],cover:\"/images/remont-chernovoy/rough-renovation-guide-cover.jpg\",author:\"Renohacks\",draft:!1};function s(r){let n={blockquote:\"blockquote\",em:\"em\",h1:\"h1\",h2:\"h2\",h3:\"h3\",hr:\"hr\",li:\"li\",ol:\"ol\",p:\"p\",strong:\"strong\",ul:\"ul\",...r.components};return(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(n.h1,{children:\"\\u{1F4B8} Cosmetic Renovation Estimate: Budget Option\"}),`\n`,(0,i.jsx)(n.p,{children:\"Want to refresh your apartment but a full renovation is too expensive? A cosmetic renovation is a great solution! This article contains a ready estimate with prices for all work and materials.\"}),`\n`,(0,i.jsx)(n.hr,{}),`\n`,(0,i.jsx)(n.h2,{children:\"\\u{1F3E0} What is a Cosmetic Renovation?\"}),`\n`,(0,i.jsxs)(n.p,{children:[(0,i.jsx)(n.strong,{children:\"Cosmetic renovation\"}),\" \\u2014 refreshing the interior without major changes:\"]}),`\n`,(0,i.jsxs)(n.ul,{children:[`\n`,(0,i.jsx)(n.li,{children:\"Painting walls and ceilings\"}),`\n`,(0,i.jsx)(n.li,{children:\"Replacing flooring\"}),`\n`,(0,i.jsx)(n.li,{children:\"Updating decor\"}),`\n`,(0,i.jsx)(n.li,{children:\"Replacing outlets and switches\"}),`\n`]}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.strong,{children:\"What's NOT included:\"})}),`\n`,(0,i.jsxs)(n.ul,{children:[`\n`,(0,i.jsx)(n.li,{children:\"Re-wiring electricity\"}),`\n`,(0,i.jsx)(n.li,{children:\"Re-planning\"}),`\n`,(0,i.jsx)(n.li,{children:\"Major plumbing work\"}),`\n`]}),`\n`,(0,i.jsx)(n.hr,{}),`\n`,(0,i.jsx)(n.h2,{children:\"\\u{1F4CA} Specifications\"}),`\n`,(0,i.jsxs)(n.ul,{children:[`\n`,(0,i.jsxs)(n.li,{children:[(0,i.jsx)(n.strong,{children:\"Apartment area:\"}),\" 40 m\\xB2 (1-bedroom)\"]}),`\n`,(0,i.jsxs)(n.li,{children:[(0,i.jsx)(n.strong,{children:\"Ceiling height:\"}),\" 2.7 m\"]}),`\n`,(0,i.jsxs)(n.li,{children:[(0,i.jsx)(n.strong,{children:\"Condition:\"}),\" requires interior refresh\"]}),`\n`]}),`\n`,(0,i.jsx)(n.hr,{}),`\n`,(0,i.jsx)(n.h2,{children:\"\\u{1F4B0} Estimate by Category\"}),`\n`,(0,i.jsx)(n.h3,{children:\"\\u{1F3A8} Wall Painting (30 m\\xB2)\"}),`\n`,(0,i.jsxs)(n.p,{children:[`| Material | Quantity | Price per unit | Total |\n|----------|----------|----------------|-------|\n| Interior paint | 20 L | $63/10L bucket | $1,260 |\n| Primer | 10 L | $70/10L bucket | $700 |\n| Brushes, rollers | set | \\u2014 | $210 |\n| Masking tape | 5 rolls | $28 | $140 |\n| `,(0,i.jsx)(n.strong,{children:\"Labor cost\"}),\" | 30 m\\xB2 | $42/m\\xB2 | \",(0,i.jsx)(n.strong,{children:\"$1,260\"}),` |\n| `,(0,i.jsx)(n.strong,{children:\"Total materials\"}),\" | | | \",(0,i.jsx)(n.strong,{children:\"$2,310\"}),\" |\"]}),`\n`,(0,i.jsx)(n.hr,{}),`\n`,(0,i.jsx)(n.h3,{children:\"\\u{1F3D7}\\uFE0F Ceiling Painting (30 m\\xB2)\"}),`\n`,(0,i.jsxs)(n.p,{children:[`| Material | Quantity | Price per unit | Total |\n|----------|----------|----------------|-------|\n| Ceiling paint | 15 L | $84/10L bucket | $1,260 |\n| Primer | 5 L | $70/bucket | $350 |\n| Ceiling roller | 1 pc | $70 | $70 |\n| `,(0,i.jsx)(n.strong,{children:\"Labor cost\"}),\" | 30 m\\xB2 | $49/m\\xB2 | \",(0,i.jsx)(n.strong,{children:\"$1,470\"}),` |\n| `,(0,i.jsx)(n.strong,{children:\"Total materials\"}),\" | | | \",(0,i.jsx)(n.strong,{children:\"$1,680\"}),\" |\"]}),`\n`,(0,i.jsx)(n.hr,{}),`\n`,(0,i.jsx)(n.h2,{children:\"\\u{1F4CA} Total Estimate\"}),`\n`,(0,i.jsxs)(n.p,{children:[`| Category | Materials | Labor | Total |\n|----------|-----------|-------|-------|\n| Wall painting | $2,310 | $1,260 | `,(0,i.jsx)(n.strong,{children:\"$3,570\"}),` |\n| Ceiling painting | $1,680 | $1,470 | `,(0,i.jsx)(n.strong,{children:\"$3,150\"}),` |\n| `,(0,i.jsx)(n.strong,{children:\"TOTAL\"}),\" | \",(0,i.jsx)(n.strong,{children:\"$3,990\"}),\" | \",(0,i.jsx)(n.strong,{children:\"$2,730\"}),\" | \",(0,i.jsx)(n.strong,{children:\"$6,720\"}),\" |\"]}),`\n`,(0,i.jsxs)(n.blockquote,{children:[`\n`,(0,i.jsxs)(n.p,{children:[\"\\u{1F4A1} \",(0,i.jsx)(n.strong,{children:\"Note:\"}),\" Prices converted from Russian rubles (~$7,000). Actual costs in US/UK/EU may differ based on regional rates and material availability.\"]}),`\n`]}),`\n`,(0,i.jsx)(n.hr,{}),`\n`,(0,i.jsx)(n.h2,{children:\"\\u{1F4A1} How to Save?\"}),`\n`,(0,i.jsxs)(n.ol,{children:[`\n`,(0,i.jsxs)(n.li,{children:[(0,i.jsx)(n.strong,{children:\"Do the work yourself\"}),\" \\u2014 save \",(0,i.jsx)(n.strong,{children:\"$2,730\"}),\" on labor\"]}),`\n`,(0,i.jsxs)(n.li,{children:[(0,i.jsx)(n.strong,{children:\"Buy materials on sale\"}),\" \\u2014 discounts up to 30%\"]}),`\n`,(0,i.jsx)(n.li,{children:(0,i.jsx)(n.strong,{children:\"Use budget materials\"})}),`\n`,(0,i.jsx)(n.li,{children:(0,i.jsx)(n.strong,{children:\"Spread out the work over time\"})}),`\n`]}),`\n`,(0,i.jsx)(n.hr,{}),`\n`,(0,i.jsx)(n.h2,{children:\"\\u{1F4DD} Summary\"}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.strong,{children:\"Cosmetic renovation 40 m\\xB2\"})}),`\n`,(0,i.jsxs)(n.ul,{children:[`\n`,(0,i.jsxs)(n.li,{children:[(0,i.jsx)(n.strong,{children:\"With contractors:\"}),\" $7,000\"]}),`\n`,(0,i.jsxs)(n.li,{children:[(0,i.jsx)(n.strong,{children:\"Do-it-yourself:\"}),\" $4,000\"]}),`\n`,(0,i.jsxs)(n.li,{children:[(0,i.jsx)(n.strong,{children:\"With savings:\"}),\" $2,800\"]}),`\n`]}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.strong,{children:\"Cost per m\\xB2:\"})}),`\n`,(0,i.jsxs)(n.ul,{children:[`\n`,(0,i.jsxs)(n.li,{children:[\"With labor: \",(0,i.jsx)(n.strong,{children:\"$175/m\\xB2\"})]}),`\n`,(0,i.jsxs)(n.li,{children:[\"Without labor: \",(0,i.jsx)(n.strong,{children:\"$100/m\\xB2\"})]}),`\n`,(0,i.jsxs)(n.li,{children:[\"With savings: \",(0,i.jsx)(n.strong,{children:\"$70/m\\xB2\"})]}),`\n`]}),`\n`,(0,i.jsx)(n.hr,{}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.strong,{children:\"\\u{1F4A1} Regional pricing guide:\"})}),`\n`,(0,i.jsxs)(n.ul,{children:[`\n`,(0,i.jsxs)(n.li,{children:[(0,i.jsx)(n.strong,{children:\"US:\"}),\" $5,000\\u2013$10,000 for similar scope\"]}),`\n`,(0,i.jsxs)(n.li,{children:[(0,i.jsx)(n.strong,{children:\"UK:\"}),\" \\xA34,000\\u2013\\xA38,000\"]}),`\n`,(0,i.jsxs)(n.li,{children:[(0,i.jsx)(n.strong,{children:\"EU:\"}),\" \\u20AC4,000\\u2013\\u20AC9,000\"]}),`\n`,(0,i.jsx)(n.li,{children:\"Prices vary by location and contractor rates\"}),`\n`]}),`\n`,(0,i.jsx)(n.p,{children:(0,i.jsx)(n.em,{children:\"Original estimate: ~100,000 \\u20BD in Russia. Prices converted at market rates.\"})})]})}function d(r={}){let{wrapper:n}=r.components||{};return n?(0,i.jsx)(n,{...r,children:(0,i.jsx)(s,{...r})}):s(r)}return y(k);})();\n;return Component;"
+  },
+  "_id": "en/cosmetic-renovation-estimate.mdx",
+  "_raw": {
+    "sourceFilePath": "en/cosmetic-renovation-estimate.mdx",
+    "sourceFileName": "cosmetic-renovation-estimate.mdx",
+    "sourceFileDir": "en",
+    "contentType": "mdx",
+    "flattenedPath": "en/cosmetic-renovation-estimate"
+  },
+  "type": "Post",
+  "locale": "en",
+  "slug": "cosmetic-renovation-estimate",
+  "url": "/en/posts/cosmetic-renovation-estimate",
+  "readingTime": "3 мин",
+  "headings": [
+    {
+      "text": "🏠 What is a Cosmetic Renovation?",
+      "level": 3
+    },
+    {
+      "text": "📊 Specifications",
+      "level": 3
+    },
+    {
+      "text": "💰 Estimate by Category",
+      "level": 3
+    },
+    {
+      "text": "🎨 Wall Painting (30 m²)",
+      "level": 3
+    },
+    {
+      "text": "🏗️ Ceiling Painting (30 m²)",
+      "level": 3
+    },
+    {
+      "text": "📊 Total Estimate",
+      "level": 3
+    },
+    {
+      "text": "💡 How to Save?",
+      "level": 3
+    },
+    {
+      "text": "📝 Summary",
+      "level": 3
+    }
+  ]
+}

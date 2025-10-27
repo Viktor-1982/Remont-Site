@@ -1,0 +1,55 @@
+{
+  "title": "🛁 Bathroom Renovation Estimate: 6 m²",
+  "description": "How much does a bathroom renovation cost? Detailed estimate of work and materials for a complete bathroom makeover.",
+  "date": "2025-01-25T00:00:00.000Z",
+  "tags": [
+    "estimates",
+    "bathroom",
+    "renovation",
+    "plumbing",
+    "tiles"
+  ],
+  "cover": "/images/remont-vannoy/cover.png",
+  "author": "Renohacks",
+  "draft": false,
+  "keywords": [],
+  "body": {
+    "raw": "\n# 🛁 Bathroom Renovation Estimate: 6 m²\n\nThe bathroom is where your day begins and ends. Quality renovation here is especially important. This article contains a detailed estimate for a complete bathroom renovation of **6 square meters**.\n\n---\n\n## 📊 Bathroom Specifications\n\n- **Area:** 6 m²\n- **Ceiling height:** 2.5 m\n- **Wall area:** 28 m²\n- **Floor area:** 6 m²\n\n---\n\n## 💵 Total Estimate\n\n| Category | Amount |\n|----------|--------|\n| Materials | $3,000 |\n| Labor | $1,500 |\n| **TOTAL** | **$4,500** |\n\nCost per m²: **~$750**\n\n---\n\n## 📊 Final Estimate Summary\n\n| Category | Materials | Labor | Total |\n|----------|-----------|-------|-------|\n| Demolition | $900 | $1,200 | **$2,100** |\n| Plumbing | $2,400 | $650 | **$3,050** |\n| Tiles | $850 | $500 | **$1,350** |\n| Ceiling | $380 | $85 | **$465** |\n| Electrical | $110 | $135 | **$245** |\n| **TOTAL** | **$4,640** | **$2,570** | **$7,210** |\n\n---\n\n## 💡 Budget Option: $3,200\n\n1. **Budget fixtures** — save $1,800\n2. **Simple curtain** instead of glass partition — save $4,200\n3. **Basic tiles** — save $3,500\n4. **Painted ceiling** instead of suspended — save $3,800\n5. **DIY work** — save $425\n\n---\n\n## ⏱️ Timeline\n\n- **Demolition:** 1 day\n- **Plumbing (rough):** 2 days\n- **Tiles:** 3-4 days\n- **Ceiling:** 1 day\n- **Fixture installation:** 1 day\n- **Electrical:** 1 day\n\n**Total: 9-10 days**\n\n---\n\n**💡 Regional pricing:**\n- **US:** $6,000–$12,000\n- **UK:** £5,000–£9,000\n- **EU:** €5,500–€10,000\n\n*Original: ~260,000 ₽ in Russia. Prices converted at market rates.*\n",
+    "code": "var Component=(()=>{var g=Object.create;var t=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var u=Object.getOwnPropertyNames;var $=Object.getPrototypeOf,p=Object.prototype.hasOwnProperty;var y=(r,n)=>()=>(n||r((n={exports:{}}).exports,n),n.exports),v=(r,n)=>{for(var i in n)t(r,i,{get:n[i],enumerable:!0})},h=(r,n,i,o)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let l of u(n))!p.call(r,l)&&l!==i&&t(r,l,{get:()=>n[l],enumerable:!(o=m(n,l))||o.enumerable});return r};var f=(r,n,i)=>(i=r!=null?g($(r)):{},h(n||!r||!r.__esModule?t(i,\"default\",{value:r,enumerable:!0}):i,r)),T=r=>h(t({},\"__esModule\",{value:!0}),r);var s=y((E,a)=>{a.exports=_jsx_runtime});var x={};v(x,{default:()=>d,frontmatter:()=>b});var e=f(s()),b={title:\"\\u{1F6C1} Bathroom Renovation Estimate: 6 m\\xB2\",description:\"How much does a bathroom renovation cost? Detailed estimate of work and materials for a complete bathroom makeover.\",date:\"2025-01-25\",tags:[\"estimates\",\"bathroom\",\"renovation\",\"plumbing\",\"tiles\"],cover:\"/images/remont-vannoy/cover.png\",author:\"Renohacks\",draft:!1,keywords:[]};function c(r){let n={em:\"em\",h1:\"h1\",h2:\"h2\",hr:\"hr\",li:\"li\",ol:\"ol\",p:\"p\",strong:\"strong\",ul:\"ul\",...r.components};return(0,e.jsxs)(e.Fragment,{children:[(0,e.jsx)(n.h1,{children:\"\\u{1F6C1} Bathroom Renovation Estimate: 6 m\\xB2\"}),`\n`,(0,e.jsxs)(n.p,{children:[\"The bathroom is where your day begins and ends. Quality renovation here is especially important. This article contains a detailed estimate for a complete bathroom renovation of \",(0,e.jsx)(n.strong,{children:\"6 square meters\"}),\".\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsx)(n.h2,{children:\"\\u{1F4CA} Bathroom Specifications\"}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Area:\"}),\" 6 m\\xB2\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Ceiling height:\"}),\" 2.5 m\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Wall area:\"}),\" 28 m\\xB2\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Floor area:\"}),\" 6 m\\xB2\"]}),`\n`]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsx)(n.h2,{children:\"\\u{1F4B5} Total Estimate\"}),`\n`,(0,e.jsxs)(n.p,{children:[`| Category | Amount |\n|----------|--------|\n| Materials | $3,000 |\n| Labor | $1,500 |\n| `,(0,e.jsx)(n.strong,{children:\"TOTAL\"}),\" | \",(0,e.jsx)(n.strong,{children:\"$4,500\"}),\" |\"]}),`\n`,(0,e.jsxs)(n.p,{children:[\"Cost per m\\xB2: \",(0,e.jsx)(n.strong,{children:\"~$750\"})]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsx)(n.h2,{children:\"\\u{1F4CA} Final Estimate Summary\"}),`\n`,(0,e.jsxs)(n.p,{children:[`| Category | Materials | Labor | Total |\n|----------|-----------|-------|-------|\n| Demolition | $900 | $1,200 | `,(0,e.jsx)(n.strong,{children:\"$2,100\"}),` |\n| Plumbing | $2,400 | $650 | `,(0,e.jsx)(n.strong,{children:\"$3,050\"}),` |\n| Tiles | $850 | $500 | `,(0,e.jsx)(n.strong,{children:\"$1,350\"}),` |\n| Ceiling | $380 | $85 | `,(0,e.jsx)(n.strong,{children:\"$465\"}),` |\n| Electrical | $110 | $135 | `,(0,e.jsx)(n.strong,{children:\"$245\"}),` |\n| `,(0,e.jsx)(n.strong,{children:\"TOTAL\"}),\" | \",(0,e.jsx)(n.strong,{children:\"$4,640\"}),\" | \",(0,e.jsx)(n.strong,{children:\"$2,570\"}),\" | \",(0,e.jsx)(n.strong,{children:\"$7,210\"}),\" |\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsx)(n.h2,{children:\"\\u{1F4A1} Budget Option: $3,200\"}),`\n`,(0,e.jsxs)(n.ol,{children:[`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Budget fixtures\"}),\" \\u2014 save $1,800\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Simple curtain\"}),\" instead of glass partition \\u2014 save $4,200\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Basic tiles\"}),\" \\u2014 save $3,500\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Painted ceiling\"}),\" instead of suspended \\u2014 save $3,800\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"DIY work\"}),\" \\u2014 save $425\"]}),`\n`]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsx)(n.h2,{children:\"\\u23F1\\uFE0F Timeline\"}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Demolition:\"}),\" 1 day\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Plumbing (rough):\"}),\" 2 days\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Tiles:\"}),\" 3-4 days\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Ceiling:\"}),\" 1 day\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Fixture installation:\"}),\" 1 day\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"Electrical:\"}),\" 1 day\"]}),`\n`]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:\"Total: 9-10 days\"})}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:\"\\u{1F4A1} Regional pricing:\"})}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"US:\"}),\" $6,000\\u2013$12,000\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"UK:\"}),\" \\xA35,000\\u2013\\xA39,000\"]}),`\n`,(0,e.jsxs)(n.li,{children:[(0,e.jsx)(n.strong,{children:\"EU:\"}),\" \\u20AC5,500\\u2013\\u20AC10,000\"]}),`\n`]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.em,{children:\"Original: ~260,000 \\u20BD in Russia. Prices converted at market rates.\"})})]})}function d(r={}){let{wrapper:n}=r.components||{};return n?(0,e.jsx)(n,{...r,children:(0,e.jsx)(c,{...r})}):c(r)}return T(x);})();\n;return Component;"
+  },
+  "_id": "en/bathroom-renovation-estimate.mdx",
+  "_raw": {
+    "sourceFilePath": "en/bathroom-renovation-estimate.mdx",
+    "sourceFileName": "bathroom-renovation-estimate.mdx",
+    "sourceFileDir": "en",
+    "contentType": "mdx",
+    "flattenedPath": "en/bathroom-renovation-estimate"
+  },
+  "type": "Post",
+  "locale": "en",
+  "slug": "bathroom-renovation-estimate",
+  "url": "/en/posts/bathroom-renovation-estimate",
+  "readingTime": "2 мин",
+  "headings": [
+    {
+      "text": "📊 Bathroom Specifications",
+      "level": 3
+    },
+    {
+      "text": "💵 Total Estimate",
+      "level": 3
+    },
+    {
+      "text": "📊 Final Estimate Summary",
+      "level": 3
+    },
+    {
+      "text": "💡 Budget Option: $3,200",
+      "level": 3
+    },
+    {
+      "text": "⏱️ Timeline",
+      "level": 3
+    }
+  ]
+}

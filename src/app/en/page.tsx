@@ -8,11 +8,27 @@ import { HeroBanner } from "@/components/hero-banner"
 export const revalidate = 60
 
 export const metadata: Metadata = {
-    title: "Renohacks.com — renovation and interior design blog",
-    description: "Photo guides, DIY hacks, calculators, and material reviews.",
+    title: "Renohacks.com — DIY Renovation & Interior Design Blog | Home Ideas 2025",
+    description: "Step-by-step photo guides, DIY hacks, free paint & tile calculators, material reviews. Everything for quality home renovation and apartment design.",
+    keywords: [
+        "DIY renovation",
+        "home improvement",
+        "interior design",
+        "apartment renovation",
+        "renovation guides",
+        "renovation calculators",
+        "renovation tips",
+        "material reviews",
+        "painting walls",
+        "bathroom renovation",
+        "kitchen renovation",
+        "interior ideas 2025",
+        "design trends",
+        "renovation without mistakes"
+    ],
     openGraph: {
-        title: "Renohacks.com — renovation and interior design blog",
-        description: "Photo guides, DIY hacks, calculators, and material reviews.",
+        title: "Renohacks.com — DIY Renovation & Interior Design Blog | Home Ideas 2025",
+        description: "Step-by-step photo guides, DIY hacks, free paint & tile calculators, material reviews. Everything for quality home renovation and apartment design.",
         url: "https://renohacks.com/en",
         siteName: "Renohacks.com",
         locale: "en_US",

@@ -2,7 +2,7 @@
 
 // ✅ JSON
 declare module "*.json" {
-    const value: any
+    const value: Record<string, unknown>
     export default value
 }
 
@@ -49,7 +49,7 @@ declare module "*.mp3"
 // ✅ GTM dataLayer
 declare global {
     interface Window {
-        dataLayer: Record<string, any>[]
+        dataLayer: Array<Record<string, unknown>>
     }
 }
 

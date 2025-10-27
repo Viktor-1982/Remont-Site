@@ -8,7 +8,6 @@
       { "href": "/", "label": "Главная", "title": "Главная страница Renohacks" },
       { "href": "/tags/novinki", "label": "Новинки", "title": "Новинки в ремонте и дизайне" },
       { "href": "/tags/diy", "label": "DIY", "title": "DIY проекты по ремонту" },
-      { "href": "/tags/smety", "label": "Сметы", "title": "Сметы и расчёты ремонта" },
       { "href": "/about", "label": "О проекте", "title": "Информация о Renohacks" },
       { "href": "/calculators", "label": "Калькуляторы", "title": "Онлайн калькуляторы для ремонта" }
     ],
@@ -51,10 +50,9 @@
       "sectionsTitle": "Разделы",
       "sectionsTitleMobile": "Разделы (моб.)",
       "sections": {
-        "kitchen": { "href": "/tags/kitchen", "label": "Кухня", "title": "Ремонт кухни" },
-        "bathroom": { "href": "/tags/bathroom", "label": "Ванная", "title": "Ремонт ванной комнаты" },
-        "floor": { "href": "/tags/floor", "label": "Полы", "title": "Отделка полов" },
-        "walls": { "href": "/tags/walls", "label": "Стены", "title": "Дизайн и отделка стен" }
+        "kitchen": { "href": "/tags/кухня", "label": "Кухня", "title": "Ремонт кухни" },
+        "bathroom": { "href": "/tags/ванная", "label": "Ванная", "title": "Ремонт ванной комнаты" },
+        "walls": { "href": "/tags/стены", "label": "Стены", "title": "Дизайн и отделка стен" }
       },
       "contactsTitle": "Контакты",
       "contactsTitleMobile": "Контакты (моб.)",
@@ -85,7 +83,6 @@
       { "href": "/en", "label": "Home", "title": "Renohacks home page" },
       { "href": "/en/tags/trends", "label": "Trends", "title": "Trends in renovation and design" },
       { "href": "/en/tags/diy", "label": "DIY", "title": "DIY renovation projects" },
-      { "href": "/en/tags/costs", "label": "Costs", "title": "Renovation estimates and budgets" },
       { "href": "/en/about", "label": "About", "title": "About Renohacks project" },
       { "href": "/en/calculators", "label": "Calculators", "title": "Online renovation calculators" }
     ],
@@ -130,7 +127,6 @@
       "sections": {
         "kitchen": { "href": "/en/tags/kitchen", "label": "Kitchen", "title": "Kitchen renovation" },
         "bathroom": { "href": "/en/tags/bathroom", "label": "Bathroom", "title": "Bathroom renovation" },
-        "floor": { "href": "/en/tags/floor", "label": "Flooring", "title": "Flooring and finishes" },
         "walls": { "href": "/en/tags/walls", "label": "Walls", "title": "Wall design and finishes" }
       },
       "contactsTitle": "Contacts",

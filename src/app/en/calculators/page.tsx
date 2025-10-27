@@ -2,9 +2,9 @@
 import Link from "next/link"
 
 export const metadata = getPageMetadata("/en/calculators", {
-    title: "Online renovation calculators | Renohacks",
+    title: "Renovation calculators: paint, wallpaper, tile | Renohacks",
     description:
-        "Free renovation calculators: paint, wallpaper, tile. Calculate materials for your home renovation easily.",
+        "Free online renovation calculators: estimate paint, wallpaper, and tile for your home. Accurate material calculations for walls and floors.",
     cover: "/images/og-default.png",
     type: "website",
 })

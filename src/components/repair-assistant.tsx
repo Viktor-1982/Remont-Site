@@ -45,7 +45,10 @@ export function RepairAssistant() {
             const res = await fetch("/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ messages: [...messages, userMessage], locale }),
+                body: JSON.stringify({ 
+                    messages: [...messages, userMessage], 
+                    locale,
+                }),
             })
             const data = await res.json()
             const reply = res.ok ? data.reply || dict.errorEmpty : dict.errorServer
@@ -56,6 +59,10 @@ export function RepairAssistant() {
             setLoading(false)
         }
     }
+
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    }, [messages, loading])
 
     return (
         <>

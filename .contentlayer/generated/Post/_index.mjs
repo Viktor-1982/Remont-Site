@@ -21,8 +21,10 @@ import en__interiorDesignTrends_2026Mdx from './en__interior-design-trends-2026.
 import en__interiorTrends_2025Mdx from './en__interior-trends-2025.mdx.json' with { type: 'json' }
 import en__kitchenMakeoverMdx from './en__kitchen-makeover.mdx.json' with { type: 'json' }
 import en__livingRoomColorTipsMdx from './en__living-room-color-tips.mdx.json' with { type: 'json' }
+import en__paintingWallsYourselfMdx from './en__painting-walls-yourself.mdx.json' with { type: 'json' }
 import en__preparingWallsForPaintingMdx from './en__preparing-walls-for-painting.mdx.json' with { type: 'json' }
+import en__renovationTips_5Mdx from './en__renovation-tips-5.mdx.json' with { type: 'json' }
 import en__roughRenovationGuideMdx from './en__rough-renovation-guide.mdx.json' with { type: 'json' }
 import en__wallpaperTypesMdx from './en__wallpaper-types.mdx.json' with { type: 'json' }
 
-export const allPosts = [_8InteriorTrends_2025Mdx, dizainSpalniMdx, malenkayaKuhnyaMdx, podborkaTsvetovMdx, pokraskaStenPodgotovkaMdx, pokraskaStenMdx, remontChernovoyKvartiryMdx, remontSovety_5Mdx, remontVannoyMdx, sovetyTsvetaGostinayaMdx, trends_2026Mdx, vidyOboyevMdx, zhilayaZonaVSkaleMdx, en__bedroomDesignMdx, en__caveLivingMdx, en__diyBathroomMakeoverMdx, en__fiveInteriorTipsMdx, en__interiorDesignTrends_2026Mdx, en__interiorTrends_2025Mdx, en__kitchenMakeoverMdx, en__livingRoomColorTipsMdx, en__preparingWallsForPaintingMdx, en__roughRenovationGuideMdx, en__wallpaperTypesMdx]
+export const allPosts = [_8InteriorTrends_2025Mdx, dizainSpalniMdx, malenkayaKuhnyaMdx, podborkaTsvetovMdx, pokraskaStenPodgotovkaMdx, pokraskaStenMdx, remontChernovoyKvartiryMdx, remontSovety_5Mdx, remontVannoyMdx, sovetyTsvetaGostinayaMdx, trends_2026Mdx, vidyOboyevMdx, zhilayaZonaVSkaleMdx, en__bedroomDesignMdx, en__caveLivingMdx, en__diyBathroomMakeoverMdx, en__fiveInteriorTipsMdx, en__interiorDesignTrends_2026Mdx, en__interiorTrends_2025Mdx, en__kitchenMakeoverMdx, en__livingRoomColorTipsMdx, en__paintingWallsYourselfMdx, en__preparingWallsForPaintingMdx, en__renovationTips_5Mdx, en__roughRenovationGuideMdx, en__wallpaperTypesMdx]

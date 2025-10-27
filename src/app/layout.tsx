@@ -4,21 +4,18 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import "./globals.css"
 
-import { ThemeProvider } from "@/app/theme-provider"
-import { SiteHeader } from "@/components/site-header"
-import { SiteFooter } from "@/components/site-footer"
-import { RepairAssistant } from "@/components/repair-assistant"
+import { ClientLayout } from "@/components/client-layout"
 
 import Script from "next/script"
 import { headers } from "next/headers"
 
 export const metadata: Metadata = {
-    title: "Renohacks.com — блог о ремонте и строительстве",
-    description: "Фото-гайды, лайфхаки и обзоры материалов.",
+    title: "Renohacks.com — блог о ремонте, дизайне и DIY",
+    description: "Фото-гайды по ремонту своими руками, DIY лайфхаки, бесплатные калькуляторы и обзоры материалов для качественного ремонта.",
     metadataBase: new URL("https://renohacks.com"),
     openGraph: {
-        title: "Renohacks.com — блог о ремонте и строительстве",
-        description: "Фото-гайды, лайфхаки и обзоры материалов.",
+        title: "Renohacks.com — блог о ремонте, дизайне и DIY",
+        description: "Фото-гайды по ремонту своими руками, DIY лайфхаки, бесплатные калькуляторы и обзоры материалов для качественного ремонта.",
         url: "https://renohacks.com/",
         siteName: "Renohacks.com",
         images: ["/images/og-default.png"],
@@ -32,6 +29,20 @@ export const metadata: Metadata = {
             en: "https://renohacks.com/en",
             "x-default": "https://renohacks.com/",
         },
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    },
+    verification: {
+        yandex: "6d69da4ae32e6bf3",
     },
 }
 
@@ -103,6 +114,7 @@ export default async function RootLayout({
         {/* ✅ Yandex.Metrika fallback */}
         <noscript>
             <div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src="https://mc.yandex.ru/watch/104537151"
                     style={{ position: "absolute", left: "-9999px" }}
@@ -111,17 +123,7 @@ export default async function RootLayout({
             </div>
         </noscript>
 
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-        >
-            <SiteHeader />
-            <main className="w-full py-8 px-4">{children}</main>
-            <SiteFooter />
-            <RepairAssistant />
-        </ThemeProvider>
+        <ClientLayout>{children}</ClientLayout>
         </body>
         </html>
     )

@@ -1,0 +1,70 @@
+{
+  "title": "🌙 Bedroom Design: Comfort, Light and Inspiration",
+  "description": "Modern bedroom ideas — from Scandinavian minimalism to warm textures, soft light, and natural harmony.",
+  "date": "2025-10-17T00:00:00.000Z",
+  "tags": [
+    "bedroom",
+    "interior",
+    "design",
+    "cozy",
+    "minimalism",
+    "scandinavian style"
+  ],
+  "cover": "/images/bedrooms/bedroom-cover.png",
+  "author": "Renohacks",
+  "translationOf": "dizain-spalni",
+  "draft": false,
+  "keywords": [
+    "bedroom design",
+    "modern bedroom",
+    "cozy bedroom ideas",
+    "minimalist bedroom",
+    "scandinavian interior",
+    "warm tones",
+    "bedroom 2025",
+    "interior inspiration",
+    "bedroom styling",
+    "bedroom furniture",
+    "bedroom lighting",
+    "small bedroom ideas"
+  ],
+  "body": {
+    "raw": "\n#  Bedroom Design: Comfort, Light and Inspiration\n\n> The bedroom is the most personal space in any home.  \nIt’s where we rest, recover, and start our day.  \nThe goal of good design is to build calmness, comfort, and balance.\n\n---\n\n##  Natural Materials\n\n![Natural materials in a cozy bedroom](/images/bedrooms/bedroom-01.png)\n\nWood, linen, cotton, and ceramics bring warmth and texture.  \nThey “breathe,” soften the acoustics, and make the room feel more natural and alive.\n\n---\n\n##  Soft Light\n\n![Warm and diffused bedroom lighting](/images/bedrooms/bedroom-02.png)\n\nLight should be warm and diffused.  \nWall sconces, floor lamps, and dimmable lighting help set the mood and comfort level.  \nAvoid bright white light — it can make the interior look cold and sterile.\n\n---\n\n##  A Calm Palette\n\n![Neutral bedroom color palette](/images/bedrooms/bedroom-03.png)\n\nThe 2025 trend leans toward neutral tones: sand, cream, terracotta, and olive.  \nThese shades create balance and relaxation, letting textures and lighting shine.  \nEven a simple bedroom looks sophisticated when built on calm colors.\n\n---\n\n##  The Essence\n\n![Modern Scandinavian-style bedroom](/images/bedrooms/bedroom-04.png)\n\nA modern bedroom blends simplicity, comfort, and natural aesthetics.  \nThe key is to create a place that feels peaceful every night and inspiring every morning.\n\n---\n\n##  Inspiration Corner\n\n![Loft bedroom with brick wall and industrial accents](/images/bedrooms/bedroom-05.png)\n\nInspiration often comes from contrast.  \nEven raw materials — brick, metal, or concrete — can feel warm  \nwhen paired with soft lighting, textiles, and gentle shapes.\n\n---\n\n📸 *Photos: Renohacks.com collection*  \n🏷️ *Tags:* `bedroom`, `interior`, `design`, `cozy`, `minimalism`, `ideas`\n",
+    "code": "var Component=(()=>{var h=Object.create;var a=Object.defineProperty;var b=Object.getOwnPropertyDescriptor;var g=Object.getOwnPropertyNames;var p=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var u=(o,e)=>()=>(e||o((e={exports:{}}).exports,e),e.exports),w=(o,e)=>{for(var r in e)a(o,r,{get:e[r],enumerable:!0})},d=(o,e,r,t)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let i of g(e))!f.call(o,i)&&i!==r&&a(o,i,{get:()=>e[i],enumerable:!(t=b(e,i))||t.enumerable});return o};var y=(o,e,r)=>(r=o!=null?h(p(o)):{},d(e||!o||!o.__esModule?a(r,\"default\",{value:o,enumerable:!0}):r,o)),v=o=>d(a({},\"__esModule\",{value:!0}),o);var l=u((_,s)=>{s.exports=_jsx_runtime});var k={};w(k,{default:()=>c,frontmatter:()=>x});var n=y(l()),x={title:\"\\u{1F319} Bedroom Design: Comfort, Light and Inspiration\",description:\"Modern bedroom ideas \\u2014 from Scandinavian minimalism to warm textures, soft light, and natural harmony.\",date:\"2025-10-17\",tags:[\"bedroom\",\"interior\",\"design\",\"cozy\",\"minimalism\",\"scandinavian style\"],cover:\"/images/bedrooms/bedroom-cover.png\",author:\"Renohacks\",translationOf:\"dizain-spalni\",draft:!1,keywords:[\"bedroom design\",\"modern bedroom\",\"cozy bedroom ideas\",\"minimalist bedroom\",\"scandinavian interior\",\"warm tones\",\"bedroom 2025\",\"interior inspiration\",\"bedroom styling\",\"bedroom furniture\",\"bedroom lighting\",\"small bedroom ideas\"]};function m(o){let e={blockquote:\"blockquote\",br:\"br\",code:\"code\",em:\"em\",h1:\"h1\",h2:\"h2\",hr:\"hr\",img:\"img\",p:\"p\",...o.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.h1,{children:\"Bedroom Design: Comfort, Light and Inspiration\"}),`\n`,(0,n.jsxs)(e.blockquote,{children:[`\n`,(0,n.jsxs)(e.p,{children:[\"The bedroom is the most personal space in any home.\",(0,n.jsx)(e.br,{}),`\n`,\"It\\u2019s where we rest, recover, and start our day.\",(0,n.jsx)(e.br,{}),`\n`,\"The goal of good design is to build calmness, comfort, and balance.\"]}),`\n`]}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h2,{children:\"Natural Materials\"}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{src:\"/images/bedrooms/bedroom-01.png\",alt:\"Natural materials in a cozy bedroom\"})}),`\n`,(0,n.jsxs)(e.p,{children:[\"Wood, linen, cotton, and ceramics bring warmth and texture.\",(0,n.jsx)(e.br,{}),`\n`,\"They \\u201Cbreathe,\\u201D soften the acoustics, and make the room feel more natural and alive.\"]}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h2,{children:\"Soft Light\"}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{src:\"/images/bedrooms/bedroom-02.png\",alt:\"Warm and diffused bedroom lighting\"})}),`\n`,(0,n.jsxs)(e.p,{children:[\"Light should be warm and diffused.\",(0,n.jsx)(e.br,{}),`\n`,\"Wall sconces, floor lamps, and dimmable lighting help set the mood and comfort level.\",(0,n.jsx)(e.br,{}),`\n`,\"Avoid bright white light \\u2014 it can make the interior look cold and sterile.\"]}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h2,{children:\"A Calm Palette\"}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{src:\"/images/bedrooms/bedroom-03.png\",alt:\"Neutral bedroom color palette\"})}),`\n`,(0,n.jsxs)(e.p,{children:[\"The 2025 trend leans toward neutral tones: sand, cream, terracotta, and olive.\",(0,n.jsx)(e.br,{}),`\n`,\"These shades create balance and relaxation, letting textures and lighting shine.\",(0,n.jsx)(e.br,{}),`\n`,\"Even a simple bedroom looks sophisticated when built on calm colors.\"]}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h2,{children:\"The Essence\"}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{src:\"/images/bedrooms/bedroom-04.png\",alt:\"Modern Scandinavian-style bedroom\"})}),`\n`,(0,n.jsxs)(e.p,{children:[\"A modern bedroom blends simplicity, comfort, and natural aesthetics.\",(0,n.jsx)(e.br,{}),`\n`,\"The key is to create a place that feels peaceful every night and inspiring every morning.\"]}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.h2,{children:\"Inspiration Corner\"}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.img,{src:\"/images/bedrooms/bedroom-05.png\",alt:\"Loft bedroom with brick wall and industrial accents\"})}),`\n`,(0,n.jsxs)(e.p,{children:[\"Inspiration often comes from contrast.\",(0,n.jsx)(e.br,{}),`\n`,\"Even raw materials \\u2014 brick, metal, or concrete \\u2014 can feel warm\",(0,n.jsx)(e.br,{}),`\n`,\"when paired with soft lighting, textiles, and gentle shapes.\"]}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsxs)(e.p,{children:[\"\\u{1F4F8} \",(0,n.jsx)(e.em,{children:\"Photos: Renohacks.com collection\"}),(0,n.jsx)(e.br,{}),`\n`,\"\\u{1F3F7}\\uFE0F \",(0,n.jsx)(e.em,{children:\"Tags:\"}),\" \",(0,n.jsx)(e.code,{children:\"bedroom\"}),\", \",(0,n.jsx)(e.code,{children:\"interior\"}),\", \",(0,n.jsx)(e.code,{children:\"design\"}),\", \",(0,n.jsx)(e.code,{children:\"cozy\"}),\", \",(0,n.jsx)(e.code,{children:\"minimalism\"}),\", \",(0,n.jsx)(e.code,{children:\"ideas\"})]})]})}function c(o={}){let{wrapper:e}=o.components||{};return e?(0,n.jsx)(e,{...o,children:(0,n.jsx)(m,{...o})}):m(o)}return v(k);})();\n;return Component;"
+  },
+  "_id": "en/bedroom-design.mdx",
+  "_raw": {
+    "sourceFilePath": "en/bedroom-design.mdx",
+    "sourceFileName": "bedroom-design.mdx",
+    "sourceFileDir": "en",
+    "contentType": "mdx",
+    "flattenedPath": "en/bedroom-design"
+  },
+  "type": "Post",
+  "locale": "en",
+  "slug": "bedroom-design",
+  "url": "/en/posts/bedroom-design",
+  "readingTime": "2 мин",
+  "headings": [
+    {
+      "text": "Natural Materials",
+      "level": 3
+    },
+    {
+      "text": "Soft Light",
+      "level": 3
+    },
+    {
+      "text": "A Calm Palette",
+      "level": 3
+    },
+    {
+      "text": "The Essence",
+      "level": 3
+    },
+    {
+      "text": "Inspiration Corner",
+      "level": 3
+    }
+  ]
+}

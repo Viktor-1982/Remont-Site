@@ -72,7 +72,6 @@ export async function GET(req: Request) {
                 diy: "diy",
                 kitchen: "kitchen",
                 bathroom: "bathroom",
-                floor: "floor",
                 walls: "walls",
                 interior: "interior",
                 design: "design",
@@ -94,15 +93,21 @@ export async function GET(req: Request) {
                 loft: "loft",
                 vintage: "vintage",
                 sustainability: "sustainability",
+                // Русские теги
+                кухня: "kitchen",
+                ванная: "bathroom",
+                стены: "walls",
             }
 
             const tag = path.split("/").pop() ?? ""
+            // Для русских тегов используем урл-кодирование
+            const encodedTag = encodeURIComponent(tag)
             const mappedTag = tagMap[tag] || tag
 
             targetUrl =
                 targetLocale === "en"
-                    ? `/en/tags/${mappedTag}`
-                    : `/tags/${mappedTag}`
+                    ? `/en/tags/${mappedTag === tag ? encodedTag : mappedTag}`
+                    : `/tags/${mappedTag === tag ? encodedTag : mappedTag}`
         }
 
         // ==========================================================
@@ -115,7 +120,6 @@ export async function GET(req: Request) {
                 diy: "diy",
                 kitchen: "kitchen",
                 bathroom: "bathroom",
-                floor: "floor",
                 walls: "walls",
                 eco: "eco",
                 design: "design",
@@ -127,15 +131,20 @@ export async function GET(req: Request) {
                 ideas: "ideas",
                 materials: "materials",
                 budget: "budget",
+                // Русские категории
+                кухня: "kitchen",
+                ванная: "bathroom",
+                стены: "walls",
             }
 
             const cat = path.split("/").pop() ?? ""
+            const encodedCat = encodeURIComponent(cat)
             const mappedCat = categoryMap[cat] || cat
 
             targetUrl =
                 targetLocale === "en"
-                    ? `/en/category/${mappedCat}`
-                    : `/category/${mappedCat}`
+                    ? `/en/category/${mappedCat === cat ? encodedCat : mappedCat}`
+                    : `/category/${mappedCat === cat ? encodedCat : mappedCat}`
         }
 
         // ==========================================================
