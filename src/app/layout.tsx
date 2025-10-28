@@ -66,6 +66,11 @@ export default async function RootLayout({
             className={`${GeistSans.variable} ${GeistMono.variable}`}
         >
         <head>
+            {/* Preload critical resources */}
+            <link rel="preload" href="/images/hero/hero-banner.png" as="image" />
+            <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+            <link rel="dns-prefetch" href="//mc.yandex.ru" />
+            
             {/* ✅ Pinterest Domain Verification */}
             <meta
                 name="p:domain_verify"
