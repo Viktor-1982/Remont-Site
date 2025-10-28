@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import { DeepLink } from "@/components/deep-link"
@@ -104,7 +104,10 @@ export function SiteHeader() {
                             </Button>
                         </SheetTrigger>
 
-                        <SheetContent side="right" className="p-6">
+                        <SheetContent side="right" className="p-6 pr-16">
+                            <SheetTitle className="sr-only">
+                                {isEnglish ? "Navigation menu" : "Меню навигации"}
+                            </SheetTitle>
                             <nav className="flex flex-col gap-4">
                                 {links.map((link: NavLink) => (
                                     <Link

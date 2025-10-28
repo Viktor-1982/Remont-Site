@@ -1,0 +1,158 @@
+[1mdiff --git a/src/components/widgets/renovation-budget-planner-en.tsx b/src/components/widgets/renovation-budget-planner-en.tsx[m
+[1mindex 5be210f..229066d 100644[m
+[1m--- a/src/components/widgets/renovation-budget-planner-en.tsx[m
+[1m+++ b/src/components/widgets/renovation-budget-planner-en.tsx[m
+[36m@@ -48,7 +48,7 @@[m [mconst currencies = [[m
+ ][m
+ [m
+ interface ExpenseItem {[m
+[31m-  id: number[m
+[32m+[m[32m  id: string[m
+   category: string[m
+   cost: string[m
+ }[m
+[36m@@ -59,7 +59,7 @@[m [mexport function RenovationBudgetPlannerEn() {[m
+   const t: BudgetCalcDict = calcData[locale].calc.budget[m
+   const b: ButtonsDict = calcData[locale].calc.buttons[m
+ [m
+[31m-  const [items, setItems] = useState<ExpenseItem[]>([{ id: Date.now(), category: "", cost: "" }])[m
+[32m+[m[32m  const [items, setItems] = useState<ExpenseItem[]>([{ id: "item-0", category: "", cost: "" }])[m
+   const [reserve, setReserve] = useState("20")[m
+   const [currency, setCurrency] = useState("USD")[m
+   const [subtotal, setSubtotal] = useState<number>(0)[m
+[36m@@ -69,14 +69,14 @@[m [mexport function RenovationBudgetPlannerEn() {[m
+   const selectedCurrency = currencies.find(c => c.code === currency) || currencies[0][m
+ [m
+   const addCategory = () => {[m
+[31m-    setItems([...items, { id: Date.now(), category: "", cost: "" }])[m
+[32m+[m[32m    setItems([...items, { id: `item-${items.length}`, category: "", cost: "" }])[m
+   }[m
+ [m
+[31m-  const removeCategory = (id: number) => {[m
+[32m+[m[32m  const removeCategory = (id: string) => {[m
+     setItems(items.filter((i) => i.id !== id))[m
+   }[m
+ [m
+[31m-  const updateCategory = (id: number, field: keyof ExpenseItem, value: string) => {[m
+[32m+[m[32m  const updateCategory = (id: string, field: keyof ExpenseItem, value: string) => {[m
+     setItems(items.map((item) => (item.id === id ? { ...item, [field]: value } : item)))[m
+   }[m
+ [m
+[36m@@ -96,20 +96,20 @@[m [mexport function RenovationBudgetPlannerEn() {[m
+   }[m
+ [m
+   return ([m
+[31m-    <div className="max-w-md mx-auto border rounded-lg p-4 shadow-sm space-y-4 bg-card">[m
+[32m+[m[32m    <div className="w-full max-w-md mx-auto border rounded-lg p-3 sm:p-4 shadow-sm space-y-4 bg-card">[m
+       <h2 className="flex items-center gap-2 text-xl font-semibold">[m
+         <Calculator className="w-5 h-5 text-primary" /> {t.title}[m
+       </h2>[m
+ [m
+       <div className="space-y-3">[m
+         {items.map((item) => ([m
+[31m-          <div key={item.id} className="flex flex-col gap-2">[m
+[32m+[m[32m          <div key={item.id} className="space-y-2">[m
+             <div className="flex gap-2">[m
+               <input[m
+                 type="text"[m
+                 list={`categories-${item.id}`}[m
+                 placeholder={t.category}[m
+[31m-                className="flex-1 border rounded-md px-3 py-2 text-sm"[m
+[32m+[m[32m                className="flex-1 min-w-0 border rounded-md px-3 py-2 text-sm"[m
+                 value={item.category}[m
+                 onChange={(e) => updateCategory(item.id, "category", e.target.value)}[m
+               />[m
+[36m@@ -121,11 +121,11 @@[m [mexport function RenovationBudgetPlannerEn() {[m
+               <input[m
+                 type="number"[m
+                 placeholder={t.cost}[m
+[31m-                className="w-32 border rounded-md px-3 py-2 text-sm text-right"[m
+[32m+[m[32m                className="w-24 sm:w-32 border rounded-md px-2 sm:px-3 py-2 text-sm text-right"[m
+                 value={item.cost}[m
+                 onChange={(e) => updateCategory(item.id, "cost", e.target.value)}[m
+               />[m
+[31m-              <Button variant="ghost" size="icon" onClick={() => removeCategory(item.id)} disabled={items.length === 1}>[m
+[32m+[m[32m              <Button variant="ghost" size="icon" onClick={() => removeCategory(item.id)} disabled={items.length === 1} className="shrink-0">[m
+                 <Trash2 className="w-4 h-4" />[m
+               </Button>[m
+             </div>[m
+[36m@@ -137,10 +137,10 @@[m [mexport function RenovationBudgetPlannerEn() {[m
+         <Plus className="w-4 h-4 mr-2" /> {t.addCategory}[m
+       </Button>[m
+ [m
+[31m-      <div className="flex gap-2 items-center">[m
+[31m-        <label className="text-sm font-medium flex-1">{t.currency}</label>[m
+[32m+[m[32m      <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center">[m
+[32m+[m[32m        <label className="text-sm font-medium w-full sm:w-auto">{t.currency}</label>[m
+         <select[m
+[31m-          className="flex-1 border rounded-md px-3 py-2 text-sm bg-background"[m
+[32m+[m[32m          className="w-full sm:flex-1 border rounded-md px-3 py-2 text-sm bg-background"[m
+           value={currency}[m
+           onChange={(e) => setCurrency(e.target.value)}[m
+         >[m
+[36m@@ -152,11 +152,11 @@[m [mexport function RenovationBudgetPlannerEn() {[m
+         </select>[m
+       </div>[m
+ [m
+[31m-      <div className="flex gap-2 items-center">[m
+[31m-        <label className="text-sm font-medium flex-1">{t.reserve}</label>[m
+[32m+[m[32m      <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center">[m
+[32m+[m[32m        <label className="text-sm font-medium w-full sm:w-auto">{t.reserve}</label>[m
+         <input[m
+           type="number"[m
+[31m-          className="w-24 border rounded-md px-3 py-2 text-sm text-right"[m
+[32m+[m[32m          className="w-full sm:w-24 border rounded-md px-3 py-2 text-sm text-right"[m
+           value={reserve}[m
+           onChange={(e) => setReserve(e.target.value)}[m
+         />[m
+[1mdiff --git a/src/components/widgets/renovation-budget-planner.tsx b/src/components/widgets/renovation-budget-planner.tsx[m
+[1mindex 0422432..4d05fbb 100644[m
+[1m--- a/src/components/widgets/renovation-budget-planner.tsx[m
+[1m+++ b/src/components/widgets/renovation-budget-planner.tsx[m
+[36m@@ -44,7 +44,7 @@[m [mconst renovationCategories = [[m
+ ][m
+ [m
+ interface ExpenseItem {[m
+[31m-  id: number[m
+[32m+[m[32m  id: string[m
+   category: string[m
+   cost: string[m
+ }[m
+[36m@@ -63,7 +63,7 @@[m [mexport function RenovationBudgetPlanner() {[m
+   const t: BudgetCalcDict = calcData[locale].calc.budget[m
+   const b: ButtonsDict = calcData[locale].calc.buttons[m
+ [m
+[31m-  const [items, setItems] = useState<ExpenseItem[]>([{ id: Date.now(), category: "", cost: "" }])[m
+[32m+[m[32m  const [items, setItems] = useState<ExpenseItem[]>([{ id: "item-0", category: "", cost: "" }])[m
+   const [reserve, setReserve] = useState("20")[m
+   const [currency, setCurrency] = useState("RUB")[m
+   const [subtotal, setSubtotal] = useState<number>(0)[m
+[36m@@ -73,14 +73,14 @@[m [mexport function RenovationBudgetPlanner() {[m
+   const selectedCurrency = currencies.find(c => c.code === currency) || currencies[0][m
+ [m
+   const addCategory = () => {[m
+[31m-    setItems([...items, { id: Date.now(), category: "", cost: "" }])[m
+[32m+[m[32m    setItems([...items, { id: `item-${items.length}`, category: "", cost: "" }])[m
+   }[m
+ [m
+[31m-  const removeCategory = (id: number) => {[m
+[32m+[m[32m  const removeCategory = (id: string) => {[m
+     setItems(items.filter((i) => i.id !== id))[m
+   }[m
+ [m
+[31m-  const updateCategory = (id: number, field: keyof ExpenseItem, value: string) => {[m
+[32m+[m[32m  const updateCategory = (id: string, field: keyof ExpenseItem, value: string) => {[m
+     setItems(items.map((item) => (item.id === id ? { ...item, [field]: value } : item)))[m
+   }[m
+ [m
+[36m@@ -100,20 +100,20 @@[m [mexport function RenovationBudgetPlanner() {[m
+   }[m
+ [m
+   return ([m
+[31m-    <div className="max-w-md mx-auto border rounded-lg p-4 shadow-sm space-y-4 bg-card">[m
+[32m+[m[32m    <div className="w-full max-w-md mx-auto border rounded-lg p-3 sm:p-4 shadow-sm space-y-4 bg-card">[m
+       <h2 className="flex items-center gap-2 text-xl font-semibold">[m
+         <Calculator className="w-5 h-5 text-primary" /> {t.title}[m
+       </h2>[m
+ [m
+ 

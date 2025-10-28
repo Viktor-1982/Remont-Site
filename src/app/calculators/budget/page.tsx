@@ -13,19 +13,22 @@ export const metadata = getPageMetadata("/calculators/budget", {
 export default function BudgetPlannerPage() {
     const structuredData = {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
+        "@type": ["SoftwareApplication", "WebApplication"],
         name: "Планировщик бюджета ремонта",
+        alternateName: "Калькулятор стоимости ремонта",
         operatingSystem: "All",
-        applicationCategory: "FinanceApplication",
+        applicationCategory: ["FinanceApplication", "BusinessApplication"],
         offers: {
             "@type": "Offer",
             price: "0",
             priceCurrency: "RUB",
+            availability: "https://schema.org/InStock",
         },
         description:
             "Бесплатный онлайн-калькулятор для расчёта бюджета ремонта квартиры или дома. Помогает планировать расходы и учитывать резерв на непредвиденные траты.",
         url: "https://renohacks.com/calculators/budget",
         image: "https://renohacks.com/images/og-default.png",
+        screenshot: "https://renohacks.com/images/og-default.png",
         creator: {
             "@type": "Organization",
             name: "Renohacks",
@@ -37,6 +40,17 @@ export default function BudgetPlannerPage() {
             target: "https://renohacks.com/calculators/budget",
             name: "Рассчитать бюджет ремонта",
         },
+        featureList: [
+            "Расчет стоимости по категориям работ",
+            "Учет резерва на непредвиденные расходы",
+            "Поддержка разных валют",
+            "Автодополнение категорий работ",
+            "Мобильная адаптивность"
+        ],
+        keywords: "калькулятор ремонта, планировщик бюджета, смета ремонта, расчет стоимости ремонта",
+        inLanguage: "ru",
+        isAccessibleForFree: true,
+        browserRequirements: "Requires JavaScript. Requires HTML5.",
     }
 
     return (
@@ -52,8 +66,12 @@ export default function BudgetPlannerPage() {
             <p className="text-muted-foreground mb-8">
                 Посчитайте полную стоимость ремонта: добавьте расходы по категориям и получите итоговую сумму с резервом на непредвиденные расходы.
             </p>
-            <RenovationBudgetPlanner />
-            <div className="mt-8 p-4 bg-muted rounded-lg">
+            
+            <section aria-label="Интерактивный калькулятор планировщика бюджета">
+                <RenovationBudgetPlanner />
+            </section>
+            
+            <aside className="mt-8 p-4 bg-muted rounded-lg" aria-label="Инструкция по использованию">
                 <h2 className="font-semibold mb-2">💡 Как пользоваться</h2>
                 <ol className="list-decimal ml-5 space-y-1 text-sm">
                     <li>Введите стоимость каждой категории работ</li>
@@ -63,9 +81,11 @@ export default function BudgetPlannerPage() {
                 <p className="mt-3 text-sm text-muted-foreground">
                     💰 Обычно на ремонт уходит на 20–30% больше запланированного. Лучше заложить резерв с самого начала!
                 </p>
-            </div>
+            </aside>
         </main>
     )
 }
+
+
 
 

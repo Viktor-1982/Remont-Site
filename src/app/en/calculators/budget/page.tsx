@@ -13,19 +13,22 @@ export const metadata = getPageMetadata("/en/calculators/budget", {
 export default function BudgetPlannerPageEn() {
     const structuredData = {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
+        "@type": ["SoftwareApplication", "WebApplication"],
         name: "Renovation Budget Planner",
+        alternateName: "Renovation Cost Calculator",
         operatingSystem: "All",
-        applicationCategory: "FinanceApplication",
+        applicationCategory: ["FinanceApplication", "BusinessApplication"],
         offers: {
             "@type": "Offer",
             price: "0",
             priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
         },
         description:
             "Free online calculator for estimating renovation budget of apartment or house. Helps plan expenses and account for reserve for unexpected costs.",
         url: "https://renohacks.com/en/calculators/budget",
         image: "https://renohacks.com/images/og-default.png",
+        screenshot: "https://renohacks.com/images/og-default.png",
         creator: {
             "@type": "Organization",
             name: "Renohacks",
@@ -37,6 +40,17 @@ export default function BudgetPlannerPageEn() {
             target: "https://renohacks.com/en/calculators/budget",
             name: "Calculate renovation budget",
         },
+        featureList: [
+            "Calculate costs by work categories",
+            "Account for unexpected expenses reserve",
+            "Support for different currencies",
+            "Auto-complete work categories",
+            "Mobile responsive design"
+        ],
+        keywords: "renovation calculator, budget planner, renovation cost calculator, home renovation budget",
+        inLanguage: "en",
+        isAccessibleForFree: true,
+        browserRequirements: "Requires JavaScript. Requires HTML5.",
     }
 
     return (
@@ -52,8 +66,12 @@ export default function BudgetPlannerPageEn() {
             <p className="text-muted-foreground mb-8">
                 Calculate the total renovation cost: add expenses by category and get the final amount with a reserve for unexpected expenses.
             </p>
-            <RenovationBudgetPlannerEn />
-            <div className="mt-8 p-4 bg-muted rounded-lg">
+            
+            <section aria-label="Interactive renovation budget planner calculator">
+                <RenovationBudgetPlannerEn />
+            </section>
+            
+            <aside className="mt-8 p-4 bg-muted rounded-lg" aria-label="Usage instructions">
                 <h2 className="font-semibold mb-2">💡 How to use</h2>
                 <ol className="list-decimal ml-5 space-y-1 text-sm">
                     <li>Enter the cost of each work category</li>
@@ -63,7 +81,7 @@ export default function BudgetPlannerPageEn() {
                 <p className="mt-3 text-sm text-muted-foreground">
                     💰 Renovation usually costs 20–30% more than planned. It&apos;s better to include a reserve from the start!
                 </p>
-            </div>
+            </aside>
         </main>
     )
 }
