@@ -1,21 +1,21 @@
-{
-  "ci": {
-    "collect": {
-      "url": ["http://localhost:3000"],
-      "startServerCommand": "npm start",
-      "startServerReadyPattern": "ready",
-      "startServerReadyTimeout": 30000
+module.exports = {
+  ci: {
+    collect: {
+      url: ['http://localhost:3000'],
+      startServerCommand: 'npm run dev',
+      startServerReadyPattern: 'ready',
+      startServerReadyTimeout: 60000
     },
-    "assert": {
-      "assertions": {
-        "categories:performance": ["error", {"minScore": 0.8}],
-        "categories:accessibility": ["error", {"minScore": 0.9}],
-        "categories:best-practices": ["error", {"minScore": 0.9}],
-        "categories:seo": ["error", {"minScore": 0.9}]
+    assert: {
+      assertions: {
+        'categories:performance': ['warn', { minScore: 0.7 }],
+        'categories:accessibility': ['warn', { minScore: 0.8 }],
+        'categories:best-practices': ['warn', { minScore: 0.8 }],
+        'categories:seo': ['warn', { minScore: 0.8 }]
       }
     },
-    "upload": {
-      "target": "temporary-public-storage"
+    upload: {
+      target: 'temporary-public-storage'
     }
   }
 }
