@@ -111,7 +111,7 @@ export function HeroBanner() {
               hover:bg-gray-100 dark:hover:bg-white 
               hover:shadow-lg hover:scale-105 transition-all duration-300"
                         >
-                            <Link href={isEnglish ? "/en/tags/trends" : "/tags/novinki"}>
+                            <Link href={isEnglish ? "/en/tags/trends" : "/tags/тренды"}>
                                 {t.ctaTrends} →
                             </Link>
                         </Button>

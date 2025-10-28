@@ -6,7 +6,7 @@
     },
     "links": [
       { "href": "/", "label": "Главная", "title": "Главная страница Renohacks" },
-      { "href": "/tags/novinki", "label": "Новинки", "title": "Новинки в ремонте и дизайне" },
+      { "href": "/tags/тренды", "label": "Новинки", "title": "Новинки в ремонте и дизайне" },
       { "href": "/tags/diy", "label": "DIY", "title": "DIY проекты по ремонту" },
       { "href": "/about", "label": "О проекте", "title": "Информация о Renohacks" },
       { "href": "/calculators", "label": "Калькуляторы", "title": "Онлайн калькуляторы для ремонта" }
