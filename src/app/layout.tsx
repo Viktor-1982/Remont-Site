@@ -30,6 +30,9 @@ export const metadata: Metadata = {
             en: "https://renohacks.com/en",
             "x-default": "https://renohacks.com/",
         },
+        types: {
+            "application/rss+xml": "https://renohacks.com/rss.xml",
+        },
     },
     robots: {
         index: true,

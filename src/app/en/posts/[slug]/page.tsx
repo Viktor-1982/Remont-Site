@@ -4,6 +4,7 @@ import { allPosts } from ".contentlayer/generated"
 import { ArticleHero } from "@/components/article-hero"
 import { TableOfContents } from "@/components/table-of-contents"
 import { Mdx } from "@/components/mdx-components"
+import { RelatedPosts } from "@/components/related-posts"
 
 export async function generateMetadata({
                                            params,
@@ -55,13 +56,16 @@ export default async function PostPage({
                 <TableOfContents items={post.headings} />
             </div>
 
+            {/* 🔗 Internal links for better indexing */}
+            <RelatedPosts currentSlug={slug} locale="en" />
+
             {/* 🟡 SEO: Structured Data (JSON-LD) */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
-                        "@type": "Article",
+                        "@type": "BlogPosting",
                         headline: post.title,
                         description: post.description,
                         image: [`https://renohacks.com${post.cover}`],
@@ -75,7 +79,7 @@ export default async function PostPage({
                             name: "Renohacks",
                             logo: {
                                 "@type": "ImageObject",
-                                url: "https://renohacks.com/images/logo.png",
+                                url: "https://renohacks.com/favicon.ico",
                             },
                         },
                         datePublished: post.date,
@@ -86,6 +90,10 @@ export default async function PostPage({
                         },
                         keywords: post.tags?.join(", "),
                         inLanguage: "en",
+                        articleSection: "Home Renovation & Design",
+                        wordCount: post.body.raw?.length || 0,
+                        isAccessibleForFree: true,
+                        genre: "DIY, Home Renovation, Interior Design",
                     }),
                 }}
             />
