@@ -66,48 +66,124 @@ export async function GET(req: Request) {
         // 🔹 5. Tags
         // ==========================================================
         if (!targetUrl && /^\/(en\/)?tags\//.test(path)) {
-            const tagMap: Record<string, string> = {
-                trends: "novinki",
-                novinki: "trends",
-                diy: "diy",
-                kitchen: "kitchen",
-                bathroom: "bathroom",
-                walls: "walls",
-                interior: "interior",
-                design: "design",
-                materials: "materials",
-                budget: "budget",
-                ideas: "ideas",
-                renovation: "renovation",
-                furniture: "furniture",
-                color: "color",
-                eco: "eco",
-                smart: "smart",
-                smart_home: "smart-home",
-                lighting: "lighting",
-                luxury: "luxury",
-                modern: "modern",
-                rustic: "rustic",
-                minimalism: "minimalism",
-                scandinavian: "scandinavian",
-                loft: "loft",
-                vintage: "vintage",
-                sustainability: "sustainability",
-                // Русские теги
-                кухня: "kitchen",
-                ванная: "bathroom",
-                стены: "walls",
+            // Маппинг тегов: английский -> русский
+            const enToRuMap: Record<string, string> = {
+                "interior-design": "интерьер",
+                "interior design": "интерьер", 
+                "design": "дизайн",
+                "interior": "интерьер",
+                "trends": "тренды",
+                "renovation": "ремонт",
+                "diy": "diy",
+                "kitchen": "кухня",
+                "bathroom": "ванная",
+                "walls": "стены",
+                "wallpaper": "обои",
+                "materials": "материалы",
+                "color": "цвет",
+                "bedroom": "спальня",
+                "cozy": "уют",
+                "minimalism": "минимализм",
+                "scandinavian-style": "скандинавский стиль",
+                "scandinavian style": "скандинавский стиль",
+                "living-room": "гостиная",
+                "living room": "гостиная",
+                "tips": "советы",
+                "decor": "декор",
+                "preparation": "подготовка",
+                "painting": "покраска",
+                "small-spaces": "маленькие пространства",
+                "small spaces": "маленькие пространства",
+                "budget-renovation": "бюджетный ремонт",
+                "budget renovation": "бюджетный ремонт",
+                "cosmetic-makeover": "косметический ремонт",
+                "cosmetic makeover": "косметический ремонт",
+                "budget-friendly": "бюджетный ремонт",
+                "architecture": "архитектура",
+                "nature": "природа",
+                "cave-living": "в скале",
+                "cave living": "в скале",
+                "rough-finish": "черновая отделка",
+                "rough finish": "черновая отделка",
+                "planning": "планирование",
+                "plumbing": "сантехника",
+                "electricity": "отделка",
+                "finishing": "отделка",
+                "home-decor": "декор",
+                "home decor": "декор",
+                "lighting": "освещение",
+                "paint-testing": "советы",
+                "paint testing": "советы",
+                "lifestyle": "лайфхаки",
+                "stress-free-renovation": "ремонт без стресса",
+                "stress-free renovation": "ремонт без стресса",
+                "renovation-plan": "план ремонта",
+                "renovation plan": "план ремонта",
+                "eco-design": "экодизайн",
+                "eco design": "экодизайн",
+                "smart-home": "умный дом",
+                "smart home": "умный дом",
+                "wellness": "wellness",
             }
 
-            const tag = path.split("/").pop() ?? ""
-            // Для русских тегов используем урл-кодирование
-            const encodedTag = encodeURIComponent(tag)
-            const mappedTag = tagMap[tag] || tag
+            // Маппинг тегов: русский -> английский
+            const ruToEnMap: Record<string, string> = {
+                "интерьер": "interior-design",
+                "дизайн": "design", 
+                "тренды": "trends",
+                "ремонт": "renovation",
+                "кухня": "kitchen",
+                "ванная": "bathroom",
+                "стены": "walls",
+                "обои": "wallpaper",
+                "материалы": "materials",
+                "цвет": "color",
+                "спальня": "bedroom",
+                "уют": "cozy",
+                "минимализм": "minimalism",
+                "скандинавский-стиль": "scandinavian-style",
+                "скандинавский стиль": "scandinavian-style",
+                "гостиная": "living-room",
+                "советы": "tips",
+                "декор": "decor",
+                "подготовка": "preparation",
+                "покраска": "painting",
+                "маленькие-пространства": "small-spaces",
+                "маленькие пространства": "small-spaces",
+                "бюджетный-ремонт": "budget-renovation",
+                "бюджетный ремонт": "budget-renovation",
+                "косметический-ремонт": "cosmetic-makeover",
+                "косметический ремонт": "cosmetic-makeover",
+                "архитектура": "architecture",
+                "природа": "nature",
+                "в-скале": "cave-living",
+                "в скале": "cave-living",
+                "черновая-отделка": "rough-finish",
+                "черновая отделка": "rough-finish",
+                "планирование": "planning",
+                "сантехника": "plumbing",
+                "отделка": "finishing",
+                "освещение": "lighting",
+                "лайфхаки": "lifestyle",
+                "ремонт-без-стресса": "stress-free-renovation",
+                "ремонт без стресса": "stress-free-renovation",
+                "план-ремонта": "renovation-plan",
+                "план ремонта": "renovation-plan",
+                "экодизайн": "eco-design",
+                "умный-дом": "smart-home",
+                "умный дом": "smart-home",
+                "wellness": "wellness",
+            }
+
+            const tag = decodeURIComponent(path.split("/").pop() ?? "")
+            const mappedTag = targetLocale === "en" 
+                ? (ruToEnMap[tag] || tag)
+                : (enToRuMap[tag] || tag)
 
             targetUrl =
                 targetLocale === "en"
-                    ? `/en/tags/${mappedTag === tag ? encodedTag : mappedTag}`
-                    : `/tags/${mappedTag === tag ? encodedTag : mappedTag}`
+                    ? `/en/tags/${encodeURIComponent(mappedTag)}`
+                    : `/tags/${encodeURIComponent(mappedTag)}`
         }
 
         // ==========================================================
