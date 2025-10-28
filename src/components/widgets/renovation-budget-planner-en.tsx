@@ -48,7 +48,7 @@ const currencies = [
 ]
 
 interface ExpenseItem {
-  id: number
+  id: string
   category: string
   cost: string
 }
@@ -59,7 +59,7 @@ export function RenovationBudgetPlannerEn() {
   const t: BudgetCalcDict = calcData[locale].calc.budget
   const b: ButtonsDict = calcData[locale].calc.buttons
 
-  const [items, setItems] = useState<ExpenseItem[]>([{ id: Date.now(), category: "", cost: "" }])
+  const [items, setItems] = useState<ExpenseItem[]>([{ id: "item-0", category: "", cost: "" }])
   const [reserve, setReserve] = useState("20")
   const [currency, setCurrency] = useState("USD")
   const [subtotal, setSubtotal] = useState<number>(0)
@@ -69,14 +69,14 @@ export function RenovationBudgetPlannerEn() {
   const selectedCurrency = currencies.find(c => c.code === currency) || currencies[0]
 
   const addCategory = () => {
-    setItems([...items, { id: Date.now(), category: "", cost: "" }])
+    setItems([...items, { id: `item-${items.length}`, category: "", cost: "" }])
   }
 
-  const removeCategory = (id: number) => {
+  const removeCategory = (id: string) => {
     setItems(items.filter((i) => i.id !== id))
   }
 
-  const updateCategory = (id: number, field: keyof ExpenseItem, value: string) => {
+  const updateCategory = (id: string, field: keyof ExpenseItem, value: string) => {
     setItems(items.map((item) => (item.id === id ? { ...item, [field]: value } : item)))
   }
 
@@ -96,20 +96,20 @@ export function RenovationBudgetPlannerEn() {
   }
 
   return (
-    <div className="max-w-md mx-auto border rounded-lg p-4 shadow-sm space-y-4 bg-card">
+    <div className="w-full max-w-md mx-auto border rounded-lg p-3 sm:p-4 shadow-sm space-y-4 bg-card">
       <h2 className="flex items-center gap-2 text-xl font-semibold">
         <Calculator className="w-5 h-5 text-primary" /> {t.title}
       </h2>
 
       <div className="space-y-3">
         {items.map((item) => (
-          <div key={item.id} className="flex flex-col gap-2">
+          <div key={item.id} className="space-y-2">
             <div className="flex gap-2">
               <input
                 type="text"
                 list={`categories-${item.id}`}
                 placeholder={t.category}
-                className="flex-1 border rounded-md px-3 py-2 text-sm"
+                className="flex-1 min-w-0 border rounded-md px-3 py-2 text-sm"
                 value={item.category}
                 onChange={(e) => updateCategory(item.id, "category", e.target.value)}
               />
@@ -121,11 +121,11 @@ export function RenovationBudgetPlannerEn() {
               <input
                 type="number"
                 placeholder={t.cost}
-                className="w-32 border rounded-md px-3 py-2 text-sm text-right"
+                className="w-24 sm:w-32 border rounded-md px-2 sm:px-3 py-2 text-sm text-right"
                 value={item.cost}
                 onChange={(e) => updateCategory(item.id, "cost", e.target.value)}
               />
-              <Button variant="ghost" size="icon" onClick={() => removeCategory(item.id)} disabled={items.length === 1}>
+              <Button variant="ghost" size="icon" onClick={() => removeCategory(item.id)} disabled={items.length === 1} className="shrink-0">
                 <Trash2 className="w-4 h-4" />
               </Button>
             </div>
@@ -137,10 +137,10 @@ export function RenovationBudgetPlannerEn() {
         <Plus className="w-4 h-4 mr-2" /> {t.addCategory}
       </Button>
 
-      <div className="flex gap-2 items-center">
-        <label className="text-sm font-medium flex-1">{t.currency}</label>
+      <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center">
+        <label className="text-sm font-medium w-full sm:w-auto">{t.currency}</label>
         <select
-          className="flex-1 border rounded-md px-3 py-2 text-sm bg-background"
+          className="w-full sm:flex-1 border rounded-md px-3 py-2 text-sm bg-background"
           value={currency}
           onChange={(e) => setCurrency(e.target.value)}
         >
@@ -152,11 +152,11 @@ export function RenovationBudgetPlannerEn() {
         </select>
       </div>
 
-      <div className="flex gap-2 items-center">
-        <label className="text-sm font-medium flex-1">{t.reserve}</label>
+      <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center">
+        <label className="text-sm font-medium w-full sm:w-auto">{t.reserve}</label>
         <input
           type="number"
-          className="w-24 border rounded-md px-3 py-2 text-sm text-right"
+          className="w-full sm:w-24 border rounded-md px-3 py-2 text-sm text-right"
           value={reserve}
           onChange={(e) => setReserve(e.target.value)}
         />
