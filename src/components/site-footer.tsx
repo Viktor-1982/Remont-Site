@@ -102,6 +102,12 @@ export function SiteFooter() {
             {/* 🔻 Нижняя часть */}
             <div className="border-t px-4 py-4 text-center text-xs text-muted-foreground flex items-center justify-center gap-4 flex-wrap">
                 <span>{footer.rights}</span>
+                <Link 
+                    href={isEnglish ? "/en/terms" : "/terms"}
+                    className="hover:underline hover:text-foreground transition"
+                >
+                    {isEnglish ? "Terms of Use" : "Правила пользования"}
+                </Link>
                 <LanguageSwitcher />
             </div>
         </footer>

@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const staticPages: MetadataRoute.Sitemap = [
         "",
         "/about",
+        "/terms",
         "/calculators",
         "/calculators/paint",
         "/calculators/tile",
@@ -24,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         "/calculators/budget",
         "/en",
         "/en/about",
+        "/en/terms",
         "/en/calculators",
         "/en/calculators/paint",
         "/en/calculators/tile",
