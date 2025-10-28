@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { allPosts } from ".contentlayer/generated"
-import { cn } from "@/lib/utils"
 
 interface RelatedPostsProps {
     currentSlug: string
