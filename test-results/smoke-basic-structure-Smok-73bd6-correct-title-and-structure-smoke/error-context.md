@@ -1,0 +1,101 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "renohacks.com" [ref=e4] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=e5]:
+        - link "Home" [ref=e6] [cursor=pointer]:
+          - /url: /en
+        - link "Trends" [ref=e7] [cursor=pointer]:
+          - /url: /en/tags/trends
+        - link "DIY" [ref=e8] [cursor=pointer]:
+          - /url: /en/tags/diy
+        - link "About" [ref=e9] [cursor=pointer]:
+          - /url: /en/about
+        - link "Calculators" [ref=e10] [cursor=pointer]:
+          - /url: /en/calculators
+      - generic [ref=e11]:
+        - button "Toggle theme" [ref=e13]:
+          - img
+        - generic [ref=e14]:
+          - link "Instagram" [ref=e15] [cursor=pointer]:
+            - /url: https://www.instagram.com/reno.hacks
+            - img [ref=e16]
+          - link "Pinterest" [ref=e18] [cursor=pointer]:
+            - /url: https://www.pinterest.com/RenoHacks/
+            - img [ref=e19]
+  - main [ref=e21]:
+    - main [ref=e22]:
+      - heading "Renovation Budget Planner" [level=1] [ref=e23]
+      - paragraph [ref=e24]: "Calculate the total renovation cost: add expenses by category and get the final amount with a reserve for unexpected expenses."
+      - region "Interactive renovation budget planner calculator" [ref=e25]:
+        - generic [ref=e26]:
+          - heading "Budget Planner" [level=2] [ref=e27]:
+            - img [ref=e28]
+            - text: Budget Planner
+          - generic [ref=e32]:
+            - combobox "Work category" [ref=e33]
+            - generic [ref=e34]:
+              - spinbutton [ref=e35]
+              - button [disabled]:
+                - img
+          - button "Add category" [ref=e36]:
+            - img
+            - text: Add category
+          - generic [ref=e37]:
+            - generic [ref=e38]: Currency
+            - combobox [ref=e39]:
+              - option "$ Dollar" [selected]
+              - option "€ Euro"
+          - generic [ref=e40]:
+            - generic [ref=e41]: Reserve (%)
+            - spinbutton [ref=e42]: "20"
+          - button "Calculate" [ref=e43]
+      - complementary "Usage instructions" [ref=e44]:
+        - heading "💡 How to use" [level=2] [ref=e45]
+        - list [ref=e46]:
+          - listitem [ref=e47]: Enter the cost of each work category
+          - listitem [ref=e48]: Specify the reserve percentage (20% recommended)
+          - listitem [ref=e49]: Get the total cost including unexpected expenses
+        - paragraph [ref=e50]: 💰 Renovation usually costs 20–30% more than planned. It's better to include a reserve from the start!
+  - contentinfo [ref=e51]:
+    - generic [ref=e52]:
+      - region "renohacks.com" [ref=e53]:
+        - heading "renohacks.com" [level=2] [ref=e54]
+        - paragraph [ref=e55]: Renohacks — renovation and construction blog. Photo guides, estimates, DIY tips and material reviews.
+      - navigation "Sections" [ref=e56]:
+        - heading "Sections" [level=2] [ref=e57]
+        - list [ref=e58]:
+          - listitem [ref=e59]:
+            - link "Kitchen" [ref=e60] [cursor=pointer]:
+              - /url: /en/tags/kitchen
+          - listitem [ref=e61]:
+            - link "Bathroom" [ref=e62] [cursor=pointer]:
+              - /url: /en/tags/bathroom
+          - listitem [ref=e63]:
+            - link "Walls" [ref=e64] [cursor=pointer]:
+              - /url: /en/tags/walls
+      - region "Contacts" [ref=e65]:
+        - heading "Contacts" [level=2] [ref=e66]
+        - paragraph [ref=e67]: "Have ideas or questions? Contact us:"
+        - paragraph [ref=e68]:
+          - link "Email info@renohacks.com" [ref=e69] [cursor=pointer]:
+            - /url: mailto:info@renohacks.com
+            - text: info@renohacks.com
+        - generic "Follow us" [ref=e70]:
+          - link "Instagram" [ref=e71] [cursor=pointer]:
+            - /url: https://www.instagram.com/reno.hacks
+            - img [ref=e72]
+            - generic [ref=e74]: Instagram
+          - link "Pinterest" [ref=e75] [cursor=pointer]:
+            - /url: https://www.pinterest.com/RenoHacks/
+            - img [ref=e76]
+            - generic [ref=e78]: Pinterest
+    - generic [ref=e79]:
+      - generic [ref=e80]: © 2025 renohacks.com. All rights reserved.
+      - link "Terms of Use" [ref=e81] [cursor=pointer]:
+        - /url: /en/terms
+```

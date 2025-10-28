@@ -1,0 +1,103 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "renohacks.com" [ref=e4] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=e5]:
+        - link "Home" [ref=e6] [cursor=pointer]:
+          - /url: /en
+        - link "Trends" [ref=e7] [cursor=pointer]:
+          - /url: /en/tags/trends
+        - link "DIY" [ref=e8] [cursor=pointer]:
+          - /url: /en/tags/diy
+        - link "About" [ref=e9] [cursor=pointer]:
+          - /url: /en/about
+        - link "Calculators" [ref=e10] [cursor=pointer]:
+          - /url: /en/calculators
+      - generic [ref=e11]:
+        - button "Toggle theme" [ref=e13]:
+          - img
+        - generic [ref=e14]:
+          - link "Instagram" [ref=e15] [cursor=pointer]:
+            - /url: https://www.instagram.com/reno.hacks
+            - img [ref=e16]
+          - link "Pinterest" [ref=e18] [cursor=pointer]:
+            - /url: https://www.pinterest.com/RenoHacks/
+            - img [ref=e19]
+  - main [ref=e21]:
+    - main [ref=e22]:
+      - heading "About Renohacks" [level=1] [ref=e23]
+      - paragraph [ref=e24]:
+        - strong [ref=e25]: renohacks.com
+        - text: — a renovation and interior design blog where we share practical tips, step-by-step photo guides, and free calculators for home renovation.
+      - heading "What We Do" [level=2] [ref=e26]
+      - paragraph [ref=e27]: "Our goal is to help you renovate your home with quality results and without unnecessary expenses. We publish:"
+      - list [ref=e28]:
+        - listitem [ref=e29]:
+          - text: 📸
+          - strong [ref=e30]: Photo guides
+          - text: on painting walls, renovating bathrooms and kitchens
+        - listitem [ref=e31]:
+          - text: 🔧
+          - strong [ref=e32]: DIY projects
+          - text: and hacks to save money
+        - listitem [ref=e33]:
+          - text: 🧮
+          - strong [ref=e34]: Calculators
+          - text: for paint, wallpaper, and tile calculations
+        - listitem [ref=e35]:
+          - text: 🎨
+          - strong [ref=e36]: Design ideas
+          - text: and interior trends 2025–2026
+        - listitem [ref=e37]:
+          - text: 💰
+          - strong [ref=e38]: Budgets
+          - text: and real renovation cost estimates
+      - heading "Who This Blog Is For" [level=2] [ref=e39]
+      - paragraph [ref=e40]: Our content is helpful for anyone planning a home renovation — from quick cosmetic updates to full apartment remodels. We believe that quality renovation doesn't have to be expensive. What matters is the right approach and practical advice.
+      - heading "Contact Us" [level=2] [ref=e41]
+      - paragraph [ref=e42]:
+        - text: Have questions, suggestions, or ideas for articles? Email us at
+        - link "info@renohacks.com" [ref=e43] [cursor=pointer]:
+          - /url: mailto:info@renohacks.com
+  - contentinfo [ref=e44]:
+    - generic [ref=e45]:
+      - region "renohacks.com" [ref=e46]:
+        - heading "renohacks.com" [level=2] [ref=e47]
+        - paragraph [ref=e48]: Renohacks — renovation and construction blog. Photo guides, estimates, DIY tips and material reviews.
+      - navigation "Sections" [ref=e49]:
+        - heading "Sections" [level=2] [ref=e50]
+        - list [ref=e51]:
+          - listitem [ref=e52]:
+            - link "Kitchen" [ref=e53] [cursor=pointer]:
+              - /url: /en/tags/kitchen
+          - listitem [ref=e54]:
+            - link "Bathroom" [ref=e55] [cursor=pointer]:
+              - /url: /en/tags/bathroom
+          - listitem [ref=e56]:
+            - link "Walls" [ref=e57] [cursor=pointer]:
+              - /url: /en/tags/walls
+      - region "Contacts" [ref=e58]:
+        - heading "Contacts" [level=2] [ref=e59]
+        - paragraph [ref=e60]: "Have ideas or questions? Contact us:"
+        - paragraph [ref=e61]:
+          - link "Email info@renohacks.com" [ref=e62] [cursor=pointer]:
+            - /url: mailto:info@renohacks.com
+            - text: info@renohacks.com
+        - generic "Follow us" [ref=e63]:
+          - link "Instagram" [ref=e64] [cursor=pointer]:
+            - /url: https://www.instagram.com/reno.hacks
+            - img [ref=e65]
+            - generic [ref=e67]: Instagram
+          - link "Pinterest" [ref=e68] [cursor=pointer]:
+            - /url: https://www.pinterest.com/RenoHacks/
+            - img [ref=e69]
+            - generic [ref=e71]: Pinterest
+    - generic [ref=e72]:
+      - generic [ref=e73]: © 2025 renohacks.com. All rights reserved.
+      - link "Terms of Use" [ref=e74] [cursor=pointer]:
+        - /url: /en/terms
+```

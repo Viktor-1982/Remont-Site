@@ -1,0 +1,290 @@
+<testsuites id="" name="" tests="11" failures="8" skipped="0" errors="0" time="62.541047999999996">
+<testsuite name="smoke\basic-structure.spec.ts" timestamp="2025-10-28T16:10:42.273Z" hostname="smoke" tests="11" failures="8" skipped="0" time="369.218" errors="0">
+<testcase name="Smoke Tests - Basic Site Structure › should load / with correct title and structure" classname="smoke\basic-structure.spec.ts" time="42.896">
+<failure message="basic-structure.spec.ts:16:9 should load / with correct title and structure" type="FAILURE">
+<![CDATA[  [smoke] › smoke\basic-structure.spec.ts:16:9 › Smoke Tests - Basic Site Structure › should load / with correct title and structure 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/", waiting until "load"
+
+
+      15 |   for (const page of pages) {
+      16 |     test(`should load ${page.path} with correct title and structure`, async ({ page: testPage }) => {
+    > 17 |       const response = await testPage.goto(page.path);
+         |                                       ^
+      18 |       expect(response?.status()).toBe(200);
+      19 |
+      20 |       // Проверяем title
+        at C:\Users\Viktor\projects\repair-blog\tests\e2e\smoke\basic-structure.spec.ts:17:39
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\smoke-basic-structure-Smok-ff31e-correct-title-and-structure-smoke\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\smoke-basic-structure-Smok-ff31e-correct-title-and-structure-smoke\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-basic-structure-Smok-ff31e-correct-title-and-structure-smoke\video.webm]]
+
+[[ATTACHMENT|smoke-basic-structure-Smok-ff31e-correct-title-and-structure-smoke\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Smoke Tests - Basic Site Structure › should load /en with correct title and structure" classname="smoke\basic-structure.spec.ts" time="45.183">
+<failure message="basic-structure.spec.ts:16:9 should load /en with correct title and structure" type="FAILURE">
+<![CDATA[  [smoke] › smoke\basic-structure.spec.ts:16:9 › Smoke Tests - Basic Site Structure › should load /en with correct title and structure 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/en", waiting until "load"
+
+
+      15 |   for (const page of pages) {
+      16 |     test(`should load ${page.path} with correct title and structure`, async ({ page: testPage }) => {
+    > 17 |       const response = await testPage.goto(page.path);
+         |                                       ^
+      18 |       expect(response?.status()).toBe(200);
+      19 |
+      20 |       // Проверяем title
+        at C:\Users\Viktor\projects\repair-blog\tests\e2e\smoke\basic-structure.spec.ts:17:39
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\smoke-basic-structure-Smok-f7c2f-correct-title-and-structure-smoke\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\smoke-basic-structure-Smok-f7c2f-correct-title-and-structure-smoke\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-basic-structure-Smok-f7c2f-correct-title-and-structure-smoke\video.webm]]
+
+[[ATTACHMENT|smoke-basic-structure-Smok-f7c2f-correct-title-and-structure-smoke\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Smoke Tests - Basic Site Structure › should load /about with correct title and structure" classname="smoke\basic-structure.spec.ts" time="41.938">
+<failure message="basic-structure.spec.ts:16:9 should load /about with correct title and structure" type="FAILURE">
+<![CDATA[  [smoke] › smoke\basic-structure.spec.ts:16:9 › Smoke Tests - Basic Site Structure › should load /about with correct title and structure 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/about", waiting until "load"
+
+
+      15 |   for (const page of pages) {
+      16 |     test(`should load ${page.path} with correct title and structure`, async ({ page: testPage }) => {
+    > 17 |       const response = await testPage.goto(page.path);
+         |                                       ^
+      18 |       expect(response?.status()).toBe(200);
+      19 |
+      20 |       // Проверяем title
+        at C:\Users\Viktor\projects\repair-blog\tests\e2e\smoke\basic-structure.spec.ts:17:39
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\smoke-basic-structure-Smok-b773e-correct-title-and-structure-smoke\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\smoke-basic-structure-Smok-b773e-correct-title-and-structure-smoke\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-basic-structure-Smok-b773e-correct-title-and-structure-smoke\video.webm]]
+
+[[ATTACHMENT|smoke-basic-structure-Smok-b773e-correct-title-and-structure-smoke\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Smoke Tests - Basic Site Structure › should load /en/about with correct title and structure" classname="smoke\basic-structure.spec.ts" time="45.499">
+<failure message="basic-structure.spec.ts:16:9 should load /en/about with correct title and structure" type="FAILURE">
+<![CDATA[  [smoke] › smoke\basic-structure.spec.ts:16:9 › Smoke Tests - Basic Site Structure › should load /en/about with correct title and structure 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/en/about", waiting until "load"
+
+
+      15 |   for (const page of pages) {
+      16 |     test(`should load ${page.path} with correct title and structure`, async ({ page: testPage }) => {
+    > 17 |       const response = await testPage.goto(page.path);
+         |                                       ^
+      18 |       expect(response?.status()).toBe(200);
+      19 |
+      20 |       // Проверяем title
+        at C:\Users\Viktor\projects\repair-blog\tests\e2e\smoke\basic-structure.spec.ts:17:39
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\smoke-basic-structure-Smok-8f760-correct-title-and-structure-smoke\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\smoke-basic-structure-Smok-8f760-correct-title-and-structure-smoke\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-basic-structure-Smok-8f760-correct-title-and-structure-smoke\video.webm]]
+
+[[ATTACHMENT|smoke-basic-structure-Smok-8f760-correct-title-and-structure-smoke\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Smoke Tests - Basic Site Structure › should load /calculators with correct title and structure" classname="smoke\basic-structure.spec.ts" time="44.179">
+<failure message="basic-structure.spec.ts:16:9 should load /calculators with correct title and structure" type="FAILURE">
+<![CDATA[  [smoke] › smoke\basic-structure.spec.ts:16:9 › Smoke Tests - Basic Site Structure › should load /calculators with correct title and structure 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/calculators", waiting until "load"
+
+
+      15 |   for (const page of pages) {
+      16 |     test(`should load ${page.path} with correct title and structure`, async ({ page: testPage }) => {
+    > 17 |       const response = await testPage.goto(page.path);
+         |                                       ^
+      18 |       expect(response?.status()).toBe(200);
+      19 |
+      20 |       // Проверяем title
+        at C:\Users\Viktor\projects\repair-blog\tests\e2e\smoke\basic-structure.spec.ts:17:39
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\smoke-basic-structure-Smok-1a631-correct-title-and-structure-smoke\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\smoke-basic-structure-Smok-1a631-correct-title-and-structure-smoke\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-basic-structure-Smok-1a631-correct-title-and-structure-smoke\video.webm]]
+
+[[ATTACHMENT|smoke-basic-structure-Smok-1a631-correct-title-and-structure-smoke\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Smoke Tests - Basic Site Structure › should load /en/calculators with correct title and structure" classname="smoke\basic-structure.spec.ts" time="41.447">
+<failure message="basic-structure.spec.ts:16:9 should load /en/calculators with correct title and structure" type="FAILURE">
+<![CDATA[  [smoke] › smoke\basic-structure.spec.ts:16:9 › Smoke Tests - Basic Site Structure › should load /en/calculators with correct title and structure 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/en/calculators", waiting until "load"
+
+
+      15 |   for (const page of pages) {
+      16 |     test(`should load ${page.path} with correct title and structure`, async ({ page: testPage }) => {
+    > 17 |       const response = await testPage.goto(page.path);
+         |                                       ^
+      18 |       expect(response?.status()).toBe(200);
+      19 |
+      20 |       // Проверяем title
+        at C:\Users\Viktor\projects\repair-blog\tests\e2e\smoke\basic-structure.spec.ts:17:39
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\smoke-basic-structure-Smok-1d636-correct-title-and-structure-smoke\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\smoke-basic-structure-Smok-1d636-correct-title-and-structure-smoke\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-basic-structure-Smok-1d636-correct-title-and-structure-smoke\video.webm]]
+
+[[ATTACHMENT|smoke-basic-structure-Smok-1d636-correct-title-and-structure-smoke\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Smoke Tests - Basic Site Structure › should load /calculators/budget with correct title and structure" classname="smoke\basic-structure.spec.ts" time="5.372">
+</testcase>
+<testcase name="Smoke Tests - Basic Site Structure › should load /en/calculators/budget with correct title and structure" classname="smoke\basic-structure.spec.ts" time="45.429">
+<failure message="basic-structure.spec.ts:16:9 should load /en/calculators/budget with correct title and structure" type="FAILURE">
+<![CDATA[  [smoke] › smoke\basic-structure.spec.ts:16:9 › Smoke Tests - Basic Site Structure › should load /en/calculators/budget with correct title and structure 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/en/calculators/budget", waiting until "load"
+
+
+      15 |   for (const page of pages) {
+      16 |     test(`should load ${page.path} with correct title and structure`, async ({ page: testPage }) => {
+    > 17 |       const response = await testPage.goto(page.path);
+         |                                       ^
+      18 |       expect(response?.status()).toBe(200);
+      19 |
+      20 |       // Проверяем title
+        at C:\Users\Viktor\projects\repair-blog\tests\e2e\smoke\basic-structure.spec.ts:17:39
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\smoke-basic-structure-Smok-73bd6-correct-title-and-structure-smoke\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\smoke-basic-structure-Smok-73bd6-correct-title-and-structure-smoke\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-basic-structure-Smok-73bd6-correct-title-and-structure-smoke\video.webm]]
+
+[[ATTACHMENT|smoke-basic-structure-Smok-73bd6-correct-title-and-structure-smoke\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Smoke Tests - Basic Site Structure › should have clickable navigation links" classname="smoke\basic-structure.spec.ts" time="38.554">
+<failure message="basic-structure.spec.ts:41:7 should have clickable navigation links" type="FAILURE">
+<![CDATA[  [smoke] › smoke\basic-structure.spec.ts:41:7 › Smoke Tests - Basic Site Structure › should have clickable navigation links 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:3000/", waiting until "load"
+
+
+      40 |
+      41 |   test('should have clickable navigation links', async ({ page }) => {
+    > 42 |     await page.goto('/');
+         |                ^
+      43 |     
+      44 |     // Проверяем основные ссылки в хедере
+      45 |     const navLinks = [
+        at C:\Users\Viktor\projects\repair-blog\tests\e2e\smoke\basic-structure.spec.ts:42:16
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\smoke-basic-structure-Smok-b680c--clickable-navigation-links-smoke\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\smoke-basic-structure-Smok-b680c--clickable-navigation-links-smoke\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|smoke-basic-structure-Smok-b680c--clickable-navigation-links-smoke\video.webm]]
+
+[[ATTACHMENT|smoke-basic-structure-Smok-b680c--clickable-navigation-links-smoke\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Smoke Tests - Basic Site Structure › should have valid footer links" classname="smoke\basic-structure.spec.ts" time="13.03">
+</testcase>
+<testcase name="Smoke Tests - Basic Site Structure › should handle 404 pages correctly" classname="smoke\basic-structure.spec.ts" time="5.691">
+</testcase>
+</testsuite>
+</testsuites>

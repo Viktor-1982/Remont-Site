@@ -46,7 +46,7 @@ export default function TermsOfUsePage() {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">❌ What's Prohibited</h2>
+          <h2 className="text-2xl font-semibold mb-4">❌ What&apos;s Prohibited</h2>
           
           <h3 className="text-xl font-medium mb-3">🚫 Content Copying</h3>
           <ul className="list-disc pl-6 mb-4">
@@ -86,7 +86,7 @@ export default function TermsOfUsePage() {
 
           <h3 className="text-xl font-medium mb-3">🛡️ Data Protection</h3>
           <ul className="list-disc pl-6">
-            <li><strong>Don't share data</strong> with third parties without consent</li>
+            <li><strong>Don&apos;t share data</strong> with third parties without consent</li>
             <li><strong>Use secure connections</strong> (HTTPS)</li>
             <li><strong>Comply with GDPR</strong> and applicable laws</li>
             <li><strong>Allow data deletion</strong> upon request</li>

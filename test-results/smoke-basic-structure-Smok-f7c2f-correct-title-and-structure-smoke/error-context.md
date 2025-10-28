@@ -1,0 +1,296 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "renohacks.com" [ref=e4] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=e5]:
+        - link "Home" [ref=e6] [cursor=pointer]:
+          - /url: /en
+        - link "Trends" [ref=e7] [cursor=pointer]:
+          - /url: /en/tags/trends
+        - link "DIY" [ref=e8] [cursor=pointer]:
+          - /url: /en/tags/diy
+        - link "About" [ref=e9] [cursor=pointer]:
+          - /url: /en/about
+        - link "Calculators" [ref=e10] [cursor=pointer]:
+          - /url: /en/calculators
+      - generic [ref=e11]:
+        - button "Toggle theme" [ref=e13]:
+          - img
+        - generic [ref=e14]:
+          - link "Instagram" [ref=e15] [cursor=pointer]:
+            - /url: https://www.instagram.com/reno.hacks
+            - img [ref=e16]
+          - link "Pinterest" [ref=e18] [cursor=pointer]:
+            - /url: https://www.pinterest.com/RenoHacks/
+            - img [ref=e19]
+  - main [ref=e21]:
+    - main [ref=e22]:
+      - generic [ref=e23]:
+        - img "Renohacks.com — блог о ремонте и строительстве" [ref=e25]
+        - generic [ref=e29]:
+          - heading "Home renovation & design blog" [level=1] [ref=e30]
+          - paragraph [ref=e31]: Renohacks.com — photo guides, hacks, budgets and calculators for your home renovation
+          - generic [ref=e32]:
+            - link "Trends →" [ref=e33] [cursor=pointer]:
+              - /url: /en/tags/trends
+            - link "DIY projects" [ref=e34] [cursor=pointer]:
+              - /url: /en/tags/diy
+        - button "Прокрутить вниз" [ref=e35] [cursor=pointer]:
+          - img [ref=e37]
+      - generic [ref=e40]:
+        - heading "Inspiring Renovation & Design Ideas" [level=1] [ref=e41]
+        - generic [ref=e42]:
+          - 'link "Step-by-step guide to renovating an apartment with a rough finish — from planning and utilities to cozy interiors and final touches. 🧱 Apartment renovation from a rough finish: from concrete to comfort Step-by-step guide to renovating an apartment with a rough finish — from planning and utilities to cozy interiors and final touches." [ref=e44] [cursor=pointer]':
+            - /url: /en/posts/rough-renovation-guide
+            - generic [ref=e45]:
+              - img "Step-by-step guide to renovating an apartment with a rough finish — from planning and utilities to cozy interiors and final touches." [ref=e46]
+              - generic [ref=e48]:
+                - 'heading "🧱 Apartment renovation from a rough finish: from concrete to comfort" [level=2] [ref=e49]'
+                - paragraph [ref=e50]: Step-by-step guide to renovating an apartment with a rough finish — from planning and utilities to cozy interiors and final touches.
+          - generic [ref=e51]:
+            - 'article "🌙 Bedroom Design: Comfort, Light and Inspiration" [ref=e52]':
+              - generic [ref=e53]:
+                - img "Modern bedroom ideas — from Scandinavian minimalism to warm textures, soft light, and natural harmony." [ref=e55]
+                - generic [ref=e56]:
+                  - generic [ref=e57]:
+                    - time [ref=e58]: October 17, 2025
+                    - text: · 2 min read
+                  - 'heading "🌙 Bedroom Design: Comfort, Light and Inspiration" [level=3] [ref=e59]':
+                    - 'link "🌙 Bedroom Design: Comfort, Light and Inspiration" [ref=e60] [cursor=pointer]':
+                      - /url: /en/posts/bedroom-design
+                  - paragraph [ref=e61]: Modern bedroom ideas — from Scandinavian minimalism to warm textures, soft light, and natural harmony.
+                  - navigation "Tag" [ref=e62]:
+                    - generic [ref=e63]:
+                      - 'generic "Tag: bedroom" [ref=e64]': "#bedroom"
+                      - 'generic "Tag: interior" [ref=e65]': "#interior"
+                      - 'generic "Tag: design" [ref=e66]': "#design"
+                      - 'generic "Tag: cozy" [ref=e67]': "#cozy"
+            - article "🌟 8 Key Interior Design Trends for 2025" [ref=e68]:
+              - generic [ref=e69]:
+                - img "What ideas will define interior design in 2025 — from biophilic design and sustainability to wellness living and smart homes." [ref=e71]
+                - generic [ref=e72]:
+                  - generic [ref=e73]:
+                    - time [ref=e74]: October 10, 2025
+                    - text: · 3 min read
+                  - heading "🌟 8 Key Interior Design Trends for 2025" [level=3] [ref=e75]:
+                    - link "🌟 8 Key Interior Design Trends for 2025" [ref=e76] [cursor=pointer]:
+                      - /url: /en/posts/interior-trends-2025
+                  - paragraph [ref=e77]: What ideas will define interior design in 2025 — from biophilic design and sustainability to wellness living and smart homes.
+                  - navigation "Tag" [ref=e78]:
+                    - generic [ref=e79]:
+                      - 'generic "Tag: interior design" [ref=e80]': "#interior design"
+                      - 'generic "Tag: trends" [ref=e81]': "#trends"
+                      - 'generic "Tag: home" [ref=e82]': "#home"
+                      - 'generic "Tag: renovation" [ref=e83]': "#renovation"
+            - article "6 Tips for Choosing Living Room Colors" [ref=e84]:
+              - generic [ref=e85]:
+                - 'img "How to choose harmonious living room colors: from lighting and wall condition to accent tones and paint types. Real designer tips for a cozy and practical interior." [ref=e87]'
+                - generic [ref=e88]:
+                  - generic [ref=e89]:
+                    - time [ref=e90]: October 10, 2025
+                    - text: · 4 min read
+                  - heading "6 Tips for Choosing Living Room Colors" [level=3] [ref=e91]:
+                    - link "6 Tips for Choosing Living Room Colors" [ref=e92] [cursor=pointer]:
+                      - /url: /en/posts/living-room-color-tips
+                  - paragraph [ref=e93]: "How to choose harmonious living room colors: from lighting and wall condition to accent tones and paint types. Real designer tips for a cozy and practical interior."
+                  - navigation "Tag" [ref=e94]:
+                    - generic [ref=e95]:
+                      - 'generic "Tag: interior design" [ref=e96]': "#interior design"
+                      - 'generic "Tag: living room" [ref=e97]': "#living room"
+                      - 'generic "Tag: color" [ref=e98]': "#color"
+                      - 'generic "Tag: tips" [ref=e99]': "#tips"
+            - 'article "Main Types of Wallpaper: Features, Pros, and Best Use" [ref=e100]':
+              - generic [ref=e101]:
+                - img "Explore six main types of wallpaper — from classic paper to modern fiberglass. Real insights on durability, texture, and where each works best." [ref=e103]
+                - generic [ref=e104]:
+                  - generic [ref=e105]:
+                    - time [ref=e106]: October 6, 2025
+                    - text: · 4 min read
+                  - 'heading "Main Types of Wallpaper: Features, Pros, and Best Use" [level=3] [ref=e107]':
+                    - 'link "Main Types of Wallpaper: Features, Pros, and Best Use" [ref=e108] [cursor=pointer]':
+                      - /url: /en/posts/wallpaper-types
+                  - paragraph [ref=e109]: Explore six main types of wallpaper — from classic paper to modern fiberglass. Real insights on durability, texture, and where each works best.
+                  - navigation "Tag" [ref=e110]:
+                    - generic [ref=e111]:
+                      - 'generic "Tag: wallpaper" [ref=e112]': "#wallpaper"
+                      - 'generic "Tag: renovation" [ref=e113]': "#renovation"
+                      - 'generic "Tag: interior design" [ref=e114]': "#interior design"
+                      - 'generic "Tag: home decor" [ref=e115]': "#home decor"
+            - 'article "Cave Living: Modern Design in the Heart of Nature" [ref=e116]':
+              - generic [ref=e117]:
+                - img "Real examples of homes and interiors built into rock — bedrooms, bathrooms, and living rooms inspired by nature. How architects create comfort carved directly into stone." [ref=e119]
+                - generic [ref=e120]:
+                  - generic [ref=e121]:
+                    - time [ref=e122]: October 5, 2025
+                    - text: · 3 min read
+                  - 'heading "Cave Living: Modern Design in the Heart of Nature" [level=3] [ref=e123]':
+                    - 'link "Cave Living: Modern Design in the Heart of Nature" [ref=e124] [cursor=pointer]':
+                      - /url: /en/posts/cave-living
+                  - paragraph [ref=e125]: Real examples of homes and interiors built into rock — bedrooms, bathrooms, and living rooms inspired by nature. How architects create comfort carved directly into stone.
+                  - navigation "Tag" [ref=e126]:
+                    - generic [ref=e127]:
+                      - 'generic "Tag: design" [ref=e128]': "#design"
+                      - 'generic "Tag: architecture" [ref=e129]': "#architecture"
+                      - 'generic "Tag: interior" [ref=e130]': "#interior"
+                      - 'generic "Tag: nature" [ref=e131]': "#nature"
+            - 'article "Tiny Kitchen, Big Style: Budget Makeover Without Major Renovation" [ref=e132]':
+              - generic [ref=e133]:
+                - 'img "How to refresh a small kitchen on your own: repaint cabinet doors, use peel-and-stick backsplash, improve lighting, and add décor — all without tearing down walls or spending a fortune." [ref=e135]'
+                - generic [ref=e136]:
+                  - generic [ref=e137]:
+                    - time [ref=e138]: October 4, 2025
+                    - text: · 4 min read
+                  - 'heading "Tiny Kitchen, Big Style: Budget Makeover Without Major Renovation" [level=3] [ref=e139]':
+                    - 'link "Tiny Kitchen, Big Style: Budget Makeover Without Major Renovation" [ref=e140] [cursor=pointer]':
+                      - /url: /en/posts/kitchen-makeover
+                  - paragraph [ref=e141]: "How to refresh a small kitchen on your own: repaint cabinet doors, use peel-and-stick backsplash, improve lighting, and add décor — all without tearing down walls or spending a fortune."
+                  - navigation "Tag" [ref=e142]:
+                    - generic [ref=e143]:
+                      - 'generic "Tag: kitchen" [ref=e144]': "#kitchen"
+                      - 'generic "Tag: small spaces" [ref=e145]': "#small spaces"
+                      - 'generic "Tag: budget renovation" [ref=e146]': "#budget renovation"
+                      - 'generic "Tag: diy" [ref=e147]': "#diy"
+            - 'article "DIY Bathroom Makeover: Cosmetic Renovation Step by Step" [ref=e148]':
+              - generic [ref=e149]:
+                - 'img "How to quickly and affordably refresh your bathroom: chalk paint for tiles, PVC wall panels, new flooring, and stylish décor. A complete DIY guide." [ref=e151]'
+                - generic [ref=e152]:
+                  - generic [ref=e153]:
+                    - time [ref=e154]: September 30, 2025
+                    - text: · 5 min read
+                  - 'heading "DIY Bathroom Makeover: Cosmetic Renovation Step by Step" [level=3] [ref=e155]':
+                    - 'link "DIY Bathroom Makeover: Cosmetic Renovation Step by Step" [ref=e156] [cursor=pointer]':
+                      - /url: /en/posts/diy-bathroom-makeover
+                  - paragraph [ref=e157]: "How to quickly and affordably refresh your bathroom: chalk paint for tiles, PVC wall panels, new flooring, and stylish décor. A complete DIY guide."
+                  - navigation "Tag" [ref=e158]:
+                    - generic [ref=e159]:
+                      - 'generic "Tag: bathroom" [ref=e160]': "#bathroom"
+                      - 'generic "Tag: diy" [ref=e161]': "#diy"
+                      - 'generic "Tag: cosmetic makeover" [ref=e162]': "#cosmetic makeover"
+                      - 'generic "Tag: interior" [ref=e163]': "#interior"
+            - article "5 Tips for Choosing Colors in Interior Design" [ref=e164]:
+              - generic [ref=e165]:
+                - 'img "Professional color advice for your home: how lighting, atmosphere, and accent tones shape the mood of every room." [ref=e167]'
+                - generic [ref=e168]:
+                  - generic [ref=e169]:
+                    - time [ref=e170]: September 27, 2025
+                    - text: · 4 min read
+                  - heading "5 Tips for Choosing Colors in Interior Design" [level=3] [ref=e171]:
+                    - link "5 Tips for Choosing Colors in Interior Design" [ref=e172] [cursor=pointer]:
+                      - /url: /en/posts/five-interior-tips
+                  - paragraph [ref=e173]: "Professional color advice for your home: how lighting, atmosphere, and accent tones shape the mood of every room."
+                  - navigation "Tag" [ref=e174]:
+                    - generic [ref=e175]:
+                      - 'generic "Tag: interior design" [ref=e176]': "#interior design"
+                      - 'generic "Tag: color" [ref=e177]': "#color"
+                      - 'generic "Tag: home decor" [ref=e178]': "#home decor"
+                      - 'generic "Tag: lighting" [ref=e179]': "#lighting"
+            - 'article "Real Interior Design Trends 2026: What’s Already Shaping Style" [ref=e180]':
+              - generic [ref=e181]:
+                - img "An overview of the most reliable interior trends of 2026 — colors, materials, functionality, and technology at the core." [ref=e183]
+                - generic [ref=e184]:
+                  - generic [ref=e185]:
+                    - time [ref=e186]: September 23, 2025
+                    - text: · 3 min read
+                  - 'heading "Real Interior Design Trends 2026: What’s Already Shaping Style" [level=3] [ref=e187]':
+                    - 'link "Real Interior Design Trends 2026: What’s Already Shaping Style" [ref=e188] [cursor=pointer]':
+                      - /url: /en/posts/interior-design-trends-2026
+                  - paragraph [ref=e189]: An overview of the most reliable interior trends of 2026 — colors, materials, functionality, and technology at the core.
+                  - navigation "Tag" [ref=e190]:
+                    - generic [ref=e191]:
+                      - 'generic "Tag: design" [ref=e192]': "#design"
+                      - 'generic "Tag: interior" [ref=e193]': "#interior"
+                      - 'generic "Tag: 2026" [ref=e194]': "#2026"
+                      - 'generic "Tag: trends" [ref=e195]': "#trends"
+            - article "5 Renovation Tips to Stay Sane" [ref=e196]:
+              - generic [ref=e197]:
+                - img "Planning, budget, material selection, and quality control — proven steps to renovate without chaos and extra costs." [ref=e199]
+                - generic [ref=e200]:
+                  - generic [ref=e201]:
+                    - time [ref=e202]: September 12, 2025
+                    - text: · 3 min read
+                  - heading "5 Renovation Tips to Stay Sane" [level=3] [ref=e203]:
+                    - link "5 Renovation Tips to Stay Sane" [ref=e204] [cursor=pointer]:
+                      - /url: /en/posts/renovation-tips-5
+                  - paragraph [ref=e205]: Planning, budget, material selection, and quality control — proven steps to renovate without chaos and extra costs.
+                  - navigation "Tag" [ref=e206]:
+                    - generic [ref=e207]:
+                      - 'generic "Tag: renovation" [ref=e208]': "#renovation"
+                      - 'generic "Tag: lifestyle" [ref=e209]': "#lifestyle"
+                      - 'generic "Tag: interior" [ref=e210]': "#interior"
+                      - 'generic "Tag: stress-free renovation" [ref=e211]': "#stress-free renovation"
+            - 'article "How to Paint Walls: Complete Step-by-Step Guide 2025" [ref=e212]':
+              - generic [ref=e213]:
+                - 'img "Learn how to paint walls yourself: choose paint, gather tools, apply coats correctly. Professional tips and tricks for smooth, lasting results without mistakes." [ref=e215]'
+                - generic [ref=e216]:
+                  - generic [ref=e217]:
+                    - time [ref=e218]: September 4, 2025
+                    - text: · 5 min read
+                  - 'heading "How to Paint Walls: Complete Step-by-Step Guide 2025" [level=3] [ref=e219]':
+                    - 'link "How to Paint Walls: Complete Step-by-Step Guide 2025" [ref=e220] [cursor=pointer]':
+                      - /url: /en/posts/painting-walls-yourself
+                  - paragraph [ref=e221]: "Learn how to paint walls yourself: choose paint, gather tools, apply coats correctly. Professional tips and tricks for smooth, lasting results without mistakes."
+                  - navigation "Tag" [ref=e222]:
+                    - generic [ref=e223]:
+                      - 'generic "Tag: walls" [ref=e224]': "#walls"
+                      - 'generic "Tag: painting" [ref=e225]': "#painting"
+                      - 'generic "Tag: diy" [ref=e226]': "#diy"
+                      - 'generic "Tag: renovation" [ref=e227]': "#renovation"
+            - article "Preparing Walls for Painting" [ref=e228]:
+              - generic [ref=e229]:
+                - 'img "Step-by-step wall prep: covering furniture, taping edges, filling cracks, sanding, and priming for a flawless paint job." [ref=e231]'
+                - generic [ref=e232]:
+                  - generic [ref=e233]:
+                    - time [ref=e234]: September 3, 2025
+                    - text: · 3 min read
+                  - heading "Preparing Walls for Painting" [level=3] [ref=e235]:
+                    - link "Preparing Walls for Painting" [ref=e236] [cursor=pointer]:
+                      - /url: /en/posts/preparing-walls-for-painting
+                  - paragraph [ref=e237]: "Step-by-step wall prep: covering furniture, taping edges, filling cracks, sanding, and priming for a flawless paint job."
+                  - navigation "Tag" [ref=e238]:
+                    - generic [ref=e239]:
+                      - 'generic "Tag: walls" [ref=e240]': "#walls"
+                      - 'generic "Tag: preparation" [ref=e241]': "#preparation"
+                      - 'generic "Tag: painting" [ref=e242]': "#painting"
+                      - 'generic "Tag: diy" [ref=e243]': "#diy"
+  - contentinfo [ref=e244]:
+    - generic [ref=e245]:
+      - region "renohacks.com" [ref=e246]:
+        - heading "renohacks.com" [level=2] [ref=e247]
+        - paragraph [ref=e248]: Renohacks — renovation and construction blog. Photo guides, estimates, DIY tips and material reviews.
+      - navigation "Sections" [ref=e249]:
+        - heading "Sections" [level=2] [ref=e250]
+        - list [ref=e251]:
+          - listitem [ref=e252]:
+            - link "Kitchen" [ref=e253] [cursor=pointer]:
+              - /url: /en/tags/kitchen
+          - listitem [ref=e254]:
+            - link "Bathroom" [ref=e255] [cursor=pointer]:
+              - /url: /en/tags/bathroom
+          - listitem [ref=e256]:
+            - link "Walls" [ref=e257] [cursor=pointer]:
+              - /url: /en/tags/walls
+      - region "Contacts" [ref=e258]:
+        - heading "Contacts" [level=2] [ref=e259]
+        - paragraph [ref=e260]: "Have ideas or questions? Contact us:"
+        - paragraph [ref=e261]:
+          - link "Email info@renohacks.com" [ref=e262] [cursor=pointer]:
+            - /url: mailto:info@renohacks.com
+            - text: info@renohacks.com
+        - generic "Follow us" [ref=e263]:
+          - link "Instagram" [ref=e264] [cursor=pointer]:
+            - /url: https://www.instagram.com/reno.hacks
+            - img [ref=e265]
+            - generic [ref=e267]: Instagram
+          - link "Pinterest" [ref=e268] [cursor=pointer]:
+            - /url: https://www.pinterest.com/RenoHacks/
+            - img [ref=e269]
+            - generic [ref=e271]: Pinterest
+    - generic [ref=e272]:
+      - generic [ref=e273]: © 2025 renohacks.com. All rights reserved.
+      - link "Terms of Use" [ref=e274] [cursor=pointer]:
+        - /url: /en/terms
+```
