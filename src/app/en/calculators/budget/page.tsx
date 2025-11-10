@@ -1,89 +1,395 @@
+import Link from "next/link"
 import Script from "next/script"
 import { getPageMetadata } from "@/lib/seo"
 import { RenovationBudgetPlannerEn } from "@/components/widgets/renovation-budget-planner-en"
 
 export const metadata = getPageMetadata("/en/calculators/budget", {
-    title: "Renovation Budget Planner | Cost Calculator",
-    description:
-        "Handy renovation budget planner: calculate the total cost of work with a reserve for unexpected expenses. Free tool from Renohacks.",
-    cover: "/images/og-default.png",
+  title: "Renovation Budget Planner | Cost Calculator",
+  description:
+    "Free renovation budget planner: calculate the total cost of your home renovation with a reserve for unexpected expenses. A practical tool by Renohacks.",
+  cover: "/images/og-budget-en.jpg",
+  type: "website",
+  alternates: {
+    canonical: "https://renohacks.com/en/calculators/budget",
+    languages: {
+      "ru": "https://renohacks.com/calculators/budget",
+      "x-default": "https://renohacks.com/en/calculators/budget",
+    },
+  },
+  openGraph: {
+    title: "Free Renovation Budget Calculator | Renohacks",
+    description: "Estimate your home renovation costs and plan your budget like a pro.",
+    url: "https://renohacks.com/en/calculators/budget",
+    images: ["https://renohacks.com/images/og-budget-en.jpg"],
+    locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Renovation Budget Calculator | Renohacks",
+    description: "Plan your renovation costs with ease and accuracy.",
+    images: ["https://renohacks.com/images/og-budget-en.jpg"],
+  },
+  keywords: [
+    "renovation budget planner",
+    "home renovation cost calculator",
+    "remodeling budget estimator",
+    "calculate renovation costs online",
+    "budget calculator for renovation",
+    "Renohacks renovation tools",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
 })
 
 export default function BudgetPlannerPageEn() {
-    const structuredData = {
-        "@context": "https://schema.org",
-        "@type": ["SoftwareApplication", "WebApplication"],
+  const faqItems = [
+    {
+      question: "How accurate is this renovation cost calculator?",
+      answer:
+        "The calculator provides an approximate cost estimate based on your inputs and includes a reserve for unexpected expenses. It’s ideal for planning, not for exact contractor quotes.",
+    },
+    {
+      question: "Can I use the planner for different currencies?",
+      answer:
+        "Yes. You can switch currencies instantly and the layout adapts perfectly for both desktop and mobile use.",
+    },
+    {
+      question: "Is this renovation planner free to use?",
+      answer:
+        "Yes, the renovation budget calculator is completely free. It was created by Renohacks to help homeowners and pros plan renovation budgets confidently.",
+    },
+    {
+      question: "What costs should I include in my renovation budget?",
+      answer:
+        "Include demolition, materials, labor, finishing work, fixtures, and a contingency reserve. The planner lets you break down every category to avoid missed expenses.",
+    },
+  ]
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": ["SoftwareApplication", "WebApplication"],
+    name: "Renovation Budget Planner",
+    alternateName: "Renovation Cost Calculator",
+    operatingSystem: "All",
+    applicationCategory: ["FinanceApplication", "BusinessApplication"],
+    applicationSubCategory: "ConstructionBudgetCalculator",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+    description:
+      "Free online calculator for estimating renovation budget of apartment or house. Helps plan expenses and include a reserve for unexpected costs.",
+    url: "https://renohacks.com/en/calculators/budget",
+    image: "https://renohacks.com/images/og-budget-en.jpg",
+    screenshot: "https://renohacks.com/images/og-budget-en.jpg",
+    creator: {
+      "@type": "Organization",
+      name: "Renohacks",
+      url: "https://renohacks.com",
+      logo: "https://renohacks.com/favicon.ico",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Renohacks",
+      url: "https://renohacks.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://renohacks.com/images/logo.svg",
+      },
+    },
+    potentialAction: {
+      "@type": "UseAction",
+      target: "https://renohacks.com/en/calculators/budget",
+      name: "Calculate renovation budget",
+    },
+    featureList: [
+      "Calculate costs by work categories",
+      "Account for unexpected expenses reserve",
+      "Support for different currencies",
+      "Auto-complete work categories",
+      "Mobile responsive design",
+      "Export-ready summary of renovation totals",
+    ],
+    keywords:
+      "renovation calculator, renovation cost calculator, home renovation budget, remodeling estimator, renovation planner tool",
+    inLanguage: "en",
+    isAccessibleForFree: true,
+    availableLanguage: ["en", "ru"],
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://renohacks.com/en/calculators/budget",
+    },
+    audience: {
+      "@type": "Audience",
+      audienceType: ["Homeowners", "Contractors", "DIY Renovators"],
+    },
+  }
+
+  const faqData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  }
+
+  const breadcrumbData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Renohacks",
+        item: "https://renohacks.com/en",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Calculators",
+        item: "https://renohacks.com/en/calculators",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
         name: "Renovation Budget Planner",
-        alternateName: "Renovation Cost Calculator",
-        operatingSystem: "All",
-        applicationCategory: ["FinanceApplication", "BusinessApplication"],
-        offers: {
-            "@type": "Offer",
-            price: "0",
-            priceCurrency: "USD",
-            availability: "https://schema.org/InStock",
-        },
-        description:
-            "Free online calculator for estimating renovation budget of apartment or house. Helps plan expenses and account for reserve for unexpected costs.",
-        url: "https://renohacks.com/en/calculators/budget",
-        image: "https://renohacks.com/images/og-default.png",
-        screenshot: "https://renohacks.com/images/og-default.png",
-        creator: {
-            "@type": "Organization",
-            name: "Renohacks",
-            url: "https://renohacks.com",
-            logo: "https://renohacks.com/favicon.ico",
-        },
-        potentialAction: {
-            "@type": "UseAction",
-            target: "https://renohacks.com/en/calculators/budget",
-            name: "Calculate renovation budget",
-        },
-        featureList: [
-            "Calculate costs by work categories",
-            "Account for unexpected expenses reserve",
-            "Support for different currencies",
-            "Auto-complete work categories",
-            "Mobile responsive design"
-        ],
-        keywords: "renovation calculator, budget planner, renovation cost calculator, home renovation budget",
-        inLanguage: "en",
-        isAccessibleForFree: true,
-        browserRequirements: "Requires JavaScript. Requires HTML5.",
-    }
+        item: "https://renohacks.com/en/calculators/budget",
+      },
+    ],
+  }
 
-    return (
-        <main className="max-w-2xl mx-auto py-10 px-4">
-            <Script
-                id="budget-planner-schema-en"
-                type="application/ld+json"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-            />
+  const howToData = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to calculate a renovation budget with Renohacks",
+    description:
+      "Step-by-step instructions for using the Renohacks Renovation Budget Planner to estimate remodeling costs with a contingency reserve.",
+    supply: [
+      {
+        "@type": "HowToSupply",
+        name: "Room or project measurements",
+      },
+      {
+        "@type": "HowToSupply",
+        name: "Estimated costs per work category",
+      },
+    ],
+    step: [
+      {
+        "@type": "HowToStep",
+        name: "List renovation categories",
+        text: "Select a renovation category from the suggestions or enter your own to cover every part of the project.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Enter estimated costs",
+        text: "Type the expected expense for each category. The calculator supports commas and decimal points.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Set a reserve percentage",
+        text: "Adjust the reserve slider or input to include a contingency fund for unexpected costs.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Review totals",
+        text: "Click calculate to see subtotal, reserve amount, and final renovation budget.",
+      },
+    ],
+    totalTime: "PT3M",
+  }
 
-            <h1 className="text-3xl font-bold mb-4">Renovation Budget Planner</h1>
-            <p className="text-muted-foreground mb-8">
-                Calculate the total renovation cost: add expenses by category and get the final amount with a reserve for unexpected expenses.
-            </p>
-            
-            <section aria-label="Interactive renovation budget planner calculator">
-                <RenovationBudgetPlannerEn />
-            </section>
-            
-            <aside className="mt-8 p-4 bg-muted rounded-lg" aria-label="Usage instructions">
-                <h2 className="font-semibold mb-2">💡 How to use</h2>
-                <ol className="list-decimal ml-5 space-y-1 text-sm">
-                    <li>Enter the cost of each work category</li>
-                    <li>Specify the reserve percentage (20% recommended)</li>
-                    <li>Get the total cost including unexpected expenses</li>
-                </ol>
-                <p className="mt-3 text-sm text-muted-foreground">
-                    💰 Renovation usually costs 20–30% more than planned. It&apos;s better to include a reserve from the start!
-                </p>
-            </aside>
-        </main>
-    )
+  const featureHighlights = [
+    {
+      title: "Fast cost structure",
+      description:
+        "Start with pre-filled renovation categories or add your own to build a detailed cost structure in minutes.",
+    },
+    {
+      title: "Smart contingency planning",
+      description:
+        "Automatically calculate a reserve percentage so you always include funds for unexpected work or price changes.",
+    },
+    {
+      title: "Currency flexibility",
+      description:
+        "Switch between USD and EUR instantly and keep calculations consistent for international projects.",
+    },
+    {
+      title: "Share-ready summary",
+      description:
+        "Review a clear total with subtotals, making it easy to share with clients, contractors, or partners.",
+    },
+  ]
+
+  return (
+    <main className="max-w-2xl mx-auto py-10 px-4">
+      {/* Schema.org structured data */}
+      <Script
+        id="budget-planner-schema-en"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <Script
+        id="faq-schema-en"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqData) }}
+      />
+      <Script
+        id="breadcrumb-schema-en"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
+      />
+      <Script
+        id="howto-schema-en"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToData) }}
+      />
+
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold mb-4">
+          Renovation Budget Planner &mdash; Accurate Cost Calculator in Minutes
+        </h1>
+        <p className="text-muted-foreground">
+          Build a reliable <strong>home renovation budget</strong>: categorize every expense, add a contingency reserve, and
+          export a clear total for clients or contractors. Trusted by DIY renovators and pros planning apartments, houses,
+          and remodeling projects of any size.
+        </p>
+      </header>
+
+      <section aria-label="Interactive renovation budget planner calculator">
+        <RenovationBudgetPlannerEn />
+      </section>
+
+      <section className="mt-10 rounded-lg border bg-card px-4 py-6">
+        <h2 className="text-xl font-semibold mb-4">Why professionals choose this renovation budget calculator</h2>
+        <ul className="space-y-3 text-sm text-muted-foreground">
+          {featureHighlights.map((feature) => (
+            <li key={feature.title}>
+              <span className="font-medium text-foreground">{feature.title}.</span> {feature.description}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mt-10 bg-muted/60 rounded-lg px-4 py-6" aria-label="Step-by-step renovation budgeting guide">
+        <h2 className="text-xl font-semibold mb-3">Step-by-step renovation budgeting guide</h2>
+        <ol className="list-decimal ml-5 space-y-2 text-sm text-muted-foreground">
+          <li>List every renovation category: demolition, wiring, plumbing, finishes, fixtures, and cleanup.</li>
+          <li>Enter projected costs for each item using supplier quotes or previous project data.</li>
+          <li>Adjust the contingency reserve (20&ndash;25% recommended) to cover unforeseen tasks and price changes.</li>
+          <li>Review subtotal, reserve amount, and final total; share the result or revisit it during negotiations.</li>
+        </ol>
+        <p className="mt-3 text-sm text-muted-foreground">
+          💡 Tip: Revisit the budget after each contractor update to keep your <strong>remodeling cost plan</strong> on track.
+        </p>
+      </section>
+
+      <section className="mt-10 text-sm leading-relaxed text-muted-foreground space-y-3">
+        <h2 className="text-xl font-semibold text-foreground">Plan your renovation budget like a pro</h2>
+        <p>
+          The Renohacks <strong>renovation budget planner</strong> gives you a structured view of every cost driver&mdash;labor,
+          materials, permits, and finishing touches. It mirrors how professional estimators prepare bids, ensuring you do not
+          overlook hidden expenses such as debris removal or fixture installation.
+        </p>
+        <p>
+          Use the calculator to compare multiple project scenarios: set different reserves, swap materials, or test room-by-room
+          budgets. The dynamic totals update instantly, helping you negotiate confidently with contractors and suppliers.
+        </p>
+        <p>
+          Trusted by the Renohacks community, this <strong>home renovation cost calculator</strong> stays free and mobile friendly.
+          Bookmark the page and pair it with our other renovation tools to build a full financial strategy before the first wall
+          comes down.
+        </p>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="text-xl font-semibold mb-4">Renovation budgeting FAQs</h2>
+        <div className="space-y-4 text-sm text-muted-foreground">
+          {faqItems.map((item) => (
+            <details key={item.question} className="group rounded-lg border bg-card px-4 py-3 open:bg-card/80">
+              <summary className="cursor-pointer font-medium text-foreground">
+                {item.question}
+              </summary>
+              <p className="mt-2">{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-12 text-sm text-muted-foreground">
+        <h2 className="text-xl font-semibold mb-3">More renovation planning resources</h2>
+        <ul className="list-disc ml-5 space-y-2">
+          <li>
+            <Link href="/en/calculators/paint" className="underline hover:text-primary">
+              Paint calculator
+            </Link>{" "}
+            &mdash; estimate interior and exterior paint coverage by wall area.
+          </li>
+          <li>
+            <Link href="/en/calculators/tile" className="underline hover:text-primary">
+              Tile calculator
+            </Link>{" "}
+            &mdash; plan tile layout, waste percentage, and adhesive needs.
+          </li>
+          <li>
+            <Link href="/en/posts/budget-renovation-tips" className="underline hover:text-primary">
+              Budget renovation tips
+            </Link>{" "}
+            &mdash; learn how to prioritize work and stretch every remodeling dollar.
+          </li>
+          <li>
+            <Link href="/en/calculators" className="underline hover:text-primary">
+              All renovation calculators
+            </Link>{" "}
+            &mdash; explore the full Renohacks toolkit for planning materials and costs.
+          </li>
+        </ul>
+      </section>
+
+      <aside className="mt-12 rounded-lg border bg-card px-4 py-5 text-sm text-muted-foreground">
+        <h2 className="font-semibold text-foreground mb-2">Share the calculator</h2>
+        <p>Help another homeowner plan smarter:</p>
+        <div className="mt-3 flex flex-wrap gap-4">
+          <a
+            href="https://pinterest.com/pin/create/button/?url=https://renohacks.com/en/calculators/budget&media=https://renohacks.com/images/og-budget-en.jpg&description=Plan your renovation costs with this free calculator by Renohacks"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-primary"
+          >
+            📌 Share on Pinterest
+          </a>
+          <a
+            href="https://twitter.com/intent/tweet?url=https://renohacks.com/en/calculators/budget&text=Free Renovation Budget Planner by Renohacks"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-primary"
+          >
+            🐦 Share on X
+          </a>
+        </div>
+      </aside>
+    </main>
+  )
 }
-
-

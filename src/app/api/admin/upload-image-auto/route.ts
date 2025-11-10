@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
-import { writeFile, mkdir } from "fs/promises"
-import { join } from "path"
-import { existsSync } from "fs"
+
+interface GitTreeItem {
+    path: string
+    mode: string
+    type: "blob" | "tree"
+    sha?: string
+}
 
 // Проверка аутентификации
 function checkAuth(req: NextRequest): boolean {
@@ -62,7 +66,6 @@ export async function POST(req: NextRequest) {
             // Определяем ветку (может быть main или master)
             const defaultBranch = process.env.GITHUB_BRANCH || "main"
             let baseSha: string
-            let treeSha: string
             let usedBranch: string
             
             // Получаем текущий SHA основной ветки
@@ -118,37 +121,34 @@ export async function POST(req: NextRequest) {
             }
             
             const commitData = await commitResponse.json()
-            treeSha = commitData.tree.sha
+            const treeSha: string = commitData.tree.sha
 
-            // Проверяем, существует ли папка
-            let treeItems: any[] = []
-            try {
-                const treeResponse = await fetch(
-                    `https://api.github.com/repos/${githubRepo}/git/trees/${treeSha}?recursive=1`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${githubToken}`,
-                            Accept: "application/vnd.github.v3+json",
-                        },
-                    }
-                )
-                if (treeResponse.ok) {
-                    const treeData = await treeResponse.json()
-                    treeItems = treeData.tree || []
+            // Получаем существующие элементы дерева (если доступны)
+            const treeResponse = await fetch(
+                `https://api.github.com/repos/${githubRepo}/git/trees/${treeSha}?recursive=1`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${githubToken}`,
+                        Accept: "application/vnd.github.v3+json",
+                    },
                 }
-            } catch (e) {
-                // Игнорируем ошибку
+            )
+
+            let existingTreeItems: GitTreeItem[] = []
+            if (treeResponse.ok) {
+                const treeData = (await treeResponse.json()) as { tree?: GitTreeItem[] }
+                existingTreeItems = (treeData.tree ?? []).filter(
+                    (item) => item.type === "blob" && item.path !== repoPath
+                )
             }
 
             // Создаём новое дерево с нашим файлом
-            const newTreeItems = treeItems
-                .filter((item: any) => item.type === "blob" && item.path !== repoPath)
-                .map((item: any) => ({
-                    path: item.path,
-                    mode: item.mode,
-                    type: item.type,
-                    sha: item.sha,
-                }))
+            const newTreeItems: GitTreeItem[] = existingTreeItems.map((item) => ({
+                path: item.path,
+                mode: item.mode,
+                type: item.type,
+                sha: item.sha,
+            }))
 
             // Добавляем новый файл
             const blobResponse = await fetch(
@@ -256,12 +256,14 @@ export async function POST(req: NextRequest) {
                 fileName: fileName,
                 message: "Image uploaded and committed to Git automatically!",
             })
-        } catch (githubError: any) {
+        } catch (githubError: unknown) {
+            const message =
+                githubError instanceof Error ? githubError.message : "Unknown GitHub error"
             console.error("GitHub API error:", githubError)
             return NextResponse.json(
                 {
                     error: "Failed to commit to GitHub",
-                    details: githubError.message,
+                    details: message,
                     hint: "Image is saved temporarily, but will be lost on next deploy without Git commit",
                 },
                 { status: 500 }

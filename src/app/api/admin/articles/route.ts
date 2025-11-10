@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { readFile, writeFile, readdir, stat } from "fs/promises"
+import { readFile, writeFile, readdir } from "fs/promises"
 import { join } from "path"
 import { existsSync } from "fs"
 import slugify from "slugify"
@@ -33,7 +33,8 @@ export async function GET(req: NextRequest) {
                 } else if (file.name.endsWith(".mdx")) {
                     try {
                         const content = await readFile(filePath, "utf-8")
-                        const frontmatter = content.match(/^---\n([\s\S]*?)\n---/)
+                        // Поддержка LF и CRLF
+                        const frontmatter = content.match(/^---\r?\n([\s\S]*?)\r?\n---/)
                         
                         if (frontmatter) {
                             const titleMatch = frontmatter[1].match(/title:\s*["'](.*)["']/)
@@ -87,7 +88,7 @@ export async function POST(req: NextRequest) {
             date,
             tags = [],
             cover,
-            author = "Renohacks",
+            author = "Умница",
             translationOf,
             draft = false,
             keywords = [],
@@ -171,7 +172,7 @@ export async function PUT(req: NextRequest) {
             date,
             tags = [],
             cover,
-            author = "Renohacks",
+            author = "Умница",
             translationOf,
             draft = false,
             keywords = [],
@@ -232,4 +233,5 @@ ${content || ""}
         )
     }
 }
+
 

@@ -53,7 +53,11 @@ interface ExpenseItem {
   cost: string
 }
 
-export function RenovationBudgetPlannerEn() {
+interface RenovationBudgetPlannerEnProps {
+  onCalculate?: () => void
+}
+
+export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlannerEnProps) {
   const locale: Locale = "en"
 
   const t: BudgetCalcDict = calcData[locale].calc.budget
@@ -95,6 +99,8 @@ export function RenovationBudgetPlannerEn() {
     setSubtotal(sum)
     setReserveAmount(reserveValue)
     setTotal(finalTotal)
+
+    onCalculate?.()
   }
 
   return (

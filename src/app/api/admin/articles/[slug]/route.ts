@@ -40,8 +40,8 @@ export async function GET(
 
         const content = await readFile(filePath, "utf-8")
 
-        // Парсим frontmatter
-        const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/)
+        // Парсим frontmatter (поддержка LF и CRLF)
+        const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---/)
         const bodyContent = frontmatterMatch 
             ? content.slice(frontmatterMatch[0].length).trim()
             : content
@@ -99,4 +99,5 @@ export async function GET(
         )
     }
 }
+
 

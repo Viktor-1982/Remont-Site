@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Upload, Save, Plus, Eye, X } from "lucide-react"
+import { Upload, Save, Plus, Eye, X, ExternalLink } from "lucide-react"
 import Image from "next/image"
+import slugify from "slugify"
 
 interface Article {
     slug: string
@@ -33,8 +34,9 @@ interface ArticleData {
 // Токен должен быть одинаковым с серверным ADMIN_TOKEN
 // В продакшене это должно быть через переменные окружения
 const getAdminToken = () => {
-    // В dev режиме используем дефолтный токен
-    return typeof window !== "undefined" ? "your-secret-token" : ""
+    // Используем публичную переменную, чтобы совпадала с серверным ADMIN_TOKEN
+    const publicToken = process.env.NEXT_PUBLIC_ADMIN_TOKEN || "your-secret-token"
+    return typeof window !== "undefined" ? publicToken : ""
 }
 
 export default function AdminPage() {
@@ -46,6 +48,7 @@ export default function AdminPage() {
     const [isLoading, setIsLoading] = useState(false)
     const [uploadingImage, setUploadingImage] = useState(false)
     const [showPreview, setShowPreview] = useState(false)
+    const [slugManuallyEdited, setSlugManuallyEdited] = useState(false)
     
     const textareaRef = useRef<HTMLTextAreaElement>(null)
 
@@ -56,7 +59,7 @@ export default function AdminPage() {
         date: new Date().toISOString().split("T")[0],
         tags: "",
         cover: "",
-        author: "Renohacks",
+        author: "Умница",
         translationOf: "",
         draft: false,
         keywords: "",
@@ -67,9 +70,12 @@ export default function AdminPage() {
 
     // Простая аутентификация
     const handleLogin = () => {
-        // В продакшене пароль должен быть в .env.local как NEXT_PUBLIC_ADMIN_PASSWORD
-        const expectedPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "admin123"
-        if (password === expectedPassword) {
+        // Поддержка нескольких паролей: NEXT_PUBLIC_ADMIN_PASSWORDS (через запятую)
+        // или NEXT_PUBLIC_ADMIN_PASSWORD (можно также перечислить через запятую)
+        const listFromMulti = (process.env.NEXT_PUBLIC_ADMIN_PASSWORDS || "").split(",").map(s => s.trim()).filter(Boolean)
+        const listFromSingle = (process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "admin123").split(",").map(s => s.trim()).filter(Boolean)
+        const allowed = new Set([...listFromMulti, ...listFromSingle])
+        if (allowed.has(password)) {
             setIsAuthenticated(true)
             loadArticles()
         } else {
@@ -122,6 +128,7 @@ export default function AdminPage() {
                     slug: data.slug,
                 })
                 setIsNewArticle(false)
+                setSlugManuallyEdited(false)
             }
         } catch (error) {
             console.error("Error loading article:", error)
@@ -140,7 +147,7 @@ export default function AdminPage() {
             date: new Date().toISOString().split("T")[0],
             tags: "",
             cover: "",
-            author: "Renohacks",
+            author: "Умница",
             translationOf: "",
             draft: false,
             keywords: "",
@@ -148,6 +155,25 @@ export default function AdminPage() {
             locale: "ru",
             slug: "",
         })
+        setSlugManuallyEdited(false)
+    }
+
+    // Безопасное чтение ошибки из Response
+type ErrorResponse = { error?: string; message?: string } | string
+
+const readErrorResponse = async (res: Response): Promise<ErrorResponse> => {
+        try {
+            // Попытка распарсить JSON
+            return (await res.json()) as { error?: string; message?: string }
+        } catch {
+            try {
+                // Фолбэк к тексту
+                const text = await res.text()
+                return text.trim() ? { message: text } : { message: res.statusText }
+            } catch {
+                return { message: res.statusText }
+            }
+        }
     }
 
     // Сохранить статью
@@ -163,10 +189,8 @@ export default function AdminPage() {
                 keywords,
             }
 
-            const url = isNewArticle
-                ? "/api/admin/articles"
-                : `/api/admin/articles/${selectedArticle?.slug}`
-
+            // Сервер ожидает POST/PUT на /api/admin/articles (без :slug в пути)
+            const url = "/api/admin/articles"
             const method = isNewArticle ? "POST" : "PUT"
 
             const response = await fetch(url, {
@@ -190,8 +214,9 @@ export default function AdminPage() {
                     await loadArticle(data.slug, formData.locale)
                 }
             } else {
-                const error = await response.json()
-                alert(`Ошибка: ${error.error}`)
+                const error = await readErrorResponse(response)
+                const message = typeof error === "string" ? error : (error?.error || error?.message || `HTTP ${response.status}`)
+                alert(`Ошибка: ${message}`)
             }
         } catch (error) {
             console.error("Error saving article:", error)
@@ -221,11 +246,7 @@ export default function AdminPage() {
             // Если это новая статья без slug, используем временное имя на основе заголовка
             let articleSlug = selectedArticle?.slug || formData.slug
             if (!articleSlug && formData.title) {
-                // Генерируем временный slug из заголовка для новой статьи
-                articleSlug = formData.title
-                    .toLowerCase()
-                    .replace(/[^a-zа-я0-9]+/g, "-")
-                    .replace(/^-|-$/g, "") || "temp"
+                articleSlug = slugify(formData.title, { lower: true, strict: true, locale: "ru" }) || "temp"
             }
             if (!articleSlug) {
                 alert("Сначала укажите slug или заголовок статьи")
@@ -281,6 +302,54 @@ export default function AdminPage() {
         }
     }
 
+    // Загрузка обложки и установка поля cover
+    const handleCoverUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0]
+        if (!file) return
+
+        try {
+            setUploadingImage(true)
+
+            // Вычисляем slug для папки
+            let articleSlug = selectedArticle?.slug || formData.slug
+            if (!articleSlug && formData.title) {
+                articleSlug = slugify(formData.title, { lower: true, strict: true, locale: "ru" }) || "temp"
+            }
+            if (!articleSlug) {
+                alert("Сначала укажите slug или заголовок статьи")
+                return
+            }
+
+            const formDataUpload = new FormData()
+            formDataUpload.append("file", file)
+            formDataUpload.append("articleSlug", articleSlug)
+
+            const useAutoCommit = process.env.NEXT_PUBLIC_USE_GIT_AUTO_COMMIT === "true"
+            const apiEndpoint = useAutoCommit
+                ? "/api/admin/upload-image-auto"
+                : "/api/admin/upload-image"
+
+            const response = await fetch(apiEndpoint, {
+                method: "POST",
+                headers: { Authorization: `Bearer ${getAdminToken()}` },
+                body: formDataUpload,
+            })
+
+            if (response.ok) {
+                const data = await response.json()
+                setFormData(prev => ({ ...prev, cover: data.path }))
+            } else {
+                alert("Ошибка при загрузке обложки")
+            }
+        } catch (e) {
+            console.error("Cover upload error:", e)
+            alert("Ошибка при загрузке обложки")
+        } finally {
+            setUploadingImage(false)
+            event.target.value = ""
+        }
+    }
+
     // Если не авторизован, показываем форму входа
     if (!isAuthenticated) {
         return (
@@ -313,6 +382,11 @@ export default function AdminPage() {
         )
     }
 
+    // Подсобный расчёт EN-ссылки
+    const currentSlug = selectedArticle?.slug || formData.slug
+    const baseKey = (selectedArticle?.translationOf || formData.translationOf || currentSlug || "").trim()
+    const englishUrl = baseKey ? `/en/posts/${baseKey}` : ""
+
     return (
         <div className="min-h-screen bg-background p-6">
             <div className="max-w-7xl mx-auto space-y-6">
@@ -323,6 +397,16 @@ export default function AdminPage() {
                         <p className="text-muted-foreground">Управление статьями</p>
                     </div>
                     <div className="flex gap-2">
+                        {englishUrl && (
+                            <Button
+                                variant="outline"
+                                onClick={() => window.open(englishUrl, "_blank")}
+                                title="Открыть английскую версию"
+                            >
+                                <ExternalLink className="size-4" />
+                                EN-страница
+                            </Button>
+                        )}
                         <Button variant="outline" onClick={handleNewArticle}>
                             <Plus className="size-4" />
                             Новая статья
@@ -377,7 +461,14 @@ export default function AdminPage() {
                                     <Input
                                         id="title"
                                         value={formData.title}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                                        onChange={(e) => {
+                                            const newTitle = e.target.value
+                                            setFormData(prev => ({ ...prev, title: newTitle }))
+                                            if (!slugManuallyEdited) {
+                                                const auto = slugify(newTitle, { lower: true, strict: true, locale: "ru" })
+                                                setFormData(prev => ({ ...prev, slug: auto }))
+                                            }
+                                        }}
                                         placeholder="Заголовок статьи"
                                     />
                                 </div>
@@ -386,7 +477,10 @@ export default function AdminPage() {
                                     <Input
                                         id="slug"
                                         value={formData.slug}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value }))}
+                                        onChange={(e) => {
+                                            setFormData(prev => ({ ...prev, slug: e.target.value }))
+                                            setSlugManuallyEdited(true)
+                                        }}
                                         placeholder="slug-stati"
                                     />
                                 </div>
@@ -434,6 +528,20 @@ export default function AdminPage() {
                                 </div>
                             </div>
 
+                            {/* Поле связи с EN-версией */}
+                            <div>
+                                <Label htmlFor="translationOf">translationOf (EN slug, опционально)</Label>
+                                <Input
+                                    id="translationOf"
+                                    value={formData.translationOf}
+                                    onChange={(e) => setFormData(prev => ({ ...prev, translationOf: e.target.value }))}
+                                    placeholder="Например: 5-renovation-mistakes"
+                                />
+                                <p className="text-xs text-muted-foreground mt-1">
+                                    Укажите slug английской версии. Если пусто — русская статья работает без EN-дубликата.
+                                </p>
+                            </div>
+
                             <div className="grid md:grid-cols-2 gap-4">
                                 <div>
                                     <Label htmlFor="tags">Теги (через запятую)</Label>
@@ -446,12 +554,30 @@ export default function AdminPage() {
                                 </div>
                                 <div>
                                     <Label htmlFor="cover">Обложка (путь к изображению)</Label>
-                                    <Input
-                                        id="cover"
-                                        value={formData.cover}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, cover: e.target.value }))}
-                                        placeholder="/images/article/cover.png"
-                                    />
+                                    <div className="flex gap-2">
+                                        <Input
+                                            id="cover"
+                                            value={formData.cover}
+                                            onChange={(e) => setFormData(prev => ({ ...prev, cover: e.target.value }))}
+                                            placeholder="/images/article/cover.png"
+                                        />
+                                        <input
+                                            type="file"
+                                            id="cover-upload"
+                                            accept="image/*"
+                                            onChange={handleCoverUpload}
+                                            className="hidden"
+                                        />
+                                        <Button
+                                            type="button"
+                                            variant="outline"
+                                            onClick={() => document.getElementById("cover-upload")?.click()}
+                                            disabled={uploadingImage}
+                                        >
+                                            <Upload className="size-4" />
+                                            {uploadingImage ? "Загрузка..." : "Загрузить"}
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -547,7 +673,7 @@ export default function AdminPage() {
                                     )}
                                 </div>
                                 <p className="text-xs text-muted-foreground mt-2">
-                                    💡 Подсказка: Поставьте курсор в нужное место текста и нажмите "Вставить фото". 
+                                    💡 Подсказка: Поставьте курсор в нужное место текста и нажмите &quot;Вставить фото&quot;. 
                                     Изображение будет автоматически добавлено в эту позицию.
                                 </p>
                             </div>
