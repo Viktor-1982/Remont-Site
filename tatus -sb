@@ -1,0 +1,24 @@
+warning: in the working copy of '.contentlayer/.cache/v0.5.8/data-2QKTT6W2.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '.contentlayer/generated/Post/_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '.contentlayer/generated/Post/_index.mjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'ADMIN_SETUP.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/admin/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/api/admin/articles/[slug]/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/api/admin/articles/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/api/admin/upload-image-auto/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/app/en/terms/page.tsx', LF will be replaced by CRLF the next time Git touches it
+ .contentlayer/.cache/v0.5.8/data-2QKTT6W2.json     |  68 [32m+++[m
+ .contentlayer/generated/Post/_index.json           |  63 [32m+++[m
+ .contentlayer/generated/Post/_index.mjs            |   3 [32m+[m[31m-[m
+ GITHUB_SETUP.md                                    |   2 [32m+[m
+ STORAGE_OPTIONS.md                                 |   2 [32m+[m
+ src/app/admin/page.tsx                             | 184 [32m+++++++[m[31m--[m
+ src/app/api/admin/articles/[slug]/route.ts         |   5 [32m+[m[31m-[m
+ src/app/api/admin/articles/route.ts                |  10 [32m+[m[31m-[m
+ src/app/api/admin/upload-image-auto/route.ts       |  66 [32m+[m[31m--[m
+ src/app/api/admin/upload-image/route.ts            |   2 [32m+[m
+ src/app/en/calculators/budget/page.tsx             | 460 [32m+++++++++++++++++[m[31m----[m
+ src/app/en/terms/page.tsx                          | 395 [32m+++++++++++[m[31m-------[m
+ .../widgets/renovation-budget-planner-en.tsx       |   8 [32m+[m[31m-[m
+ src/lib/seo.ts                                     |  77 [32m+++[m[31m-[m
+ 14 files changed, 1035 insertions(+), 310 deletions(-)
