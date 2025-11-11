@@ -14,25 +14,35 @@ import { WallpaperCalculator } from "@/components/widgets/wallpaper-calculator"
 // 🔹 Словарь компонентов, доступных в MDX
 export const mdxComponents: MDXComponents = {
     // Картинки
-    img: ({ alt, src }: { alt?: string; src: string }) => (
-        <div className="relative block overflow-hidden rounded-xl mx-auto my-6 bg-background max-w-3xl w-full">
-            <Image
-                alt={alt && alt.trim() !== "" ? alt : "Изображение по теме ремонта"}
-                src={src}
-                width={1200}
-                height={800}
-                className="w-full h-auto object-cover rounded-lg"
-                loading="lazy"
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-            />
-            {alt && (
-                <div className="mt-2 text-center text-sm text-muted-foreground">
-                    {alt}
-                </div>
-            )}
-        </div>
-    ),
+    img: ({ alt, src }: { alt?: string; src: string }) => {
+        const figure = (
+            <figure className="relative mx-auto my-6 max-w-3xl w-full overflow-hidden rounded-xl bg-background">
+                <Image
+                    alt={alt && alt.trim() !== "" ? alt : "Изображение по теме ремонта"}
+                    src={src}
+                    width={1200}
+                    height={800}
+                    className="w-full h-auto object-cover rounded-lg"
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                />
+                {alt && (
+                    <figcaption className="mt-2 text-center text-sm text-muted-foreground">
+                        {alt}
+                    </figcaption>
+                )}
+            </figure>
+        )
+
+        return alt ? (
+            figure
+        ) : (
+            <div className="relative mx-auto my-6 max-w-3xl w-full overflow-hidden rounded-xl bg-background">
+                {figure}
+            </div>
+        )
+    },
 
     // Калькуляторы
     PaintCalculator: () => (
@@ -81,22 +91,28 @@ export const mdxComponents: MDXComponents = {
 
     // Абзацы — фикс чтобы картинки не попадали в <p>
     p: (props: React.HTMLAttributes<HTMLParagraphElement>) => {
-        let onlyChild: React.ReactElement | null = null
+        const childrenArray = React.Children.toArray(props.children)
+        const containsStandaloneMedia = childrenArray.some((child) => {
+            if (!React.isValidElement(child)) return false
+            const type = child.type
+            if (type === "img" || type === "figure") return true
+            if (typeof type === "function" && "displayName" in type && type.displayName === "Image") {
+                return true
+            }
+            const childProps = child.props as Record<string, unknown>
+            return "src" in childProps && typeof childProps.src === "string"
+        })
 
-        try {
-            onlyChild = React.Children.only(props.children) as React.ReactElement
-        } catch {
-            onlyChild = null
-        }
-
-        if (
-            onlyChild &&
-            (onlyChild.type === "img" ||
-                (React.isValidElement(onlyChild) &&
-                    "src" in (onlyChild.props as Record<string, unknown>)))
-        ) {
-            // 🚫 Если в параграфе только картинка → заменяем <p> на <div>
-            return <div {...props} />
+        if (containsStandaloneMedia) {
+            const { children, ...rest } = props
+            return (
+                <div
+                    className="leading-7 text-muted-foreground [&:not(:first-child)]:mt-4"
+                    {...rest}
+                >
+                    {children}
+                </div>
+            )
         }
 
         return (
