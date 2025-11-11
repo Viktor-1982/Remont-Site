@@ -1,10 +1,11 @@
 ﻿import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { allPosts } from ".contentlayer/generated"
+import { allPosts } from "contentlayer/generated"
 import { ArticleHero } from "@/components/article-hero"
 import { TableOfContents } from "@/components/table-of-contents"
 import { Mdx } from "@/components/mdx-components"
 import { RelatedPosts } from "@/components/related-posts"
+import { getPostMetadata } from "@/lib/seo-post" // ✅ единый SEO-модуль
 
 export async function generateMetadata({
                                            params,
@@ -13,28 +14,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { slug } = await params
     const post = allPosts.find((p) => p.slug === slug && p.locale === "en")
-
     if (!post) return {}
-
-    return {
-        title: post.title,
-        description: post.description,
-        openGraph: {
-            title: post.title,
-            description: post.description,
-            url: `https://renohacks.com/en/posts/${slug}`,
-            images: [post.cover || "/images/og-default.png"],
-        },
-        alternates: {
-            canonical: `https://renohacks.com/en/posts/${slug}`,
-            languages: {
-                en: `https://renohacks.com/en/posts/${slug}`,
-                ru: post.translationOf
-                    ? `https://renohacks.com/posts/${post.translationOf}`
-                    : "https://renohacks.com/",
-            },
-        },
-    }
+    return getPostMetadata(post) // ✅ единая SEO-логика
 }
 
 export default async function PostPage({
@@ -44,8 +25,10 @@ export default async function PostPage({
 }) {
     const { slug } = await params
     const post = allPosts.find((p) => p.slug === slug && p.locale === "en")
-
     if (!post) return notFound()
+
+    const baseUrl = "https://renohacks.com"
+    const canonical = `${baseUrl}/en/posts/${slug}`
 
     return (
         <article className="container py-12">
@@ -56,10 +39,9 @@ export default async function PostPage({
                 <TableOfContents items={post.headings} />
             </div>
 
-            {/* 🔗 Internal links for better indexing */}
             <RelatedPosts currentSlug={slug} locale="en" />
 
-            {/* 🟡 SEO: Structured Data (JSON-LD) */}
+            {/* 🟡 JSON-LD structured data for search engines */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
@@ -68,30 +50,30 @@ export default async function PostPage({
                         "@type": "BlogPosting",
                         headline: post.title,
                         description: post.description,
-                        image: [`https://renohacks.com${post.cover}`],
+                        image: [`${baseUrl}${post.cover || "/images/og-default.png"}`],
                         author: {
                             "@type": "Organization",
                             name: "Renohacks",
-                            url: "https://renohacks.com/en",
+                            url: `${baseUrl}/en`,
                         },
                         publisher: {
                             "@type": "Organization",
                             name: "Renohacks",
                             logo: {
                                 "@type": "ImageObject",
-                                url: "https://renohacks.com/favicon.ico",
+                                url: `${baseUrl}/favicon.ico`,
                             },
                         },
                         datePublished: post.date,
                         dateModified: post.date,
                         mainEntityOfPage: {
                             "@type": "WebPage",
-                            "@id": `https://renohacks.com/en/posts/${slug}`,
+                            "@id": canonical,
                         },
-                        keywords: post.tags?.join(", "),
+                        keywords: post.keywords?.join(", "),
                         inLanguage: "en",
                         articleSection: "Home Renovation & Design",
-                        wordCount: post.body.raw?.length || 0,
+                        wordCount: post.body.raw?.split(/\s+/).length ?? 0,
                         isAccessibleForFree: true,
                         genre: "DIY, Home Renovation, Interior Design",
                     }),

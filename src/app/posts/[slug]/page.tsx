@@ -1,10 +1,11 @@
 ﻿import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { allPosts } from ".contentlayer/generated"
+import { allPosts } from "contentlayer/generated"
 import { ArticleHero } from "@/components/article-hero"
 import { TableOfContents } from "@/components/table-of-contents"
 import { Mdx } from "@/components/mdx-components"
 import { RelatedPosts } from "@/components/related-posts"
+import { getPostMetadata } from "@/lib/seo-post" // ✅ используем общий SEO-модуль
 
 export async function generateMetadata({
                                            params,
@@ -13,28 +14,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { slug } = await params
     const post = allPosts.find((p) => p.slug === slug && p.locale === "ru")
-
     if (!post) return {}
-
-    return {
-        title: post.title,
-        description: post.description,
-        openGraph: {
-            title: post.title,
-            description: post.description,
-            url: `https://renohacks.com/posts/${slug}`,
-            images: [post.cover || "/images/og-default.png"],
-        },
-        alternates: {
-            canonical: `https://renohacks.com/posts/${slug}`,
-            languages: {
-                ru: `https://renohacks.com/posts/${slug}`,
-                en: post.translationOf
-                    ? `https://renohacks.com/en/posts/${post.translationOf}`
-                    : "https://renohacks.com/en",
-            },
-        },
-    }
+    return getPostMetadata(post) // ✅ автоматическое SEO
 }
 
 export default async function PostPage({
@@ -44,8 +25,10 @@ export default async function PostPage({
 }) {
     const { slug } = await params
     const post = allPosts.find((p) => p.slug === slug && p.locale === "ru")
-
     if (!post) return notFound()
+
+    const baseUrl = "https://renohacks.com"
+    const canonical = `${baseUrl}/posts/${slug}`
 
     return (
         <article className="container py-12">
@@ -56,10 +39,9 @@ export default async function PostPage({
                 <TableOfContents items={post.headings} />
             </div>
 
-            {/* 🔗 Внутренние ссылки для улучшения индексации */}
             <RelatedPosts currentSlug={slug} locale="ru" />
 
-            {/* 🟡 SEO: Structured Data (JSON-LD) */}
+            {/* 🟡 JSON-LD: структурированные данные для поисковиков */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
@@ -68,30 +50,30 @@ export default async function PostPage({
                         "@type": "BlogPosting",
                         headline: post.title,
                         description: post.description,
-                        image: [`https://renohacks.com${post.cover}`],
+                        image: [`${baseUrl}${post.cover || "/images/og-default.png"}`],
                         author: {
                             "@type": "Organization",
                             name: "Renohacks",
-                            url: "https://renohacks.com",
+                            url: baseUrl,
                         },
                         publisher: {
                             "@type": "Organization",
                             name: "Renohacks",
                             logo: {
                                 "@type": "ImageObject",
-                                url: "https://renohacks.com/favicon.ico",
+                                url: `${baseUrl}/favicon.ico`,
                             },
                         },
                         datePublished: post.date,
                         dateModified: post.date,
                         mainEntityOfPage: {
                             "@type": "WebPage",
-                            "@id": `https://renohacks.com/posts/${slug}`,
+                            "@id": canonical,
                         },
-                        keywords: post.tags?.join(", "),
+                        keywords: post.keywords?.join(", "),
                         inLanguage: "ru",
                         articleSection: "Ремонт и дизайн",
-                        wordCount: post.body.raw?.length || 0,
+                        wordCount: post.body.raw?.split(/\s+/).length ?? 0,
                         isAccessibleForFree: true,
                         genre: "DIY, Ремонт, Дизайн интерьера",
                     }),
