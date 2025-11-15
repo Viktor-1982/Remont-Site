@@ -109,6 +109,15 @@ export function SiteFooter() {
                     {isEnglish ? "Terms of Use" : "Правила пользования"}
                 </Link>
                 <LanguageSwitcher />
+                <span className="text-muted-foreground">
+                    {isEnglish ? "Designed by " : "Разработано "}
+                    <Link
+                        href={isEnglish ? "/en/developer" : "/developer"}
+                        className="hover:underline hover:text-foreground transition"
+                    >
+                        ViktorWebStudio
+                    </Link>
+                </span>
             </div>
         </footer>
     )
