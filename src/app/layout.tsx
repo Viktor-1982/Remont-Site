@@ -7,6 +7,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/app/theme-provider"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import Script from "next/script"
 import { headers } from "next/headers"
 
@@ -137,6 +138,7 @@ export default async function RootLayout({
             <main className="w-full py-8 px-4">{children}</main>
             <SiteFooter />
         </ThemeProvider>
+        <SpeedInsights />
         </body>
         </html>
     )
