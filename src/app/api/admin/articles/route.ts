@@ -3,19 +3,37 @@ import { readFile, writeFile, readdir } from "fs/promises"
 import { join } from "path"
 import { existsSync } from "fs"
 import slugify from "slugify"
-
-// Проверка аутентификации
-function checkAuth(req: NextRequest): boolean {
-    const authHeader = req.headers.get("authorization")
-    const token = process.env.ADMIN_TOKEN || "your-secret-token"
-    return authHeader === `Bearer ${token}`
-}
+import { checkAdminAuth } from "@/lib/admin-auth"
+import { checkRateLimit } from "@/lib/rate-limit"
 
 // GET - получить список всех статей
 export async function GET(req: NextRequest) {
     try {
-        if (!checkAuth(req)) {
+        // ✅ Проверка аутентификации через HTTP-only cookie
+        if (!(await checkAdminAuth())) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+        }
+
+        // ✅ Rate limiting: 100 запросов в минуту
+        const rateLimit = checkRateLimit(req, {
+            maxRequests: 100,
+            windowMs: 60 * 1000, // 1 минута
+            message: "Too many requests. Please slow down.",
+        })
+
+        if (!rateLimit.success) {
+            return NextResponse.json(
+                { error: rateLimit.message },
+                {
+                    status: 429,
+                    headers: {
+                        "Retry-After": Math.ceil((rateLimit.resetTime - Date.now()) / 1000).toString(),
+                        "X-RateLimit-Limit": "100",
+                        "X-RateLimit-Remaining": rateLimit.remaining.toString(),
+                        "X-RateLimit-Reset": new Date(rateLimit.resetTime).toISOString(),
+                    },
+                }
+            )
         }
 
         const postsDir = join(process.cwd(), "content", "posts")
@@ -66,7 +84,9 @@ export async function GET(req: NextRequest) {
             new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime()
         ) })
     } catch (error) {
-        console.error("Error fetching articles:", error)
+        // ✅ Не выводим детали ошибки в ответ (защита от утечки информации)
+        const errorMessage = error instanceof Error ? error.message : "Unknown error"
+        console.error("Error fetching articles:", errorMessage)
         return NextResponse.json(
             { error: "Failed to fetch articles" },
             { status: 500 }
@@ -77,8 +97,31 @@ export async function GET(req: NextRequest) {
 // POST - создать новую статью
 export async function POST(req: NextRequest) {
     try {
-        if (!checkAuth(req)) {
+        // ✅ Проверка аутентификации через HTTP-only cookie
+        if (!(await checkAdminAuth())) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+        }
+
+        // ✅ Rate limiting: 10 запросов в минуту (создание статей)
+        const rateLimit = checkRateLimit(req, {
+            maxRequests: 10,
+            windowMs: 60 * 1000, // 1 минута
+            message: "Too many article creation requests. Please slow down.",
+        })
+
+        if (!rateLimit.success) {
+            return NextResponse.json(
+                { error: rateLimit.message },
+                {
+                    status: 429,
+                    headers: {
+                        "Retry-After": Math.ceil((rateLimit.resetTime - Date.now()) / 1000).toString(),
+                        "X-RateLimit-Limit": "10",
+                        "X-RateLimit-Remaining": rateLimit.remaining.toString(),
+                        "X-RateLimit-Reset": new Date(rateLimit.resetTime).toISOString(),
+                    },
+                }
+            )
         }
 
         const body = await req.json()
@@ -106,9 +149,18 @@ export async function POST(req: NextRequest) {
 
         // Генерируем slug из title, если не указан
         const slug = customSlug || slugify(title, { lower: true, strict: true, locale: "ru" })
+        
+        // ✅ Валидация slug перед использованием
+        const sanitizedSlug = slug.replace(/[^a-zA-Z0-9-]/g, "")
+        if (sanitizedSlug !== slug || !slug) {
+            return NextResponse.json(
+                { error: "Invalid slug format. Use only letters, numbers, and hyphens" },
+                { status: 400 }
+            )
+        }
 
         // Определяем путь файла
-        const fileName = `${slug}.mdx`
+        const fileName = `${sanitizedSlug}.mdx`
         const postsDir = join(process.cwd(), "content", "posts")
         const filePath = locale === "en" 
             ? join(postsDir, "en", fileName)
@@ -122,18 +174,26 @@ export async function POST(req: NextRequest) {
             )
         }
 
+        // ✅ Санитизация данных для предотвращения инъекций
+        const sanitizeString = (str: string) => {
+            return str
+                .replace(/"/g, '\\"')
+                .replace(/\n/g, " ")
+                .replace(/\r/g, "")
+        }
+
         // Формируем frontmatter
         const frontmatter = `---
-title: "${title.replace(/"/g, '\\"')}"
-description: "${description.replace(/"/g, '\\"')}"
+title: "${sanitizeString(title)}"
+description: "${sanitizeString(description)}"
 date: ${date || new Date().toISOString().split("T")[0]}
-tags: [${tags.map((t: string) => `"${t}"`).join(", ")}]
-cover: "${cover || ""}"
-author: "${author}"
-${translationOf ? `translationOf: "${translationOf}"` : ""}
+tags: [${tags.map((t: string) => `"${sanitizeString(t)}"`).join(", ")}]
+cover: "${(cover || "").replace(/[^a-zA-Z0-9/._-]/g, "")}"
+author: "${sanitizeString(author)}"
+${translationOf ? `translationOf: "${sanitizeString(translationOf)}"` : ""}
 draft: ${draft}
 keywords:
-${keywords.map((k: string) => `  - "${k}"`).join("\n")}
+${keywords.map((k: string) => `  - "${sanitizeString(k)}"`).join("\n")}
 ---
 
 ${content}
@@ -144,11 +204,13 @@ ${content}
 
         return NextResponse.json({
             success: true,
-            slug,
+            slug: sanitizedSlug,
             path: filePath,
         })
     } catch (error) {
-        console.error("Error creating article:", error)
+        // ✅ Не выводим детали ошибки в ответ (защита от утечки информации)
+        const errorMessage = error instanceof Error ? error.message : "Unknown error"
+        console.error("Error creating article:", errorMessage)
         return NextResponse.json(
             { error: "Failed to create article" },
             { status: 500 }
@@ -159,8 +221,31 @@ ${content}
 // PUT - обновить существующую статью
 export async function PUT(req: NextRequest) {
     try {
-        if (!checkAuth(req)) {
+        // ✅ Проверка аутентификации через HTTP-only cookie
+        if (!(await checkAdminAuth())) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+        }
+
+        // ✅ Rate limiting: 20 запросов в минуту (обновление статей)
+        const rateLimit = checkRateLimit(req, {
+            maxRequests: 20,
+            windowMs: 60 * 1000, // 1 минута
+            message: "Too many article update requests. Please slow down.",
+        })
+
+        if (!rateLimit.success) {
+            return NextResponse.json(
+                { error: rateLimit.message },
+                {
+                    status: 429,
+                    headers: {
+                        "Retry-After": Math.ceil((rateLimit.resetTime - Date.now()) / 1000).toString(),
+                        "X-RateLimit-Limit": "20",
+                        "X-RateLimit-Remaining": rateLimit.remaining.toString(),
+                        "X-RateLimit-Reset": new Date(rateLimit.resetTime).toISOString(),
+                    },
+                }
+            )
         }
 
         const body = await req.json()
@@ -201,18 +286,35 @@ export async function PUT(req: NextRequest) {
             )
         }
 
+        // ✅ Санитизация данных для предотвращения инъекций
+        const sanitizeString = (str: string) => {
+            return (str || "")
+                .replace(/"/g, '\\"')
+                .replace(/\n/g, " ")
+                .replace(/\r/g, "")
+        }
+        
+        // ✅ Валидация slug (только буквы, цифры, дефисы)
+        const sanitizedSlug = slug.replace(/[^a-zA-Z0-9-]/g, "")
+        if (sanitizedSlug !== slug || !slug) {
+            return NextResponse.json(
+                { error: "Invalid slug format. Use only letters, numbers, and hyphens" },
+                { status: 400 }
+            )
+        }
+
         // Формируем frontmatter
         const frontmatter = `---
-title: "${(title || "").replace(/"/g, '\\"')}"
-description: "${(description || "").replace(/"/g, '\\"')}"
+title: "${sanitizeString(title || "")}"
+description: "${sanitizeString(description || "")}"
 date: ${date || new Date().toISOString().split("T")[0]}
-tags: [${tags.map((t: string) => `"${t}"`).join(", ")}]
-cover: "${cover || ""}"
-author: "${author}"
-${translationOf ? `translationOf: "${translationOf}"` : ""}
+tags: [${tags.map((t: string) => `"${sanitizeString(t)}"`).join(", ")}]
+cover: "${(cover || "").replace(/[^a-zA-Z0-9/._-]/g, "")}"
+author: "${sanitizeString(author || "")}"
+${translationOf ? `translationOf: "${sanitizeString(translationOf)}"` : ""}
 draft: ${draft}
 keywords:
-${keywords.map((k: string) => `  - "${k}"`).join("\n")}
+${keywords.map((k: string) => `  - "${sanitizeString(k)}"`).join("\n")}
 ---
 
 ${content || ""}
@@ -223,10 +325,12 @@ ${content || ""}
 
         return NextResponse.json({
             success: true,
-            slug,
+            slug: sanitizedSlug,
         })
     } catch (error) {
-        console.error("Error updating article:", error)
+        // ✅ Не выводим детали ошибки в ответ (защита от утечки информации)
+        const errorMessage = error instanceof Error ? error.message : "Unknown error"
+        console.error("Error updating article:", errorMessage)
         return NextResponse.json(
             { error: "Failed to update article" },
             { status: 500 }

@@ -2,13 +2,8 @@ import { NextRequest, NextResponse } from "next/server"
 import { readFile } from "fs/promises"
 import { join } from "path"
 import { existsSync } from "fs"
-
-// Проверка аутентификации
-function checkAuth(req: NextRequest): boolean {
-    const authHeader = req.headers.get("authorization")
-    const token = process.env.ADMIN_TOKEN || "your-secret-token"
-    return authHeader === `Bearer ${token}`
-}
+import { checkAdminAuth } from "@/lib/admin-auth"
+import { checkRateLimit } from "@/lib/rate-limit"
 
 // GET - получить конкретную статью
 export async function GET(
@@ -16,13 +11,53 @@ export async function GET(
     { params }: { params: Promise<{ slug: string }> }
 ) {
     try {
-        if (!checkAuth(req)) {
+        // ✅ Проверка аутентификации через HTTP-only cookie
+        if (!(await checkAdminAuth())) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
         }
 
-        const { slug } = await params
+        // ✅ Rate limiting: 100 запросов в минуту
+        const rateLimit = checkRateLimit(req, {
+            maxRequests: 100,
+            windowMs: 60 * 1000, // 1 минута
+            message: "Too many requests. Please slow down.",
+        })
+
+        if (!rateLimit.success) {
+            return NextResponse.json(
+                { error: rateLimit.message },
+                {
+                    status: 429,
+                    headers: {
+                        "Retry-After": Math.ceil((rateLimit.resetTime - Date.now()) / 1000).toString(),
+                        "X-RateLimit-Limit": "100",
+                        "X-RateLimit-Remaining": rateLimit.remaining.toString(),
+                        "X-RateLimit-Reset": new Date(rateLimit.resetTime).toISOString(),
+                    },
+                }
+            )
+        }
+
+        const { slug: rawSlug } = await params
         const searchParams = req.nextUrl.searchParams
         const locale = searchParams.get("locale") || "ru"
+
+        // ✅ Защита от path traversal - санитизация slug
+        const slug = rawSlug.replace(/[^a-zA-Z0-9-]/g, "")
+        if (slug !== rawSlug || !slug) {
+            return NextResponse.json(
+                { error: "Invalid article identifier" },
+                { status: 400 }
+            )
+        }
+        
+        // ✅ Валидация locale
+        if (locale !== "ru" && locale !== "en") {
+            return NextResponse.json(
+                { error: "Invalid locale" },
+                { status: 400 }
+            )
+        }
 
         // Определяем путь файла
         const fileName = `${slug}.mdx`
@@ -92,7 +127,20 @@ export async function GET(
             content: bodyContent,
         })
     } catch (error) {
-        console.error("Error fetching article:", error)
+        // ✅ Не выводим детали ошибки в ответ (защита от утечки информации)
+        const errorMessage = error instanceof Error ? error.message : "Unknown error"
+        console.error("Error fetching article:", errorMessage)
+        
+        // ✅ Защита от path traversal - проверяем, что slug не содержит опасных символов
+        const { slug: rawSlug } = await params
+        const sanitizedSlug = rawSlug.replace(/[^a-zA-Z0-9-]/g, "")
+        if (sanitizedSlug !== rawSlug) {
+            return NextResponse.json(
+                { error: "Invalid article identifier" },
+                { status: 400 }
+            )
+        }
+        
         return NextResponse.json(
             { error: "Failed to fetch article" },
             { status: 500 }

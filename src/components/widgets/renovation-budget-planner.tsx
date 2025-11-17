@@ -83,18 +83,37 @@ export function RenovationBudgetPlanner() {
   }
 
   const updateCategory = (id: number, field: keyof ExpenseItem, value: string) => {
-    setItems(items.map((item) => (item.id === id ? { ...item, [field]: value } : item)))
+    // ✅ Ограничение длины для защиты от XSS и DoS
+    const maxCategoryLength = 100
+    const maxCostLength = 20
+    const sanitizedValue = field === "category" 
+      ? value.substring(0, maxCategoryLength)
+      : field === "cost"
+      ? value.substring(0, maxCostLength)
+      : value
+    setItems(items.map((item) => (item.id === id ? { ...item, [field]: sanitizedValue } : item)))
   }
 
   const calculate = () => {
+    // ✅ Валидация и санитизация входных данных
     const sum = items.reduce((acc, item) => {
-      const cost = parseFloat(item.cost.replace(",", ".")) || 0
+      const cost = parseFloat(item.cost.replace(",", ".").replace(/[^0-9.-]/g, "")) || 0
+      // Защита от отрицательных значений и слишком больших чисел
+      if (cost < 0 || cost > 1000000000) return acc
       return acc + cost
     }, 0)
 
-    const reservePercent = parseFloat(reserve.replace(",", ".")) || 0
+    const reservePercent = parseFloat(reserve.replace(",", ".").replace(/[^0-9.-]/g, "")) || 0
+    // Защита от невалидного процента резерва
+    if (isNaN(reservePercent) || !isFinite(reservePercent) || reservePercent < 0 || reservePercent > 100) {
+      return
+    }
+    
     const reserveValue = sum * (reservePercent / 100)
     const finalTotal = sum + reserveValue
+    
+    // Проверка на разумность результата
+    if (!isFinite(sum) || !isFinite(reserveValue) || !isFinite(finalTotal)) return
     
     setSubtotal(sum)
     setReserveAmount(reserveValue)

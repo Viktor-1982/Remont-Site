@@ -36,7 +36,12 @@ export function RepairAssistant() {
 
     const sendMessage = async () => {
         if (!input.trim() || loading) return
-        const userMessage: ChatMessage = { role: "user", content: input }
+        
+        // ✅ Ограничение длины сообщения (защита от DoS)
+        const maxLength = 1000
+        const trimmedInput = input.trim().substring(0, maxLength)
+        
+        const userMessage: ChatMessage = { role: "user", content: trimmedInput }
         setMessages((prev) => [...prev, userMessage])
         setInput("")
         setLoading(true)

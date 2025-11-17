@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import React, { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -31,13 +31,8 @@ interface ArticleData {
     content: string
 }
 
-// Токен должен быть одинаковым с серверным ADMIN_TOKEN
-// В продакшене это должно быть через переменные окружения
-const getAdminToken = () => {
-    // Используем публичную переменную, чтобы совпадала с серверным ADMIN_TOKEN
-    const publicToken = process.env.NEXT_PUBLIC_ADMIN_TOKEN || "your-secret-token"
-    return typeof window !== "undefined" ? publicToken : ""
-}
+// ✅ Session-based authentication - используем HTTP-only cookies
+// Токены больше не хранятся на клиенте, что значительно безопаснее!
 
 export default function AdminPage() {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -68,18 +63,39 @@ export default function AdminPage() {
         slug: "",
     })
 
-    // Простая аутентификация
-    const handleLogin = () => {
-        // Поддержка нескольких паролей: NEXT_PUBLIC_ADMIN_PASSWORDS (через запятую)
-        // или NEXT_PUBLIC_ADMIN_PASSWORD (можно также перечислить через запятую)
-        const listFromMulti = (process.env.NEXT_PUBLIC_ADMIN_PASSWORDS || "").split(",").map(s => s.trim()).filter(Boolean)
-        const listFromSingle = (process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "admin123").split(",").map(s => s.trim()).filter(Boolean)
-        const allowed = new Set([...listFromMulti, ...listFromSingle])
-        if (allowed.has(password)) {
-            setIsAuthenticated(true)
-            loadArticles()
-        } else {
-            alert("Неверный пароль")
+    // ✅ Session-based аутентификация через API
+    const handleLogin = async () => {
+        if (!password) {
+            alert("Введите пароль")
+            return
+        }
+
+        try {
+            setIsLoading(true)
+            
+            // Отправляем пароль на сервер для создания сессии
+            const response = await fetch("/api/admin/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ password }),
+                credentials: "include", // ✅ Важно: отправляем cookies
+            })
+
+            if (response.ok) {
+                // ✅ Сессия создана, HTTP-only cookie установлен
+                setIsAuthenticated(true)
+                await loadArticles()
+            } else {
+                const data = await response.json()
+                alert(data.error || "Неверный пароль")
+            }
+        } catch (error) {
+            console.error("Login error:", error)
+            alert("Ошибка при входе. Попробуйте снова.")
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -87,11 +103,17 @@ export default function AdminPage() {
     const loadArticles = async () => {
         try {
             setIsLoading(true)
+            // ✅ Используем cookies вместо Bearer token
             const response = await fetch("/api/admin/articles", {
-                headers: {
-                    Authorization: `Bearer ${getAdminToken()}`,
-                },
+                credentials: "include", // ✅ Важно: отправляем cookies
             })
+            
+            if (response.status === 401) {
+                // Сессия истекла или не авторизован
+                setIsAuthenticated(false)
+                return
+            }
+            
             const data = await response.json()
             setArticles(data.articles || [])
         } catch (error) {
@@ -105,10 +127,9 @@ export default function AdminPage() {
     const loadArticle = async (slug: string, locale: string = "ru") => {
         try {
             setIsLoading(true)
+            // ✅ Используем cookies вместо Bearer token
             const response = await fetch(`/api/admin/articles/${slug}?locale=${locale}`, {
-                headers: {
-                    Authorization: `Bearer ${getAdminToken()}`,
-                },
+                credentials: "include", // ✅ Важно: отправляем cookies
             })
             if (response.ok) {
                 const data = await response.json()
@@ -193,12 +214,13 @@ const readErrorResponse = async (res: Response): Promise<ErrorResponse> => {
             const url = "/api/admin/articles"
             const method = isNewArticle ? "POST" : "PUT"
 
+            // ✅ Используем cookies вместо Bearer token
             const response = await fetch(url, {
                 method,
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${getAdminToken()}`,
                 },
+                credentials: "include", // ✅ Важно: отправляем cookies
                 body: JSON.stringify({
                     ...payload,
                     slug: selectedArticle?.slug || formData.slug,
@@ -206,6 +228,13 @@ const readErrorResponse = async (res: Response): Promise<ErrorResponse> => {
                 }),
             })
 
+            if (response.status === 401) {
+                // Сессия истекла
+                setIsAuthenticated(false)
+                alert("Сессия истекла. Пожалуйста, войдите снова.")
+                return
+            }
+            
             if (response.ok) {
                 alert("Статья сохранена!")
                 loadArticles()
@@ -264,11 +293,10 @@ const readErrorResponse = async (res: Response): Promise<ErrorResponse> => {
                 ? "/api/admin/upload-image-auto"
                 : "/api/admin/upload-image"
 
+            // ✅ Используем cookies вместо Bearer token
             const response = await fetch(apiEndpoint, {
                 method: "POST",
-                headers: {
-                    Authorization: `Bearer ${getAdminToken()}`,
-                },
+                credentials: "include", // ✅ Важно: отправляем cookies
                 body: formDataUpload,
             })
 
@@ -329,9 +357,10 @@ const readErrorResponse = async (res: Response): Promise<ErrorResponse> => {
                 ? "/api/admin/upload-image-auto"
                 : "/api/admin/upload-image"
 
+            // ✅ Используем cookies вместо Bearer token
             const response = await fetch(apiEndpoint, {
                 method: "POST",
-                headers: { Authorization: `Bearer ${getAdminToken()}` },
+                credentials: "include", // ✅ Важно: отправляем cookies
                 body: formDataUpload,
             })
 
@@ -349,6 +378,51 @@ const readErrorResponse = async (res: Response): Promise<ErrorResponse> => {
             event.target.value = ""
         }
     }
+
+    // ✅ Выход из системы
+    const handleLogout = async () => {
+        try {
+            await fetch("/api/admin/auth/logout", {
+                method: "POST",
+                credentials: "include", // ✅ Важно: отправляем cookies
+            })
+            setIsAuthenticated(false)
+            setPassword("")
+            setSelectedArticle(null)
+            setArticles([])
+        } catch (error) {
+            console.error("Logout error:", error)
+            // Выходим даже при ошибке
+            setIsAuthenticated(false)
+            setPassword("")
+        }
+    }
+
+    // ✅ Проверка сессии при загрузке
+    React.useEffect(() => {
+        const checkSession = async () => {
+            try {
+                const response = await fetch("/api/admin/auth/session", {
+                    credentials: "include",
+                })
+                const data = await response.json()
+                if (data.authenticated) {
+                    setIsAuthenticated(true)
+                    // Загружаем статьи только если авторизованы
+                    const articlesResponse = await fetch("/api/admin/articles", {
+                        credentials: "include",
+                    })
+                    if (articlesResponse.ok) {
+                        const articlesData = await articlesResponse.json()
+                        setArticles(articlesData.articles || [])
+                    }
+                }
+            } catch {
+                // Игнорируем ошибки при проверке сессии
+            }
+        }
+        checkSession()
+    }, [])
 
     // Если не авторизован, показываем форму входа
     if (!isAuthenticated) {
@@ -373,9 +447,9 @@ const readErrorResponse = async (res: Response): Promise<ErrorResponse> => {
                                 placeholder="Введите пароль"
                             />
                         </div>
-                        <Button onClick={handleLogin} className="w-full">
-                            Войти
-                        </Button>
+                            <Button onClick={handleLogin} className="w-full" disabled={isLoading}>
+                                {isLoading ? "Вход..." : "Войти"}
+                            </Button>
                     </CardContent>
                 </Card>
             </div>
@@ -411,7 +485,7 @@ const readErrorResponse = async (res: Response): Promise<ErrorResponse> => {
                             <Plus className="size-4" />
                             Новая статья
                         </Button>
-                        <Button variant="outline" onClick={() => setIsAuthenticated(false)}>
+                        <Button variant="outline" onClick={handleLogout}>
                             <X className="size-4" />
                             Выйти
                         </Button>

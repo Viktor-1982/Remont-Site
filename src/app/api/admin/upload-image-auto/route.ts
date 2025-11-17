@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
+import { checkAdminAuth } from "@/lib/admin-auth"
+import { checkRateLimit } from "@/lib/rate-limit"
 
 interface GitTreeItem {
     path: string
@@ -7,21 +9,37 @@ interface GitTreeItem {
     sha?: string
 }
 
-// Проверка аутентификации
-function checkAuth(req: NextRequest): boolean {
-    const authHeader = req.headers.get("authorization")
-    const token = process.env.ADMIN_TOKEN || "your-secret-token"
-    return authHeader === `Bearer ${token}`
-}
-
 /**
  * Этот API использует GitHub API для автоматического коммита файлов
  * Работает через GitHub API, поэтому нужен GITHUB_TOKEN
  */
 export async function POST(req: NextRequest) {
     try {
-        if (!checkAuth(req)) {
+        // ✅ Проверка аутентификации через HTTP-only cookie
+        if (!(await checkAdminAuth())) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+        }
+
+        // ✅ Rate limiting: 10 коммитов в минуту (GitHub API имеет свои лимиты)
+        const rateLimit = checkRateLimit(req, {
+            maxRequests: 10,
+            windowMs: 60 * 1000, // 1 минута
+            message: "Too many Git commits. Please slow down.",
+        })
+
+        if (!rateLimit.success) {
+            return NextResponse.json(
+                { error: rateLimit.message },
+                {
+                    status: 429,
+                    headers: {
+                        "Retry-After": Math.ceil((rateLimit.resetTime - Date.now()) / 1000).toString(),
+                        "X-RateLimit-Limit": "10",
+                        "X-RateLimit-Remaining": rateLimit.remaining.toString(),
+                        "X-RateLimit-Reset": new Date(rateLimit.resetTime).toISOString(),
+                    },
+                }
+            )
         }
 
         const formData = await req.formData()
@@ -34,6 +52,46 @@ export async function POST(req: NextRequest) {
 
         if (!articleSlug) {
             return NextResponse.json({ error: "Article slug is required" }, { status: 400 })
+        }
+
+        // ✅ Валидация размера файла (максимум 10 МБ)
+        const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10 МБ
+        if (file.size > MAX_FILE_SIZE) {
+            return NextResponse.json(
+                { error: "File size exceeds maximum allowed size (10MB)" },
+                { status: 400 }
+            )
+        }
+
+        // ✅ Валидация типа файла (только изображения)
+        const allowedMimeTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"]
+        const allowedExtensions = ["jpg", "jpeg", "png", "gif", "webp"]
+        
+        const originalName = file.name
+        const extension = originalName.split(".").pop()?.toLowerCase()
+        
+        if (!extension || !allowedExtensions.includes(extension)) {
+            return NextResponse.json(
+                { error: "Invalid file type. Only images (jpg, jpeg, png, gif, webp) are allowed" },
+                { status: 400 }
+            )
+        }
+
+        // ✅ Дополнительная проверка MIME типа
+        if (!allowedMimeTypes.includes(file.type)) {
+            return NextResponse.json(
+                { error: "Invalid file MIME type" },
+                { status: 400 }
+            )
+        }
+
+        // ✅ Санитизация имени файла и articleSlug (защита от path traversal)
+        const sanitizedSlug = articleSlug.replace(/[^a-zA-Z0-9-]/g, "")
+        if (!sanitizedSlug || sanitizedSlug !== articleSlug) {
+            return NextResponse.json(
+                { error: "Invalid article slug format. Use only letters, numbers, and hyphens" },
+                { status: 400 }
+            )
         }
 
         // Проверяем наличие GitHub токена
@@ -49,18 +107,16 @@ export async function POST(req: NextRequest) {
 
         // Генерируем уникальное имя файла
         const timestamp = Date.now()
-        const originalName = file.name
-        const extension = originalName.split(".").pop()
-        const fileName = `${articleSlug}-${timestamp}.${extension}`
+        const fileName = `${sanitizedSlug}-${timestamp}.${extension}`
 
         // Конвертируем File в base64 для GitHub API
         const bytes = await file.arrayBuffer()
         const buffer = Buffer.from(bytes)
         const base64Content = buffer.toString("base64")
 
-        // Путь в репозитории
-        const repoPath = `public/images/${articleSlug}/${fileName}`
-        const imagePath = `/images/${articleSlug}/${fileName}`
+        // Путь в репозитории (используем sanitizedSlug для безопасности)
+        const repoPath = `public/images/${sanitizedSlug}/${fileName}`
+        const imagePath = `/images/${sanitizedSlug}/${fileName}`
 
         try {
             // Определяем ветку (может быть main или master)

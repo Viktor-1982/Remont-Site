@@ -23,9 +23,22 @@ export function WallpaperCalculator() {
     const [result, setResult] = useState<number | null>(null)
 
     const calculate = () => {
-        const a = parseFloat(area.replace(",", "."))
-        const r = parseFloat(rollCoverage.replace(",", "."))
-        if (!a || !r) return
+        // ✅ Валидация и санитизация входных данных
+        const a = parseFloat(area.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        const r = parseFloat(rollCoverage.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        
+        // Проверка на валидные числа
+        if (isNaN(a) || isNaN(r) || !isFinite(a) || !isFinite(r)) return
+        
+        // Защита от отрицательных и нулевых значений
+        if (a <= 0 || r <= 0) return
+        
+        // Защита от чрезмерно больших значений (защита от DoS)
+        if (a > 1000000 || r > 1000000) return
+        
+        // Защита от деления на очень маленькое число
+        if (r < 0.001) return
+        
         setResult(a / r)
     }
 

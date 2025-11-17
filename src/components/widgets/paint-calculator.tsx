@@ -28,16 +28,35 @@ export function PaintCalculator() {
     const [result, setResult] = useState<number | null>(null)
 
     const calculate = () => {
-        const l = parseFloat(length.replace(",", "."))
-        const w = parseFloat(width.replace(",", "."))
-        const h = parseFloat(height.replace(",", "."))
-        const d = parseInt(doors) * 2
-        const win = parseInt(windows) * 1.5
-        const lay = parseInt(layers)
-        const cov = parseFloat(coverage.replace(",", "."))
-        if (!l || !w || !h || !cov) return
-
+        // ✅ Валидация и санитизация входных данных
+        const l = parseFloat(length.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        const w = parseFloat(width.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        const h = parseFloat(height.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        const doorsNum = parseInt(doors.replace(/[^0-9]/g, "") || "0")
+        const windowsNum = parseInt(windows.replace(/[^0-9]/g, "") || "0")
+        const lay = parseInt(layers.replace(/[^0-9]/g, "") || "1")
+        const cov = parseFloat(coverage.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        
+        // Проверка на валидные числа
+        if (isNaN(l) || isNaN(w) || isNaN(h) || isNaN(cov) || 
+            !isFinite(l) || !isFinite(w) || !isFinite(h) || !isFinite(cov)) return
+        
+        // Защита от отрицательных и нулевых значений
+        if (l <= 0 || w <= 0 || h <= 0 || cov <= 0) return
+        
+        // Защита от чрезмерно больших значений (защита от DoS)
+        if (l > 1000 || w > 1000 || h > 100) return
+        
+        // Защита от невалидных значений для doors, windows, layers
+        if (doorsNum < 0 || windowsNum < 0 || lay < 1 || lay > 10) return
+        
+        const d = doorsNum * 2
+        const win = windowsNum * 1.5
+        
+        // Проверка на разумность результата (площадь не может быть отрицательной)
         const area = (2 * h * (l + w) - (d + win)) * lay
+        if (area <= 0) return
+
         setResult(area / cov)
     }
 

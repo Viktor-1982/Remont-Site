@@ -23,9 +23,22 @@ export function TileCalculator() {
     const [result, setResult] = useState<number | null>(null)
 
     const calculate = () => {
-        const a = parseFloat(area.replace(",", "."))
-        const ts = parseFloat(tileSize.replace(",", "."))
-        if (!a || !ts) return
+        // ✅ Валидация и санитизация входных данных
+        const a = parseFloat(area.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        const ts = parseFloat(tileSize.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        
+        // Проверка на валидные числа
+        if (isNaN(a) || isNaN(ts) || !isFinite(a) || !isFinite(ts)) return
+        
+        // Защита от отрицательных и нулевых значений
+        if (a <= 0 || ts <= 0) return
+        
+        // Защита от чрезмерно больших значений (защита от DoS)
+        if (a > 1000000 || ts > 1000000) return
+        
+        // Защита от деления на очень маленькое число
+        if (ts < 0.001) return
+        
         setResult(a / ts)
     }
 
