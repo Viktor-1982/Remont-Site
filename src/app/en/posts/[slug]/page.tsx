@@ -6,6 +6,8 @@ import { TableOfContents } from "@/components/table-of-contents"
 import { Mdx } from "@/components/mdx-components"
 import { RelatedPosts } from "@/components/related-posts"
 import { getPostMetadata } from "@/lib/seo-post" // ✅ единый SEO-модуль
+import { parseFAQ } from "@/lib/parse-faq"
+import Script from "next/script"
 
 export async function generateMetadata({
                                            params,
@@ -29,6 +31,49 @@ export default async function PostPage({
 
     const baseUrl = "https://renohacks.com"
     const canonical = `${baseUrl}/en/posts/${slug}`
+    
+    // Parse FAQ from content
+    const faqs = parseFAQ(post.body.raw || "")
+    
+    // BreadcrumbList schema.org
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": `${baseUrl}/en`
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Articles",
+                "item": `${baseUrl}/en/posts`
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": post.title,
+                "item": canonical
+            }
+        ]
+    }
+    
+    // FAQPage schema.org (if FAQ exists)
+    const faqSchema = faqs.length > 0 ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(item => ({
+            "@type": "Question",
+            "name": item.question,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": item.answer
+            }
+        }))
+    } : null
 
     return (
         <article className="container py-12">
@@ -42,8 +87,10 @@ export default async function PostPage({
             <RelatedPosts currentSlug={slug} locale="en" />
 
             {/* 🟡 JSON-LD structured data for search engines */}
-            <script
+            <Script
+                id="blogposting-schema"
                 type="application/ld+json"
+                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
@@ -79,6 +126,28 @@ export default async function PostPage({
                     }),
                 }}
             />
+            
+            {/* BreadcrumbList schema.org */}
+            <Script
+                id="breadcrumb-schema"
+                type="application/ld+json"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbSchema),
+                }}
+            />
+            
+            {/* FAQPage schema.org */}
+            {faqSchema && (
+                <Script
+                    id="faq-schema"
+                    type="application/ld+json"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(faqSchema),
+                    }}
+                />
+            )}
         </article>
     )
 }
