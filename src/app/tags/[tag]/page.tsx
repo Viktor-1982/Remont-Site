@@ -53,26 +53,48 @@ export default async function TagPage({ params }: Params) {
     const { tag } = await params
     const decodedTag = decodeURIComponent(tag).toLowerCase()
 
-    // 🔸 Фильтруем только русские посты
-    let filtered = allPosts.filter(
-        (post) =>
-            !post.url.startsWith("/en/") &&
-            post.tags?.map((t) => t.toLowerCase()).includes(decodedTag)
-    )
+    let filtered: typeof allPosts
 
-    // 🔸 Автоматическое добавление свежих постов в "novinki"
+    // 🔸 Специальная логика для страницы "новинки"
     if (decodedTag === "novinki") {
-        const recentPosts = allPosts.filter(
-            (post) => !post.url.startsWith("/en/") && isRecent(post.date)
+        // Исключаем теги, которые не должны попадать в новинки
+        const excludedTags = ["тренды", "trends", "2025", "2026"]
+        
+        // Показываем последние 4 добавленные статьи о ремонте
+        filtered = allPosts
+            .filter(
+                (post) => {
+                    // Только русские посты
+                    if (post.url.startsWith("/en/")) return false
+                    // Только опубликованные
+                    if (post.draft) return false
+                    // Только свежие (младше 10 дней)
+                    if (!isRecent(post.date)) return false
+                    
+                    // Исключаем посты с тегами "тренды" и подобными
+                    const postTags = post.tags?.map((t) => t.toLowerCase()) || []
+                    const hasExcludedTag = excludedTags.some(tag => 
+                        postTags.includes(tag.toLowerCase())
+                    )
+                    
+                    return !hasExcludedTag
+                }
+            )
+            // Сортируем по дате (новые первыми)
+            .sort((a, b) => {
+                const ta = a.date ? new Date(a.date).getTime() : 0
+                const tb = b.date ? new Date(b.date).getTime() : 0
+                return tb - ta
+            })
+            // Берем только последние 4 статьи
+            .slice(0, 4)
+    } else {
+        // 🔸 Обычная логика для других тегов
+        filtered = allPosts.filter(
+            (post) =>
+                !post.url.startsWith("/en/") &&
+                post.tags?.map((t) => t.toLowerCase()).includes(decodedTag)
         )
-
-        // Добавляем их, избегая дублей
-        const existingIds = new Set(filtered.map((p) => p._id))
-        for (const post of recentPosts) {
-            if (!existingIds.has(post._id)) {
-                filtered.push(post)
-            }
-        }
     }
 
     if (filtered.length === 0) return notFound()
