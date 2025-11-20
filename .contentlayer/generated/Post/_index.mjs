@@ -20,6 +20,7 @@ import en__bedroomDesignMdx from './en__bedroom-design.mdx.json' with { type: 'j
 import en__caveLivingMdx from './en__cave-living.mdx.json' with { type: 'json' }
 import en__diyBathroomMakeoverMdx from './en__diy-bathroom-makeover.mdx.json' with { type: 'json' }
 import en__fiveInteriorTipsMdx from './en__five-interior-tips.mdx.json' with { type: 'json' }
+import en__howToSaveMoneyOnRenovationMdx from './en__how-to-save-money-on-renovation.mdx.json' with { type: 'json' }
 import en__interiorDesignTrends_2026Mdx from './en__interior-design-trends-2026.mdx.json' with { type: 'json' }
 import en__interiorTrends_2025Mdx from './en__interior-trends-2025.mdx.json' with { type: 'json' }
 import en__kitchenMakeoverMdx from './en__kitchen-makeover.mdx.json' with { type: 'json' }
@@ -31,4 +32,4 @@ import en__roughRenovationGuideMdx from './en__rough-renovation-guide.mdx.json' 
 import en__typesOfModularHomesMdx from './en__types-of-modular-homes.mdx.json' with { type: 'json' }
 import en__wallpaperTypesMdx from './en__wallpaper-types.mdx.json' with { type: 'json' }
 
-export const allPosts = [_5OshibokNovichkovRemontaKvartiryMdx, _8InteriorTrends_2025Mdx, dizainSpalniMdx, malenkayaKuhnyaMdx, podborkaTsvetovMdx, pokraskaStenPodgotovkaMdx, pokraskaStenMdx, remontChernovoyKvartiryMdx, remontSovety_5Mdx, remontVannoyMdx, sovetyTsvetaGostinayaMdx, trends_2026Mdx, vidyModulnykhDomovMdx, vidyOboyevMdx, zhilayaZonaVSkaleMdx, en__5ApartmentRenovationMistakesMdx, en__bedroomDesignMdx, en__caveLivingMdx, en__diyBathroomMakeoverMdx, en__fiveInteriorTipsMdx, en__interiorDesignTrends_2026Mdx, en__interiorTrends_2025Mdx, en__kitchenMakeoverMdx, en__livingRoomColorTipsMdx, en__paintingWallsYourselfMdx, en__preparingWallsForPaintingMdx, en__renovationTips_5Mdx, en__roughRenovationGuideMdx, en__typesOfModularHomesMdx, en__wallpaperTypesMdx]
+export const allPosts = [_5OshibokNovichkovRemontaKvartiryMdx, _8InteriorTrends_2025Mdx, dizainSpalniMdx, malenkayaKuhnyaMdx, podborkaTsvetovMdx, pokraskaStenPodgotovkaMdx, pokraskaStenMdx, remontChernovoyKvartiryMdx, remontSovety_5Mdx, remontVannoyMdx, sovetyTsvetaGostinayaMdx, trends_2026Mdx, vidyModulnykhDomovMdx, vidyOboyevMdx, zhilayaZonaVSkaleMdx, en__5ApartmentRenovationMistakesMdx, en__bedroomDesignMdx, en__caveLivingMdx, en__diyBathroomMakeoverMdx, en__fiveInteriorTipsMdx, en__howToSaveMoneyOnRenovationMdx, en__interiorDesignTrends_2026Mdx, en__interiorTrends_2025Mdx, en__kitchenMakeoverMdx, en__livingRoomColorTipsMdx, en__paintingWallsYourselfMdx, en__preparingWallsForPaintingMdx, en__renovationTips_5Mdx, en__roughRenovationGuideMdx, en__typesOfModularHomesMdx, en__wallpaperTypesMdx]
