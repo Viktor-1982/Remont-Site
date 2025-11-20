@@ -1,0 +1,60 @@
+{
+  "title": "5 tips for choosing colors in interior design",
+  "description": "Interior design color tips: practical advice for choosing the right colors at home — lighting, atmosphere, neutral tones, testing paint, and adding accents.",
+  "date": "2025-09-27T00:00:00.000Z",
+  "cover": "/images/five-interior-tips/five-interior-tips.png",
+  "tags": [
+    "interior design",
+    "tips",
+    "color",
+    "home",
+    "decor"
+  ],
+  "translationOf": "five-interior-tips",
+  "draft": false,
+  "body": {
+    "raw": "\n\n\n# 5 tips for choosing colors in interior design\n\nColor is one of the key elements of interior design. It influences not only the style of the room but also the mood of the people in it. To create a harmonious and cozy space, follow these 5 proven tips.\n\n## 1. Consider the lighting\n\nWarm light makes a space feel cozy and soft, while cool light refreshes and brings more energy. Before choosing a color, think about how the lighting in the room will interact with the paint on the walls and furniture.\n\n## 2. Think about the atmosphere\n\nAsk yourself: what feelings do you want to experience in this room? Calm, energy, joy, or focus? Colors directly affect emotions: blue calms, green balances, yellow energizes.\n\n## 3. Use a neutral tone as the base\n\nIt’s best to use neutral shades as a foundation: beige, gray, white. They create a harmonious background that can be easily combined with other colors. Neutral walls and furniture allow you to change the mood with textiles and décor.\n\n## 4. Test the paint\n\nBefore painting the entire room, apply paint samples on the walls in several spots. Observe how the color looks under different lighting — during the day and at night. This helps avoid unpleasant surprises.\n\n## 5. Add accents\n\nUse bright colors sparingly: decorative pillows, rugs, artwork, or vases. They bring life to the interior without overwhelming the space. The main rule is balance.\n\n---\n\n💡 These tips will help you avoid common mistakes and create a harmonious interior where it’s a pleasure to spend time every day.\n",
+    "code": "var Component=(()=>{var p=Object.create;var r=Object.defineProperty;var g=Object.getOwnPropertyDescriptor;var u=Object.getOwnPropertyNames;var m=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var b=(i,e)=>()=>(e||i((e={exports:{}}).exports,e),e.exports),y=(i,e)=>{for(var t in e)r(i,t,{get:e[t],enumerable:!0})},s=(i,e,t,a)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let o of u(e))!f.call(i,o)&&o!==t&&r(i,o,{get:()=>e[o],enumerable:!(a=g(e,o))||a.enumerable});return i};var w=(i,e,t)=>(t=i!=null?p(m(i)):{},s(e||!i||!i.__esModule?r(t,\"default\",{value:i,enumerable:!0}):t,i)),k=i=>s(r({},\"__esModule\",{value:!0}),i);var l=b((T,h)=>{h.exports=_jsx_runtime});var v={};y(v,{default:()=>d,frontmatter:()=>x});var n=w(l()),x={title:\"5 tips for choosing colors in interior design\",description:\"Interior design color tips: practical advice for choosing the right colors at home \\u2014 lighting, atmosphere, neutral tones, testing paint, and adding accents.\",date:\"2025-09-27\",tags:[\"interior design\",\"tips\",\"color\",\"home\",\"decor\"],cover:\"/images/five-interior-tips/five-interior-tips.png\",draft:!1,translationOf:\"five-interior-tips\"};function c(i){let e={a:\"a\",h1:\"h1\",h2:\"h2\",hr:\"hr\",p:\"p\",span:\"span\",...i.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)(e.h1,{id:\"5-tips-for-choosing-colors-in-interior-design\",children:[(0,n.jsx)(e.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#5-tips-for-choosing-colors-in-interior-design\",children:(0,n.jsx)(e.span,{className:\"icon icon-link\"})}),\"5 tips for choosing colors in interior design\"]}),`\n`,(0,n.jsx)(e.p,{children:\"Color is one of the key elements of interior design. It influences not only the style of the room but also the mood of the people in it. To create a harmonious and cozy space, follow these 5 proven tips.\"}),`\n`,(0,n.jsxs)(e.h2,{id:\"1-consider-the-lighting\",children:[(0,n.jsx)(e.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#1-consider-the-lighting\",children:(0,n.jsx)(e.span,{className:\"icon icon-link\"})}),\"1. Consider the lighting\"]}),`\n`,(0,n.jsx)(e.p,{children:\"Warm light makes a space feel cozy and soft, while cool light refreshes and brings more energy. Before choosing a color, think about how the lighting in the room will interact with the paint on the walls and furniture.\"}),`\n`,(0,n.jsxs)(e.h2,{id:\"2-think-about-the-atmosphere\",children:[(0,n.jsx)(e.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#2-think-about-the-atmosphere\",children:(0,n.jsx)(e.span,{className:\"icon icon-link\"})}),\"2. Think about the atmosphere\"]}),`\n`,(0,n.jsx)(e.p,{children:\"Ask yourself: what feelings do you want to experience in this room? Calm, energy, joy, or focus? Colors directly affect emotions: blue calms, green balances, yellow energizes.\"}),`\n`,(0,n.jsxs)(e.h2,{id:\"3-use-a-neutral-tone-as-the-base\",children:[(0,n.jsx)(e.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#3-use-a-neutral-tone-as-the-base\",children:(0,n.jsx)(e.span,{className:\"icon icon-link\"})}),\"3. Use a neutral tone as the base\"]}),`\n`,(0,n.jsx)(e.p,{children:\"It\\u2019s best to use neutral shades as a foundation: beige, gray, white. They create a harmonious background that can be easily combined with other colors. Neutral walls and furniture allow you to change the mood with textiles and d\\xE9cor.\"}),`\n`,(0,n.jsxs)(e.h2,{id:\"4-test-the-paint\",children:[(0,n.jsx)(e.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#4-test-the-paint\",children:(0,n.jsx)(e.span,{className:\"icon icon-link\"})}),\"4. Test the paint\"]}),`\n`,(0,n.jsx)(e.p,{children:\"Before painting the entire room, apply paint samples on the walls in several spots. Observe how the color looks under different lighting \\u2014 during the day and at night. This helps avoid unpleasant surprises.\"}),`\n`,(0,n.jsxs)(e.h2,{id:\"5-add-accents\",children:[(0,n.jsx)(e.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#5-add-accents\",children:(0,n.jsx)(e.span,{className:\"icon icon-link\"})}),\"5. Add accents\"]}),`\n`,(0,n.jsx)(e.p,{children:\"Use bright colors sparingly: decorative pillows, rugs, artwork, or vases. They bring life to the interior without overwhelming the space. The main rule is balance.\"}),`\n`,(0,n.jsx)(e.hr,{}),`\n`,(0,n.jsx)(e.p,{children:\"\\u{1F4A1} These tips will help you avoid common mistakes and create a harmonious interior where it\\u2019s a pleasure to spend time every day.\"})]})}function d(i={}){let{wrapper:e}=i.components||{};return e?(0,n.jsx)(e,{...i,children:(0,n.jsx)(c,{...i})}):c(i)}return k(v);})();\n;return Component;"
+  },
+  "_id": "posts/en/five-interior-tips.mdx",
+  "_raw": {
+    "sourceFilePath": "posts/en/five-interior-tips.mdx",
+    "sourceFileName": "five-interior-tips.mdx",
+    "sourceFileDir": "posts/en",
+    "contentType": "mdx",
+    "flattenedPath": "posts/en/five-interior-tips"
+  },
+  "type": "Post",
+  "slug": "five-interior-tips",
+  "locale": "en",
+  "url": "/en/posts/five-interior-tips",
+  "headings": [
+    {
+      "level": 2,
+      "text": "1. Consider the lighting",
+      "slug": "1-consider-the-lighting"
+    },
+    {
+      "level": 2,
+      "text": "2. Think about the atmosphere",
+      "slug": "2-think-about-the-atmosphere"
+    },
+    {
+      "level": 2,
+      "text": "3. Use a neutral tone as the base",
+      "slug": "3-use-a-neutral-tone-as-the-base"
+    },
+    {
+      "level": 2,
+      "text": "4. Test the paint",
+      "slug": "4-test-the-paint"
+    },
+    {
+      "level": 2,
+      "text": "5. Add accents",
+      "slug": "5-add-accents"
+    }
+  ],
+  "dateParsed": "2025-09-27T00:00:00.000Z",
+  "readingTime": 2
+}

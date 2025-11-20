@@ -1,0 +1,66 @@
+{
+  "title": "Preparing walls for painting",
+  "description": "Steps for surface preparation: covering, filling, sanding, and priming.",
+  "date": "2025-09-03T00:00:00.000Z",
+  "cover": "/images/podgotovka/cover.png",
+  "tags": [
+    "walls",
+    "preparation",
+    "painting",
+    "renovation",
+    "interior"
+  ],
+  "author": "Renohacks",
+  "translationOf": "podgotovka-sten",
+  "draft": false,
+  "body": {
+    "raw": "\n# Preparing walls for painting\n\nEven the most expensive paint won’t give a smooth and long-lasting result if the walls are not prepared.  \nThese simple steps will help you avoid mistakes and extra costs.\n\n---\n\n## 1. Covering the floor and furniture\n![Covering the floor and furniture](/images/podgotovka/step1.png)\n\nBefore starting, protect the floor with a plastic sheet or thick fabric. This will save it from stains.  \nIf you can’t move the furniture — cover it with polyethylene and secure the sheet with masking tape.\n\n💡 **Tip:** use construction tape with attached film — it saves time and nerves.\n\n---\n\n## 2. Taping corners and baseboards\n![Taping corners and baseboards](/images/podgotovka/step2.png)\n\nMasking tape is essential for clean paint edges. Use it to cover baseboards, window frames, sockets, and switches.\n\n- The tape should stick firmly, otherwise paint will leak.\n- Remove the tape right after painting, while the paint is still slightly wet.\n\n💡 **Tip:** choose quality tape — cheap ones leave marks and tear apart.\n\n---\n\n## 3. Filling cracks and seams with putty\n![Filling cracks with putty](/images/podgotovka/step3.png)\n\nAll defects must be filled with putty: cracks, chips, uneven areas.\n\n1. Clean the crack from dust.\n2. Fill it with putty using a spatula.\n3. Remove excess and smooth the surface.\n4. After drying, sand lightly.\n\n💡 **Tip:** for deep cracks, apply several thin layers — thick ones may crack.\n\n---\n\n## 4. Sanding the surface\n![Sanding the wall](/images/podgotovka/step4.png)\n\nSanding removes unevenness and leftover coatings.\n\n- Use fine-grit sandpaper (P120–P180) or sanding mesh.\n- Work evenly, without too much pressure.\n- After sanding, remove dust with a damp sponge or a vacuum cleaner.\n\n💡 **Tip:** fix sandpaper on a sanding block or use a sander — faster and smoother results.\n\n---\n\n## 5. Priming the walls\n![Applying primer](/images/podgotovka/step5.png)\n\nPrimer strengthens the surface and improves paint adhesion.\n\n1. Stir the primer.\n2. Apply with a roller over the entire surface, and a brush in the corners.\n3. Let it dry (usually 4–6 hours).\n\n💡 **Tip:** don’t skimp on primer — it reduces paint consumption and extends durability.\n\n---\n\n## 📐 Paint calculator\n\nBefore painting, calculate how many liters of paint you’ll need for the room:\n\n<PaintCalculator />\n\nExample: a 5×3 m room, 2.7 m height, without large windows = about **24 liters** of paint.\n\n---\n\n# ✅ Conclusion\nPreparation takes more time than painting itself, but it determines the quality of the result.  \nFollow these steps — and the paint will go on smoothly, without drips or bubbles, and the walls will look great for years.\n",
+    "code": "var Component=(()=>{var p=Object.create;var t=Object.defineProperty;var g=Object.getOwnPropertyDescriptor;var u=Object.getOwnPropertyNames;var m=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var w=(i,n)=>()=>(n||i((n={exports:{}}).exports,n),n.exports),k=(i,n)=>{for(var r in n)t(i,r,{get:n[r],enumerable:!0})},l=(i,n,r,s)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let a of u(n))!f.call(i,a)&&a!==r&&t(i,a,{get:()=>n[a],enumerable:!(s=g(n,a))||s.enumerable});return i};var v=(i,n,r)=>(r=i!=null?p(m(i)):{},l(n||!i||!i.__esModule?t(r,\"default\",{value:i,enumerable:!0}):r,i)),b=i=>l(t({},\"__esModule\",{value:!0}),i);var c=w((I,o)=>{o.exports=_jsx_runtime});var P={};k(P,{default:()=>d,frontmatter:()=>y});var e=v(c()),y={title:\"Preparing walls for painting\",description:\"Steps for surface preparation: covering, filling, sanding, and priming.\",date:\"2025-09-03\",tags:[\"walls\",\"preparation\",\"painting\",\"renovation\",\"interior\"],cover:\"/images/podgotovka/cover.png\",author:\"Renohacks\",translationOf:\"podgotovka-sten\",draft:!1};function h(i){let n={a:\"a\",br:\"br\",h1:\"h1\",h2:\"h2\",hr:\"hr\",img:\"img\",li:\"li\",ol:\"ol\",p:\"p\",span:\"span\",strong:\"strong\",ul:\"ul\",...i.components},{PaintCalculator:r}=n;return r||x(\"PaintCalculator\",!0),(0,e.jsxs)(e.Fragment,{children:[(0,e.jsxs)(n.h1,{id:\"preparing-walls-for-painting\",children:[(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#preparing-walls-for-painting\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})}),\"Preparing walls for painting\"]}),`\n`,(0,e.jsxs)(n.p,{children:[\"Even the most expensive paint won\\u2019t give a smooth and long-lasting result if the walls are not prepared.\",(0,e.jsx)(n.br,{}),`\n`,\"These simple steps will help you avoid mistakes and extra costs.\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"1-covering-the-floor-and-furniture\",children:[(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#1-covering-the-floor-and-furniture\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})}),\"1. Covering the floor and furniture\"]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/podgotovka/step1.png\",alt:\"Covering the floor and furniture\"})}),`\n`,(0,e.jsxs)(n.p,{children:[\"Before starting, protect the floor with a plastic sheet or thick fabric. This will save it from stains.\",(0,e.jsx)(n.br,{}),`\n`,\"If you can\\u2019t move the furniture \\u2014 cover it with polyethylene and secure the sheet with masking tape.\"]}),`\n`,(0,e.jsxs)(n.p,{children:[\"\\u{1F4A1} \",(0,e.jsx)(n.strong,{children:\"Tip:\"}),\" use construction tape with attached film \\u2014 it saves time and nerves.\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"2-taping-corners-and-baseboards\",children:[(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#2-taping-corners-and-baseboards\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})}),\"2. Taping corners and baseboards\"]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/podgotovka/step2.png\",alt:\"Taping corners and baseboards\"})}),`\n`,(0,e.jsx)(n.p,{children:\"Masking tape is essential for clean paint edges. Use it to cover baseboards, window frames, sockets, and switches.\"}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsx)(n.li,{children:\"The tape should stick firmly, otherwise paint will leak.\"}),`\n`,(0,e.jsx)(n.li,{children:\"Remove the tape right after painting, while the paint is still slightly wet.\"}),`\n`]}),`\n`,(0,e.jsxs)(n.p,{children:[\"\\u{1F4A1} \",(0,e.jsx)(n.strong,{children:\"Tip:\"}),\" choose quality tape \\u2014 cheap ones leave marks and tear apart.\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"3-filling-cracks-and-seams-with-putty\",children:[(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#3-filling-cracks-and-seams-with-putty\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})}),\"3. Filling cracks and seams with putty\"]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/podgotovka/step3.png\",alt:\"Filling cracks with putty\"})}),`\n`,(0,e.jsx)(n.p,{children:\"All defects must be filled with putty: cracks, chips, uneven areas.\"}),`\n`,(0,e.jsxs)(n.ol,{children:[`\n`,(0,e.jsx)(n.li,{children:\"Clean the crack from dust.\"}),`\n`,(0,e.jsx)(n.li,{children:\"Fill it with putty using a spatula.\"}),`\n`,(0,e.jsx)(n.li,{children:\"Remove excess and smooth the surface.\"}),`\n`,(0,e.jsx)(n.li,{children:\"After drying, sand lightly.\"}),`\n`]}),`\n`,(0,e.jsxs)(n.p,{children:[\"\\u{1F4A1} \",(0,e.jsx)(n.strong,{children:\"Tip:\"}),\" for deep cracks, apply several thin layers \\u2014 thick ones may crack.\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"4-sanding-the-surface\",children:[(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#4-sanding-the-surface\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})}),\"4. Sanding the surface\"]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/podgotovka/step4.png\",alt:\"Sanding the wall\"})}),`\n`,(0,e.jsx)(n.p,{children:\"Sanding removes unevenness and leftover coatings.\"}),`\n`,(0,e.jsxs)(n.ul,{children:[`\n`,(0,e.jsx)(n.li,{children:\"Use fine-grit sandpaper (P120\\u2013P180) or sanding mesh.\"}),`\n`,(0,e.jsx)(n.li,{children:\"Work evenly, without too much pressure.\"}),`\n`,(0,e.jsx)(n.li,{children:\"After sanding, remove dust with a damp sponge or a vacuum cleaner.\"}),`\n`]}),`\n`,(0,e.jsxs)(n.p,{children:[\"\\u{1F4A1} \",(0,e.jsx)(n.strong,{children:\"Tip:\"}),\" fix sandpaper on a sanding block or use a sander \\u2014 faster and smoother results.\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"5-priming-the-walls\",children:[(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#5-priming-the-walls\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})}),\"5. Priming the walls\"]}),`\n`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.img,{src:\"/images/podgotovka/step5.png\",alt:\"Applying primer\"})}),`\n`,(0,e.jsx)(n.p,{children:\"Primer strengthens the surface and improves paint adhesion.\"}),`\n`,(0,e.jsxs)(n.ol,{children:[`\n`,(0,e.jsx)(n.li,{children:\"Stir the primer.\"}),`\n`,(0,e.jsx)(n.li,{children:\"Apply with a roller over the entire surface, and a brush in the corners.\"}),`\n`,(0,e.jsx)(n.li,{children:\"Let it dry (usually 4\\u20136 hours).\"}),`\n`]}),`\n`,(0,e.jsxs)(n.p,{children:[\"\\u{1F4A1} \",(0,e.jsx)(n.strong,{children:\"Tip:\"}),\" don\\u2019t skimp on primer \\u2014 it reduces paint consumption and extends durability.\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h2,{id:\"-paint-calculator\",children:[(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#-paint-calculator\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})}),\"\\u{1F4D0} Paint calculator\"]}),`\n`,(0,e.jsx)(n.p,{children:\"Before painting, calculate how many liters of paint you\\u2019ll need for the room:\"}),`\n`,(0,e.jsx)(r,{}),`\n`,(0,e.jsxs)(n.p,{children:[\"Example: a 5\\xD73 m room, 2.7 m height, without large windows = about \",(0,e.jsx)(n.strong,{children:\"24 liters\"}),\" of paint.\"]}),`\n`,(0,e.jsx)(n.hr,{}),`\n`,(0,e.jsxs)(n.h1,{id:\"-conclusion\",children:[(0,e.jsx)(n.a,{\"aria-hidden\":\"true\",tabIndex:\"-1\",href:\"#-conclusion\",children:(0,e.jsx)(n.span,{className:\"icon icon-link\"})}),\"\\u2705 Conclusion\"]}),`\n`,(0,e.jsxs)(n.p,{children:[\"Preparation takes more time than painting itself, but it determines the quality of the result.\",(0,e.jsx)(n.br,{}),`\n`,\"Follow these steps \\u2014 and the paint will go on smoothly, without drips or bubbles, and the walls will look great for years.\"]})]})}function d(i={}){let{wrapper:n}=i.components||{};return n?(0,e.jsx)(n,{...i,children:(0,e.jsx)(h,{...i})}):h(i)}function x(i,n){throw new Error(\"Expected \"+(n?\"component\":\"object\")+\" `\"+i+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return b(P);})();\n;return Component;"
+  },
+  "_id": "posts/en/preparing-walls-for-painting.mdx",
+  "_raw": {
+    "sourceFilePath": "posts/en/preparing-walls-for-painting.mdx",
+    "sourceFileName": "preparing-walls-for-painting.mdx",
+    "sourceFileDir": "posts/en",
+    "contentType": "mdx",
+    "flattenedPath": "posts/en/preparing-walls-for-painting"
+  },
+  "type": "Post",
+  "slug": "preparing-walls-for-painting",
+  "locale": "en",
+  "url": "/en/posts/preparing-walls-for-painting",
+  "headings": [
+    {
+      "level": 2,
+      "text": "1. Covering the floor and furniture",
+      "slug": "1-covering-the-floor-and-furniture"
+    },
+    {
+      "level": 2,
+      "text": "2. Taping corners and baseboards",
+      "slug": "2-taping-corners-and-baseboards"
+    },
+    {
+      "level": 2,
+      "text": "3. Filling cracks and seams with putty",
+      "slug": "3-filling-cracks-and-seams-with-putty"
+    },
+    {
+      "level": 2,
+      "text": "4. Sanding the surface",
+      "slug": "4-sanding-the-surface"
+    },
+    {
+      "level": 2,
+      "text": "5. Priming the walls",
+      "slug": "5-priming-the-walls"
+    },
+    {
+      "level": 2,
+      "text": "📐 Paint calculator",
+      "slug": "-paint-calculator"
+    }
+  ],
+  "dateParsed": "2025-09-03T00:00:00.000Z",
+  "readingTime": 3
+}

@@ -24,6 +24,18 @@
         "rollCoverage": "Покрытие 1 рулона (м²)",
         "result": "Необходимо рулонов:"
       },
+      "budget": {
+        "title": "Калькулятор бюджета ремонта",
+        "area": "Площадь квартиры (м²)",
+        "type": "Тип ремонта",
+        "cosmetic": "Косметический",
+        "standard": "Стандартный",
+        "premium": "Премиум",
+        "result": "Примерный бюджет:",
+        "materials": "Материалы:",
+        "work": "Работы:",
+        "total": "Итого:"
+      },
       "buttons": {
         "calculate": "Рассчитать"
       }
@@ -53,6 +65,18 @@
         "inputLabel": "Wall area in m²",
         "rollCoverage": "Roll coverage (m²)",
         "result": "Rolls needed:"
+      },
+      "budget": {
+        "title": "Renovation Budget Calculator",
+        "area": "Apartment area (m²)",
+        "type": "Renovation type",
+        "cosmetic": "Cosmetic",
+        "standard": "Standard",
+        "premium": "Premium",
+        "result": "Estimated budget:",
+        "materials": "Materials:",
+        "work": "Labor:",
+        "total": "Total:"
       },
       "buttons": {
         "calculate": "Calculate"

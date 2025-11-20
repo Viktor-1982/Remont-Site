@@ -26,6 +26,19 @@ export interface WallpaperCalcDict {
     result: string
 }
 
+export interface BudgetCalcDict {
+    title: string
+    area: string
+    type: string
+    cosmetic: string
+    standard: string
+    premium: string
+    result: string
+    materials: string
+    work: string
+    total: string
+}
+
 export interface ButtonsDict {
     calculate: string
 }
@@ -34,6 +47,7 @@ export interface CalcDict {
     paint: PaintCalcDict
     tiles: TilesCalcDict
     wallpaper: WallpaperCalcDict
+    budget: BudgetCalcDict
     buttons: ButtonsDict
 }
 

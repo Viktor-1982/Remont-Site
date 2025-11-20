@@ -10,6 +10,7 @@ import { useMDXComponent } from "next-contentlayer2/hooks"
 import { PaintCalculator } from "@/components/widgets/paint-calculator"
 import { TileCalculator } from "@/components/widgets/tile-calculator"
 import { WallpaperCalculator } from "@/components/widgets/wallpaper-calculator"
+import { BudgetCalculator } from "@/components/widgets/budget-calculator"
 
 // 🔹 Словарь компонентов, доступных в MDX
 export const mdxComponents: MDXComponents = {
@@ -45,6 +46,11 @@ export const mdxComponents: MDXComponents = {
     WallpaperCalculator: () => (
         <div className="my-8">
             <WallpaperCalculator />
+        </div>
+    ),
+    BudgetCalculator: () => (
+        <div className="my-8">
+            <BudgetCalculator />
         </div>
     ),
 
