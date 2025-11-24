@@ -62,6 +62,20 @@ export const mdxComponents: MDXComponents = {
     ),
 
     // Заголовки
+    // H1 в контенте автоматически конвертируется в H2, так как ArticleHero уже предоставляет H1
+    h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+        const slugger = new GitHubSlugger()
+        const text = String(props.children)
+        const id = slugger.slug(text)
+        return (
+            <h2
+                id={id}
+                aria-label={text}
+                className="mt-10 scroll-m-20 border-b pb-2 text-2xl font-semibold"
+                {...props}
+            />
+        )
+    },
     h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
         const slugger = new GitHubSlugger()
         const text = String(props.children)

@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
     const baseUrl = "https://renohacks.com"
     const title = `#${decodedTag} — articles tagged ${decodedTag} | Renohacks`
-    const description = `All blog posts tagged “${decodedTag}”: ideas, renovations, interiors and DIY projects.`
+    const description = `All articles tagged "${decodedTag}" on Renohacks.com: practical home renovation ideas, interior design tips, and DIY projects. Step-by-step guides, photo tutorials, expert advice, and material reviews.`
 
     return {
         title,

@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
     const baseUrl = "https://renohacks.com"
     const title = `#${decodedTag} — статьи по тегу ${decodedTag} | Renohacks`
-    const description = `Все статьи с тегом «${decodedTag}»: идеи, ремонты, интерьеры и DIY-проекты.`
+    const description = `Все статьи с тегом «${decodedTag}» на Renohacks.com: практические идеи для ремонта, дизайна интерьера и DIY-проектов. Пошаговые инструкции, фото-гайды, советы экспертов и обзоры материалов.`
 
     return {
         title,

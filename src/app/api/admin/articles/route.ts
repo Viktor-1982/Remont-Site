@@ -202,6 +202,21 @@ ${content}
         // Сохраняем файл
         await writeFile(filePath, frontmatter, "utf-8")
 
+        // ✅ Автоматическая отправка в IndexNow (в фоне, не блокируем ответ)
+        if (!draft) {
+            const baseUrl = "https://renohacks.com"
+            const postUrl = locale === "en" 
+                ? `${baseUrl}/en/posts/${sanitizedSlug}`
+                : `${baseUrl}/posts/${sanitizedSlug}`
+            
+            // Отправляем асинхронно, не ждём результата
+            import("@/lib/indexnow").then(({ submitUrlToIndexNow }) => {
+                submitUrlToIndexNow(postUrl).catch((err) => {
+                    console.error("IndexNow submission failed:", err)
+                })
+            })
+        }
+
         return NextResponse.json({
             success: true,
             slug: sanitizedSlug,
@@ -322,6 +337,21 @@ ${content || ""}
 
         // Сохраняем файл
         await writeFile(filePath, frontmatter, "utf-8")
+
+        // ✅ Автоматическая отправка в IndexNow при обновлении (в фоне, не блокируем ответ)
+        if (!draft) {
+            const baseUrl = "https://renohacks.com"
+            const postUrl = locale === "en" 
+                ? `${baseUrl}/en/posts/${sanitizedSlug}`
+                : `${baseUrl}/posts/${sanitizedSlug}`
+            
+            // Отправляем асинхронно, не ждём результата
+            import("@/lib/indexnow").then(({ submitUrlToIndexNow }) => {
+                submitUrlToIndexNow(postUrl).catch((err) => {
+                    console.error("IndexNow submission failed:", err)
+                })
+            })
+        }
 
         return NextResponse.json({
             success: true,

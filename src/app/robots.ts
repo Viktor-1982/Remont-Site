@@ -21,6 +21,7 @@ export default function robots(): MetadataRoute.Robots {
             },
         ],
         sitemap: [`${baseUrl}/sitemap.xml`], // ✅  sitemap!
-        host: "renohacks.com", // ✅ 
+        // host удалён: не является стандартной директивой robots.txt
+        // Поддерживается только Яндексом, но вызывает ошибки в валидаторах
     }
 }
