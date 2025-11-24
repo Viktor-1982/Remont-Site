@@ -101,12 +101,11 @@ export default async function RootLayout({
           ym(104537151, 'init', {ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});`}
             </Script>
 
-            {/* ✅ Google AdSense */}
-            <Script
+            {/* ✅ Google AdSense - используем обычный script для верификации */}
+            <script
                 async
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6574921684224364"
                 crossOrigin="anonymous"
-                strategy="afterInteractive"
             />
         </head>
 
