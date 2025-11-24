@@ -14,8 +14,8 @@ IndexNow — это протокол для мгновенного уведом�
 
 ### 1. Через API endpoint
 
+**POST запрос (для множества URL, до 10,000):**
 ```bash
-# Отправить один или несколько URL
 curl -X POST https://renohacks.com/api/indexnow \
   -H "Content-Type: application/json" \
   -d '{
@@ -24,6 +24,12 @@ curl -X POST https://renohacks.com/api/indexnow \
       "https://renohacks.com/posts/updated-article"
     ]
   }'
+```
+
+**GET запрос (для одного URL):**
+```bash
+# URL должен быть URL-encoded
+curl "https://renohacks.com/api/indexnow?url=https%3A%2F%2Frenohacks.com%2Fposts%2Fnew-article"
 ```
 
 ### 2. Через CLI скрипт

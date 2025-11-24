@@ -49,7 +49,7 @@ async function submitToIndexNow(urls) {
             const response = await fetch(endpoint, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json; charset=utf-8", // Согласно спецификации IndexNow
                 },
                 body: JSON.stringify(payload),
             })
@@ -57,17 +57,25 @@ async function submitToIndexNow(urls) {
         })
     )
 
-    // Выводим результаты
+    // Выводим результаты (обрабатываем коды 200 и 202 согласно спецификации)
     let hasSuccess = false
     results.forEach((result, index) => {
-        if (result.status === "fulfilled" && result.value.ok) {
-            console.log(`✅ ${INDEXNOW_ENDPOINTS[index]}: Success`)
-            hasSuccess = true
+        if (result.status === "fulfilled") {
+            const status = result.value.status
+            if (status === 200 || status === 202) {
+                const message = status === 200 ? "Success (OK)" : "Accepted (key validation pending)"
+                console.log(`✅ ${INDEXNOW_ENDPOINTS[index]}: ${message} (${status})`)
+                hasSuccess = true
+            } else {
+                let errorMsg = `Status ${status}`
+                if (status === 400) errorMsg = "Bad request - Invalid format"
+                else if (status === 403) errorMsg = "Forbidden - Key not valid"
+                else if (status === 422) errorMsg = "Unprocessable Entity - URL doesn't belong to host"
+                else if (status === 429) errorMsg = "Too Many Requests - Potential spam"
+                console.log(`❌ ${INDEXNOW_ENDPOINTS[index]}: ${errorMsg}`)
+            }
         } else {
-            const error =
-                result.status === "rejected"
-                    ? result.reason.message
-                    : `Status ${result.value?.status}`
+            const error = result.reason?.message || "Unknown error"
             console.log(`❌ ${INDEXNOW_ENDPOINTS[index]}: ${error}`)
         }
     })
