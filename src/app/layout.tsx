@@ -72,6 +72,7 @@ export default async function RootLayout({
             <link rel="preload" href="/images/hero/hero-banner.png" as="image" />
             <link rel="dns-prefetch" href="//www.googletagmanager.com" />
             <link rel="dns-prefetch" href="//mc.yandex.ru" />
+            <link rel="dns-prefetch" href="//pagead2.googlesyndication.com" />
             
             {/* ✅ Pinterest Domain Verification */}
             <meta
@@ -99,6 +100,14 @@ export default async function RootLayout({
 
           ym(104537151, 'init', {ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});`}
             </Script>
+
+            {/* ✅ Google AdSense */}
+            <Script
+                async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6574921684224364"
+                crossOrigin="anonymous"
+                strategy="afterInteractive"
+            />
         </head>
 
         <body className="min-h-screen bg-background text-foreground font-sans antialiased">
