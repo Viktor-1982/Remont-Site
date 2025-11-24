@@ -7,6 +7,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/app/theme-provider"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { CookieConsent } from "@/components/cookie-consent"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Script from "next/script"
@@ -101,6 +102,20 @@ export default async function RootLayout({
           ym(104537151, 'init', {ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});`}
             </Script>
 
+            {/* ✅ Google Consent Mode - инициализация ДО AdSense */}
+            <Script id="google-consent-mode" strategy="beforeInteractive">
+                {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('consent', 'default', {
+                        'ad_storage': 'denied',
+                        'ad_user_data': 'denied',
+                        'ad_personalization': 'denied',
+                        'analytics_storage': 'denied'
+                    });
+                `}
+            </Script>
+
             {/* ✅ Google AdSense - используем обычный script для верификации */}
             <script
                 async
@@ -136,6 +151,7 @@ export default async function RootLayout({
             <SiteHeader />
             <main className="w-full py-8 px-4">{children}</main>
             <SiteFooter />
+            <CookieConsent />
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
