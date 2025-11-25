@@ -121,7 +121,7 @@ export const mdxComponents: MDXComponents = {
             const { children, ...rest } = props
             return (
                 <div
-                    className="leading-7 text-muted-foreground [&:not(:first-child)]:mt-4"
+                    className="leading-7 text-foreground [&:not(:first-child)]:mt-4"
                     {...rest}
                 >
                     {children}
@@ -131,7 +131,7 @@ export const mdxComponents: MDXComponents = {
 
         return (
             <p
-                className="leading-7 text-muted-foreground [&:not(:first-child)]:mt-4"
+                className="leading-7 text-foreground [&:not(:first-child)]:mt-4"
                 {...props}
             />
         )
@@ -139,10 +139,10 @@ export const mdxComponents: MDXComponents = {
 
     // Списки
     ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
-        <ul className="ml-6 list-disc [&>li]:mt-2" {...props} />
+        <ul className="ml-6 list-disc [&>li]:mt-2 [&>li]:text-foreground" {...props} />
     ),
     ol: (props: React.HTMLAttributes<HTMLOListElement>) => (
-        <ol className="ml-6 list-decimal [&>li]:mt-2" {...props} />
+        <ol className="ml-6 list-decimal [&>li]:mt-2 [&>li]:text-foreground" {...props} />
     ),
 
     // Цитаты

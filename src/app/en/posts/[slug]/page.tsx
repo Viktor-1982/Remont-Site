@@ -76,10 +76,10 @@ export default async function PostPage({
     } : null
 
     return (
-        <article className="container py-12">
+        <article className="container px-4 sm:px-6 py-8 sm:py-12">
             <ArticleHero post={post} />
 
-            <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
+            <div className="grid gap-6 sm:gap-8 lg:grid-cols-[2fr_1fr]">
                 <Mdx code={post.body.code} />
                 <TableOfContents items={post.headings} />
             </div>

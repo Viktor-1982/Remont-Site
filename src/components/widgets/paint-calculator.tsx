@@ -61,33 +61,109 @@ export function PaintCalculator() {
     }
 
     return (
-        <div className="max-w-md mx-auto border rounded-lg p-4 shadow-sm space-y-4 bg-card">
-            <h2 className="flex items-center gap-2 text-xl font-semibold">
-                <Calculator className="w-5 h-5 text-primary" /> {t.title}
-            </h2>
-
-            <Input placeholder={t.length} value={length} onChange={(e) => setLength(e.target.value)} />
-            <Input placeholder={t.width} value={width} onChange={(e) => setWidth(e.target.value)} />
-            <Input placeholder={t.height} value={height} onChange={(e) => setHeight(e.target.value)} />
-            <Input placeholder={t.doors} value={doors} onChange={(e) => setDoors(e.target.value)} />
-            <Input placeholder={t.windows} value={windows} onChange={(e) => setWindows(e.target.value)} />
-            <Input placeholder={t.layers} value={layers} onChange={(e) => setLayers(e.target.value)} />
-            <Input placeholder={t.coverage} value={coverage} onChange={(e) => setCoverage(e.target.value)} />
-
-            <Button onClick={calculate} className="w-full">
-                {b.calculate}
-            </Button>
-
-            {result !== null && (
-                <div className="mt-4 p-3 rounded-lg bg-muted">
-                    <p className="text-lg font-semibold">
-                        {t.result} <b>{Math.ceil(result)}</b> L
-                    </p>
+        <div className="relative w-full max-w-3xl mx-auto">
+            <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-r from-primary/15 via-transparent to-accent/20 blur-3xl opacity-60" />
+            <div className="relative space-y-6 rounded-[32px] border border-primary/10 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.12),_transparent_45%),_var(--background)] p-6 md:p-8 shadow-[0_25px_80px_-35px_rgba(79,70,229,0.8)] transition">
+                <div className="space-y-2">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                        <Calculator className="h-3.5 w-3.5" /> Renohacks Pro Tool
+                    </span>
+                    <h2 className="text-2xl md:text-3xl font-bold text-foreground">{t.title}</h2>
                     <p className="text-sm text-muted-foreground">
-                        {isEnglish ? "Add 10% extra for safety." : "Добавьте 10% про запас."}
+                        {isEnglish 
+                            ? "Calculate the exact amount of paint needed for walls and ceilings, accounting for windows, doors, and multiple coats."
+                            : "Рассчитайте точный расход краски для стен и потолков с учетом окон, дверей и количества слоев."}
                     </p>
                 </div>
-            )}
+
+                <div className="grid gap-4 md:grid-cols-2">
+                    <div className="space-y-2">
+                        <label className="text-xs font-medium text-muted-foreground">{t.length}</label>
+                        <Input 
+                            placeholder={t.length} 
+                            value={length} 
+                            onChange={(e) => setLength(e.target.value)}
+                            className="rounded-xl border-border/60 bg-background/80"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-xs font-medium text-muted-foreground">{t.width}</label>
+                        <Input 
+                            placeholder={t.width} 
+                            value={width} 
+                            onChange={(e) => setWidth(e.target.value)}
+                            className="rounded-xl border-border/60 bg-background/80"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-xs font-medium text-muted-foreground">{t.height}</label>
+                        <Input 
+                            placeholder={t.height} 
+                            value={height} 
+                            onChange={(e) => setHeight(e.target.value)}
+                            className="rounded-xl border-border/60 bg-background/80"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-xs font-medium text-muted-foreground">{t.doors}</label>
+                        <Input 
+                            placeholder={t.doors} 
+                            value={doors} 
+                            onChange={(e) => setDoors(e.target.value)}
+                            className="rounded-xl border-border/60 bg-background/80"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-xs font-medium text-muted-foreground">{t.windows}</label>
+                        <Input 
+                            placeholder={t.windows} 
+                            value={windows} 
+                            onChange={(e) => setWindows(e.target.value)}
+                            className="rounded-xl border-border/60 bg-background/80"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-xs font-medium text-muted-foreground">{t.layers}</label>
+                        <Input 
+                            placeholder={t.layers} 
+                            value={layers} 
+                            onChange={(e) => setLayers(e.target.value)}
+                            className="rounded-xl border-border/60 bg-background/80"
+                        />
+                    </div>
+                    <div className="space-y-2 md:col-span-2">
+                        <label className="text-xs font-medium text-muted-foreground">{t.coverage}</label>
+                        <Input 
+                            placeholder={t.coverage} 
+                            value={coverage} 
+                            onChange={(e) => setCoverage(e.target.value)}
+                            className="rounded-xl border-border/60 bg-background/80"
+                        />
+                    </div>
+                </div>
+
+                <Button
+                    onClick={calculate}
+                    className="w-full rounded-2xl bg-gradient-to-r from-primary to-primary/80 py-6 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:translate-y-0 hover:brightness-110"
+                    size="lg"
+                >
+                    {b.calculate}
+                </Button>
+
+                {result !== null && (
+                    <div className="rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/15 to-primary/5 p-4 shadow-md">
+                        <div className="flex items-center gap-2 text-xs font-medium uppercase text-primary mb-2">
+                            <Calculator className="h-3.5 w-3.5" /> {t.result}
+                        </div>
+                        <p className="text-2xl font-bold text-primary">
+                            {Math.ceil(result)} {isEnglish ? "L" : "л"}
+                        </p>
+                        <p className="text-sm text-muted-foreground mt-2">
+                            {isEnglish ? "Add 10% extra for safety." : "Добавьте 10% про запас."}
+                        </p>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

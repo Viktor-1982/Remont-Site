@@ -33,7 +33,7 @@ export function SiteHeader() {
                 {/* 🏠 Логотип */}
                 <Link
                     href={isEnglish ? "/en" : "/"}
-                    className="font-bold text-lg hover:text-primary transition-colors"
+                    className="inline-flex items-baseline px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg text-lg sm:text-xl font-bold tracking-wide bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 dark:from-primary/20 dark:via-accent/20 dark:to-primary/20 text-foreground transition-all hover:opacity-90 hover:scale-105 hover:from-primary/15 hover:via-accent/15 hover:to-primary/15 dark:hover:from-primary/25 dark:hover:via-accent/25 dark:hover:to-primary/25"
                 >
                     renohacks.com
                 </Link>
@@ -50,10 +50,10 @@ export function SiteHeader() {
                             key={link.href}
                             href={link.href}
                             className={cn(
-                                "transition-colors hover:text-primary",
+                                "transition-colors hover:text-primary font-medium",
                                 isActive(link.href)
                                     ? "text-primary font-semibold underline underline-offset-4"
-                                    : "text-muted-foreground"
+                                    : "text-foreground/80 hover:text-foreground"
                             )}
                         >
                             {link.label}
@@ -115,10 +115,10 @@ export function SiteHeader() {
                                         href={link.href}
                                         onClick={() => setOpen(false)}
                                         className={cn(
-                                            "text-lg font-medium transition-colors hover:text-primary",
+                                            "text-lg font-semibold transition-colors hover:text-primary",
                                             isActive(link.href)
                                                 ? "text-primary underline underline-offset-4"
-                                                : "text-muted-foreground"
+                                                : "text-foreground/90 hover:text-foreground"
                                         )}
                                     >
                                         {link.label}

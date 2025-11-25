@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Calculator, Plus, Trash2 } from "lucide-react"
+import { Calculator, Plus, Trash2, PiggyBank, Wallet, DollarSign } from "lucide-react"
 import calcDataJson from "@/components/messages/calc.json"
 import type { Locale, CalcData, BudgetCalcDict, ButtonsDict } from "@/types/calc"
 
@@ -104,93 +104,160 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
   }
 
   return (
-    <div className="w-full max-w-md mx-auto border rounded-lg p-4 shadow-sm space-y-4 bg-card">
-      <h2 className="flex items-center gap-2 text-xl font-semibold">
-        <Calculator className="w-5 h-5 text-primary" /> {t.title}
-      </h2>
+    <div className="relative w-full max-w-3xl mx-auto">
+      <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-r from-primary/15 via-transparent to-accent/20 blur-3xl opacity-60" />
+      <div className="relative space-y-6 rounded-[32px] border border-primary/10 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.12),_transparent_45%),_var(--background)] p-6 md:p-8 shadow-[0_25px_80px_-35px_rgba(79,70,229,0.8)] transition">
+        <div className="space-y-2">
+        <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+          <Calculator className="h-3.5 w-3.5" /> Renohacks Pro Tool
+        </span>
+        <h2 className="text-2xl md:text-3xl font-bold text-foreground">{t.title}</h2>
+        <p className="text-sm text-muted-foreground">
+          Structure renovation costs by category, add contingency, and get a client-ready total in seconds.
+        </p>
+      </div>
 
-      <div className="space-y-3">
-        {items.map((item) => (
-          <div key={item.id} className="flex flex-col gap-2">
-            <div className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="text"
-                list={`categories-${item.id}`}
-                placeholder={t.category}
-                className="flex-1 border rounded-md px-3 py-2 text-sm"
-                value={item.category}
-                onChange={(e) => updateCategory(item.id, "category", e.target.value)}
-              />
-              <datalist id={`categories-${item.id}`}>
-                {renovationCategories.map((cat) => (
-                  <option key={cat} value={cat} />
-                ))}
-              </datalist>
-              <div className="flex gap-2">
-                <input
-                  type="number"
-                  placeholder={t.cost}
-                  className="w-24 sm:w-32 border rounded-md px-3 py-2 text-sm text-right"
-                  value={item.cost}
-                  onChange={(e) => updateCategory(item.id, "cost", e.target.value)}
-                />
-                <Button variant="ghost" size="icon" onClick={() => removeCategory(item.id)} disabled={items.length === 1}>
-                  <Trash2 className="w-4 h-4" />
+        <div className="space-y-4">
+          {items.map((item, index) => (
+            <div
+              key={item.id}
+              className="group relative overflow-hidden rounded-2xl border border-border/40 bg-gradient-to-br from-card via-card to-primary/5 p-4 shadow-sm transition hover:border-primary/40 hover:shadow-xl"
+            >
+              <div className="pointer-events-none absolute inset-y-4 left-2 w-1 rounded-full bg-primary/20 transition group-hover:bg-primary/60" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent via-primary/5 to-transparent opacity-0 transition group-hover:opacity-100" />
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">#{index + 1}</span>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-muted-foreground hover:text-destructive"
+                  onClick={() => removeCategory(item.id)}
+                  disabled={items.length === 1}
+                  aria-label={t.remove}
+                >
+                  <Trash2 className="h-4 w-4" />
                 </Button>
               </div>
+              <div className="relative flex flex-col gap-3 md:flex-row">
+                <div className="flex-1">
+                  <label className="text-xs font-medium text-muted-foreground">{t.category}</label>
+                  <input
+                    type="text"
+                    list={`categories-${item.id}`}
+                    placeholder="e.g. Demolition or framing"
+                    className="mt-1 w-full rounded-xl border border-border/60 bg-background/80 px-3 py-2 text-sm transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
+                    value={item.category}
+                    onChange={(e) => updateCategory(item.id, "category", e.target.value)}
+                  />
+                  <datalist id={`categories-${item.id}`}>
+                    {renovationCategories.map((cat) => (
+                      <option key={cat} value={cat} />
+                    ))}
+                  </datalist>
+                </div>
+                <div className="w-full md:w-40">
+                  <label className="text-xs font-medium text-muted-foreground">{t.cost} ({selectedCurrency.symbol})</label>
+                  <input
+                    type="number"
+                    min="0"
+                    placeholder="0"
+                    className="mt-1 w-full rounded-xl border border-border/60 bg-background/80 px-3 py-2 text-right text-sm transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
+                    value={item.cost}
+                    onChange={(e) => updateCategory(item.id, "cost", e.target.value)}
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-
-      <Button variant="outline" onClick={addCategory} className="w-full">
-        <Plus className="w-4 h-4 mr-2" /> {t.addCategory}
-      </Button>
-
-      <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center">
-        <label className="text-sm font-medium flex-1">{t.currency}</label>
-        <select
-          className="flex-1 border rounded-md px-3 py-2 text-sm bg-background"
-          value={currency}
-          onChange={(e) => setCurrency(e.target.value)}
-        >
-          {currencies.map((curr) => (
-            <option key={curr.code} value={curr.code}>
-              {curr.symbol} {curr.name}
-            </option>
           ))}
-        </select>
+        </div>
+
+        <Button
+          variant="outline"
+          onClick={addCategory}
+          className="w-full rounded-2xl border-dashed border-primary/50 bg-gradient-to-r from-transparent via-primary/5 to-transparent py-6 text-base font-semibold text-primary shadow-inner hover:border-primary hover:bg-primary/10"
+        >
+          <Plus className="mr-2 h-4 w-4" /> {t.addCategory}
+        </Button>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="rounded-2xl border border-border/50 bg-card/80 p-4 shadow-sm">
+          <label className="text-xs font-medium text-muted-foreground">{t.currency}</label>
+          <div className="mt-2 relative">
+            <select
+              className="w-full appearance-none rounded-xl border border-border/70 bg-background/70 px-4 py-3 text-sm font-medium focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+            >
+              {currencies.map((curr) => (
+                <option key={curr.code} value={curr.code}>
+                  {curr.symbol} {curr.name}
+                </option>
+              ))}
+            </select>
+            <span className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 text-muted-foreground md:block">⌄</span>
+          </div>
+        </div>
+        <div className="rounded-2xl border border-border/50 bg-card/80 p-4 shadow-sm">
+          <label className="text-xs font-medium text-muted-foreground">{t.reserve}</label>
+          <div className="mt-2 flex items-center gap-3">
+            <input
+              type="number"
+              min="0"
+              max="50"
+              className="w-20 rounded-xl border border-border/70 bg-background/70 px-3 py-2 text-center text-sm font-semibold focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              value={reserve}
+              onChange={(e) => setReserve(e.target.value)}
+            />
+            <input
+              type="range"
+              min="0"
+              max="50"
+              value={parseInt(reserve || "0", 10)}
+              onChange={(e) => setReserve(e.target.value)}
+              className="flex-1 accent-primary"
+            />
+          </div>
+          <p className="mt-2 text-xs text-muted-foreground">20–25% keeps your remodeling budget safe</p>
+        </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center">
-        <label className="text-sm font-medium flex-1">{t.reserve}</label>
-        <input
-          type="number"
-          className="w-24 border rounded-md px-3 py-2 text-sm text-right"
-          value={reserve}
-          onChange={(e) => setReserve(e.target.value)}
-        />
-      </div>
-
-      <Button onClick={calculate} className="w-full" size="lg">
+      <Button
+        onClick={calculate}
+        className="w-full rounded-2xl bg-gradient-to-r from-primary to-primary/80 py-6 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:translate-y-0 hover:brightness-110"
+        size="lg"
+      >
         {b.calculate}
       </Button>
 
-      {total !== null && (
-        <div className="mt-4 p-3 rounded-lg bg-muted">
-          <p className="text-sm text-muted-foreground mb-2">
-            {t.subtotal}: <b className="text-foreground">{selectedCurrency.symbol}{subtotal.toLocaleString("en-US")}</b>
-          </p>
-          <p className="text-sm text-muted-foreground mb-2">
-            {t.reserveAmount} ({reserve}%): <b className="text-amber-600">{selectedCurrency.symbol}{reserveAmount.toLocaleString("en-US")}</b>
-          </p>
-          <div className="pt-2 mt-2 border-t">
-            <p className="text-lg font-bold text-primary">
-              💰 {t.total}: {selectedCurrency.symbol}{total.toLocaleString("en-US")}
-            </p>
+        {total !== null && (
+          <div className="grid gap-4 sm:grid-cols-3">
+            <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-emerald-50/20 p-4 shadow-sm dark:from-card dark:to-emerald-500/10">
+              <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
+                <Wallet className="h-3.5 w-3.5 text-primary" /> {t.subtotal}
+              </div>
+              <p className="mt-2 text-lg font-semibold text-foreground">
+                {selectedCurrency.symbol}{subtotal.toLocaleString("en-US")}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-amber-50/20 p-4 shadow-sm dark:from-card dark:to-amber-500/10">
+              <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
+                <PiggyBank className="h-3.5 w-3.5 text-amber-500" /> {t.reserveAmount} ({reserve}%)
+              </div>
+              <p className="mt-2 text-lg font-semibold text-amber-600">
+                {selectedCurrency.symbol}{reserveAmount.toLocaleString("en-US")}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/15 to-primary/5 p-4 shadow-md">
+              <div className="flex items-center gap-2 text-xs font-medium uppercase text-primary">
+                <DollarSign className="h-3.5 w-3.5" /> {t.total}
+              </div>
+              <p className="mt-2 text-2xl font-bold text-primary">
+                {selectedCurrency.symbol}{total.toLocaleString("en-US")}
+              </p>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 }

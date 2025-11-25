@@ -3,6 +3,7 @@ import { allPosts } from ".contentlayer/generated"
 import { sortPosts } from "@/lib/utils"
 import { ArticleGrid } from "@/components/article-grid"
 import { HeroBanner } from "@/components/hero-banner"
+import { HomeBackgroundAnimation } from "@/components/home-background-animation"
 
 // 🔄 Автообновление контента раз в минуту
 export const revalidate = 60
@@ -52,15 +53,18 @@ export default function HomePageEn() {
 
     return (
         <main>
+            {/* 🎨 Construction-themed background animations */}
+            <HomeBackgroundAnimation />
+            
             {/* 🌍 Full-width banner */}
             <HeroBanner />
 
             {/* 📄 Main content inside container */}
-            <div className="container py-10 space-y-12">
+            <div className="container mx-auto py-10 space-y-12">
                 {/* ✅ anchor for the scroll arrow */}
                 <section id="articles">
                     <h1 className="text-3xl font-bold mb-6 text-balance">
-                        Inspiring Renovation & Design Ideas
+                        Step-by-Step Guides & Practical Tips
                     </h1>
                     <ArticleGrid posts={posts} />
                 </section>

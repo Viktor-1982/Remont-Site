@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/app/theme-provider"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { CookieConsent } from "@/components/cookie-consent"
+import { BackgroundAnimation } from "@/components/background-animation"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Script from "next/script"
@@ -103,18 +104,21 @@ export default async function RootLayout({
             </Script>
 
             {/* ✅ Google Consent Mode - инициализация ДО AdSense */}
-            <Script id="google-consent-mode" strategy="beforeInteractive">
-                {`
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('consent', 'default', {
-                        'ad_storage': 'denied',
-                        'ad_user_data': 'denied',
-                        'ad_personalization': 'denied',
-                        'analytics_storage': 'denied'
-                    });
-                `}
-            </Script>
+            <script
+                suppressHydrationWarning
+                dangerouslySetInnerHTML={{
+                    __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('consent', 'default', {
+                            'ad_storage': 'denied',
+                            'ad_user_data': 'denied',
+                            'ad_personalization': 'denied',
+                            'analytics_storage': 'denied'
+                        });
+                    `,
+                }}
+            />
 
             {/* ✅ Google AdSense - используем обычный script для верификации */}
             <script
@@ -148,8 +152,9 @@ export default async function RootLayout({
         </noscript>
 
         <ThemeProvider>
+            <BackgroundAnimation />
             <SiteHeader />
-            <main className="w-full py-8 px-4">{children}</main>
+            <main className="w-full py-8">{children}</main>
             <SiteFooter />
             <CookieConsent />
         </ThemeProvider>

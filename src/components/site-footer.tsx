@@ -19,8 +19,17 @@ export function SiteFooter() {
         isEnglish ? (href.startsWith("/en") ? href : `/en${href}`) : href.replace(/^\/en/, "")
 
     return (
-        <footer role="contentinfo" className="border-t bg-background">
-            <div className="container grid gap-8 px-4 py-10 sm:grid-cols-2 md:grid-cols-3">
+        <footer
+            role="contentinfo"
+            className="relative mt-16 border-t border-border/50 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.18),_transparent_55%),_var(--background)] text-sm text-muted-foreground"
+        >
+            <div className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-30" aria-hidden>
+                <div className="h-40 w-40 rounded-full bg-primary/30 blur-3xl absolute -top-10 left-10" />
+                <div className="h-48 w-48 rounded-full bg-emerald-400/20 blur-3xl absolute bottom-0 right-10" />
+            </div>
+
+            <div className="relative w-full">
+                <div className="w-full grid gap-8 px-4 py-12 sm:px-6 md:px-8 lg:px-12 sm:grid-cols-2 md:grid-cols-3 border-b border-border/60 dark:border-border/50 bg-gradient-to-br from-white/95 via-card/90 to-primary/5 dark:from-card/80 dark:via-card/80 dark:to-transparent shadow-xl dark:shadow-[0_25px_80px_-40px_rgba(15,23,42,0.5)] backdrop-blur ring-1 ring-border/30 dark:ring-border/20">
                 {/* 📝 О проекте */}
                 <section aria-labelledby="footer-about">
                     <h2 id="footer-about" className="font-bold text-lg">
@@ -97,11 +106,19 @@ export function SiteFooter() {
                         </DeepLink>
                     </div>
                 </section>
+                </div>
             </div>
 
             {/* 🔻 Нижняя часть */}
-            <div className="border-t px-4 py-4 text-center text-xs text-muted-foreground flex items-center justify-center gap-4 flex-wrap">
+            <div className="relative border-t border-border/50 dark:border-border/40 bg-gradient-to-r from-white/95 via-card/90 to-white/95 dark:from-card/80 dark:via-card/80 backdrop-blur ring-1 ring-border/20 dark:ring-border/10">
+                <div className="flex w-full flex-wrap items-center justify-center gap-4 px-4 py-5 text-center text-xs text-muted-foreground">
                 <span>{footer.rights}</span>
+                    <Link 
+                        href={isEnglish ? "/en/privacy" : "/privacy"}
+                        className="hover:underline hover:text-foreground transition"
+                    >
+                        {isEnglish ? "Privacy Policy" : "Конфиденциальность"}
+                    </Link>
                 <Link 
                     href={isEnglish ? "/en/terms" : "/terms"}
                     className="hover:underline hover:text-foreground transition"
@@ -118,6 +135,7 @@ export function SiteFooter() {
                         ViktorWebStudio
                     </Link>
                 </span>
+                </div>
             </div>
         </footer>
     )

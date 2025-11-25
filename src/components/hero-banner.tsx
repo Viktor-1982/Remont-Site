@@ -88,16 +88,16 @@ export function HeroBanner() {
                     className="max-w-3xl"
                 >
                     {isHomePage ? (
-                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white dark:text-white leading-tight drop-shadow-[0_6px_12px_rgba(0,0,0,0.55)] mb-6">
-                            {t.title}
-                        </h1>
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white dark:text-white leading-tight mb-6 [text-shadow:_2px_2px_4px_rgba(0,0,0,0.8),_0_0_8px_rgba(0,0,0,0.6),_-1px_-1px_0_rgba(0,0,0,0.9),1px_1px_0_rgba(0,0,0,0.9)]">
+                        {t.title}
+                    </h1>
                     ) : (
-                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white dark:text-white leading-tight drop-shadow-[0_6px_12px_rgba(0,0,0,0.55)] mb-6">
-                            {t.title}
-                        </h2>
+                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white dark:text-white leading-tight mb-6 [text-shadow:_2px_2px_4px_rgba(0,0,0,0.8),_0_0_8px_rgba(0,0,0,0.6),_-1px_-1px_0_rgba(0,0,0,0.9),1px_1px_0_rgba(0,0,0,0.9)]">
+                        {t.title}
+                    </h2>
                     )}
 
-                    <p className="text-lg sm:text-xl md:text-2xl text-white/90 dark:text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-lg sm:text-xl md:text-2xl text-white dark:text-white mb-10 max-w-2xl mx-auto leading-relaxed [text-shadow:_1px_1px_3px_rgba(0,0,0,0.8),_0_0_6px_rgba(0,0,0,0.6),_-1px_-1px_0_rgba(0,0,0,0.9),1px_1px_0_rgba(0,0,0,0.9)]">
                         {t.subtitle}
                     </p>
 

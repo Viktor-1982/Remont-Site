@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { allPosts, type Post } from ".contentlayer/generated"
 import { ArticleGrid } from "@/components/article-grid"
 import { HeroBanner } from "@/components/hero-banner"
+import { HomeBackgroundAnimation } from "@/components/home-background-animation"
 
 // 🔄 Автоматическое обновление страницы каждые 60 сек
 export const revalidate = 60
@@ -59,15 +60,18 @@ export default function HomePage() {
 
     return (
         <main>
+            {/* 🎨 Строительные анимации на фоне */}
+            <HomeBackgroundAnimation />
+            
             {/* 🏠 Баннер во всю ширину */}
             <HeroBanner />
 
             {/* 📑 Контент внутри контейнера */}
-            <div className="container py-10 space-y-12">
+            <div className="container mx-auto py-10 space-y-12">
                 {/* ✅ Якорь для стрелки */}
                 <section id="articles">
                     <h1 className="text-3xl font-bold mb-6 text-balance">
-                        Идеи и советы по ремонту и дизайну
+                        Статьи с пошаговыми инструкциями и практическими советами
                     </h1>
                     <ArticleGrid posts={posts} />
                 </section>

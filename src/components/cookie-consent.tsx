@@ -13,11 +13,10 @@ export function CookieConsent() {
     const [showManageOptions, setShowManageOptions] = useState(false)
 
     useEffect(() => {
-        // Инициализируем Google CMP consent mode (должно быть ДО загрузки AdSense)
+        // Consent mode уже инициализирован в layout.tsx через inline script
+        // Здесь только проверяем сохраненное согласие и обновляем consent при необходимости
         if (typeof window !== "undefined") {
-            // Создаем dataLayer если его нет
             const win = window as Window & { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void }
-            win.dataLayer = win.dataLayer || []
             
             // Функция gtag для consent management
             function gtag(...args: unknown[]) {
@@ -25,14 +24,6 @@ export function CookieConsent() {
                     win.dataLayer.push(args)
                 }
             }
-            
-            // Устанавливаем consent по умолчанию (denied) до получения согласия
-            gtag("consent", "default", {
-                ad_storage: "denied",
-                ad_user_data: "denied",
-                ad_personalization: "denied",
-                analytics_storage: "denied",
-            })
 
             // Проверяем, есть ли уже сохраненное согласие
             const consent = localStorage.getItem("cookie-consent")

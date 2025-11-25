@@ -2,6 +2,8 @@ import Link from "next/link"
 import Script from "next/script"
 import { getPageMetadata } from "@/lib/seo"
 import { RenovationBudgetPlannerEn } from "@/components/widgets/renovation-budget-planner-en"
+import { Paintbrush, Grid, ScrollText, Layers } from "lucide-react"
+import { ShareButton } from "@/components/share-button"
 
 export const metadata = getPageMetadata("/en/calculators/budget", {
   title: "Renovation Budget Planner | Cost Calculator",
@@ -239,6 +241,37 @@ export default function BudgetPlannerPageEn() {
     },
   ]
 
+  const resources = [
+    {
+      href: "/en/calculators/paint",
+      title: "Paint calculator",
+      description: "Estimate interior and exterior paint coverage by wall or ceiling area.",
+      icon: Paintbrush,
+      accent: "from-rose-500/15 to-rose-500/5 text-rose-500",
+    },
+    {
+      href: "/en/calculators/tile",
+      title: "Tile calculator",
+      description: "Plan tile layout, waste percentage, and adhesive volume for every surface.",
+      icon: Grid,
+      accent: "from-emerald-500/15 to-emerald-500/5 text-emerald-500",
+    },
+    {
+      href: "/en/calculators/wallpaper",
+      title: "Wallpaper calculator",
+      description: "Figure out how many wallpaper rolls you need for any room or accent wall.",
+      icon: ScrollText,
+      accent: "from-indigo-500/15 to-indigo-500/5 text-indigo-500",
+    },
+    {
+      href: "/en/calculators",
+      title: "All renovation calculators",
+      description: "Explore the full Renohacks toolkit for planning materials and renovation costs.",
+      icon: Layers,
+      accent: "from-amber-500/15 to-amber-500/5 text-amber-500",
+    },
+  ]
+
   return (
     <main className="max-w-2xl mx-auto py-10 px-4">
       {/* Schema.org structured data */}
@@ -282,8 +315,10 @@ export default function BudgetPlannerPageEn() {
         <RenovationBudgetPlannerEn />
       </section>
 
-      <section className="mt-10 rounded-lg border bg-card px-4 py-6">
-        <h2 className="text-xl font-semibold mb-4">Why professionals choose this renovation budget calculator</h2>
+      <section className="mt-10 relative overflow-hidden rounded-2xl border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-primary/5 to-accent/5 dark:from-primary/10 dark:via-primary/10 dark:to-accent/10 px-6 py-8 shadow-xl">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="relative z-10">
+          <h2 className="text-xl font-semibold mb-4 text-foreground">Why professionals choose this renovation budget calculator</h2>
         <ul className="space-y-3 text-sm text-muted-foreground">
           {featureHighlights.map((feature) => (
             <li key={feature.title}>
@@ -291,10 +326,13 @@ export default function BudgetPlannerPageEn() {
             </li>
           ))}
         </ul>
+        </div>
       </section>
 
-      <section className="mt-10 bg-muted/60 rounded-lg px-4 py-6" aria-label="Step-by-step renovation budgeting guide">
-        <h2 className="text-xl font-semibold mb-3">Step-by-step renovation budgeting guide</h2>
+      <section className="mt-10 relative overflow-hidden rounded-2xl border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-primary/5 to-accent/5 dark:from-primary/10 dark:via-primary/10 dark:to-accent/10 px-6 py-8 shadow-xl" aria-label="Step-by-step renovation budgeting guide">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="relative z-10">
+          <h2 className="text-xl font-semibold mb-3 text-foreground">Step-by-step renovation budgeting guide</h2>
         <ol className="list-decimal ml-5 space-y-2 text-sm text-muted-foreground">
           <li>List every renovation category: demolition, wiring, plumbing, finishes, fixtures, and cleanup.</li>
           <li>Enter projected costs for each item using supplier quotes or previous project data.</li>
@@ -304,6 +342,7 @@ export default function BudgetPlannerPageEn() {
         <p className="mt-3 text-sm text-muted-foreground">
           💡 Tip: Revisit the budget after each contractor update to keep your <strong>remodeling cost plan</strong> on track.
         </p>
+        </div>
       </section>
 
       <section className="mt-10 text-sm leading-relaxed text-muted-foreground space-y-3">
@@ -338,58 +377,54 @@ export default function BudgetPlannerPageEn() {
         </div>
       </section>
 
-      <section className="mt-12 text-sm text-muted-foreground">
-        <h2 className="text-xl font-semibold mb-3">More renovation planning resources</h2>
-        <ul className="list-disc ml-5 space-y-2">
-          <li>
-            <Link href="/en/calculators/paint" className="underline hover:text-primary">
-              Paint calculator
-            </Link>{" "}
-            &mdash; estimate interior and exterior paint coverage by wall area.
-          </li>
-          <li>
-            <Link href="/en/calculators/tile" className="underline hover:text-primary">
-              Tile calculator
-            </Link>{" "}
-            &mdash; plan tile layout, waste percentage, and adhesive needs.
-          </li>
-          <li>
-            <Link href="/en/posts/budget-renovation-tips" className="underline hover:text-primary">
-              Budget renovation tips
-            </Link>{" "}
-            &mdash; learn how to prioritize work and stretch every remodeling dollar.
-          </li>
-          <li>
-            <Link href="/en/calculators" className="underline hover:text-primary">
-              All renovation calculators
-            </Link>{" "}
-            &mdash; explore the full Renohacks toolkit for planning materials and costs.
-          </li>
-        </ul>
+      <section className="mt-12">
+        <h2 className="text-xl font-semibold mb-4">More renovation planning resources</h2>
+        <div className="grid gap-4 md:grid-cols-2">
+          {resources.map((resource) => {
+            const Icon = resource.icon
+            const accentText = resource.accent.split(" ").find((cls) => cls.startsWith("text-")) || "text-primary"
+            return (
+              <Link
+                key={resource.title}
+                href={resource.href}
+                className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/70 p-5 shadow-md transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-2xl"
+              >
+                <div
+                  className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${resource.accent} opacity-0 transition group-hover:opacity-100`}
+                />
+                <div className="relative z-10 flex items-start gap-4">
+                  <span
+                    className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/80 text-lg font-semibold shadow-inner ${accentText}`}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <p className="text-base font-semibold text-foreground">{resource.title}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{resource.description}</p>
+                  </div>
+                </div>
+                <span className="relative z-10 mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary">
+                  Explore
+                  <span className="transition group-hover:translate-x-1">→</span>
+                </span>
+              </Link>
+            )
+          })}
+        </div>
       </section>
 
-      <aside className="mt-12 rounded-lg border bg-card px-4 py-5 text-sm text-muted-foreground">
-        <h2 className="font-semibold text-foreground mb-2">Share the calculator</h2>
-        <p>Help another homeowner plan smarter:</p>
-        <div className="mt-3 flex flex-wrap gap-4">
-          <a
-            href="https://pinterest.com/pin/create/button/?url=https://renohacks.com/en/calculators/budget&media=https://renohacks.com/images/og-budget-en.jpg&description=Plan your renovation costs with this free calculator by Renohacks"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-primary"
-          >
-            📌 Share on Pinterest
-          </a>
-          <a
-            href="https://twitter.com/intent/tweet?url=https://renohacks.com/en/calculators/budget&text=Free Renovation Budget Planner by Renohacks"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-primary"
-          >
-            🐦 Share on X
-          </a>
+      <section className="mt-12 relative overflow-hidden rounded-2xl border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-primary/5 to-accent/5 dark:from-primary/10 dark:via-primary/10 dark:to-accent/10 p-8 shadow-xl">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="relative z-10">
+          <h2 className="text-2xl font-bold text-foreground mb-6">Share the calculator</h2>
+          <ShareButton
+            url="https://renohacks.com/en/calculators/budget"
+            title="Free Renovation Budget Planner by Renohacks"
+            description="Plan your renovation costs with this free calculator by Renohacks"
+            isEnglish={true}
+          />
         </div>
-      </aside>
+      </section>
     </main>
   )
 }

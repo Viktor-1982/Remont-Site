@@ -20,22 +20,22 @@ export function RelatedPosts({ currentSlug, locale, limit = 4 }: RelatedPostsPro
     const readMore = locale === "ru" ? "Читать далее" : "Read more"
 
     return (
-        <aside className="mt-12 p-6 bg-muted/50 rounded-lg">
-            <h3 className="text-xl font-semibold mb-4">{title}</h3>
+        <aside className="mt-12 p-6 bg-card/80 dark:bg-muted/30 rounded-lg border border-border/50">
+            <h3 className="text-xl font-semibold mb-4 text-foreground">{title}</h3>
             <div className="grid gap-4 md:grid-cols-2">
                 {relatedPosts.map((post) => (
                     <Link
                         key={post.slug}
                         href={`/${locale === "en" ? "en/" : ""}posts/${post.slug}`}
-                        className="group block p-4 bg-background rounded-md border hover:border-primary/50 transition-colors"
+                        className="group block p-4 bg-card dark:bg-card/80 rounded-md border-2 border-border/60 dark:border-border/40 hover:border-primary/50 dark:hover:border-primary/40 hover:shadow-md transition-all"
                     >
-                        <h4 className="font-medium text-sm mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                        <h4 className="font-semibold text-base mb-2 group-hover:text-primary transition-colors line-clamp-2 text-foreground">
                             {post.title}
                         </h4>
-                        <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
+                        <p className="text-sm text-foreground/80 dark:text-foreground/70 line-clamp-2 mb-2">
                             {post.description}
                         </p>
-                        <span className="text-xs text-primary font-medium">
+                        <span className="text-sm text-primary font-semibold">
                             {readMore} →
                         </span>
                     </Link>

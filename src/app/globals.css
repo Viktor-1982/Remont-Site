@@ -179,3 +179,96 @@ html.sepia .prose,
 html.contrast .prose {
     color: var(--tw-prose-body) !important;
 }
+
+/* 🎨 Фоновые анимации - легковесные и плавные */
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes pulse-slow {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes fade-in-out {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+@keyframes paint-flow {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.05;
+    }
+    25% {
+        transform: translate(20px, -15px) scale(1.1);
+        opacity: 0.08;
+    }
+    50% {
+        transform: translate(-15px, 20px) scale(0.9);
+        opacity: 0.06;
+    }
+    75% {
+        transform: translate(10px, -10px) scale(1.05);
+        opacity: 0.07;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+    66% {
+        transform: translateY(5px) rotate(-1deg);
+    }
+}
+
+.animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 25s ease infinite;
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 6s ease-in-out infinite;
+}
+
+.animate-fade-in-out {
+    animation: fade-in-out ease-in-out infinite;
+}
+
+.animate-float {
+    animation: float 12s ease-in-out infinite;
+}
+
+.animate-paint-flow {
+    animation: paint-flow 15s ease-in-out infinite;
+}
+
+/* Оптимизация производительности для анимаций */
+.animate-gradient-shift,
+.animate-pulse-slow,
+.animate-fade-in-out,
+.animate-float,
+.animate-paint-flow {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}

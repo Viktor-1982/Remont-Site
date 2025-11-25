@@ -26,7 +26,7 @@ export function ArticleGrid({ posts }: { posts: Post[] }) {
     }
 
     return (
-        <section className="space-y-10 px-4 sm:px-6 lg:px-8">
+        <section className="space-y-10">
             {/* 🔹 Featured пост — только на больших экранах */}
             {latestPost && (
                 <div className="hidden md:block relative">
