@@ -1,6 +1,8 @@
 import { describe, test, expect } from 'vitest';
 import { allPosts } from '../../../.contentlayer/generated';
 
+type PostWithOptionalDraft = (typeof allPosts)[number] & { draft?: boolean };
+
 describe('Contentlayer and MDX Tests', () => {
   describe('Content Generation', () => {
     test('should have all required post fields', () => {
@@ -59,11 +61,12 @@ describe('Contentlayer and MDX Tests', () => {
 
     test('should have proper tags', () => {
       for (const post of allPosts) {
-        expect(post.tags).toBeInstanceOf(Array);
-        expect(post.tags.length).toBeGreaterThan(0);
+        const tags = post.tags ?? [];
+        expect(Array.isArray(tags)).toBe(true);
+        expect(tags.length).toBeGreaterThan(0);
         
         // Проверяем, что теги не пустые
-        for (const tag of post.tags) {
+        for (const tag of tags) {
           expect(tag.trim().length).toBeGreaterThan(0);
         }
       }
@@ -93,9 +96,7 @@ describe('Contentlayer and MDX Tests', () => {
   describe('Build Process', () => {
     test('should not have draft posts in production', () => {
       // Проверяем, что нет постов с draft: true
-      const draftPosts = allPosts.filter(post => 
-        (post as any).draft === true
-      );
+      const draftPosts = allPosts.filter((post: PostWithOptionalDraft) => post.draft === true);
       
       expect(draftPosts.length).toBe(0);
     });

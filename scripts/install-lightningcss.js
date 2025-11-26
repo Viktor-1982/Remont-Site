@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /**
  * Postinstall script to ensure native binaries are installed on Linux
  * This fixes Vercel build issues where optional dependencies might not be installed

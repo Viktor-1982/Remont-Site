@@ -1,0 +1,79 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "renohacks.com" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e5]:
+        - link "Главная" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - link "Новинки" [ref=e7] [cursor=pointer]:
+          - /url: /tags/тренды
+        - link "DIY" [ref=e8] [cursor=pointer]:
+          - /url: /tags/diy
+        - link "О проекте" [ref=e9] [cursor=pointer]:
+          - /url: /about
+        - link "Калькуляторы" [ref=e10] [cursor=pointer]:
+          - /url: /calculators
+      - generic [ref=e11]:
+        - button "Переключить тему" [ref=e13]:
+          - img
+        - generic [ref=e14]:
+          - link "Instagram" [ref=e15] [cursor=pointer]:
+            - /url: https://www.instagram.com/reno.hacks
+            - img [ref=e16]
+          - link "Pinterest" [ref=e18] [cursor=pointer]:
+            - /url: https://www.pinterest.com/RenoHacks/
+            - img [ref=e19]
+  - main [ref=e21]:
+    - main [ref=e22]:
+      - heading "404" [level=1] [ref=e23]
+      - paragraph [ref=e24]: Извините, страница не найдена.
+      - link "На главную" [ref=e25] [cursor=pointer]:
+        - /url: /
+  - contentinfo [ref=e26]:
+    - generic [ref=e28]:
+      - region "renohacks.com" [ref=e29]:
+        - heading "renohacks.com" [level=2] [ref=e30]
+        - paragraph [ref=e31]: Renohacks — блог о ремонте и строительстве. Фото-гайды, сметы, лайфхаки и обзоры материалов для дома.
+      - navigation "Разделы" [ref=e32]:
+        - heading "Разделы" [level=2] [ref=e33]
+        - list [ref=e34]:
+          - listitem [ref=e35]:
+            - link "Кухня" [ref=e36] [cursor=pointer]:
+              - /url: /tags/кухня
+          - listitem [ref=e37]:
+            - link "Ванная" [ref=e38] [cursor=pointer]:
+              - /url: /tags/ванная
+          - listitem [ref=e39]:
+            - link "Стены" [ref=e40] [cursor=pointer]:
+              - /url: /tags/стены
+      - region "Контакты" [ref=e41]:
+        - heading "Контакты" [level=2] [ref=e42]
+        - paragraph [ref=e43]: "Есть идеи или вопросы? Напишите нам:"
+        - paragraph [ref=e44]:
+          - link "Email info@renohacks.com" [ref=e45] [cursor=pointer]:
+            - /url: mailto:info@renohacks.com
+            - text: info@renohacks.com
+        - generic "Мы в соцсетях" [ref=e46]:
+          - link "Instagram" [ref=e47] [cursor=pointer]:
+            - /url: https://www.instagram.com/reno.hacks
+            - img [ref=e48]
+            - generic [ref=e50]: Instagram
+          - link "Pinterest" [ref=e51] [cursor=pointer]:
+            - /url: https://www.pinterest.com/RenoHacks/
+            - img [ref=e52]
+            - generic [ref=e54]: Pinterest
+    - generic [ref=e56]:
+      - generic [ref=e57]: © 2025 renohacks.com. Все права защищены.
+      - link "Конфиденциальность" [ref=e58] [cursor=pointer]:
+        - /url: /privacy
+      - link "Правила пользования" [ref=e59] [cursor=pointer]:
+        - /url: /terms
+      - generic [ref=e61]:
+        - text: Разработано
+        - link "ViktorWebStudio" [ref=e62] [cursor=pointer]:
+          - /url: /developer
+```

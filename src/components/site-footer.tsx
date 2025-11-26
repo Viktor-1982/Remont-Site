@@ -21,7 +21,7 @@ export function SiteFooter() {
     return (
         <footer
             role="contentinfo"
-            className="relative mt-16 border-t border-border/50 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.18),_transparent_55%),_var(--background)] text-sm text-muted-foreground"
+            className="relative mt-16 border-t border-border/60 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.16),_transparent_55%),_var(--background)] text-sm text-muted-foreground"
         >
             <div className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-30" aria-hidden>
                 <div className="h-40 w-40 rounded-full bg-primary/30 blur-3xl absolute -top-10 left-10" />
@@ -29,24 +29,24 @@ export function SiteFooter() {
             </div>
 
             <div className="relative w-full">
-                <div className="w-full grid gap-8 px-4 py-12 sm:px-6 md:px-8 lg:px-12 sm:grid-cols-2 md:grid-cols-3 border-b border-border/60 dark:border-border/50 bg-gradient-to-br from-white/95 via-card/90 to-primary/5 dark:from-card/80 dark:via-card/80 dark:to-transparent shadow-xl dark:shadow-[0_25px_80px_-40px_rgba(15,23,42,0.5)] backdrop-blur ring-1 ring-border/30 dark:ring-border/20">
+                <div className="w-full grid gap-8 px-4 py-12 sm:px-6 md:px-8 lg:px-12 sm:grid-cols-2 md:grid-cols-3 border-b border-border/70 dark:border-border/50 bg-card/95 dark:bg-card/90 shadow-[0_18px_55px_-28px_rgba(15,23,42,0.35)] dark:shadow-[0_25px_80px_-40px_rgba(15,23,42,0.5)] backdrop-blur-sm">
                 {/* 📝 О проекте */}
                 <section aria-labelledby="footer-about">
-                    <h2 id="footer-about" className="font-bold text-lg">
+                    <h2 id="footer-about" className="font-bold text-lg text-foreground">
                         renohacks.com
                     </h2>
-                    <p className="mt-2 text-sm text-muted-foreground">{footer.about}</p>
+                    <p className="mt-2 text-sm text-muted-foreground/90">{footer.about}</p>
                 </section>
 
                 {/* 📂 Разделы */}
                 <nav aria-labelledby="footer-sections">
                     <h2
                         id="footer-sections"
-                        className="text-sm font-semibold uppercase tracking-wide text-muted-foreground"
+                        className="text-sm font-semibold uppercase tracking-wide text-foreground/90"
                     >
                         {footer.sectionsTitle}
                     </h2>
-                    <ul className="mt-3 space-y-1 text-sm text-muted-foreground">
+                    <ul className="mt-3 space-y-1 text-sm text-muted-foreground/90">
                         {Object.values(footer.sections).map((section) => (
                             <li key={section.href}>
                                 <Link
@@ -65,11 +65,11 @@ export function SiteFooter() {
                 <section aria-labelledby="footer-contacts">
                     <h2
                         id="footer-contacts"
-                        className="text-sm font-semibold uppercase tracking-wide text-muted-foreground"
+                        className="text-sm font-semibold uppercase tracking-wide text-foreground/90"
                     >
                         {footer.contactsTitle}
                     </h2>
-                    <p className="mt-3 text-sm text-muted-foreground">{footer.contactsText}</p>
+                    <p className="mt-3 text-sm text-muted-foreground/90">{footer.contactsText}</p>
                     <p className="mt-2 text-sm">
                         <a
                             href="mailto:info@renohacks.com"
@@ -88,7 +88,7 @@ export function SiteFooter() {
                             ariaLabel="Instagram"
                             analyticsEvent="click_instagram_footer"
                             location="footer"
-                            className="flex items-center gap-2 text-muted-foreground hover:text-[#E1306C] transition"
+                            className="flex items-center gap-2 text-muted-foreground/90 hover:text-[#E1306C] transition"
                         >
                             <FaInstagram size={18} aria-hidden="true" />
                             <span className="sr-only">Instagram</span>
@@ -99,7 +99,7 @@ export function SiteFooter() {
                             ariaLabel="Pinterest"
                             analyticsEvent="click_pinterest_footer"
                             location="footer"
-                            className="flex items-center gap-2 text-muted-foreground hover:text-[#BD081C] transition"
+                            className="flex items-center gap-2 text-muted-foreground/90 hover:text-[#BD081C] transition"
                         >
                             <FaPinterest size={18} aria-hidden="true" />
                             <span className="sr-only">Pinterest</span>
@@ -110,8 +110,8 @@ export function SiteFooter() {
             </div>
 
             {/* 🔻 Нижняя часть */}
-            <div className="relative border-t border-border/50 dark:border-border/40 bg-gradient-to-r from-white/95 via-card/90 to-white/95 dark:from-card/80 dark:via-card/80 backdrop-blur ring-1 ring-border/20 dark:ring-border/10">
-                <div className="flex w-full flex-wrap items-center justify-center gap-4 px-4 py-5 text-center text-xs text-muted-foreground">
+            <div className="relative w-full border-t border-border/70 dark:border-border/40 bg-card/95 dark:bg-card/90 backdrop-blur-sm">
+                <div className="flex w-full flex-wrap items-center justify-center gap-4 px-4 py-5 text-center text-xs text-foreground/80">
                 <span>{footer.rights}</span>
                     <Link 
                         href={isEnglish ? "/en/privacy" : "/privacy"}

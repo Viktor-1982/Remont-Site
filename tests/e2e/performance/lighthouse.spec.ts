@@ -6,7 +6,11 @@ test.describe('Performance and Accessibility Tests', () => {
       await page.goto('/');
       
       // Запускаем Lighthouse
-      const lighthouse = await page.evaluate(() => {
+      const lighthouse = await page.evaluate<{
+        loadTime: number;
+        imagesLoaded: number;
+        scriptsLoaded: number;
+      }>(() => {
         return new Promise((resolve) => {
           // Простая проверка производительности
           const startTime = performance.now();
@@ -158,7 +162,6 @@ test.describe('Performance and Accessibility Tests', () => {
       // Проверяем структуру заголовков
       const h1 = page.locator('h1');
       const h2 = page.locator('h2');
-      const h3 = page.locator('h3');
       
       // Должен быть только один h1
       const h1Count = await h1.count();

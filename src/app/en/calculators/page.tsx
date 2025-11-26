@@ -1,63 +1,128 @@
 ﻿import { getPageMetadata } from "@/lib/seo"
 import Link from "next/link"
+import { Calculator, Paintbrush, Wallpaper, Grid3X3, Wallet } from "lucide-react"
 
 export const metadata = getPageMetadata("/en/calculators", {
-    title: "Renovation calculators: paint, wallpaper, tile | Renohacks",
+    title: "Renovation calculators: paint, wallpaper, tile, budget | Renohacks",
     description:
-        "Free online renovation calculators: estimate paint, wallpaper, and tile for your home. Accurate material calculations for walls and floors.",
+        "Modern renovation calculators: paint coverage, wallpaper rolls, tiles, and budget planning. Accurate material and cost estimates for your home.",
     cover: "/images/og-default.png",
     type: "website",
 })
 
-export default function CalculatorsIndexPageEn() {
-    const calculators = [
-        {
-            href: "/en/calculators/paint",
-            label: "🎨 Paint Calculator",
-            desc: "Estimate paint needed by room size",
-            color: "bg-rose-100 dark:bg-rose-900/40",
-        },
-        {
-            href: "/en/calculators/wallpaper",
-            label: "🪟 Wallpaper Calculator",
-            desc: "Find out how many rolls of wallpaper you need",
-            color: "bg-emerald-100 dark:bg-emerald-900/40",
-        },
-        {
-            href: "/en/calculators/tile",
-            label: "🧱 Tile Calculator",
-            desc: "Calculate tiles needed for walls or floors",
-            color: "bg-sky-100 dark:bg-sky-900/40",
-        },
-        {
-            href: "/en/calculators/budget",
-            label: "💰 Budget Planner",
-            desc: "Calculate total renovation cost with reserve",
-            color: "bg-amber-100 dark:bg-amber-900/40",
-        },
-    ]
+const calculatorsEn = [
+    {
+        href: "/en/calculators/paint",
+        label: "Paint Calculator",
+        emoji: "🎨",
+        icon: Paintbrush,
+        desc: "Estimate paint needed by room size, including windows, doors, and number of coats.",
+        badge: "Walls & ceilings",
+        gradient: "from-rose-500/15 via-rose-400/10 to-orange-400/10",
+    },
+    {
+        href: "/en/calculators/wallpaper",
+        label: "Wallpaper Calculator",
+        emoji: "🪟",
+        icon: Wallpaper,
+        desc: "Find out how many wallpaper rolls you need, considering pattern repeat and waste.",
+        badge: "Wallpaper & pattern",
+        gradient: "from-emerald-500/15 via-emerald-400/10 to-teal-400/10",
+    },
+    {
+        href: "/en/calculators/tile",
+        label: "Tile Calculator",
+        emoji: "🧱",
+        icon: Grid3X3,
+        desc: "Calculate tiles for floors and walls, waste percentage, and approximate adhesive.",
+        badge: "Floors & walls",
+        gradient: "from-sky-500/15 via-sky-400/10 to-indigo-400/10",
+    },
+    {
+        href: "/en/calculators/budget",
+        label: "Budget Planner",
+        emoji: "💰",
+        icon: Wallet,
+        desc: "Build a renovation budget by work category, currency, and reserve for extra costs.",
+        badge: "Full budget",
+        gradient: "from-amber-500/20 via-orange-400/10 to-rose-400/10",
+    },
+] as const
 
+export default function CalculatorsIndexPageEn() {
     return (
-        <main className="container py-12">
-            <h1 className="text-3xl font-bold mb-8">Renovation calculators</h1>
-            <p className="mb-6 text-muted-foreground">
-                Choose a calculator to quickly estimate materials for your renovation:
-            </p>
-            
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {calculators.map((calc) => (
-                    <Link
-                        key={calc.href}
-                        href={calc.href}
-                        className={`rounded-xl p-6 shadow-sm hover:shadow-md transition ${calc.color}`}
-                    >
-                        <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">
-                            {calc.label}
-                        </h2>
-                        <p className="text-sm text-gray-700 dark:text-gray-300">{calc.desc}</p>
-                    </Link>
-                ))}
-            </div>
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+            {/* 🎯 Hero section for calculators */}
+            <section className="mb-10 sm:mb-14">
+                <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1 text-xs font-medium text-primary mb-4">
+                    <Calculator className="w-3.5 h-3.5" />
+                    <span>Renohacks renovation calculators</span>
+                </div>
+                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-4">
+                    Smart calculators for your home renovation
+                </h1>
+                <p className="max-w-2xl text-sm sm:text-base text-muted-foreground leading-relaxed">
+                    Choose a calculator to estimate materials and budget in just a couple of minutes.
+                    Each tool is optimized for real-world room dimensions, waste, and installation specifics.
+                </p>
+            </section>
+
+            {/* 🧮 Calculators grid */}
+            <section className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+                {calculatorsEn.map((calc) => {
+                    const Icon = calc.icon
+                    return (
+                        <Link
+                            key={calc.href}
+                            href={calc.href}
+                            className="group relative overflow-hidden rounded-2xl border border-border/70 bg-card/95 p-5 sm:p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-primary/60"
+                        >
+                            {/* Decorative gradient */}
+                            <div
+                                className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${calc.gradient} opacity-80 group-hover:opacity-100 transition-opacity duration-300`}
+                                aria-hidden
+                            />
+
+                            {/* Content */}
+                            <div className="relative z-10 flex flex-col h-full">
+                                <div className="flex items-center justify-between mb-4">
+                                    <span className="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-background/80 border border-primary/30 text-lg">
+                                        {calc.emoji}
+                                    </span>
+                                    <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-[11px] font-medium text-primary">
+                                        <Icon className="w-3.5 h-3.5" />
+                                        {calc.badge}
+                                    </span>
+                                </div>
+
+                                <h2 className="text-base sm:text-lg font-semibold text-foreground mb-2">
+                                    {calc.label}
+                                </h2>
+                                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed flex-1">
+                                    {calc.desc}
+                                </p>
+
+                                <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-primary group-hover:gap-3 transition-all">
+                                    Open calculator
+                                    <span className="translate-y-[1px]">→</span>
+                                </span>
+                            </div>
+                        </Link>
+                    )
+                })}
+            </section>
+
+            {/* ℹ️ Helper section */}
+            <section className="mt-10 sm:mt-14 rounded-2xl border border-border/60 bg-card/95 p-5 sm:p-6 shadow-sm">
+                <h2 className="text-base sm:text-lg font-semibold mb-2">
+                    How to use Renohacks calculators
+                </h2>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                    Start with the Budget Planner to understand your overall renovation cost, then use
+                    material calculators to fine-tune each room. You can save the results and use them
+                    as a base for contractor quotes and detailed planning.
+                </p>
+            </section>
         </main>
     )
 }

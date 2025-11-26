@@ -183,7 +183,7 @@ test.describe('Security and Configuration Tests', () => {
       await page.goto('/');
       
       // Проверяем, что в консоли нет критических ошибок
-      const errors = [];
+      const errors: string[] = [];
       page.on('console', msg => {
         if (msg.type() === 'error') {
           errors.push(msg.text());

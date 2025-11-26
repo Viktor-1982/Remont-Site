@@ -272,3 +272,22 @@ html.contrast .prose {
     backface-visibility: hidden;
     transform: translateZ(0);
 }
+
+/* 🧾 Печать сметы (только текст сметы, без интерфейса) */
+.no-print {
+    /* по умолчанию показывается, скрывается только при печати */
+}
+
+.print-only {
+    display: none;
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    .print-only {
+        display: block !important;
+    }
+}

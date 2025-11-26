@@ -18,7 +18,7 @@ test.describe('Functional Tests - Calculators', () => {
       expect(afterAddCount).toBe(initialCount + 1);
       
       // Удаляем категорию
-      await page.click('button[aria-label="Удалить категорию"]').last();
+      await page.locator('button[aria-label="Удалить категорию"]').last().click();
       
       const afterRemoveItems = page.locator('[data-testid="expense-item"]');
       const afterRemoveCount = await afterRemoveItems.count();
@@ -37,8 +37,8 @@ test.describe('Functional Tests - Calculators', () => {
       
       // Добавляем вторую категорию
       await page.click('button:has-text("Добавить категорию")');
-      await page.fill('input[placeholder*="Категория"]').nth(1), 'Стены');
-      await page.fill('input[placeholder*="Стоимость"]').nth(1), '30000');
+      await page.locator('input[placeholder*="Категория"]').nth(1).fill('Стены');
+      await page.locator('input[placeholder*="Стоимость"]').nth(1).fill('30000');
       
       // Проверяем общий расчет
       await expect(page.locator('text=Итого: 80 000 ₽')).toBeVisible();

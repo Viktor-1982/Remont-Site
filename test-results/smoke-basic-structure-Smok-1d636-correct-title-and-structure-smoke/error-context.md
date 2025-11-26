@@ -29,60 +29,109 @@
             - img [ref=e19]
   - main [ref=e21]:
     - main [ref=e22]:
-      - heading "Renovation calculators" [level=1] [ref=e23]
-      - paragraph [ref=e24]: "Choose a calculator to quickly estimate materials for your renovation:"
-      - generic [ref=e25]:
-        - link "🎨 Paint Calculator Estimate paint needed by room size" [ref=e26] [cursor=pointer]:
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - img [ref=e25]
+          - generic [ref=e27]: Renohacks renovation calculators
+        - heading "Smart calculators for your home renovation" [level=1] [ref=e28]
+        - paragraph [ref=e29]: Choose a calculator to estimate materials and budget in just a couple of minutes. Each tool is optimized for real-world room dimensions, waste, and installation specifics.
+      - generic [ref=e30]:
+        - link "🎨 Walls & ceilings Paint Calculator Estimate paint needed by room size, including windows, doors, and number of coats. Open calculator →" [ref=e31] [cursor=pointer]:
           - /url: /en/calculators/paint
-          - heading "🎨 Paint Calculator" [level=2] [ref=e27]
-          - paragraph [ref=e28]: Estimate paint needed by room size
-        - link "🪟 Wallpaper Calculator Find out how many rolls of wallpaper you need" [ref=e29] [cursor=pointer]:
+          - generic [ref=e32]:
+            - generic [ref=e33]:
+              - generic [ref=e34]: 🎨
+              - generic [ref=e35]:
+                - img [ref=e36]
+                - text: Walls & ceilings
+            - heading "Paint Calculator" [level=2] [ref=e40]
+            - paragraph [ref=e41]: Estimate paint needed by room size, including windows, doors, and number of coats.
+            - generic [ref=e42]:
+              - text: Open calculator
+              - generic [ref=e43]: →
+        - link "🪟 Wallpaper & pattern Wallpaper Calculator Find out how many wallpaper rolls you need, considering pattern repeat and waste. Open calculator →" [ref=e44] [cursor=pointer]:
           - /url: /en/calculators/wallpaper
-          - heading "🪟 Wallpaper Calculator" [level=2] [ref=e30]
-          - paragraph [ref=e31]: Find out how many rolls of wallpaper you need
-        - link "🧱 Tile Calculator Calculate tiles needed for walls or floors" [ref=e32] [cursor=pointer]:
+          - generic [ref=e45]:
+            - generic [ref=e46]:
+              - generic [ref=e47]: 🪟
+              - generic [ref=e48]:
+                - img [ref=e49]
+                - text: Wallpaper & pattern
+            - heading "Wallpaper Calculator" [level=2] [ref=e53]
+            - paragraph [ref=e54]: Find out how many wallpaper rolls you need, considering pattern repeat and waste.
+            - generic [ref=e55]:
+              - text: Open calculator
+              - generic [ref=e56]: →
+        - link "🧱 Floors & walls Tile Calculator Calculate tiles for floors and walls, waste percentage, and approximate adhesive. Open calculator →" [ref=e57] [cursor=pointer]:
           - /url: /en/calculators/tile
-          - heading "🧱 Tile Calculator" [level=2] [ref=e33]
-          - paragraph [ref=e34]: Calculate tiles needed for walls or floors
-        - link "💰 Budget Planner Calculate total renovation cost with reserve" [ref=e35] [cursor=pointer]:
+          - generic [ref=e58]:
+            - generic [ref=e59]:
+              - generic [ref=e60]: 🧱
+              - generic [ref=e61]:
+                - img [ref=e62]
+                - text: Floors & walls
+            - heading "Tile Calculator" [level=2] [ref=e64]
+            - paragraph [ref=e65]: Calculate tiles for floors and walls, waste percentage, and approximate adhesive.
+            - generic [ref=e66]:
+              - text: Open calculator
+              - generic [ref=e67]: →
+        - link "💰 Full budget Budget Planner Build a renovation budget by work category, currency, and reserve for extra costs. Open calculator →" [ref=e68] [cursor=pointer]:
           - /url: /en/calculators/budget
-          - heading "💰 Budget Planner" [level=2] [ref=e36]
-          - paragraph [ref=e37]: Calculate total renovation cost with reserve
-  - contentinfo [ref=e38]:
-    - generic [ref=e39]:
-      - region "renohacks.com" [ref=e40]:
-        - heading "renohacks.com" [level=2] [ref=e41]
-        - paragraph [ref=e42]: Renohacks — renovation and construction blog. Photo guides, estimates, DIY tips and material reviews.
-      - navigation "Sections" [ref=e43]:
-        - heading "Sections" [level=2] [ref=e44]
-        - list [ref=e45]:
-          - listitem [ref=e46]:
-            - link "Kitchen" [ref=e47] [cursor=pointer]:
+          - generic [ref=e69]:
+            - generic [ref=e70]:
+              - generic [ref=e71]: 💰
+              - generic [ref=e72]:
+                - img [ref=e73]
+                - text: Full budget
+            - heading "Budget Planner" [level=2] [ref=e76]
+            - paragraph [ref=e77]: Build a renovation budget by work category, currency, and reserve for extra costs.
+            - generic [ref=e78]:
+              - text: Open calculator
+              - generic [ref=e79]: →
+      - generic [ref=e80]:
+        - heading "How to use Renohacks calculators" [level=2] [ref=e81]
+        - paragraph [ref=e82]: Start with the Budget Planner to understand your overall renovation cost, then use material calculators to fine-tune each room. You can save the results and use them as a base for contractor quotes and detailed planning.
+  - contentinfo [ref=e83]:
+    - generic [ref=e85]:
+      - region "renohacks.com" [ref=e86]:
+        - heading "renohacks.com" [level=2] [ref=e87]
+        - paragraph [ref=e88]: Renohacks — renovation and construction blog. Photo guides, estimates, DIY tips and material reviews.
+      - navigation "Sections" [ref=e89]:
+        - heading "Sections" [level=2] [ref=e90]
+        - list [ref=e91]:
+          - listitem [ref=e92]:
+            - link "Kitchen" [ref=e93] [cursor=pointer]:
               - /url: /en/tags/kitchen
-          - listitem [ref=e48]:
-            - link "Bathroom" [ref=e49] [cursor=pointer]:
+          - listitem [ref=e94]:
+            - link "Bathroom" [ref=e95] [cursor=pointer]:
               - /url: /en/tags/bathroom
-          - listitem [ref=e50]:
-            - link "Walls" [ref=e51] [cursor=pointer]:
+          - listitem [ref=e96]:
+            - link "Walls" [ref=e97] [cursor=pointer]:
               - /url: /en/tags/walls
-      - region "Contacts" [ref=e52]:
-        - heading "Contacts" [level=2] [ref=e53]
-        - paragraph [ref=e54]: "Have ideas or questions? Contact us:"
-        - paragraph [ref=e55]:
-          - link "Email info@renohacks.com" [ref=e56] [cursor=pointer]:
+      - region "Contacts" [ref=e98]:
+        - heading "Contacts" [level=2] [ref=e99]
+        - paragraph [ref=e100]: "Have ideas or questions? Contact us:"
+        - paragraph [ref=e101]:
+          - link "Email info@renohacks.com" [ref=e102] [cursor=pointer]:
             - /url: mailto:info@renohacks.com
             - text: info@renohacks.com
-        - generic "Follow us" [ref=e57]:
-          - link "Instagram" [ref=e58] [cursor=pointer]:
+        - generic "Follow us" [ref=e103]:
+          - link "Instagram" [ref=e104] [cursor=pointer]:
             - /url: https://www.instagram.com/reno.hacks
-            - img [ref=e59]
-            - generic [ref=e61]: Instagram
-          - link "Pinterest" [ref=e62] [cursor=pointer]:
+            - img [ref=e105]
+            - generic [ref=e107]: Instagram
+          - link "Pinterest" [ref=e108] [cursor=pointer]:
             - /url: https://www.pinterest.com/RenoHacks/
-            - img [ref=e63]
-            - generic [ref=e65]: Pinterest
-    - generic [ref=e66]:
-      - generic [ref=e67]: © 2025 renohacks.com. All rights reserved.
-      - link "Terms of Use" [ref=e68] [cursor=pointer]:
+            - img [ref=e109]
+            - generic [ref=e111]: Pinterest
+    - generic [ref=e113]:
+      - generic [ref=e114]: © 2025 renohacks.com. All rights reserved.
+      - link "Privacy Policy" [ref=e115] [cursor=pointer]:
+        - /url: /en/privacy
+      - link "Terms of Use" [ref=e116] [cursor=pointer]:
         - /url: /en/terms
+      - generic [ref=e118]:
+        - text: Designed by
+        - link "ViktorWebStudio" [ref=e119] [cursor=pointer]:
+          - /url: /en/developer
 ```

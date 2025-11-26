@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Calculator, Plus, Trash2, PiggyBank, Wallet, DollarSign } from "lucide-react"
 import calcDataJson from "@/components/messages/calc.json"
 import type { Locale, CalcData, BudgetCalcDict, ButtonsDict } from "@/types/calc"
+import { computeBudget } from "@/lib/calculations"
 
 const calcData = calcDataJson as CalcData
 
@@ -95,35 +96,104 @@ export function RenovationBudgetPlanner() {
   }
 
   const calculate = () => {
-    // ✅ Валидация и санитизация входных данных
-    const sum = items.reduce((acc, item) => {
+    const costs = items.map((item) => {
       const cost = parseFloat(item.cost.replace(",", ".").replace(/[^0-9.-]/g, "")) || 0
-      // Защита от отрицательных значений и слишком больших чисел
-      if (cost < 0 || cost > 1000000000) return acc
-      return acc + cost
-    }, 0)
+      return cost
+    })
 
     const reservePercent = parseFloat(reserve.replace(",", ".").replace(/[^0-9.-]/g, "")) || 0
-    // Защита от невалидного процента резерва
-    if (isNaN(reservePercent) || !isFinite(reservePercent) || reservePercent < 0 || reservePercent > 100) {
-      return
-    }
-    
-    const reserveValue = sum * (reservePercent / 100)
-    const finalTotal = sum + reserveValue
-    
-    // Проверка на разумность результата
+
+    const { subtotal: sum, reserveAmount: reserveValue, total: finalTotal } = computeBudget({
+      items: costs,
+      reservePercent,
+    })
+
     if (!isFinite(sum) || !isFinite(reserveValue) || !isFinite(finalTotal)) return
-    
+
     setSubtotal(sum)
     setReserveAmount(reserveValue)
     setTotal(finalTotal)
   }
 
+  const buildSummary = () => {
+    const lines = items
+      .filter((item) => item.category && item.cost)
+      .map((item) => {
+        const cost = parseFloat(item.cost.replace(",", ".").replace(/[^0-9.-]/g, "")) || 0
+        return `- ${item.category}: ${cost.toLocaleString("ru-RU")} ${selectedCurrency.symbol}`
+      })
+
+    const header =
+      total !== null
+        ? `Смета ремонта — итого ${total.toLocaleString("ru-RU")} ${selectedCurrency.symbol} (резерв ${reserve}%).`
+        : "Черновая смета ремонта."
+
+    return [header, "", "Категории:", ...lines].join("\n")
+  }
+
+  const handlePrint = () => {
+    if (typeof window === "undefined") return
+
+    const summaryText = buildSummary()
+
+    const printWindow = window.open("", "_blank", "width=800,height=1000")
+    if (!printWindow) return
+
+    const doc = printWindow.document
+    doc.open()
+    doc.write(`<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charSet="utf-8" />
+    <title>Смета ремонта — renohacks.com</title>
+    <style>
+      body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 24px; color: #111827; }
+      h1 { font-size: 20px; margin-bottom: 12px; }
+      p { margin: 4px 0; }
+      pre { white-space: pre-wrap; font-family: inherit; font-size: 14px; }
+      .source { font-size: 12px; color: #4b5563; margin-top: 16px; }
+    </style>
+  </head>
+  <body>
+    <h1>Смета ремонта</h1>
+    <pre>`)
+    doc.write(summaryText)
+    doc.write(`</pre>
+    <p class="source">Источник: renohacks.com — онлайн-калькуляторы и статьи о ремонте.</p>
+  </body>
+</html>`)
+    doc.close()
+    printWindow.focus()
+    printWindow.print()
+  }
+
+  const handleShareSummary = async () => {
+    const summary = buildSummary()
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Смета ремонта — Renohacks",
+          text: summary,
+        })
+        return
+      } catch {
+        // пользователь отменил — продолжаем к копированию
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(summary)
+    } catch {
+      // если буфер недоступен — тихо игнорируем
+    }
+  }
+
   return (
     <div className="relative w-full max-w-3xl mx-auto">
       <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-r from-primary/15 via-transparent to-accent/20 blur-3xl opacity-60" />
-      <div className="relative space-y-6 rounded-[32px] border border-primary/10 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.12),_transparent_45%),_var(--background)] p-6 md:p-8 shadow-[0_25px_80px_-35px_rgba(79,70,229,0.8)] transition">
+      {/* 👁 Основной интерфейс — только на экране */}
+      <div className="no-print relative space-y-6 rounded-[32px] border border-primary/10 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.12),_transparent_45%),_var(--background)] p-6 md:p-8 shadow-[0_25px_80px_-35px_rgba(79,70,229,0.8)] transition">
         <div className="space-y-2">
           <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
             <Calculator className="h-3.5 w-3.5" /> Renohacks Pro Tool
@@ -246,34 +316,89 @@ export function RenovationBudgetPlanner() {
         </Button>
 
         {total !== null && (
-          <div className="grid gap-4 sm:grid-cols-3">
-            <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-emerald-50/20 p-4 shadow-sm dark:from-card dark:to-emerald-500/10">
-              <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
-                <Wallet className="h-3.5 w-3.5 text-primary" /> {t.subtotal}
+          <>
+            <div className="grid gap-4 sm:grid-cols-3">
+              <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-emerald-50/20 p-4 shadow-sm dark:from-card dark:to-emerald-500/10">
+                <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
+                  <Wallet className="h-3.5 w-3.5 text-primary" /> {t.subtotal}
+                </div>
+                <p className="mt-2 text-lg font-semibold text-foreground">
+                  {subtotal.toLocaleString("ru-RU")} {selectedCurrency.symbol}
+                </p>
               </div>
-              <p className="mt-2 text-lg font-semibold text-foreground">
-                {subtotal.toLocaleString("ru-RU")} {selectedCurrency.symbol}
-              </p>
-            </div>
-            <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-amber-50/20 p-4 shadow-sm dark:from-card dark:to-amber-500/10">
-              <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
-                <PiggyBank className="h-3.5 w-3.5 text-amber-500" /> {t.reserveAmount} ({reserve}%)
+              <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-amber-50/20 p-4 shadow-sm dark:from-card dark:to-amber-500/10">
+                <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
+                  <PiggyBank className="h-3.5 w-3.5 text-amber-500" /> {t.reserveAmount} ({reserve}%)
+                </div>
+                <p className="mt-2 text-lg font-semibold text-amber-600">
+                  {reserveAmount.toLocaleString("ru-RU")} {selectedCurrency.symbol}
+                </p>
               </div>
-              <p className="mt-2 text-lg font-semibold text-amber-600">
-                {reserveAmount.toLocaleString("ru-RU")} {selectedCurrency.symbol}
-              </p>
-            </div>
-            <div className="rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/15 to-primary/5 p-4 shadow-md">
-              <div className="flex items-center gap-2 text-xs font-medium uppercase text-primary">
-                <DollarSign className="h-3.5 w-3.5" /> {t.total}
+              <div className="rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/15 to-primary/5 p-4 shadow-md">
+                <div className="flex items-center gap-2 text-xs font-medium uppercase text-primary">
+                  <DollarSign className="h-3.5 w-3.5" /> {t.total}
+                </div>
+                <p className="mt-2 text-2xl font-bold text-primary">
+                  {total.toLocaleString("ru-RU")} {selectedCurrency.symbol}
+                </p>
               </div>
-              <p className="mt-2 text-2xl font-bold text-primary">
-                {total.toLocaleString("ru-RU")} {selectedCurrency.symbol}
-              </p>
             </div>
-          </div>
+
+            <div className="mt-4 flex flex-col sm:flex-row gap-3">
+              <Button
+                variant="outline"
+                className="flex-1 rounded-2xl border-primary/40 bg-background/80"
+                onClick={handlePrint}
+              >
+                {isEnglish ? "Save as PDF (Print)" : "Сохранить в PDF (печать)"}
+              </Button>
+              <Button
+                variant="outline"
+                className="flex-1 rounded-2xl border-primary/40 bg-background/80"
+                onClick={handleShareSummary}
+              >
+                {isEnglish ? "Share summary" : "Поделиться сметой"}
+              </Button>
+            </div>
+          </>
         )}
       </div>
+
+      {/* 🧾 Версия для печати / PDF только со сметой */}
+      {total !== null && (
+        <div className="print-only mt-6 rounded-2xl border border-border/80 bg-white p-6 text-sm text-black">
+          <h2 className="text-xl font-bold mb-2">Смета ремонта</h2>
+          <p className="mb-1">
+            <strong>Валюта:</strong> {selectedCurrency.symbol} ({selectedCurrency.code})
+          </p>
+          <p className="mb-1">
+            <strong>Сумма по категориям:</strong> {subtotal.toLocaleString("ru-RU")} {selectedCurrency.symbol}
+          </p>
+          <p className="mb-1">
+            <strong>Резерв:</strong> {reserve}% ({reserveAmount.toLocaleString("ru-RU")} {selectedCurrency.symbol})
+          </p>
+          <p className="mb-3">
+            <strong>Итого:</strong> {total.toLocaleString("ru-RU")} {selectedCurrency.symbol}
+          </p>
+          <hr className="my-3" />
+          <h3 className="font-semibold mb-2">Категории расходов</h3>
+          <ul className="space-y-1">
+            {items
+              .filter((item) => item.category && item.cost)
+              .map((item) => {
+                const cost = parseFloat(item.cost.replace(",", ".").replace(/[^0-9.-]/g, "")) || 0
+                return (
+                  <li key={item.id} className="flex justify-between gap-4">
+                    <span>{item.category}</span>
+                    <span>
+                      {cost.toLocaleString("ru-RU")} {selectedCurrency.symbol}
+                    </span>
+                  </li>
+                )
+              })}
+          </ul>
+        </div>
+      )}
     </div>
   )
 }

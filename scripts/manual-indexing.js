@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
+/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-unused-vars */
 /**
  * Ручная индексация через Google Search Console
  * Генерирует список URL для копирования в GSC
  */
-
-const fs = require('fs');
 
 // Приоритетные URL для индексации
 const PRIORITY_URLS = [
@@ -29,13 +28,13 @@ const PRIORITY_URLS = [
 console.log('🚀 Ручная индексация через Google Search Console\n');
 
 console.log('📋 Список URL для копирования в GSC:');
-console.log('=' .repeat(60));
+console.log('='.repeat(60));
 
 PRIORITY_URLS.forEach((url, index) => {
     console.log(`${index + 1}. ${url}`);
 });
 
-console.log('=' .repeat(60));
+console.log('='.repeat(60));
 
 console.log('\n🎯 Инструкция по ручной индексации:');
 console.log('1. Откройте: https://search.google.com/search-console');

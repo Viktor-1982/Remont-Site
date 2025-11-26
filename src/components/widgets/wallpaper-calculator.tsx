@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Calculator, Home, Ruler, Plus, Trash2, Square } from "lucide-react"
 import calcDataJson from "@/components/messages/calc.json"
 import type { Locale, CalcData, WallpaperCalcDict, ButtonsDict } from "@/types/calc"
+import { computeWallpaper } from "@/lib/calculations"
 
 const calcData = calcDataJson as CalcData
 
@@ -87,105 +88,164 @@ export function WallpaperCalculator() {
     }
 
     const calculate = () => {
-        let totalWallArea = 0
-        
-        if (calculationType === "room") {
-            // Расчет по размерам комнаты
-            const width = parseFloat(roomWidth.replace(",", ".").replace(/[^0-9.-]/g, ""))
-            const length = parseFloat(roomLength.replace(",", ".").replace(/[^0-9.-]/g, ""))
-            const height = parseFloat(roomHeight.replace(",", ".").replace(/[^0-9.-]/g, ""))
-            
-            if (isNaN(width) || isNaN(length) || isNaN(height) || 
-                !isFinite(width) || !isFinite(length) || !isFinite(height) ||
-                width <= 0 || length <= 0 || height <= 0 || width > 100 || length > 100 || height > 10) {
-                return
-            }
-            
-            // Периметр комнаты * высота = площадь всех стен
-            const perimeter = 2 * (width + length)
-            totalWallArea = perimeter * height
-        } else {
-            // Расчет по размерам стены
-            const length = parseFloat(wallLength.replace(",", ".").replace(/[^0-9.-]/g, ""))
-            const height = parseFloat(wallHeight.replace(",", ".").replace(/[^0-9.-]/g, ""))
-            
-            if (isNaN(length) || isNaN(height) || 
-                !isFinite(length) || !isFinite(height) ||
-                length <= 0 || height <= 0 || length > 100 || height > 10) {
-                return
-            }
-            
-            totalWallArea = length * height
-        }
-        
-        // Вычитаем окна
-        const windowsArea = windows.reduce((sum, window) => {
-            const w = parseFloat(window.width.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
-            const h = parseFloat(window.height.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
-            if (w > 0 && h > 0 && isFinite(w) && isFinite(h)) {
-                return sum + (w * h)
-            }
-            return sum
-        }, 0)
-        
-        // Вычитаем двери
-        const doorsArea = doors.reduce((sum, door) => {
-            const w = parseFloat(door.width.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
-            const h = parseFloat(door.height.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
-            if (w > 0 && h > 0 && isFinite(w) && isFinite(h)) {
-                return sum + (w * h)
-            }
-            return sum
-        }, 0)
-        
-        const netWallArea = Math.max(0, totalWallArea - windowsArea - doorsArea)
-        
-        // Размеры рулона
-        const rollW = parseFloat(rollWidth.replace(",", ".").replace(/[^0-9.-]/g, "")) / 100 // конвертируем см в м
-        const rollL = parseFloat(rollLength.replace(",", ".").replace(/[^0-9.-]/g, ""))
-        const patternR = parseFloat(patternRepeat.replace(",", ".").replace(/[^0-9.-]/g, "")) / 100 // конвертируем см в м
-        
-        if (isNaN(rollW) || isNaN(rollL) || !isFinite(rollW) || !isFinite(rollL) ||
-            rollW <= 0 || rollL <= 0 || rollW > 5 || rollL > 50) {
+        const roomWidthNum = parseFloat(roomWidth.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        const roomLengthNum = parseFloat(roomLength.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        const roomHeightNum = parseFloat(roomHeight.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        const wallLengthNum = parseFloat(wallLength.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        const wallHeightNum = parseFloat(wallHeight.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        const rollWidthNum = parseFloat(rollWidth.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        const rollLengthNum = parseFloat(rollLength.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        const patternRepeatNum = parseFloat(patternRepeat.replace(",", ".").replace(/[^0-9.-]/g, ""))
+
+        if (
+            [rollWidthNum, rollLengthNum].some((v) => isNaN(v) || !isFinite(v)) ||
+            (calculationType === "room" &&
+                [roomWidthNum, roomLengthNum, roomHeightNum].some((v) => isNaN(v) || !isFinite(v))) ||
+            (calculationType === "walls" &&
+                [wallLengthNum, wallHeightNum].some((v) => isNaN(v) || !isFinite(v)))
+        ) {
             return
         }
-        
-        // Расчет количества полос из одного рулона
-        let stripsPerRoll = Math.floor(rollL / parseFloat(roomHeight || wallHeight || "2.7"))
-        
-        // Если есть раппорт, учитываем его
-        if (patternR > 0) {
-            const usableLength = rollL - patternR // Учитываем раппорт
-            stripsPerRoll = Math.floor(usableLength / (parseFloat(roomHeight || wallHeight || "2.7") + patternR))
-            if (patternOffset) {
-                // При смещении раппорта нужно больше материала
-                stripsPerRoll = Math.floor(usableLength / (parseFloat(roomHeight || wallHeight || "2.7") + patternR * 0.5))
+
+        const numericWindows = windows.map((w) => ({
+            width: parseFloat(w.width.replace(",", ".").replace(/[^0-9.-]/g, "") || "0"),
+            height: parseFloat(w.height.replace(",", ".").replace(/[^0-9.-]/g, "") || "0"),
+        }))
+
+        const numericDoors = doors.map((d) => ({
+            width: parseFloat(d.width.replace(",", ".").replace(/[^0-9.-]/g, "") || "0"),
+            height: parseFloat(d.height.replace(",", ".").replace(/[^0-9.-]/g, "") || "0"),
+        }))
+
+        const res = computeWallpaper({
+            calculationType,
+            roomWidth: roomWidthNum || 0,
+            roomLength: roomLengthNum || 0,
+            roomHeight: roomHeightNum || 0,
+            wallLength: wallLengthNum || 0,
+            wallHeight: wallHeightNum || 0,
+            windows: numericWindows,
+            doors: numericDoors,
+            rollWidthCm: rollWidthNum,
+            rollLengthM: rollLengthNum,
+            patternRepeatCm: patternRepeatNum || 0,
+            patternOffset,
+        })
+
+        if (!res) return
+
+        setWallArea(res.wallArea)
+        setResult(res.rollsNeeded)
+    }
+
+    const buildSummary = () => {
+        const lines: string[] = []
+
+        if (isEnglish) {
+            lines.push("Wallpaper Calculator — result")
+        } else {
+            lines.push("Калькулятор обоев — результат")
+        }
+
+        lines.push("")
+
+        if (calculationType === "room") {
+            if (roomWidth || roomLength || roomHeight) {
+                lines.push(
+                    isEnglish
+                        ? `Room size: width ${roomWidth || "-"} m, length ${roomLength || "-"} m, height ${roomHeight || "-"} m.`
+                        : `Размер комнаты: ширина ${roomWidth || "-"} м, длина ${roomLength || "-"} м, высота ${roomHeight || "-"} м.`,
+                )
+            }
+        } else {
+            if (wallLength || wallHeight) {
+                lines.push(
+                    isEnglish
+                        ? `Wall size: length ${wallLength || "-"} m, height ${wallHeight || "-"} m.`
+                        : `Размер стены: длина ${wallLength || "-"} м, высота ${wallHeight || "-"} м.`,
+                )
             }
         }
-        
-        if (stripsPerRoll <= 0) stripsPerRoll = 1
-        
-        // Периметр комнаты (для расчета количества полос)
-        let perimeter = 0
-        if (calculationType === "room") {
-            const width = parseFloat(roomWidth.replace(",", ".").replace(/[^0-9.-]/g, ""))
-            const length = parseFloat(roomLength.replace(",", ".").replace(/[^0-9.-]/g, ""))
-            perimeter = 2 * (width + length)
-        } else {
-            perimeter = parseFloat(wallLength.replace(",", ".").replace(/[^0-9.-]/g, "")) * 2 // Примерно для одной стены
+
+        if (windows.length || doors.length) {
+            lines.push(
+                isEnglish
+                    ? `Openings: windows ${windows.length}, doors ${doors.length}.`
+                    : `Проёмы: окон ${windows.length}, дверей ${doors.length}.`,
+            )
         }
-        
-        // Количество полос нужно
-        const stripsNeeded = Math.ceil(perimeter / rollW)
-        
-        // Количество рулонов
-        const rollsNeeded = Math.ceil(stripsNeeded / stripsPerRoll)
-        
-        // Добавляем запас (1 рулон)
-        const finalRolls = rollsNeeded + 1
-        
-        setResult(finalRolls)
-        setWallArea(netWallArea)
+
+        lines.push(
+            isEnglish
+                ? `Wallpaper roll: width ${rollWidth || "-"} cm, length ${rollLength || "-"} m.`
+                : `Рулон обоев: ширина ${rollWidth || "-"} см, длина ${rollLength || "-"} м.`,
+        )
+
+        if (patternRepeat && patternRepeat !== "0") {
+            lines.push(
+                isEnglish
+                    ? `Pattern repeat: ${patternRepeat} cm${patternOffset ? " with offset" : ""}.`
+                    : `Раппорт рисунка: ${patternRepeat} см${patternOffset ? " со смещением" : ""}.`,
+            )
+        }
+
+        if (wallArea !== null) {
+            lines.push(
+                isEnglish
+                    ? `Net wall area: ${wallArea.toFixed(2)} m².`
+                    : `Чистая площадь стен: ${wallArea.toFixed(2)} м².`,
+            )
+        }
+
+        if (result !== null) {
+            lines.push("")
+            lines.push(
+                isEnglish
+                    ? `Wallpaper rolls needed: ${result} rolls.`
+                    : `Необходимое количество рулонов обоев: ${result} рулонов.`,
+            )
+        }
+
+        lines.push("")
+        lines.push(
+            isEnglish
+                ? "Source: renohacks.com — online calculators and renovation guides."
+                : "Источник: renohacks.com — онлайн-калькуляторы и статьи о ремонте.",
+        )
+
+        return lines.join("\n")
+    }
+
+    const handlePrint = () => {
+        if (typeof window === "undefined") return
+
+        const summaryText = buildSummary()
+        const printWindow = window.open("", "_blank", "width=800,height=1000")
+        if (!printWindow) return
+
+        const doc = printWindow.document
+        doc.open()
+        doc.write(`<!DOCTYPE html>
+<html lang="${isEnglish ? "en" : "ru"}">
+  <head>
+    <meta charSet="utf-8" />
+    <title>${isEnglish ? "Wallpaper result — renohacks.com" : "Результат расчёта обоев — renohacks.com"}</title>
+    <style>
+      body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 24px; color: #111827; }
+      h1 { font-size: 20px; margin-bottom: 12px; }
+      pre { white-space: pre-wrap; font-family: inherit; font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <h1>${isEnglish ? "Wallpaper calculator result" : "Результат калькулятора обоев"}</h1>
+    <pre>`)
+        doc.write(summaryText)
+        doc.write(`</pre>
+  </body>
+</html>`)
+        doc.close()
+        printWindow.focus()
+        printWindow.print()
     }
 
     return (
@@ -484,6 +544,7 @@ export function WallpaperCalculator() {
             </Button>
 
             {result !== null && (
+                <>
                     <div className="grid gap-4 sm:grid-cols-2">
                         <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-emerald-50/20 p-4 shadow-sm dark:from-card dark:to-emerald-500/10">
                             <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
@@ -499,9 +560,20 @@ export function WallpaperCalculator() {
                             </div>
                             <p className="mt-2 text-lg font-semibold text-amber-600">
                                 {wallArea?.toFixed(2)} м²
-                            </p>
-                        </div>
+                    </p>
                 </div>
+                    </div>
+
+                    <div className="mt-4 flex flex-col sm:flex-row gap-3">
+                        <Button
+                            variant="outline"
+                            className="flex-1 rounded-2xl border-primary/40 bg-background/80"
+                            onClick={handlePrint}
+                        >
+                            {isEnglish ? "Save result as PDF" : "Сохранить результат в PDF"}
+                        </Button>
+                    </div>
+                </>
             )}
             </div>
         </div>

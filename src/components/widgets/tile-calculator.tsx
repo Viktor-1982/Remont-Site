@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Calculator, Grid, Ruler, Square } from "lucide-react"
 import calcDataJson from "@/components/messages/calc.json"
 import type { Locale, CalcData, TilesCalcDict, ButtonsDict } from "@/types/calc"
+import { computeTile } from "@/lib/calculations"
 
 const calcData = calcDataJson as CalcData
 
@@ -48,7 +49,6 @@ export function TileCalculator() {
     const [glueAmount, setGlueAmount] = useState<number | null>(null)
 
     const calculate = () => {
-        // ✅ Валидация и санитизация входных данных
         const l = parseFloat(length.replace(",", ".").replace(/[^0-9.-]/g, ""))
         const w = parseFloat(width.replace(",", ".").replace(/[^0-9.-]/g, ""))
         const bath = parseFloat(bathArea.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
@@ -61,65 +61,157 @@ export function TileCalculator() {
         const windowA = parseFloat(windowArea.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
         const doorA = parseFloat(doorArea.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
         const addWaste = parseFloat(additionalWaste.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
-        
-        // Проверка на валидные числа
-        if (isNaN(l) || isNaN(w) || isNaN(tl) || isNaN(tw) || isNaN(grout) || 
-            !isFinite(l) || !isFinite(w) || !isFinite(tl) || !isFinite(tw) || !isFinite(grout)) return
-        
-        // Защита от отрицательных и нулевых значений
-        if (l <= 0 || w <= 0 || tl <= 0 || tw <= 0 || grout < 0 || grout > 20 || tilesPerP <= 0) return
-        
-        // Защита от чрезмерно больших значений
-        if (l > 100 || w > 100 || tl > 200 || tw > 200) return
-        
-        // Расчет площади поверхности
-        let surfaceArea = l * w
-        
-        // Вычитаем площадь ванны/экрана (для пола)
-        if (surfaceType === "floor" && bath > 0) {
-            surfaceArea = Math.max(0, surfaceArea - bath)
+
+        if (
+            [l, w, tl, tw, grout].some((v) => isNaN(v) || !isFinite(v))
+        ) {
+            return
         }
-        
-        // Вычитаем окна и двери (только для стен)
-        let totalArea = surfaceArea
-        if (surfaceType === "wall") {
-            const windowsTotal = windowsNum * (windowA > 0 ? windowA : 2) // По умолчанию 2 м² на окно
-            const doorsTotal = doorsNum * (doorA > 0 ? doorA : 2) // По умолчанию 2 м² на дверь
-            totalArea = Math.max(0, surfaceArea - windowsTotal - doorsTotal)
-        }
-        
-        // Площадь одной плитки в м² (с учетом швов)
-        const tileAreaM2 = (tl / 100) * (tw / 100) // Конвертируем см в м
-        const groutM = grout / 1000 // Конвертируем мм в м
-        
-        // Учитываем швы при расчете эффективной площади плитки
-        // Швы уменьшают полезную площадь
-        const effectiveTileArea = tileAreaM2 - (groutM * (tl / 100 + tw / 100) - groutM * groutM)
-        
-        // Количество плиток без запаса
-        const tilesWithoutWaste = totalArea / Math.max(effectiveTileArea, tileAreaM2 * 0.95) // Минимум 95% от площади
-        
-        // Получаем запас из способа укладки
-        const selectedLayout = layoutOptions.find(opt => opt.value === layoutType)
+
+        const selectedLayout = layoutOptions.find((opt) => opt.value === layoutType)
         const baseWaste = selectedLayout?.waste || 10
-        
-        // Общий запас = запас от способа укладки + дополнительный запас
-        const totalWaste = baseWaste + addWaste
-        
-        // Добавляем запас
-        const tilesWithWaste = Math.ceil(tilesWithoutWaste * (1 + totalWaste / 100))
-        
-        // Расчет количества упаковок
-        const packs = Math.ceil(tilesWithWaste / tilesPerP)
-        
-        // Расчет клея (примерно 4-5 кг на м²)
-        const gluePerSquareMeter = 4.5
-        const glueNeeded = Math.ceil(totalArea * gluePerSquareMeter)
-        
-        setResult(tilesWithWaste)
-        setPacksNeeded(packs)
-        setTileArea(tileAreaM2)
-        setGlueAmount(glueNeeded)
+
+        const res = computeTile({
+            surfaceType,
+            length: l,
+            width: w,
+            bathArea: bath,
+            tileLength: tl,
+            tileWidth: tw,
+            groutWidth: grout,
+            tilesPerPack: tilesPerP,
+            windows: windowsNum,
+            doors: doorsNum,
+            windowArea: windowA,
+            doorArea: doorA,
+            baseWastePercent: baseWaste,
+            additionalWastePercent: addWaste,
+        })
+
+        if (!res) return
+
+        setResult(res.tilesNeeded)
+        setPacksNeeded(res.packsNeeded)
+        setTileArea(res.tileArea)
+        setGlueAmount(res.glueAmountKg)
+    }
+
+    const buildSummary = () => {
+        const lines: string[] = []
+
+        if (isEnglish) {
+            lines.push("Tile Calculator — result")
+        } else {
+            lines.push("Калькулятор плитки — результат")
+        }
+
+        lines.push("")
+
+        if (length || width) {
+            lines.push(
+                isEnglish
+                    ? `Surface size: length ${length || "-"} m, width ${width || "-"} m, type: ${surfaceType}.`
+                    : `Размер поверхности: длина ${length || "-"} м, ширина ${width || "-"} м, тип: ${surfaceType === "floor" ? "пол" : "стена"}.`,
+            )
+        }
+
+        if (surfaceType === "floor" && bathArea) {
+            lines.push(
+                isEnglish
+                    ? `Subtract bathtub/screen area: ${bathArea || "0"} m².`
+                    : `Вычтена площадь ванны/экрана: ${bathArea || "0"} м².`,
+            )
+        }
+
+        lines.push(
+            isEnglish
+                ? `Tile size: ${tileLength || "-"} × ${tileWidth || "-"} cm, grout width: ${groutWidth || "0"} mm.`
+                : `Размер плитки: ${tileLength || "-"} × ${tileWidth || "-"} см, ширина шва: ${groutWidth || "0"} мм.`,
+        )
+
+        if (surfaceType === "wall") {
+            lines.push(
+                isEnglish
+                    ? `Openings: windows ${windows || "0"} (area per window ~${windowArea || "2"} m²), doors ${doors || "0"} (area per door ~${doorArea || "2"} m²).`
+                    : `Проёмы: окна ${windows || "0"} (площадь одного ~${windowArea || "2"} м²), двери ${doors || "0"} (площадь одной ~${doorArea || "2"} м²).`,
+            )
+        }
+
+        lines.push(
+            isEnglish
+                ? `Layout: ${layoutType}, base waste: ${
+                      layoutOptions.find((o) => o.value === layoutType)?.waste ?? 10
+                  }%, extra waste: ${additionalWaste || "0"}%.`
+                : `Способ укладки: ${layoutType}, базовый запас: ${
+                      layoutOptions.find((o) => o.value === layoutType)?.waste ?? 10
+                  }%, дополнительный запас: ${additionalWaste || "0"}%.`,
+        )
+
+        if (result !== null) {
+            lines.push("")
+            lines.push(
+                isEnglish
+                    ? `Tiles needed: ${result} pcs.`
+                    : `Необходимое количество плитки: ${result} шт.`,
+            )
+        }
+
+        if (packsNeeded !== null) {
+            lines.push(
+                isEnglish
+                    ? `Packs needed: ${packsNeeded} packs.`
+                    : `Необходимое количество упаковок: ${packsNeeded} уп.`,
+            )
+        }
+
+        if (glueAmount !== null) {
+            lines.push(
+                isEnglish
+                    ? `Adhesive: approximately ${glueAmount} kg.`
+                    : `Клей: ориентировочно ${glueAmount} кг.`,
+            )
+        }
+
+        lines.push("")
+        lines.push(
+            isEnglish
+                ? "Source: renohacks.com — online calculators and renovation guides."
+                : "Источник: renohacks.com — онлайн-калькуляторы и статьи о ремонте.",
+        )
+
+        return lines.join("\n")
+    }
+
+    const handlePrint = () => {
+        if (typeof window === "undefined") return
+
+        const summaryText = buildSummary()
+        const printWindow = window.open("", "_blank", "width=800,height=1000")
+        if (!printWindow) return
+
+        const doc = printWindow.document
+        doc.open()
+        doc.write(`<!DOCTYPE html>
+<html lang="${isEnglish ? "en" : "ru"}">
+  <head>
+    <meta charSet="utf-8" />
+    <title>${isEnglish ? "Tile result — renohacks.com" : "Результат расчёта плитки — renohacks.com"}</title>
+    <style>
+      body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 24px; color: #111827; }
+      h1 { font-size: 20px; margin-bottom: 12px; }
+      pre { white-space: pre-wrap; font-family: inherit; font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <h1>${isEnglish ? "Tile calculator result" : "Результат калькулятора плитки"}</h1>
+    <pre>`)
+        doc.write(summaryText)
+        doc.write(`</pre>
+  </body>
+</html>`)
+        doc.close()
+        printWindow.focus()
+        printWindow.print()
     }
 
     return (
@@ -420,40 +512,52 @@ export function TileCalculator() {
                 </Button>
 
                 {result !== null && (
-                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                        <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-emerald-50/20 p-4 shadow-sm dark:from-card dark:to-emerald-500/10">
-                            <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
-                                <Grid className="h-3.5 w-3.5 text-primary" /> {isEnglish ? "Tiles needed" : "Плитки нужно"}
+                    <>
+                        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                            <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-emerald-50/20 p-4 shadow-sm dark:from-card dark:to-emerald-500/10">
+                                <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
+                                    <Grid className="h-3.5 w-3.5 text-primary" /> {isEnglish ? "Tiles needed" : "Плитки нужно"}
+                                </div>
+                                <p className="mt-2 text-lg font-semibold text-foreground">
+                                    {result} {isEnglish ? "pcs" : "шт"}
+                                </p>
                             </div>
-                            <p className="mt-2 text-lg font-semibold text-foreground">
-                                {result} {isEnglish ? "pcs" : "шт"}
-                            </p>
-                        </div>
-                        <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-blue-50/20 p-4 shadow-sm dark:from-card dark:to-blue-500/10">
-                            <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
-                                <Calculator className="h-3.5 w-3.5 text-blue-500" /> {isEnglish ? "Packs needed" : "Упаковок нужно"}
+                            <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-blue-50/20 p-4 shadow-sm dark:from-card dark:to-blue-500/10">
+                                <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
+                                    <Calculator className="h-3.5 w-3.5 text-blue-500" /> {isEnglish ? "Packs needed" : "Упаковок нужно"}
+                                </div>
+                                <p className="mt-2 text-lg font-semibold text-blue-600">
+                                    {packsNeeded} {isEnglish ? "packs" : "уп"}
+                                </p>
                             </div>
-                            <p className="mt-2 text-lg font-semibold text-blue-600">
-                                {packsNeeded} {isEnglish ? "packs" : "уп"}
-                            </p>
-                        </div>
-                        <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-amber-50/20 p-4 shadow-sm dark:from-card dark:to-amber-500/10">
-                            <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
-                                <Ruler className="h-3.5 w-3.5 text-amber-500" /> {isEnglish ? "Tile area" : "Площадь плитки"}
+                            <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-amber-50/20 p-4 shadow-sm dark:from-card dark:to-amber-500/10">
+                                <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
+                                    <Ruler className="h-3.5 w-3.5 text-amber-500" /> {isEnglish ? "Tile area" : "Площадь плитки"}
+                                </div>
+                                <p className="mt-2 text-lg font-semibold text-amber-600">
+                                    {tileArea?.toFixed(2)} м²
+                                </p>
                             </div>
-                            <p className="mt-2 text-lg font-semibold text-amber-600">
-                                {tileArea?.toFixed(2)} м²
-                            </p>
-                        </div>
-                        <div className="rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/15 to-primary/5 p-4 shadow-md">
-                            <div className="flex items-center gap-2 text-xs font-medium uppercase text-primary">
-                                <Calculator className="h-3.5 w-3.5" /> {isEnglish ? "Adhesive" : "Клей"}
+                            <div className="rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/15 to-primary/5 p-4 shadow-md">
+                                <div className="flex items-center gap-2 text-xs font-medium uppercase text-primary">
+                                    <Calculator className="h-3.5 w-3.5" /> {isEnglish ? "Adhesive" : "Клей"}
+                                </div>
+                                <p className="mt-2 text-2xl font-bold text-primary">
+                                    {glueAmount} {isEnglish ? "kg" : "кг"}
+                                </p>
                             </div>
-                            <p className="mt-2 text-2xl font-bold text-primary">
-                                {glueAmount} {isEnglish ? "kg" : "кг"}
-                            </p>
                         </div>
-                    </div>
+
+                        <div className="mt-4 flex flex-col sm:flex-row gap-3">
+                            <Button
+                                variant="outline"
+                                className="flex-1 rounded-2xl border-primary/40 bg-background/80"
+                                onClick={handlePrint}
+                            >
+                                {isEnglish ? "Save result as PDF" : "Сохранить результат в PDF"}
+                            </Button>
+                        </div>
+                    </>
                 )}
             </div>
         </div>
