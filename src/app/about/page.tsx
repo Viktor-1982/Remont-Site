@@ -183,7 +183,7 @@ export default function AboutPage() {
                             </CardTitle>
                         </div>
                         <CardDescription className="text-base text-lg">
-                            Есть вопросы, предложения или идеи для статей?
+                Есть вопросы, предложения или идеи для статей? 
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="relative z-10">

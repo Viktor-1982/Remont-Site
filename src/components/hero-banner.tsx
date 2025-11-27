@@ -77,6 +77,9 @@ export function HeroBanner() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent dark:from-black/80" />
                 <div className="absolute right-[20%] top-[15%] w-[200px] h-[200px] bg-white/10 blur-3xl rounded-full" />
+                {/* 🥑 Зеленый цвет авокадо */}
+                <div className="absolute left-[10%] bottom-[20%] w-[180px] h-[180px] bg-[#87A96B] dark:bg-[#9CAF88] blur-3xl rounded-full opacity-40 dark:opacity-35 animate-pulse-slow" />
+                <div className="absolute right-[15%] top-[30%] w-[120px] h-[120px] bg-[#87A96B] dark:bg-[#9CAF88] blur-2xl rounded-full opacity-35 dark:opacity-30 animate-fade-in-out" />
             </motion.div>
 
             {/* ✨ Контент */}
@@ -107,9 +110,9 @@ export function HeroBanner() {
                             asChild
                             size="lg"
                             className="rounded-full px-8 py-3 text-base font-semibold 
-              bg-white text-gray-900 dark:bg-white/90 dark:text-black
-              hover:bg-gray-100 dark:hover:bg-white 
-              hover:shadow-lg hover:scale-105 transition-all duration-300"
+              bg-[#87A96B] text-white dark:bg-[#9CAF88] dark:text-gray-900
+              hover:bg-[#7A9660] dark:hover:bg-[#8BA078]
+              hover:shadow-lg hover:shadow-[#87A96B]/50 hover:scale-105 transition-all duration-300"
                         >
                             <Link href={isEnglish ? "/en/tags/trends" : "/tags/тренды"}>
                                 {t.ctaTrends} →
@@ -122,10 +125,10 @@ export function HeroBanner() {
                             size="lg"
                             variant="outline"
                             className="rounded-full px-8 py-3 text-base font-semibold 
-              border border-gray-200 text-gray-900 
-              dark:border-white dark:text-white
-              hover:bg-gray-50 dark:hover:bg-white/10 
-              hover:shadow-lg hover:scale-105 transition-all duration-300"
+              border-2 border-[#87A96B] text-white 
+              dark:border-[#9CAF88] dark:text-white
+              hover:bg-[#87A96B] hover:text-white dark:hover:bg-[#9CAF88] dark:hover:text-gray-900
+              hover:shadow-lg hover:shadow-[#87A96B]/40 hover:scale-105 transition-all duration-300"
                         >
                             <Link href={isEnglish ? "/en/tags/diy" : "/tags/diy"}>
                                 {t.ctaDiy}

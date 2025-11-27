@@ -39,55 +39,55 @@ export function ArticleCard({ post }: { post: Post }) {
                     {/* Светящийся эффект (более заметный в светлой теме) */}
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-primary/2 to-accent/3 dark:from-primary/0 dark:via-primary/0 dark:to-accent/0 group-hover:from-primary/12 group-hover:via-primary/8 group-hover:to-accent/12 dark:group-hover:from-primary/5 dark:group-hover:via-primary/3 dark:group-hover:to-accent/5 transition-all duration-300 rounded-lg pointer-events-none" />
                     
-                    {post.cover ? (
+                {post.cover ? (
                         <div className="relative aspect-[16/9] w-full overflow-hidden rounded-t-lg bg-muted border-b border-border/40">
-                            <Image
-                                src={post.cover}
-                                alt={post.description || post.title}
-                                fill
+                        <Image
+                            src={post.cover}
+                            alt={post.description || post.title}
+                            fill
                                 className="object-cover inset-0 transition-transform duration-500 group-hover:scale-110"
-                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                            />
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        />
                             {/* Легкий оверлей при наведении */}
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
-                        </div>
-                    ) : (
+                    </div>
+                ) : (
                         <div className="aspect-[16/9] bg-gradient-to-br from-muted to-muted/60 rounded-t-lg border-b border-border/40" />
-                    )}
+                )}
 
                     <CardContent className="relative flex flex-col flex-1 space-y-2 p-4 sm:p-5 bg-white/90 dark:bg-card backdrop-blur-sm">
-                        {/* 📅 дата + время чтения */}
-                        <div className="text-xs text-muted-foreground">
-                            {formattedDate && <time dateTime={post.date}>{formattedDate}</time>}
-                            {post.readingTime && (
-                                <>
-                                    {" · "}
-                                    {locale === "en"
-                                        ? `${post.readingTime.replace("мин", "min read")}`
-                                        : `${post.readingTime} чтения`}
-                                </>
-                            )}
-                        </div>
-
-                        <h3 id={`post-${post._id}`} className="text-lg font-semibold leading-snug">
-                            <span className="transition-colors text-foreground group-hover:text-primary dark:group-hover:text-primary/90">
-                                {post.title}
-                            </span>
-                        </h3>
-
-                        {post.description && (
-                            <p className="text-sm text-muted-foreground dark:text-muted-foreground line-clamp-2 flex-1">
-                                {post.description}
-                            </p>
+                    {/* 📅 дата + время чтения */}
+                    <div className="text-xs text-muted-foreground">
+                        {formattedDate && <time dateTime={post.date}>{formattedDate}</time>}
+                        {post.readingTime && (
+                            <>
+                                {" · "}
+                                {locale === "en"
+                                    ? `${post.readingTime.replace("мин", "min read")}`
+                                    : `${post.readingTime} чтения`}
+                            </>
                         )}
+                    </div>
 
-                        {post.tags?.length ? (
-                            <nav aria-label={t.tagLabel} className="mt-auto pt-1">
-                                <TagList tags={post.tags.slice(0, 4)} isEnglish={isEnglish} />
-                            </nav>
-                        ) : null}
-                    </CardContent>
-                </Card>
+                    <h3 id={`post-${post._id}`} className="text-lg font-semibold leading-snug">
+                            <span className="transition-colors text-foreground group-hover:text-primary dark:group-hover:text-primary/90">
+                            {post.title}
+                            </span>
+                    </h3>
+
+                    {post.description && (
+                            <p className="text-sm text-muted-foreground dark:text-muted-foreground line-clamp-2 flex-1">
+                            {post.description}
+                        </p>
+                    )}
+
+                    {post.tags?.length ? (
+                        <nav aria-label={t.tagLabel} className="mt-auto pt-1">
+                            <TagList tags={post.tags.slice(0, 4)} isEnglish={isEnglish} />
+                        </nav>
+                    ) : null}
+                </CardContent>
+            </Card>
             </Link>
         </article>
     )

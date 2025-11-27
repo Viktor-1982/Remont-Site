@@ -208,6 +208,7 @@ export function RenovationBudgetPlanner() {
           {items.map((item, index) => (
             <div
               key={item.id}
+              data-testid="expense-item"
               className="group relative overflow-hidden rounded-2xl border border-border/40 bg-gradient-to-br from-card via-card to-primary/5 p-4 shadow-sm transition hover:border-primary/40 hover:shadow-xl"
             >
               <div className="pointer-events-none absolute inset-y-4 left-2 w-1 rounded-full bg-primary/20 transition group-hover:bg-primary/60" />
@@ -220,6 +221,7 @@ export function RenovationBudgetPlanner() {
                   className="text-muted-foreground hover:text-destructive"
                   onClick={() => removeCategory(item.id)}
                   disabled={items.length === 1}
+                  aria-label={t.remove}
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>

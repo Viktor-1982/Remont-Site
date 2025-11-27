@@ -202,6 +202,7 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
           {items.map((item, index) => (
             <div
               key={item.id}
+              data-testid="expense-item"
               className="group relative overflow-hidden rounded-2xl border border-border/40 bg-gradient-to-br from-card via-card to-primary/5 p-4 shadow-sm transition hover:border-primary/40 hover:shadow-xl"
             >
               <div className="pointer-events-none absolute inset-y-4 left-2 w-1 rounded-full bg-primary/20 transition group-hover:bg-primary/60" />

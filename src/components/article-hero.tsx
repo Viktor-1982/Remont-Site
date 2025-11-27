@@ -22,7 +22,7 @@ export function ArticleHero({ post }: { post: Post }) {
     return (
         <section className="flex flex-col gap-6">
             {post.cover && (
-                <div className="relative aspect-[16/9] w-full max-h-[360px] overflow-hidden rounded-lg mx-auto">
+                <div className="relative aspect-[4/3] w-full max-h-[480px] overflow-hidden rounded-lg mx-auto">
                     <Image
                         src={post.cover}
                         alt={post.title}

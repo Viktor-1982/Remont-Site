@@ -70,8 +70,9 @@ export default function HomePage() {
             <div className="container mx-auto py-10 space-y-12">
                 {/* ✅ Якорь для стрелки */}
                 <section id="articles">
-                    <h1 className="text-3xl font-bold mb-6 text-balance">
-                        Статьи с пошаговыми инструкциями и практическими советами
+                    <h1 className="text-3xl font-bold mb-6 text-balance relative">
+                        <span className="relative z-10">Статьи с пошаговыми инструкциями и практическими советами</span>
+                        <span className="absolute left-0 top-0 w-3 h-full bg-[#87A96B] dark:bg-[#9CAF88] rounded-l-md -ml-6"></span>
                     </h1>
                     <ArticleGrid posts={posts} />
                 </section>
