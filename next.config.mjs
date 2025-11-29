@@ -29,11 +29,11 @@ const nextConfig = {
                         key: 'Content-Security-Policy',
                         value: [
                             "default-src 'self'",
-                            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://mc.yandex.ru https://pagead2.googlesyndication.com",
+                            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://mc.yandex.ru https://mc.yandex.com https://www.clarity.ms https://pagead2.googlesyndication.com",
                             "style-src 'self' 'unsafe-inline'",
                             "img-src 'self' data: https: blob:",
                             "font-src 'self' data:",
-                            "connect-src 'self' https://www.googletagmanager.com https://mc.yandex.ru https://openrouter.ai https://googleads.g.doubleclick.net https://tpc.googlesyndication.com",
+                            "connect-src 'self' https://www.googletagmanager.com https://mc.yandex.ru https://mc.yandex.com https://www.google-analytics.com https://ep1.adtrafficquality.google https://openrouter.ai https://googleads.g.doubleclick.net https://tpc.googlesyndication.com",
                             "frame-src https://www.googletagmanager.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com",
                             "object-src 'none'",
                             "base-uri 'self'",
