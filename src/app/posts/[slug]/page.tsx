@@ -8,6 +8,7 @@ import { RelatedPosts } from "@/components/related-posts"
 import { ReadingProgress } from "@/components/reading-progress"
 import { ReadingPosition } from "@/components/reading-position"
 import { Breadcrumbs } from "@/components/breadcrumbs"
+import { ViewCounter } from "@/components/view-counter"
 import { getPostMetadata } from "@/lib/seo-post" // ✅ используем общий SEO-модуль
 import { parseFAQ } from "@/lib/parse-faq"
 import Script from "next/script"
@@ -96,6 +97,11 @@ export default async function PostPage({
                 ]}
             />
             <ArticleHero post={post} />
+            
+            {/* Счетчик просмотров */}
+            <div className="max-w-4xl mx-auto mt-4">
+                <ViewCounter slug={slug} locale="ru" />
+            </div>
 
             <div className="grid gap-6 sm:gap-8 md:gap-12 lg:grid-cols-[1fr_280px] mt-8 sm:mt-10 md:mt-12">
                 <div className="min-w-0">

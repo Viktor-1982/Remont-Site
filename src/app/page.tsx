@@ -4,6 +4,7 @@ import { allPosts, type Post } from ".contentlayer/generated"
 import { ArticleGrid } from "@/components/article-grid"
 import { HeroBanner } from "@/components/hero-banner"
 import { HomeBackgroundAnimation } from "@/components/home-background-animation"
+import { PopularPosts } from "@/components/popular-posts"
 
 // 🔄 Автоматическое обновление страницы каждые 60 сек
 export const revalidate = 60
@@ -79,6 +80,9 @@ export default function HomePage() {
                         </p>
                     </div>
                     <ArticleGrid posts={posts} isEnglish={false} />
+                    
+                    {/* Популярные статьи */}
+                    <PopularPosts posts={posts} locale="ru" limit={6} />
                 </section>
             </div>
         </main>

@@ -4,6 +4,7 @@ import { sortPosts } from "@/lib/utils"
 import { ArticleGrid } from "@/components/article-grid"
 import { HeroBanner } from "@/components/hero-banner"
 import { HomeBackgroundAnimation } from "@/components/home-background-animation"
+import { PopularPosts } from "@/components/popular-posts"
 
 // 🔄 Автообновление контента раз в минуту
 export const revalidate = 60
@@ -67,6 +68,9 @@ export default function HomePageEn() {
                         Step-by-Step Guides & Practical Tips
                     </h1>
                     <ArticleGrid posts={posts} isEnglish={true} />
+                    
+                    {/* Популярные статьи */}
+                    <PopularPosts posts={posts} locale="en" limit={6} />
                 </section>
             </div>
         </main>

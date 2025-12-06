@@ -143,6 +143,26 @@ export default async function RootLayout({
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6574921684224364"
                 crossOrigin="anonymous"
             />
+            
+            {/* ✅ Service Worker для PWA */}
+            <script
+                suppressHydrationWarning
+                dangerouslySetInnerHTML={{
+                    __html: `
+                        if ('serviceWorker' in navigator) {
+                            window.addEventListener('load', () => {
+                                navigator.serviceWorker.register('/sw.js')
+                                    .then((registration) => {
+                                        console.log('SW registered:', registration);
+                                    })
+                                    .catch((error) => {
+                                        console.log('SW registration failed:', error);
+                                    });
+                            });
+                        }
+                    `,
+                }}
+            />
         </head>
 
         <body className="min-h-screen bg-background text-foreground font-sans antialiased">

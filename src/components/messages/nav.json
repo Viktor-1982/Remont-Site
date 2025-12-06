@@ -8,6 +8,7 @@
       { "href": "/", "label": "Главная", "title": "Главная страница Renohacks" },
       { "href": "/tags/тренды", "label": "Новинки", "title": "Новинки в ремонте и дизайне" },
       { "href": "/tags/diy", "label": "DIY", "title": "DIY проекты по ремонту" },
+      { "href": "/tags", "label": "Теги", "title": "Облако тегов всех статей" },
       { "href": "/bookmarks", "label": "Закладки", "title": "Мои сохраненные статьи" },
       { "href": "/about", "label": "О проекте", "title": "Информация о Renohacks" },
       { "href": "/calculators", "label": "Калькуляторы", "title": "Онлайн калькуляторы для ремонта" }
@@ -101,6 +102,7 @@
       { "href": "/en", "label": "Home", "title": "Renohacks home page" },
       { "href": "/en/tags/trends", "label": "Trends", "title": "Trends in renovation and design" },
       { "href": "/en/tags/diy", "label": "DIY", "title": "DIY renovation projects" },
+      { "href": "/en/tags", "label": "Tags", "title": "Tag cloud of all articles" },
       { "href": "/en/bookmarks", "label": "Bookmarks", "title": "My saved articles" },
       { "href": "/en/about", "label": "About", "title": "About Renohacks project" },
       { "href": "/en/calculators", "label": "Calculators", "title": "Online renovation calculators" }

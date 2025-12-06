@@ -6,6 +6,8 @@
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#45B08C",
+  "orientation": "portrait-primary",
+  "scope": "/",
   "icons": [
     {
       "src": "/icon.svg",
@@ -17,6 +19,24 @@
       "src": "/favicon.ico",
       "sizes": "32x32",
       "type": "image/x-icon"
+    }
+  ],
+  "categories": ["lifestyle", "home", "diy"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Калькуляторы",
+      "short_name": "Калькуляторы",
+      "description": "Калькуляторы для ремонта",
+      "url": "/calculators",
+      "icons": [{ "src": "/icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Закладки",
+      "short_name": "Закладки",
+      "description": "Мои сохраненные статьи",
+      "url": "/bookmarks",
+      "icons": [{ "src": "/icon.svg", "sizes": "any" }]
     }
   ]
 }
