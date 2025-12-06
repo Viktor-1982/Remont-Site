@@ -67,14 +67,18 @@ export default function HomePage() {
             <HeroBanner />
 
             {/* 📑 Контент внутри контейнера */}
-            <div className="container mx-auto py-10 space-y-12">
+            <div className="container mx-auto py-12 sm:py-16 space-y-16 max-w-7xl">
                 {/* ✅ Якорь для стрелки */}
                 <section id="articles">
-                    <h1 className="text-3xl font-bold mb-6 text-balance relative">
-                        <span className="relative z-10">Статьи с пошаговыми инструкциями и практическими советами</span>
-                        <span className="absolute left-0 top-0 w-3 h-full bg-[#87A96B] dark:bg-[#9CAF88] rounded-l-md -ml-6"></span>
-                    </h1>
-                    <ArticleGrid posts={posts} />
+                    <div className="mb-10">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-balance tracking-tight">
+                            <span className="text-gradient">Статьи с пошаговыми инструкциями</span>
+                        </h1>
+                        <p className="text-lg text-muted-foreground/80 max-w-2xl">
+                            Практические советы, фото-гайды и лайфхаки для качественного ремонта своими руками
+                        </p>
+                    </div>
+                    <ArticleGrid posts={posts} isEnglish={false} />
                 </section>
             </div>
         </main>

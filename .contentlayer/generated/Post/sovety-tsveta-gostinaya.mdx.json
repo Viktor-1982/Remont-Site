@@ -41,31 +41,31 @@
   "locale": "ru",
   "slug": "sovety-tsveta-gostinaya",
   "url": "/posts/sovety-tsveta-gostinaya",
-  "readingTime": "4 мин",
+  "readingTime": "5 мин",
   "headings": [
     {
       "text": "1. Посмотрите, как живёт свет",
-      "level": 3
+      "level": 2
     },
     {
       "text": "2. Оцените сами стены",
-      "level": 3
+      "level": 2
     },
     {
       "text": "3. Подумайте, кто здесь живёт",
-      "level": 3
+      "level": 2
     },
     {
       "text": "4. Создайте нейтральную основу",
-      "level": 3
+      "level": 2
     },
     {
       "text": "5. Добавьте пару акцентов — и стоп",
-      "level": 3
+      "level": 2
     },
     {
       "text": "6. Проведите тест краски",
-      "level": 3
+      "level": 2
     }
   ]
 }

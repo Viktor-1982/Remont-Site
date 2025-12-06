@@ -28,95 +28,71 @@
     --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* 🌞 Светлая тема */
+/* 🌞 Светлая тема - современная палитра 2025-2026 */
 :root {
     --font-geist-sans: 'Geist Sans', sans-serif;
     --font-geist-mono: 'Geist Mono', monospace;
-    --radius: 0.625rem;
+    --radius: 0.75rem;
 
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.141 0.005 285.823);
+    --background: oklch(0.99 0.002 270);
+    --foreground: oklch(0.15 0.008 270);
 
     --card: oklch(1 0 0);
-    --card-foreground: oklch(0.141 0.005 285.823);
+    --card-foreground: oklch(0.15 0.008 270);
 
     --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.141 0.005 285.823);
+    --popover-foreground: oklch(0.15 0.008 270);
 
-    --primary: oklch(0.21 0.006 285.885);
-    --primary-foreground: oklch(0.985 0 0);
+    /* Современный зеленый - мягкий, природный */
+    --primary: oklch(0.45 0.08 145);
+    --primary-foreground: oklch(0.99 0.002 270);
 
-    --secondary: oklch(0.967 0.001 286.375);
-    --secondary-foreground: oklch(0.21 0.006 285.885);
+    --secondary: oklch(0.96 0.003 270);
+    --secondary-foreground: oklch(0.25 0.008 270);
 
-    --muted: oklch(0.967 0.001 286.375);
-    --muted-foreground: oklch(0.44 0.01 285.9);
+    --muted: oklch(0.96 0.003 270);
+    --muted-foreground: oklch(0.45 0.01 270);
 
-    --accent: oklch(0.967 0.001 286.375);
-    --accent-foreground: oklch(0.21 0.006 285.885);
+    /* Акцент - теплый беж/терракота */
+    --accent: oklch(0.75 0.04 45);
+    --accent-foreground: oklch(0.25 0.008 270);
 
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.92 0.004 286.32);
-    --input: oklch(0.92 0.004 286.32);
-    --ring: oklch(0.705 0.015 286.067);
+    --destructive: oklch(0.55 0.22 25);
+    --border: oklch(0.93 0.004 270);
+    --input: oklch(0.95 0.003 270);
+    --ring: oklch(0.45 0.08 145);
 }
 
-/* 🌿 Sepia-тема */
-html.sepia {
-    --background: #f4ecd8;
-    --foreground: #3b2e20;
-    --card: #fdfaf4;
-    --card-foreground: #3b2e20;
-    --primary: #a0522d;
-    --primary-foreground: #fffaf0;
-    --accent: #deb887;
-    --accent-foreground: #3b2e20;
-    --border: #d2c4a3;
-    --muted: #e8dcc5;
-    --muted-foreground: #5c4631;
-}
+/* Убраны sepia и contrast темы - оставлены только светлая и темная */
 
-/* ⚡ Высококонтрастная тема */
-html.contrast {
-    --background: #000;
-    --foreground: #fff;
-    --card: #000;
-    --card-foreground: #fff;
-    --primary: #ffcc00;
-    --primary-foreground: #000;
-    --accent: #ff0066;
-    --accent-foreground: #fff;
-    --border: #fff;
-    --muted: #1a1a1a;
-    --muted-foreground: #e5e5e5;
-}
-
-/* 🌙 Тёмная тема */
+/* 🌙 Тёмная тема - современная палитра 2025-2026 */
 .dark {
-    --background: oklch(0.141 0.005 285.823);
-    --foreground: oklch(0.985 0 0);
+    --background: oklch(0.12 0.006 270);
+    --foreground: oklch(0.98 0.002 270);
 
-    --card: oklch(0.21 0.006 285.885);
-    --card-foreground: oklch(0.985 0 0);
+    --card: oklch(0.16 0.008 270);
+    --card-foreground: oklch(0.98 0.002 270);
 
-    --popover: oklch(0.21 0.006 285.885);
-    --popover-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.16 0.008 270);
+    --popover-foreground: oklch(0.98 0.002 270);
 
-    --primary: oklch(0.92 0.004 286.32);
-    --primary-foreground: oklch(0.21 0.006 285.885);
+    /* Яркий, но мягкий зеленый для темной темы */
+    --primary: oklch(0.65 0.12 145);
+    --primary-foreground: oklch(0.12 0.006 270);
 
-    --secondary: oklch(0.274 0.006 286.033);
-    --secondary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.22 0.008 270);
+    --secondary-foreground: oklch(0.95 0.002 270);
 
-    --muted: oklch(0.274 0.006 286.033);
-    --muted-foreground: oklch(0.75 0.02 286);
+    --muted: oklch(0.22 0.008 270);
+    --muted-foreground: oklch(0.65 0.01 270);
 
-    --accent: oklch(0.274 0.006 286.033);
-    --accent-foreground: oklch(0.985 0 0);
+    /* Теплый акцент для темной темы */
+    --accent: oklch(0.55 0.06 45);
+    --accent-foreground: oklch(0.98 0.002 270);
 
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.552 0.016 285.938);
+    --border: oklch(0.25 0.008 270);
+    --input: oklch(0.20 0.008 270);
+    --ring: oklch(0.65 0.12 145);
 }
 
 /* 🌐 Базовые стили */
@@ -129,54 +105,80 @@ html.contrast {
     }
 }
 
-/* 📝 Улучшенная читаемость текста в статьях */
+/* 📝 Улучшенная читаемость текста в статьях - современная типографика */
 @layer base {
     .prose {
-        --tw-prose-body: oklch(0.22 0.03 270);
-        --tw-prose-headings: oklch(0.15 0.05 265);
-        --tw-prose-links: oklch(0.35 0.12 260);
-        --tw-prose-bold: oklch(0.18 0.04 270);
-        --tw-prose-quotes: oklch(0.25 0.03 270);
+        --tw-prose-body: oklch(0.20 0.015 270);
+        --tw-prose-headings: oklch(0.12 0.02 270);
+        --tw-prose-links: oklch(0.45 0.10 145);
+        --tw-prose-bold: oklch(0.15 0.02 270);
+        --tw-prose-quotes: oklch(0.30 0.02 270);
+        --tw-prose-code: oklch(0.25 0.02 270);
         color: var(--tw-prose-body) !important;
+        line-height: 1.75;
+        letter-spacing: -0.01em;
+    }
+
+    .prose h1, .prose h2, .prose h3, .prose h4 {
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        margin-top: 2em;
+        margin-bottom: 1em;
+    }
+
+    .prose p {
+        margin-top: 1.25em;
+        margin-bottom: 1.25em;
     }
 
     .prose blockquote {
-        border-left-color: oklch(0.7 0.09 75);
-        color: oklch(0.28 0.04 270);
+        border-left-color: oklch(0.65 0.10 145);
+        border-left-width: 4px;
+        color: oklch(0.30 0.02 270);
         font-style: italic;
+        padding-left: 1.5em;
+        margin: 2em 0;
+        background: oklch(0.98 0.002 270);
+        border-radius: 0.5rem;
+        padding: 1.5em;
+    }
+
+    .prose a {
+        color: var(--tw-prose-links);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        transition: color 0.2s ease;
+    }
+
+    .prose a:hover {
+        color: oklch(0.40 0.12 145);
     }
 
     .dark .prose {
-        --tw-prose-body: oklch(0.88 0.02 270);
-        --tw-prose-headings: oklch(0.95 0.04 270);
-        --tw-prose-links: oklch(0.85 0.1 260);
-        --tw-prose-bold: oklch(0.92 0.04 270);
-        --tw-prose-quotes: oklch(0.85 0.02 270);
+        --tw-prose-body: oklch(0.90 0.01 270);
+        --tw-prose-headings: oklch(0.98 0.02 270);
+        --tw-prose-links: oklch(0.70 0.12 145);
+        --tw-prose-bold: oklch(0.95 0.02 270);
+        --tw-prose-quotes: oklch(0.88 0.01 270);
+        --tw-prose-code: oklch(0.85 0.01 270);
         color: var(--tw-prose-body) !important;
     }
 
     .dark .prose blockquote {
-        border-left-color: oklch(0.65 0.1 80);
-        color: oklch(0.9 0.03 270);
+        border-left-color: oklch(0.70 0.12 145);
+        color: oklch(0.88 0.01 270);
+        background: oklch(0.16 0.008 270);
     }
 
-    html.sepia .prose {
-        --tw-prose-body: oklch(0.35 0.05 70);
-        --tw-prose-headings: oklch(0.25 0.05 70);
-        color: var(--tw-prose-body) !important;
-    }
-
-    html.contrast .prose {
-        --tw-prose-body: oklch(0.98 0 270);
-        color: var(--tw-prose-body) !important;
+    .dark .prose a:hover {
+        color: oklch(0.75 0.12 145);
     }
 }
 
 /* 🧩 Принудительное применение цвета */
 .prose,
-.dark .prose,
-html.sepia .prose,
-html.contrast .prose {
+.dark .prose {
     color: var(--tw-prose-body) !important;
 }
 
@@ -289,5 +291,54 @@ html.contrast .prose {
 
     .print-only {
         display: block !important;
+    }
+}
+
+/* 🎨 Современные эффекты 2025-2026 */
+@layer utilities {
+    /* Glassmorphism эффект */
+    .glass {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px) saturate(180%);
+        -webkit-backdrop-filter: blur(12px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .dark .glass {
+        background: rgba(20, 20, 25, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Мягкие тени - современный стиль */
+    .shadow-soft {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .dark .shadow-soft {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .shadow-glow {
+        box-shadow: 0 0 20px rgba(var(--primary-rgb, 135, 169, 107), 0.15);
+    }
+
+    /* Плавные переходы */
+    .transition-smooth {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Градиентный текст */
+    .text-gradient {
+        background: linear-gradient(135deg, oklch(0.45 0.08 145), oklch(0.55 0.10 145));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .dark .text-gradient {
+        background: linear-gradient(135deg, oklch(0.65 0.12 145), oklch(0.75 0.14 145));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 }

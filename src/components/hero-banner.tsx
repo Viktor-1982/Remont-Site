@@ -91,16 +91,16 @@ export function HeroBanner() {
                     className="max-w-3xl"
                 >
                     {isHomePage ? (
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white dark:text-white leading-tight mb-6 [text-shadow:_2px_2px_4px_rgba(0,0,0,0.8),_0_0_8px_rgba(0,0,0,0.6),_-1px_-1px_0_rgba(0,0,0,0.9),1px_1px_0_rgba(0,0,0,0.9)]">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white dark:text-white leading-[1.1] mb-6 tracking-tight [text-shadow:_0_2px_20px_rgba(0,0,0,0.5),_0_4px_40px_rgba(0,0,0,0.3)]">
                         {t.title}
                     </h1>
                     ) : (
-                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white dark:text-white leading-tight mb-6 [text-shadow:_2px_2px_4px_rgba(0,0,0,0.8),_0_0_8px_rgba(0,0,0,0.6),_-1px_-1px_0_rgba(0,0,0,0.9),1px_1px_0_rgba(0,0,0,0.9)]">
+                    <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white dark:text-white leading-[1.1] mb-6 tracking-tight [text-shadow:_0_2px_20px_rgba(0,0,0,0.5),_0_4px_40px_rgba(0,0,0,0.3)]">
                         {t.title}
                     </h2>
                     )}
 
-                    <p className="text-lg sm:text-xl md:text-2xl text-white dark:text-white mb-10 max-w-2xl mx-auto leading-relaxed [text-shadow:_1px_1px_3px_rgba(0,0,0,0.8),_0_0_6px_rgba(0,0,0,0.6),_-1px_-1px_0_rgba(0,0,0,0.9),1px_1px_0_rgba(0,0,0,0.9)]">
+                    <p className="text-lg sm:text-xl md:text-2xl text-white/95 dark:text-white/95 mb-10 max-w-2xl mx-auto leading-relaxed font-medium [text-shadow:_0_2px_15px_rgba(0,0,0,0.4),_0_1px_5px_rgba(0,0,0,0.5)]">
                         {t.subtitle}
                     </p>
 
@@ -109,10 +109,11 @@ export function HeroBanner() {
                         <Button
                             asChild
                             size="lg"
-                            className="rounded-full px-8 py-3 text-base font-semibold 
+                            className="rounded-full px-8 py-4 text-base font-semibold 
               bg-[#87A96B] text-white dark:bg-[#9CAF88] dark:text-gray-900
               hover:bg-[#7A9660] dark:hover:bg-[#8BA078]
-              hover:shadow-lg hover:shadow-[#87A96B]/50 hover:scale-105 transition-all duration-300"
+              hover:shadow-xl hover:shadow-[#87A96B]/40 hover:scale-105 
+              transition-smooth backdrop-blur-sm border border-white/20"
                         >
                             <Link href={isEnglish ? "/en/tags/trends" : "/tags/тренды"}>
                                 {t.ctaTrends} →
@@ -124,11 +125,12 @@ export function HeroBanner() {
                             asChild
                             size="lg"
                             variant="outline"
-                            className="rounded-full px-8 py-3 text-base font-semibold 
-              border-2 border-[#87A96B] text-white 
-              dark:border-[#9CAF88] dark:text-white
-              hover:bg-[#87A96B] hover:text-white dark:hover:bg-[#9CAF88] dark:hover:text-gray-900
-              hover:shadow-lg hover:shadow-[#87A96B]/40 hover:scale-105 transition-all duration-300"
+                            className="rounded-full px-8 py-4 text-base font-semibold 
+              border-2 border-white/40 text-white backdrop-blur-md
+              bg-white/10 dark:bg-white/5
+              hover:bg-white/20 hover:border-white/60 dark:hover:bg-white/15
+              hover:shadow-xl hover:shadow-white/20 hover:scale-105 
+              transition-smooth"
                         >
                             <Link href={isEnglish ? "/en/tags/diy" : "/tags/diy"}>
                                 {t.ctaDiy}

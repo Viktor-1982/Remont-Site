@@ -34,7 +34,7 @@ export default function CostsPage() {
             </p>
 
             {sortedEstimates.length > 0 ? (
-                <ArticleGrid posts={sortedEstimates} />
+                <ArticleGrid posts={sortedEstimates} isEnglish={true} />
             ) : (
                 <div className="text-center py-12">
                     <p className="text-muted-foreground">Estimates coming soon...</p>

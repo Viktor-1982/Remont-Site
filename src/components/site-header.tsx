@@ -9,6 +9,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import { DeepLink } from "@/components/deep-link"
+import { SearchBar } from "@/components/search-bar"
 import { FaInstagram, FaPinterest } from "react-icons/fa"
 import navData from "@/types/nav"
 import type { NavData, Locale, NavLink } from "@/types/nav"
@@ -28,12 +29,12 @@ export function SiteHeader() {
     }
 
     return (
-        <header className="sticky top-0 z-50 bg-background/80 backdrop-blur border-b transition-all">
-            <div className="container flex items-center justify-between h-14 px-4 sm:px-6">
+        <header className="sticky top-0 z-50 bg-background/95 dark:bg-background/90 backdrop-blur-md border-b border-border/50 shadow-soft transition-all">
+            <div className="container flex items-center justify-between h-16 px-4 sm:px-6">
                 {/* 🏠 Логотип */}
                 <Link
                     href={isEnglish ? "/en" : "/"}
-                    className="inline-flex items-baseline px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg text-lg sm:text-xl font-bold tracking-wide bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 dark:from-primary/20 dark:via-accent/20 dark:to-primary/20 text-foreground transition-all hover:opacity-90 hover:scale-105 hover:from-primary/15 hover:via-accent/15 hover:to-primary/15 dark:hover:from-primary/25 dark:hover:via-accent/25 dark:hover:to-primary/25"
+                    className="inline-flex items-baseline px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-lg sm:text-xl font-bold tracking-tight bg-gradient-to-r from-primary/10 via-accent/8 to-primary/10 dark:from-primary/15 dark:via-accent/12 dark:to-primary/15 text-foreground transition-smooth hover:scale-105 hover:from-primary/15 hover:via-accent/12 hover:to-primary/15 dark:hover:from-primary/20 dark:hover:via-accent/18 dark:hover:to-primary/20 shadow-soft"
                 >
                     renohacks.com
                 </Link>
@@ -44,16 +45,16 @@ export function SiteHeader() {
                 </div>
 
                 {/* 🧭 Навигация — десктоп */}
-                <nav className="hidden md:flex items-center gap-6">
+                <nav className="hidden md:flex items-center gap-8">
                     {links.map((link: NavLink) => (
                         <Link
                             key={link.href}
                             href={link.href}
                             className={cn(
-                                "transition-colors hover:text-primary font-medium",
+                                "transition-smooth font-medium text-sm tracking-wide",
                                 isActive(link.href)
-                                    ? "text-primary font-semibold underline underline-offset-4"
-                                    : "text-foreground/80 hover:text-foreground"
+                                    ? "text-primary font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:rounded-full"
+                                    : "text-foreground/70 hover:text-foreground hover:text-primary/80"
                             )}
                         >
                             {link.label}
@@ -63,6 +64,7 @@ export function SiteHeader() {
 
                 {/* 🔘 Переключатели и соцсети — десктоп */}
                 <div className="hidden md:flex items-center gap-3">
+                    <SearchBar isEnglish={isEnglish} />
                     <LanguageSwitcher />
                     <ThemeSwitcher />
                     <div className="flex items-center gap-4 pl-3 border-l border-border/50 ml-3">
@@ -89,6 +91,8 @@ export function SiteHeader() {
 
                 {/* 📱 Мобильное меню */}
                 <div className="flex items-center md:hidden gap-2">
+                    {/* 🔍 Поиск на мобильных */}
+                    <SearchBar isEnglish={isEnglish} />
                     {/* 🎨 Переключатель темы — рядом с меню */}
                     <ThemeSwitcher />
 

@@ -56,7 +56,7 @@ export default async function TagPageEn({ params }: Params) {
             <p className="text-muted-foreground mb-8 text-sm sm:text-base">
                 All articles tagged <strong>“{decodedTag}”</strong>
             </p>
-            <ArticleGrid posts={filtered} />
+            <ArticleGrid posts={filtered} isEnglish={true} />
         </section>
     )
 }

@@ -66,7 +66,7 @@ export default function HomePageEn() {
                     <h1 className="text-3xl font-bold mb-6 text-balance">
                         Step-by-Step Guides & Practical Tips
                     </h1>
-                    <ArticleGrid posts={posts} />
+                    <ArticleGrid posts={posts} isEnglish={true} />
                 </section>
             </div>
         </main>

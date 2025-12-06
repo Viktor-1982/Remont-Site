@@ -34,7 +34,7 @@ export default function SmetyPage() {
             </p>
 
             {sortedEstimates.length > 0 ? (
-                <ArticleGrid posts={sortedEstimates} />
+                <ArticleGrid posts={sortedEstimates} isEnglish={false} />
             ) : (
                 <div className="text-center py-12">
                     <p className="text-muted-foreground">Сметы скоро появятся...</p>

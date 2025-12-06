@@ -33,17 +33,26 @@ var Post = defineDocumentType(() => ({
       resolve: (post) => /(^|[\\/])en[\\/]/.test(post._raw.sourceFilePath) ? `/en/posts/${post._raw.flattenedPath.replace(/^en[\\/]/, "")}` : `/posts/${post._raw.flattenedPath}`
     },
     // ⏱️ Время чтения
+    // Вычисляем время чтения с учетом реальной скорости чтения для каждого языка
+    // Русский: ~180 слов/мин (более медленное чтение из-за сложности языка)
+    // Английский: ~200 слов/мин (стандартная скорость)
     readingTime: {
       type: "string",
-      resolve: (post) => Math.ceil(readingTime(post.body.raw).minutes) + " \u043C\u0438\u043D"
+      resolve: (post) => {
+        const isEnglish = /(^|[\\/])en[\\/]/.test(post._raw.sourceFilePath);
+        const wordsPerMinute = isEnglish ? 200 : 180;
+        const time = readingTime(post.body.raw, { wordsPerMinute });
+        return Math.ceil(time.minutes) + " \u043C\u0438\u043D";
+      }
     },
     // 📚 Оглавление для TableOfContents
     headings: {
       type: "json",
-      resolve: (doc) => Array.from(doc.body.raw.matchAll(/^###?\s+(.*)$/gm)).map(
-        ([, text]) => ({
+      resolve: (doc) => Array.from(doc.body.raw.matchAll(/^(##+)\s+(.*)$/gm)).map(
+        ([, markers, text]) => ({
           text,
-          level: text.startsWith("##") ? 2 : 3
+          level: markers.length
+          // ## = 2, ### = 3
         })
       )
     }
@@ -57,4 +66,4 @@ export {
   Post,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-2QKTT6W2.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-PCQMVFHU.mjs.map

@@ -8,7 +8,7 @@ import {
 
 /**
  * ThemeProvider — обёртка для next-themes.
- * Добавлены кастомные темы (sepia, contrast).
+ * Только светлая и темная темы.
  */
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
     return (
@@ -17,12 +17,6 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
-            value={{
-                light: "light",
-                dark: "dark",
-                sepia: "sepia",
-                contrast: "contrast", // 
-            }}
             {...props}
         >
             {children}

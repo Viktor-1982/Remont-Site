@@ -5,6 +5,9 @@ import { ArticleHero } from "@/components/article-hero"
 import { TableOfContents } from "@/components/table-of-contents"
 import { Mdx } from "@/components/mdx-components"
 import { RelatedPosts } from "@/components/related-posts"
+import { ReadingProgress } from "@/components/reading-progress"
+import { ReadingPosition } from "@/components/reading-position"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 import { getPostMetadata } from "@/lib/seo-post" // ✅ единый SEO-модуль
 import { parseFAQ } from "@/lib/parse-faq"
 import Script from "next/script"
@@ -75,16 +78,41 @@ export default async function PostPage({
         }))
     } : null
 
+    // Extract minutes from readingTime (format: "5 min read" or "5 мин")
+    const readingTimeMinutes = post.readingTime 
+        ? parseInt(post.readingTime.replace(/\D/g, "")) 
+        : undefined
+
     return (
-        <article className="container px-4 sm:px-6 py-8 sm:py-12">
+        <article className="container px-4 sm:px-6 py-6 sm:py-8 md:py-12 max-w-7xl">
+            <ReadingProgress readingTimeMinutes={readingTimeMinutes} isEnglish={true} />
+            <ReadingPosition slug={slug} locale="en" />
+            <Breadcrumbs 
+                isEnglish={true}
+                items={[
+                    { label: "Home", href: "/en" },
+                    { label: "Articles", href: "/en/posts" },
+                    { label: post.title, href: canonical },
+                ]}
+            />
             <ArticleHero post={post} />
 
-            <div className="grid gap-6 sm:gap-8 lg:grid-cols-[2fr_1fr]">
-                <Mdx code={post.body.code} />
-                <TableOfContents items={post.headings} />
+            <div className="grid gap-6 sm:gap-8 md:gap-12 lg:grid-cols-[1fr_280px] mt-8 sm:mt-10 md:mt-12">
+                <div className="min-w-0">
+                    <div className="prose prose-sm sm:prose-base md:prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-soft">
+                        <Mdx code={post.body.code} />
+                    </div>
+                </div>
+                <aside className="hidden lg:block">
+                    <div className="sticky top-24">
+                        <TableOfContents items={post.headings} />
+                    </div>
+                </aside>
             </div>
 
-            <RelatedPosts currentSlug={slug} locale="en" />
+            <div className="mt-10 sm:mt-12 md:mt-16">
+                <RelatedPosts currentSlug={slug} locale="en" />
+            </div>
 
             {/* 🟡 JSON-LD structured data for search engines */}
             <Script

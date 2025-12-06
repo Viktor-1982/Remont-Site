@@ -14,7 +14,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
     return (
         <NextThemesProvider
             {...props}
-            themes={["light", "dark", "sepia", "contrast"]}
+            themes={["light", "dark"]}
         >
             {children}
         </NextThemesProvider>

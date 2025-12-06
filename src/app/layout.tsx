@@ -9,6 +9,8 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { CookieConsent } from "@/components/cookie-consent"
 import { BackgroundAnimation } from "@/components/background-animation"
+import { KeyboardShortcuts } from "@/components/keyboard-shortcuts"
+import { ScrollToTop } from "@/components/scroll-to-top"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Script from "next/script"
@@ -18,6 +20,16 @@ export const metadata: Metadata = {
     title: "Renohacks.com — блог о ремонте, дизайне и DIY",
     description: "Фото-гайды по ремонту своими руками, DIY лайфхаки, бесплатные калькуляторы и обзоры материалов для качественного ремонта.",
     metadataBase: new URL("https://renohacks.com"),
+    icons: {
+        icon: [
+            { url: "/icon.svg", type: "image/svg+xml" },
+            { url: "/favicon.ico", sizes: "any" },
+        ],
+        apple: [
+            { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+        ],
+    },
+    manifest: "/manifest.json",
     openGraph: {
         title: "Renohacks.com — блог о ремонте, дизайне и DIY",
         description: "Фото-гайды по ремонту своими руками, DIY лайфхаки, бесплатные калькуляторы и обзоры материалов для качественного ремонта.",
@@ -70,6 +82,11 @@ export default async function RootLayout({
             className={`${GeistSans.variable} ${GeistMono.variable}`}
         >
         <head>
+            {/* Favicon и иконки */}
+            <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+            <link rel="alternate icon" href="/favicon.ico" />
+            <link rel="manifest" href="/manifest.json" />
+            
             {/* Preload critical resources */}
             <link rel="preload" href="/images/hero/hero-banner.png" as="image" />
             <link rel="dns-prefetch" href="//www.googletagmanager.com" />
@@ -154,9 +171,11 @@ export default async function RootLayout({
         <ThemeProvider>
             <BackgroundAnimation />
             <SiteHeader />
-            <main className="w-full py-8">{children}</main>
+            <main className="w-full py-6 sm:py-8">{children}</main>
             <SiteFooter />
             <CookieConsent />
+            <KeyboardShortcuts isEnglish={lang === "en"} />
+            <ScrollToTop />
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

@@ -1,11 +1,14 @@
 "use client"
 
+import { useState } from "react"
 import type { Post } from ".contentlayer/generated"
 import { ArticleCard } from "@/components/article-card"
+import { ArticleFilters } from "@/components/article-filters"
 import Link from "next/link"
 import Image from "next/image"
 
-export function ArticleGrid({ posts }: { posts: Post[] }) {
+export function ArticleGrid({ posts, isEnglish = false }: { posts: Post[]; isEnglish?: boolean }) {
+    const [filteredPosts, setFilteredPosts] = useState<Post[]>(posts)
     if (!posts || posts.length === 0) {
         return (
             <p className="text-center text-muted-foreground py-10">
@@ -14,7 +17,7 @@ export function ArticleGrid({ posts }: { posts: Post[] }) {
         )
     }
 
-    const [latestPost, ...otherPosts] = posts
+    const [latestPost, ...otherPosts] = filteredPosts
 
     // 🧠 Определяем, новая ли статья
     const isNewPost = (date?: string) => {
@@ -27,38 +30,44 @@ export function ArticleGrid({ posts }: { posts: Post[] }) {
 
     return (
         <section className="space-y-10">
+            {/* Фильтры и сортировка */}
+            <ArticleFilters
+                posts={posts}
+                onFilteredPostsChange={setFilteredPosts}
+                isEnglish={isEnglish}
+            />
             {/* 🔹 Featured пост — только на больших экранах */}
             {latestPost && (
                 <div className="hidden md:block relative">
                     <Link
                         href={latestPost.url}
-                        className="group block rounded-xl overflow-hidden shadow-lg transition-transform duration-500 hover:scale-[1.01]"
+                        className="group block rounded-2xl overflow-hidden shadow-2xl transition-smooth hover:scale-[1.02] border border-border/20"
                     >
-                        <div className="relative aspect-[16/6] sm:aspect-[21/7]">
+                        <div className="relative aspect-[21/8]">
                             {latestPost.cover && (
                                 <Image
                                     src={latestPost.cover}
                                     alt={latestPost.description || latestPost.title}
                                     fill
                                     priority
-                                    className="object-cover group-hover:brightness-[0.9] transition duration-500"
+                                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                                 />
                             )}
 
                             {/* 🆕 Если статья свежая — бейдж "Новое / New" */}
                             {isNewPost(latestPost.date) && (
-                                <span className="absolute top-4 left-4 bg-red-600 text-white text-xs sm:text-sm font-semibold px-3 py-1 rounded-full shadow-md">
+                                <span className="absolute top-6 left-6 bg-gradient-to-r from-red-600 to-red-500 text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow-lg backdrop-blur-sm border border-white/20">
                   {latestPost.locale === "en" ? "New" : "Новое"}
                 </span>
                             )}
 
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-6 sm:p-10">
-                                <div className="text-white max-w-2xl">
-                                    <h2 className="text-2xl md:text-3xl font-bold mb-2 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)]">
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex items-end p-8 sm:p-12">
+                                <div className="text-white max-w-3xl">
+                                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 leading-tight tracking-tight [text-shadow:_0_2px_20px_rgba(0,0,0,0.5)]">
                                         {latestPost.title}
                                     </h2>
                                     {latestPost.description && (
-                                        <p className="opacity-90 line-clamp-2">
+                                        <p className="text-lg opacity-95 line-clamp-2 font-medium [text-shadow:_0_2px_10px_rgba(0,0,0,0.4)]">
                                             {latestPost.description}
                                         </p>
                                     )}

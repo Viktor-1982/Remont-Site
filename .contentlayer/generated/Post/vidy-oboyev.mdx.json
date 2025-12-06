@@ -48,31 +48,31 @@
   "headings": [
     {
       "text": "1. Бумажные обои",
-      "level": 3
+      "level": 2
     },
     {
       "text": "2. Виниловые обои",
-      "level": 3
+      "level": 2
     },
     {
       "text": "3. Флизелиновые обои",
-      "level": 3
+      "level": 2
     },
     {
       "text": "4. Стеклообои",
-      "level": 3
+      "level": 2
     },
     {
       "text": "5. Жидкие обои",
-      "level": 3
+      "level": 2
     },
     {
       "text": "6. Текстильные обои",
-      "level": 3
+      "level": 2
     },
     {
       "text": "Итог",
-      "level": 3
+      "level": 2
     }
   ]
 }

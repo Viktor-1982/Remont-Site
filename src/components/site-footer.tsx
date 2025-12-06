@@ -21,15 +21,15 @@ export function SiteFooter() {
     return (
         <footer
             role="contentinfo"
-            className="relative mt-16 border-t border-border/60 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.16),_transparent_55%),_var(--background)] text-sm text-muted-foreground"
+            className="relative mt-20 border-t border-border/50 bg-gradient-to-b from-background via-background to-muted/20 text-sm text-muted-foreground"
         >
-            <div className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-30" aria-hidden>
-                <div className="h-40 w-40 rounded-full bg-primary/30 blur-3xl absolute -top-10 left-10" />
-                <div className="h-48 w-48 rounded-full bg-emerald-400/20 blur-3xl absolute bottom-0 right-10" />
+            <div className="pointer-events-none absolute inset-0 opacity-30 dark:opacity-20" aria-hidden>
+                <div className="h-40 w-40 rounded-full bg-primary/20 blur-3xl absolute -top-10 left-10" />
+                <div className="h-48 w-48 rounded-full bg-accent/15 blur-3xl absolute bottom-0 right-10" />
             </div>
 
             <div className="relative w-full">
-                <div className="w-full grid gap-8 px-4 py-12 sm:px-6 md:px-8 lg:px-12 sm:grid-cols-2 md:grid-cols-3 border-b border-border/70 dark:border-border/50 bg-card/95 dark:bg-card/90 shadow-[0_18px_55px_-28px_rgba(15,23,42,0.35)] dark:shadow-[0_25px_80px_-40px_rgba(15,23,42,0.5)] backdrop-blur-sm">
+                <div className="w-full grid gap-8 px-4 py-12 sm:px-6 md:px-8 lg:px-12 sm:grid-cols-2 md:grid-cols-3 border-b border-border/40 bg-card/80 dark:bg-card/70 backdrop-blur-sm shadow-soft">
                 {/* 📝 О проекте */}
                 <section aria-labelledby="footer-about">
                     <h2 id="footer-about" className="font-bold text-lg text-foreground">
@@ -110,8 +110,8 @@ export function SiteFooter() {
             </div>
 
             {/* 🔻 Нижняя часть */}
-            <div className="relative w-full border-t border-border/70 dark:border-border/40 bg-card/95 dark:bg-card/90 backdrop-blur-sm">
-                <div className="flex w-full flex-wrap items-center justify-center gap-4 px-4 py-5 text-center text-xs text-foreground/80">
+            <div className="relative w-full border-t border-border/40 bg-card/60 dark:bg-card/50 backdrop-blur-sm">
+                <div className="flex w-full flex-wrap items-center justify-center gap-4 px-4 py-6 text-center text-xs text-foreground/70">
                 <span>{footer.rights}</span>
                     <Link 
                         href={isEnglish ? "/en/privacy" : "/privacy"}

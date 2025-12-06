@@ -1,10 +1,11 @@
 ﻿"use client"
 
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { TOCToggle } from "@/components/toc-toggle"
 import navDataJson from "@/components/messages/nav.json"
+import GitHubSlugger from "github-slugger"
 
 export type Heading = {
     level: number
@@ -40,26 +41,45 @@ export function TableOfContents({
     const locale: Locale = pathname.startsWith("/en") ? "en" : "ru"
     const t = navData[locale].toc
 
-    // 🧠 Функция для генерации якоря
-    const makeSlug = (text: string) =>
-        text.toLowerCase().replace(/[^\wа-яё\s-]/gi, "").trim().replace(/\s+/g, "-")
+    // 🧠 Функция для генерации якоря - используем GitHubSlugger для совместимости с mdx-components
+    // Важно: сбрасываем slugger перед каждым вызовом, чтобы не добавлялись суффиксы -2, -3 и т.д.
+    // В mdx-components каждый заголовок создает новый экземпляр, поэтому дубликаты не отслеживаются
+    const makeSlug = React.useCallback((text: string) => {
+        const slugger = new GitHubSlugger()
+        return slugger.slug(text)
+    }, [])
 
     useEffect(() => {
         if (!items?.length) return
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) setActiveId(entry.target.id)
-                })
-            },
-            { rootMargin: "-20% 0px -60% 0px" }
-        )
-        items.forEach((h) => {
-            const el = document.getElementById(makeSlug(h.text))
-            if (el) observer.observe(el)
-        })
-        return () => observer.disconnect()
-    }, [items])
+        
+        let observer: IntersectionObserver | null = null
+        
+        // Небольшая задержка, чтобы убедиться, что DOM полностью отрендерен
+        const timeoutId = setTimeout(() => {
+            observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) setActiveId(entry.target.id)
+                    })
+                },
+                { rootMargin: "-20% 0px -60% 0px" }
+            )
+            items.forEach((h) => {
+                const slug = makeSlug(h.text)
+                const el = document.getElementById(slug)
+                if (el) {
+                    observer?.observe(el)
+                }
+            })
+        }, 100)
+        
+        return () => {
+            clearTimeout(timeoutId)
+            if (observer) {
+                observer.disconnect()
+            }
+        }
+    }, [items, makeSlug])
 
     const handleClick = (id: string) => {
         const target = document.getElementById(id)

@@ -8,6 +8,7 @@
       { "href": "/", "label": "Главная", "title": "Главная страница Renohacks" },
       { "href": "/tags/тренды", "label": "Новинки", "title": "Новинки в ремонте и дизайне" },
       { "href": "/tags/diy", "label": "DIY", "title": "DIY проекты по ремонту" },
+      { "href": "/bookmarks", "label": "Закладки", "title": "Мои сохраненные статьи" },
       { "href": "/about", "label": "О проекте", "title": "Информация о Renohacks" },
       { "href": "/calculators", "label": "Калькуляторы", "title": "Онлайн калькуляторы для ремонта" }
     ],
@@ -72,6 +73,23 @@
       "subtitle": "Задай вопрос про сметы, материалы или лайфхаки",
       "inputPlaceholder": "Введите ваш вопрос...",
       "button": "Отправить"
+    },
+    "scrollToTop": {
+      "ariaLabel": "Прокрутить наверх"
+    },
+    "readingPosition": {
+      "continueReading": "Продолжить чтение с места остановки?",
+      "continueButton": "Продолжить",
+      "dismiss": "Закрыть",
+      "ariaLabel": "Предложение продолжить чтение"
+    },
+    "bookmarks": {
+      "title": "Мои закладки",
+      "empty": "Нет закладок",
+      "emptyDescription": "Вы еще не добавили ни одной статьи в закладки. Начните читать статьи и сохраняйте понравившиеся!",
+      "clearAll": "Очистить все",
+      "clearAllConfirm": "Удалить все",
+      "clearAllCancel": "Отмена"
     }
   },
   "en": {
@@ -83,6 +101,7 @@
       { "href": "/en", "label": "Home", "title": "Renohacks home page" },
       { "href": "/en/tags/trends", "label": "Trends", "title": "Trends in renovation and design" },
       { "href": "/en/tags/diy", "label": "DIY", "title": "DIY renovation projects" },
+      { "href": "/en/bookmarks", "label": "Bookmarks", "title": "My saved articles" },
       { "href": "/en/about", "label": "About", "title": "About Renohacks project" },
       { "href": "/en/calculators", "label": "Calculators", "title": "Online renovation calculators" }
     ],
@@ -146,6 +165,23 @@
       "subtitle": "Ask about budgets, materials or hacks",
       "inputPlaceholder": "Type your question...",
       "button": "Send"
+    },
+    "scrollToTop": {
+      "ariaLabel": "Scroll to top"
+    },
+    "readingPosition": {
+      "continueReading": "Continue reading from where you left off?",
+      "continueButton": "Continue",
+      "dismiss": "Dismiss",
+      "ariaLabel": "Continue reading prompt"
+    },
+    "bookmarks": {
+      "title": "My Bookmarks",
+      "empty": "No bookmarks",
+      "emptyDescription": "You haven't saved any articles yet. Start reading and bookmark your favorites!",
+      "clearAll": "Clear all",
+      "clearAllConfirm": "Delete all",
+      "clearAllCancel": "Cancel"
     }
   }
 }

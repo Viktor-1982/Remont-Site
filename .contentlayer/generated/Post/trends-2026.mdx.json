@@ -46,35 +46,35 @@
   "locale": "ru",
   "slug": "trends-2026",
   "url": "/posts/trends-2026",
-  "readingTime": "3 мин",
+  "readingTime": "4 мин",
   "headings": [
     {
       "text": "1. Новый подход к цвету",
-      "level": 3
+      "level": 2
     },
     {
       "text": "2. Тёплый минимализм и комфорт",
-      "level": 3
+      "level": 2
     },
     {
       "text": "3. Природа и экологичность",
-      "level": 3
+      "level": 2
     },
     {
       "text": "4. Пространства-мультизадачи",
-      "level": 3
+      "level": 2
     },
     {
       "text": "5. Технологии, встроенные в детали",
-      "level": 3
+      "level": 2
     },
     {
       "text": "6. Уникальность, текстуры и история",
-      "level": 3
+      "level": 2
     },
     {
       "text": "Итог",
-      "level": 3
+      "level": 2
     }
   ]
 }
