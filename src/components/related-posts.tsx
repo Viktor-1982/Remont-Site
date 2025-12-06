@@ -106,6 +106,7 @@ export function RelatedPosts({ currentSlug, locale, limit = 4 }: RelatedPostsPro
                         key={post.slug}
                         href={`/${locale === "en" ? "en/" : ""}posts/${post.slug}`}
                         className="group block p-3 sm:p-4 bg-card dark:bg-card/80 rounded-md border-2 border-border/60 dark:border-border/40 hover:border-primary/50 dark:hover:border-primary/40 hover:shadow-md transition-all"
+                        prefetch={true}
                     >
                         <h4 className="font-semibold text-sm sm:text-base mb-1.5 sm:mb-2 group-hover:text-primary transition-colors line-clamp-2 text-foreground">
                             {post.title}

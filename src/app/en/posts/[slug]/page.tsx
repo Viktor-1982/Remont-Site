@@ -9,6 +9,9 @@ import { ReadingProgress } from "@/components/reading-progress"
 import { ReadingPosition } from "@/components/reading-position"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ViewCounter } from "@/components/view-counter"
+import { PostNavigation } from "@/components/post-navigation"
+import { ViewHistoryTracker } from "@/components/view-history-tracker"
+import { ViewHistoryCarousel } from "@/components/view-history-carousel"
 import { getPostMetadata } from "@/lib/seo-post" // ✅ единый SEO-модуль
 import { parseFAQ } from "@/lib/parse-faq"
 import Script from "next/script"
@@ -85,7 +88,7 @@ export default async function PostPage({
         : undefined
 
     return (
-        <article className="container px-4 sm:px-6 py-6 sm:py-8 md:py-12 max-w-7xl">
+        <article className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 md:py-12 max-w-7xl">
             <ReadingProgress readingTimeMinutes={readingTimeMinutes} isEnglish={true} />
             <ReadingPosition slug={slug} locale="en" />
             <Breadcrumbs 
@@ -97,6 +100,9 @@ export default async function PostPage({
                 ]}
             />
             <ArticleHero post={post} />
+            
+            {/* Отслеживание истории просмотров */}
+            <ViewHistoryTracker post={post} />
             
             {/* Счетчик просмотров */}
             <div className="max-w-4xl mx-auto mt-4">
@@ -116,8 +122,18 @@ export default async function PostPage({
                 </aside>
             </div>
 
+            {/* Навигация между статьями */}
+            <div className="max-w-4xl mx-auto">
+                <PostNavigation currentSlug={slug} locale="en" />
+            </div>
+
             <div className="mt-10 sm:mt-12 md:mt-16">
                 <RelatedPosts currentSlug={slug} locale="en" />
+            </div>
+
+            {/* Карусель истории просмотров */}
+            <div className="max-w-7xl mx-auto mt-12 sm:mt-16">
+                <ViewHistoryCarousel locale="en" limit={10} />
             </div>
 
             {/* 🟡 JSON-LD structured data for search engines */}

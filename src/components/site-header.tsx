@@ -23,9 +23,46 @@ export function SiteHeader() {
     const [open, setOpen] = useState(false)
 
     const isActive = (href: string): boolean => {
-        if (href === "/" && !isEnglish) return pathname === "/"
-        if (href === "/en" && isEnglish) return pathname === "/en"
-        return pathname === href || pathname.startsWith(`${href}/`)
+        // Нормализуем pathname (убираем trailing slash)
+        const normalizedPathname = pathname.endsWith("/") && pathname !== "/" && pathname !== "/en" 
+            ? pathname.slice(0, -1) 
+            : pathname
+        
+        // Точное совпадение для главной страницы
+        if (href === "/" && !isEnglish) {
+            return normalizedPathname === "/" || normalizedPathname === ""
+        }
+        if (href === "/en" && isEnglish) {
+            return normalizedPathname === "/en" || normalizedPathname === "/en/"
+        }
+        
+        // Точное совпадение
+        if (normalizedPathname === href) return true
+        
+        // Для страниц, которые должны быть активны только при точном совпадении
+        // (не активны на дочерних страницах)
+        const exactMatchPages = [
+            "/tags", "/bookmarks", "/calculators", "/about",
+            "/en/tags", "/en/bookmarks", "/en/calculators", "/en/about"
+        ]
+        
+        if (exactMatchPages.includes(href)) {
+            // Если pathname начинается с href/, это дочерняя страница - не активна
+            if (normalizedPathname.startsWith(`${href}/`)) {
+                return false
+            }
+            return normalizedPathname === href
+        }
+        
+        // Для страниц типа /tags/тренды, /tags/diy - активна при точном совпадении
+        // или если pathname начинается с href/ (но не глубже)
+        if (normalizedPathname.startsWith(`${href}/`)) {
+            const afterHref = normalizedPathname.slice(href.length + 1)
+            // Если после href/ нет больше слэшей, это прямая дочерняя страница - активна
+            return !afterHref.includes("/")
+        }
+        
+        return false
     }
 
     return (

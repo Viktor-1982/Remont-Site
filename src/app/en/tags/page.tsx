@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function TagsPageEn() {
     return (
-        <div className="container px-4 sm:px-6 py-12 sm:py-16 max-w-6xl">
+        <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 max-w-6xl">
             <header className="text-center mb-12">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-foreground">
                     Tag Cloud

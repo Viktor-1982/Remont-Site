@@ -13,11 +13,14 @@ const nextConfig = {
         contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     },
     experimental: {
-        optimizePackageImports: ['framer-motion', 'lucide-react'],
+        optimizePackageImports: ['framer-motion', 'lucide-react', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
     },
     compress: true,
     poweredByHeader: false,
     generateEtags: true,
+    swcMinify: true,
+    // Оптимизация для production
+    productionBrowserSourceMaps: false,
     // ✅ HTTP Security Headers
     async headers() {
         return [

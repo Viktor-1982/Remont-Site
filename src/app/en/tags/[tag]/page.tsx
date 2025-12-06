@@ -51,10 +51,10 @@ export default async function TagPageEn({ params }: Params) {
     if (filtered.length === 0) return notFound()
 
     return (
-        <section className="container py-10">
+        <section className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16 max-w-7xl">
             <h1 className="text-3xl sm:text-4xl font-bold mb-6">#{decodedTag}</h1>
             <p className="text-muted-foreground mb-8 text-sm sm:text-base">
-                All articles tagged <strong>“{decodedTag}”</strong>
+                All articles tagged <strong>&quot;{decodedTag}&quot;</strong>
             </p>
             <ArticleGrid posts={filtered} isEnglish={true} />
         </section>

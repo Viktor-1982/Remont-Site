@@ -144,7 +144,7 @@ export function TableOfContents({
             {/* 💻 Desktop */}
             <nav
                 aria-label={t.open}
-                className="sticky top-24 hidden lg:block max-h-[70vh] w-64 shrink-0 overflow-auto rounded-xl border p-4 text-sm bg-card"
+                className="sticky top-24 hidden lg:block max-h-[45vh] w-64 shrink-0 overflow-auto rounded-xl border p-4 text-sm bg-card"
             >
                 <div className="mb-2 font-semibold">{t.open}</div>
                 <ul className="space-y-1">

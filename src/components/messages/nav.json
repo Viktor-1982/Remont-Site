@@ -91,6 +91,20 @@
       "clearAll": "Очистить все",
       "clearAllConfirm": "Удалить все",
       "clearAllCancel": "Отмена"
+    },
+    "postNavigation": {
+      "previous": "Предыдущая статья",
+      "next": "Следующая статья"
+    },
+    "viewHistory": {
+      "title": "Недавно просмотренные",
+      "empty": "Нет просмотренных статей",
+      "emptyDescription": "Здесь будут отображаться статьи, которые вы недавно просматривали",
+      "clearAll": "Очистить все",
+      "clearAllConfirm": "Удалить все",
+      "clearAllCancel": "Отмена",
+      "remove": "Удалить из истории",
+      "viewed": "Просмотрено"
     }
   },
   "en": {
@@ -184,6 +198,20 @@
       "clearAll": "Clear all",
       "clearAllConfirm": "Delete all",
       "clearAllCancel": "Cancel"
+    },
+    "postNavigation": {
+      "previous": "Previous article",
+      "next": "Next article"
+    },
+    "viewHistory": {
+      "title": "Recently Viewed",
+      "empty": "No viewed articles",
+      "emptyDescription": "Articles you recently viewed will appear here",
+      "clearAll": "Clear all",
+      "clearAllConfirm": "Delete all",
+      "clearAllCancel": "Cancel",
+      "remove": "Remove from history",
+      "viewed": "Viewed"
     }
   }
 }

@@ -37,7 +37,7 @@ export function ArticleCard({ post }: { post: Post }) {
                 <BookmarkButton post={post} variant="compact" />
             </div>
             
-            <Link href={post.url} className="block h-full">
+            <Link href={post.url} className="block h-full" prefetch={true}>
                 <Card className="group relative flex flex-col h-full overflow-hidden transition-smooth hover:shadow-2xl hover:-translate-y-2 border border-border/60 dark:border-border/30 bg-card/80 dark:bg-card/90 backdrop-blur-sm shadow-soft hover:shadow-glow cursor-pointer rounded-xl">
                     {/* Современный градиентный акцент */}
                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/80 via-accent/60 to-primary/80 dark:from-primary/60 dark:via-accent/50 dark:to-primary/60 opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
@@ -53,6 +53,8 @@ export function ArticleCard({ post }: { post: Post }) {
                             fill
                                 className="object-cover inset-0 transition-transform duration-700 ease-out group-hover:scale-105"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                            loading="lazy"
+                            fetchPriority="low"
                         />
                             {/* Современный градиентный оверлей */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover:from-black/30 transition-all duration-500" />

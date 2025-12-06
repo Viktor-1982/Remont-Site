@@ -4,17 +4,35 @@ import * as React from "react"
 import { useState, useMemo } from "react"
 import { createRoot } from "react-dom/client"
 import Image from "next/image"
+import dynamic from "next/dynamic"
 import GitHubSlugger from "github-slugger"
 import type { MDXComponents } from "mdx/types"
 import { useMDXComponent } from "next-contentlayer2/hooks"
 
-// Импорты калькуляторов
-import { PaintCalculator } from "@/components/widgets/paint-calculator"
-import { TileCalculator } from "@/components/widgets/tile-calculator"
-import { WallpaperCalculator } from "@/components/widgets/wallpaper-calculator"
+// Динамические импорты для тяжелых компонентов (оптимизация bundle size)
+const PaintCalculator = dynamic(
+    () => import("@/components/widgets/paint-calculator").then((m) => ({ default: m.PaintCalculator })),
+    { ssr: true, loading: () => <div className="my-8 h-64 bg-muted/50 rounded-lg animate-pulse" /> }
+)
+const TileCalculator = dynamic(
+    () => import("@/components/widgets/tile-calculator").then((m) => ({ default: m.TileCalculator })),
+    { ssr: true, loading: () => <div className="my-8 h-64 bg-muted/50 rounded-lg animate-pulse" /> }
+)
+const WallpaperCalculator = dynamic(
+    () => import("@/components/widgets/wallpaper-calculator").then((m) => ({ default: m.WallpaperCalculator })),
+    { ssr: true, loading: () => <div className="my-8 h-64 bg-muted/50 rounded-lg animate-pulse" /> }
+)
+const BeforeAfterGallery = dynamic(
+    () => import("@/components/widgets/before-after-gallery").then((m) => ({ default: m.BeforeAfterGallery })),
+    { ssr: true, loading: () => <div className="my-8 h-64 bg-muted/50 rounded-lg animate-pulse" /> }
+)
+const ComparisonTable = dynamic(
+    () => import("@/components/widgets/comparison-table").then((m) => ({ default: m.ComparisonTable })),
+    { ssr: true, loading: () => <div className="my-8 h-32 bg-muted/50 rounded-lg animate-pulse" /> }
+)
+
+// Статические импорты для легких компонентов
 import { Checklist } from "@/components/widgets/checklist"
-import { BeforeAfterGallery } from "@/components/widgets/before-after-gallery"
-import { ComparisonTable } from "@/components/widgets/comparison-table"
 import { FAQSection } from "@/components/widgets/faq-section"
 import { ImageGallery } from "@/components/image-gallery"
 import { parseFAQ } from "@/lib/parse-faq"
@@ -157,6 +175,7 @@ function MdxImage({ alt, src }: { alt?: string; src: string }) {
                     height={800}
                     className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                     loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                     placeholder="blur"
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                 />
@@ -189,7 +208,7 @@ export const mdxComponents: MDXComponents = {
     // Картинки с поддержкой галереи
     img: MdxImage,
 
-    // Калькуляторы
+    // Калькуляторы (динамически загружаются)
     PaintCalculator: () => (
         <div className="my-8">
             <PaintCalculator />
@@ -221,7 +240,7 @@ export const mdxComponents: MDXComponents = {
         />
     ),
 
-    // Галерея До/После
+    // Галерея До/После (динамически загружается)
     BeforeAfterGallery: (props: {
         images: Array<{
             before: string
@@ -234,7 +253,7 @@ export const mdxComponents: MDXComponents = {
         <BeforeAfterGallery images={props.images} isEnglish={props.isEnglish} />
     ),
 
-    // Таблица сравнения
+    // Таблица сравнения (динамически загружается)
     ComparisonTable: (props: {
         title: string
         items: string[]

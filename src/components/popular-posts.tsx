@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import type { Post } from ".contentlayer/generated"
 import { getPopularPosts } from "@/lib/view-counter"
 import { ArticleCard } from "@/components/article-card"
@@ -14,6 +15,7 @@ interface PopularPostsProps {
 
 export function PopularPosts({ posts, locale, limit = 5 }: PopularPostsProps) {
     const [popularPosts, setPopularPosts] = useState<Post[]>([])
+    const router = useRouter()
 
     useEffect(() => {
         const filteredPosts = posts.filter(
@@ -32,7 +34,13 @@ export function PopularPosts({ posts, locale, limit = 5 }: PopularPostsProps) {
             .filter((p): p is Post => p !== undefined)
 
         setPopularPosts(popularPostsData)
-    }, [posts, locale, limit])
+
+        // Prefetch популярных статей для улучшения производительности
+        popularPostsData.forEach((post) => {
+            const href = `/${locale === "en" ? "en/" : ""}posts/${post.slug}`
+            router.prefetch(href)
+        })
+    }, [posts, locale, limit, router])
 
     if (popularPosts.length === 0) return null
 
