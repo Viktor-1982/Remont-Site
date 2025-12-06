@@ -80,12 +80,12 @@ export function ReadingProgress({ readingTimeMinutes, isEnglish = false }: Readi
 
             {/* Индикатор оставшегося времени */}
             {remainingTime !== null && remainingTime > 0 && progress < 95 && (
-                <div className="fixed top-16 sm:top-20 right-2 sm:right-4 z-40 bg-background/95 dark:bg-background/95 backdrop-blur-md border border-border dark:border-border/50 rounded-lg px-2 py-1.5 sm:px-3 sm:py-2 shadow-lg dark:shadow-xl flex items-center gap-1.5 sm:gap-2 animate-in fade-in slide-in-from-top-2 transition-colors">
-                    <Clock className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground" />
-                    <span className="text-xs sm:text-sm font-medium text-foreground">
+                <div className="fixed top-16 sm:top-20 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-4 z-40 bg-background/95 dark:bg-background/95 backdrop-blur-md border border-border dark:border-border/50 rounded-lg px-2 py-1.5 sm:px-3 sm:py-2 shadow-lg dark:shadow-xl flex items-center gap-1.5 sm:gap-2 animate-in fade-in slide-in-from-top-2 transition-colors max-w-[calc(100vw-1rem)] sm:max-w-none">
+                    <Clock className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground flex-shrink-0" />
+                    <span className="text-xs sm:text-sm font-medium text-foreground whitespace-nowrap">
                         {isEnglish 
                             ? `${remainingTime} min left`
-                            : `Осталось ~${remainingTime} мин`}
+                            : `~${remainingTime} мин`}
                     </span>
                 </div>
             )}
