@@ -105,6 +105,16 @@
       "clearAllCancel": "Отмена",
       "remove": "Удалить из истории",
       "viewed": "Просмотрено"
+    },
+    "emailSubscription": {
+      "title": "Подпишитесь на обновления",
+      "description": "Получайте лучшие статьи о ремонте и дизайне прямо на почту. Без спама, только полезный контент.",
+      "placeholder": "Ваш email",
+      "button": "Подписаться",
+      "success": "Спасибо за подписку! Вы будете получать лучшие статьи на почту.",
+      "error": "Произошла ошибка. Попробуйте позже.",
+      "invalidEmail": "Введите корректный email адрес",
+      "alreadySubscribed": "Этот email уже подписан"
     }
   },
   "en": {
@@ -212,6 +222,16 @@
       "clearAllCancel": "Cancel",
       "remove": "Remove from history",
       "viewed": "Viewed"
+    },
+    "emailSubscription": {
+      "title": "Subscribe to Updates",
+      "description": "Get the best renovation and design articles delivered to your inbox. No spam, just valuable content.",
+      "placeholder": "Your email",
+      "button": "Subscribe",
+      "success": "Thanks for subscribing! You'll receive the best articles in your inbox.",
+      "error": "An error occurred. Please try again later.",
+      "invalidEmail": "Please enter a valid email address",
+      "alreadySubscribed": "This email is already subscribed"
     }
   }
 }

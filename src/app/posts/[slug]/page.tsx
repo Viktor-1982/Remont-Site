@@ -12,6 +12,7 @@ import { ViewCounter } from "@/components/view-counter"
 import { PostNavigation } from "@/components/post-navigation"
 import { ViewHistoryTracker } from "@/components/view-history-tracker"
 import { ViewHistoryCarousel } from "@/components/view-history-carousel"
+import { EmailSubscription } from "@/components/email-subscription"
 import { getPostMetadata } from "@/lib/seo-post" // ✅ используем общий SEO-модуль
 import { parseFAQ } from "@/lib/parse-faq"
 import Script from "next/script"
@@ -134,6 +135,11 @@ export default async function PostPage({
             {/* Карусель истории просмотров */}
             <div className="max-w-7xl mx-auto mt-12 sm:mt-16">
                 <ViewHistoryCarousel locale="ru" limit={10} />
+            </div>
+
+            {/* Email подписка */}
+            <div className="max-w-4xl mx-auto mt-12 sm:mt-16">
+                <EmailSubscription locale="ru" variant="compact" />
             </div>
 
             {/* 🟡 JSON-LD: структурированные данные для поисковиков */}

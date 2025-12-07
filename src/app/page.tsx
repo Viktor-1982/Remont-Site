@@ -5,6 +5,7 @@ import { ArticleGrid } from "@/components/article-grid"
 import { HeroBanner } from "@/components/hero-banner"
 import { HomeBackgroundAnimation } from "@/components/home-background-animation"
 import { PopularPosts } from "@/components/popular-posts"
+import { EmailSubscription } from "@/components/email-subscription"
 
 // 🔄 Автоматическое обновление страницы каждые 60 сек
 export const revalidate = 60
@@ -83,6 +84,11 @@ export default function HomePage() {
                     
                     {/* Популярные статьи */}
                     <PopularPosts posts={posts} locale="ru" limit={6} />
+                </section>
+
+                {/* Email подписка */}
+                <section className="mt-16 sm:mt-20">
+                    <EmailSubscription locale="ru" variant="default" />
                 </section>
             </div>
         </main>
