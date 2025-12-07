@@ -1,0 +1,192 @@
+import { NextRequest, NextResponse } from "next/server"
+import { Resend } from "resend"
+
+// Временное хранилище для демо (в продакшене использовать базу данных или сервис рассылки)
+interface Subscription {
+    email: string
+    locale: "ru" | "en"
+    subscribedAt: number
+    source?: string
+}
+
+// В продакшене это должно быть в базе данных
+const subscriptions: Subscription[] = []
+
+// Инициализация Resend (опционально, если настроен RESEND_API_KEY)
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev"
+
+export async function POST(req: NextRequest) {
+    try {
+        const body = await req.json()
+        const { email, locale = "ru", source } = body
+
+        // Валидация email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!email || !emailRegex.test(email)) {
+            return NextResponse.json(
+                { error: locale === "en" ? "Invalid email address" : "Некорректный email адрес" },
+                { status: 400 }
+            )
+        }
+
+        // Проверка на дубликаты - если уже подписан, просто возвращаем успех
+        const existing = subscriptions.find((sub) => sub.email.toLowerCase() === email.toLowerCase())
+        if (existing) {
+            // Обновляем дату подписки
+            existing.subscribedAt = Date.now()
+            
+            // Пытаемся отправить письмо повторно (если настроен Resend)
+            if (resend && process.env.RESEND_API_KEY) {
+                try {
+                    const isEnglish = locale === "en"
+                    const subject = isEnglish 
+                        ? "Welcome back to Renohacks! 🎉" 
+                        : "С возвращением в Renohacks! 🎉"
+                    
+                    const htmlContent = isEnglish
+                        ? `
+                            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                                <h1 style="color: #333;">Welcome back!</h1>
+                                <p>You're already subscribed to our newsletter. Here's what you'll receive:</p>
+                                <ul>
+                                    <li>📚 Best renovation and design articles</li>
+                                    <li>🛠️ DIY tips and tricks</li>
+                                    <li>💡 Latest trends and ideas</li>
+                                    <li>📊 Useful calculators and tools</li>
+                                </ul>
+                                <p>Thank you for being with us!</p>
+                            </div>
+                        `
+                        : `
+                            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                                <h1 style="color: #333;">С возвращением!</h1>
+                                <p>Вы уже подписаны на нашу рассылку. Вот что вы будете получать:</p>
+                                <ul>
+                                    <li>📚 Лучшие статьи о ремонте и дизайне</li>
+                                    <li>🛠️ DIY советы и лайфхаки</li>
+                                    <li>💡 Последние тренды и идеи</li>
+                                    <li>📊 Полезные калькуляторы и инструменты</li>
+                                </ul>
+                                <p>Спасибо, что остаётесь с нами!</p>
+                            </div>
+                        `
+
+                    await resend.emails.send({
+                        from: FROM_EMAIL,
+                        to: email,
+                        subject: subject,
+                        html: htmlContent,
+                    })
+                } catch (emailError) {
+                    console.error("Failed to send welcome back email:", emailError)
+                }
+            }
+            
+            return NextResponse.json(
+                { 
+                    message: locale === "en" 
+                        ? "You're already subscribed! Check your email for a welcome message." 
+                        : "Вы уже подписаны! Проверьте почту - мы отправили приветственное письмо.",
+                    email: existing.email 
+                },
+                { status: 200 }
+            )
+        }
+
+        // Добавляем подписку
+        const subscription: Subscription = {
+            email: email.toLowerCase(),
+            locale: locale || "ru",
+            subscribedAt: Date.now(),
+            source: source || "website",
+        }
+
+        subscriptions.push(subscription)
+
+        // Отправка письма подтверждения через Resend (если настроен)
+        if (resend && process.env.RESEND_API_KEY) {
+            try {
+                const isEnglish = locale === "en"
+                const subject = isEnglish 
+                    ? "Welcome to Renohacks! 🎉" 
+                    : "Добро пожаловать в Renohacks! 🎉"
+                
+                const htmlContent = isEnglish
+                    ? `
+                        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                            <h1 style="color: #333;">Welcome to Renohacks!</h1>
+                            <p>Thank you for subscribing to our newsletter. You'll now receive:</p>
+                            <ul>
+                                <li>📚 Best renovation and design articles</li>
+                                <li>🛠️ DIY tips and tricks</li>
+                                <li>💡 Latest trends and ideas</li>
+                                <li>📊 Useful calculators and tools</li>
+                            </ul>
+                            <p>We're excited to share our knowledge with you!</p>
+                            <p style="color: #666; font-size: 12px; margin-top: 30px;">
+                                If you didn't subscribe, you can safely ignore this email.
+                            </p>
+                        </div>
+                    `
+                    : `
+                        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                            <h1 style="color: #333;">Добро пожаловать в Renohacks!</h1>
+                            <p>Спасибо за подписку на нашу рассылку. Теперь вы будете получать:</p>
+                            <ul>
+                                <li>📚 Лучшие статьи о ремонте и дизайне</li>
+                                <li>🛠️ DIY советы и лайфхаки</li>
+                                <li>💡 Последние тренды и идеи</li>
+                                <li>📊 Полезные калькуляторы и инструменты</li>
+                            </ul>
+                            <p>Мы рады делиться с вами нашими знаниями!</p>
+                            <p style="color: #666; font-size: 12px; margin-top: 30px;">
+                                Если вы не подписывались, просто проигнорируйте это письмо.
+                            </p>
+                        </div>
+                    `
+
+                await resend.emails.send({
+                    from: FROM_EMAIL,
+                    to: email,
+                    subject: subject,
+                    html: htmlContent,
+                })
+            } catch (emailError) {
+                // Логируем ошибку, но не прерываем процесс подписки
+                console.error("Failed to send confirmation email:", emailError)
+                // Продолжаем выполнение - подписка всё равно сохранена
+            }
+        }
+
+        return NextResponse.json(
+            { 
+                message: locale === "en" 
+                    ? "Successfully subscribed!" 
+                    : "Успешно подписались!",
+                email: subscription.email 
+            },
+            { status: 200 }
+        )
+    } catch (error) {
+        console.error("Subscription error:", error)
+        return NextResponse.json(
+            { 
+                error: "An error occurred. Please try again later." 
+            },
+            { status: 500 }
+        )
+    }
+}
+
+// GET endpoint для получения статистики (опционально, для админки)
+export async function GET() {
+    return NextResponse.json({
+        total: subscriptions.length,
+        byLocale: {
+            ru: subscriptions.filter((s) => s.locale === "ru").length,
+            en: subscriptions.filter((s) => s.locale === "en").length,
+        },
+    })
+}
+
