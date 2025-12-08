@@ -1,20 +1,12 @@
 import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
-
-// Временное хранилище для демо (в продакшене использовать базу данных или сервис рассылки)
-interface Subscription {
-    email: string
-    locale: "ru" | "en"
-    subscribedAt: number
-    source?: string
-}
-
-// В продакшене это должно быть в базе данных
-const subscriptions: Subscription[] = []
+import { type Subscription } from "../subscriptions/store"
+import { findSubscription, getStats, upsertSubscription } from "@/lib/subscriptions-repo"
 
 // Инициализация Resend (опционально, если настроен RESEND_API_KEY)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "noreply@renohacks.com"
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://renohacks.com"
 
 export async function POST(req: NextRequest) {
     try {
@@ -33,10 +25,14 @@ export async function POST(req: NextRequest) {
         }
 
         // Проверка на дубликаты - если уже подписан, просто возвращаем успех
-        const existing = subscriptions.find((sub) => sub.email.toLowerCase() === email.toLowerCase())
+        const existing = await findSubscription(email)
         if (existing) {
             // Обновляем дату подписки
-            existing.subscribedAt = Date.now()
+            await upsertSubscription({
+                ...existing,
+                subscribedAt: Date.now(),
+                locale: locale || existing.locale || "ru",
+            })
 
             let emailSent = false
 
@@ -47,6 +43,7 @@ export async function POST(req: NextRequest) {
                     const subject = isEnglish 
                         ? "Welcome back to Renohacks! 🎉" 
                         : "С возвращением в Renohacks! 🎉"
+                    const unsubscribeUrl = `${SITE_URL}/api/unsubscribe?email=${encodeURIComponent(email)}&locale=${locale}`
                     
                     const htmlContent = isEnglish
                         ? `
@@ -60,6 +57,9 @@ export async function POST(req: NextRequest) {
                                     <li>📊 Useful calculators and tools</li>
                                 </ul>
                                 <p>Thank you for being with us!</p>
+                                <p style="color: #666; font-size: 12px; margin-top: 30px;">
+                                    Want to unsubscribe? <a href="${unsubscribeUrl}">Unsubscribe here</a>.
+                                </p>
                             </div>
                         `
                         : `
@@ -73,6 +73,9 @@ export async function POST(req: NextRequest) {
                                     <li>📊 Полезные калькуляторы и инструменты</li>
                                 </ul>
                                 <p>Спасибо, что остаётесь с нами!</p>
+                                <p style="color: #666; font-size: 12px; margin-top: 30px;">
+                                    Хотите отписаться? <a href="${unsubscribeUrl}">Отписаться</a>.
+                                </p>
                             </div>
                         `
 
@@ -111,7 +114,7 @@ export async function POST(req: NextRequest) {
             source: source || "website",
         }
 
-        subscriptions.push(subscription)
+        await upsertSubscription(subscription)
 
         let emailSent = false
 
@@ -122,6 +125,7 @@ export async function POST(req: NextRequest) {
                 const subject = isEnglish 
                     ? "Welcome to Renohacks! 🎉" 
                     : "Добро пожаловать в Renohacks! 🎉"
+                const unsubscribeUrl = `${SITE_URL}/api/unsubscribe?email=${encodeURIComponent(email)}&locale=${locale}`
                 
                 const htmlContent = isEnglish
                     ? `
@@ -138,6 +142,9 @@ export async function POST(req: NextRequest) {
                             <p style="color: #666; font-size: 12px; margin-top: 30px;">
                                 If you didn't subscribe, you can safely ignore this email.
                             </p>
+                            <p style="color: #666; font-size: 12px; margin-top: 10px;">
+                                Want to unsubscribe? <a href="${unsubscribeUrl}">Unsubscribe here</a>.
+                            </p>
                         </div>
                     `
                     : `
@@ -153,6 +160,9 @@ export async function POST(req: NextRequest) {
                             <p>Мы рады делиться с вами нашими знаниями!</p>
                             <p style="color: #666; font-size: 12px; margin-top: 30px;">
                                 Если вы не подписывались, просто проигнорируйте это письмо.
+                            </p>
+                            <p style="color: #666; font-size: 12px; margin-top: 10px;">
+                                Хотите отписаться? <a href="${unsubscribeUrl}">Отписаться</a>.
                             </p>
                         </div>
                     `
@@ -197,12 +207,7 @@ export async function POST(req: NextRequest) {
 
 // GET endpoint для получения статистики (опционально, для админки)
 export async function GET() {
-    return NextResponse.json({
-        total: subscriptions.length,
-        byLocale: {
-            ru: subscriptions.filter((s) => s.locale === "ru").length,
-            en: subscriptions.filter((s) => s.locale === "en").length,
-        },
-    })
+    const stats = await getStats()
+    return NextResponse.json(stats)
 }
 
