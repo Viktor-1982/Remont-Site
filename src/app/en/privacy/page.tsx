@@ -48,17 +48,25 @@ export default function PrivacyPage() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <p className="text-muted-foreground leading-relaxed">
-                            <strong>Important:</strong> Our site <strong>does not collect personal data</strong> from users.
+                            Our site collects minimal personal data only to provide email subscription functionality:
                         </p>
                         <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                            <li>The site has <strong>no registration</strong> or account system</li>
-                            <li>We <strong>do not request</strong> name, email, phone, or other personal data</li>
-                            <li>We <strong>do not store</strong> users&apos; personal information</li>
-                            <li>The site has <strong>no admin panel</strong> for users</li>
+                            <li><strong>Email address</strong> — collected only when you voluntarily subscribe to our newsletter through the subscription form</li>
+                            <li><strong>Interface language</strong> (ru/en) — to send emails in the correct language</li>
+                            <li><strong>Subscription date</strong> — for subscription management</li>
                         </ul>
                         <p className="text-muted-foreground leading-relaxed">
-                            The only way to contact us is to send an email to <a href="mailto:info@renohacks.com" className="text-primary hover:underline">info@renohacks.com</a>, 
-                            but we do not store these messages on the site server.
+                            We <strong>do not collect</strong> or <strong>store</strong>:
+                        </p>
+                        <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                            <li>Name, surname, or other personal data</li>
+                            <li>Phone number</li>
+                            <li>Address or geolocation</li>
+                            <li>Payment information</li>
+                        </ul>
+                        <p className="text-muted-foreground leading-relaxed">
+                            Email addresses are stored in a secure Supabase database and used exclusively for sending newsletters. 
+                            You can unsubscribe at any time via the link in the email or by contacting us at <a href="mailto:info@renohacks.com" className="text-primary hover:underline">info@renohacks.com</a>.
                         </p>
                     </CardContent>
                 </Card>
@@ -104,6 +112,28 @@ export default function PrivacyPage() {
                                     We use <strong>Google Consent Mode</strong> to comply with GDPR/EEA requirements.
                                 </p>
                             </div>
+
+                            <div className="p-4 rounded-lg bg-muted/50 border">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <Mail className="w-5 h-5 text-primary" />
+                                    <h3 className="font-semibold">Email Subscription</h3>
+                                </div>
+                                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground ml-7">
+                                    <li><strong>Functional cookies</strong> — for subscription form functionality and subscription management</li>
+                                </ul>
+                                <p className="text-sm text-muted-foreground mt-2 ml-7">
+                                    When subscribing to our newsletter, we use technical cookies for:
+                                </p>
+                                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground ml-7 mt-1">
+                                    <li>Saving your interface language preference (ru/en)</li>
+                                    <li>Displaying subscription status (successful subscription, error)</li>
+                                    <li>Protection against duplicate subscriptions</li>
+                                </ul>
+                                <p className="text-sm text-muted-foreground mt-2 ml-7">
+                                    These cookies are necessary for subscription functionality and are not used for tracking or advertising. 
+                                    Email addresses are stored in a secure Supabase database and used only for sending newsletters.
+                                </p>
+                            </div>
                         </div>
 
                         <div className="mt-4 p-4 rounded-lg bg-primary/5 dark:bg-primary/10 border border-primary/20">
@@ -128,6 +158,8 @@ export default function PrivacyPage() {
                             <li><strong>Yandex.Metrika</strong> — <a href="https://yandex.com/legal/confidential/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Yandex Privacy Policy</a></li>
                             <li><strong>Google Analytics / Google Tag Manager</strong> — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Google Privacy Policy</a></li>
                             <li><strong>Google AdSense</strong> — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Google Privacy Policy</a></li>
+                            <li><strong>Resend</strong> — for sending email newsletters (<a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Resend Privacy Policy</a>)</li>
+                            <li><strong>Supabase</strong> — for storing subscriptions in a secure database (<a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Supabase Privacy Policy</a>)</li>
                         </ul>
                         <p className="text-muted-foreground leading-relaxed">
                             These services have their own privacy policies and terms of use. We recommend reviewing them.

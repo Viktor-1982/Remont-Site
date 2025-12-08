@@ -48,17 +48,25 @@ export default function PrivacyPage() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <p className="text-muted-foreground leading-relaxed">
-                            <strong>Важно:</strong> Наш сайт <strong>не собирает персональные данные</strong> пользователей.
+                            Наш сайт собирает минимальные персональные данные только для предоставления функциональности email-подписки:
                         </p>
                         <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                            <li>На сайте <strong>нет регистрации</strong> и системы аккаунтов</li>
-                            <li>Мы <strong>не запрашиваем</strong> имя, email, телефон или другие персональные данные</li>
-                            <li>Мы <strong>не храним</strong> персональную информацию пользователей</li>
-                            <li>На сайте <strong>нет админ-панели</strong> для пользователей</li>
+                            <li><strong>Email-адрес</strong> — собирается только при добровольной подписке на рассылку через форму подписки</li>
+                            <li><strong>Язык интерфейса</strong> (ru/en) — для отправки писем на правильном языке</li>
+                            <li><strong>Дата подписки</strong> — для управления подпиской</li>
                         </ul>
                         <p className="text-muted-foreground leading-relaxed">
-                            Единственный способ связаться с нами — отправить email на <a href="mailto:info@renohacks.com" className="text-primary hover:underline">info@renohacks.com</a>, 
-                            но мы не храним эти сообщения на сервере сайта.
+                            Мы <strong>не собираем</strong> и <strong>не храним</strong>:
+                        </p>
+                        <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                            <li>Имя, фамилию или другие персональные данные</li>
+                            <li>Телефонный номер</li>
+                            <li>Адрес или геолокацию</li>
+                            <li>Платежную информацию</li>
+                        </ul>
+                        <p className="text-muted-foreground leading-relaxed">
+                            Email-адреса хранятся в защищенной базе данных Supabase и используются исключительно для отправки рассылки. 
+                            Вы можете отписаться в любой момент по ссылке в письме или связавшись с нами по <a href="mailto:info@renohacks.com" className="text-primary hover:underline">info@renohacks.com</a>.
                         </p>
                     </CardContent>
                 </Card>
@@ -104,6 +112,28 @@ export default function PrivacyPage() {
                                     Мы используем <strong>Google Consent Mode</strong> для соблюдения требований GDPR/EEA.
                                 </p>
                             </div>
+
+                            <div className="p-4 rounded-lg bg-muted/50 border">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <Mail className="w-5 h-5 text-primary" />
+                                    <h3 className="font-semibold">Email-подписка</h3>
+                                </div>
+                                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground ml-7">
+                                    <li><strong>Функциональные куки</strong> — для работы формы подписки и управления подпиской</li>
+                                </ul>
+                                <p className="text-sm text-muted-foreground mt-2 ml-7">
+                                    При подписке на рассылку мы используем технические куки для:
+                                </p>
+                                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground ml-7 mt-1">
+                                    <li>Сохранения вашего выбора языка интерфейса (ru/en)</li>
+                                    <li>Отображения статуса подписки (успешная подписка, ошибка)</li>
+                                    <li>Защиты от дублирования подписок</li>
+                                </ul>
+                                <p className="text-sm text-muted-foreground mt-2 ml-7">
+                                    Эти куки необходимы для работы функции подписки и не используются для отслеживания или рекламы. 
+                                    Email-адреса хранятся в защищенной базе данных Supabase и используются только для отправки рассылки.
+                                </p>
+                            </div>
                         </div>
 
                         <div className="mt-4 p-4 rounded-lg bg-primary/5 dark:bg-primary/10 border border-primary/20">
@@ -128,6 +158,8 @@ export default function PrivacyPage() {
                             <li><strong>Yandex.Metrika</strong> — <a href="https://yandex.ru/legal/confidential/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Политика конфиденциальности Yandex</a></li>
                             <li><strong>Google Analytics / Google Tag Manager</strong> — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Политика конфиденциальности Google</a></li>
                             <li><strong>Google AdSense</strong> — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Политика конфиденциальности Google</a></li>
+                            <li><strong>Resend</strong> — для отправки email-рассылки (<a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Политика конфиденциальности Resend</a>)</li>
+                            <li><strong>Supabase</strong> — для хранения подписок в защищенной базе данных (<a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Политика конфиденциальности Supabase</a>)</li>
                         </ul>
                         <p className="text-muted-foreground leading-relaxed">
                             Эти сервисы имеют собственные политики конфиденциальности и условия использования. 
