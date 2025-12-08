@@ -88,7 +88,6 @@ export default async function RootLayout({
             <link rel="manifest" href="/manifest.json" />
             
             {/* Preload critical resources */}
-            <link rel="preload" href="/images/hero/hero-banner.png" as="image" />
             <link rel="dns-prefetch" href="//www.googletagmanager.com" />
             <link rel="dns-prefetch" href="//mc.yandex.ru" />
             <link rel="dns-prefetch" href="//pagead2.googlesyndication.com" />

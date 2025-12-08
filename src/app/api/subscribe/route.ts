@@ -14,12 +14,14 @@ const subscriptions: Subscription[] = []
 
 // Инициализация Resend (опционально, если настроен RESEND_API_KEY)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev"
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "noreply@renohacks.com"
 
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json()
         const { email, locale = "ru", source } = body
+
+        const resendConfigured = Boolean(resend) && Boolean(process.env.RESEND_API_KEY)
 
         // Валидация email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -35,9 +37,11 @@ export async function POST(req: NextRequest) {
         if (existing) {
             // Обновляем дату подписки
             existing.subscribedAt = Date.now()
-            
+
+            let emailSent = false
+
             // Пытаемся отправить письмо повторно (если настроен Resend)
-            if (resend && process.env.RESEND_API_KEY) {
+            if (resendConfigured) {
                 try {
                     const isEnglish = locale === "en"
                     const subject = isEnglish 
@@ -78,9 +82,12 @@ export async function POST(req: NextRequest) {
                         subject: subject,
                         html: htmlContent,
                     })
+                    emailSent = true
                 } catch (emailError) {
                     console.error("Failed to send welcome back email:", emailError)
                 }
+            } else {
+                console.warn("Resend not configured: RESEND_API_KEY is missing in environment (duplicate subscribe)")
             }
             
             return NextResponse.json(
@@ -88,7 +95,9 @@ export async function POST(req: NextRequest) {
                     message: locale === "en" 
                         ? "You're already subscribed! Check your email for a welcome message." 
                         : "Вы уже подписаны! Проверьте почту - мы отправили приветственное письмо.",
-                    email: existing.email 
+                    email: existing.email,
+                    emailSent,
+                    resendConfigured,
                 },
                 { status: 200 }
             )
@@ -104,8 +113,10 @@ export async function POST(req: NextRequest) {
 
         subscriptions.push(subscription)
 
+        let emailSent = false
+
         // Отправка письма подтверждения через Resend (если настроен)
-        if (resend && process.env.RESEND_API_KEY) {
+        if (resendConfigured) {
             try {
                 const isEnglish = locale === "en"
                 const subject = isEnglish 
@@ -152,11 +163,14 @@ export async function POST(req: NextRequest) {
                     subject: subject,
                     html: htmlContent,
                 })
+                emailSent = true
             } catch (emailError) {
                 // Логируем ошибку, но не прерываем процесс подписки
                 console.error("Failed to send confirmation email:", emailError)
                 // Продолжаем выполнение - подписка всё равно сохранена
             }
+        } else {
+            console.warn("Resend not configured: RESEND_API_KEY is missing in environment")
         }
 
         return NextResponse.json(
@@ -164,7 +178,9 @@ export async function POST(req: NextRequest) {
                 message: locale === "en" 
                     ? "Successfully subscribed!" 
                     : "Успешно подписались!",
-                email: subscription.email 
+                email: subscription.email,
+                emailSent,
+                resendConfigured,
             },
             { status: 200 }
         )
