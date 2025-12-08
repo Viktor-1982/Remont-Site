@@ -83,8 +83,9 @@ jobs:
         run: npm run build
       
       - name: Start application
-        run: npm start &
-        sleep 10
+        run: |
+          npm start &
+          sleep 10
       
       - name: Run E2E tests
         run: npm run test:e2e
@@ -113,8 +114,9 @@ jobs:
         run: npm run build
       
       - name: Start application
-        run: npm start &
-        sleep 10
+        run: |
+          npm start &
+          sleep 10
       
       - name: Run Lighthouse CI
         run: npm run test:lighthouse
