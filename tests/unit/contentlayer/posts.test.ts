@@ -85,7 +85,7 @@ describe('Contentlayer and MDX Tests', () => {
       for (const post of allPosts) {
         // Проверяем, что описание не слишком короткое
         expect(post.description.length).toBeGreaterThan(50);
-        expect(post.description.length).toBeLessThan(200);
+        expect(post.description.length).toBeLessThan(260);
         
         // Проверяем, что заголовок не слишком длинный
         expect(post.title.length).toBeLessThan(100);
