@@ -1,5 +1,4 @@
 // Service Worker для PWA
-const CACHE_NAME = 'renohacks-v1'
 const STATIC_CACHE = 'renohacks-static-v1'
 const DYNAMIC_CACHE = 'renohacks-dynamic-v1'
 

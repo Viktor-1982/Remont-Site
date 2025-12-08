@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge"
 import type { Post } from ".contentlayer/generated"
 
 type SortOption = "date-desc" | "date-asc" | "reading-time" | "title"
-type FilterOption = string // tag name
 
 interface ArticleFiltersProps {
     posts: Post[]

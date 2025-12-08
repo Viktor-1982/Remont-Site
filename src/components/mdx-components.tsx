@@ -1,8 +1,7 @@
 ﻿"use client"
 
 import * as React from "react"
-import { useState, useMemo } from "react"
-import { createRoot } from "react-dom/client"
+import { useState } from "react"
 import Image from "next/image"
 import dynamic from "next/dynamic"
 import GitHubSlugger from "github-slugger"
@@ -102,7 +101,7 @@ function MdxImage({ alt, src }: { alt?: string; src: string }) {
                         }
                         imgSrc = decodedUrl
                     }
-                } catch (e) {
+                } catch (_e) {
                     // Если не удалось декодировать, пытаемся получить из data-атрибутов
                     const originalSrc = img.getAttribute("data-original-src") || 
                                       img.getAttribute("data-src")

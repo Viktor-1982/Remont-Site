@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import * as React from "react"
-import Image from "next/image"
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, RotateCcw } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"

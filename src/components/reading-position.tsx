@@ -28,7 +28,6 @@ export function ReadingPosition({ slug, locale }: ReadingPositionProps) {
     const [savedPosition, setSavedPosition] = useState<number | null>(null)
     const [showBanner, setShowBanner] = useState(false)
     const [hasRestored, setHasRestored] = useState(false)
-    const pathname = usePathname()
     const t = navData[locale].readingPosition
     const storageKey = `reading-position-${slug}-${locale}`
     const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -49,7 +48,7 @@ export function ReadingPosition({ slug, locale }: ReadingPositionProps) {
                     setShowBanner(true)
                 }
             }
-        } catch (e) {
+        } catch (_e) {
             // Игнорируем ошибки парсинга
         }
     }, [storageKey])
@@ -81,7 +80,7 @@ export function ReadingPosition({ slug, locale }: ReadingPositionProps) {
                                 timestamp: Date.now(),
                             })
                         )
-                    } catch (e) {
+                    } catch (_e) {
                         // Игнорируем ошибки localStorage (например, если переполнен)
                     }
                 }

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useBookmarks, type BookmarkData } from "@/lib/use-bookmarks"
+import { useBookmarks } from "@/lib/use-bookmarks"
 import { ArticleCard } from "@/components/article-card"
 import { allPosts, type Post } from ".contentlayer/generated"
 import { Bookmark, BookmarkX } from "lucide-react"
