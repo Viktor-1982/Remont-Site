@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
             let emailSent = false
 
             // Пытаемся отправить письмо повторно (если настроен Resend)
-            if (resendConfigured) {
+            if (resendConfigured && resend) {
                 try {
                     const isEnglish = locale === "en"
                     const subject = isEnglish 
@@ -116,7 +116,7 @@ export async function POST(req: NextRequest) {
         let emailSent = false
 
         // Отправка письма подтверждения через Resend (если настроен)
-        if (resendConfigured) {
+        if (resendConfigured && resend) {
             try {
                 const isEnglish = locale === "en"
                 const subject = isEnglish 
