@@ -53,38 +53,51 @@ export function ReadingPosition({ slug, locale }: ReadingPositionProps) {
         }
     }, [storageKey])
 
-    // Сохраняем позицию при прокрутке (с debounce)
+    // Сохраняем позицию при прокрутке (с debounce и requestAnimationFrame)
     useEffect(() => {
+        let ticking = false
+        let rafId: number | null = null
+
+        const savePosition = () => {
+            const article = document.querySelector("article")
+            if (!article) return
+
+            const articleTop = article.offsetTop
+            const scrollTop = window.scrollY
+            const position = scrollTop - articleTop
+
+            // Сохраняем только если прокрутили достаточно далеко (больше 300px)
+            if (position > 300) {
+                try {
+                    localStorage.setItem(
+                        storageKey,
+                        JSON.stringify({
+                            position,
+                            timestamp: Date.now(),
+                        })
+                    )
+                } catch (_e) {
+                    // Игнорируем ошибки localStorage (например, если переполнен)
+                }
+            }
+            ticking = false
+        }
+
         const handleScroll = () => {
             // Очищаем предыдущий таймер
             if (saveTimeoutRef.current) {
                 clearTimeout(saveTimeoutRef.current)
             }
 
-            // Сохраняем позицию через 1 секунду после последнего скролла
-            saveTimeoutRef.current = setTimeout(() => {
-                const article = document.querySelector("article")
-                if (!article) return
-
-                const articleTop = article.offsetTop
-                const scrollTop = window.scrollY
-                const position = scrollTop - articleTop
-
-                // Сохраняем только если прокрутили достаточно далеко (больше 300px)
-                if (position > 300) {
-                    try {
-                        localStorage.setItem(
-                            storageKey,
-                            JSON.stringify({
-                                position,
-                                timestamp: Date.now(),
-                            })
-                        )
-                    } catch (_e) {
-                        // Игнорируем ошибки localStorage (например, если переполнен)
-                    }
-                }
-            }, 1000)
+            // Используем requestAnimationFrame для оптимизации
+            if (!ticking) {
+                rafId = window.requestAnimationFrame(() => {
+                    // Сохраняем позицию через 1 секунду после последнего скролла
+                    saveTimeoutRef.current = setTimeout(savePosition, 1000)
+                    ticking = false
+                })
+                ticking = true
+            }
         }
 
         window.addEventListener("scroll", handleScroll, { passive: true })
@@ -93,6 +106,9 @@ export function ReadingPosition({ slug, locale }: ReadingPositionProps) {
             window.removeEventListener("scroll", handleScroll)
             if (saveTimeoutRef.current) {
                 clearTimeout(saveTimeoutRef.current)
+            }
+            if (rafId !== null) {
+                window.cancelAnimationFrame(rafId)
             }
         }
     }, [storageKey])

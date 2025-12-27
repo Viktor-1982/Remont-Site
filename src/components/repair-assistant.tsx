@@ -66,7 +66,13 @@ export function RepairAssistant() {
     }
 
     useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+        if (messagesEndRef.current) {
+            // На мобильных используем instant scroll для лучшей производительности
+            const isMobile = window.innerWidth < 768
+            messagesEndRef.current.scrollIntoView({ 
+                behavior: isMobile ? "auto" : "smooth" 
+            })
+        }
     }, [messages, loading])
 
     return (

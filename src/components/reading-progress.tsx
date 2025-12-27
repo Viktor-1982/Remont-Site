@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { Clock, CheckCircle2 } from "lucide-react"
 
 interface ReadingProgressProps {
@@ -13,6 +13,8 @@ export function ReadingProgress({ readingTimeMinutes, isEnglish = false }: Readi
     const [remainingTime, setRemainingTime] = useState<number | null>(null)
     const [showCompletion, setShowCompletion] = useState(false)
     const [hasShownCompletion, setHasShownCompletion] = useState(false)
+    const tickingRef = useRef(false)
+    const rafIdRef = useRef<number | null>(null)
 
     useEffect(() => {
         const updateProgress = () => {
@@ -55,15 +57,36 @@ export function ReadingProgress({ readingTimeMinutes, isEnglish = false }: Readi
                     setShowCompletion(false)
                 }, 5000)
             }
+
+            tickingRef.current = false
         }
 
+        const handleScroll = () => {
+            if (!tickingRef.current) {
+                rafIdRef.current = window.requestAnimationFrame(updateProgress)
+                tickingRef.current = true
+            }
+        }
+
+        const handleResize = () => {
+            if (!tickingRef.current) {
+                rafIdRef.current = window.requestAnimationFrame(updateProgress)
+                tickingRef.current = true
+            }
+        }
+
+        // Инициализация при монтировании
         updateProgress()
-        window.addEventListener("scroll", updateProgress, { passive: true })
-        window.addEventListener("resize", updateProgress, { passive: true })
+        
+        window.addEventListener("scroll", handleScroll, { passive: true })
+        window.addEventListener("resize", handleResize, { passive: true })
 
         return () => {
-            window.removeEventListener("scroll", updateProgress)
-            window.removeEventListener("resize", updateProgress)
+            window.removeEventListener("scroll", handleScroll)
+            window.removeEventListener("resize", handleResize)
+            if (rafIdRef.current !== null) {
+                window.cancelAnimationFrame(rafIdRef.current)
+            }
         }
     }, [readingTimeMinutes, hasShownCompletion])
 
@@ -71,10 +94,10 @@ export function ReadingProgress({ readingTimeMinutes, isEnglish = false }: Readi
 
     return (
         <>
-            <div className="fixed top-0 left-0 right-0 h-1 bg-muted/20 z-50">
+            <div className="fixed top-0 left-0 right-0 h-1 bg-muted/20 z-50" style={{ transform: 'translateZ(0)', willChange: 'transform' }}>
                 <div
                     className="h-full bg-gradient-to-r from-primary via-accent to-primary transition-all duration-150 ease-out"
-                    style={{ width: `${progress}%` }}
+                    style={{ width: `${progress}%`, transform: 'translateZ(0)' }}
                 />
             </div>
 

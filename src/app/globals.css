@@ -275,6 +275,63 @@
     transform: translateZ(0);
 }
 
+/* 🚀 Оптимизация скролла для мобильных устройств */
+@media (max-width: 768px) {
+    /* Отключаем smooth scroll на мобильных для лучшей производительности */
+    html {
+        scroll-behavior: auto;
+    }
+    
+    /* Оптимизация для fixed элементов */
+    [class*="fixed"] {
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        will-change: transform;
+    }
+    
+    /* Упрощаем анимации на мобильных */
+    .transition-all,
+    .transition-transform {
+        transition-duration: 0.2s;
+    }
+}
+
+/* Оптимизация для всех fixed/sticky элементов */
+.fixed,
+[class*="fixed"],
+.sticky,
+[class*="sticky"] {
+    /* Используем GPU ускорение */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Изолируем изменения */
+    contain: layout style paint;
+}
+
+/* Оптимизация для элементов с backdrop-blur */
+[class*="backdrop-blur"] {
+    will-change: backdrop-filter;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+/* Отключение hover эффектов на touch устройствах */
+@media (hover: none) {
+    *:hover {
+        /* Отключаем hover эффекты на touch устройствах */
+    }
+}
+
+/* Оптимизация touch действий */
+@media (max-width: 768px) {
+    button,
+    a,
+    [role="button"] {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
 /* 🧾 Печать сметы (только текст сметы, без интерфейса) */
 .no-print {
     /* по умолчанию показывается, скрывается только при печати */

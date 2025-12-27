@@ -84,8 +84,20 @@ export function TableOfContents({
     const handleClick = (id: string) => {
         const target = document.getElementById(id)
         if (target) {
-            target.scrollIntoView({ behavior: "smooth", block: "start" })
-            window.location.hash = id
+            // На мобильных используем instant scroll для лучшей производительности
+            const isMobile = window.innerWidth < 768
+            target.scrollIntoView({ 
+                behavior: isMobile ? "auto" : "smooth", 
+                block: "start" 
+            })
+            // Используем requestAnimationFrame для обновления hash после скролла
+            if (isMobile) {
+                requestAnimationFrame(() => {
+                    window.location.hash = id
+                })
+            } else {
+                window.location.hash = id
+            }
             setOpen(false)
             if (onLinkClick) onLinkClick()
         }
@@ -110,6 +122,7 @@ export function TableOfContents({
                     "fixed top-16 bottom-0 right-0 w-64 bg-card text-card-foreground border-l shadow-lg transform transition-transform duration-300 lg:hidden overflow-y-auto",
                     open ? "translate-x-0" : "translate-x-full"
                 )}
+                style={{ transform: 'translateZ(0)', willChange: 'transform' }}
             >
                 <div className="p-4">
                     <h2 className="font-semibold mb-2 text-foreground">{t.mobile}</h2>

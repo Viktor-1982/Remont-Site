@@ -18,7 +18,7 @@ const nextConfig = {
     compress: true,
     poweredByHeader: false,
     generateEtags: true,
-    swcMinify: true,
+    
     // Оптимизация для production
     productionBrowserSourceMaps: false,
     // ✅ HTTP Security Headers

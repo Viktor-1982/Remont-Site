@@ -50,7 +50,14 @@ export function HeroBanner() {
 
     const handleScroll = () => {
         const section = document.getElementById("articles")
-        if (section) section.scrollIntoView({ behavior: "smooth", block: "start" })
+        if (section) {
+            // На мобильных используем instant scroll для лучшей производительности
+            const isMobile = window.innerWidth < 768
+            section.scrollIntoView({ 
+                behavior: isMobile ? "auto" : "smooth", 
+                block: "start" 
+            })
+        }
     }
 
     return (
