@@ -1,0 +1,132 @@
+npm warn config optional Use `--omit=optional` to exclude optional dependencies, or
+npm warn config `--include=optional` to include them.
+npm warn config
+npm warn config       Default value does install optional deps unless otherwise omitted.
+
+> repair-blog@0.1.0 build
+> contentlayer2 build && next build
+
+Warning: Contentlayer might not work as expected on Windows
+Generated 36 documents in .contentlayer
+   ▲ Next.js 15.5.7
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 21.2s
+   Linting and checking validity of types ...
+
+./src/components/mdx-components.tsx
+104:26  Warning: '_e' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/reading-position.tsx
+4:10  Warning: 'usePathname' is defined but never used.  @typescript-eslint/no-unused-vars
+51:18  Warning: '_e' is defined but never used.  @typescript-eslint/no-unused-vars
+79:26  Warning: '_e' is defined but never used.  @typescript-eslint/no-unused-vars
+141:18  Warning: 'e' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/search-bar.tsx
+10:10  Warning: 'cn' is defined but never used.  @typescript-eslint/no-unused-vars
+23:11  Warning: 'pathname' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/share-button.tsx
+4:25  Warning: 'MessageCircle' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/tag-cloud.tsx
+20:43  Warning: 'basePath' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/view-counter.tsx
+4:25  Warning: 'getViewCount' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/widgets/before-after-gallery.tsx
+7:10  Warning: 'cn' is defined but never used.  @typescript-eslint/no-unused-vars
+74:8  Warning: React Hook useEffect has missing dependencies: 'nextImage' and 'prevImage'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/components/widgets/checklist.tsx
+4:17  Warning: 'Square' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/components/widgets/comparison-table.tsx
+6:10  Warning: 'Badge' is defined but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/181) ...
+   Generating static pages (45/181) 
+   Generating static pages (90/181) 
+   Generating static pages (135/181) 
+ ✓ Generating static pages (181/181)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS  Revalidate  Expire
+┌ ƒ /                                      144 B         178 kB
+├ ƒ /_not-found                            196 B         102 kB
+├ ƒ /about                                 196 B         102 kB
+├ ƒ /admin                               10.5 kB         127 kB
+├ ƒ /api/admin/articles                    196 B         102 kB
+├ ƒ /api/admin/articles/[slug]             196 B         102 kB
+├ ƒ /api/admin/auth/login                  196 B         102 kB
+├ ƒ /api/admin/auth/logout                 196 B         102 kB
+├ ƒ /api/admin/auth/session                196 B         102 kB
+├ ƒ /api/admin/upload-image                196 B         102 kB
+├ ƒ /api/admin/upload-image-auto           196 B         102 kB
+├ ƒ /api/chat                              196 B         102 kB
+├ ƒ /api/indexnow                          196 B         102 kB
+├ ƒ /api/posts                             196 B         102 kB
+├ ƒ /api/subscribe                         196 B         102 kB
+├ ƒ /api/switch-target                     196 B         102 kB
+├ ƒ /api/unsubscribe                       196 B         102 kB
+├ ƒ /bookmarks                            1.3 kB         322 kB
+├ ƒ /calculators                           177 B         105 kB
+├ ƒ /calculators/budget                  4.38 kB         129 kB
+├ ƒ /calculators/paint                   2.66 kB         125 kB
+├ ƒ /calculators/tile                    2.67 kB         129 kB
+├ ƒ /calculators/wallpaper               2.67 kB         127 kB
+├ ƒ /dev-check                             196 B         102 kB
+├ ƒ /developer                           1.78 kB         107 kB
+├ ƒ /en                                    144 B         178 kB
+├ ƒ /en/about                              196 B         102 kB
+├ ƒ /en/bookmarks                        1.14 kB         321 kB
+├ ƒ /en/calculators                        177 B         105 kB
+├ ƒ /en/calculators/budget               3.73 kB         128 kB
+├ ƒ /en/calculators/paint                2.66 kB         125 kB
+├ ƒ /en/calculators/tile                 2.67 kB         129 kB
+├ ƒ /en/calculators/wallpaper            2.67 kB         127 kB
+├ ƒ /en/costs                              740 B         131 kB
+├ ƒ /en/developer                        1.78 kB         107 kB
+├ ƒ /en/posts/[slug]                       143 B         152 kB
+├ ƒ /en/privacy                            196 B         102 kB
+├ ƒ /en/search                             336 B         127 kB
+├ ƒ /en/tags                             1.63 kB         116 kB
+├ ● /en/tags/[tag]                         740 B         131 kB
+├   ├ /en/tags/renovation
+├   ├ /en/tags/apartment
+├   ├ /en/tags/mistakes
+├   └ [+65 more paths]
+├ ƒ /en/terms                              177 B         105 kB
+├ ○ /feed-en.xml                           196 B         102 kB          1h      1y
+├ ○ /feed.xml                              196 B         102 kB          1h      1y
+├ ○ /icon.svg                                0 B            0 B
+├ ƒ /posts/[slug]                          143 B         152 kB
+├ ƒ /privacy                               196 B         102 kB
+├ ○ /robots.txt                            196 B         102 kB
+├ ƒ /rss.xml                               196 B         102 kB
+├ ƒ /search                                336 B         127 kB
+├ ○ /sitemap.xml                           196 B         102 kB
+├ ƒ /smety                                 740 B         131 kB
+├ ƒ /tags                                1.63 kB         116 kB
+├ ● /tags/[tag]                            740 B         131 kB
+├   ├ /tags/ремонт
+├   ├ /tags/квартира
+├   ├ /tags/ошибки
+├   └ [+58 more paths]
+└ ƒ /terms                                 177 B         105 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/1255-01735991e86fac1b.js      45.4 kB
+  ├ chunks/4bd1b696-182b6b13bdad92e3.js  54.2 kB
+  └ other shared chunks (total)          2.13 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
