@@ -62,11 +62,47 @@ const getTextFromChildren = (children: React.ReactNode): string => {
 // 🔹 Компонент для изображений с поддержкой галереи
 function MdxImage({ alt, src }: { alt?: string; src: string }) {
     const [isEnglish, setIsEnglish] = useState(false)
+    const imageRef = React.useRef<HTMLDivElement>(null)
     
     // Определяем язык из URL
     React.useEffect(() => {
         setIsEnglish(window.location.pathname.startsWith("/en"))
     }, [])
+    
+    // Определяем, является ли изображение квадратным
+    React.useEffect(() => {
+        const checkIfSquare = () => {
+            if (!imageRef.current) return
+            
+            const img = imageRef.current.querySelector('img')
+            if (!img) return
+            
+            // Находим родительский figure элемент
+            const figure = imageRef.current.closest('figure')
+            if (!figure) return
+            
+            // Ждем загрузки изображения
+            const checkAspectRatio = () => {
+                const aspectRatio = img.naturalWidth / img.naturalHeight
+                // Считаем квадратным, если соотношение сторон от 0.9 до 1.1
+                if (aspectRatio >= 0.9 && aspectRatio <= 1.1) {
+                    figure.classList.add('mdx-image-square')
+                }
+            }
+            
+            if (img.complete && img.naturalWidth > 0) {
+                checkAspectRatio()
+            } else {
+                img.onload = checkAspectRatio
+                // Fallback на случай, если onload не сработает
+                setTimeout(checkAspectRatio, 100)
+            }
+        }
+        
+        // Небольшая задержка для того, чтобы DOM обновился
+        const timeoutId = setTimeout(checkIfSquare, 50)
+        return () => clearTimeout(timeoutId)
+    }, [src])
 
     const handleClick = () => {
         // Находим все изображения в статье (только из MDX контента)
@@ -163,16 +199,16 @@ function MdxImage({ alt, src }: { alt?: string; src: string }) {
 
     const figure = (
         <figure 
-            className="relative mx-auto my-6 max-w-3xl w-full overflow-hidden rounded-xl bg-background group cursor-pointer"
+            className="relative mx-auto my-6 max-w-3xl w-full overflow-hidden rounded-xl bg-background group cursor-pointer mdx-image-figure"
             onClick={handleClick}
         >
-            <div className="relative w-full overflow-hidden rounded-lg">
+            <div ref={imageRef} className="relative w-full overflow-hidden rounded-lg">
                 <Image
                     alt={alt && alt.trim() !== "" ? alt : "Изображение по теме ремонта"}
                     src={src}
                     width={1200}
                     height={800}
-                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 mdx-image"
                     loading="lazy"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                     placeholder="blur"

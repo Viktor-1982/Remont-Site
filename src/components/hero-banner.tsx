@@ -37,7 +37,8 @@ export function HeroBanner() {
         target: ref,
         offset: ["start start", "end start"],
     })
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
+    // Упрощенный параллакс для производительности
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
 
     const controls = useAnimation()
     useEffect(() => {
@@ -83,18 +84,19 @@ export function HeroBanner() {
                     quality={85}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent dark:from-black/80" />
-                <div className="absolute right-[20%] top-[15%] w-[200px] h-[200px] bg-white/10 blur-3xl rounded-full" />
-                {/* 🥑 Зеленый цвет авокадо */}
-                <div className="absolute left-[10%] bottom-[20%] w-[180px] h-[180px] bg-[#87A96B] dark:bg-[#9CAF88] blur-3xl rounded-full opacity-40 dark:opacity-35 animate-pulse-slow" />
-                <div className="absolute right-[15%] top-[30%] w-[120px] h-[120px] bg-[#87A96B] dark:bg-[#9CAF88] blur-2xl rounded-full opacity-35 dark:opacity-30 animate-fade-in-out" />
+                {/* Упрощенные декоративные элементы для производительности */}
+                <div className="absolute right-[20%] top-[15%] w-[200px] h-[200px] bg-white/10 blur-3xl rounded-full will-change-transform" />
+                {/* 🥑 Зеленый цвет авокадо - без анимации для производительности */}
+                <div className="absolute left-[10%] bottom-[20%] w-[180px] h-[180px] bg-[#87A96B] dark:bg-[#9CAF88] blur-3xl rounded-full opacity-40 dark:opacity-35" />
+                <div className="absolute right-[15%] top-[30%] w-[120px] h-[120px] bg-[#87A96B] dark:bg-[#9CAF88] blur-2xl rounded-full opacity-35 dark:opacity-30" />
             </motion.div>
 
             {/* ✨ Контент */}
             <div className="relative z-10 flex flex-col items-center text-center px-4 py-16 sm:px-8">
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.9, ease: "easeOut" }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
                     className="max-w-3xl"
                 >
                     {isHomePage ? (
@@ -147,12 +149,12 @@ export function HeroBanner() {
                 </motion.div>
             </div>
 
-            {/* ⬇️ Анимированная стрелка */}
+            {/* ⬇️ Анимированная стрелка - оптимизированная */}
             <motion.button
                 onClick={handleScroll}
-                animate={{ y: [0, 8, 0] }}
-                transition={{ repeat: Infinity, duration: 2 }}
-                className="absolute bottom-6 flex flex-col items-center text-white/80 cursor-pointer"
+                animate={{ y: [0, 6, 0] }}
+                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                className="absolute bottom-6 flex flex-col items-center text-white/80 cursor-pointer will-change-transform"
                 aria-label="Прокрутить вниз"
             >
                 <motion.div animate={controls} initial={{ opacity: 1 }}>

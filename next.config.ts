@@ -1,8 +1,11 @@
 import type { NextConfig } from "next"
-import webpack from "webpack"
 
 const nextConfig: NextConfig = {
-    webpack: (config, { isServer }) => {
+    images: {
+        // ✅ Конфигурация качеств изображений для Next.js 16+
+        qualities: [50, 75, 85, 90, 95, 100],
+    },
+    webpack: (config, { isServer, webpack }) => {
         // ✅ process/browser нужен только в браузере
         if (!isServer) {
             config.plugins = config.plugins || []

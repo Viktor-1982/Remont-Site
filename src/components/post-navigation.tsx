@@ -70,7 +70,7 @@ export function PostNavigation({ currentSlug, locale }: PostNavigationProps) {
 
     return (
         <nav
-            className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-border/50"
+            className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-border/50 dark:border-border/40"
             aria-label={locale === "en" ? "Article navigation" : "Навигация по статьям"}
         >
             <div className={cn(
@@ -83,18 +83,18 @@ export function PostNavigation({ currentSlug, locale }: PostNavigationProps) {
                         href={`${basePath}/posts/${previousPost.slug}`}
                         className={cn(
                             "group flex items-center gap-3 sm:gap-4 p-4 sm:p-6 rounded-xl border-2 border-border/60 dark:border-border/40",
-                            "bg-card/50 dark:bg-card/80 hover:bg-card dark:hover:bg-card",
-                            "hover:border-primary/50 dark:hover:border-primary/40",
-                            "hover:shadow-md transition-all duration-300",
+                            "bg-card/60 dark:bg-card/70 hover:bg-card dark:hover:bg-card/90",
+                            "hover:border-primary/60 dark:hover:border-primary/50",
+                            "hover:shadow-lg hover:shadow-primary/10 transition-all duration-300",
                             "text-left"
                         )}
                         prefetch={true}
                     >
-                        <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors">
+                        <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/15 dark:bg-primary/25 flex items-center justify-center group-hover:bg-primary/25 dark:group-hover:bg-primary/35 transition-colors border border-primary/20">
                             <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                         </div>
                         <div className="flex-1 min-w-0">
-                            <div className="text-xs sm:text-sm text-muted-foreground mb-1 font-medium">
+                            <div className="text-xs sm:text-sm text-primary/80 mb-1 font-semibold uppercase tracking-wide">
                                 {t.previous}
                             </div>
                             <div className="text-sm sm:text-base font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
@@ -110,9 +110,9 @@ export function PostNavigation({ currentSlug, locale }: PostNavigationProps) {
                         href={`${basePath}/posts/${nextPost.slug}`}
                         className={cn(
                             "group flex items-center gap-3 sm:gap-4 p-4 sm:p-6 rounded-xl border-2 border-border/60 dark:border-border/40",
-                            "bg-card/50 dark:bg-card/80 hover:bg-card dark:hover:bg-card",
-                            "hover:border-primary/50 dark:hover:border-primary/40",
-                            "hover:shadow-md transition-all duration-300",
+                            "bg-card/60 dark:bg-card/70 hover:bg-card dark:hover:bg-card/90",
+                            "hover:border-primary/60 dark:hover:border-primary/50",
+                            "hover:shadow-lg hover:shadow-primary/10 transition-all duration-300",
                             previousPost ? "text-left" : "text-left sm:ml-auto sm:max-w-md",
                             !previousPost && "sm:justify-end"
                         )}
@@ -121,24 +121,24 @@ export function PostNavigation({ currentSlug, locale }: PostNavigationProps) {
                         {previousPost ? (
                             <>
                                 <div className="flex-1 min-w-0 order-2 sm:order-1">
-                                    <div className="text-xs sm:text-sm text-muted-foreground mb-1 font-medium">
+                                    <div className="text-xs sm:text-sm text-primary/80 mb-1 font-semibold uppercase tracking-wide">
                                         {t.next}
                                     </div>
                                     <div className="text-sm sm:text-base font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
                                         {nextPost.title}
                                     </div>
                                 </div>
-                                <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors order-1 sm:order-2">
+                                <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/15 dark:bg-primary/25 flex items-center justify-center group-hover:bg-primary/25 dark:group-hover:bg-primary/35 transition-colors order-1 sm:order-2 border border-primary/20">
                                     <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                                 </div>
                             </>
                         ) : (
                             <>
-                                <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors">
+                                <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/15 dark:bg-primary/25 flex items-center justify-center group-hover:bg-primary/25 dark:group-hover:bg-primary/35 transition-colors border border-primary/20">
                                     <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <div className="text-xs sm:text-sm text-muted-foreground mb-1 font-medium">
+                                    <div className="text-xs sm:text-sm text-primary/80 mb-1 font-semibold uppercase tracking-wide">
                                         {t.next}
                                     </div>
                                     <div className="text-sm sm:text-base font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">

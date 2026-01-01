@@ -98,23 +98,23 @@ export function RelatedPosts({ currentSlug, locale, limit = 4 }: RelatedPostsPro
     const readMore = locale === "ru" ? "Читать далее" : "Read more"
 
     return (
-        <aside className="mt-8 sm:mt-12 p-4 sm:p-6 bg-card/80 dark:bg-muted/30 rounded-lg border border-border/50">
-            <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-foreground">{title}</h3>
+        <aside className="mt-8 sm:mt-12 p-4 sm:p-6 bg-gradient-to-br from-card/90 via-card/80 to-card/90 dark:from-card/70 dark:via-card/60 dark:to-card/70 rounded-xl border border-border/50 dark:border-border/40 shadow-soft">
+            <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-5 text-foreground border-b border-border/30 pb-2">{title}</h3>
             <div className="grid gap-3 sm:gap-4 md:grid-cols-2">
                 {relatedPosts.map((post) => (
                     <Link
                         key={post.slug}
                         href={`/${locale === "en" ? "en/" : ""}posts/${post.slug}`}
-                        className="group block p-3 sm:p-4 bg-card dark:bg-card/80 rounded-md border-2 border-border/60 dark:border-border/40 hover:border-primary/50 dark:hover:border-primary/40 hover:shadow-md transition-all"
+                        className="group block p-4 sm:p-5 bg-card/60 dark:bg-card/50 rounded-lg border-2 border-border/60 dark:border-border/40 hover:border-primary/60 dark:hover:border-primary/50 hover:bg-card dark:hover:bg-card/70 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
                         prefetch={true}
                     >
-                        <h4 className="font-semibold text-sm sm:text-base mb-1.5 sm:mb-2 group-hover:text-primary transition-colors line-clamp-2 text-foreground">
+                        <h4 className="font-bold text-sm sm:text-base mb-2 group-hover:text-primary transition-colors line-clamp-2 text-foreground">
                             {post.title}
                         </h4>
-                        <p className="text-xs sm:text-sm text-foreground/80 dark:text-foreground/70 line-clamp-2 mb-1.5 sm:mb-2">
+                        <p className="text-xs sm:text-sm text-muted-foreground/90 line-clamp-2 mb-2.5">
                             {post.description}
                         </p>
-                        <span className="text-xs sm:text-sm text-primary font-semibold">
+                        <span className="text-xs sm:text-sm text-primary font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all">
                             {readMore} →
                         </span>
                     </Link>

@@ -23,17 +23,26 @@ export async function findSubscription(email: string): Promise<Subscription | nu
     const normalizedEmail = email.toLowerCase()
 
     if (supabaseReady && supabaseAdmin) {
-        const { data, error } = await supabaseAdmin
-            .from("subscriptions")
-            .select("*")
-            .eq("email", normalizedEmail)
-            .maybeSingle()
+        try {
+            const { data, error } = await supabaseAdmin
+                .from("subscriptions")
+                .select("*")
+                .eq("email", normalizedEmail)
+                .maybeSingle()
 
-        if (error && error.code !== "PGRST116") {
-            console.error("Supabase findSubscription error:", error)
+            // maybeSingle() возвращает null для "not found", не ошибку
+            // PGRST116 - это код "not found", но maybeSingle() не должен его возвращать
+            if (error) {
+                console.error("Supabase findSubscription error:", error)
+                // В случае ошибки возвращаем null, чтобы не ломать процесс подписки
+                return null
+            }
+
+            return data ? mapRow(data as SubscriptionRow) : null
+        } catch (err) {
+            console.error("Unexpected error in findSubscription:", err)
+            return null
         }
-
-        return data ? mapRow(data as SubscriptionRow) : null
     }
 
     const existing = memoryStore.find((s) => s.email.toLowerCase() === normalizedEmail)

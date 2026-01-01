@@ -139,10 +139,10 @@ export function TableOfContents({
                                         }}
                                         aria-current={activeId === slug ? "true" : undefined}
                                         className={cn(
-                                            "block transition-colors hover:text-primary",
+                                            "block transition-colors py-1.5 px-2 rounded-md",
                                             activeId === slug
-                                                ? "text-primary font-semibold"
-                                                : "text-foreground"
+                                                ? "text-primary font-semibold bg-primary/10"
+                                                : "text-foreground hover:text-primary hover:bg-muted/50"
                                         )}
                                     >
                                         {h.text}
@@ -157,10 +157,10 @@ export function TableOfContents({
             {/* 💻 Desktop */}
             <nav
                 aria-label={t.open}
-                className="sticky top-24 hidden lg:block max-h-[45vh] w-64 shrink-0 overflow-auto rounded-xl border p-4 text-sm bg-card"
+                className="sticky top-24 hidden lg:block max-h-[45vh] w-64 shrink-0 overflow-auto rounded-xl border border-border/50 p-4 text-sm bg-card/80 backdrop-blur-sm shadow-soft"
             >
-                <div className="mb-2 font-semibold">{t.open}</div>
-                <ul className="space-y-1">
+                <div className="mb-3 font-semibold text-foreground">{t.open}</div>
+                <ul className="space-y-1.5">
                     {items.map((h, i) => {
                         const slug = makeSlug(h.text)
                         return (
@@ -173,10 +173,10 @@ export function TableOfContents({
                                     }}
                                     aria-current={activeId === slug ? "true" : undefined}
                                     className={cn(
-                                        "transition-colors hover:text-foreground",
+                                        "transition-colors block py-1 px-2 rounded-md",
                                         activeId === slug
-                                            ? "text-primary font-semibold"
-                                            : "text-muted-foreground"
+                                            ? "text-primary font-semibold bg-primary/10 border-l-2 border-primary"
+                                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                                     )}
                                 >
                                     {h.text}

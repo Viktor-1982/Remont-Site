@@ -26,20 +26,20 @@ export function Breadcrumbs({ items, isEnglish = false }: BreadcrumbsProps) {
 
     return (
         <nav aria-label={isEnglish ? "Breadcrumb" : "Хлебные крошки"} className="mb-4 sm:mb-6">
-            <ol className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground flex-wrap">
+            <ol className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground/80 flex-wrap">
                 {breadcrumbs.map((item, index) => {
                     const isLast = index === breadcrumbs.length - 1
                     return (
                         <li key={item.href} className="flex items-center gap-2">
                             {index === 0 ? (
-                                <Home className="h-4 w-4" aria-hidden="true" />
+                                <Home className="h-4 w-4 text-primary/70" aria-hidden="true" />
                             ) : (
-                                <ChevronRight className="h-4 w-4 text-muted-foreground/50" aria-hidden="true" />
+                                <ChevronRight className="h-4 w-4 text-muted-foreground/40" aria-hidden="true" />
                             )}
                             {isLast ? (
                                 <span
                                     className={cn(
-                                        "font-medium text-foreground",
+                                        "font-semibold text-foreground",
                                         "truncate max-w-[200px] sm:max-w-none"
                                     )}
                                     aria-current="page"
@@ -50,7 +50,7 @@ export function Breadcrumbs({ items, isEnglish = false }: BreadcrumbsProps) {
                                 <Link
                                     href={item.href}
                                     className={cn(
-                                        "hover:text-foreground transition-colors",
+                                        "hover:text-primary transition-colors",
                                         "truncate max-w-[200px] sm:max-w-none"
                                     )}
                                 >

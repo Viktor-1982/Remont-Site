@@ -41,7 +41,7 @@ export function ArticleGrid({ posts, isEnglish = false }: { posts: Post[]; isEng
                 <div className="hidden md:block relative">
                     <Link
                         href={latestPost.url}
-                        className="group block rounded-2xl overflow-hidden shadow-2xl transition-smooth hover:scale-[1.02] border border-border/20"
+                        className="group block rounded-2xl overflow-hidden shadow-2xl transition-transform duration-300 ease-out hover:scale-[1.01] border border-border/20 hover:border-primary/30 will-change-transform"
                         prefetch={true}
                     >
                         <div className="relative aspect-[21/8]">
@@ -51,7 +51,7 @@ export function ArticleGrid({ posts, isEnglish = false }: { posts: Post[]; isEng
                                     alt={latestPost.description || latestPost.title}
                                     fill
                                     priority
-                                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                                    className="object-cover group-hover:scale-[1.02] transition-transform duration-300 ease-out will-change-transform"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1200px"
                                 />
                             )}

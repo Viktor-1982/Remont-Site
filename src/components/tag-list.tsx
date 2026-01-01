@@ -37,7 +37,7 @@ export function TagList({ tags, isEnglish }: TagListProps) {
                         variant="secondary"
                         aria-label={ariaLabel}
                         title={ariaLabel}
-                        className="text-sm px-3 py-1 rounded-full"
+                        className="text-sm px-3 py-1.5 rounded-full bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 hover:border-primary/30 transition-colors font-medium"
                     >
                         #{tag}
                     </Badge>

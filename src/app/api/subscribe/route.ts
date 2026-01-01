@@ -9,9 +9,11 @@ const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "noreply@renohacks.com"
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://renohacks.com"
 
 export async function POST(req: NextRequest) {
+    let locale: "ru" | "en" = "ru" // Дефолтное значение для обработки ошибок
     try {
         const body = await req.json()
-        const { email, locale = "ru", source } = body
+        locale = (body.locale === "en" ? "en" : "ru")
+        const { email, source } = body
 
         const resendConfigured = Boolean(resend) && Boolean(process.env.RESEND_API_KEY)
 
@@ -31,7 +33,7 @@ export async function POST(req: NextRequest) {
             await upsertSubscription({
                 ...existing,
                 subscribedAt: Date.now(),
-                locale: locale || existing.locale || "ru",
+                locale: locale || existing.locale || ("ru" as const),
             })
 
             let emailSent = false
@@ -109,7 +111,7 @@ export async function POST(req: NextRequest) {
         // Добавляем подписку
         const subscription: Subscription = {
             email: email.toLowerCase(),
-            locale: locale || "ru",
+            locale: locale,
             subscribedAt: Date.now(),
             source: source || "website",
         }
@@ -198,7 +200,9 @@ export async function POST(req: NextRequest) {
         console.error("Subscription error:", error)
         return NextResponse.json(
             { 
-                error: "An error occurred. Please try again later." 
+                error: locale === "en" 
+                    ? "An error occurred. Please try again later." 
+                    : "Произошла ошибка. Пожалуйста, попробуйте позже."
             },
             { status: 500 }
         )

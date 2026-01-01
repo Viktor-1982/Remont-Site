@@ -73,7 +73,7 @@ export function ArticleHero({ post }: { post: Post }) {
             <header className="space-y-4 max-w-4xl mx-auto w-full">
                 <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight text-foreground">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight text-foreground bg-gradient-to-br from-foreground via-foreground to-foreground/80 bg-clip-text">
                             {post.title}
                         </h1>
                     </div>
@@ -88,17 +88,17 @@ export function ArticleHero({ post }: { post: Post }) {
                     </p>
                 )}
 
-                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground/80 pt-2">
+                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground/90 pt-2">
                     {formattedDate && (
-                        <div className="flex items-center gap-2">
-                            <Calendar className="h-4 w-4" />
+                        <div className="flex items-center gap-2 text-foreground/70">
+                            <Calendar className="h-4 w-4 text-primary/70" />
                             <time dateTime={post.date}>{formattedDate}</time>
                         </div>
                     )}
                     {post.readingTime && (
                         <>
                             <span className="text-muted-foreground/40">·</span>
-                            <span>
+                            <span className="text-foreground/70">
                 {locale === "en"
                     ? post.readingTime.replace("мин", "min read")
                     : `${post.readingTime} чтения`}

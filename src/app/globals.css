@@ -43,18 +43,18 @@
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.15 0.008 270);
 
-    /* Современный зеленый - мягкий, природный */
-    --primary: oklch(0.45 0.08 145);
+    /* Современный зеленый - более насыщенный и выразительный */
+    --primary: oklch(0.50 0.12 145);
     --primary-foreground: oklch(0.99 0.002 270);
 
     --secondary: oklch(0.96 0.003 270);
     --secondary-foreground: oklch(0.25 0.008 270);
 
     --muted: oklch(0.96 0.003 270);
-    --muted-foreground: oklch(0.45 0.01 270);
+    --muted-foreground: oklch(0.50 0.015 270);
 
-    /* Акцент - теплый беж/терракота */
-    --accent: oklch(0.75 0.04 45);
+    /* Акцент - более теплый и выразительный */
+    --accent: oklch(0.72 0.06 50);
     --accent-foreground: oklch(0.25 0.008 270);
 
     --destructive: oklch(0.55 0.22 25);
@@ -76,18 +76,18 @@
     --popover: oklch(0.16 0.008 270);
     --popover-foreground: oklch(0.98 0.002 270);
 
-    /* Яркий, но мягкий зеленый для темной темы */
-    --primary: oklch(0.65 0.12 145);
+    /* Яркий, но мягкий зеленый для темной темы - более насыщенный */
+    --primary: oklch(0.70 0.14 145);
     --primary-foreground: oklch(0.12 0.006 270);
 
     --secondary: oklch(0.22 0.008 270);
     --secondary-foreground: oklch(0.95 0.002 270);
 
     --muted: oklch(0.22 0.008 270);
-    --muted-foreground: oklch(0.65 0.01 270);
+    --muted-foreground: oklch(0.70 0.015 270);
 
-    /* Теплый акцент для темной темы */
-    --accent: oklch(0.55 0.06 45);
+    /* Теплый акцент для темной темы - более выразительный */
+    --accent: oklch(0.60 0.08 50);
     --accent-foreground: oklch(0.98 0.002 270);
 
     --border: oklch(0.25 0.008 270);
@@ -109,9 +109,9 @@
 @layer base {
     .prose {
         --tw-prose-body: oklch(0.20 0.015 270);
-        --tw-prose-headings: oklch(0.12 0.02 270);
-        --tw-prose-links: oklch(0.45 0.10 145);
-        --tw-prose-bold: oklch(0.15 0.02 270);
+        --tw-prose-headings: oklch(0.10 0.025 270);
+        --tw-prose-links: oklch(0.50 0.12 145);
+        --tw-prose-bold: oklch(0.12 0.025 270);
         --tw-prose-quotes: oklch(0.30 0.02 270);
         --tw-prose-code: oklch(0.25 0.02 270);
         color: var(--tw-prose-body) !important;
@@ -125,6 +125,12 @@
         line-height: 1.2;
         margin-top: 2em;
         margin-bottom: 1em;
+        /* Более контрастные заголовки */
+        color: oklch(0.10 0.025 270);
+    }
+    
+    .dark .prose h1, .dark .prose h2, .dark .prose h3, .dark .prose h4 {
+        color: oklch(0.99 0.025 270);
     }
 
     .prose p {
@@ -133,13 +139,13 @@
     }
 
     .prose blockquote {
-        border-left-color: oklch(0.65 0.10 145);
+        border-left-color: oklch(0.50 0.12 145);
         border-left-width: 4px;
         color: oklch(0.30 0.02 270);
         font-style: italic;
         padding-left: 1.5em;
         margin: 2em 0;
-        background: oklch(0.98 0.002 270);
+        background: linear-gradient(to right, oklch(0.98 0.002 270), oklch(0.97 0.005 145));
         border-radius: 0.5rem;
         padding: 1.5em;
     }
@@ -149,10 +155,12 @@
         text-decoration: underline;
         text-underline-offset: 3px;
         transition: color 0.2s ease;
+        font-weight: 500;
     }
 
     .prose a:hover {
-        color: oklch(0.40 0.12 145);
+        color: oklch(0.45 0.14 145);
+        text-decoration-thickness: 2px;
     }
 
     .dark .prose {
@@ -166,13 +174,38 @@
     }
 
     .dark .prose blockquote {
-        border-left-color: oklch(0.70 0.12 145);
+        border-left-color: oklch(0.70 0.14 145);
         color: oklch(0.88 0.01 270);
-        background: oklch(0.16 0.008 270);
+        background: linear-gradient(to right, oklch(0.16 0.008 270), oklch(0.18 0.010 145));
     }
 
     .dark .prose a:hover {
-        color: oklch(0.75 0.12 145);
+        color: oklch(0.75 0.14 145);
+    }
+    
+    /* Улучшенные цвета для кода в статьях */
+    .prose code {
+        background: oklch(0.96 0.003 270);
+        color: oklch(0.50 0.12 145);
+        padding: 0.2em 0.4em;
+        border-radius: 0.25rem;
+        font-size: 0.9em;
+        font-weight: 500;
+    }
+    
+    .dark .prose code {
+        background: oklch(0.22 0.008 270);
+        color: oklch(0.70 0.14 145);
+    }
+    
+    .prose pre {
+        background: oklch(0.96 0.003 270);
+        border: 1px solid oklch(0.93 0.004 270);
+    }
+    
+    .dark .prose pre {
+        background: oklch(0.18 0.008 270);
+        border: 1px solid oklch(0.25 0.008 270);
     }
 }
 
@@ -384,7 +417,7 @@
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Градиентный текст */
+    /* Оптимизированный градиентный текст (без анимации для производительности) */
     .text-gradient {
         background: linear-gradient(135deg, oklch(0.45 0.08 145), oklch(0.55 0.10 145));
         -webkit-background-clip: text;
@@ -397,5 +430,24 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+    }
+    
+    /* Оптимизированные переходы для производительности */
+    .transition-optimized {
+        transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+        will-change: transform;
+    }
+}
+
+/* 📸 Уменьшение квадратных изображений на десктопе */
+@media (min-width: 768px) {
+    /* Уменьшаем все изображения в статьях на десктопе немного */
+    .prose .mdx-image-figure {
+        max-width: 42rem; /* 672px вместо 768px (max-w-3xl) */
+    }
+    
+    /* Для квадратных изображений делаем чуть меньше */
+    .prose .mdx-image-figure.mdx-image-square {
+        max-width: 36rem !important; /* 576px для квадратных - чуть меньше обычных */
     }
 }
