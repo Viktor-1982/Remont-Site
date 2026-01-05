@@ -65,9 +65,9 @@ export default function HomePageEn() {
             <div className="container mx-auto px-4 sm:px-6 py-10 space-y-12 max-w-7xl">
                 {/* ✅ anchor for the scroll arrow */}
                 <section id="articles">
-                    <h1 className="text-3xl font-bold mb-6 text-balance text-center sm:text-left">
+                    <h2 className="text-3xl font-bold mb-6 text-balance text-center sm:text-left">
                         Step-by-Step Guides & Practical Tips
-                    </h1>
+                    </h2>
                     <ArticleGrid posts={posts} isEnglish={true} />
                     
                     {/* Popular Posts */}
