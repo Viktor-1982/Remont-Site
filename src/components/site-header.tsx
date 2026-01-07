@@ -159,20 +159,22 @@ export function SiteHeader() {
                 </div>
 
                 {/* 📱 Мобильное меню */}
-                <div className="flex items-center md:hidden gap-2 ml-auto">
-                    {/* 🔍 Поиск на мобильных */}
-                    <SearchBar isEnglish={isEnglish} />
+                <div className="flex items-center md:hidden gap-1.5 ml-auto shrink-0">
                     {/* 🌐 Языковой переключатель */}
-                    <LanguageSwitcher />
-                    {/* 🎨 Переключатель темы — рядом с меню */}
-                    <ThemeSwitcher />
-
+                    <div className="shrink-0">
+                        <LanguageSwitcher />
+                    </div>
+                    {/* 🎨 Переключатель темы */}
+                    <div className="shrink-0">
+                        <ThemeSwitcher />
+                    </div>
+                    {/* 🍔 Бургер-меню - всегда видно и доступно */}
                     <Sheet open={open} onOpenChange={setOpen}>
                         <SheetTrigger asChild>
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="md:hidden shrink-0"
+                                className="md:hidden shrink-0 w-10 h-10 min-w-[40px] flex-shrink-0 relative z-10"
                                 aria-label={open ? header.ariaMenuClose : header.ariaMenuOpen}
                             >
                                 {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -184,6 +186,11 @@ export function SiteHeader() {
                                 {isEnglish ? "Navigation menu" : "Меню навигации"}
                             </SheetTitle>
                             <nav className="flex flex-col gap-4">
+                                {/* 🔍 Поиск в мобильном меню */}
+                                <div className="pb-2 border-b">
+                                    <SearchBar isEnglish={isEnglish} />
+                                </div>
+                                
                                 {links.map((link: NavLink) => {
                                     // Для инструментов создаем раскрывающийся список
                                     if (link.href === "/tools" || link.href === "/en/tools" || link.href === "/calculators" || link.href === "/en/calculators") {
