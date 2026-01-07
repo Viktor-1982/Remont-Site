@@ -118,7 +118,7 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
             {/* Модальное окно поиска */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh] px-4"
+                    className="fixed inset-0 z-50 flex items-start justify-center pt-[10vh] sm:pt-[20vh] px-4"
                     onClick={(e) => {
                         if (e.target === e.currentTarget) {
                             setIsOpen(false)
@@ -127,7 +127,7 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
                     }}
                 >
                     <div
-                        className="w-full max-w-2xl rounded-2xl border bg-card shadow-2xl backdrop-blur-sm animate-in fade-in slide-in-from-top-4"
+                        className="w-full max-w-2xl rounded-2xl border bg-card shadow-2xl backdrop-blur-sm animate-in fade-in slide-in-from-top-4 max-h-[85vh] overflow-hidden flex flex-col"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Поисковая строка */}
@@ -160,7 +160,7 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
                         </div>
 
                         {/* Результаты */}
-                        <div className="max-h-[60vh] overflow-y-auto p-4">
+                        <div className="flex-1 overflow-y-auto p-4 min-h-0">
                             {query.trim() ? (
                                 filteredPosts.length > 0 ? (
                                     <div className="space-y-2">

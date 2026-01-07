@@ -159,7 +159,7 @@ export function SiteHeader() {
                 </div>
 
                 {/* 📱 Мобильное меню */}
-                <div className="flex items-center md:hidden gap-1.5 ml-auto shrink-0">
+                <div className="flex items-center md:hidden gap-1 ml-auto shrink-0">
                     {/* 🌐 Языковой переключатель */}
                     <div className="shrink-0">
                         <LanguageSwitcher />

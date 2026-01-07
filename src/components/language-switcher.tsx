@@ -76,7 +76,7 @@ export function LanguageSwitcher() {
                         key={locale.code}
                         href={href}
                         className={cn(
-                            "px-3 py-1 text-sm font-semibold rounded-full transition-all duration-200",
+                            "px-2.5 sm:px-3 py-1 text-xs sm:text-sm font-semibold rounded-full transition-all duration-200",
                             isActive
                                 ? "bg-gradient-to-r from-orange-400 to-amber-500 text-white shadow scale-[1.05]"
                                 : "text-muted-foreground hover:text-primary hover:bg-white/30 hover:scale-[1.03]"
