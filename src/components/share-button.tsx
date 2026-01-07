@@ -49,7 +49,11 @@ export function ShareButton({
 }: ShareButtonProps) {
     const [copied, setCopied] = useState(false)
 
-    const fullUrl = typeof window !== "undefined" ? window.location.origin + url : url
+    // Проверяем, является ли URL уже полным (начинается с http:// или https://)
+    const isFullUrl = url.startsWith("http://") || url.startsWith("https://")
+    const fullUrl = typeof window !== "undefined" 
+        ? (isFullUrl ? url : window.location.origin + url)
+        : url
     const shareText = `${title}${description ? ` - ${description}` : ""}`
 
     const shareLinks: Record<SharePlatform, string> = {

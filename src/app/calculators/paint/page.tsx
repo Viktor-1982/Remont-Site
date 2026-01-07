@@ -173,7 +173,7 @@ export default function PaintCalculatorPage() {
                 <div className="relative z-10">
                     <h2 className="text-2xl font-bold text-foreground mb-6">Поделитесь калькулятором</h2>
                     <ShareButton
-                        url="https://renohacks.com/calculators/paint"
+                        url="/calculators/paint"
                         title="Калькулятор краски онлайн — рассчитать расход краски | Renohacks"
                         description="Онлайн калькулятор краски: введите размеры комнаты и узнайте, сколько литров краски нужно"
                     />

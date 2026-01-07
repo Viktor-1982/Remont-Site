@@ -175,7 +175,7 @@ export default function WallpaperCalculatorPageEn() {
                 <div className="relative z-10">
                     <h2 className="text-2xl font-bold text-foreground mb-6">Share the calculator</h2>
                     <ShareButton
-                        url="https://renohacks.com/en/calculators/wallpaper"
+                        url="/en/calculators/wallpaper"
                         title="Wallpaper Calculator Online — calculate rolls needed | Renohacks"
                         description="Online wallpaper calculator: enter your wall area and find out how many rolls of wallpaper you need"
                         isEnglish={true}

@@ -175,7 +175,7 @@ export default function WallpaperCalculatorPage() {
                 <div className="relative z-10">
                     <h2 className="text-2xl font-bold text-foreground mb-6">Поделитесь калькулятором</h2>
                     <ShareButton
-                        url="https://renohacks.com/calculators/wallpaper"
+                        url="/calculators/wallpaper"
                         title="Калькулятор обоев онлайн — рассчитать количество рулонов | Renohacks"
                         description="Онлайн калькулятор обоев: введите площадь стен и узнайте, сколько рулонов обоев потребуется"
                     />

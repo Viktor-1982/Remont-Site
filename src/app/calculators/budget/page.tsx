@@ -247,7 +247,7 @@ export default function BudgetPlannerPage() {
                 <div className="relative z-10">
                     <h2 className="text-2xl font-bold text-foreground mb-6">Поделитесь калькулятором</h2>
                     <ShareButton
-                        url="https://renohacks.com/calculators/budget"
+                        url="/calculators/budget"
                         title="Бесплатный планировщик бюджета ремонта от Renohacks"
                         description="Планируйте стоимость ремонта с помощью этого бесплатного калькулятора от Renohacks"
                     />

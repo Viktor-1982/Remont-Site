@@ -274,7 +274,7 @@ export default function TileCalculatorPageEn() {
                 <div className="relative z-10">
                     <h2 className="text-2xl font-bold text-foreground mb-6">Share the calculator</h2>
                     <ShareButton
-                        url="https://renohacks.com/en/calculators/tile"
+                        url="/en/calculators/tile"
                         title="Tile Calculator Online — Calculate Tiles for Floor & Walls | Renohacks"
                         description="Free tile calculator: calculate exact tile quantity for floors and walls"
                         isEnglish={true}

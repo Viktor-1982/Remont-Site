@@ -110,7 +110,7 @@ export default function ColorPalettePage() {
                 <div className="relative z-10">
                     <h2 className="text-2xl font-bold text-foreground mb-6">Поделитесь генератором</h2>
                     <ShareButton
-                        url="https://renohacks.com/calculators/color-palette"
+                        url="/calculators/color-palette"
                         title="Генератор цветовых палитр для ремонта | Renohacks"
                         description="Создайте гармоничную цветовую палитру для вашего интерьера"
                     />

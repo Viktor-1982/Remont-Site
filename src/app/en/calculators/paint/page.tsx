@@ -173,7 +173,7 @@ export default function PaintCalculatorPageEn() {
                 <div className="relative z-10">
                     <h2 className="text-2xl font-bold text-foreground mb-6">Share the calculator</h2>
                     <ShareButton
-                        url="https://renohacks.com/en/calculators/paint"
+                        url="/en/calculators/paint"
                         title="Paint Calculator Online — calculate paint consumption | Renohacks"
                         description="Online paint calculator: enter your room dimensions and find out how many liters of paint you need"
                         isEnglish={true}

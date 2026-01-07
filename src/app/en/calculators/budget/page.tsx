@@ -418,7 +418,7 @@ export default function BudgetPlannerPageEn() {
         <div className="relative z-10">
           <h2 className="text-2xl font-bold text-foreground mb-6">Share the calculator</h2>
           <ShareButton
-            url="https://renohacks.com/en/calculators/budget"
+            url="/en/calculators/budget"
             title="Free Renovation Budget Planner by Renohacks"
             description="Plan your renovation costs with this free calculator by Renohacks"
             isEnglish={true}

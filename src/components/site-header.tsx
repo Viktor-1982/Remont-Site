@@ -101,11 +101,6 @@ export function SiteHeader() {
                     renohacks.com
                 </Link>
 
-                {/* 🌐 Языковой переключатель — всегда видим */}
-                <div className="flex items-center gap-2 md:hidden">
-                    <LanguageSwitcher />
-                </div>
-
                 {/* 🧭 Навигация — десктоп */}
                 <nav className="hidden md:flex items-center gap-8">
                     {links.map((link: NavLink) => {
@@ -164,9 +159,11 @@ export function SiteHeader() {
                 </div>
 
                 {/* 📱 Мобильное меню */}
-                <div className="flex items-center md:hidden gap-2">
+                <div className="flex items-center md:hidden gap-2 ml-auto">
                     {/* 🔍 Поиск на мобильных */}
                     <SearchBar isEnglish={isEnglish} />
+                    {/* 🌐 Языковой переключатель */}
+                    <LanguageSwitcher />
                     {/* 🎨 Переключатель темы — рядом с меню */}
                     <ThemeSwitcher />
 
@@ -175,7 +172,7 @@ export function SiteHeader() {
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="md:hidden"
+                                className="md:hidden shrink-0"
                                 aria-label={open ? header.ariaMenuClose : header.ariaMenuOpen}
                             >
                                 {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
