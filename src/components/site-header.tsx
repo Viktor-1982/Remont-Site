@@ -181,11 +181,13 @@ export function SiteHeader() {
                             </Button>
                         </SheetTrigger>
 
-                        <SheetContent side="right" className="p-6 pr-16">
-                            <SheetTitle className="sr-only">
-                                {isEnglish ? "Navigation menu" : "Меню навигации"}
-                            </SheetTitle>
-                            <nav className="flex flex-col gap-4">
+                        <SheetContent side="right" className="p-0 flex flex-col h-full">
+                            <div className="p-6 pr-16 flex-shrink-0">
+                                <SheetTitle className="sr-only">
+                                    {isEnglish ? "Navigation menu" : "Меню навигации"}
+                                </SheetTitle>
+                            </div>
+                            <nav className="flex-1 overflow-y-auto px-6 pr-16 pb-6 flex flex-col gap-4">
                                 {/* 🔍 Поиск в мобильном меню */}
                                 <div className="pb-2 border-b">
                                     <SearchBar isEnglish={isEnglish} />
