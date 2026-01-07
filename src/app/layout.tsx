@@ -13,6 +13,7 @@ import { KeyboardShortcuts } from "@/components/keyboard-shortcuts"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Toaster } from "sonner"
 import Script from "next/script"
 import { headers } from "next/headers"
 
@@ -195,6 +196,7 @@ export default async function RootLayout({
             <CookieConsent />
             <KeyboardShortcuts isEnglish={lang === "en"} />
             <ScrollToTop />
+            <Toaster position="top-center" richColors />
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

@@ -6,6 +6,7 @@ import { HeroBanner } from "@/components/hero-banner"
 import { HomeBackgroundAnimation } from "@/components/home-background-animation"
 import { PopularPosts } from "@/components/popular-posts"
 import { EmailSubscription } from "@/components/email-subscription"
+import { CalculatorsShowcase } from "@/components/calculators-showcase"
 
 // 🔄 Автоматическое обновление страницы каждые 60 сек
 export const revalidate = 60
@@ -70,6 +71,9 @@ export default function HomePage() {
 
             {/* 📑 Контент внутри контейнера */}
             <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16 max-w-7xl">
+                {/* Калькуляторы и инструменты */}
+                <CalculatorsShowcase isEnglish={false} />
+
                 {/* ✅ Якорь для стрелки */}
                 <section id="articles">
                     <div className="mb-10">

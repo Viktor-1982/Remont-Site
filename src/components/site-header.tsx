@@ -3,17 +3,19 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Calculator, ChevronDown, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import { DeepLink } from "@/components/deep-link"
 import { SearchBar } from "@/components/search-bar"
+import { CalculatorsDropdown } from "@/components/calculators-dropdown"
 import { FaInstagram, FaPinterest } from "react-icons/fa"
 import navData from "@/types/nav"
 import type { NavData, Locale, NavLink } from "@/types/nav"
 import { useState } from "react"
+import { Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Sparkles, ShoppingCart } from "lucide-react"
 
 export function SiteHeader() {
     const pathname = usePathname()
@@ -21,6 +23,29 @@ export function SiteHeader() {
     const locale: Locale = isEnglish ? "en" : "ru"
     const { links, social, header } = (navData as NavData)[locale]
     const [open, setOpen] = useState(false)
+    const [toolsOpen, setToolsOpen] = useState(false)
+
+    const calculators = isEnglish
+        ? [
+              { href: "/en/calculators/paint", label: "Paint Calculator", icon: Paintbrush },
+              { href: "/en/calculators/wallpaper", label: "Wallpaper Calculator", icon: Wallpaper },
+              { href: "/en/calculators/tile", label: "Tile Calculator", icon: Grid3X3 },
+              { href: "/en/calculators/budget", label: "Budget Planner", icon: Wallet },
+              { href: "/en/calculators/color-palette", label: "Color Palette Generator", icon: Palette },
+              { href: "/en/quiz/interior-style", label: "Interior Style Quiz", icon: Sparkles },
+              { href: "/en/tools/materials-checklist", label: "Materials Checklist", icon: ShoppingCart },
+          ]
+        : [
+              { href: "/calculators/paint", label: "Калькулятор краски", icon: Paintbrush },
+              { href: "/calculators/wallpaper", label: "Калькулятор обоев", icon: Wallpaper },
+              { href: "/calculators/tile", label: "Калькулятор плитки", icon: Grid3X3 },
+              { href: "/calculators/budget", label: "Планировщик бюджета", icon: Wallet },
+              { href: "/calculators/color-palette", label: "Генератор палитр", icon: Palette },
+              { href: "/quiz/interior-style", label: "Квиз: стиль интерьера", icon: Sparkles },
+              { href: "/tools/materials-checklist", label: "Чеклист покупок", icon: ShoppingCart },
+          ]
+    
+    const allCalculatorsHref = isEnglish ? "/en/tools" : "/tools"
 
     const isActive = (href: string): boolean => {
         // Нормализуем pathname (убираем trailing slash)
@@ -42,8 +67,8 @@ export function SiteHeader() {
         // Для страниц, которые должны быть активны только при точном совпадении
         // (не активны на дочерних страницах)
         const exactMatchPages = [
-            "/tags", "/bookmarks", "/calculators", "/about",
-            "/en/tags", "/en/bookmarks", "/en/calculators", "/en/about"
+            "/tags", "/bookmarks", "/calculators", "/tools", "/about",
+            "/en/tags", "/en/bookmarks", "/en/calculators", "/en/tools", "/en/about"
         ]
         
         if (exactMatchPages.includes(href)) {
@@ -83,7 +108,18 @@ export function SiteHeader() {
 
                 {/* 🧭 Навигация — десктоп */}
                 <nav className="hidden md:flex items-center gap-8">
-                    {links.map((link: NavLink) => (
+                    {links.map((link: NavLink) => {
+                        // Для калькуляторов используем выпадающее меню
+                                    if (link.href === "/tools" || link.href === "/en/tools" || link.href === "/calculators" || link.href === "/en/calculators") {
+                            return (
+                                <CalculatorsDropdown
+                                    key={link.href}
+                                    isEnglish={isEnglish}
+                                />
+                            )
+                        }
+                        
+                        return (
                         <Link
                             key={link.href}
                             href={link.href}
@@ -96,7 +132,8 @@ export function SiteHeader() {
                         >
                             {link.label}
                         </Link>
-                    ))}
+                        )
+                    })}
                 </nav>
 
                 {/* 🔘 Переключатели и соцсети — десктоп */}
@@ -150,7 +187,63 @@ export function SiteHeader() {
                                 {isEnglish ? "Navigation menu" : "Меню навигации"}
                             </SheetTitle>
                             <nav className="flex flex-col gap-4">
-                                {links.map((link: NavLink) => (
+                                {links.map((link: NavLink) => {
+                                    // Для инструментов создаем раскрывающийся список
+                                    if (link.href === "/tools" || link.href === "/en/tools" || link.href === "/calculators" || link.href === "/en/calculators") {
+                                        return (
+                                            <div key={link.href} className="flex flex-col gap-2">
+                                                <button
+                                                    onClick={() => setToolsOpen(!toolsOpen)}
+                                                    className={cn(
+                                                        "flex items-center justify-between text-lg font-semibold transition-colors hover:text-primary",
+                                                        isActive(link.href)
+                                                            ? "text-primary"
+                                                            : "text-foreground/90 hover:text-foreground"
+                                                    )}
+                                                >
+                                                    <span className="flex items-center gap-2">
+                                                        <Calculator className="w-5 h-5" />
+                                                        {link.label}
+                                                    </span>
+                                                    {toolsOpen ? (
+                                                        <ChevronDown className="w-4 h-4 transition-transform" />
+                                                    ) : (
+                                                        <ChevronRight className="w-4 h-4 transition-transform" />
+                                                    )}
+                                                </button>
+                                                {toolsOpen && (
+                                                    <div className="ml-7 flex flex-col gap-2 border-l border-border/50 pl-4">
+                                                        {calculators.map((calc) => {
+                                                            const Icon = calc.icon
+                                                            return (
+                                                                <Link
+                                                                    key={calc.href}
+                                                                    href={calc.href}
+                                                                    onClick={() => setOpen(false)}
+                                                                    className="flex items-start gap-3 py-1 transition-colors hover:text-primary text-foreground/80"
+                                                                >
+                                                                    <Icon className="w-4 h-4 text-primary mt-0.5" />
+                                                                    <div className="flex-1 min-w-0">
+                                                                        <div className="font-medium text-base">{calc.label}</div>
+                                                                    </div>
+                                                                </Link>
+                                                            )
+                                                        })}
+                                                        <Link
+                                                            href={allCalculatorsHref}
+                                                            onClick={() => setOpen(false)}
+                                                            className="flex items-center gap-2 text-base font-semibold text-primary mt-1"
+                                                        >
+                                                            <Calculator className="w-4 h-4" />
+                                                            {isEnglish ? "View all calculators" : "Все калькуляторы"}
+                                                        </Link>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )
+                                    }
+                                    
+                                    return (
                                     <Link
                                         key={link.href}
                                         href={link.href}
@@ -164,7 +257,8 @@ export function SiteHeader() {
                                     >
                                         {link.label}
                                     </Link>
-                                ))}
+                                    )
+                                })}
 
                                 <div className="flex items-center gap-4 mt-6">
                                     <DeepLink

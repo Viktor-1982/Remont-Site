@@ -11,7 +11,7 @@
       { "href": "/tags", "label": "Теги", "title": "Облако тегов всех статей" },
       { "href": "/bookmarks", "label": "Закладки", "title": "Мои сохраненные статьи" },
       { "href": "/about", "label": "О проекте", "title": "Информация о Renohacks" },
-      { "href": "/calculators", "label": "Калькуляторы", "title": "Онлайн калькуляторы для ремонта" }
+      { "href": "/tools", "label": "Инструменты", "title": "Онлайн инструменты для ремонта" }
     ],
     "social": {
       "instagram": "https://www.instagram.com/reno.hacks",
@@ -129,7 +129,7 @@
       { "href": "/en/tags", "label": "Tags", "title": "Tag cloud of all articles" },
       { "href": "/en/bookmarks", "label": "Bookmarks", "title": "My saved articles" },
       { "href": "/en/about", "label": "About", "title": "About Renohacks project" },
-      { "href": "/en/calculators", "label": "Calculators", "title": "Online renovation calculators" }
+      { "href": "/en/tools", "label": "Tools", "title": "Online renovation tools" }
     ],
     "social": {
       "instagram": "https://www.instagram.com/reno.hacks",

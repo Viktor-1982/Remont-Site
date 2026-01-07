@@ -24,6 +24,15 @@ const nextConfig: NextConfig = {
             }
         }
 
+        // Игнорируем предупреждения о oklch - lightningcss обработает это
+        config.ignoreWarnings = [
+            ...(config.ignoreWarnings || []),
+            {
+                module: /\.css$/,
+                message: /oklch/,
+            },
+        ]
+
         return config
     },
 }

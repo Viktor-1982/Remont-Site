@@ -6,6 +6,7 @@ import { HeroBanner } from "@/components/hero-banner"
 import { HomeBackgroundAnimation } from "@/components/home-background-animation"
 import { PopularPosts } from "@/components/popular-posts"
 import { EmailSubscription } from "@/components/email-subscription"
+import { CalculatorsShowcase } from "@/components/calculators-showcase"
 
 // 🔄 Автообновление контента раз в минуту
 export const revalidate = 60
@@ -63,6 +64,9 @@ export default function HomePageEn() {
 
             {/* 📄 Main content inside container */}
             <div className="container mx-auto px-4 sm:px-6 py-10 space-y-12 max-w-7xl">
+                {/* Калькуляторы и инструменты */}
+                <CalculatorsShowcase isEnglish={true} />
+
                 {/* ✅ anchor for the scroll arrow */}
                 <section id="articles">
                     <h2 className="text-3xl font-bold mb-6 text-balance text-center sm:text-left">
