@@ -198,11 +198,26 @@ export async function POST(req: NextRequest) {
         )
     } catch (error) {
         console.error("Subscription error:", error)
+        
+        // Детальное логирование для отладки
+        if (error instanceof Error) {
+            console.error("Error message:", error.message)
+            console.error("Error stack:", error.stack)
+        }
+        
+        // Логируем информацию о Supabase
+        console.error("Supabase ready:", process.env.SUPABASE_URL ? "configured" : "not configured")
+        
         return NextResponse.json(
             { 
                 error: locale === "en" 
                     ? "An error occurred. Please try again later." 
-                    : "Произошла ошибка. Пожалуйста, попробуйте позже."
+                    : "Произошла ошибка. Пожалуйста, попробуйте позже.",
+                // В development режиме показываем детали ошибки
+                ...(process.env.NODE_ENV === "development" && error instanceof Error ? {
+                    details: error.message,
+                    stack: error.stack
+                } : {})
             },
             { status: 500 }
         )

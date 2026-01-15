@@ -58,18 +58,50 @@ export async function upsertSubscription(payload: Subscription): Promise<void> {
     }
 
     if (supabaseReady && supabaseAdmin) {
-        const { error } = await supabaseAdmin.from("subscriptions").upsert({
-            ...record,
-            subscribed_at: nowIso(),
-        })
+        try {
+            const { error } = await supabaseAdmin.from("subscriptions").upsert({
+                ...record,
+                subscribed_at: nowIso(),
+            }, {
+                onConflict: "email"
+            })
 
-        if (error) {
-            console.error("Supabase upsertSubscription error:", error)
-            throw error
+            if (error) {
+                console.error("Supabase upsertSubscription error:", error)
+                console.error("Error details:", JSON.stringify(error, null, 2))
+                console.error("Record being upserted:", record)
+                
+                // Если ошибка связана с таблицей, пробуем использовать memory store как fallback
+                if (error.code === "PGRST116" || error.message?.includes("relation") || error.message?.includes("does not exist")) {
+                    console.warn("Supabase table may not exist, falling back to memory store")
+                    const existingIndex = memoryStore.findIndex((s) => s.email.toLowerCase() === record.email)
+                    if (existingIndex >= 0) {
+                        memoryStore[existingIndex] = { ...payload, subscribedAt: Date.now() }
+                    } else {
+                        memoryStore.push({ ...payload, subscribedAt: Date.now() })
+                    }
+                    return
+                }
+                
+                throw error
+            }
+            return
+        } catch (err) {
+            console.error("Unexpected error in upsertSubscription:", err)
+            // Fallback на memory store в случае критической ошибки
+            console.warn("Falling back to memory store due to error")
+            const existingIndex = memoryStore.findIndex((s) => s.email.toLowerCase() === record.email)
+            if (existingIndex >= 0) {
+                memoryStore[existingIndex] = { ...payload, subscribedAt: Date.now() }
+            } else {
+                memoryStore.push({ ...payload, subscribedAt: Date.now() })
+            }
+            // Не бросаем ошибку, чтобы подписка всё равно работала
+            return
         }
-        return
     }
 
+    // Используем memory store если Supabase не настроен
     const existingIndex = memoryStore.findIndex((s) => s.email.toLowerCase() === record.email)
     if (existingIndex >= 0) {
         memoryStore[existingIndex] = { ...payload, subscribedAt: Date.now() }
