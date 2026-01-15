@@ -96,6 +96,28 @@ export async function deleteSubscription(email: string): Promise<void> {
     }
 }
 
+export async function getAllSubscriptions(): Promise<Subscription[]> {
+    if (supabaseReady && supabaseAdmin) {
+        try {
+            const { data, error } = await supabaseAdmin
+                .from("subscriptions")
+                .select("*")
+
+            if (error) {
+                console.error("Supabase getAllSubscriptions error:", error)
+                throw error
+            }
+
+            return (data || []).map((row) => mapRow(row as SubscriptionRow))
+        } catch (err) {
+            console.error("Unexpected error in getAllSubscriptions:", err)
+            throw err
+        }
+    }
+
+    return [...memoryStore]
+}
+
 export async function getStats() {
     if (supabaseReady && supabaseAdmin) {
         const { data, error } = await supabaseAdmin.from("subscriptions").select("locale")
