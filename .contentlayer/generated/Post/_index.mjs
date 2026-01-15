@@ -13,8 +13,10 @@ import pokraskaStenPodgotovkaMdx from './pokraska-sten-podgotovka.mdx.json' with
 import pokraskaStenMdx from './pokraska-sten.mdx.json' with { type: 'json' }
 import remontChernovoyKvartiryMdx from './remont-chernovoy-kvartiry.mdx.json' with { type: 'json' }
 import remontSovety_5Mdx from './remont-sovety-5.mdx.json' with { type: 'json' }
+import remontStaroyKvartiryMdx from './remont-staroy-kvartiry.mdx.json' with { type: 'json' }
 import remontVannoyMdx from './remont-vannoy.mdx.json' with { type: 'json' }
 import sovetyTsvetaGostinayaMdx from './sovety-tsveta-gostinaya.mdx.json' with { type: 'json' }
+import sovremennyePodkhodyKRemontuKvartir_2026Mdx from './sovremennye-podkhody-k-remontu-kvartir-2026.mdx.json' with { type: 'json' }
 import trends_2026Mdx from './trends-2026.mdx.json' with { type: 'json' }
 import vidyModulnykhDomovMdx from './vidy-modulnykh-domov.mdx.json' with { type: 'json' }
 import vidyOboyevMdx from './vidy-oboyev.mdx.json' with { type: 'json' }
@@ -31,6 +33,8 @@ import en__interiorTrends_2025Mdx from './en__interior-trends-2025.mdx.json' wit
 import en__kitchenMakeoverMdx from './en__kitchen-makeover.mdx.json' with { type: 'json' }
 import en__kitchenTrends_2026Mdx from './en__kitchen-trends-2026.mdx.json' with { type: 'json' }
 import en__livingRoomColorTipsMdx from './en__living-room-color-tips.mdx.json' with { type: 'json' }
+import en__modernApartmentRenovation_2026Mdx from './en__modern-apartment-renovation-2026.mdx.json' with { type: 'json' }
+import en__oldApartmentRenovationGuideMdx from './en__old-apartment-renovation-guide.mdx.json' with { type: 'json' }
 import en__paintingWallsYourselfMdx from './en__painting-walls-yourself.mdx.json' with { type: 'json' }
 import en__preparingWallsForPaintingMdx from './en__preparing-walls-for-painting.mdx.json' with { type: 'json' }
 import en__renovationTips_5Mdx from './en__renovation-tips-5.mdx.json' with { type: 'json' }
@@ -39,4 +43,4 @@ import en__smallStudioInteriorDesignMdx from './en__small-studio-interior-design
 import en__typesOfModularHomesMdx from './en__types-of-modular-homes.mdx.json' with { type: 'json' }
 import en__wallpaperTypesMdx from './en__wallpaper-types.mdx.json' with { type: 'json' }
 
-export const allPosts = [_5OshibokNovichkovRemontaKvartiryMdx, _8InteriorTrends_2025Mdx, countryHouseTrends_2026Mdx, dizainSpalniMdx, dizaynKuhni_2026Mdx, kakSekonomitNaRemonteMdx, malenkayaKuhnyaMdx, malenkayaStudiyaDizaynIntereraMdx, podborkaTsvetovMdx, pokraskaStenPodgotovkaMdx, pokraskaStenMdx, remontChernovoyKvartiryMdx, remontSovety_5Mdx, remontVannoyMdx, sovetyTsvetaGostinayaMdx, trends_2026Mdx, vidyModulnykhDomovMdx, vidyOboyevMdx, zhilayaZonaVSkaleMdx, en__5ApartmentRenovationMistakesMdx, en__bedroomDesignMdx, en__caveLivingMdx, en__countryHouseTrends_2026Mdx, en__diyBathroomMakeoverMdx, en__fiveInteriorTipsMdx, en__howToSaveMoneyOnRenovationMdx, en__interiorDesignTrends_2026Mdx, en__interiorTrends_2025Mdx, en__kitchenMakeoverMdx, en__kitchenTrends_2026Mdx, en__livingRoomColorTipsMdx, en__paintingWallsYourselfMdx, en__preparingWallsForPaintingMdx, en__renovationTips_5Mdx, en__roughRenovationGuideMdx, en__smallStudioInteriorDesignMdx, en__typesOfModularHomesMdx, en__wallpaperTypesMdx]
+export const allPosts = [_5OshibokNovichkovRemontaKvartiryMdx, _8InteriorTrends_2025Mdx, countryHouseTrends_2026Mdx, dizainSpalniMdx, dizaynKuhni_2026Mdx, kakSekonomitNaRemonteMdx, malenkayaKuhnyaMdx, malenkayaStudiyaDizaynIntereraMdx, podborkaTsvetovMdx, pokraskaStenPodgotovkaMdx, pokraskaStenMdx, remontChernovoyKvartiryMdx, remontSovety_5Mdx, remontStaroyKvartiryMdx, remontVannoyMdx, sovetyTsvetaGostinayaMdx, sovremennyePodkhodyKRemontuKvartir_2026Mdx, trends_2026Mdx, vidyModulnykhDomovMdx, vidyOboyevMdx, zhilayaZonaVSkaleMdx, en__5ApartmentRenovationMistakesMdx, en__bedroomDesignMdx, en__caveLivingMdx, en__countryHouseTrends_2026Mdx, en__diyBathroomMakeoverMdx, en__fiveInteriorTipsMdx, en__howToSaveMoneyOnRenovationMdx, en__interiorDesignTrends_2026Mdx, en__interiorTrends_2025Mdx, en__kitchenMakeoverMdx, en__kitchenTrends_2026Mdx, en__livingRoomColorTipsMdx, en__modernApartmentRenovation_2026Mdx, en__oldApartmentRenovationGuideMdx, en__paintingWallsYourselfMdx, en__preparingWallsForPaintingMdx, en__renovationTips_5Mdx, en__roughRenovationGuideMdx, en__smallStudioInteriorDesignMdx, en__typesOfModularHomesMdx, en__wallpaperTypesMdx]
