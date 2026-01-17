@@ -48,8 +48,10 @@ async function sendNotificationsForPost(post: Post): Promise<{
     total: number
     errors: string[]
 }> {
+    const locale = post.locale === "en" ? "en" : "ru"
+
     // Проверяем, не было ли уже отправлено уведомление
-    const alreadySent = await wasNotificationSent(post.slug, post.locale)
+    const alreadySent = await wasNotificationSent(post.slug, locale)
     if (alreadySent) {
         return {
             sent: 0,
@@ -73,7 +75,7 @@ async function sendNotificationsForPost(post: Post): Promise<{
 
     // Фильтруем подписчиков по языку статьи
     const targetSubscribers = subscribers.filter(
-        (sub) => sub.locale === post.locale
+        (sub) => sub.locale === locale
     )
 
     if (targetSubscribers.length === 0) {
@@ -100,7 +102,7 @@ async function sendNotificationsForPost(post: Post): Promise<{
         `${SITE_URL}/api/unsubscribe?email=${encodeURIComponent(email)}&locale=${locale}`
 
     // Отправляем письма
-    const isEnglish = post.locale === "en"
+    const isEnglish = locale === "en"
     const subject = isEnglish
         ? `New Article: ${post.title}`
         : `Новая статья: ${post.title}`
@@ -171,7 +173,7 @@ async function sendNotificationsForPost(post: Post): Promise<{
     // Сохраняем информацию об отправке
     await saveNotificationSent(
         post.slug,
-        post.locale,
+        locale,
         targetSubscribers.length,
         successCount,
         errorCount
@@ -274,109 +276,6 @@ export async function POST(req: NextRequest) {
             },
             { status: 200 }
         )
-
-        // Получаем всех подписчиков
-        const subscribers = await getAllSubscriptions()
-
-        if (subscribers.length === 0) {
-            return NextResponse.json(
-                { message: "No subscribers found", sent: 0 },
-                { status: 200 }
-            )
-        }
-
-        // Фильтруем подписчиков по языку статьи
-        const targetSubscribers = subscribers.filter(
-            (sub) => sub.locale === post.locale
-        )
-
-        if (targetSubscribers.length === 0) {
-            return NextResponse.json(
-                { message: `No subscribers found for locale "${post.locale}"`, sent: 0 },
-                { status: 200 }
-            )
-        }
-
-        if (!resend) {
-            return NextResponse.json(
-                { error: "Resend is not configured. RESEND_API_KEY is missing." },
-                { status: 500 }
-            )
-        }
-
-        // Формируем URL статьи
-        const articleUrl = `${SITE_URL}${post.url}`
-        const unsubscribeUrl = (email: string, locale: string) =>
-            `${SITE_URL}/api/unsubscribe?email=${encodeURIComponent(email)}&locale=${locale}`
-
-        // Отправляем письма
-        const isEnglish = post.locale === "en"
-        const subject = isEnglish
-            ? `New Article: ${post.title}`
-            : `Новая статья: ${post.title}`
-
-        let successCount = 0
-        let errorCount = 0
-        const errors: string[] = []
-
-        // Отправляем письма батчами (Resend рекомендует не более 50 за раз)
-        const batchSize = 50
-        for (let i = 0; i < targetSubscribers.length; i += batchSize) {
-            const batch = targetSubscribers.slice(i, i + batchSize)
-
-            const emailPromises = batch.map(async (subscriber) => {
-                try {
-                    const htmlContent = isEnglish
-                        ? `
-                            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-                                <h1 style="color: #333;">New Article Published!</h1>
-                                <h2 style="color: #555; margin-top: 20px;">${post.title}</h2>
-                                <p style="color: #666; line-height: 1.6;">${post.description}</p>
-                                <div style="margin: 30px 0;">
-                                    <a href="${articleUrl}" style="display: inline-block; background-color: #0070f3; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;">Read Article</a>
-                                </div>
-                                <p style="color: #999; font-size: 12px; margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
-                                    Want to unsubscribe? <a href="${unsubscribeUrl(subscriber.email, subscriber.locale)}">Unsubscribe here</a>.
-                                </p>
-                            </div>
-                        `
-                        : `
-                            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-                                <h1 style="color: #333;">Опубликована новая статья!</h1>
-                                <h2 style="color: #555; margin-top: 20px;">${post.title}</h2>
-                                <p style="color: #666; line-height: 1.6;">${post.description}</p>
-                                <div style="margin: 30px 0;">
-                                    <a href="${articleUrl}" style="display: inline-block; background-color: #0070f3; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;">Читать статью</a>
-                                </div>
-                                <p style="color: #999; font-size: 12px; margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
-                                    Хотите отписаться? <a href="${unsubscribeUrl(subscriber.email, subscriber.locale)}">Отписаться</a>.
-                                </p>
-                            </div>
-                        `
-
-                    await resend.emails.send({
-                        from: FROM_EMAIL,
-                        to: subscriber.email,
-                        subject: subject,
-                        html: htmlContent,
-                    })
-
-                    successCount++
-                } catch (error) {
-                    errorCount++
-                    const errorMsg = error instanceof Error ? error.message : String(error)
-                    errors.push(`${subscriber.email}: ${errorMsg}`)
-                    console.error(`Failed to send email to ${subscriber.email}:`, error)
-                }
-            })
-
-            await Promise.all(emailPromises)
-
-            // Небольшая задержка между батчами, чтобы не превысить лимиты API
-            if (i + batchSize < targetSubscribers.length) {
-                await new Promise((resolve) => setTimeout(resolve, 1000))
-            }
-        }
 
     } catch (error) {
         console.error("Notify subscribers error:", error)

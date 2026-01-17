@@ -12,6 +12,7 @@ import podborkaTsvetovMdx from './podborka-tsvetov.mdx.json' with { type: 'json'
 import pokraskaStenPodgotovkaMdx from './pokraska-sten-podgotovka.mdx.json' with { type: 'json' }
 import pokraskaStenMdx from './pokraska-sten.mdx.json' with { type: 'json' }
 import remontChernovoyKvartiryMdx from './remont-chernovoy-kvartiry.mdx.json' with { type: 'json' }
+import remontKvartiryPlan_2026Mdx from './remont-kvartiry-plan-2026.mdx.json' with { type: 'json' }
 import remontSovety_5Mdx from './remont-sovety-5.mdx.json' with { type: 'json' }
 import remontStaroyKvartiryMdx from './remont-staroy-kvartiry.mdx.json' with { type: 'json' }
 import remontVannoyMdx from './remont-vannoy.mdx.json' with { type: 'json' }
@@ -22,6 +23,7 @@ import vidyModulnykhDomovMdx from './vidy-modulnykh-domov.mdx.json' with { type:
 import vidyOboyevMdx from './vidy-oboyev.mdx.json' with { type: 'json' }
 import zhilayaZonaVSkaleMdx from './zhilaya-zona-v-skale.mdx.json' with { type: 'json' }
 import en__5ApartmentRenovationMistakesMdx from './en__5-apartment-renovation-mistakes.mdx.json' with { type: 'json' }
+import en__apartmentRenovationPlan_2026Mdx from './en__apartment-renovation-plan-2026.mdx.json' with { type: 'json' }
 import en__bedroomDesignMdx from './en__bedroom-design.mdx.json' with { type: 'json' }
 import en__caveLivingMdx from './en__cave-living.mdx.json' with { type: 'json' }
 import en__countryHouseTrends_2026Mdx from './en__country-house-trends-2026.mdx.json' with { type: 'json' }
@@ -43,4 +45,4 @@ import en__smallStudioInteriorDesignMdx from './en__small-studio-interior-design
 import en__typesOfModularHomesMdx from './en__types-of-modular-homes.mdx.json' with { type: 'json' }
 import en__wallpaperTypesMdx from './en__wallpaper-types.mdx.json' with { type: 'json' }
 
-export const allPosts = [_5OshibokNovichkovRemontaKvartiryMdx, _8InteriorTrends_2025Mdx, countryHouseTrends_2026Mdx, dizainSpalniMdx, dizaynKuhni_2026Mdx, kakSekonomitNaRemonteMdx, malenkayaKuhnyaMdx, malenkayaStudiyaDizaynIntereraMdx, podborkaTsvetovMdx, pokraskaStenPodgotovkaMdx, pokraskaStenMdx, remontChernovoyKvartiryMdx, remontSovety_5Mdx, remontStaroyKvartiryMdx, remontVannoyMdx, sovetyTsvetaGostinayaMdx, sovremennyePodkhodyKRemontuKvartir_2026Mdx, trends_2026Mdx, vidyModulnykhDomovMdx, vidyOboyevMdx, zhilayaZonaVSkaleMdx, en__5ApartmentRenovationMistakesMdx, en__bedroomDesignMdx, en__caveLivingMdx, en__countryHouseTrends_2026Mdx, en__diyBathroomMakeoverMdx, en__fiveInteriorTipsMdx, en__howToSaveMoneyOnRenovationMdx, en__interiorDesignTrends_2026Mdx, en__interiorTrends_2025Mdx, en__kitchenMakeoverMdx, en__kitchenTrends_2026Mdx, en__livingRoomColorTipsMdx, en__modernApartmentRenovation_2026Mdx, en__oldApartmentRenovationGuideMdx, en__paintingWallsYourselfMdx, en__preparingWallsForPaintingMdx, en__renovationTips_5Mdx, en__roughRenovationGuideMdx, en__smallStudioInteriorDesignMdx, en__typesOfModularHomesMdx, en__wallpaperTypesMdx]
+export const allPosts = [_5OshibokNovichkovRemontaKvartiryMdx, _8InteriorTrends_2025Mdx, countryHouseTrends_2026Mdx, dizainSpalniMdx, dizaynKuhni_2026Mdx, kakSekonomitNaRemonteMdx, malenkayaKuhnyaMdx, malenkayaStudiyaDizaynIntereraMdx, podborkaTsvetovMdx, pokraskaStenPodgotovkaMdx, pokraskaStenMdx, remontChernovoyKvartiryMdx, remontKvartiryPlan_2026Mdx, remontSovety_5Mdx, remontStaroyKvartiryMdx, remontVannoyMdx, sovetyTsvetaGostinayaMdx, sovremennyePodkhodyKRemontuKvartir_2026Mdx, trends_2026Mdx, vidyModulnykhDomovMdx, vidyOboyevMdx, zhilayaZonaVSkaleMdx, en__5ApartmentRenovationMistakesMdx, en__apartmentRenovationPlan_2026Mdx, en__bedroomDesignMdx, en__caveLivingMdx, en__countryHouseTrends_2026Mdx, en__diyBathroomMakeoverMdx, en__fiveInteriorTipsMdx, en__howToSaveMoneyOnRenovationMdx, en__interiorDesignTrends_2026Mdx, en__interiorTrends_2025Mdx, en__kitchenMakeoverMdx, en__kitchenTrends_2026Mdx, en__livingRoomColorTipsMdx, en__modernApartmentRenovation_2026Mdx, en__oldApartmentRenovationGuideMdx, en__paintingWallsYourselfMdx, en__preparingWallsForPaintingMdx, en__renovationTips_5Mdx, en__roughRenovationGuideMdx, en__smallStudioInteriorDesignMdx, en__typesOfModularHomesMdx, en__wallpaperTypesMdx]
