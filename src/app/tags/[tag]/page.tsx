@@ -8,6 +8,9 @@ type Params = {
     params: Promise<{ tag: string }>
 }
 
+export const revalidate = 86400
+export const dynamicParams = false
+
 // 🔹 Генерация метаданных
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const { tag } = await params

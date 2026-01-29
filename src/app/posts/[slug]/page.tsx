@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { allPosts } from "contentlayer/generated"
 import { ArticleHero } from "@/components/article-hero"
 import { TableOfContents } from "@/components/table-of-contents"
-import { Mdx } from "@/components/mdx-components"
+import { MdxContent } from "@/components/mdx-content"
 import { RelatedPosts } from "@/components/related-posts"
 import { ReadingProgress } from "@/components/reading-progress"
 import { ReadingPosition } from "@/components/reading-position"
@@ -27,6 +27,9 @@ export async function generateMetadata({
     if (!post) return {}
     return getPostMetadata(post) // ✅ автоматическое SEO
 }
+
+export const revalidate = 86400
+export const dynamicParams = false
 
 export default async function PostPage({
                                            params,
@@ -113,7 +116,7 @@ export default async function PostPage({
             <div className="grid gap-6 sm:gap-8 md:gap-12 lg:grid-cols-[1fr_280px] mt-8 sm:mt-10 md:mt-12">
                 <div className="min-w-0">
                     <div className="prose prose-sm sm:prose-base md:prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-soft prose-strong:text-foreground prose-strong:font-semibold">
-                        <Mdx code={post.body.code} />
+                        <MdxContent code={post.body.code} />
                     </div>
                 </div>
                 <aside className="hidden lg:block">
@@ -206,4 +209,10 @@ export default async function PostPage({
             )}
         </article>
     )
+}
+
+export async function generateStaticParams() {
+    return allPosts
+        .filter((post) => post.locale === "ru" && !post.draft)
+        .map((post) => ({ slug: post.slug }))
 }

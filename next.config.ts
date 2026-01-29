@@ -5,6 +5,37 @@ const nextConfig: NextConfig = {
         // ✅ Конфигурация качеств изображений для Next.js 16+
         qualities: [50, 75, 85, 90, 95, 100],
     },
+    async headers() {
+        return [
+            {
+                source: "/_next/static/:path*",
+                headers: [
+                    {
+                        key: "Cache-Control",
+                        value: "public, max-age=31536000, immutable",
+                    },
+                ],
+            },
+            {
+                source: "/images/:path*",
+                headers: [
+                    {
+                        key: "Cache-Control",
+                        value: "public, max-age=31536000, immutable",
+                    },
+                ],
+            },
+            {
+                source: "/((?!api|_next).*)",
+                headers: [
+                    {
+                        key: "Cache-Control",
+                        value: "public, s-maxage=86400, stale-while-revalidate=604800",
+                    },
+                ],
+            },
+        ]
+    },
     webpack: (config, { isServer, webpack }) => {
         // ✅ process/browser нужен только в браузере
         if (!isServer) {

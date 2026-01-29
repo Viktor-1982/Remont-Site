@@ -24,6 +24,8 @@ export const metadata: Metadata = {
     },
 }
 
+export const revalidate = 86400
+
 export default function TagsPageEn() {
     return (
         <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 max-w-6xl">

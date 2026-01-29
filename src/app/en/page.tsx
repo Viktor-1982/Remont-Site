@@ -8,8 +8,8 @@ import { PopularPosts } from "@/components/popular-posts"
 import { EmailSubscription } from "@/components/email-subscription"
 import { CalculatorsShowcase } from "@/components/calculators-showcase"
 
-// 🔄 Автообновление контента раз в минуту
-export const revalidate = 60
+// 🔄 Статическая страница с обновлением раз в сутки
+export const revalidate = 86400
 
 export const metadata: Metadata = {
     title: "Renohacks.com — DIY Renovation & Interior Design Blog | Home Ideas 2025",
