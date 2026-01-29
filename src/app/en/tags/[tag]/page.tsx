@@ -8,6 +8,7 @@ type Params = {
 }
 
 export const revalidate = 86400
+export const dynamic = "force-static"
 export const dynamicParams = false
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {

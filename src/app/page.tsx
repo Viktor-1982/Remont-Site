@@ -10,6 +10,7 @@ import { CalculatorsShowcase } from "@/components/calculators-showcase"
 
 // 🔄 Статическая страница с обновлением раз в сутки
 export const revalidate = 86400
+export const dynamic = "force-static"
 
 export const metadata: Metadata = {
     title: "Renohacks.com — блог о ремонте, дизайне и DIY | Идеи для дома 2025",

@@ -29,6 +29,7 @@ export async function generateMetadata({
 }
 
 export const revalidate = 86400
+export const dynamic = "force-static"
 export const dynamicParams = false
 
 export default async function PostPage({

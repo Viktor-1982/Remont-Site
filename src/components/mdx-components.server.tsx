@@ -2,6 +2,13 @@ import * as React from "react"
 import Image from "next/image"
 import GitHubSlugger from "github-slugger"
 import type { MDXComponents } from "mdx/types"
+import { PaintCalculator } from "@/components/widgets/paint-calculator"
+import { TileCalculator } from "@/components/widgets/tile-calculator"
+import { WallpaperCalculator } from "@/components/widgets/wallpaper-calculator"
+import { Checklist } from "@/components/widgets/checklist"
+import { FAQSection } from "@/components/widgets/faq-section"
+import { BeforeAfterGallery } from "@/components/widgets/before-after-gallery"
+import { ComparisonTable } from "@/components/widgets/comparison-table"
 
 const getTextFromChildren = (children: React.ReactNode): string => {
     if (typeof children === "string") return children
@@ -44,6 +51,74 @@ export function createMdxComponents(): MDXComponents {
 
     return {
         img: MdxImage,
+        PaintCalculator: () => (
+            <div className="my-8">
+                <PaintCalculator />
+            </div>
+        ),
+        TileCalculator: () => (
+            <div className="my-8">
+                <TileCalculator />
+            </div>
+        ),
+        WallpaperCalculator: () => (
+            <div className="my-8">
+                <WallpaperCalculator />
+            </div>
+        ),
+        Checklist: (props: {
+            title: string
+            items: string[]
+            storageKey?: string
+            isEnglish?: boolean
+        }) => (
+            <Checklist
+                title={props.title}
+                items={props.items}
+                storageKey={props.storageKey}
+                isEnglish={props.isEnglish}
+            />
+        ),
+        BeforeAfterGallery: (props: {
+            images: Array<{
+                before: string
+                after: string
+                label?: string
+                description?: string
+            }>
+            isEnglish?: boolean
+        }) => (
+            <BeforeAfterGallery images={props.images} isEnglish={props.isEnglish} />
+        ),
+        ComparisonTable: (props: {
+            title: string
+            items: string[]
+            rows: Array<{
+                feature: string
+                values: (string | number | boolean | null)[]
+                highlight?: "best" | "worst" | "neutral"
+            }>
+            filters?: string[]
+            isEnglish?: boolean
+        }) => (
+            <ComparisonTable
+                title={props.title}
+                items={props.items}
+                rows={props.rows}
+                filters={props.filters}
+                isEnglish={props.isEnglish}
+            />
+        ),
+        FAQSection: (props: { items?: Array<{ question: string; answer: string }>; title?: string; searchable?: boolean }) => {
+            if (!props.items || props.items.length === 0) return null
+            return (
+                <FAQSection
+                    items={props.items}
+                    title={props.title}
+                    searchable={props.searchable !== false}
+                />
+            )
+        },
         h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
             const text = getTextFromChildren(props.children)
             const id = slugger.slug(text)
