@@ -563,6 +563,11 @@ export function WallpaperCalculator() {
                     </p>
                 </div>
                     </div>
+                    <p className="mt-3 text-xs text-muted-foreground">
+                        {isEnglish
+                            ? "Tip: add one extra roll for safety and pattern matching."
+                            : "Совет: добавьте 1 рулон в запас и на подгонку рисунка."}
+                    </p>
 
                     <div className="mt-4 flex flex-col sm:flex-row gap-3">
                         <Button

@@ -40,8 +40,8 @@ export function TileCalculator() {
     const [additionalWaste, setAdditionalWaste] = useState("0") // Дополнительный запас
     const [windows, setWindows] = useState("0")
     const [doors, setDoors] = useState("0")
-    const [windowArea, setWindowArea] = useState("")
-    const [doorArea, setDoorArea] = useState("")
+    const [windowArea, setWindowArea] = useState("2")
+    const [doorArea, setDoorArea] = useState("2")
     
     const [result, setResult] = useState<number | null>(null)
     const [packsNeeded, setPacksNeeded] = useState<number | null>(null)
@@ -58,8 +58,10 @@ export function TileCalculator() {
         const tilesPerP = parseInt(tilesPerPack.replace(/[^0-9]/g, "") || "1")
         const windowsNum = parseInt(windows.replace(/[^0-9]/g, "") || "0")
         const doorsNum = parseInt(doors.replace(/[^0-9]/g, "") || "0")
-        const windowA = parseFloat(windowArea.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
-        const doorA = parseFloat(doorArea.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
+        const windowAParsed = parseFloat(windowArea.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
+        const doorAParsed = parseFloat(doorArea.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
+        const windowA = windowsNum > 0 ? (windowAParsed > 0 ? windowAParsed : 2) : 0
+        const doorA = doorsNum > 0 ? (doorAParsed > 0 ? doorAParsed : 2) : 0
         const addWaste = parseFloat(additionalWaste.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
 
         if (

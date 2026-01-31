@@ -17,7 +17,9 @@ export function computePaintLiters(params: PaintParams): number {
 
   const d = doors * 2
   const win = windows * 1.5
-  const area = (2 * height * (length + width) - (d + win)) * layers
+  const wallArea = Math.max(0, 2 * height * (length + width) - (d + win))
+  const ceilingArea = length * width
+  const area = (wallArea + ceilingArea) * layers
   if (area <= 0) return 0
 
   const liters = area / coverage
@@ -256,11 +258,11 @@ export function computeWallpaper(params: WallpaperParams): WallpaperResult | nul
   if (calculationType === "room") {
     perimeter = 2 * (roomWidth + roomLength)
   } else {
-    perimeter = wallLength * 2
+    perimeter = wallLength
   }
 
   const stripsNeeded = Math.ceil(perimeter / rollW)
-  const rollsNeeded = Math.ceil(stripsNeeded / stripsPerRoll) + 1
+  const rollsNeeded = Math.ceil(stripsNeeded / stripsPerRoll)
 
   if (!Number.isFinite(rollsNeeded)) return null
 

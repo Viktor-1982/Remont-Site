@@ -22,8 +22,8 @@ export function PaintCalculator() {
     const [length, setLength] = useState("")
     const [width, setWidth] = useState("")
     const [height, setHeight] = useState("")
-    const [doors, setDoors] = useState("1")
-    const [windows, setWindows] = useState("1")
+    const [doors, setDoors] = useState("0")
+    const [windows, setWindows] = useState("0")
     const [layers, setLayers] = useState("2")
     const [coverage, setCoverage] = useState("10")
     const [result, setResult] = useState<number | null>(null)
@@ -62,6 +62,8 @@ export function PaintCalculator() {
 
     const buildSummary = () => {
         const lines: string[] = []
+        const doorsNum = parseInt(doors.replace(/[^0-9]/g, "") || "0")
+        const windowsNum = parseInt(windows.replace(/[^0-9]/g, "") || "0")
 
         if (isEnglish) {
             lines.push("Paint Calculator — result")
@@ -79,11 +81,11 @@ export function PaintCalculator() {
             )
         }
 
-        if (doors || windows) {
+        if (doorsNum > 0 || windowsNum > 0) {
             lines.push(
                 isEnglish
-                    ? `Openings: doors ${doors || "0"}, windows ${windows || "0"}.`
-                    : `Проёмы: двери ${doors || "0"}, окна ${windows || "0"}.`,
+                    ? `Openings: doors ${doorsNum}, windows ${windowsNum}.`
+                    : `Проёмы: двери ${doorsNum}, окна ${windowsNum}.`,
             )
         }
 
