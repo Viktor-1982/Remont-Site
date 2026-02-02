@@ -26,6 +26,25 @@ export interface WallpaperCalcDict {
     result: string
 }
 
+export interface UnderfloorCalcDict {
+    title: string
+    area: string
+    coverage: string
+    floorType: string
+    systemType: string
+    mode: string
+    heatLoss: string
+    belowFloor: string
+    cablePower: string
+    matPower: string
+    hours: string
+    days: string
+    load: string
+    tariff: string
+    peakLoad: string
+    result: string
+}
+
 export interface ButtonsDict {
     calculate: string
 }
@@ -49,6 +68,7 @@ export interface CalcDict {
     paint: PaintCalcDict
     tiles: TilesCalcDict
     wallpaper: WallpaperCalcDict
+    underfloor: UnderfloorCalcDict
     buttons: ButtonsDict
     budget: BudgetCalcDict
 }

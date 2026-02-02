@@ -1,11 +1,11 @@
 import { getPageMetadata } from "@/lib/seo"
 import Link from "next/link"
-import { Calculator, Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Sparkles, ShoppingCart } from "lucide-react"
+import { Calculator, Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Sparkles, ShoppingCart, Thermometer, Wind } from "lucide-react"
 
 export const metadata = getPageMetadata("/en/tools", {
-    title: "Renovation tools: paint, wallpaper, tile, budget | Renohacks",
+    title: "Renovation tools: paint, wallpaper, tile, ventilation | Renohacks",
     description:
-        "Modern renovation tools: paint coverage, wallpaper rolls, tiles, and budget planning. Accurate material and cost estimates for your home.",
+        "Modern renovation tools: paint coverage, wallpaper rolls, tiles, ventilation, underfloor heating and budget planning. Accurate material and cost estimates for your home.",
     cover: "/images/og-default.png",
     type: "website",
 })
@@ -37,6 +37,24 @@ const calculatorsEn = [
         desc: "Calculate tiles for floors and walls, waste percentage, and approximate adhesive.",
         badge: "Floors & walls",
         gradient: "from-sky-500/15 via-sky-400/10 to-indigo-400/10",
+    },
+    {
+        href: "/en/calculators/underfloor-heating",
+        label: "Underfloor Heating",
+        emoji: "🔥",
+        icon: Thermometer,
+        desc: "Estimate power, cable/mat size, and monthly energy usage.",
+        badge: "Floor heating",
+        gradient: "from-orange-500/15 via-amber-400/10 to-yellow-400/10",
+    },
+    {
+        href: "/en/calculators/ventilation",
+        label: "Ventilation Calculator",
+        emoji: "🌬️",
+        icon: Wind,
+        desc: "Calculate airflow by room volume and air changes per hour.",
+        badge: "Ventilation",
+        gradient: "from-cyan-500/15 via-sky-400/10 to-blue-400/10",
     },
     {
         href: "/en/calculators/budget",

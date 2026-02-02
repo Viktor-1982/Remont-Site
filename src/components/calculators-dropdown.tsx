@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Calculator, Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, ChevronDown, Sparkles, ShoppingCart } from "lucide-react"
+import { Calculator, Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, ChevronDown, Sparkles, ShoppingCart, Thermometer, Wind } from "lucide-react"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -38,6 +38,18 @@ const calculatorsRu: CalculatorLink[] = [
         label: "Калькулятор плитки",
         icon: Grid3X3,
         desc: "Расчет плитки и клея",
+    },
+    {
+        href: "/calculators/underfloor-heating",
+        label: "Калькулятор тёплого пола",
+        icon: Thermometer,
+        desc: "Мощность и расход",
+    },
+    {
+        href: "/calculators/ventilation",
+        label: "Калькулятор вентиляции",
+        icon: Wind,
+        desc: "Объём и кратность",
     },
     {
         href: "/calculators/budget",
@@ -83,6 +95,18 @@ const calculatorsEn: CalculatorLink[] = [
         label: "Tile Calculator",
         icon: Grid3X3,
         desc: "Tiles and adhesive",
+    },
+    {
+        href: "/en/calculators/underfloor-heating",
+        label: "Underfloor Heating",
+        icon: Thermometer,
+        desc: "Power and energy",
+    },
+    {
+        href: "/en/calculators/ventilation",
+        label: "Ventilation",
+        icon: Wind,
+        desc: "Volume and ACH",
     },
     {
         href: "/en/calculators/budget",

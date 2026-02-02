@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Calculator, ArrowRight, Sparkles, ShoppingCart } from "lucide-react"
+import { Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Calculator, ArrowRight, Sparkles, ShoppingCart, Thermometer, Wind } from "lucide-react"
 import { motion } from "framer-motion"
 
 interface CalculatorItem {
@@ -45,6 +45,26 @@ const calculators: CalculatorItem[] = [
         badge: "Пол и стены",
         gradient: "from-sky-500/15 via-sky-400/10 to-indigo-400/10",
         color: "sky",
+    },
+    {
+        href: "/calculators/underfloor-heating",
+        label: "Калькулятор тёплого пола",
+        emoji: "🔥",
+        icon: Thermometer,
+        desc: "Рассчитайте мощность, длину кабеля/мата и примерное энергопотребление.",
+        badge: "Тёплый пол",
+        gradient: "from-orange-500/15 via-amber-400/10 to-yellow-400/10",
+        color: "orange",
+    },
+    {
+        href: "/calculators/ventilation",
+        label: "Калькулятор вентиляции",
+        emoji: "🌬️",
+        icon: Wind,
+        desc: "Рассчитайте расход воздуха по объёму и кратности воздухообмена.",
+        badge: "Вентиляция",
+        gradient: "from-cyan-500/15 via-sky-400/10 to-blue-400/10",
+        color: "cyan",
     },
     {
         href: "/calculators/budget",
@@ -118,6 +138,26 @@ const calculatorsEn: CalculatorItem[] = [
         badge: "Floors & walls",
         gradient: "from-sky-500/15 via-sky-400/10 to-indigo-400/10",
         color: "sky",
+    },
+    {
+        href: "/en/calculators/underfloor-heating",
+        label: "Underfloor Heating",
+        emoji: "🔥",
+        icon: Thermometer,
+        desc: "Estimate power, cable/mat size, and monthly energy use.",
+        badge: "Floor heating",
+        gradient: "from-orange-500/15 via-amber-400/10 to-yellow-400/10",
+        color: "orange",
+    },
+    {
+        href: "/en/calculators/ventilation",
+        label: "Ventilation Calculator",
+        emoji: "🌬️",
+        icon: Wind,
+        desc: "Calculate airflow by room volume and air changes per hour.",
+        badge: "Ventilation",
+        gradient: "from-cyan-500/15 via-sky-400/10 to-blue-400/10",
+        color: "cyan",
     },
     {
         href: "/en/calculators/budget",

@@ -4,6 +4,8 @@ import {
   computeBudget,
   computeTile,
   computeWallpaper,
+  computeUnderfloorHeating,
+  computeVentilation,
 } from "@/lib/calculations"
 
 describe("computePaintLiters", () => {
@@ -147,5 +149,101 @@ describe("computeWallpaper", () => {
   })
 }
 )
+
+describe("computeUnderfloorHeating", () => {
+  it("calculates cable length and energy usage", () => {
+    const res = computeUnderfloorHeating({
+      roomArea: 18,
+      coveragePercent: 80,
+      floorCovering: "tile",
+      mode: "comfort",
+      system: "cable",
+      heatLossFactor: 1,
+      belowFloorFactor: 1.1,
+      cablePowerWPerM: 17,
+      matPowerWPerM2: 150,
+      hoursPerDay: 6,
+      daysPerMonth: 30,
+      loadPercent: 60,
+      tariffPerKwh: 6,
+    })
+
+    expect(res).not.toBeNull()
+    expect(res!.heatedArea).toBeCloseTo(14.4, 1)
+    expect(res!.cableLengthM).toBeGreaterThan(80)
+    expect(res!.monthlyKwh).toBeGreaterThan(50)
+  })
+
+  it("calculates mat area for mat system", () => {
+    const res = computeUnderfloorHeating({
+      roomArea: 12,
+      coveragePercent: 85,
+      floorCovering: "laminate",
+      mode: "primary",
+      system: "mat",
+      heatLossFactor: 1.15,
+      belowFloorFactor: 0.95,
+      cablePowerWPerM: 17,
+      matPowerWPerM2: 160,
+      hoursPerDay: 5,
+      daysPerMonth: 30,
+      loadPercent: 50,
+      tariffPerKwh: 0.2,
+    })
+
+    expect(res).not.toBeNull()
+    expect(res!.matAreaM2).toBeCloseTo(10.2, 1)
+    expect(res!.totalPowerW).toBeGreaterThan(1000)
+  })
+
+  it("returns null for invalid params", () => {
+    const res = computeUnderfloorHeating({
+      roomArea: 0,
+      coveragePercent: 80,
+      floorCovering: "tile",
+      mode: "comfort",
+      system: "cable",
+      heatLossFactor: 1,
+      belowFloorFactor: 1,
+      cablePowerWPerM: 17,
+      matPowerWPerM2: 150,
+      hoursPerDay: 6,
+      daysPerMonth: 30,
+      loadPercent: 60,
+      tariffPerKwh: 6,
+    })
+
+    expect(res).toBeNull()
+  })
+})
+
+describe("computeVentilation", () => {
+  it("calculates airflow by volume and ACH", () => {
+    const res = computeVentilation({
+      length: 5,
+      width: 4,
+      height: 2.7,
+      airChangesPerHour: 3,
+      reservePercent: 10,
+    })
+
+    expect(res).not.toBeNull()
+    expect(res!.volumeM3).toBeCloseTo(54, 1)
+    expect(res!.flowM3h).toBeCloseTo(162, 0)
+    expect(res!.flowWithReserveM3h).toBeGreaterThan(res!.flowM3h)
+  })
+
+  it("returns null for invalid params", () => {
+    const res = computeVentilation({
+      length: 0,
+      width: 4,
+      height: 2.7,
+      airChangesPerHour: 3,
+      reservePercent: 10,
+    })
+
+    expect(res).toBeNull()
+  })
+})
 
 

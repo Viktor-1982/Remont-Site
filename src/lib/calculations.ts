@@ -269,4 +269,168 @@ export function computeWallpaper(params: WallpaperParams): WallpaperResult | nul
   return { wallArea: netWallArea, rollsNeeded }
 }
 
+export type FloorCovering = "tile" | "laminate" | "wood" | "vinyl"
+export type HeatingMode = "comfort" | "primary"
+export type HeatingSystem = "cable" | "mat"
+
+export interface UnderfloorHeatingParams {
+  roomArea: number
+  coveragePercent: number
+  floorCovering: FloorCovering
+  mode: HeatingMode
+  system: HeatingSystem
+  heatLossFactor: number
+  belowFloorFactor: number
+  cablePowerWPerM: number
+  matPowerWPerM2: number
+  hoursPerDay: number
+  daysPerMonth: number
+  loadPercent: number
+  tariffPerKwh?: number
+}
+
+export interface UnderfloorHeatingResult {
+  heatedArea: number
+  recommendedPowerPerM2: number
+  actualPowerPerM2: number
+  totalPowerW: number
+  cableLengthM?: number
+  matAreaM2?: number
+  monthlyKwh: number
+  estimatedCost?: number
+}
+
+export interface VentilationParams {
+  length: number
+  width: number
+  height: number
+  airChangesPerHour: number
+  reservePercent?: number
+}
+
+export interface VentilationResult {
+  volumeM3: number
+  flowM3h: number
+  flowLs: number
+  flowWithReserveM3h: number
+}
+
+const basePowerByCovering = (covering: FloorCovering, mode: HeatingMode): number => {
+  if (mode === "primary") {
+    switch (covering) {
+      case "tile":
+        return 180
+      case "laminate":
+      case "vinyl":
+        return 160
+      case "wood":
+        return 140
+    }
+  }
+
+  switch (covering) {
+    case "tile":
+      return 150
+    case "laminate":
+    case "vinyl":
+      return 120
+    case "wood":
+      return 100
+  }
+}
+
+export function computeUnderfloorHeating(
+  params: UnderfloorHeatingParams,
+): UnderfloorHeatingResult | null {
+  const {
+    roomArea,
+    coveragePercent,
+    floorCovering,
+    mode,
+    system,
+    heatLossFactor,
+    belowFloorFactor,
+    cablePowerWPerM,
+    matPowerWPerM2,
+    hoursPerDay,
+    daysPerMonth,
+    loadPercent,
+    tariffPerKwh,
+  } = params
+
+  if (roomArea <= 0 || roomArea > 1000) return null
+  if (coveragePercent <= 0 || coveragePercent > 100) return null
+  if (hoursPerDay < 0 || hoursPerDay > 24) return null
+  if (daysPerMonth <= 0 || daysPerMonth > 31) return null
+  if (loadPercent <= 0 || loadPercent > 100) return null
+  if (heatLossFactor < 0.8 || heatLossFactor > 1.4) return null
+  if (belowFloorFactor < 0.8 || belowFloorFactor > 1.4) return null
+
+  const heatedArea = roomArea * (coveragePercent / 100)
+  const recommendedPowerPerM2 =
+    basePowerByCovering(floorCovering, mode) * heatLossFactor * belowFloorFactor
+
+  let actualPowerPerM2 = recommendedPowerPerM2
+  if (system === "mat") {
+    if (matPowerWPerM2 <= 0 || matPowerWPerM2 > 250) return null
+    actualPowerPerM2 = matPowerWPerM2
+  }
+
+  const totalPowerW = heatedArea * actualPowerPerM2
+  if (!Number.isFinite(totalPowerW) || totalPowerW <= 0) return null
+
+  let cableLengthM: number | undefined
+  let matAreaM2: number | undefined
+
+  if (system === "cable") {
+    if (cablePowerWPerM <= 0 || cablePowerWPerM > 50) return null
+    cableLengthM = totalPowerW / cablePowerWPerM
+  } else {
+    matAreaM2 = heatedArea
+  }
+
+  const monthlyKwh =
+    (totalPowerW / 1000) * hoursPerDay * daysPerMonth * (loadPercent / 100)
+
+  if (!Number.isFinite(monthlyKwh) || monthlyKwh < 0) return null
+
+  const estimatedCost =
+    tariffPerKwh && tariffPerKwh > 0
+      ? monthlyKwh * tariffPerKwh
+      : undefined
+
+  return {
+    heatedArea,
+    recommendedPowerPerM2,
+    actualPowerPerM2,
+    totalPowerW,
+    cableLengthM,
+    matAreaM2,
+    monthlyKwh,
+    estimatedCost,
+  }
+}
+
+export function computeVentilation(params: VentilationParams): VentilationResult | null {
+  const { length, width, height, airChangesPerHour, reservePercent = 10 } = params
+
+  if (length <= 0 || width <= 0 || height <= 0) return null
+  if (airChangesPerHour <= 0 || airChangesPerHour > 20) return null
+  if (reservePercent < 0 || reservePercent > 50) return null
+
+  const volumeM3 = length * width * height
+  if (!Number.isFinite(volumeM3) || volumeM3 <= 0) return null
+
+  const flowM3h = volumeM3 * airChangesPerHour
+  const flowLs = flowM3h / 3.6
+  const flowWithReserveM3h = flowM3h * (1 + reservePercent / 100)
+
+  return {
+    volumeM3,
+    flowM3h,
+    flowLs,
+    flowWithReserveM3h,
+  }
+}
+
 

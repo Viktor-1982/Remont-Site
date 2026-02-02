@@ -24,6 +24,24 @@
         "rollCoverage": "Покрытие 1 рулона (м²)",
         "result": "Необходимо рулонов:"
       },
+      "underfloor": {
+        "title": "Калькулятор тёплого пола",
+        "area": "Площадь помещения (м²)",
+        "coverage": "Доля обогрева (%)",
+        "floorType": "Тип покрытия",
+        "systemType": "Тип системы",
+        "mode": "Режим работы",
+        "heatLoss": "Теплопотери",
+        "belowFloor": "Основание/этаж",
+        "cablePower": "Мощность кабеля (Вт/м)",
+        "matPower": "Мощность мата (Вт/м²)",
+        "hours": "Часов в день",
+        "days": "Дней в месяц",
+        "load": "Средняя загрузка (%)",
+        "tariff": "Тариф (за кВт·ч)",
+        "peakLoad": "Пиковая нагрузка",
+        "result": "Результаты расчёта"
+      },
       "buttons": {
         "calculate": "Рассчитать"
       },
@@ -67,6 +85,24 @@
         "inputLabel": "Wall area in m²",
         "rollCoverage": "Roll coverage (m²)",
         "result": "Rolls needed:"
+      },
+      "underfloor": {
+        "title": "Underfloor Heating Calculator",
+        "area": "Room area (m²)",
+        "coverage": "Heated area (%)",
+        "floorType": "Floor finish",
+        "systemType": "System type",
+        "mode": "Heating mode",
+        "heatLoss": "Heat loss",
+        "belowFloor": "Floor below",
+        "cablePower": "Cable power (W/m)",
+        "matPower": "Mat power (W/m²)",
+        "hours": "Hours per day",
+        "days": "Days per month",
+        "load": "Average load (%)",
+        "tariff": "Tariff (per kWh)",
+        "peakLoad": "Peak load",
+        "result": "Calculation results"
       },
       "buttons": {
         "calculate": "Calculate"
