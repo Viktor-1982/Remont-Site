@@ -1,28 +1,13 @@
-import type { Metadata } from "next"
+import { getPageMetadata } from "@/lib/seo"
 import { allPosts } from ".contentlayer/generated"
 import { TagCloud } from "@/components/tag-cloud"
 
-export const metadata: Metadata = {
+export const metadata = getPageMetadata("/en/tags", {
     title: "Tag Cloud — All Article Tags | Renohacks.com",
     description: "Visual display of all article tags on Renohacks.com. Tag size shows the number of articles. Navigation by renovation, design, and DIY topics.",
-    alternates: {
-        canonical: "https://renohacks.com/en/tags",
-        languages: {
-            ru: "https://renohacks.com/tags",
-            en: "https://renohacks.com/en/tags",
-            "x-default": "https://renohacks.com/tags",
-        },
-    },
-    openGraph: {
-        title: "Tag Cloud — All Article Tags | Renohacks.com",
-        description: "Visual display of all article tags on Renohacks.com",
-        url: "https://renohacks.com/en/tags",
-        siteName: "Renohacks.com",
-        images: ["/images/og-default.png"],
-        locale: "en_US",
-        type: "website",
-    },
-}
+    cover: "/images/og-default.png",
+    type: "website",
+})
 
 export const revalidate = 86400
 export const dynamic = "force-static"

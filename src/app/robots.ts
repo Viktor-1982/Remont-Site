@@ -12,6 +12,7 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: [
                     "/api/",
                     "/_next/",
+                    "/dev-check/",
                     "/private/",
                     "/404",
                     "/500",

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useMemo, useCallback } from "react"
 import { Search, X, Clock } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -18,6 +18,7 @@ interface SearchBarProps {
 export function SearchBar({ isEnglish = false }: SearchBarProps) {
     const [isOpen, setIsOpen] = useState(false)
     const [query, setQuery] = useState("")
+    const [debouncedQuery, setDebouncedQuery] = useState("")
     const [recentSearches, setRecentSearches] = useState<string[]>([])
     const [posts, setPosts] = useState<Post[]>([])
     const pathname = usePathname()
@@ -38,6 +39,14 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
             })
     }, [])
 
+    // Debounce query для лучшей производительности (300ms)
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedQuery(query)
+        }, 300)
+        return () => clearTimeout(timer)
+    }, [query])
+
     // Загружаем историю поиска из localStorage
     useEffect(() => {
         const saved = localStorage.getItem("renohacks-search-history")
@@ -50,11 +59,11 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
         }
     }, [])
 
-    // Фильтруем посты по запросу
+    // Фильтруем посты по запросу с debounce'нным query
     const filteredPosts = useMemo(() => {
-        if (!query.trim() || posts.length === 0) return []
+        if (!debouncedQuery.trim() || posts.length === 0) return []
         
-        const lowerQuery = query.toLowerCase()
+        const lowerQuery = debouncedQuery.toLowerCase()
         const locale = isEnglish ? "en" : "ru"
         
         return posts
@@ -65,7 +74,7 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
                 return searchText.includes(lowerQuery)
             })
             .slice(0, 8) // Ограничиваем результаты
-    }, [query, isEnglish, posts])
+    }, [debouncedQuery, isEnglish, posts])
 
     const handleSearch = (searchQuery: string) => {
         if (!searchQuery.trim()) return
@@ -161,7 +170,7 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
 
                         {/* Результаты */}
                         <div className="flex-1 overflow-y-auto p-4 min-h-0">
-                            {query.trim() ? (
+                            {debouncedQuery.trim() ? (
                                 filteredPosts.length > 0 ? (
                                     <div className="space-y-2">
                                         <p className="text-sm font-semibold text-muted-foreground mb-3">

@@ -1,6 +1,7 @@
 import { getPageMetadata } from "@/lib/seo"
 import Link from "next/link"
 import { Calculator, Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Sparkles, ShoppingCart, Thermometer, Wind } from "lucide-react"
+import Script from "next/script"
 
 export const metadata = getPageMetadata("/tools", {
     title: "Инструменты для ремонта: краска, обои, плитка, вентиляция | Renohacks",
@@ -9,6 +10,27 @@ export const metadata = getPageMetadata("/tools", {
     cover: "/images/og-default.png",
     type: "website",
 })
+
+const baseUrl = "https://renohacks.com"
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        {
+            "@type": "ListItem",
+            position: 1,
+            name: "Главная",
+            item: `${baseUrl}/`,
+        },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: "Инструменты",
+            item: `${baseUrl}/tools`,
+        },
+    ],
+}
 
 const calculators = [
     {
@@ -168,6 +190,15 @@ export default function ToolsIndexPage() {
                     сохранить, пересчитать и использовать как основу для сметы с подрядчиками.
                 </p>
             </section>
+
+            <Script
+                id="breadcrumb-schema"
+                type="application/ld+json"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbSchema),
+                }}
+            />
         </main>
     )
 }

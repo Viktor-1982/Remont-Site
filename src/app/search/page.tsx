@@ -2,6 +2,7 @@ import { getPageMetadata } from "@/lib/seo"
 import { allPosts, type Post } from ".contentlayer/generated"
 import { ArticleCard } from "@/components/article-card"
 import { Search } from "lucide-react"
+import Script from "next/script"
 
 export const metadata = getPageMetadata("/search", {
     title: "Поиск статей | Renohacks",
@@ -9,6 +10,27 @@ export const metadata = getPageMetadata("/search", {
     cover: "/images/og-default.png",
     type: "website",
 })
+
+const baseUrl = "https://renohacks.com"
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        {
+            "@type": "ListItem",
+            position: 1,
+            name: "Главная",
+            item: `${baseUrl}/`,
+        },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: "Поиск",
+            item: `${baseUrl}/search`,
+        },
+    ],
+}
 
 interface SearchPageProps {
     searchParams: Promise<{ q?: string }>
@@ -73,6 +95,15 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                     </p>
                 </div>
             )}
+
+            <Script
+                id="breadcrumb-schema"
+                type="application/ld+json"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbSchema),
+                }}
+            />
         </main>
     )
 }

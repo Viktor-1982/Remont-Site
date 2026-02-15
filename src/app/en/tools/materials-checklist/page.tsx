@@ -1,16 +1,13 @@
-import { Metadata } from "next"
+import { getPageMetadata } from "@/lib/seo"
 import { MaterialsChecklist } from "@/components/materials-checklist"
 
-export const metadata: Metadata = {
+export const metadata = getPageMetadata("/en/tools/materials-checklist", {
     title: "Materials Purchase Checklist for Renovation | Renohacks",
     description:
         "Complete list of renovation materials with ability to mark purchased items. Never forget to buy anything for your renovation. Export and import checklist.",
-    openGraph: {
-        title: "Materials Purchase Checklist for Renovation",
-        description: "Track all materials needed for your renovation",
-        type: "website",
-    },
-}
+    cover: "/images/og-default.png",
+    type: "website",
+})
 
 export default function MaterialsChecklistPage() {
     return (

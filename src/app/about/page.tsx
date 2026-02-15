@@ -2,6 +2,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Camera, Wrench, Calculator, Palette, DollarSign, Home, Mail, Target } from "lucide-react"
+import Script from "next/script"
 
 export const metadata = getPageMetadata("/about", {
     title: "О проекте Renohacks | Блог о ремонте и дизайне",
@@ -10,6 +11,27 @@ export const metadata = getPageMetadata("/about", {
     cover: "/images/og-default.png",
     type: "article",
 })
+
+const baseUrl = "https://renohacks.com"
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        {
+            "@type": "ListItem",
+            position: 1,
+            name: "Главная",
+            item: `${baseUrl}/`,
+        },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: "О проекте",
+            item: `${baseUrl}/about`,
+        },
+    ],
+}
 
 const features = [
     {
@@ -200,6 +222,15 @@ export default function AboutPage() {
                     </CardContent>
                 </Card>
             </div>
+
+            <Script
+                id="breadcrumb-schema"
+                type="application/ld+json"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbSchema),
+                }}
+            />
         </main>
     )
 }

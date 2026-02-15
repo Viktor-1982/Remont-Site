@@ -1,15 +1,12 @@
-import { Metadata } from "next"
+import { getPageMetadata } from "@/lib/seo"
 import { InteriorStyleQuiz } from "@/components/interior-style-quiz"
 
-export const metadata: Metadata = {
+export const metadata = getPageMetadata("/quiz/interior-style", {
     title: "Какой стиль интерьера вам подходит? | Renohacks",
     description: "Пройдите тест и узнайте, какой стиль интерьера лучше всего подходит вашему вкусу и образу жизни. Получите персональные рекомендации по цветам, материалам и дизайну.",
-    openGraph: {
-        title: "Какой стиль интерьера вам подходит?",
-        description: "Пройдите тест и узнайте свой стиль интерьера",
-        type: "website",
-    },
-}
+    cover: "/images/og-default.png",
+    type: "website",
+})
 
 export default function InteriorStyleQuizPage() {
     return (

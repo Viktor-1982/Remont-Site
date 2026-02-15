@@ -81,7 +81,7 @@ export function HeroBanner() {
                     priority
                     className="object-cover object-center brightness-[0.85] saturate-110 will-change-transform"
                     sizes="100vw"
-                    quality={85}
+                    quality={75}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent dark:from-black/80" />
                 {/* Упрощенные декоративные элементы для производительности */}

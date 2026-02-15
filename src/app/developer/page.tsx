@@ -35,6 +35,26 @@ export default function DeveloperPage() {
         ],
     }
 
+    const baseUrl = "https://renohacks.com"
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "Главная",
+                item: `${baseUrl}/`,
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "Разработчик",
+                item: `${baseUrl}/developer`,
+            },
+        ],
+    }
+
     return (
         <>
             <Script
@@ -42,6 +62,12 @@ export default function DeveloperPage() {
                 type="application/ld+json"
                 strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+            />
+            <Script
+                id="breadcrumb-schema"
+                type="application/ld+json"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
             <main className="container mx-auto px-4 py-12 max-w-4xl">
                 <Link

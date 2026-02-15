@@ -88,7 +88,12 @@ export default async function RootLayout({
             <link rel="alternate icon" href="/favicon.ico" />
             <link rel="manifest" href="/manifest.json" />
             
-            {/* Preload critical resources */}
+            {/* ✅ Font Display: swap для немедленного отображения текста */}
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+            
+            {/* ✅ Preload critical resources */}
+            <link rel="preload" href="/images/hero/hero-banner.png" as="image" />
             <link rel="dns-prefetch" href="//www.googletagmanager.com" />
             <link rel="dns-prefetch" href="//mc.yandex.ru" />
             <link rel="dns-prefetch" href="//pagead2.googlesyndication.com" />
@@ -100,7 +105,7 @@ export default async function RootLayout({
             />
 
             {/* ✅ Google Tag Manager */}
-            <Script id="gtm-script" strategy="afterInteractive">
+            <Script id="gtm-script" strategy="lazyOnload">
                 {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -109,7 +114,7 @@ export default async function RootLayout({
             </Script>
 
             {/* ✅ Yandex.Metrika counter */}
-            <Script id="yandex-metrika" strategy="afterInteractive">
+            <Script id="yandex-metrika" strategy="lazyOnload">
                 {`(function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
@@ -161,6 +166,42 @@ export default async function RootLayout({
                             });
                         }
                     `,
+                }}
+            />
+
+            {/* ✅ JSON-LD: Organization + WebSite */}
+            <Script
+                id="site-schema"
+                type="application/ld+json"
+                strategy="beforeInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@graph": [
+                            {
+                                "@type": "Organization",
+                                "@id": "https://renohacks.com/#organization",
+                                name: "Renohacks",
+                                url: "https://renohacks.com/",
+                                logo: {
+                                    "@type": "ImageObject",
+                                    url: "https://renohacks.com/favicon.ico",
+                                },
+                            },
+                            {
+                                "@type": "WebSite",
+                                "@id": "https://renohacks.com/#website",
+                                url: "https://renohacks.com/",
+                                name: "Renohacks",
+                                publisher: { "@id": "https://renohacks.com/#organization" },
+                                potentialAction: {
+                                    "@type": "SearchAction",
+                                    target: "https://renohacks.com/search?q={search_term_string}",
+                                    "query-input": "required name=search_term_string",
+                                },
+                            },
+                        ],
+                    }),
                 }}
             />
         </head>

@@ -2,8 +2,9 @@ import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
     images: {
-        // ✅ Конфигурация качеств изображений для Next.js 16+
+        // ✅ Конфигурация качеств и форматов изображений для Next.js 16+
         qualities: [50, 75, 85, 90, 95, 100],
+        formats: ["image/webp", "image/avif"], // Приоритет: WebP → AVIF → исходный формат
     },
     async headers() {
         return [

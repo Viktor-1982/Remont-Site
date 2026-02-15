@@ -42,6 +42,13 @@ export const metadata: Metadata = {
         type: "website",
         images: ["/images/og-default.png"],
     },
+    twitter: {
+        card: "summary_large_image",
+        title: "Renohacks.com — блог о ремонте, дизайне и DIY | Идеи для дома 2025",
+        description:
+            "Фото-гайды по ремонту своими руками, DIY лайфхаки, бесплатные калькуляторы для краски и плитки, обзоры материалов. Всё для качественного ремонта дома и квартиры.",
+        images: ["/images/og-default.png"],
+    },
     alternates: {
         canonical: "https://renohacks.com/",
         languages: {

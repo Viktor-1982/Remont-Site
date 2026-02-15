@@ -1,11 +1,18 @@
 import { allPosts } from ".contentlayer/generated"
 
+function escapeXml(str: string): string {
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+}
+
 export async function GET() {
     const baseUrl = "https://renohacks.com"
     
     // Получаем последние 20 постов
     const recentPosts = allPosts
-        .filter(post => !post.draft)
+        .filter((post) => !post.draft && !post.url.startsWith("/en/"))
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
         .slice(0, 20)
 
@@ -13,15 +20,19 @@ export async function GET() {
         const url = `${baseUrl}${post.url}`
         const pubDate = new Date(post.date).toUTCString()
         
+        const enclosure = post.cover
+            ? `<enclosure url="${escapeXml(`${baseUrl}${post.cover}`)}" type="image/jpeg" />`
+            : ""
+
         return `
     <item>
-        <title><![CDATA[${post.title}]]></title>
-        <description><![CDATA[${post.description}]]></description>
-        <link>${url}</link>
-        <guid isPermaLink="true">${url}</guid>
+        <title><![CDATA[${escapeXml(post.title)}]]></title>
+        <description><![CDATA[${escapeXml(post.description || "")}]]></description>
+        <link>${escapeXml(url)}</link>
+        <guid isPermaLink="true">${escapeXml(url)}</guid>
         <pubDate>${pubDate}</pubDate>
-        <category><![CDATA[${post.tags?.join(', ') || 'Ремонт'}]]></category>
-        <enclosure url="${baseUrl}${post.cover}" type="image/jpeg" />
+        <category><![CDATA[${escapeXml(post.tags?.join(", ") || "Ремонт")}]]></category>
+        ${enclosure}
     </item>`
     }).join('')
 

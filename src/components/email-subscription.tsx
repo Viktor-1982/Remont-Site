@@ -158,18 +158,20 @@ export function EmailSubscription({
                             )}
                         </Button>
                     </div>
-                    {status === "success" && (
-                        <p className="text-xs sm:text-sm text-green-600 dark:text-green-400 flex items-center gap-1.5">
-                            <Check className="h-3 w-3" />
-                            {t.success}
-                        </p>
-                    )}
-                    {status === "error" && errorMessage && (
-                        <p className="text-xs sm:text-sm text-destructive flex items-center gap-1.5">
-                            <AlertCircle className="h-3 w-3" />
-                            {errorMessage}
-                        </p>
-                    )}
+                    <div className="min-h-[1.25rem]">
+                        {status === "success" && (
+                            <p className="text-xs sm:text-sm text-green-600 dark:text-green-400 flex items-center gap-1.5">
+                                <Check className="h-3 w-3" />
+                                {t.success}
+                            </p>
+                        )}
+                        {status === "error" && errorMessage && (
+                            <p className="text-xs sm:text-sm text-destructive flex items-center gap-1.5">
+                                <AlertCircle className="h-3 w-3" />
+                                {errorMessage}
+                            </p>
+                        )}
+                    </div>
                 </form>
             </div>
         )
@@ -221,18 +223,20 @@ export function EmailSubscription({
                             )}
                         </Button>
                     </div>
-                    {status === "success" && (
-                        <p className="text-sm sm:text-base text-green-600 dark:text-green-400 flex items-center justify-center gap-2 animate-in fade-in slide-in-from-bottom-2">
-                            <Check className="h-4 w-4" />
-                            {t.success}
-                        </p>
-                    )}
-                    {status === "error" && errorMessage && (
-                        <p className="text-sm sm:text-base text-destructive flex items-center justify-center gap-2 animate-in fade-in slide-in-from-bottom-2">
-                            <AlertCircle className="h-4 w-4" />
-                            {errorMessage}
-                        </p>
-                    )}
+                    <div className="min-h-[1.5rem]">
+                        {status === "success" && (
+                            <p className="text-sm sm:text-base text-green-600 dark:text-green-400 flex items-center justify-center gap-2 animate-in fade-in slide-in-from-bottom-2">
+                                <Check className="h-4 w-4" />
+                                {t.success}
+                            </p>
+                        )}
+                        {status === "error" && errorMessage && (
+                            <p className="text-sm sm:text-base text-destructive flex items-center justify-center gap-2 animate-in fade-in slide-in-from-bottom-2">
+                                <AlertCircle className="h-4 w-4" />
+                                {errorMessage}
+                            </p>
+                        )}
+                    </div>
                 </form>
             </div>
         </div>

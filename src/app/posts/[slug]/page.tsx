@@ -62,7 +62,7 @@ export default async function PostPage({
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Статьи",
-                "item": `${baseUrl}/posts`
+                "item": `${baseUrl}/#articles`
             },
             {
                 "@type": "ListItem",
@@ -100,7 +100,7 @@ export default async function PostPage({
                 isEnglish={false}
                 items={[
                     { label: "Главная", href: "/" },
-                    { label: "Статьи", href: "/posts" },
+                    { label: "Статьи", href: "/#articles" },
                     { label: post.title, href: canonical },
                 ]}
             />

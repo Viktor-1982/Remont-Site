@@ -31,11 +31,15 @@ export function getPageMetadata(
     const baseUrl = "https://renohacks.com"
     const url = `${baseUrl}${path}`
 
+    const isEnglishPath = path === "/en" || path.startsWith("/en/")
+    const ruPath = isEnglishPath ? path.replace(/^\/en/, "") || "/" : path
+    const enPath = isEnglishPath ? path : `/en${path === "/" ? "" : path}`
+
     const defaultImages = [cover ? `${baseUrl}${cover}` : `${baseUrl}/images/og-default.png`]
     const defaultLanguages = {
-        ru: baseUrl,
-        en: `${baseUrl}/en`,
-        "x-default": baseUrl,
+        ru: `${baseUrl}${ruPath}`,
+        en: `${baseUrl}${enPath}`,
+        "x-default": `${baseUrl}${ruPath}`,
     }
 
     const baseOpenGraph: NonNullable<Metadata["openGraph"]> = {

@@ -40,6 +40,12 @@ export const metadata: Metadata = {
         type: "website",
         images: ["/images/og-default.png"],
     },
+    twitter: {
+        card: "summary_large_image",
+        title: "Renohacks.com — DIY Renovation & Interior Design Blog | Home Ideas 2025",
+        description: "Step-by-step photo guides, DIY hacks, free paint & tile calculators, material reviews. Everything for quality home renovation and apartment design.",
+        images: ["/images/og-default.png"],
+    },
     alternates: {
         canonical: "https://renohacks.com/en",
         languages: {

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { getPageMetadata } from "@/lib/seo"
 import { allPosts } from "contentlayer/generated"
 import { ArticleGrid } from "@/components/article-grid"
+import Script from "next/script"
 
 export const metadata: Metadata = getPageMetadata("/smety", {
     title: "Сметы ремонта и расчёты | Renohacks",
@@ -10,6 +11,27 @@ export const metadata: Metadata = getPageMetadata("/smety", {
     cover: "/images/og-default.png",
     type: "website",
 })
+
+const baseUrl = "https://renohacks.com"
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        {
+            "@type": "ListItem",
+            position: 1,
+            name: "Главная",
+            item: `${baseUrl}/`,
+        },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: "Сметы",
+            item: `${baseUrl}/smety`,
+        },
+    ],
+}
 
 export default function SmetyPage() {
     // Фильтруем только русские статьи со сметами
@@ -40,6 +62,15 @@ export default function SmetyPage() {
                     <p className="text-muted-foreground">Сметы скоро появятся...</p>
                 </div>
             )}
+
+            <Script
+                id="breadcrumb-schema"
+                type="application/ld+json"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbSchema),
+                }}
+            />
         </main>
     )
 }

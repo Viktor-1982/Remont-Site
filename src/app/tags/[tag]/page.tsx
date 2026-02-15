@@ -1,6 +1,7 @@
 ﻿import { allPosts } from ".contentlayer/generated"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
+import { getPageMetadata } from "@/lib/seo"
 import { ArticleGrid } from "@/components/article-grid"
 
 // 🔹 Тип параметров маршрута
@@ -17,31 +18,18 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const { tag } = await params
     const decodedTag = decodeURIComponent(tag)
 
-    const baseUrl = "https://renohacks.com"
     const title = `#${decodedTag} — статьи по тегу ${decodedTag} | Renohacks`
     const description = `Все статьи с тегом «${decodedTag}» на Renohacks.com: практические идеи для ремонта, дизайна интерьера и DIY-проектов. Пошаговые инструкции, фото-гайды, советы экспертов и обзоры материалов.`
 
-    return {
+    return getPageMetadata(`/tags/${decodedTag}`, {
         title,
         description,
-        alternates: {
-            canonical: `${baseUrl}/tags/${decodedTag}`,
-            languages: {
-                ru: `${baseUrl}/tags/${decodedTag}`,
-                en: `${baseUrl}/en/tags/${decodedTag}`,
-                "x-default": `${baseUrl}/tags/${decodedTag}`,
-            },
-        },
+        cover: "/images/og-default.png",
+        type: "website",
         openGraph: {
-            title,
-            description,
-            url: `${baseUrl}/tags/${decodedTag}`,
-            siteName: "Renohacks.com",
-            images: ["/images/og-default.png"],
             locale: "ru_RU",
-            type: "website",
         },
-    }
+    })
 }
 
 // 🔹 Проверка, свежая ли статья

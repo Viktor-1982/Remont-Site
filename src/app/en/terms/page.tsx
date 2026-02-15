@@ -1,16 +1,35 @@
-import { Metadata } from "next"
+import { getPageMetadata } from "@/lib/seo"
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileText, CheckCircle, XCircle, Shield, Scale, Mail, Home } from "lucide-react"
+import Script from "next/script"
 
-export const metadata: Metadata = {
+export const metadata = getPageMetadata("/en/terms", {
   title: "Terms of Use | Renohacks",
   description: "Terms and conditions for using Renohacks.com. Information about what you can and cannot do on the site, privacy and liability.",
-  openGraph: {
-    title: "Terms of Use | Renohacks",
-    description: "Terms and conditions for using Renohacks.com",
-    type: "website",
-  },
+  cover: "/images/og-default.png",
+  type: "article",
+})
+
+const baseUrl = "https://renohacks.com"
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${baseUrl}/en`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Terms of Use",
+      item: `${baseUrl}/en/terms`,
+    },
+  ],
 }
 
 export default function TermsOfUsePage() {
@@ -302,6 +321,15 @@ export default function TermsOfUsePage() {
           <p className="text-sm text-muted-foreground">Last updated: October 28, 2025</p>
         </div>
       </div>
+
+        <Script
+          id="breadcrumb-schema"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(breadcrumbSchema),
+          }}
+        />
     </main>
   )
 }

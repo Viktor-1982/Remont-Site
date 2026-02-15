@@ -1,16 +1,35 @@
-import { Metadata } from "next"
+import { getPageMetadata } from "@/lib/seo"
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileText, CheckCircle, XCircle, Shield, Scale, Mail, Home, Heart, Lightbulb, Users } from "lucide-react"
+import Script from "next/script"
 
-export const metadata: Metadata = {
+export const metadata = getPageMetadata("/terms", {
   title: "Правила пользования сайтом | Renohacks",
   description: "Правила и условия использования сайта Renohacks.com. Информация о том, что можно и нельзя делать на сайте, конфиденциальность и ответственность.",
-  openGraph: {
-    title: "Правила пользования сайтом | Renohacks",
-    description: "Правила и условия использования сайта Renohacks.com",
-    type: "website",
-  },
+  cover: "/images/og-default.png",
+  type: "article",
+})
+
+const baseUrl = "https://renohacks.com"
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Главная",
+      item: `${baseUrl}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Правила пользования",
+      item: `${baseUrl}/terms`,
+    },
+  ],
 }
 
 export default function TermsOfUsePage() {
@@ -82,6 +101,7 @@ export default function TermsOfUsePage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 shrink-0" />
+
                   <span><strong className="text-foreground">Печатать статьи</strong> для личного использования</span>
                 </li>
               </ul>
@@ -386,6 +406,15 @@ export default function TermsOfUsePage() {
           <p className="text-sm text-muted-foreground">Последнее обновление: 28 октября 2025 года</p>
         </div>
       </div>
+
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
     </main>
   )
 }

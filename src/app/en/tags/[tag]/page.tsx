@@ -1,6 +1,7 @@
 ﻿import { allPosts } from ".contentlayer/generated"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
+import { getPageMetadata } from "@/lib/seo"
 import { ArticleGrid } from "@/components/article-grid"
 
 type Params = {
@@ -15,31 +16,18 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const { tag } = await params
     const decodedTag = decodeURIComponent(tag)
 
-    const baseUrl = "https://renohacks.com"
     const title = `#${decodedTag} — articles tagged ${decodedTag} | Renohacks`
     const description = `All articles tagged "${decodedTag}" on Renohacks.com: practical home renovation ideas, interior design tips, and DIY projects. Step-by-step guides, photo tutorials, expert advice, and material reviews.`
 
-    return {
+    return getPageMetadata(`/en/tags/${decodedTag}`, {
         title,
         description,
-        alternates: {
-            canonical: `${baseUrl}/en/tags/${decodedTag}`,
-            languages: {
-                ru: `${baseUrl}/tags/${decodedTag}`,
-                en: `${baseUrl}/en/tags/${decodedTag}`,
-                "x-default": `${baseUrl}/en/tags/${decodedTag}`,
-            },
-        },
+        cover: "/images/og-default.png",
+        type: "website",
         openGraph: {
-            title,
-            description,
-            url: `${baseUrl}/en/tags/${decodedTag}`,
-            siteName: "Renohacks.com",
-            images: ["/images/og-default.png"],
             locale: "en_US",
-            type: "website",
         },
-    }
+    })
 }
 
 export default async function TagPageEn({ params }: Params) {
