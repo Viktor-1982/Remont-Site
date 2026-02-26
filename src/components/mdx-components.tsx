@@ -63,24 +63,24 @@ const getTextFromChildren = (children: React.ReactNode): string => {
 function MdxImage({ alt, src }: { alt?: string; src: string }) {
     const [isEnglish, setIsEnglish] = useState(false)
     const imageRef = React.useRef<HTMLDivElement>(null)
-
+    
     // Определяем язык из URL
     React.useEffect(() => {
         setIsEnglish(window.location.pathname.startsWith("/en"))
     }, [])
-
+    
     // Определяем, является ли изображение квадратным
     React.useEffect(() => {
         const checkIfSquare = () => {
             if (!imageRef.current) return
-
+            
             const img = imageRef.current.querySelector('img')
             if (!img) return
-
+            
             // Находим родительский figure элемент
             const figure = imageRef.current.closest('figure')
             if (!figure) return
-
+            
             // Ждем загрузки изображения
             const checkAspectRatio = () => {
                 const aspectRatio = img.naturalWidth / img.naturalHeight
@@ -89,7 +89,7 @@ function MdxImage({ alt, src }: { alt?: string; src: string }) {
                     figure.classList.add('mdx-image-square')
                 }
             }
-
+            
             if (img.complete && img.naturalWidth > 0) {
                 checkAspectRatio()
             } else {
@@ -98,31 +98,107 @@ function MdxImage({ alt, src }: { alt?: string; src: string }) {
                 setTimeout(checkAspectRatio, 100)
             }
         }
-
+        
         // Небольшая задержка для того, чтобы DOM обновился
         const timeoutId = setTimeout(checkIfSquare, 50)
         return () => clearTimeout(timeoutId)
     }, [src])
 
     const handleClick = () => {
-        // Забираем картинку в виде объекта
-        const imgObj = {
-            src: src.startsWith("http") || src.startsWith("/") ? src : `/${src}`,
-            alt: alt || undefined,
-            caption: alt || undefined,
-        }
+        // Находим все изображения в статье (только из MDX контента)
+        const article = document.querySelector("article")
+        if (!article) return
 
-        // Открываем галерею через событие
-        window.dispatchEvent(new CustomEvent("openImageGallery", {
-            detail: {
-                images: [imgObj],
-                index: 0
+        // Ищем все изображения в prose контейнере
+        const proseContainer = article.querySelector(".prose")
+        if (!proseContainer) return
+
+        const imageElements = Array.from(proseContainer.querySelectorAll("img"))
+        const images = imageElements.map((img) => {
+            // Получаем оригинальный src из data-атрибута или srcset
+            let imgSrc = img.getAttribute("src") || ""
+            const imgAlt = img.getAttribute("alt") || ""
+            
+            // Если это Next.js оптимизированное изображение, получаем оригинальный путь
+            if (imgSrc.includes("/_next/image")) {
+                // Извлекаем оригинальный URL из параметра url
+                try {
+                    // Может быть двойное кодирование, поэтому декодируем несколько раз
+                    let decodedUrl = imgSrc
+                    const urlMatch = decodedUrl.match(/url=([^&]+)/)
+                    if (urlMatch) {
+                        decodedUrl = decodeURIComponent(urlMatch[1])
+                        // Если все еще содержит /_next/image, декодируем еще раз
+                        if (decodedUrl.includes("/_next/image")) {
+                            const innerMatch = decodedUrl.match(/url=([^&]+)/)
+                            if (innerMatch) {
+                                decodedUrl = decodeURIComponent(innerMatch[1])
+                            }
+                        }
+                        imgSrc = decodedUrl
+                    }
+                } catch (_e) {
+                    // Если не удалось декодировать, пытаемся получить из data-атрибутов
+                    const originalSrc = img.getAttribute("data-original-src") || 
+                                      img.getAttribute("data-src")
+                    if (originalSrc) {
+                        imgSrc = originalSrc
+                    }
+                }
             }
-        }))
+            
+            // Нормализуем путь к изображению
+            const normalizedSrc = imgSrc.startsWith("http") || imgSrc.startsWith("/") 
+                ? imgSrc 
+                : `/${imgSrc}`
+                
+            return {
+                src: normalizedSrc,
+                alt: imgAlt || undefined,
+                caption: imgAlt || undefined,
+            }
+        })
+
+        // Находим индекс текущего изображения
+        const currentIndex = imageElements.findIndex((img) => {
+            let imgSrc = img.getAttribute("src") || ""
+            
+            // Извлекаем оригинальный путь, если это оптимизированное изображение
+            if (imgSrc.includes("/_next/image")) {
+                try {
+                    const urlMatch = imgSrc.match(/url=([^&]+)/)
+                    if (urlMatch) {
+                        imgSrc = decodeURIComponent(urlMatch[1])
+                    }
+                } catch {
+                    // Оставляем как есть
+                }
+            }
+            
+            const normalizedSrc = imgSrc.startsWith("http") || imgSrc.startsWith("/") 
+                ? imgSrc 
+                : `/${imgSrc}`
+            const normalizedCurrentSrc = src.startsWith("http") || src.startsWith("/") 
+                ? src 
+                : `/${src}`
+            return normalizedSrc === normalizedCurrentSrc || 
+                   normalizedSrc.includes(normalizedCurrentSrc.split("/").pop() || "") || 
+                   normalizedCurrentSrc.includes(normalizedSrc.split("/").pop() || "")
+        })
+
+        if (images.length > 0) {
+            // Открываем галерею через событие
+            window.dispatchEvent(new CustomEvent("openImageGallery", {
+                detail: { 
+                    images, 
+                    index: currentIndex >= 0 ? currentIndex : 0 
+                }
+            }))
+        }
     }
 
     const figure = (
-        <figure
+        <figure 
             className="relative mx-auto my-6 max-w-3xl w-full overflow-hidden rounded-xl bg-background group cursor-pointer mdx-image-figure"
             onClick={handleClick}
         >
@@ -252,15 +328,15 @@ export const mdxComponents: MDXComponents = {
         const slugger = new GitHubSlugger()
         const text = getTextFromChildren(props.children)
         const id = slugger.slug(text)
-
+        
         // Проверяем, является ли это FAQ секцией
         const isFAQ = /FAQ|часто задаваемые вопросы|частые вопросы|frequently asked questions|common questions/i.test(text)
-
+        
         // Если это FAQ, используем специальный компонент
         if (isFAQ) {
             return <FAQHeadingWrapper headingText={text} headingId={id} {...props} />
         }
-
+        
         return (
             <h2
                 id={id}
@@ -337,7 +413,7 @@ export const mdxComponents: MDXComponents = {
     // FAQ компонент для использования в MDX
     FAQSection: (props: { items?: Array<{ question: string; answer: string }>; title?: string; searchable?: boolean }) => {
         const [isEnglish, setIsEnglish] = useState(false)
-
+        
         React.useEffect(() => {
             setIsEnglish(window.location.pathname.startsWith("/en"))
         }, [])
@@ -348,8 +424,8 @@ export const mdxComponents: MDXComponents = {
         }
 
         return (
-            <FAQSection
-                items={props.items}
+            <FAQSection 
+                items={props.items} 
                 title={props.title}
                 isEnglish={isEnglish}
                 searchable={props.searchable !== false}
@@ -364,29 +440,64 @@ const FAQContext = React.createContext<{ code: string; faqItems: Array<{ questio
 // 🔹 Компонент-обёртка для FAQ заголовка
 function FAQHeadingWrapper({ headingText, headingId, ...props }: { headingText: string; headingId: string } & React.HTMLAttributes<HTMLHeadingElement>) {
     const [isEnglish, setIsEnglish] = useState(false)
+    const [faqItems, setFaqItems] = useState<Array<{ question: string; answer: string }>>([])
+    const headingRef = React.useRef<HTMLHeadingElement>(null)
     const faqContext = React.useContext(FAQContext)
-
+    
     React.useEffect(() => {
         setIsEnglish(window.location.pathname.startsWith("/en"))
-    }, [])
-
-    // Получаем FAQ элементы только из контекста, который был заранее спаршен во время сборки ContentLayer
-    const faqItems = faqContext?.faqItems || []
-
+        
+        // Используем FAQ из контекста, если доступен
+        if (faqContext?.faqItems && faqContext.faqItems.length > 0) {
+            setFaqItems(faqContext.faqItems)
+            return
+        }
+        
+        // Иначе пытаемся парсить из DOM
+        const proseContainer = headingRef.current?.closest('.prose')
+        if (!proseContainer) return
+        
+        // Находим все элементы после заголовка до следующего h2/h3
+        let currentElement: Element | null = headingRef.current?.nextElementSibling || null
+        const faqContent: string[] = []
+        
+        while (currentElement) {
+            if (currentElement.tagName === "H2" || currentElement.tagName === "H3" || currentElement.tagName === "HR") {
+                break
+            }
+            // Пропускаем уже добавленный FAQSection
+            if (currentElement.classList.contains("my-8") && currentElement.querySelector("h2")) {
+                break
+            }
+            faqContent.push(currentElement.textContent || "")
+            currentElement = currentElement.nextElementSibling
+        }
+        
+        // Парсим FAQ из собранного контента
+        if (faqContent.length > 0) {
+            const fullText = faqContent.join('\n')
+            const parsed = parseFAQ(`## ${headingText}\n\n${fullText}`)
+            if (parsed.length > 0) {
+                setFaqItems(parsed)
+            }
+        }
+    }, [headingText, faqContext])
+    
     return (
         <>
             <h2
+                ref={headingRef}
                 id={headingId}
                 aria-label={headingText}
-                className="mt-10 scroll-m-20 border-b pb-2 text-2xl font-semibold faq-section-heading"
+                className="mt-10 scroll-m-20 border-b pb-2 text-2xl font-semibold"
                 {...props}
             >
                 {headingText}
             </h2>
             {faqItems.length > 0 && (
-                <div className="my-6 faq-section-wrapper">
-                    <FAQSection
-                        items={faqItems}
+                <div className="my-6">
+                    <FAQSection 
+                        items={faqItems} 
                         isEnglish={isEnglish}
                         searchable={true}
                     />
@@ -427,9 +538,49 @@ export function Mdx({ code }: { code: string }) {
         }
     }, [])
 
-    // FAQ контент парсится на этапе сборки и доступен через context.
-    // Если нам нужно скрыть сырой текст из MDX, лучше всего это сделать 
-    // через remark/rehype плагин на этапе сборки, а не через DOM манипуляции.
+    // Автоматически скрываем оригинальный FAQ контент после рендера
+    React.useEffect(() => {
+        const proseContainer = document.querySelector(".prose")
+        if (!proseContainer) return
+
+        // Ищем заголовки FAQ
+        const faqHeadings = Array.from(proseContainer.querySelectorAll("h2, h3")).filter((heading) => {
+            const text = heading.textContent || ""
+            return /FAQ|часто задаваемые вопросы|частые вопросы|frequently asked questions|common questions/i.test(text)
+        })
+
+        faqHeadings.forEach((heading) => {
+            // Проверяем, не обработан ли уже
+            if (heading.getAttribute("data-faq-processed") === "true") return
+            heading.setAttribute("data-faq-processed", "true")
+
+            // Находим следующий контент до следующего заголовка уровня 2 или 3
+            let currentElement: Element | null = heading.nextElementSibling
+            const faqContent: Element[] = []
+
+            while (currentElement) {
+                // Останавливаемся на следующем заголовке уровня 2 или 3
+                if (currentElement.tagName === "H2" || currentElement.tagName === "H3") {
+                    break
+                }
+                // Пропускаем горизонтальные разделители
+                if (currentElement.tagName === "HR") {
+                    break
+                }
+                // Пропускаем уже добавленный FAQSection компонент
+                if (currentElement.classList.contains("faq-section-wrapper") || currentElement.querySelector(".faq-section-wrapper")) {
+                    break
+                }
+                faqContent.push(currentElement)
+                currentElement = currentElement.nextElementSibling
+            }
+
+            // Скрываем оригинальный контент FAQ (FAQSection уже добавлен через компонент)
+            faqContent.forEach((el) => {
+                el.setAttribute("style", "display: none;")
+            })
+        })
+    }, [])
 
     return (
         <FAQContext.Provider value={{ code, faqItems }}>

@@ -76,39 +76,10 @@ export const Post = defineDocumentType(() => ({
                     })
                 ),
         },
-
-        // ❓ Подготовленный FAQ для компонента (чтобы не парсить в клиентском браузере)
-        faqItems: {
-            type: "json",
-            resolve: (doc) => {
-                import("./src/lib/parse-faq").then(m => m.parseFAQ).catch(() => () => []).then(parseFAQ => parseFAQ(doc.body.raw))
-            }
-        },
     },
 }))
-
-import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import rehypeSlug from "rehype-slug"
-import remarkGfm from "remark-gfm"
-import { rehypeRemoveFaq } from "./src/lib/rehype-remove-faq"
 
 export default makeSource({
     contentDirPath: "content/posts",
     documentTypes: [Post],
-    mdx: {
-        remarkPlugins: [remarkGfm],
-        rehypePlugins: [
-            rehypeSlug,
-            [
-                rehypeAutolinkHeadings,
-                {
-                    properties: {
-                        className: ["subheading-anchor"],
-                        ariaLabel: "Link to section",
-                    },
-                },
-            ],
-            rehypeRemoveFaq, // 🧹 Очищаем оригинальный текст FAQ (оставляя только заголовок для компонента)
-        ],
-    },
 })
