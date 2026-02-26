@@ -68,8 +68,8 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({
-                                             children,
-                                         }: {
+    children,
+}: {
     children: React.ReactNode
 }) {
     const hdrs = await headers()
@@ -82,40 +82,40 @@ export default async function RootLayout({
             suppressHydrationWarning
             className={`${GeistSans.variable} ${GeistMono.variable}`}
         >
-        <head>
-            {/* Favicon и иконки */}
-            <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-            <link rel="alternate icon" href="/favicon.ico" />
-            <link rel="manifest" href="/manifest.json" />
-            
-            {/* ✅ Font Display: swap для немедленного отображения текста */}
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-            
-            {/* ✅ Preload critical resources */}
-            <link rel="preload" href="/images/hero/hero-banner.png" as="image" />
-            <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-            <link rel="dns-prefetch" href="//mc.yandex.ru" />
-            <link rel="dns-prefetch" href="//pagead2.googlesyndication.com" />
-            
-            {/* ✅ Pinterest Domain Verification */}
-            <meta
-                name="p:domain_verify"
-                content="c5936504ab784c7854df0c0807478575"
-            />
+            <head>
+                {/* Favicon и иконки */}
+                <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+                <link rel="alternate icon" href="/favicon.ico" />
+                <link rel="manifest" href="/manifest.json" />
 
-            {/* ✅ Google Tag Manager */}
-            <Script id="gtm-script" strategy="lazyOnload">
-                {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                {/* ✅ Font Display: swap для немедленного отображения текста */}
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+                {/* ✅ Preload critical resources */}
+                <link rel="preload" href="/images/hero/hero-banner.png" as="image" />
+                <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+                <link rel="dns-prefetch" href="//mc.yandex.ru" />
+                <link rel="dns-prefetch" href="//pagead2.googlesyndication.com" />
+
+                {/* ✅ Pinterest Domain Verification */}
+                <meta
+                    name="p:domain_verify"
+                    content="c5936504ab784c7854df0c0807478575"
+                />
+
+                {/* ✅ Google Tag Manager */}
+                <Script id="gtm-script" strategy="lazyOnload">
+                    {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-N2Z2CSMS');`}
-            </Script>
+                </Script>
 
-            {/* ✅ Yandex.Metrika counter */}
-            <Script id="yandex-metrika" strategy="lazyOnload">
-                {`(function(m,e,t,r,i,k,a){
+                {/* ✅ Yandex.Metrika counter */}
+                <Script id="yandex-metrika" strategy="lazyOnload">
+                    {`(function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
             for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
@@ -123,13 +123,13 @@ export default async function RootLayout({
           })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104537151', 'ym');
 
           ym(104537151, 'init', {ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});`}
-            </Script>
+                </Script>
 
-            {/* ✅ Google Consent Mode - инициализация ДО AdSense */}
-            <script
-                suppressHydrationWarning
-                dangerouslySetInnerHTML={{
-                    __html: `
+                {/* ✅ Google Consent Mode - инициализация ДО AdSense */}
+                <script
+                    suppressHydrationWarning
+                    dangerouslySetInnerHTML={{
+                        __html: `
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
                         gtag('consent', 'default', {
@@ -139,21 +139,21 @@ export default async function RootLayout({
                             'analytics_storage': 'denied'
                         });
                     `,
-                }}
-            />
+                    }}
+                />
 
-            {/* ✅ Google AdSense - используем обычный script для верификации */}
-            <script
-                async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6574921684224364"
-                crossOrigin="anonymous"
-            />
-            
-            {/* ✅ Service Worker для PWA */}
-            <script
-                suppressHydrationWarning
-                dangerouslySetInnerHTML={{
-                    __html: `
+                {/* ✅ Google AdSense - используем обычный script для верификации */}
+                <script
+                    async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6574921684224364"
+                    crossOrigin="anonymous"
+                />
+
+                {/* ✅ Service Worker для PWA */}
+                <script
+                    suppressHydrationWarning
+                    dangerouslySetInnerHTML={{
+                        __html: `
                         if ('serviceWorker' in navigator) {
                             window.addEventListener('load', () => {
                                 navigator.serviceWorker.register('/sw.js')
@@ -166,82 +166,81 @@ export default async function RootLayout({
                             });
                         }
                     `,
-                }}
-            />
-
-            {/* ✅ JSON-LD: Organization + WebSite */}
-            <Script
-                id="site-schema"
-                type="application/ld+json"
-                strategy="beforeInteractive"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@graph": [
-                            {
-                                "@type": "Organization",
-                                "@id": "https://renohacks.com/#organization",
-                                name: "Renohacks",
-                                url: "https://renohacks.com/",
-                                logo: {
-                                    "@type": "ImageObject",
-                                    url: "https://renohacks.com/favicon.ico",
-                                },
-                            },
-                            {
-                                "@type": "WebSite",
-                                "@id": "https://renohacks.com/#website",
-                                url: "https://renohacks.com/",
-                                name: "Renohacks",
-                                publisher: { "@id": "https://renohacks.com/#organization" },
-                                potentialAction: {
-                                    "@type": "SearchAction",
-                                    target: "https://renohacks.com/search?q={search_term_string}",
-                                    "query-input": "required name=search_term_string",
-                                },
-                            },
-                        ],
-                    }),
-                }}
-            />
-        </head>
-
-        <body className="min-h-screen bg-background text-foreground font-sans antialiased">
-        {/* ✅ GTM noscript */}
-        <noscript>
-            <iframe
-                src="https://www.googletagmanager.com/ns.html?id=GTM-N2Z2CSMS"
-                height="0"
-                width="0"
-                style={{ display: "none", visibility: "hidden" }}
-            />
-        </noscript>
-
-        {/* ✅ Yandex.Metrika fallback */}
-        <noscript>
-            <div>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src="https://mc.yandex.ru/watch/104537151"
-                    style={{ position: "absolute", left: "-9999px" }}
-                    alt=""
+                    }}
                 />
-            </div>
-        </noscript>
 
-        <ThemeProvider>
-            <BackgroundAnimation />
-            <SiteHeader />
-            <main className="w-full py-6 sm:py-8">{children}</main>
-            <SiteFooter />
-            <CookieConsent />
-            <KeyboardShortcuts isEnglish={lang === "en"} />
-            <ScrollToTop />
-            <Toaster position="top-center" richColors />
-        </ThemeProvider>
-        <Analytics />
-        <SpeedInsights />
-        </body>
+                {/* ✅ JSON-LD: Organization + WebSite */}
+                <script
+                    id="site-schema"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@graph": [
+                                {
+                                    "@type": "Organization",
+                                    "@id": "https://renohacks.com/#organization",
+                                    name: "Renohacks",
+                                    url: "https://renohacks.com/",
+                                    logo: {
+                                        "@type": "ImageObject",
+                                        url: "https://renohacks.com/favicon.ico",
+                                    },
+                                },
+                                {
+                                    "@type": "WebSite",
+                                    "@id": "https://renohacks.com/#website",
+                                    url: "https://renohacks.com/",
+                                    name: "Renohacks",
+                                    publisher: { "@id": "https://renohacks.com/#organization" },
+                                    potentialAction: {
+                                        "@type": "SearchAction",
+                                        target: "https://renohacks.com/search?q={search_term_string}",
+                                        "query-input": "required name=search_term_string",
+                                    },
+                                },
+                            ],
+                        }),
+                    }}
+                />
+            </head>
+
+            <body className="min-h-screen bg-background text-foreground font-sans antialiased">
+                {/* ✅ GTM noscript */}
+                <noscript>
+                    <iframe
+                        src="https://www.googletagmanager.com/ns.html?id=GTM-N2Z2CSMS"
+                        height="0"
+                        width="0"
+                        style={{ display: "none", visibility: "hidden" }}
+                    />
+                </noscript>
+
+                {/* ✅ Yandex.Metrika fallback */}
+                <noscript>
+                    <div>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src="https://mc.yandex.ru/watch/104537151"
+                            style={{ position: "absolute", left: "-9999px" }}
+                            alt=""
+                        />
+                    </div>
+                </noscript>
+
+                <ThemeProvider>
+                    <BackgroundAnimation />
+                    <SiteHeader />
+                    <main className="w-full py-6 sm:py-8">{children}</main>
+                    <SiteFooter />
+                    <CookieConsent />
+                    <KeyboardShortcuts isEnglish={lang === "en"} />
+                    <ScrollToTop />
+                    <Toaster position="top-center" richColors />
+                </ThemeProvider>
+                <Analytics />
+                <SpeedInsights />
+            </body>
         </html>
     )
 }

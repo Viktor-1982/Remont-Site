@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 import { type Subscription } from "../subscriptions/store"
 import { findSubscription, getStats, upsertSubscription } from "@/lib/subscriptions-repo"
+import { checkRateLimit } from "@/lib/rate-limit"
 
 // Инициализация Resend (опционально, если настроен RESEND_API_KEY)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
@@ -13,6 +14,21 @@ export async function POST(req: NextRequest) {
     try {
         const body = await req.json()
         locale = (body.locale === "en" ? "en" : "ru")
+
+        // Проверка Rate Limit: макс. 5 запросов в минуту с одного IP
+        const rateLimitResult = checkRateLimit(req, {
+            maxRequests: 5,
+            windowMs: 60 * 1000, // 1 минута
+            identifier: "subscribe",
+        })
+
+        if (!rateLimitResult.success) {
+            return NextResponse.json(
+                { error: locale === "en" ? "Too many requests. Please try again later." : "Слишком много запросов. Пожалуйста, попробуйте позже." },
+                { status: 429 }
+            )
+        }
+
         const { email, source } = body
 
         const resendConfigured = Boolean(resend) && Boolean(process.env.RESEND_API_KEY)

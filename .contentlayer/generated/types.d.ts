@@ -29,6 +29,7 @@ export type Post = {
   url: string
   readingTime: string
   headings: json
+  faqItems: json
 }  
 
 /** Nested types */
