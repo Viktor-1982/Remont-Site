@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Calculator, Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, ChevronDown, Sparkles, ShoppingCart, Thermometer, Wind } from "lucide-react"
+import { Calculator, Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, ChevronDown, Sparkles, ShoppingCart, Thermometer, Wind, Lightbulb } from "lucide-react"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -50,6 +50,12 @@ const calculatorsRu: CalculatorLink[] = [
         label: "Калькулятор вентиляции",
         icon: Wind,
         desc: "Объём и кратность",
+    },
+    {
+        href: "/calculators/lighting",
+        label: "Калькулятор освещённости",
+        icon: Lightbulb,
+        desc: "Люмены и количество ламп",
     },
     {
         href: "/calculators/budget",
@@ -107,6 +113,12 @@ const calculatorsEn: CalculatorLink[] = [
         label: "Ventilation",
         icon: Wind,
         desc: "Volume and ACH",
+    },
+    {
+        href: "/en/calculators/lighting",
+        label: "Lighting Calculator",
+        icon: Lightbulb,
+        desc: "Lumens and lamp count",
     },
     {
         href: "/en/calculators/budget",

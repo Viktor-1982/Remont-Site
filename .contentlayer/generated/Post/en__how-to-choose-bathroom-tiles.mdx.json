@@ -1,0 +1,61 @@
+{
+  "title": "How to Choose Bathroom Tiles: A Complete Guide with Photos",
+  "description": "Breaking down all the nuances of choosing ceramic tiles and porcelain stoneware for your bathroom. Designer tips, layout ideas, and common mistakes.",
+  "date": "2026-02-26T00:00:00.000Z",
+  "tags": [
+    "Bathroom",
+    "Tiles",
+    "Materials",
+    "Design"
+  ],
+  "cover": "/images/posts/bathroom-tiles/cover.jpg",
+  "author": "Renohacks",
+  "translationOf": "kak-vybrat-plitku",
+  "draft": false,
+  "keywords": [
+    "bathroom tiles",
+    "porcelain stoneware",
+    "bathroom design",
+    "ceramic tile",
+    "bathroom remodel"
+  ],
+  "body": {
+    "raw": "\nChoosing bathroom tiles is one of the most important stages of a renovation. It affects both the look of the room and how long the finish lasts. In this guide, we break down the key selection principles and show practical examples.\n\n## 1. Ceramic Tile or Porcelain Stoneware?\n\nThis is the first decision to make.\n\n**Ceramic tile** is great for walls. It is lighter, easier to cut, and easier to drill (for example, for sockets or towel hooks).\n\n**Porcelain stoneware** is usually the better choice for floors. It has higher density, withstands impacts better, and has very low water absorption. Today, it is also increasingly used on walls to create a unified, seamless look.\n\n![Wood and concrete look porcelain stoneware in a modern bathroom](/images/posts/bathroom-tiles/1.jpg)\n\n> [!TIP]\n> If you are using porcelain stoneware on the floor, choose matte options with anti-slip properties. In residential bathrooms, installers often target R10-R11. For barefoot wet zones, also check the A/B/C barefoot classification (DIN 51097), typically not lower than class B. A glossy floor in a wet bathroom is a major slip hazard.\n\n## 2. Format and Size Matter\n\nThe myth that a small bathroom only needs small tiles is long outdated. Large-format porcelain stoneware (for example, 60x60 or 60x120 cm) visually expands the space thanks to the minimal number of grout joints.\n\n![Example of using large-format, light-colored porcelain stoneware](/images/posts/bathroom-tiles/2.jpg)\n\nIf you want to add texture, you can use:\n- **Subway tile** — an excellent option for an accent wall in the shower area.\n- **Mosaic** — ideal for cladding shower pans, niches, or curved surfaces.\n\n## 3. Color Palette: Light or Dark?\n\nLight tiles (white, beige, light gray) are a reliable classic. They make the bathroom brighter and visually more spacious. On light surfaces, water spots and mineral deposits are often less noticeable than on very dark ones, though visibility depends on texture and water hardness.\n\nDark tiles (anthracite, deep blue, emerald) look premium and expensive, but require more careful maintenance, especially in areas of direct water contact.\n\n<BeforeAfterGallery \n  isEnglish={true}\n  images={[\n    {\n      before: \"/images/posts/bathroom-tiles/before.jpg\",\n      after: \"/images/posts/bathroom-tiles/after.jpg\",\n      label: \"Bathroom Renovation\",\n      description: \"Replacing old white ceramic squares with modern concrete and wood-look porcelain stoneware.\"\n    }\n  ]}\n/>\n\n## Tile Calculation Tool\n\nTo avoid buying too much (or, worse, suddenly running out of tiles), use our built-in calculator. It takes into account wall areas, door sizes, and the standard margin for cutting.\n\n<TileCalculator />\n\n---\n\n## ❓ Frequently Asked Questions\n\n**What tile overage margin should I buy?**\nFor a straight layout (grid pattern), a 10% waste allowance is usually recommended. If you plan a diagonal layout, increase it to about 15%. For large-format porcelain stoneware, waste is often calculated piece by piece.\n\n**Which grout is better: cement or epoxy?**\nFor wet zones (inside the shower area, near the bathtub), epoxy grout is often the better choice. It has lower water absorption and better resistance to staining and mold, but it is more expensive and harder to apply. For other walls, high-quality cement grout with water-repellent additives is usually sufficient.\n\n**Can tiles be laid on drywall?**\nYes. Use moisture-resistant drywall, follow the manufacturer's requirements for board thickness and framing spacing, and always apply continuous waterproofing on joints and surfaces in wet zones before tiling.\n",
+    "code": "var Component=(()=>{var u=Object.create;var i=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var g=Object.getOwnPropertyNames;var f=Object.getPrototypeOf,w=Object.prototype.hasOwnProperty;var b=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),y=(t,e)=>{for(var r in e)i(t,r,{get:e[r],enumerable:!0})},s=(t,e,r,a)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let n of g(e))!w.call(t,n)&&n!==r&&i(t,n,{get:()=>e[n],enumerable:!(a=p(e,n))||a.enumerable});return t};var k=(t,e,r)=>(r=t!=null?u(f(t)):{},s(e||!t||!t.__esModule?i(r,\"default\",{value:t,enumerable:!0}):r,t)),x=t=>s(i({},\"__esModule\",{value:!0}),t);var c=b((I,l)=>{l.exports=_jsx_runtime});var j={};y(j,{default:()=>m,frontmatter:()=>v});var o=k(c()),v={title:\"How to Choose Bathroom Tiles: A Complete Guide with Photos\",description:\"Breaking down all the nuances of choosing ceramic tiles and porcelain stoneware for your bathroom. Designer tips, layout ideas, and common mistakes.\",date:\"2026-02-26\",cover:\"/images/posts/bathroom-tiles/cover.jpg\",author:\"Renohacks\",translationOf:\"kak-vybrat-plitku\",tags:[\"Bathroom\",\"Tiles\",\"Materials\",\"Design\"],keywords:[\"bathroom tiles\",\"porcelain stoneware\",\"bathroom design\",\"ceramic tile\",\"bathroom remodel\"]};function h(t){let e={blockquote:\"blockquote\",h2:\"h2\",hr:\"hr\",img:\"img\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...t.components},{BeforeAfterGallery:r,TileCalculator:a}=e;return r||d(\"BeforeAfterGallery\",!0),a||d(\"TileCalculator\",!0),(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(e.p,{children:\"Choosing bathroom tiles is one of the most important stages of a renovation. It affects both the look of the room and how long the finish lasts. In this guide, we break down the key selection principles and show practical examples.\"}),`\n`,(0,o.jsx)(e.h2,{children:\"1. Ceramic Tile or Porcelain Stoneware?\"}),`\n`,(0,o.jsx)(e.p,{children:\"This is the first decision to make.\"}),`\n`,(0,o.jsxs)(e.p,{children:[(0,o.jsx)(e.strong,{children:\"Ceramic tile\"}),\" is great for walls. It is lighter, easier to cut, and easier to drill (for example, for sockets or towel hooks).\"]}),`\n`,(0,o.jsxs)(e.p,{children:[(0,o.jsx)(e.strong,{children:\"Porcelain stoneware\"}),\" is usually the better choice for floors. It has higher density, withstands impacts better, and has very low water absorption. Today, it is also increasingly used on walls to create a unified, seamless look.\"]}),`\n`,(0,o.jsx)(e.p,{children:(0,o.jsx)(e.img,{src:\"/images/posts/bathroom-tiles/1.jpg\",alt:\"Wood and concrete look porcelain stoneware in a modern bathroom\"})}),`\n`,(0,o.jsxs)(e.blockquote,{children:[`\n`,(0,o.jsx)(e.p,{children:`[!TIP]\nIf you are using porcelain stoneware on the floor, choose matte options with anti-slip properties. In residential bathrooms, installers often target R10-R11. For barefoot wet zones, also check the A/B/C barefoot classification (DIN 51097), typically not lower than class B. A glossy floor in a wet bathroom is a major slip hazard.`}),`\n`]}),`\n`,(0,o.jsx)(e.h2,{children:\"2. Format and Size Matter\"}),`\n`,(0,o.jsx)(e.p,{children:\"The myth that a small bathroom only needs small tiles is long outdated. Large-format porcelain stoneware (for example, 60x60 or 60x120 cm) visually expands the space thanks to the minimal number of grout joints.\"}),`\n`,(0,o.jsx)(e.p,{children:(0,o.jsx)(e.img,{src:\"/images/posts/bathroom-tiles/2.jpg\",alt:\"Example of using large-format, light-colored porcelain stoneware\"})}),`\n`,(0,o.jsx)(e.p,{children:\"If you want to add texture, you can use:\"}),`\n`,(0,o.jsxs)(e.ul,{children:[`\n`,(0,o.jsxs)(e.li,{children:[(0,o.jsx)(e.strong,{children:\"Subway tile\"}),\" \\u2014 an excellent option for an accent wall in the shower area.\"]}),`\n`,(0,o.jsxs)(e.li,{children:[(0,o.jsx)(e.strong,{children:\"Mosaic\"}),\" \\u2014 ideal for cladding shower pans, niches, or curved surfaces.\"]}),`\n`]}),`\n`,(0,o.jsx)(e.h2,{children:\"3. Color Palette: Light or Dark?\"}),`\n`,(0,o.jsx)(e.p,{children:\"Light tiles (white, beige, light gray) are a reliable classic. They make the bathroom brighter and visually more spacious. On light surfaces, water spots and mineral deposits are often less noticeable than on very dark ones, though visibility depends on texture and water hardness.\"}),`\n`,(0,o.jsx)(e.p,{children:\"Dark tiles (anthracite, deep blue, emerald) look premium and expensive, but require more careful maintenance, especially in areas of direct water contact.\"}),`\n`,(0,o.jsx)(r,{isEnglish:!0,images:[{before:\"/images/posts/bathroom-tiles/before.jpg\",after:\"/images/posts/bathroom-tiles/after.jpg\",label:\"Bathroom Renovation\",description:\"Replacing old white ceramic squares with modern concrete and wood-look porcelain stoneware.\"}]}),`\n`,(0,o.jsx)(e.h2,{children:\"Tile Calculation Tool\"}),`\n`,(0,o.jsx)(e.p,{children:\"To avoid buying too much (or, worse, suddenly running out of tiles), use our built-in calculator. It takes into account wall areas, door sizes, and the standard margin for cutting.\"}),`\n`,(0,o.jsx)(a,{}),`\n`,(0,o.jsx)(e.hr,{}),`\n`,(0,o.jsx)(e.h2,{children:\"\\u2753 Frequently Asked Questions\"}),`\n`,(0,o.jsxs)(e.p,{children:[(0,o.jsx)(e.strong,{children:\"What tile overage margin should I buy?\"}),`\nFor a straight layout (grid pattern), a 10% waste allowance is usually recommended. If you plan a diagonal layout, increase it to about 15%. For large-format porcelain stoneware, waste is often calculated piece by piece.`]}),`\n`,(0,o.jsxs)(e.p,{children:[(0,o.jsx)(e.strong,{children:\"Which grout is better: cement or epoxy?\"}),`\nFor wet zones (inside the shower area, near the bathtub), epoxy grout is often the better choice. It has lower water absorption and better resistance to staining and mold, but it is more expensive and harder to apply. For other walls, high-quality cement grout with water-repellent additives is usually sufficient.`]}),`\n`,(0,o.jsxs)(e.p,{children:[(0,o.jsx)(e.strong,{children:\"Can tiles be laid on drywall?\"}),`\nYes. Use moisture-resistant drywall, follow the manufacturer's requirements for board thickness and framing spacing, and always apply continuous waterproofing on joints and surfaces in wet zones before tiling.`]})]})}function m(t={}){let{wrapper:e}=t.components||{};return e?(0,o.jsx)(e,{...t,children:(0,o.jsx)(h,{...t})}):h(t)}function d(t,e){throw new Error(\"Expected \"+(e?\"component\":\"object\")+\" `\"+t+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return x(j);})();\n;return Component;"
+  },
+  "_id": "en/how-to-choose-bathroom-tiles.mdx",
+  "_raw": {
+    "sourceFilePath": "en/how-to-choose-bathroom-tiles.mdx",
+    "sourceFileName": "how-to-choose-bathroom-tiles.mdx",
+    "sourceFileDir": "en",
+    "contentType": "mdx",
+    "flattenedPath": "en/how-to-choose-bathroom-tiles"
+  },
+  "type": "Post",
+  "locale": "en",
+  "slug": "how-to-choose-bathroom-tiles",
+  "url": "/en/posts/how-to-choose-bathroom-tiles",
+  "readingTime": "3 мин",
+  "headings": [
+    {
+      "text": "1. Ceramic Tile or Porcelain Stoneware?",
+      "level": 2
+    },
+    {
+      "text": "2. Format and Size Matter",
+      "level": 2
+    },
+    {
+      "text": "3. Color Palette: Light or Dark?",
+      "level": 2
+    },
+    {
+      "text": "Tile Calculation Tool",
+      "level": 2
+    },
+    {
+      "text": "❓ Frequently Asked Questions",
+      "level": 2
+    }
+  ]
+}

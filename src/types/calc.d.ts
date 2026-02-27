@@ -1,4 +1,4 @@
-﻿export type Locale = "ru" | "en"
+export type Locale = "ru" | "en"
 
 export interface PaintCalcDict {
     title: string
@@ -64,6 +64,39 @@ export interface BudgetCalcDict {
     total: string
 }
 
+export interface VentilationCalcDict {
+    title: string
+    length: string
+    width: string
+    height: string
+    roomType: string
+    ach: string
+    reserve: string
+    volume: string
+    airflow: string
+    withReserve: string
+    instruction: string
+    calculate: string
+}
+
+export interface LightingCalcDict {
+    title: string
+    length: string
+    width: string
+    roomType: string
+    lux: string
+    lumenPerLamp: string
+    reserve: string
+    area: string
+    totalLumens: string
+    lamps: string
+    instruction: string
+    calculate: string
+    shareCalculator: string
+    shareResult: string
+    saveResult: string
+}
+
 export interface CalcDict {
     paint: PaintCalcDict
     tiles: TilesCalcDict
@@ -71,6 +104,8 @@ export interface CalcDict {
     underfloor: UnderfloorCalcDict
     buttons: ButtonsDict
     budget: BudgetCalcDict
+    ventilation: VentilationCalcDict
+    lighting: LightingCalcDict
 }
 
 export type CalcData = {

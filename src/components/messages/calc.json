@@ -1,4 +1,4 @@
-﻿{
+{
   "ru": {
     "calc": {
       "paint": {
@@ -58,6 +58,37 @@
         "subtotal": "Итого без резерва",
         "reserveAmount": "Резерв",
         "total": "Полная сумма"
+      },
+      "ventilation": {
+        "title": "Калькулятор вентиляции",
+        "length": "Длина (м)",
+        "width": "Ширина (м)",
+        "height": "Высота потолка (м)",
+        "roomType": "Тип помещения",
+        "ach": "Кратность воздухообмена (ACH)",
+        "reserve": "Запас (%)",
+        "volume": "Объём помещения",
+        "airflow": "Расход воздуха",
+        "withReserve": "С учётом запаса",
+        "instruction": "Простая инструкция",
+        "calculate": "Рассчитать расход"
+      },
+      "lighting": {
+        "title": "Калькулятор освещённости",
+        "length": "Длина (м)",
+        "width": "Ширина (м)",
+        "roomType": "Тип помещения",
+        "lux": "Норма освещённости",
+        "lumenPerLamp": "Световой поток одной лампы (лм)",
+        "reserve": "Запас (%)",
+        "area": "Площадь",
+        "totalLumens": "Нужно люмен",
+        "lamps": "Количество ламп",
+        "instruction": "Инструкция",
+        "calculate": "Рассчитать",
+        "shareCalculator": "Поделиться калькулятором",
+        "shareResult": "Поделиться результатом",
+        "saveResult": "Сохранить результат"
       }
     }
   },
@@ -120,6 +151,37 @@
         "subtotal": "Subtotal",
         "reserveAmount": "Reserve",
         "total": "Total"
+      },
+      "ventilation": {
+        "title": "Ventilation Calculator",
+        "length": "Length (m)",
+        "width": "Width (m)",
+        "height": "Ceiling height (m)",
+        "roomType": "Room type",
+        "ach": "Air changes per hour (ACH)",
+        "reserve": "Reserve (%)",
+        "volume": "Room volume",
+        "airflow": "Airflow",
+        "withReserve": "With reserve",
+        "instruction": "Simple instruction",
+        "calculate": "Calculate airflow"
+      },
+      "lighting": {
+        "title": "Lighting Calculator",
+        "length": "Length (m)",
+        "width": "Width (m)",
+        "roomType": "Room type",
+        "lux": "Target illuminance",
+        "lumenPerLamp": "Lumen per lamp (lm)",
+        "reserve": "Reserve (%)",
+        "area": "Area",
+        "totalLumens": "Lumens needed",
+        "lamps": "Number of lamps",
+        "instruction": "Instructions",
+        "calculate": "Calculate",
+        "shareCalculator": "Share calculator",
+        "shareResult": "Share result",
+        "saveResult": "Save result"
       }
     }
   }

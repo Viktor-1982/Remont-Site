@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Calculator, ArrowRight, Sparkles, ShoppingCart, Thermometer, Wind } from "lucide-react"
+import { Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Calculator, ArrowRight, Sparkles, ShoppingCart, Thermometer, Wind, Lightbulb } from "lucide-react"
 import { motion } from "framer-motion"
 
 interface CalculatorItem {
@@ -65,6 +65,16 @@ const calculators: CalculatorItem[] = [
         badge: "Вентиляция",
         gradient: "from-cyan-500/15 via-sky-400/10 to-blue-400/10",
         color: "cyan",
+    },
+    {
+        href: "/calculators/lighting",
+        label: "Калькулятор освещённости",
+        emoji: "💡",
+        icon: Lightbulb,
+        desc: "Узнайте, сколько люмен нужно комнате и сколько ламп установить.",
+        badge: "Освещение",
+        gradient: "from-amber-500/15 via-yellow-400/10 to-orange-400/10",
+        color: "amber",
     },
     {
         href: "/calculators/budget",
@@ -158,6 +168,16 @@ const calculatorsEn: CalculatorItem[] = [
         badge: "Ventilation",
         gradient: "from-cyan-500/15 via-sky-400/10 to-blue-400/10",
         color: "cyan",
+    },
+    {
+        href: "/en/calculators/lighting",
+        label: "Lighting Calculator",
+        emoji: "💡",
+        icon: Lightbulb,
+        desc: "Find how many lumens and lamps your room needs by area and type.",
+        badge: "Lighting",
+        gradient: "from-amber-500/15 via-yellow-400/10 to-orange-400/10",
+        color: "amber",
     },
     {
         href: "/en/calculators/budget",

@@ -44,8 +44,9 @@ const renovationCategories = [
 ]
 
 const currencies = [
-  { code: "USD", symbol: "$", name: "Dollar" },
+  { code: "USD", symbol: "$", name: "US Dollar" },
   { code: "EUR", symbol: "€", name: "Euro" },
+  { code: "GBP", symbol: "£", name: "British Pound" },
 ]
 
 interface ExpenseItem {

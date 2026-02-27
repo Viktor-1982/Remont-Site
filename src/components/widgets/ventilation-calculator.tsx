@@ -7,6 +7,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Wind, Gauge, CheckCircle2 } from "lucide-react"
 import { computeVentilation } from "@/lib/calculations"
+import calcDataJson from "@/components/messages/calc.json"
+import type { Locale, CalcData, VentilationCalcDict } from "@/types/calc"
+
+const calcData = calcDataJson as CalcData
 
 type RoomType = "living" | "bedroom" | "kitchen" | "bathroom" | "office" | "hallway"
 
@@ -28,6 +32,8 @@ const roomPresets: Array<{
 export function VentilationCalculator({ isEnglish = false }: { isEnglish?: boolean }) {
     const pathname = usePathname()
     const isEn = isEnglish || pathname.startsWith("/en")
+    const locale: Locale = isEn ? "en" : "ru"
+    const t: VentilationCalcDict = calcData[locale].calc.ventilation
 
     const [length, setLength] = useState("")
     const [width, setWidth] = useState("")
@@ -67,7 +73,7 @@ export function VentilationCalculator({ isEnglish = false }: { isEnglish?: boole
                     </div>
                     <div>
                         <h2 className="text-xl font-semibold">
-                            {isEn ? "Ventilation calculator" : "Калькулятор вентиляции"}
+                            {t.title}
                         </h2>
                         <p className="text-sm text-muted-foreground mt-1">
                             {isEn
@@ -79,22 +85,22 @@ export function VentilationCalculator({ isEnglish = false }: { isEnglish?: boole
 
                 <div className="grid gap-4 mt-6 md:grid-cols-3">
                     <div className="space-y-2">
-                        <Label>{isEn ? "Length (m)" : "Длина (м)"}</Label>
+                        <Label>{t.length}</Label>
                         <Input value={length} onChange={(e) => setLength(e.target.value)} placeholder="5" />
                     </div>
                     <div className="space-y-2">
-                        <Label>{isEn ? "Width (m)" : "Ширина (м)"}</Label>
+                        <Label>{t.width}</Label>
                         <Input value={width} onChange={(e) => setWidth(e.target.value)} placeholder="4" />
                     </div>
                     <div className="space-y-2">
-                        <Label>{isEn ? "Ceiling height (m)" : "Высота потолка (м)"}</Label>
+                        <Label>{t.height}</Label>
                         <Input value={height} onChange={(e) => setHeight(e.target.value)} placeholder="2.7" />
                     </div>
                 </div>
 
                 <div className="grid gap-4 mt-4 md:grid-cols-2">
                     <div className="space-y-2">
-                        <Label>{isEn ? "Room type" : "Тип помещения"}</Label>
+                        <Label>{t.roomType}</Label>
                         <div className="grid gap-2 sm:grid-cols-2">
                             {roomPresets.map((item) => (
                                 <button
@@ -123,15 +129,15 @@ export function VentilationCalculator({ isEnglish = false }: { isEnglish?: boole
                         )}
                     </div>
                     <div className="space-y-2">
-                        <Label>{isEn ? "Air changes per hour (ACH)" : "Кратность воздухообмена (ACH)"}</Label>
+                        <Label>{t.ach}</Label>
                         <Input value={ach} onChange={(e) => setAch(e.target.value)} placeholder="3.5" />
-                        <Label className="pt-2">{isEn ? "Reserve (%)" : "Запас (%)"}</Label>
+                        <Label className="pt-2">{t.reserve}</Label>
                         <Input value={reserve} onChange={(e) => setReserve(e.target.value)} placeholder="10" />
                     </div>
                 </div>
 
                 <Button onClick={calculate} className="mt-5 w-full" size="lg">
-                    {isEn ? "Calculate airflow" : "Рассчитать расход"}
+                    {t.calculate}
                 </Button>
             </div>
 
@@ -139,30 +145,30 @@ export function VentilationCalculator({ isEnglish = false }: { isEnglish?: boole
                 <div className="grid gap-4 md:grid-cols-3">
                     <div className="rounded-2xl border border-border/60 bg-card p-4">
                         <div className="text-xs uppercase text-muted-foreground">
-                            {isEn ? "Room volume" : "Объём помещения"}
+                            {t.volume}
                         </div>
                         <div className="text-2xl font-semibold mt-2">
-                            {result.volumeM3.toFixed(1)} м³
+                            {result.volumeM3.toFixed(1)} {isEn ? "m³" : "м³"}
                         </div>
                     </div>
                     <div className="rounded-2xl border border-border/60 bg-card p-4">
                         <div className="text-xs uppercase text-muted-foreground">
-                            {isEn ? "Airflow" : "Расход воздуха"}
+                            {t.airflow}
                         </div>
                         <div className="text-2xl font-semibold mt-2">
-                            {result.flowM3h.toFixed(0)} м³/ч
+                            {result.flowM3h.toFixed(0)} {isEn ? "m³/h" : "м³/ч"}
                         </div>
                         <div className="text-sm text-muted-foreground mt-1">
-                            {result.flowLs.toFixed(1)} л/с
+                            {result.flowLs.toFixed(1)} {isEn ? "L/s" : "л/с"}
                         </div>
                     </div>
                     <div className="rounded-2xl border border-primary/30 bg-primary/5 p-4">
                         <div className="flex items-center gap-2 text-xs uppercase text-primary">
                             <Gauge className="h-4 w-4" />
-                            {isEn ? "With reserve" : "С учётом запаса"}
+                            {t.withReserve}
                         </div>
                         <div className="text-2xl font-semibold mt-2 text-primary">
-                            {result.flowWithReserveM3h.toFixed(0)} м³/ч
+                            {result.flowWithReserveM3h.toFixed(0)} {isEn ? "m³/h" : "м³/ч"}
                         </div>
                     </div>
                 </div>
@@ -171,7 +177,7 @@ export function VentilationCalculator({ isEnglish = false }: { isEnglish?: boole
             <div className="rounded-2xl border border-border/60 bg-card p-5 text-sm text-muted-foreground">
                 <div className="flex items-start gap-2 text-foreground font-medium">
                     <CheckCircle2 className="h-4 w-4 text-primary mt-0.5" />
-                    {isEn ? "Simple instruction" : "Простая инструкция"}
+                    {t.instruction}
                 </div>
                 <ol className="list-decimal ml-5 mt-2 space-y-1">
                     <li>{isEn ? "Enter room dimensions." : "Введите размеры помещения."}</li>

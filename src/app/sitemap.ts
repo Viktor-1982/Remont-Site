@@ -1,4 +1,4 @@
-﻿// src/app/sitemap.ts
+// src/app/sitemap.ts
 import { MetadataRoute } from "next"
 import { allPosts } from ".contentlayer/generated"
 
@@ -39,6 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { path: "/en/calculators/wallpaper", changeFrequency: "monthly" as const, priority: 0.6 },
         { path: "/calculators/budget", changeFrequency: "monthly" as const, priority: 0.6 },
         { path: "/en/calculators/budget", changeFrequency: "monthly" as const, priority: 0.6 },
+        { path: "/calculators/ventilation", changeFrequency: "monthly" as const, priority: 0.6 },
+        { path: "/en/calculators/ventilation", changeFrequency: "monthly" as const, priority: 0.6 },
+        { path: "/calculators/underfloor-heating", changeFrequency: "monthly" as const, priority: 0.6 },
+        { path: "/en/calculators/underfloor-heating", changeFrequency: "monthly" as const, priority: 0.6 },
+        { path: "/calculators/lighting", changeFrequency: "monthly" as const, priority: 0.6 },
+        { path: "/en/calculators/lighting", changeFrequency: "monthly" as const, priority: 0.6 },
         { path: "/tools", changeFrequency: "monthly" as const, priority: 0.6 },
         { path: "/en/tools", changeFrequency: "monthly" as const, priority: 0.6 },
         { path: "/tools/materials-checklist", changeFrequency: "monthly" as const, priority: 0.5 },

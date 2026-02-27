@@ -232,7 +232,7 @@ export default function BudgetPlannerPageEn() {
     {
       title: "Currency flexibility",
       description:
-        "Switch between USD and EUR instantly and keep calculations consistent for international projects.",
+        "Switch between USD, EUR and GBP to match your region and keep calculations consistent for international projects.",
     },
     {
       title: "Share-ready summary",

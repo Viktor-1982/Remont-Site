@@ -1,6 +1,6 @@
 import { getPageMetadata } from "@/lib/seo"
 import Link from "next/link"
-import { Calculator, Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Sparkles, ShoppingCart, Thermometer, Wind } from "lucide-react"
+import { Calculator, Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Sparkles, ShoppingCart, Thermometer, Wind, Lightbulb } from "lucide-react"
 import Script from "next/script"
 
 export const metadata = getPageMetadata("/en/tools", {
@@ -77,6 +77,15 @@ const calculatorsEn = [
         desc: "Calculate airflow by room volume and air changes per hour.",
         badge: "Ventilation",
         gradient: "from-cyan-500/15 via-sky-400/10 to-blue-400/10",
+    },
+    {
+        href: "/en/calculators/lighting",
+        label: "Lighting Calculator",
+        emoji: "💡",
+        icon: Lightbulb,
+        desc: "Find how many lumens and lamps your room needs by area and type.",
+        badge: "Lighting",
+        gradient: "from-amber-500/15 via-yellow-400/10 to-orange-400/10",
     },
     {
         href: "/en/calculators/budget",

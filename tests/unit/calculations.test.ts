@@ -6,6 +6,7 @@ import {
   computeWallpaper,
   computeUnderfloorHeating,
   computeVentilation,
+  computeLighting,
 } from "@/lib/calculations"
 
 describe("computePaintLiters", () => {
@@ -147,8 +148,7 @@ describe("computeWallpaper", () => {
 
     expect(res).toBeNull()
   })
-}
-)
+})
 
 describe("computeUnderfloorHeating", () => {
   it("calculates cable length and energy usage", () => {
@@ -239,6 +239,36 @@ describe("computeVentilation", () => {
       width: 4,
       height: 2.7,
       airChangesPerHour: 3,
+      reservePercent: 10,
+    })
+
+    expect(res).toBeNull()
+  })
+})
+
+describe("computeLighting", () => {
+  it("calculates lumens and number of lamps for a room", () => {
+    const res = computeLighting({
+      length: 5,
+      width: 4,
+      roomType: "living",
+      lumenPerLamp: 1000,
+      reservePercent: 10,
+    })
+
+    expect(res).not.toBeNull()
+    expect(res!.areaM2).toBe(20)
+    expect(res!.targetLux).toBe(150)
+    expect(res!.totalLumens).toBeGreaterThan(3000)
+    expect(res!.numberOfLamps).toBeGreaterThanOrEqual(1)
+  })
+
+  it("returns null for invalid params", () => {
+    const res = computeLighting({
+      length: 0,
+      width: 4,
+      roomType: "kitchen",
+      lumenPerLamp: 1000,
       reservePercent: 10,
     })
 

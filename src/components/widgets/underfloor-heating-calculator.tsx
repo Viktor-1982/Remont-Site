@@ -409,6 +409,11 @@ export function UnderfloorHeatingCalculator() {
                             onChange={(e) => setTariff(e.target.value)}
                             className="rounded-xl border-border/60 bg-background/80"
                         />
+                        <p className="text-xs text-muted-foreground/70">
+                            {isEnglish
+                                ? "e.g. 0.15 $/kWh or 0.12 €/kWh — cost is indicative."
+                                : "Например 6.5 ₽/кВт·ч или 2.5 ₴/кВт·ч — стоимость ориентировочная."}
+                        </p>
                     </div>
                 </div>
 
@@ -428,7 +433,7 @@ export function UnderfloorHeatingCalculator() {
                                     <Waves className="h-3.5 w-3.5 text-primary" /> {isEnglish ? "Heated area" : "Зона обогрева"}
                                 </div>
                                 <p className="mt-2 text-lg font-semibold text-foreground">
-                                    {result.heatedArea.toFixed(1)} м²
+                                    {result.heatedArea.toFixed(1)} {isEnglish ? "m²" : "м²"}
                                 </p>
                             </div>
                             <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-blue-50/20 p-4 shadow-sm dark:from-card dark:to-blue-500/10">
@@ -436,10 +441,10 @@ export function UnderfloorHeatingCalculator() {
                                     <Flame className="h-3.5 w-3.5 text-blue-500" /> {isEnglish ? "Power" : "Мощность"}
                                 </div>
                                 <p className="mt-2 text-lg font-semibold text-blue-600">
-                                    {Math.round(result.totalPowerW)} Вт
+                                    {Math.round(result.totalPowerW)} {isEnglish ? "W" : "Вт"}
                                 </p>
                                 <p className="text-xs text-muted-foreground mt-1">
-                                    {t.peakLoad}: {(result.totalPowerW / 1000).toFixed(2)} кВт
+                                    {t.peakLoad}: {(result.totalPowerW / 1000).toFixed(2)} {isEnglish ? "kW" : "кВт"}
                                 </p>
                                 <p className="text-xs text-muted-foreground mt-1">
                                     {isEnglish
@@ -453,8 +458,8 @@ export function UnderfloorHeatingCalculator() {
                                 </div>
                                 <p className="mt-2 text-lg font-semibold text-amber-600">
                                     {system === "cable"
-                                        ? `${result.cableLengthM?.toFixed(1)} м`
-                                        : `${result.matAreaM2?.toFixed(1)} м²`}
+                                        ? `${result.cableLengthM?.toFixed(1)} ${isEnglish ? "m" : "м"}`
+                                        : `${result.matAreaM2?.toFixed(1)} ${isEnglish ? "m²" : "м²"}`}
                                 </p>
                                 <p className="text-xs text-muted-foreground mt-1">
                                     {system === "cable"
@@ -467,13 +472,13 @@ export function UnderfloorHeatingCalculator() {
                                     <Thermometer className="h-3.5 w-3.5" /> {isEnglish ? "Monthly energy" : "Энергия/мес"}
                                 </div>
                                 <p className="mt-2 text-2xl font-bold text-primary">
-                                    {result.monthlyKwh.toFixed(1)} кВт·ч
+                                    {result.monthlyKwh.toFixed(1)} {isEnglish ? "kWh" : "кВт·ч"}
                                 </p>
                                 {result.estimatedCost !== undefined && (
                                     <p className="text-xs text-muted-foreground mt-1">
                                         {isEnglish
-                                            ? `Estimated cost: ${result.estimatedCost.toFixed(1)}`
-                                            : `Стоимость: ${result.estimatedCost.toFixed(1)}`}
+                                            ? `Estimated cost: ${result.estimatedCost.toFixed(2)} $`
+                                            : `Стоимость: ${result.estimatedCost.toFixed(2)} ₽`}
                                     </p>
                                 )}
                             </div>

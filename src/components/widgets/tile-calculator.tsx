@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { usePathname } from "next/navigation"
 import { useState } from "react"
@@ -537,7 +537,7 @@ export function TileCalculator() {
                                     <Ruler className="h-3.5 w-3.5 text-amber-500" /> {isEnglish ? "Tile area" : "Площадь плитки"}
                                 </div>
                                 <p className="mt-2 text-lg font-semibold text-amber-600">
-                                    {tileArea?.toFixed(2)} м²
+                                    {tileArea?.toFixed(2)} {isEnglish ? "m²" : "м²"}
                                 </p>
                             </div>
                             <div className="rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/15 to-primary/5 p-4 shadow-md">

@@ -433,4 +433,57 @@ export function computeVentilation(params: VentilationParams): VentilationResult
   }
 }
 
+// Освещённость: люмены по норме люкс и площади, количество светильников
+export interface LightingParams {
+  length: number
+  width: number
+  roomType: "living" | "kitchen" | "bathroom" | "bedroom" | "office" | "hallway" | "kids"
+  lumenPerLamp: number
+  reservePercent?: number
+}
+
+export interface LightingResult {
+  areaM2: number
+  targetLux: number
+  totalLumens: number
+  totalLumensWithReserve: number
+  numberOfLamps: number
+}
+
+const LUX_BY_ROOM: Record<LightingParams["roomType"], number> = {
+  living: 150,
+  kitchen: 250,
+  bathroom: 200,
+  bedroom: 150,
+  office: 300,
+  hallway: 100,
+  kids: 200,
+}
+
+const LIGHT_LOSS_FACTOR = 1.2
+
+export function computeLighting(params: LightingParams): LightingResult | null {
+  const { length, width, roomType, lumenPerLamp, reservePercent = 10 } = params
+
+  if (length <= 0 || width <= 0 || length > 50 || width > 50) return null
+  if (lumenPerLamp <= 0 || lumenPerLamp > 50000) return null
+  if (reservePercent < 0 || reservePercent > 50) return null
+
+  const areaM2 = length * width
+  const targetLux = LUX_BY_ROOM[roomType] ?? 150
+  const totalLumens = areaM2 * targetLux * LIGHT_LOSS_FACTOR
+  const totalLumensWithReserve = totalLumens * (1 + reservePercent / 100)
+  const numberOfLamps = Math.ceil(totalLumensWithReserve / lumenPerLamp)
+
+  if (!Number.isFinite(numberOfLamps) || numberOfLamps <= 0) return null
+
+  return {
+    areaM2,
+    targetLux,
+    totalLumens: Math.round(totalLumens),
+    totalLumensWithReserve: Math.round(totalLumensWithReserve),
+    numberOfLamps,
+  }
+}
+
 

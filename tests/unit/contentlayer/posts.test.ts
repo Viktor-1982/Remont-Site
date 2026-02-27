@@ -45,10 +45,10 @@ describe('Contentlayer and MDX Tests', () => {
 
   describe('Post Metadata', () => {
     test('should have unique slugs', () => {
-      const slugs = allPosts.map(post => post.slug);
-      const uniqueSlugs = new Set(slugs);
-      
-      expect(slugs.length).toBe(uniqueSlugs.size);
+      // Slug может повторяться у ru и en версий одной статьи; уникальны должны быть (locale + slug) или url
+      const urls = allPosts.map(post => post.url);
+      const uniqueUrls = new Set(urls);
+      expect(urls.length).toBe(uniqueUrls.size);
     });
 
     test('should have valid URLs', () => {

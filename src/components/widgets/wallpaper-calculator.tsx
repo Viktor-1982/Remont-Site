@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { usePathname } from "next/navigation"
 import { useState } from "react"
@@ -559,9 +559,9 @@ export function WallpaperCalculator() {
                                 <Ruler className="h-3.5 w-3.5 text-amber-500" /> {isEnglish ? "Wall area" : "Площадь стен"}
                             </div>
                             <p className="mt-2 text-lg font-semibold text-amber-600">
-                                {wallArea?.toFixed(2)} м²
-                    </p>
-                </div>
+                                {wallArea?.toFixed(2)} {isEnglish ? "m²" : "м²"}
+                            </p>
+                        </div>
                     </div>
                     <p className="mt-3 text-xs text-muted-foreground">
                         {isEnglish

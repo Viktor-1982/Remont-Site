@@ -1,0 +1,60 @@
+{
+  "title": "Top 5 Bathroom Renovation Mistakes You Must Avoid",
+  "description": "Discover the most common bathroom remodeling pitfalls, from poor lighting to insufficient storage, and learn how to prevent them in your next project.",
+  "date": "2026-02-27T00:00:00.000Z",
+  "tags": [
+    "Bathroom",
+    "Mistakes",
+    "Design",
+    "Renovation"
+  ],
+  "cover": "/images/posts/bathroom-mistakes/cover.png",
+  "author": "Renohacks",
+  "translationOf": "5-oshibok-remonta-vannoy-komnaty",
+  "draft": false,
+  "keywords": [
+    "bathroom mistakes",
+    "renovation pitfalls",
+    "bathroom lighting",
+    "bathroom storage"
+  ],
+  "body": {
+    "raw": "\r\nRenovating a bathroom is a significant investment. However, even small miscalculations can lead to major inconveniences down the line. Here are five common bathroom renovation mistakes and how to avoid them.\n\r\n## 1. Underestimating Storage Needs\r\n\r\nOne of the most frequent errors is prioritizing aesthetics over functionality, leading to a severe lack of storage space for daily essentials.\r\n\r\n![Sleek floating vanity providing ample storage](/images/posts/bathroom-mistakes/2.png)\r\n\r\n**How to avoid it:** \r\nPlan your storage in advance. Consider adding a spacious floating vanity, recessed wall niches in the shower area, and mirrored cabinets. Floating vanities not only provide ample storage but also make the floor visible, which visually enlarges the room.\r\n\r\n## 2. Inadequate or Harsh Lighting\r\n\r\nA single overhead light is never enough for a bathroom. It creates harsh shadows and makes tasks like shaving or applying makeup difficult.\r\n\r\n![Properly illuminated bathroom mirror](/images/posts/bathroom-mistakes/1.png)\r\n\r\n> [!IMPORTANT]  \n> A layered lighting scheme is usually the best approach for bathrooms: ambient (general), task (around the mirror), and accent (for atmosphere).\n\r\n**How to avoid it:** \r\nInstall soft LED strips around or behind the mirror to provide even, shadow-free lighting. Use moisture-protected fixtures and choose the IP rating based on the installation zone: IP44 is often used for splash zones, while direct water-exposure zones require higher protection.\n\r\n## 3. Ignoring Proper Ventilation\r\n\r\nPoor ventilation leads to a buildup of moisture, which inevitably causes mold, peeling paint, and damaged woodwork. \r\n\r\n**How to avoid it:** \r\nInvest in a high-quality, quiet exhaust fan. It's best to wire it to a separate switch or use one with a built-in humidity sensor so it runs automatically when needed.\r\n\r\n## 4. Wrong Choice of Materials\r\n\r\nUsing materials that are not suitable for high-humidity environments will quickly ruin the look of your newly renovated bathroom. For instance, using regular drywall instead of moisture-resistant drywall in wet zones.\n\r\n**How to avoid it:** \r\nPorcelain stoneware is often preferred for floors because of its low water absorption and high durability. For walls, ceramic tiles or high-quality water-resistant paint are excellent choices. In direct water-contact areas like showers, epoxy grout is usually more durable, though it is more expensive and harder to apply.\n\r\n## 5. Overlooking the Layout and Ergonomics\r\n\r\nPlacing the toilet right opposite the door or not leaving enough clearance around fixtures can make a bathroom feel cramped and awkward.\r\n\r\n**How to avoid it:** \r\nRespect standard ergonomic clearances: leave at least 70 cm of clear space in front of the toilet and sink. If space is tight, reconsider the layout or swap a large bathtub for a spacious walk-in shower.\r\n",
+    "code": "var Component=(()=>{var m=Object.create;var r=Object.defineProperty;var g=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var u=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var v=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),w=(t,e)=>{for(var n in e)r(t,n,{get:e[n],enumerable:!0})},s=(t,e,n,a)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let i of p(e))!f.call(t,i)&&i!==n&&r(t,i,{get:()=>e[i],enumerable:!(a=g(e,i))||a.enumerable});return t};var b=(t,e,n)=>(n=t!=null?m(u(t)):{},s(e||!t||!t.__esModule?r(n,\"default\",{value:t,enumerable:!0}):n,t)),y=t=>s(r({},\"__esModule\",{value:!0}),t);var h=v((q,l)=>{l.exports=_jsx_runtime});var x={};w(x,{default:()=>d,frontmatter:()=>k});var o=b(h()),k={title:\"Top 5 Bathroom Renovation Mistakes You Must Avoid\",description:\"Discover the most common bathroom remodeling pitfalls, from poor lighting to insufficient storage, and learn how to prevent them in your next project.\",date:\"2026-02-27\",cover:\"/images/posts/bathroom-mistakes/cover.png\",author:\"Renohacks\",translationOf:\"5-oshibok-remonta-vannoy-komnaty\",tags:[\"Bathroom\",\"Mistakes\",\"Design\",\"Renovation\"],keywords:[\"bathroom mistakes\",\"renovation pitfalls\",\"bathroom lighting\",\"bathroom storage\"]};function c(t){let e={blockquote:\"blockquote\",br:\"br\",h2:\"h2\",img:\"img\",p:\"p\",strong:\"strong\",...t.components};return(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(e.p,{children:\"Renovating a bathroom is a significant investment. However, even small miscalculations can lead to major inconveniences down the line. Here are five common bathroom renovation mistakes and how to avoid them.\"}),`\n`,(0,o.jsx)(e.h2,{children:\"1. Underestimating Storage Needs\"}),`\n`,(0,o.jsx)(e.p,{children:\"One of the most frequent errors is prioritizing aesthetics over functionality, leading to a severe lack of storage space for daily essentials.\"}),`\n`,(0,o.jsx)(e.p,{children:(0,o.jsx)(e.img,{src:\"/images/posts/bathroom-mistakes/2.png\",alt:\"Sleek floating vanity providing ample storage\"})}),`\n`,(0,o.jsxs)(e.p,{children:[(0,o.jsx)(e.strong,{children:\"How to avoid it:\"}),`\\r\nPlan your storage in advance. Consider adding a spacious floating vanity, recessed wall niches in the shower area, and mirrored cabinets. Floating vanities not only provide ample storage but also make the floor visible, which visually enlarges the room.`]}),`\n`,(0,o.jsx)(e.h2,{children:\"2. Inadequate or Harsh Lighting\"}),`\n`,(0,o.jsx)(e.p,{children:\"A single overhead light is never enough for a bathroom. It creates harsh shadows and makes tasks like shaving or applying makeup difficult.\"}),`\n`,(0,o.jsx)(e.p,{children:(0,o.jsx)(e.img,{src:\"/images/posts/bathroom-mistakes/1.png\",alt:\"Properly illuminated bathroom mirror\"})}),`\n`,(0,o.jsxs)(e.blockquote,{children:[`\n`,(0,o.jsxs)(e.p,{children:[\"[!IMPORTANT]\",(0,o.jsx)(e.br,{}),`\n`,\"A layered lighting scheme is usually the best approach for bathrooms: ambient (general), task (around the mirror), and accent (for atmosphere).\"]}),`\n`]}),`\n`,(0,o.jsxs)(e.p,{children:[(0,o.jsx)(e.strong,{children:\"How to avoid it:\"}),`\\r\nInstall soft LED strips around or behind the mirror to provide even, shadow-free lighting. Use moisture-protected fixtures and choose the IP rating based on the installation zone: IP44 is often used for splash zones, while direct water-exposure zones require higher protection.`]}),`\n`,(0,o.jsx)(e.h2,{children:\"3. Ignoring Proper Ventilation\"}),`\n`,(0,o.jsx)(e.p,{children:\"Poor ventilation leads to a buildup of moisture, which inevitably causes mold, peeling paint, and damaged woodwork.\"}),`\n`,(0,o.jsxs)(e.p,{children:[(0,o.jsx)(e.strong,{children:\"How to avoid it:\"}),`\\r\nInvest in a high-quality, quiet exhaust fan. It's best to wire it to a separate switch or use one with a built-in humidity sensor so it runs automatically when needed.`]}),`\n`,(0,o.jsx)(e.h2,{children:\"4. Wrong Choice of Materials\"}),`\n`,(0,o.jsx)(e.p,{children:\"Using materials that are not suitable for high-humidity environments will quickly ruin the look of your newly renovated bathroom. For instance, using regular drywall instead of moisture-resistant drywall in wet zones.\"}),`\n`,(0,o.jsxs)(e.p,{children:[(0,o.jsx)(e.strong,{children:\"How to avoid it:\"}),`\\r\nPorcelain stoneware is often preferred for floors because of its low water absorption and high durability. For walls, ceramic tiles or high-quality water-resistant paint are excellent choices. In direct water-contact areas like showers, epoxy grout is usually more durable, though it is more expensive and harder to apply.`]}),`\n`,(0,o.jsx)(e.h2,{children:\"5. Overlooking the Layout and Ergonomics\"}),`\n`,(0,o.jsx)(e.p,{children:\"Placing the toilet right opposite the door or not leaving enough clearance around fixtures can make a bathroom feel cramped and awkward.\"}),`\n`,(0,o.jsxs)(e.p,{children:[(0,o.jsx)(e.strong,{children:\"How to avoid it:\"}),`\\r\nRespect standard ergonomic clearances: leave at least 70 cm of clear space in front of the toilet and sink. If space is tight, reconsider the layout or swap a large bathtub for a spacious walk-in shower.`]})]})}function d(t={}){let{wrapper:e}=t.components||{};return e?(0,o.jsx)(e,{...t,children:(0,o.jsx)(c,{...t})}):c(t)}return y(x);})();\n;return Component;"
+  },
+  "_id": "en/5-bathroom-mistakes.mdx",
+  "_raw": {
+    "sourceFilePath": "en/5-bathroom-mistakes.mdx",
+    "sourceFileName": "5-bathroom-mistakes.mdx",
+    "sourceFileDir": "en",
+    "contentType": "mdx",
+    "flattenedPath": "en/5-bathroom-mistakes"
+  },
+  "type": "Post",
+  "locale": "en",
+  "slug": "5-bathroom-mistakes",
+  "url": "/en/posts/5-bathroom-mistakes",
+  "readingTime": "3 мин",
+  "headings": [
+    {
+      "text": "1. Underestimating Storage Needs",
+      "level": 2
+    },
+    {
+      "text": "2. Inadequate or Harsh Lighting",
+      "level": 2
+    },
+    {
+      "text": "3. Ignoring Proper Ventilation",
+      "level": 2
+    },
+    {
+      "text": "4. Wrong Choice of Materials",
+      "level": 2
+    },
+    {
+      "text": "5. Overlooking the Layout and Ergonomics",
+      "level": 2
+    }
+  ]
+}

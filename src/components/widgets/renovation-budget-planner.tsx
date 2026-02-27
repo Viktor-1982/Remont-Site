@@ -51,9 +51,12 @@ interface ExpenseItem {
 }
 
 const currencies = [
-  { code: "RUB", symbol: "₽", name: "Рубль" },
+  { code: "RUB", symbol: "₽", name: "Рубль (РФ)" },
+  { code: "BYN", symbol: "Br", name: "Белорусский рубль" },
   { code: "UAH", symbol: "₴", name: "Гривна" },
   { code: "KZT", symbol: "₸", name: "Тенге" },
+  { code: "USD", symbol: "$", name: "Доллар США" },
+  { code: "EUR", symbol: "€", name: "Евро" },
 ]
 
 export function RenovationBudgetPlanner() {

@@ -1,6 +1,6 @@
 import { getPageMetadata } from "@/lib/seo"
 import Link from "next/link"
-import { Calculator, Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Sparkles, ShoppingCart, Thermometer, Wind } from "lucide-react"
+import { Calculator, Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Sparkles, ShoppingCart, Thermometer, Wind, Lightbulb } from "lucide-react"
 import Script from "next/script"
 
 export const metadata = getPageMetadata("/tools", {
@@ -77,6 +77,15 @@ const calculators = [
         desc: "Рассчитайте расход воздуха по объёму помещения и кратности воздухообмена.",
         badge: "Вентиляция",
         gradient: "from-cyan-500/15 via-sky-400/10 to-blue-400/10",
+    },
+    {
+        href: "/calculators/lighting",
+        label: "Калькулятор освещённости",
+        emoji: "💡",
+        icon: Lightbulb,
+        desc: "Узнайте, сколько люмен нужно комнате и сколько ламп установить по площади и типу помещения.",
+        badge: "Освещение",
+        gradient: "from-amber-500/15 via-yellow-400/10 to-orange-400/10",
     },
     {
         href: "/calculators/budget",
