@@ -1,4 +1,4 @@
-import { allPosts } from ".contentlayer/generated"
+﻿import { allPosts } from ".contentlayer/generated"
 
 function escapeXml(str: string): string {
     return str
@@ -10,7 +10,7 @@ function escapeXml(str: string): string {
 export async function GET() {
     const baseUrl = "https://renohacks.com"
     
-    // Получаем последние 20 постов
+    // РџРѕР»СѓС‡Р°РµРј РїРѕСЃР»РµРґРЅРёРµ 20 РїРѕСЃС‚РѕРІ
     const recentPosts = allPosts
         .filter((post) => !post.draft && !post.url.startsWith("/en/"))
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -31,7 +31,7 @@ export async function GET() {
         <link>${escapeXml(url)}</link>
         <guid isPermaLink="true">${escapeXml(url)}</guid>
         <pubDate>${pubDate}</pubDate>
-        <category><![CDATA[${escapeXml(post.tags?.join(", ") || "Ремонт")}]]></category>
+        <category><![CDATA[${escapeXml(post.tags?.join(", ") || "Р РµРјРѕРЅС‚")}]]></category>
         ${enclosure}
     </item>`
     }).join('')
@@ -39,14 +39,14 @@ export async function GET() {
     const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Renohacks - Ремонт и дизайн</title>
-        <description>Полезные советы по ремонту квартир, дизайну интерьера и DIY проектам</description>
+        <title>Renohacks - Р РµРјРѕРЅС‚ Рё РґРёР·Р°Р№РЅ</title>
+        <description>РџРѕР»РµР·РЅС‹Рµ СЃРѕРІРµС‚С‹ РїРѕ СЂРµРјРѕРЅС‚Сѓ РєРІР°СЂС‚РёСЂ, РґРёР·Р°Р№РЅСѓ РёРЅС‚РµСЂСЊРµСЂР° Рё DIY РїСЂРѕРµРєС‚Р°Рј</description>
         <link>${baseUrl}</link>
         <language>ru</language>
         <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
         <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml" />
         <image>
-            <url>${baseUrl}/favicon.ico</url>
+            <url>${baseUrl}/icon.svg</url>
             <title>Renohacks</title>
             <link>${baseUrl}</link>
         </image>
@@ -61,3 +61,4 @@ export async function GET() {
         },
     })
 }
+

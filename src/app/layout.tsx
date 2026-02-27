@@ -1,4 +1,4 @@
-// src/app/layout.tsx
+﻿// src/app/layout.tsx
 import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
@@ -18,22 +18,18 @@ import Script from "next/script"
 import { headers } from "next/headers"
 
 export const metadata: Metadata = {
-    title: "Renohacks.com — блог о ремонте, дизайне и DIY",
-    description: "Фото-гайды по ремонту своими руками, DIY лайфхаки, бесплатные калькуляторы и обзоры материалов для качественного ремонта.",
+    title: "Renohacks.com вЂ” Р±Р»РѕРі Рѕ СЂРµРјРѕРЅС‚Рµ, РґРёР·Р°Р№РЅРµ Рё DIY",
+    description: "Р¤РѕС‚Рѕ-РіР°Р№РґС‹ РїРѕ СЂРµРјРѕРЅС‚Сѓ СЃРІРѕРёРјРё СЂСѓРєР°РјРё, DIY Р»Р°Р№С„С…Р°РєРё, Р±РµСЃРїР»Р°С‚РЅС‹Рµ РєР°Р»СЊРєСѓР»СЏС‚РѕСЂС‹ Рё РѕР±Р·РѕСЂС‹ РјР°С‚РµСЂРёР°Р»РѕРІ РґР»СЏ РєР°С‡РµСЃС‚РІРµРЅРЅРѕРіРѕ СЂРµРјРѕРЅС‚Р°.",
     metadataBase: new URL("https://renohacks.com"),
     icons: {
         icon: [
             { url: "/icon.svg", type: "image/svg+xml" },
-            { url: "/favicon.ico", sizes: "any" },
-        ],
-        apple: [
-            { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
         ],
     },
     manifest: "/manifest.json",
     openGraph: {
-        title: "Renohacks.com — блог о ремонте, дизайне и DIY",
-        description: "Фото-гайды по ремонту своими руками, DIY лайфхаки, бесплатные калькуляторы и обзоры материалов для качественного ремонта.",
+        title: "Renohacks.com вЂ” Р±Р»РѕРі Рѕ СЂРµРјРѕРЅС‚Рµ, РґРёР·Р°Р№РЅРµ Рё DIY",
+        description: "Р¤РѕС‚Рѕ-РіР°Р№РґС‹ РїРѕ СЂРµРјРѕРЅС‚Сѓ СЃРІРѕРёРјРё СЂСѓРєР°РјРё, DIY Р»Р°Р№С„С…Р°РєРё, Р±РµСЃРїР»Р°С‚РЅС‹Рµ РєР°Р»СЊРєСѓР»СЏС‚РѕСЂС‹ Рё РѕР±Р·РѕСЂС‹ РјР°С‚РµСЂРёР°Р»РѕРІ РґР»СЏ РєР°С‡РµСЃС‚РІРµРЅРЅРѕРіРѕ СЂРµРјРѕРЅС‚Р°.",
         url: "https://renohacks.com/",
         siteName: "Renohacks.com",
         images: ["/images/og-default.png"],
@@ -88,28 +84,25 @@ export default async function RootLayout({
             className={`${GeistSans.variable} ${GeistMono.variable}`}
         >
         <head>
-            {/* Favicon и иконки */}
+            {/* Favicon Рё РёРєРѕРЅРєРё */}
             <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-            <link rel="alternate icon" href="/favicon.ico" />
             <link rel="manifest" href="/manifest.json" />
             
-            {/* ✅ Font Display: swap для немедленного отображения текста */}
+            {/* вњ… Font Display: swap РґР»СЏ РЅРµРјРµРґР»РµРЅРЅРѕРіРѕ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ С‚РµРєСЃС‚Р° */}
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
             
-            {/* ✅ Preload critical resources */}
-            <link rel="preload" href="/images/hero/hero-banner.png" as="image" />
             <link rel="dns-prefetch" href="//www.googletagmanager.com" />
             <link rel="dns-prefetch" href="//mc.yandex.ru" />
             <link rel="dns-prefetch" href="//pagead2.googlesyndication.com" />
             
-            {/* ✅ Pinterest Domain Verification */}
+            {/* вњ… Pinterest Domain Verification */}
             <meta
                 name="p:domain_verify"
                 content="c5936504ab784c7854df0c0807478575"
             />
 
-            {/* ✅ Google Tag Manager */}
+            {/* вњ… Google Tag Manager */}
             <Script id="gtm-script" strategy="lazyOnload">
                 {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -118,7 +111,7 @@ export default async function RootLayout({
         })(window,document,'script','dataLayer','GTM-N2Z2CSMS');`}
             </Script>
 
-            {/* ✅ Yandex.Metrika counter */}
+            {/* вњ… Yandex.Metrika counter */}
             <Script id="yandex-metrika" strategy="lazyOnload">
                 {`(function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -130,51 +123,37 @@ export default async function RootLayout({
           ym(104537151, 'init', {ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});`}
             </Script>
 
-            {/* ✅ Google Consent Mode - инициализация ДО AdSense */}
-            <script
-                suppressHydrationWarning
-                dangerouslySetInnerHTML={{
-                    __html: `
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('consent', 'default', {
-                            'ad_storage': 'denied',
-                            'ad_user_data': 'denied',
-                            'ad_personalization': 'denied',
-                            'analytics_storage': 'denied'
-                        });
-                    `,
-                }}
-            />
+            {/* вњ… Google Consent Mode - РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ Р”Рћ AdSense */}
+            <Script id="google-consent-default" strategy="beforeInteractive">{`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('consent', 'default', {
+                        'ad_storage': 'denied',
+                        'ad_user_data': 'denied',
+                        'ad_personalization': 'denied',
+                        'analytics_storage': 'denied'
+                    });
+                `}</Script>
 
-            {/* ✅ Google AdSense - используем обычный script для верификации */}
-            <script
-                async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6574921684224364"
-                crossOrigin="anonymous"
-            />
+            {/* вњ… Google AdSense - РёСЃРїРѕР»СЊР·СѓРµРј РѕР±С‹С‡РЅС‹Р№ script РґР»СЏ РІРµСЂРёС„РёРєР°С†РёРё */}
+            <Script id="google-adsense" strategy="afterInteractive" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6574921684224364" crossOrigin="anonymous" />
             
-            {/* ✅ Service Worker для PWA */}
-            <script
-                suppressHydrationWarning
-                dangerouslySetInnerHTML={{
-                    __html: `
-                        if ('serviceWorker' in navigator) {
-                            window.addEventListener('load', () => {
-                                navigator.serviceWorker.register('/sw.js')
-                                    .then((registration) => {
-                                        console.log('SW registered:', registration);
-                                    })
-                                    .catch((error) => {
-                                        console.log('SW registration failed:', error);
-                                    });
-                            });
-                        }
-                    `,
-                }}
-            />
+            {/* вњ… Service Worker РґР»СЏ PWA */}
+            <Script id="pwa-service-worker" strategy="afterInteractive">{`
+                    if ('serviceWorker' in navigator) {
+                        window.addEventListener('load', () => {
+                            navigator.serviceWorker.register('/sw.js')
+                                .then((registration) => {
+                                    console.log('SW registered:', registration);
+                                })
+                                .catch((error) => {
+                                    console.log('SW registration failed:', error);
+                                });
+                        });
+                    }
+                `}</Script>
 
-            {/* ✅ JSON-LD: Organization + WebSite */}
+            {/* вњ… JSON-LD: Organization + WebSite */}
             <Script
                 id="site-schema"
                 type="application/ld+json"
@@ -190,7 +169,7 @@ export default async function RootLayout({
                                 url: "https://renohacks.com/",
                                 logo: {
                                     "@type": "ImageObject",
-                                    url: "https://renohacks.com/favicon.ico",
+                                    url: "https://renohacks.com/icon.svg",
                                 },
                             },
                             {
@@ -214,8 +193,8 @@ export default async function RootLayout({
             />
         </head>
 
-        <body className="min-h-screen bg-background text-foreground font-sans antialiased">
-        {/* ✅ GTM noscript */}
+        <body className="min-h-screen bg-background text-foreground font-sans antialiased" suppressHydrationWarning>
+        {/* вњ… GTM noscript */}
         <noscript>
             <iframe
                 src="https://www.googletagmanager.com/ns.html?id=GTM-N2Z2CSMS"
@@ -225,7 +204,7 @@ export default async function RootLayout({
             />
         </noscript>
 
-        {/* ✅ Yandex.Metrika fallback */}
+        {/* вњ… Yandex.Metrika fallback */}
         <noscript>
             <div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -253,3 +232,4 @@ export default async function RootLayout({
         </html>
     )
 }
+

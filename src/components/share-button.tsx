@@ -9,7 +9,8 @@ import {
     FaFacebook, 
     FaTwitter,
     FaLinkedin,
-    FaReddit
+    FaReddit,
+    FaPinterest
 } from "react-icons/fa"
 import { Button } from "@/components/ui/button"
 import {
@@ -36,6 +37,7 @@ type SharePlatform =
     | "facebook" 
     | "twitter" 
     | "linkedin" 
+    | "pinterest"
     | "reddit" 
     | "email" 
     | "copy"
@@ -63,6 +65,7 @@ export function ShareButton({
         facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullUrl)}`,
         twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(fullUrl)}&text=${encodeURIComponent(shareText)}`,
         linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(fullUrl)}`,
+        pinterest: `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(fullUrl)}&description=${encodeURIComponent(shareText)}`,
         reddit: `https://reddit.com/submit?url=${encodeURIComponent(fullUrl)}&title=${encodeURIComponent(title)}`,
         email: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`${shareText}\n\n${fullUrl}`)}`,
         copy: fullUrl,
@@ -150,12 +153,18 @@ export function ShareButton({
             icon: <FaLinkedin className="h-4 w-4" />,
             color: "text-[#0077B5]",
         }] : []),
-        ...(isEnglish ? [{
+        {
+            platform: "pinterest" as SharePlatform,
+            label: "Pinterest",
+            icon: <FaPinterest className="h-4 w-4" />,
+            color: "text-[#E60023]",
+        },
+        {
             platform: "reddit" as SharePlatform,
             label: "Reddit",
             icon: <FaReddit className="h-4 w-4" />,
             color: "text-[#FF4500]",
-        }] : []),
+        },
         {
             platform: "email",
             label: isEnglish ? "Email" : "Email",

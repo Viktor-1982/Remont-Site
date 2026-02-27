@@ -46,7 +46,7 @@ export async function GET() {
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/feed-en.xml" rel="self" type="application/rss+xml" />
     <image>
-      <url>${baseUrl}/favicon.ico</url>
+      <url>${baseUrl}/icon.svg</url>
       <title>Renohacks</title>
       <link>${baseUrl}/en</link>
     </image>
@@ -61,3 +61,4 @@ export async function GET() {
     },
   })
 }
+

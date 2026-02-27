@@ -168,7 +168,7 @@ export default async function PostPage({
                             name: "Renohacks",
                             logo: {
                                 "@type": "ImageObject",
-                                url: `${baseUrl}/favicon.ico`,
+                                url: `${baseUrl}/icon.svg`,
                             },
                         },
                         datePublished: post.date,

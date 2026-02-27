@@ -1,4 +1,4 @@
-import Link from "next/link"
+﻿import Link from "next/link"
 import Script from "next/script"
 import { getPageMetadata } from "@/lib/seo"
 import { RenovationBudgetPlannerEn } from "@/components/widgets/renovation-budget-planner-en"
@@ -58,7 +58,7 @@ export default function BudgetPlannerPageEn() {
     {
       question: "How accurate is this renovation cost calculator?",
       answer:
-        "The calculator provides an approximate cost estimate based on your inputs and includes a reserve for unexpected expenses. It’s ideal for planning, not for exact contractor quotes.",
+        "The calculator provides an approximate cost estimate based on your inputs and includes a reserve for unexpected expenses. ItвЂ™s ideal for planning, not for exact contractor quotes.",
     },
     {
       question: "Can I use the planner for different currencies?",
@@ -100,7 +100,7 @@ export default function BudgetPlannerPageEn() {
       "@type": "Organization",
       name: "Renohacks",
       url: "https://renohacks.com",
-      logo: "https://renohacks.com/favicon.ico",
+      logo: "https://renohacks.com/icon.svg",
     },
     publisher: {
       "@type": "Organization",
@@ -340,7 +340,7 @@ export default function BudgetPlannerPageEn() {
           <li>Review subtotal, reserve amount, and final total; share the result or revisit it during negotiations.</li>
         </ol>
         <p className="mt-3 text-sm text-muted-foreground">
-          💡 Tip: Revisit the budget after each contractor update to keep your <strong>remodeling cost plan</strong> on track.
+          рџ’Ў Tip: Revisit the budget after each contractor update to keep your <strong>remodeling cost plan</strong> on track.
         </p>
         </div>
       </section>
@@ -405,7 +405,7 @@ export default function BudgetPlannerPageEn() {
                 </div>
                 <span className="relative z-10 mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary">
                   Explore
-                  <span className="transition group-hover:translate-x-1">→</span>
+                  <span className="transition group-hover:translate-x-1">в†’</span>
                 </span>
               </Link>
             )
@@ -428,3 +428,4 @@ export default function BudgetPlannerPageEn() {
     </main>
   )
 }
+
