@@ -24,7 +24,10 @@ export async function GET(req: Request) {
 
         const slug = extractSlug(path)
         if (slug) {
-            const current = allPosts.find((p) => p.slug === slug)
+            const currentLocale = isEnglish ? "en" : "ru"
+            const current =
+                allPosts.find((p) => p.slug === slug && p.locale === currentLocale) ??
+                allPosts.find((p) => p.slug === slug)
 
             if (current) {
                 const key = current.translationOf || current.slug
