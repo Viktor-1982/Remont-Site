@@ -73,8 +73,13 @@ export default async function RootLayout({
     children: React.ReactNode
 }) {
     const hdrs = await headers()
-    const pathname = hdrs.get("x-invoke-path") || hdrs.get("next-url") || "/"
-    const lang = pathname.startsWith("/en") ? "en" : "ru"
+    const pathname =
+        hdrs.get("x-invoke-path") ||
+        hdrs.get("next-url") ||
+        hdrs.get("x-matched-path") ||
+        hdrs.get("x-pathname") ||
+        ""
+    const lang = pathname.startsWith("/en") ? "en" : pathname ? "ru" : undefined
 
     return (
         <html
@@ -196,9 +201,12 @@ export default async function RootLayout({
                                 publisher: { "@id": "https://renohacks.com/#organization" },
                                 potentialAction: {
                                     "@type": "SearchAction",
-                                    target: "https://renohacks.com/search?q={search_term_string}",
+                                    target: [
+                                        "https://renohacks.com/search?q={search_term_string}",
+                                        "https://renohacks.com/en/search?q={search_term_string}",
+                                    ],
                                     "query-input": "required name=search_term_string",
-                                },
+                                }
                             },
                         ],
                     }),

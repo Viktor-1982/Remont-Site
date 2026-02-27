@@ -9,6 +9,14 @@ export const metadata = getPageMetadata("/search", {
     description: "Поиск статей о ремонте, дизайне и DIY на Renohacks.com",
     cover: "/images/og-default.png",
     type: "website",
+    robots: {
+        index: false,
+        follow: true,
+        googleBot: {
+            index: false,
+            follow: true,
+        },
+    },
 })
 
 const baseUrl = "https://renohacks.com"

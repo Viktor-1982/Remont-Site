@@ -16,16 +16,24 @@ export const dynamicParams = false
 // 🔹 Генерация метаданных
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const { tag } = await params
-    const decodedTag = decodeURIComponent(tag)
+    const decodedTag = decodeURIComponent(tag).trim().toLowerCase()
+    const encodedTag = encodeURIComponent(decodedTag)
 
     const title = `#${decodedTag} — статьи по тегу ${decodedTag} | Renohacks`
     const description = `Все статьи с тегом «${decodedTag}» на Renohacks.com: практические идеи для ремонта, дизайна интерьера и DIY-проектов. Пошаговые инструкции, фото-гайды, советы экспертов и обзоры материалов.`
 
-    return getPageMetadata(`/tags/${decodedTag}`, {
+    return getPageMetadata(`/tags/${encodedTag}`, {
         title,
         description,
         cover: "/images/og-default.png",
         type: "website",
+        autoAlternateLanguages: false,
+        alternates: {
+            languages: {
+                ru: `https://renohacks.com/tags/${encodedTag}`,
+                "x-default": `https://renohacks.com/tags/${encodedTag}`,
+            },
+        },
         openGraph: {
             locale: "ru_RU",
         },
@@ -85,6 +93,7 @@ export default async function TagPage({ params }: Params) {
         filtered = allPosts.filter(
             (post) =>
                 !post.url.startsWith("/en/") &&
+                !post.draft &&
                 post.tags?.map((t) => t.toLowerCase()).includes(decodedTag)
         )
     }
@@ -114,7 +123,7 @@ export async function generateStaticParams() {
     const tags = Array.from(
         new Set(
             allPosts
-                .filter((p) => !p.url.startsWith("/en/"))
+                .filter((p) => !p.url.startsWith("/en/") && !p.draft)
                 .flatMap((p) => p.tags || [])
         )
     )
