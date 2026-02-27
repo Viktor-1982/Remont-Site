@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Calculator, ArrowRight, Sparkles, ShoppingCart, Thermometer, Wind, Lightbulb } from "lucide-react"
 import { motion } from "framer-motion"
 
@@ -226,6 +227,7 @@ interface CalculatorsShowcaseProps {
 }
 
 export function CalculatorsShowcase({ isEnglish = false }: CalculatorsShowcaseProps) {
+    const router = useRouter()
     const items = isEnglish ? calculatorsEn : calculators
     const t = {
         title: isEnglish ? "Smart Renovation Tools" : "Умные инструменты для ремонта",
@@ -339,6 +341,10 @@ export function CalculatorsShowcase({ isEnglish = false }: CalculatorsShowcasePr
                     <Link
                         href={isEnglish ? "/en/tools" : "/tools"}
                         className="group inline-flex items-center gap-2 rounded-xl border-2 border-primary/30 bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 dark:from-primary/20 dark:via-primary/10 dark:to-accent/20 px-6 py-3 font-semibold text-foreground hover:text-primary transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:-translate-y-1"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            router.push(isEnglish ? "/en/tools" : "/tools")
+                        }}
                     >
                         <Sparkles className="w-4 h-4 text-primary" />
                         <span>{t.viewAll}</span>
