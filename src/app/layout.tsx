@@ -102,27 +102,6 @@ export default async function RootLayout({
                 content="c5936504ab784c7854df0c0807478575"
             />
 
-            {/* вњ… Google Tag Manager */}
-            <Script id="gtm-script" strategy="lazyOnload">
-                {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-N2Z2CSMS');`}
-            </Script>
-
-            {/* вњ… Yandex.Metrika counter */}
-            <Script id="yandex-metrika" strategy="lazyOnload">
-                {`(function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-          })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104537151', 'ym');
-
-          ym(104537151, 'init', {ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});`}
-            </Script>
-
             {/* вњ… Google Consent Mode - РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ Р”Рћ AdSense */}
             <Script id="google-consent-default" strategy="beforeInteractive">{`
                     window.dataLayer = window.dataLayer || [];
@@ -135,8 +114,47 @@ export default async function RootLayout({
                     });
                 `}</Script>
 
-            {/* вњ… Google AdSense - РёСЃРїРѕР»СЊР·СѓРµРј РѕР±С‹С‡РЅС‹Р№ script РґР»СЏ РІРµСЂРёС„РёРєР°С†РёРё */}
-            <Script id="google-adsense" strategy="afterInteractive" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6574921684224364" crossOrigin="anonymous" />
+            {/* вњ… Р—Р°РіСЂСѓР¶Р°РµРј GTM/Yandex/AdSense С‚РѕР»СЊРєРѕ РїРѕСЃР»Рµ consent=accepted */}
+            <Script id="consented-third-party-loaders" strategy="afterInteractive">{`
+                    (function () {
+                        if (typeof window === 'undefined') return;
+                        try {
+                            if (localStorage.getItem('cookie-consent') !== 'accepted') return;
+
+                            function injectScript(id, src, crossOrigin) {
+                                if (document.getElementById(id)) return null;
+                                var script = document.createElement('script');
+                                script.id = id;
+                                script.async = true;
+                                script.src = src;
+                                if (crossOrigin) script.crossOrigin = crossOrigin;
+                                document.head.appendChild(script);
+                                return script;
+                            }
+
+                            window.dataLayer = window.dataLayer || [];
+                            window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+                            injectScript('gtm-script-runtime', 'https://www.googletagmanager.com/gtm.js?id=GTM-N2Z2CSMS');
+
+                            window.ym = window.ym || function(){ (window.ym.a = window.ym.a || []).push(arguments); };
+                            window.ym.l = Date.now();
+                            injectScript('yandex-metrika-runtime', 'https://mc.yandex.ru/metrika/tag.js?id=104537151');
+                            window.ym(104537151, 'init', {
+                                ssr: true,
+                                webvisor: true,
+                                clickmap: true,
+                                accurateTrackBounce: true,
+                                trackLinks: true
+                            });
+
+                            injectScript(
+                                'google-adsense-runtime',
+                                'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6574921684224364',
+                                'anonymous'
+                            );
+                        } catch (_) {}
+                    })();
+                `}</Script>
             
             {/* вњ… Service Worker РґР»СЏ PWA */}
             <Script id="pwa-service-worker" strategy="afterInteractive">{`
@@ -194,28 +212,6 @@ export default async function RootLayout({
         </head>
 
         <body className="min-h-screen bg-background text-foreground font-sans antialiased" suppressHydrationWarning>
-        {/* вњ… GTM noscript */}
-        <noscript>
-            <iframe
-                src="https://www.googletagmanager.com/ns.html?id=GTM-N2Z2CSMS"
-                height="0"
-                width="0"
-                style={{ display: "none", visibility: "hidden" }}
-            />
-        </noscript>
-
-        {/* вњ… Yandex.Metrika fallback */}
-        <noscript>
-            <div>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src="https://mc.yandex.ru/watch/104537151"
-                    style={{ position: "absolute", left: "-9999px" }}
-                    alt=""
-                />
-            </div>
-        </noscript>
-
         <ThemeProvider>
             <BackgroundAnimation />
             <SiteHeader />
