@@ -1,25 +1,19 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import type { Post } from ".contentlayer/generated"
+import type { ArticleCardPost, Locale } from "@/lib/post-index"
 
 const STORAGE_KEY = "renohacks-bookmarks"
 
-export interface BookmarkData {
-    slug: string
-    locale: "ru" | "en"
-    title: string
-    description?: string
-    cover?: string
-    url: string
+export interface BookmarkData extends ArticleCardPost {
+    locale: Locale
     date: string
-    addedAt: number // timestamp
+    addedAt: number
 }
 
 export function useBookmarks() {
     const [bookmarks, setBookmarks] = useState<BookmarkData[]>([])
 
-    // Загружаем закладки при монтировании
     useEffect(() => {
         if (typeof window === "undefined") return
 
@@ -29,79 +23,76 @@ export function useBookmarks() {
                 const parsed = JSON.parse(stored)
                 setBookmarks(Array.isArray(parsed) ? parsed : [])
             }
-        } catch (e) {
-            console.error("Failed to load bookmarks:", e)
+        } catch (error) {
+            console.error("Failed to load bookmarks:", error)
         }
     }, [])
 
-    // Сохраняем закладки в localStorage
     const saveBookmarks = useCallback((newBookmarks: BookmarkData[]) => {
         try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(newBookmarks))
             setBookmarks(newBookmarks)
-        } catch (e) {
-            console.error("Failed to save bookmarks:", e)
+        } catch (error) {
+            console.error("Failed to save bookmarks:", error)
         }
     }, [])
 
-    // Добавляем закладку
     const addBookmark = useCallback(
-        (post: Post) => {
+        (post: ArticleCardPost) => {
             const bookmark: BookmarkData = {
                 slug: post.slug,
-                locale: post.locale as "ru" | "en",
+                locale: post.locale === "en" ? "en" : "ru",
                 title: post.title,
                 description: post.description,
                 cover: post.cover,
                 url: post.url,
-                date: post.date,
+                date: post.date ?? "",
+                readingTime: post.readingTime,
+                tags: post.tags,
+                _id: post._id,
                 addedAt: Date.now(),
             }
 
-            const newBookmarks = [...bookmarks, bookmark]
-            saveBookmarks(newBookmarks)
+            saveBookmarks([...bookmarks, bookmark])
         },
         [bookmarks, saveBookmarks]
     )
 
-    // Удаляем закладку
     const removeBookmark = useCallback(
-        (slug: string, locale: "ru" | "en") => {
+        (slug: string, locale: Locale) => {
             const newBookmarks = bookmarks.filter(
-                (b) => !(b.slug === slug && b.locale === locale)
+                (bookmark) => !(bookmark.slug === slug && bookmark.locale === locale)
             )
             saveBookmarks(newBookmarks)
         },
         [bookmarks, saveBookmarks]
     )
 
-    // Проверяем, есть ли статья в закладках
     const isBookmarked = useCallback(
-        (slug: string, locale: "ru" | "en") => {
-            return bookmarks.some((b) => b.slug === slug && b.locale === locale)
-        },
+        (slug: string, locale: Locale) =>
+            bookmarks.some((bookmark) => bookmark.slug === slug && bookmark.locale === locale),
         [bookmarks]
     )
 
-    // Переключаем закладку (добавить/удалить)
     const toggleBookmark = useCallback(
-        (post: Post) => {
-            if (isBookmarked(post.slug, post.locale as "ru" | "en")) {
-                removeBookmark(post.slug, post.locale as "ru" | "en")
-            } else {
-                addBookmark(post)
+        (post: ArticleCardPost) => {
+            const locale = post.locale === "en" ? "en" : "ru"
+
+            if (isBookmarked(post.slug, locale)) {
+                removeBookmark(post.slug, locale)
+                return
             }
+
+            addBookmark(post)
         },
-        [isBookmarked, addBookmark, removeBookmark]
+        [addBookmark, isBookmarked, removeBookmark]
     )
 
-    // Получаем закладки для конкретного языка
     const getBookmarksByLocale = useCallback(
-        (locale: "ru" | "en") => {
-            return bookmarks
-                .filter((b) => b.locale === locale)
-                .sort((a, b) => b.addedAt - a.addedAt) // Сначала новые
-        },
+        (locale: Locale) =>
+            bookmarks
+                .filter((bookmark) => bookmark.locale === locale)
+                .sort((a, b) => b.addedAt - a.addedAt),
         [bookmarks]
     )
 
@@ -114,4 +105,3 @@ export function useBookmarks() {
         getBookmarksByLocale,
     }
 }
-

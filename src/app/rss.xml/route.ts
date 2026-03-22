@@ -31,7 +31,7 @@ export async function GET() {
         <link>${escapeXml(url)}</link>
         <guid isPermaLink="true">${escapeXml(url)}</guid>
         <pubDate>${pubDate}</pubDate>
-        <category><![CDATA[${escapeXml(post.tags?.join(", ") || "Р РµРјРѕРЅС‚")}]]></category>
+        <category><![CDATA[${escapeXml(post.tags?.join(", ") || "Ремонт")}]]></category>
         ${enclosure}
     </item>`
     }).join('')
@@ -39,8 +39,8 @@ export async function GET() {
     const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Renohacks - Р РµРјРѕРЅС‚ Рё РґРёР·Р°Р№РЅ</title>
-        <description>РџРѕР»РµР·РЅС‹Рµ СЃРѕРІРµС‚С‹ РїРѕ СЂРµРјРѕРЅС‚Сѓ РєРІР°СЂС‚РёСЂ, РґРёР·Р°Р№РЅСѓ РёРЅС‚РµСЂСЊРµСЂР° Рё DIY РїСЂРѕРµРєС‚Р°Рј</description>
+        <title>Renohacks - Ремонт и дизайн</title>
+        <description>Полезные советы по ремонту квартир, дизайну интерьера и DIY-проектам</description>
         <link>${baseUrl}</link>
         <language>ru</language>
         <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>

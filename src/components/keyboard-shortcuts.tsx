@@ -3,62 +3,60 @@
 import { useEffect, useState } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import type { Post } from ".contentlayer/generated"
+import { fetchPostIndex, type PostIndexItem } from "@/lib/post-index"
 
 interface KeyboardShortcutsProps {
     isEnglish?: boolean
 }
 
-export function KeyboardShortcuts({ isEnglish = false }: KeyboardShortcutsProps) {
+export function KeyboardShortcuts({ isEnglish }: KeyboardShortcutsProps) {
     const router = useRouter()
     const pathname = usePathname()
     const [showHelp, setShowHelp] = useState(false)
-    const [posts, setPosts] = useState<Post[]>([])
+    const [posts, setPosts] = useState<PostIndexItem[]>([])
+    const localeIsEnglish =
+        isEnglish ?? (pathname === "/en" || pathname.startsWith("/en/"))
 
-    // Загружаем посты для навигации
     useEffect(() => {
-        if (pathname === "/" || pathname === "/en") {
-            fetch("/api/posts")
-                .then((res) => res.json())
-                .then((data) => {
-                    if (Array.isArray(data)) {
-                        const filtered = data
-                            .filter((p: Post) => p.locale === (pathname === "/en" ? "en" : "ru"))
-                            .filter((p: Post) => !p.draft)
-                            .sort((a: Post, b: Post) => {
-                                const ta = a.date ? new Date(a.date).getTime() : 0
-                                const tb = b.date ? new Date(b.date).getTime() : 0
-                                return tb - ta
-                            })
-                        setPosts(filtered)
-                    }
-                })
-                .catch(() => {
-                    // Игнорируем ошибки
-                })
+        if (pathname !== "/" && pathname !== "/en") {
+            return
         }
+
+        fetchPostIndex()
+            .then((data) => {
+                const filtered = data
+                    .filter((post) => post.locale === (pathname === "/en" ? "en" : "ru"))
+                    .sort((a, b) => {
+                        const ta = a.date ? new Date(a.date).getTime() : 0
+                        const tb = b.date ? new Date(b.date).getTime() : 0
+                        return tb - ta
+                    })
+
+                setPosts(filtered)
+            })
+            .catch(() => {
+                // Ignore fetch errors for optional keyboard navigation helpers.
+            })
     }, [pathname])
 
     useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            // Игнорируем, если пользователь вводит текст
+        const handleKeyDown = (event: KeyboardEvent) => {
             if (
-                e.target instanceof HTMLInputElement ||
-                e.target instanceof HTMLTextAreaElement ||
-                (e.target instanceof HTMLElement && e.target.isContentEditable)
+                event.target instanceof HTMLInputElement ||
+                event.target instanceof HTMLTextAreaElement ||
+                (event.target instanceof HTMLElement && event.target.isContentEditable)
             ) {
                 return
             }
 
-            // j/k - навигация по статьям на главной странице
-            if ((e.key === "j" || e.key === "k") && (pathname === "/" || pathname === "/en") && posts.length > 0) {
-                e.preventDefault()
+            if ((event.key === "j" || event.key === "k") && (pathname === "/" || pathname === "/en") && posts.length > 0) {
+                event.preventDefault()
                 const currentIndex = parseInt(sessionStorage.getItem("currentPostIndex") || "0")
                 let newIndex = currentIndex
 
-                if (e.key === "j") {
+                if (event.key === "j") {
                     newIndex = Math.min(posts.length - 1, currentIndex + 1)
-                } else if (e.key === "k") {
+                } else {
                     newIndex = Math.max(0, currentIndex - 1)
                 }
 
@@ -69,23 +67,20 @@ export function KeyboardShortcuts({ isEnglish = false }: KeyboardShortcutsProps)
                 }
             }
 
-            // ? - показать помощь
-            if (e.key === "?") {
-                e.preventDefault()
+            if (event.key === "?") {
+                event.preventDefault()
                 setShowHelp((prev) => !prev)
             }
 
-            // Esc - закрыть модалки
-            if (e.key === "Escape") {
+            if (event.key === "Escape") {
                 setShowHelp(false)
             }
         }
 
         window.addEventListener("keydown", handleKeyDown)
         return () => window.removeEventListener("keydown", handleKeyDown)
-    }, [router, pathname, posts])
+    }, [pathname, posts, router])
 
-    // Сбрасываем индекс при переходе на главную
     useEffect(() => {
         if (pathname === "/" || pathname === "/en") {
             sessionStorage.setItem("currentPostIndex", "0")
@@ -101,39 +96,39 @@ export function KeyboardShortcuts({ isEnglish = false }: KeyboardShortcutsProps)
                 >
                     <div
                         className="bg-card border rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl animate-in slide-in-from-bottom-4"
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={(event) => event.stopPropagation()}
                     >
                         <h2 className="text-xl font-bold mb-4">
-                            {isEnglish ? "Keyboard Shortcuts" : "Горячие клавиши"}
+                            {localeIsEnglish ? "Keyboard Shortcuts" : "Горячие клавиши"}
                         </h2>
                         <div className="space-y-3 text-sm">
                             <div className="flex items-center justify-between">
                                 <span className="text-muted-foreground">
-                                    {isEnglish ? "Search" : "Поиск"}
+                                    {localeIsEnglish ? "Search" : "Поиск"}
                                 </span>
                                 <kbd className="px-2 py-1 bg-muted rounded text-xs font-mono">/</kbd>
                             </div>
                             <div className="flex items-center justify-between">
                                 <span className="text-muted-foreground">
-                                    {isEnglish ? "Next article" : "Следующая статья"}
+                                    {localeIsEnglish ? "Next article" : "Следующая статья"}
                                 </span>
                                 <kbd className="px-2 py-1 bg-muted rounded text-xs font-mono">j</kbd>
                             </div>
                             <div className="flex items-center justify-between">
                                 <span className="text-muted-foreground">
-                                    {isEnglish ? "Previous article" : "Предыдущая статья"}
+                                    {localeIsEnglish ? "Previous article" : "Предыдущая статья"}
                                 </span>
                                 <kbd className="px-2 py-1 bg-muted rounded text-xs font-mono">k</kbd>
                             </div>
                             <div className="flex items-center justify-between">
                                 <span className="text-muted-foreground">
-                                    {isEnglish ? "Show help" : "Показать помощь"}
+                                    {localeIsEnglish ? "Show help" : "Показать помощь"}
                                 </span>
                                 <kbd className="px-2 py-1 bg-muted rounded text-xs font-mono">?</kbd>
                             </div>
                             <div className="flex items-center justify-between">
                                 <span className="text-muted-foreground">
-                                    {isEnglish ? "Close" : "Закрыть"}
+                                    {localeIsEnglish ? "Close" : "Закрыть"}
                                 </span>
                                 <kbd className="px-2 py-1 bg-muted rounded text-xs font-mono">Esc</kbd>
                             </div>
@@ -143,7 +138,7 @@ export function KeyboardShortcuts({ isEnglish = false }: KeyboardShortcutsProps)
                             className="w-full mt-4"
                             onClick={() => setShowHelp(false)}
                         >
-                            {isEnglish ? "Close" : "Закрыть"}
+                            {localeIsEnglish ? "Close" : "Закрыть"}
                         </Button>
                     </div>
                 </div>
@@ -151,4 +146,3 @@ export function KeyboardShortcuts({ isEnglish = false }: KeyboardShortcutsProps)
         </>
     )
 }
-

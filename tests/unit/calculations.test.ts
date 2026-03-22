@@ -106,6 +106,46 @@ describe("computeTile", () => {
 
     expect(res).toBeNull()
   })
+
+  it("reduces wall tile quantity when openings are provided", () => {
+    const withoutOpenings = computeTile({
+      surfaceType: "wall",
+      length: 4,
+      width: 2.7,
+      bathArea: 0,
+      tileLength: 30,
+      tileWidth: 30,
+      groutWidth: 2,
+      tilesPerPack: 11,
+      windows: 0,
+      doors: 0,
+      windowArea: 0,
+      doorArea: 0,
+      baseWastePercent: 10,
+      additionalWastePercent: 0,
+    })
+
+    const withOpenings = computeTile({
+      surfaceType: "wall",
+      length: 4,
+      width: 2.7,
+      bathArea: 0,
+      tileLength: 30,
+      tileWidth: 30,
+      groutWidth: 2,
+      tilesPerPack: 11,
+      windows: 1,
+      doors: 1,
+      windowArea: 1.8,
+      doorArea: 2,
+      baseWastePercent: 10,
+      additionalWastePercent: 0,
+    })
+
+    expect(withoutOpenings).not.toBeNull()
+    expect(withOpenings).not.toBeNull()
+    expect(withOpenings!.tilesNeeded).toBeLessThan(withoutOpenings!.tilesNeeded)
+  })
 })
 
 describe("computeWallpaper", () => {
@@ -147,6 +187,43 @@ describe("computeWallpaper", () => {
     })
 
     expect(res).toBeNull()
+  })
+
+  it("reduces rolls when large openings reduce the effective wall area", () => {
+    const withoutOpenings = computeWallpaper({
+      calculationType: "room",
+      roomWidth: 4,
+      roomLength: 4,
+      roomHeight: 2.7,
+      wallLength: 0,
+      wallHeight: 0,
+      windows: [],
+      doors: [],
+      rollWidthCm: 53,
+      rollLengthM: 10,
+      patternRepeatCm: 0,
+      patternOffset: false,
+    })
+
+    const withOpenings = computeWallpaper({
+      calculationType: "room",
+      roomWidth: 4,
+      roomLength: 4,
+      roomHeight: 2.7,
+      wallLength: 0,
+      wallHeight: 0,
+      windows: [{ width: 2, height: 1.5 }],
+      doors: [{ width: 1, height: 2 }],
+      rollWidthCm: 53,
+      rollLengthM: 10,
+      patternRepeatCm: 0,
+      patternOffset: false,
+    })
+
+    expect(withoutOpenings).not.toBeNull()
+    expect(withOpenings).not.toBeNull()
+    expect(withOpenings!.wallArea).toBeLessThan(withoutOpenings!.wallArea)
+    expect(withOpenings!.rollsNeeded).toBeLessThan(withoutOpenings!.rollsNeeded)
   })
 })
 

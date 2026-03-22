@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import type { Post } from ".contentlayer/generated"
 import { cn } from "@/lib/utils"
 import navDataJson from "@/components/messages/nav.json"
+import { fetchPostIndex, type PostIndexItem } from "@/lib/post-index"
 
 type Locale = "ru" | "en"
 
@@ -20,49 +20,39 @@ const navData: NavData = navDataJson as NavData
 
 interface PostNavigationProps {
     currentSlug: string
-    locale: "ru" | "en"
+    locale: Locale
 }
 
 export function PostNavigation({ currentSlug, locale }: PostNavigationProps) {
-    const [posts, setPosts] = useState<Post[]>([])
+    const [posts, setPosts] = useState<PostIndexItem[]>([])
     const [loading, setLoading] = useState(true)
 
-    // Загружаем посты через API
     useEffect(() => {
-        fetch("/api/posts")
-            .then((res) => res.json())
+        fetchPostIndex()
             .then((data) => {
-                if (Array.isArray(data)) {
-                    setPosts(data)
-                }
+                setPosts(data)
             })
             .catch(() => {
-                // Игнорируем ошибки
+                // Ignore fetch errors for optional navigation links.
             })
             .finally(() => setLoading(false))
     }, [])
 
-    // Получаем все статьи того же языка, отсортированные по дате (новые первыми)
     const sortedPosts = posts
-        .filter((post) => post.locale === locale && !post.draft)
+        .filter((post) => post.locale === locale)
         .sort((a, b) => {
             const ta = a.date ? new Date(a.date).getTime() : 0
             const tb = b.date ? new Date(b.date).getTime() : 0
-            return tb - ta // Новые первыми
+            return tb - ta
         })
 
-    // Находим индекс текущей статьи
     const currentIndex = sortedPosts.findIndex((post) => post.slug === currentSlug)
 
     if (loading || currentIndex === -1) return null
 
-    // Предыдущая статья (более новая, индекс меньше)
     const previousPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null
-
-    // Следующая статья (более старая, индекс больше)
     const nextPost = currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null
 
-    // Если нет ни предыдущей, ни следующей статьи, не показываем навигацию
     if (!previousPost && !nextPost) return null
 
     const t = navData[locale].postNavigation
@@ -73,11 +63,12 @@ export function PostNavigation({ currentSlug, locale }: PostNavigationProps) {
             className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-border/50 dark:border-border/40"
             aria-label={locale === "en" ? "Article navigation" : "Навигация по статьям"}
         >
-            <div className={cn(
-                "grid gap-4 sm:gap-6",
-                previousPost && nextPost ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1"
-            )}>
-                {/* Предыдущая статья (более новая) */}
+            <div
+                className={cn(
+                    "grid gap-4 sm:gap-6",
+                    previousPost && nextPost ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1"
+                )}
+            >
                 {previousPost && (
                     <Link
                         href={`${basePath}/posts/${previousPost.slug}`}
@@ -104,7 +95,6 @@ export function PostNavigation({ currentSlug, locale }: PostNavigationProps) {
                     </Link>
                 )}
 
-                {/* Следующая статья (более старая) */}
                 {nextPost && (
                     <Link
                         href={`${basePath}/posts/${nextPost.slug}`}
@@ -153,4 +143,3 @@ export function PostNavigation({ currentSlug, locale }: PostNavigationProps) {
         </nav>
     )
 }
-

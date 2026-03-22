@@ -58,10 +58,10 @@ export const Post = defineDocumentType(() => ({
             type: "string",
             resolve: (post) => {
                 const isEnglish = /(^|[\\/])en[\\/]/.test(post._raw.sourceFilePath)
-                // Настраиваем скорость чтения в зависимости от языка
                 const wordsPerMinute = isEnglish ? 200 : 180
                 const time = readingTime(post.body.raw, { wordsPerMinute })
-                return Math.ceil(time.minutes) + " мин"
+                const minutes = Math.ceil(time.minutes)
+                return isEnglish ? `${minutes} min read` : `${minutes} мин`
             },
         },
 

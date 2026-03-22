@@ -4,7 +4,7 @@ import { allPosts } from ".contentlayer/generated"
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = "https://renohacks.com"
-    const staticLastModified = "2026-02-27"
+    const staticLastModified = new Date().toISOString()
 
     const posts: MetadataRoute.Sitemap = allPosts
         .filter((post) => !post.draft)
@@ -29,8 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { path: "/en/developer", changeFrequency: "monthly" as const, priority: 0.3 },
         { path: "/tags", changeFrequency: "weekly" as const, priority: 0.6 },
         { path: "/en/tags", changeFrequency: "weekly" as const, priority: 0.6 },
-        { path: "/calculators", changeFrequency: "monthly" as const, priority: 0.7 },
-        { path: "/en/calculators", changeFrequency: "monthly" as const, priority: 0.7 },
         { path: "/calculators/paint", changeFrequency: "monthly" as const, priority: 0.6 },
         { path: "/en/calculators/paint", changeFrequency: "monthly" as const, priority: 0.6 },
         { path: "/calculators/tile", changeFrequency: "monthly" as const, priority: 0.6 },

@@ -3,22 +3,23 @@
 import { Bookmark, BookmarkCheck } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useBookmarks } from "@/lib/use-bookmarks"
-import type { Post } from ".contentlayer/generated"
+import type { ArticleCardPost } from "@/lib/post-index"
 
 interface BookmarkButtonProps {
-    post: Post
+    post: ArticleCardPost
     variant?: "default" | "compact"
     className?: string
 }
 
 export function BookmarkButton({ post, variant = "default", className }: BookmarkButtonProps) {
     const { isBookmarked, toggleBookmark } = useBookmarks()
-    const bookmarked = isBookmarked(post.slug, post.locale as "ru" | "en")
-    const isEnglish = post.locale === "en"
+    const locale = post.locale === "en" ? "en" : "ru"
+    const bookmarked = isBookmarked(post.slug, locale)
+    const isEnglish = locale === "en"
 
-    const handleClick = (e: React.MouseEvent) => {
-        e.preventDefault()
-        e.stopPropagation()
+    const handleClick = (event: React.MouseEvent) => {
+        event.preventDefault()
+        event.stopPropagation()
         toggleBookmark(post)
     }
 
@@ -71,18 +72,17 @@ export function BookmarkButton({ post, variant = "default", className }: Bookmar
                 <>
                     <BookmarkCheck className="h-4 w-4 text-primary fill-primary" />
                     <span className="text-sm font-medium text-foreground">
-                        {post.locale === "en" ? "Saved" : "В закладках"}
+                        {isEnglish ? "Saved" : "В закладках"}
                     </span>
                 </>
             ) : (
                 <>
                     <Bookmark className="h-4 w-4 text-muted-foreground" />
                     <span className="text-sm font-medium text-muted-foreground">
-                        {post.locale === "en" ? "Save" : "В закладки"}
+                        {isEnglish ? "Save" : "В закладки"}
                     </span>
                 </>
             )}
         </button>
     )
 }
-

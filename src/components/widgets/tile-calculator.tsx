@@ -112,8 +112,12 @@ export function TileCalculator() {
         if (length || width) {
             lines.push(
                 isEnglish
-                    ? `Surface size: length ${length || "-"} m, width ${width || "-"} m, type: ${surfaceType}.`
-                    : `Размер поверхности: длина ${length || "-"} м, ширина ${width || "-"} м, тип: ${surfaceType === "floor" ? "пол" : "стена"}.`,
+                    ? surfaceType === "floor"
+                        ? `Floor size: length ${length || "-"} m, width ${width || "-"} m.`
+                        : `Wall size: width ${length || "-"} m, height ${width || "-"} m.`
+                    : surfaceType === "floor"
+                        ? `Размер пола: длина ${length || "-"} м, ширина ${width || "-"} м.`
+                        : `Размер стены: ширина ${length || "-"} м, высота ${width || "-"} м.`,
             )
         }
 
@@ -269,13 +273,17 @@ export function TileCalculator() {
                 {/* Размеры поверхности */}
                 <div className="rounded-2xl border border-border/50 bg-card/80 p-4 shadow-sm">
                     <label className="text-xs font-medium text-muted-foreground mb-3 block">
-                        {isEnglish ? "Room dimensions" : "Параметры помещения"}
+                        {surfaceType === "floor"
+                            ? (isEnglish ? "Room dimensions" : "Параметры помещения")
+                            : (isEnglish ? "Wall dimensions" : "Параметры стены")}
                     </label>
                     <div className="grid gap-3 md:grid-cols-2">
                         <div className="space-y-2">
                             <label className="text-xs text-muted-foreground flex items-center gap-2">
                                 <Ruler className="h-3.5 w-3.5" />
-                                {isEnglish ? "Length (m)" : "Длина помещения (м)"}
+                                {surfaceType === "floor"
+                                    ? (isEnglish ? "Length (m)" : "Длина помещения (м)")
+                                    : (isEnglish ? "Wall width (m)" : "Ширина стены (м)")}
                             </label>
                             <Input
                                 type="number"
@@ -285,26 +293,39 @@ export function TileCalculator() {
                                 className="rounded-xl border-border/60 bg-background/80"
                             />
                             <p className="text-xs text-muted-foreground/70">
-                                {isEnglish ? "Measure from wall to wall" : "Измерьте рулеткой от стены до стены"}
+                                {surfaceType === "floor"
+                                    ? (isEnglish ? "Measure from wall to wall" : "Измерьте рулеткой от стены до стены")
+                                    : (isEnglish ? "Useful width of the wall to be tiled" : "Полезная ширина стены под облицовку")}
                             </p>
                         </div>
                         <div className="space-y-2">
                             <label className="text-xs text-muted-foreground flex items-center gap-2">
                                 <Ruler className="h-3.5 w-3.5" />
-                                {isEnglish ? "Width (m)" : "Ширина помещения (м)"}
+                                {surfaceType === "floor"
+                                    ? (isEnglish ? "Width (m)" : "Ширина помещения (м)")
+                                    : (isEnglish ? "Wall height (m)" : "Высота стены (м)")}
                             </label>
                             <Input
                                 type="number"
-                                placeholder="2.5"
+                                placeholder={surfaceType === "floor" ? "2.5" : "2.7"}
                                 value={width}
                                 onChange={(e) => setWidth(e.target.value)}
                                 className="rounded-xl border-border/60 bg-background/80"
                             />
                             <p className="text-xs text-muted-foreground/70">
-                                {isEnglish ? "From one wall to another" : "От одной стены к другой"}
+                                {surfaceType === "floor"
+                                    ? (isEnglish ? "From one wall to another" : "От одной стены к другой")
+                                    : (isEnglish ? "From floor finish to the planned top edge" : "От чистого пола до верхней границы плитки")}
                             </p>
                         </div>
                     </div>
+                    {surfaceType === "wall" && (
+                        <p className="mt-3 text-xs text-muted-foreground/70">
+                            {isEnglish
+                                ? "For a full room, calculate each wall separately and sum the results."
+                                : "Для всей комнаты рассчитайте каждую стену отдельно и сложите результаты."}
+                        </p>
+                    )}
                     {surfaceType === "floor" && (
                         <div className="mt-3 space-y-2">
                             <label className="text-xs text-muted-foreground">

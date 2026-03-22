@@ -3,6 +3,8 @@ import { Resend } from "resend"
 import { allPosts, type Post } from ".contentlayer/generated"
 import { getAllSubscriptions } from "@/lib/subscriptions-repo"
 import { wasNotificationSent, saveNotificationSent } from "@/lib/notifications-repo"
+import { authorizeRequest } from "@/lib/request-auth"
+import { buildUnsubscribeUrl } from "@/lib/unsubscribe-token"
 
 // Инициализация Resend (опционально, если настроен RESEND_API_KEY)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
@@ -12,7 +14,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://renohacks.com"
 // Секретный ключ для защиты endpoint
 // CRON_SECRET используется Vercel автоматически для cron jobs
 // NOTIFY_SECRET можно использовать для ручных вызовов
-const NOTIFY_SECRET = process.env.CRON_SECRET || process.env.NOTIFY_SECRET || "change-me-in-production"
+const NOTIFY_SECRET_ENV_NAMES = ["CRON_SECRET", "NOTIFY_SECRET"] as const
 
 // Время в часах, в течение которого статья считается новой (для автоматического поиска)
 const NEW_POST_HOURS = 24
@@ -98,8 +100,8 @@ async function sendNotificationsForPost(post: Post): Promise<{
 
     // Формируем URL статьи
     const articleUrl = `${SITE_URL}${post.url}`
-    const unsubscribeUrl = (email: string, locale: string) =>
-        `${SITE_URL}/api/unsubscribe?email=${encodeURIComponent(email)}&locale=${locale}`
+    const unsubscribeUrl = (email: string, locale: "ru" | "en") =>
+        buildUnsubscribeUrl(SITE_URL, email, locale) || "mailto:info@renohacks.com"
 
     // Отправляем письма
     const isEnglish = locale === "en"
@@ -190,15 +192,9 @@ async function sendNotificationsForPost(post: Post): Promise<{
 export async function POST(req: NextRequest) {
     try {
         // Проверка секретного ключа через заголовок или query параметр
-        const authHeader = req.headers.get("authorization")
-        const secretParam = req.nextUrl.searchParams.get("secret")
-        const secret = authHeader?.replace("Bearer ", "") || secretParam
-
-        if (!secret || secret !== NOTIFY_SECRET) {
-            return NextResponse.json(
-                { error: "Unauthorized" },
-                { status: 401 }
-            )
+        const auth = authorizeRequest(req, NOTIFY_SECRET_ENV_NAMES)
+        if (!auth.ok) {
+            return auth.response
         }
 
         const body = await req.json().catch(() => ({}))
@@ -296,15 +292,9 @@ export async function GET(req: NextRequest) {
     try {
         // Проверка секретного ключа через заголовок (Vercel автоматически добавляет CRON_SECRET)
         // Также поддерживается query параметр для ручных вызовов
-        const authHeader = req.headers.get("authorization")
-        const secretParam = req.nextUrl.searchParams.get("secret")
-        const secret = authHeader?.replace("Bearer ", "") || secretParam
-
-        if (!secret || secret !== NOTIFY_SECRET) {
-            return NextResponse.json(
-                { error: "Unauthorized" },
-                { status: 401 }
-            )
+        const auth = authorizeRequest(req, NOTIFY_SECRET_ENV_NAMES)
+        if (!auth.ok) {
+            return auth.response
         }
 
         // Автоматически находим и отправляем уведомления для новых статей

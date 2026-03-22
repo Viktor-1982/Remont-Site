@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { deleteSubscription, findSubscription } from "@/lib/subscriptions-repo"
-
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+import { verifyUnsubscribeToken } from "@/lib/unsubscribe-token"
 
 async function unsubscribe(email: string, locale: string) {
     const normalizedEmail = email.toLowerCase()
@@ -25,40 +24,50 @@ async function unsubscribe(email: string, locale: string) {
     return {
         status: 200,
         body: {
-            message: locale === "en" ? "Successfully unsubscribed." : "Вы успешно отписались.",
+            message:
+                locale === "en"
+                    ? "Successfully unsubscribed."
+                    : "Вы успешно отписались.",
             email: normalizedEmail,
         },
     }
 }
 
-export async function POST(req: NextRequest) {
-    const body = await req.json()
-    const email = body?.email as string | undefined
-    const locale = (body?.locale as string | undefined) || "ru"
+function unauthorizedMessage(locale: string) {
+    return locale === "en"
+        ? "Invalid or expired unsubscribe token"
+        : "Недействительная или просроченная ссылка для отписки"
+}
 
-    if (!email || !emailRegex.test(email)) {
+export async function POST(req: NextRequest) {
+    const body = await req.json().catch(() => ({}))
+    const locale = body?.locale === "en" ? "en" : "ru"
+    const verification = verifyUnsubscribeToken(body?.token as string | undefined)
+
+    if (!verification.valid) {
         return NextResponse.json(
-            { error: locale === "en" ? "Invalid email address" : "Некорректный email" },
-            { status: 400 }
+            { error: unauthorizedMessage(locale) },
+            { status: 401 }
         )
     }
 
-    const result = await unsubscribe(email, locale)
+    const result = await unsubscribe(verification.email, verification.locale)
     return NextResponse.json(result.body, { status: result.status })
 }
 
 export async function GET(req: NextRequest) {
-    const email = req.nextUrl.searchParams.get("email") || undefined
-    const locale = req.nextUrl.searchParams.get("locale") || "ru"
+    const locale = req.nextUrl.searchParams.get("locale") === "en" ? "en" : "ru"
+    const verification = verifyUnsubscribeToken(
+        req.nextUrl.searchParams.get("token") || undefined
+    )
 
-    if (!email || !emailRegex.test(email)) {
+    if (!verification.valid) {
         return NextResponse.json(
-            { error: locale === "en" ? "Invalid email address" : "Некорректный email" },
-            { status: 400 }
+            { error: unauthorizedMessage(locale) },
+            { status: 401 }
         )
     }
 
-    const result = await unsubscribe(email, locale)
+    const result = await unsubscribe(verification.email, verification.locale)
     return NextResponse.json(result.body, { status: result.status })
 }
-

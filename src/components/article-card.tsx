@@ -3,10 +3,10 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
-import type { Post } from ".contentlayer/generated"
 import { TagList } from "@/components/tag-list"
 import { BookmarkButton } from "@/components/bookmark-button"
 import navDataJson from "@/components/messages/nav.json"
+import type { ArticleCardPost } from "@/lib/post-index"
 
 type Locale = "ru" | "en"
 interface ArticlesDict {
@@ -17,10 +17,11 @@ interface ArticlesDict {
 type NavData = Record<Locale, { articles: ArticlesDict }>
 const navData: NavData = navDataJson as NavData
 
-export function ArticleCard({ post }: { post: Post }) {
+export function ArticleCard({ post }: { post: ArticleCardPost }) {
     const isEnglish = post.locale === "en"
     const locale: Locale = isEnglish ? "en" : "ru"
     const t = navData[locale].articles
+    const postId = post._id ?? `${post.locale}-${post.slug}`
 
     const formattedDate = post.date
         ? new Intl.DateTimeFormat(isEnglish ? "en-US" : "ru-RU", {
@@ -31,7 +32,7 @@ export function ArticleCard({ post }: { post: Post }) {
         : null
 
     return (
-        <article aria-labelledby={`post-${post._id}`} className="relative">
+        <article aria-labelledby={`post-${postId}`} className="relative">
             {/* Кнопка закладки - абсолютное позиционирование */}
             <div className="absolute top-3 right-3 z-10">
                 <BookmarkButton post={post} variant="compact" />
@@ -73,13 +74,15 @@ export function ArticleCard({ post }: { post: Post }) {
                             <>
                                 {" · "}
                                 {locale === "en"
-                                    ? `${post.readingTime.replace("мин", "min read")}`
-                                    : `${post.readingTime} чтения`}
+                                    ? post.readingTime
+                                    : post.readingTime.includes("чтения")
+                                      ? post.readingTime
+                                      : `${post.readingTime} чтения`}
                             </>
                         )}
                     </div>
 
-                    <h3 id={`post-${post._id}`} className="text-lg sm:text-xl font-bold leading-tight tracking-tight">
+                    <h3 id={`post-${postId}`} className="text-lg sm:text-xl font-bold leading-tight tracking-tight">
                             <span className="transition-colors duration-200 text-foreground group-hover:text-primary dark:group-hover:text-primary">
                             {post.title}
                             </span>

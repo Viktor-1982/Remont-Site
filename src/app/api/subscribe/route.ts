@@ -2,11 +2,14 @@ import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 import { type Subscription } from "../subscriptions/store"
 import { findSubscription, getStats, upsertSubscription } from "@/lib/subscriptions-repo"
+import { authorizeRequest } from "@/lib/request-auth"
+import { buildUnsubscribeUrl } from "@/lib/unsubscribe-token"
 
 // Инициализация Resend (опционально, если настроен RESEND_API_KEY)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "noreply@renohacks.com"
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://renohacks.com"
+const ADMIN_SECRET_ENV_NAMES = ["ADMIN_API_SECRET", "CRON_SECRET"] as const
 
 export async function POST(req: NextRequest) {
     let locale: "ru" | "en" = "ru" // Дефолтное значение для обработки ошибок
@@ -45,7 +48,9 @@ export async function POST(req: NextRequest) {
                     const subject = isEnglish 
                         ? "Welcome back to Renohacks! 🎉" 
                         : "С возвращением в Renohacks! 🎉"
-                    const unsubscribeUrl = `${SITE_URL}/api/unsubscribe?email=${encodeURIComponent(email)}&locale=${locale}`
+                    const unsubscribeUrl =
+                        buildUnsubscribeUrl(SITE_URL, email, locale) ||
+                        "mailto:info@renohacks.com"
                     
                     const htmlContent = isEnglish
                         ? `
@@ -127,7 +132,9 @@ export async function POST(req: NextRequest) {
                 const subject = isEnglish 
                     ? "Welcome to Renohacks! 🎉" 
                     : "Добро пожаловать в Renohacks! 🎉"
-                const unsubscribeUrl = `${SITE_URL}/api/unsubscribe?email=${encodeURIComponent(email)}&locale=${locale}`
+                const unsubscribeUrl =
+                    buildUnsubscribeUrl(SITE_URL, email, locale) ||
+                    "mailto:info@renohacks.com"
                 
                 const htmlContent = isEnglish
                     ? `
@@ -225,7 +232,12 @@ export async function POST(req: NextRequest) {
 }
 
 // GET endpoint для получения статистики (опционально, для админки)
-export async function GET() {
+export async function GET(req: NextRequest) {
+    const auth = authorizeRequest(req, ADMIN_SECRET_ENV_NAMES)
+    if (!auth.ok) {
+        return auth.response
+    }
+
     const stats = await getStats()
     return NextResponse.json(stats)
 }

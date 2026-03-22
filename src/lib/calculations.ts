@@ -254,14 +254,15 @@ export function computeWallpaper(params: WallpaperParams): WallpaperResult | nul
 
   if (stripsPerRoll <= 0) stripsPerRoll = 1
 
-  let perimeter = 0
-  if (calculationType === "room") {
-    perimeter = 2 * (roomWidth + roomLength)
-  } else {
-    perimeter = wallLength
+  if (netWallArea <= 0) {
+    return { wallArea: 0, rollsNeeded: 0 }
   }
 
-  const stripsNeeded = Math.ceil(perimeter / rollW)
+  // Convert the remaining wall area into the equivalent width of full-height strips.
+  // This keeps openings and roll consumption aligned instead of subtracting area in the UI
+  // while still calculating rolls from the full perimeter.
+  const equivalentLinearWidth = netWallArea / refHeight
+  const stripsNeeded = Math.ceil(equivalentLinearWidth / rollW)
   const rollsNeeded = Math.ceil(stripsNeeded / stripsPerRoll)
 
   if (!Number.isFinite(rollsNeeded)) return null

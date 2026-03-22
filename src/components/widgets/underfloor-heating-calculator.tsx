@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { usePathname } from "next/navigation"
 import { useState } from "react"
@@ -24,10 +24,10 @@ const floorOptions: Array<{
     hintRu: string
     hintEn: string
 }> = [
-    { value: "tile", labelRu: "Плитка / керамогранит", labelEn: "Tile / stone", hintRu: "Лучше всего передает тепло", hintEn: "Best heat transfer" },
-    { value: "laminate", labelRu: "Ламинат", labelEn: "Laminate", hintRu: "Нужен контроль температуры", hintEn: "Keep surface temp controlled" },
-    { value: "vinyl", labelRu: "Винил / ПВХ", labelEn: "Vinyl / PVC", hintRu: "Средняя теплоотдача", hintEn: "Balanced performance" },
-    { value: "wood", labelRu: "Дерево / паркет", labelEn: "Wood / parquet", hintRu: "Требует мягкого режима", hintEn: "Requires gentle heating" },
+    { value: "tile", labelRu: "РџР»РёС‚РєР° / РєРµСЂР°РјРѕРіСЂР°РЅРёС‚", labelEn: "Tile / stone", hintRu: "Р›СѓС‡С€Рµ РІСЃРµРіРѕ РїРµСЂРµРґР°РµС‚ С‚РµРїР»Рѕ", hintEn: "Best heat transfer" },
+    { value: "laminate", labelRu: "Р›Р°РјРёРЅР°С‚", labelEn: "Laminate", hintRu: "РќСѓР¶РµРЅ РєРѕРЅС‚СЂРѕР»СЊ С‚РµРјРїРµСЂР°С‚СѓСЂС‹", hintEn: "Keep surface temp controlled" },
+    { value: "vinyl", labelRu: "Р’РёРЅРёР» / РџР’РҐ", labelEn: "Vinyl / PVC", hintRu: "РЎСЂРµРґРЅСЏСЏ С‚РµРїР»РѕРѕС‚РґР°С‡Р°", hintEn: "Balanced performance" },
+    { value: "wood", labelRu: "Р”РµСЂРµРІРѕ / РїР°СЂРєРµС‚", labelEn: "Wood / parquet", hintRu: "РўСЂРµР±СѓРµС‚ РјСЏРіРєРѕРіРѕ СЂРµР¶РёРјР°", hintEn: "Requires gentle heating" },
 ]
 
 const systemOptions: Array<{
@@ -38,8 +38,8 @@ const systemOptions: Array<{
     hintEn: string
     icon: typeof Cable
 }> = [
-    { value: "cable", labelRu: "Кабель", labelEn: "Cable", hintRu: "Гибко по конфигурации", hintEn: "Flexible layout", icon: Cable },
-    { value: "mat", labelRu: "Мат", labelEn: "Heating mat", hintRu: "Быстрый монтаж", hintEn: "Quick installation", icon: Zap },
+    { value: "cable", labelRu: "РљР°Р±РµР»СЊ", labelEn: "Cable", hintRu: "Р“РёР±РєРѕ РїРѕ РєРѕРЅС„РёРіСѓСЂР°С†РёРё", hintEn: "Flexible layout", icon: Cable },
+    { value: "mat", labelRu: "РњР°С‚", labelEn: "Heating mat", hintRu: "Р‘С‹СЃС‚СЂС‹Р№ РјРѕРЅС‚Р°Р¶", hintEn: "Quick installation", icon: Zap },
 ]
 
 const modeOptions: Array<{
@@ -49,8 +49,8 @@ const modeOptions: Array<{
     hintRu: string
     hintEn: string
 }> = [
-    { value: "comfort", labelRu: "Комфорт", labelEn: "Comfort", hintRu: "Поддержка тепла", hintEn: "Supplemental heating" },
-    { value: "primary", labelRu: "Основной", labelEn: "Primary", hintRu: "Основной источник тепла", hintEn: "Main heat source" },
+    { value: "comfort", labelRu: "РљРѕРјС„РѕСЂС‚", labelEn: "Comfort", hintRu: "РџРѕРґРґРµСЂР¶РєР° С‚РµРїР»Р°", hintEn: "Supplemental heating" },
+    { value: "primary", labelRu: "РћСЃРЅРѕРІРЅРѕР№", labelEn: "Primary", hintRu: "РћСЃРЅРѕРІРЅРѕР№ РёСЃС‚РѕС‡РЅРёРє С‚РµРїР»Р°", hintEn: "Main heat source" },
 ]
 
 const heatLossOptions: Array<{
@@ -61,9 +61,9 @@ const heatLossOptions: Array<{
     hintRu: string
     hintEn: string
 }> = [
-    { value: "good", factor: 0.9, labelRu: "Хорошая изоляция", labelEn: "Well insulated", hintRu: "-10% мощности", hintEn: "-10% power" },
-    { value: "normal", factor: 1.0, labelRu: "Обычная", labelEn: "Standard", hintRu: "Базовый уровень", hintEn: "Baseline" },
-    { value: "high", factor: 1.15, labelRu: "Повышенные потери", labelEn: "High losses", hintRu: "+15% мощности", hintEn: "+15% power" },
+    { value: "good", factor: 0.9, labelRu: "РҐРѕСЂРѕС€Р°СЏ РёР·РѕР»СЏС†РёСЏ", labelEn: "Well insulated", hintRu: "-10% РјРѕС‰РЅРѕСЃС‚Рё", hintEn: "-10% power" },
+    { value: "normal", factor: 1.0, labelRu: "РћР±С‹С‡РЅР°СЏ", labelEn: "Standard", hintRu: "Р‘Р°Р·РѕРІС‹Р№ СѓСЂРѕРІРµРЅСЊ", hintEn: "Baseline" },
+    { value: "high", factor: 1.15, labelRu: "РџРѕРІС‹С€РµРЅРЅС‹Рµ РїРѕС‚РµСЂРё", labelEn: "High losses", hintRu: "+15% РјРѕС‰РЅРѕСЃС‚Рё", hintEn: "+15% power" },
 ]
 
 const belowFloorOptions: Array<{
@@ -74,10 +74,27 @@ const belowFloorOptions: Array<{
     hintRu: string
     hintEn: string
 }> = [
-    { value: "heated", factor: 0.95, labelRu: "Отапливаемое", labelEn: "Heated space", hintRu: "-5% мощности", hintEn: "-5% power" },
-    { value: "unheated", factor: 1.1, labelRu: "Холодное/подвал", labelEn: "Unheated/basement", hintRu: "+10% мощности", hintEn: "+10% power" },
-    { value: "ground", factor: 1.2, labelRu: "Грунт/первый этаж", labelEn: "Ground/1st floor", hintRu: "+20% мощности", hintEn: "+20% power" },
+    { value: "heated", factor: 0.95, labelRu: "РћС‚Р°РїР»РёРІР°РµРјРѕРµ", labelEn: "Heated space", hintRu: "-5% РјРѕС‰РЅРѕСЃС‚Рё", hintEn: "-5% power" },
+    { value: "unheated", factor: 1.1, labelRu: "РҐРѕР»РѕРґРЅРѕРµ/РїРѕРґРІР°Р»", labelEn: "Unheated/basement", hintRu: "+10% РјРѕС‰РЅРѕСЃС‚Рё", hintEn: "+10% power" },
+    { value: "ground", factor: 1.2, labelRu: "Р“СЂСѓРЅС‚/РїРµСЂРІС‹Р№ СЌС‚Р°Р¶", labelEn: "Ground/1st floor", hintRu: "+20% РјРѕС‰РЅРѕСЃС‚Рё", hintEn: "+20% power" },
 ]
+
+const currencyOptions = {
+    ru: [
+        { code: "RUB", symbol: "в‚Ѕ", name: "Р РѕСЃСЃРёР№СЃРєРёР№ СЂСѓР±Р»СЊ", exampleTariff: "6.5" },
+        { code: "USD", symbol: "$", name: "Р”РѕР»Р»Р°СЂ РЎРЁРђ", exampleTariff: "0.15" },
+        { code: "EUR", symbol: "в‚¬", name: "Р•РІСЂРѕ", exampleTariff: "0.14" },
+        { code: "UAH", symbol: "в‚ґ", name: "Р“СЂРёРІРЅР°", exampleTariff: "4.3" },
+        { code: "TRY", symbol: "в‚є", name: "РўСѓСЂРµС†РєР°СЏ Р»РёСЂР°", exampleTariff: "2.4" },
+    ],
+    en: [
+        { code: "USD", symbol: "$", name: "US Dollar", exampleTariff: "0.15" },
+        { code: "EUR", symbol: "в‚¬", name: "Euro", exampleTariff: "0.14" },
+        { code: "GBP", symbol: "ВЈ", name: "British Pound", exampleTariff: "0.12" },
+        { code: "TRY", symbol: "в‚є", name: "Turkish Lira", exampleTariff: "2.4" },
+        { code: "RUB", symbol: "в‚Ѕ", name: "Russian Ruble", exampleTariff: "6.5" },
+    ],
+} as const
 
 export function UnderfloorHeatingCalculator() {
     const pathname = usePathname()
@@ -86,6 +103,8 @@ export function UnderfloorHeatingCalculator() {
 
     const t: UnderfloorCalcDict = calcData[locale].calc.underfloor
     const b: ButtonsDict = calcData[locale].calc.buttons
+    const localeTag = isEnglish ? "en-US" : "ru-RU"
+    const availableCurrencies = currencyOptions[locale]
 
     const [roomArea, setRoomArea] = useState("")
     const [coverage, setCoverage] = useState("80")
@@ -100,8 +119,18 @@ export function UnderfloorHeatingCalculator() {
     const [days, setDays] = useState("30")
     const [load, setLoad] = useState("60")
     const [tariff, setTariff] = useState("")
+    const [currency, setCurrency] = useState(isEnglish ? "USD" : "RUB")
 
     const [result, setResult] = useState<ReturnType<typeof computeUnderfloorHeating> | null>(null)
+    const selectedCurrency =
+        availableCurrencies.find((item) => item.code === currency) ?? availableCurrencies[0]
+    const currencyFormatter = new Intl.NumberFormat(localeTag, {
+        style: "currency",
+        currency: selectedCurrency.code,
+        currencyDisplay: "symbol",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    })
 
     const calculate = () => {
         const areaNum = parseFloat(roomArea.replace(",", ".").replace(/[^0-9.-]/g, ""))
@@ -133,6 +162,8 @@ export function UnderfloorHeatingCalculator() {
         setResult(res)
     }
 
+    const formatMoney = (value: number) => currencyFormatter.format(value)
+
     return (
         <div className="relative w-full max-w-3xl mx-auto">
             <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-r from-primary/15 via-transparent to-accent/20 blur-3xl opacity-60" />
@@ -145,7 +176,7 @@ export function UnderfloorHeatingCalculator() {
                     <p className="text-sm text-muted-foreground">
                         {isEnglish
                             ? "Estimate heating power, cable length or mat area, and monthly energy consumption."
-                            : "Рассчитайте мощность системы, длину кабеля/матов и примерное энергопотребление в месяц."}
+                            : "Р Р°СЃСЃС‡РёС‚Р°Р№С‚Рµ РјРѕС‰РЅРѕСЃС‚СЊ СЃРёСЃС‚РµРјС‹, РґР»РёРЅСѓ РєР°Р±РµР»СЏ/РјР°С‚РѕРІ Рё РїСЂРёРјРµСЂРЅРѕРµ СЌРЅРµСЂРіРѕРїРѕС‚СЂРµР±Р»РµРЅРёРµ РІ РјРµСЃСЏС†."}
                     </p>
                 </div>
 
@@ -181,8 +212,8 @@ export function UnderfloorHeatingCalculator() {
                         </div>
                         <p className="text-xs text-muted-foreground/70">
                             {isEnglish
-                                ? "Usually 70–90% (leave zones under furniture unheated)"
-                                : "Обычно 70–90% (без зон под мебелью)"}
+                                ? "Usually 70вЂ“90% (leave zones under furniture unheated)"
+                                : "РћР±С‹С‡РЅРѕ 70вЂ“90% (Р±РµР· Р·РѕРЅ РїРѕРґ РјРµР±РµР»СЊСЋ)"}
                         </p>
                     </div>
                 </div>
@@ -347,11 +378,11 @@ export function UnderfloorHeatingCalculator() {
                         <p className="text-xs text-muted-foreground/70">
                             {isEnglish
                                 ? system === "cable"
-                                    ? "Typical cable: 16–20 W per meter"
-                                    : "Typical mats: 130–160 W per m²"
+                                    ? "Typical cable: 16вЂ“20 W per meter"
+                                    : "Typical mats: 130вЂ“160 W per mВІ"
                                 : system === "cable"
-                                    ? "Обычно 16–20 Вт на метр"
-                                    : "Обычно 130–160 Вт на м²"}
+                                    ? "РћР±С‹С‡РЅРѕ 16вЂ“20 Р’С‚ РЅР° РјРµС‚СЂ"
+                                    : "РћР±С‹С‡РЅРѕ 130вЂ“160 Р’С‚ РЅР° РјВІ"}
                         </p>
                     </div>
                     <div className="space-y-2">
@@ -376,13 +407,13 @@ export function UnderfloorHeatingCalculator() {
                         </div>
                         <p className="text-xs text-muted-foreground/70">
                             {isEnglish
-                                ? "Thermostat usually keeps 50–70% average load"
-                                : "Термостат обычно держит 50–70% средней нагрузки"}
+                                ? "Thermostat usually keeps 50вЂ“70% average load"
+                                : "РўРµСЂРјРѕСЃС‚Р°С‚ РѕР±С‹С‡РЅРѕ РґРµСЂР¶РёС‚ 50вЂ“70% СЃСЂРµРґРЅРµР№ РЅР°РіСЂСѓР·РєРё"}
                         </p>
                     </div>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-3">
+                <div className="grid gap-4 md:grid-cols-4">
                     <div className="space-y-2">
                         <label className="text-xs font-medium text-muted-foreground">{t.hours}</label>
                         <Input
@@ -402,18 +433,39 @@ export function UnderfloorHeatingCalculator() {
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="text-xs font-medium text-muted-foreground">{t.tariff}</label>
+                        <label className="text-xs font-medium text-muted-foreground">{t.tariff} ({selectedCurrency.code})</label>
                         <Input
-                            placeholder={isEnglish ? "0.15" : "6.5"}
+                            placeholder={selectedCurrency.exampleTariff}
                             value={tariff}
                             onChange={(e) => setTariff(e.target.value)}
                             className="rounded-xl border-border/60 bg-background/80"
                         />
                         <p className="text-xs text-muted-foreground/70">
                             {isEnglish
-                                ? "e.g. 0.15 $/kWh or 0.12 €/kWh — cost is indicative."
-                                : "Например 6.5 ₽/кВт·ч или 2.5 ₴/кВт·ч — стоимость ориентировочная."}
+                                ? `Example: ${selectedCurrency.exampleTariff} ${selectedCurrency.code}/kWh. Cost is indicative.`
+                                : `Например ${selectedCurrency.exampleTariff} ${selectedCurrency.code}/кВт·ч. Стоимость ориентировочная.`}
                         </p>
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-xs font-medium text-muted-foreground">
+                            {isEnglish ? "Currency" : "Валюта"}
+                        </label>
+                        <div className="relative">
+                            <select
+                                className="w-full appearance-none rounded-xl border border-border/70 bg-background/70 px-4 py-3 text-sm font-medium focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                value={currency}
+                                onChange={(e) => setCurrency(e.target.value)}
+                            >
+                                {availableCurrencies.map((item) => (
+                                    <option key={item.code} value={item.code}>
+                                        {item.symbol} {item.name}
+                                    </option>
+                                ))}
+                            </select>
+                            <span className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 text-muted-foreground md:block">
+                                v
+                            </span>
+                        </div>
                     </div>
                 </div>
 
@@ -430,63 +482,63 @@ export function UnderfloorHeatingCalculator() {
                         <div className="grid gap-4 sm:grid-cols-2">
                             <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-emerald-50/20 p-4 shadow-sm dark:from-card dark:to-emerald-500/10">
                                 <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
-                                    <Waves className="h-3.5 w-3.5 text-primary" /> {isEnglish ? "Heated area" : "Зона обогрева"}
+                                    <Waves className="h-3.5 w-3.5 text-primary" /> {isEnglish ? "Heated area" : "Р—РѕРЅР° РѕР±РѕРіСЂРµРІР°"}
                                 </div>
                                 <p className="mt-2 text-lg font-semibold text-foreground">
-                                    {result.heatedArea.toFixed(1)} {isEnglish ? "m²" : "м²"}
+                                    {result.heatedArea.toFixed(1)} {isEnglish ? "mВІ" : "РјВІ"}
                                 </p>
                             </div>
                             <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-blue-50/20 p-4 shadow-sm dark:from-card dark:to-blue-500/10">
                                 <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
-                                    <Flame className="h-3.5 w-3.5 text-blue-500" /> {isEnglish ? "Power" : "Мощность"}
+                                    <Flame className="h-3.5 w-3.5 text-blue-500" /> {isEnglish ? "Power" : "РњРѕС‰РЅРѕСЃС‚СЊ"}
                                 </div>
                                 <p className="mt-2 text-lg font-semibold text-blue-600">
-                                    {Math.round(result.totalPowerW)} {isEnglish ? "W" : "Вт"}
+                                    {Math.round(result.totalPowerW)} {isEnglish ? "W" : "Р’С‚"}
                                 </p>
                                 <p className="text-xs text-muted-foreground mt-1">
-                                    {t.peakLoad}: {(result.totalPowerW / 1000).toFixed(2)} {isEnglish ? "kW" : "кВт"}
+                                    {t.peakLoad}: {(result.totalPowerW / 1000).toFixed(2)} {isEnglish ? "kW" : "РєР’С‚"}
                                 </p>
                                 <p className="text-xs text-muted-foreground mt-1">
                                     {isEnglish
-                                        ? `Recommended ${result.recommendedPowerPerM2} W/m²`
-                                        : `Рекомендуется ${result.recommendedPowerPerM2} Вт/м²`}
+                                        ? `Recommended ${result.recommendedPowerPerM2} W/mВІ`
+                                        : `Р РµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ ${result.recommendedPowerPerM2} Р’С‚/РјВІ`}
                                 </p>
                             </div>
                             <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-amber-50/20 p-4 shadow-sm dark:from-card dark:to-amber-500/10">
                                 <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
-                                    <Calculator className="h-3.5 w-3.5 text-amber-500" /> {isEnglish ? "System size" : "Размер системы"}
+                                    <Calculator className="h-3.5 w-3.5 text-amber-500" /> {isEnglish ? "System size" : "Р Р°Р·РјРµСЂ СЃРёСЃС‚РµРјС‹"}
                                 </div>
                                 <p className="mt-2 text-lg font-semibold text-amber-600">
                                     {system === "cable"
-                                        ? `${result.cableLengthM?.toFixed(1)} ${isEnglish ? "m" : "м"}`
-                                        : `${result.matAreaM2?.toFixed(1)} ${isEnglish ? "m²" : "м²"}`}
+                                        ? `${result.cableLengthM?.toFixed(1)} ${isEnglish ? "m" : "Рј"}`
+                                        : `${result.matAreaM2?.toFixed(1)} ${isEnglish ? "mВІ" : "РјВІ"}`}
                                 </p>
                                 <p className="text-xs text-muted-foreground mt-1">
                                     {system === "cable"
-                                        ? isEnglish ? "Cable length" : "Длина кабеля"
-                                        : isEnglish ? "Mat area" : "Площадь мата"}
+                                        ? isEnglish ? "Cable length" : "Р”Р»РёРЅР° РєР°Р±РµР»СЏ"
+                                        : isEnglish ? "Mat area" : "РџР»РѕС‰Р°РґСЊ РјР°С‚Р°"}
                                 </p>
                             </div>
                             <div className="rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/15 to-primary/5 p-4 shadow-md">
                                 <div className="flex items-center gap-2 text-xs font-medium uppercase text-primary">
-                                    <Thermometer className="h-3.5 w-3.5" /> {isEnglish ? "Monthly energy" : "Энергия/мес"}
+                                    <Thermometer className="h-3.5 w-3.5" /> {isEnglish ? "Monthly energy" : "Р­РЅРµСЂРіРёСЏ/РјРµСЃ"}
                                 </div>
                                 <p className="mt-2 text-2xl font-bold text-primary">
-                                    {result.monthlyKwh.toFixed(1)} {isEnglish ? "kWh" : "кВт·ч"}
+                                    {result.monthlyKwh.toFixed(1)} {isEnglish ? "kWh" : "РєР’С‚В·С‡"}
                                 </p>
                                 {result.estimatedCost !== undefined && (
                                     <p className="text-xs text-muted-foreground mt-1">
                                         {isEnglish
-                                            ? `Estimated cost: ${result.estimatedCost.toFixed(2)} $`
-                                            : `Стоимость: ${result.estimatedCost.toFixed(2)} ₽`}
+                                            ? `Estimated cost: ${formatMoney(result.estimatedCost)}`
+                                            : `Стоимость: ${formatMoney(result.estimatedCost)}`}
                                     </p>
                                 )}
                             </div>
                         </div>
                         <p className="mt-3 text-xs text-muted-foreground">
                             {isEnglish
-                                ? "Tip: for main heating increase coverage to 90–95% and keep load at 60–70%."
-                                : "Совет: для основного отопления увеличьте покрытие до 90–95% и держите загрузку 60–70%."}
+                                ? "Tip: for main heating increase coverage to 90вЂ“95% and keep load at 60вЂ“70%."
+                                : "РЎРѕРІРµС‚: РґР»СЏ РѕСЃРЅРѕРІРЅРѕРіРѕ РѕС‚РѕРїР»РµРЅРёСЏ СѓРІРµР»РёС‡СЊС‚Рµ РїРѕРєСЂС‹С‚РёРµ РґРѕ 90вЂ“95% Рё РґРµСЂР¶РёС‚Рµ Р·Р°РіСЂСѓР·РєСѓ 60вЂ“70%."}
                         </p>
                     </>
                 )}
@@ -494,4 +546,7 @@ export function UnderfloorHeatingCalculator() {
         </div>
     )
 }
+
+
+
 

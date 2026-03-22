@@ -1,15 +1,12 @@
 "use client"
 
-import { useState, useEffect, useMemo, useCallback } from "react"
+import { useState, useEffect, useMemo } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Search, X, Clock } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import type { Post } from ".contentlayer/generated"
-import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
-import { cn } from "@/lib/utils"
-
-// Посты загружаются через API в useEffect
+import { fetchPostIndex, type PostIndexItem } from "@/lib/post-index"
 
 interface SearchBarProps {
     isEnglish?: boolean
@@ -20,71 +17,61 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
     const [query, setQuery] = useState("")
     const [debouncedQuery, setDebouncedQuery] = useState("")
     const [recentSearches, setRecentSearches] = useState<string[]>([])
-    const [posts, setPosts] = useState<Post[]>([])
-    const pathname = usePathname()
+    const [posts, setPosts] = useState<PostIndexItem[]>([])
     const router = useRouter()
 
-    // Загружаем посты на клиенте
     useEffect(() => {
-        // Используем API route для получения постов
-        fetch("/api/posts")
-            .then((res) => res.json())
+        fetchPostIndex()
             .then((data) => {
-                if (Array.isArray(data)) {
-                    setPosts(data)
-                }
+                setPosts(data)
             })
             .catch(() => {
-                // Игнорируем ошибки
+                // Ignore fetch errors for optional search suggestions.
             })
     }, [])
 
-    // Debounce query для лучшей производительности (300ms)
     useEffect(() => {
         const timer = setTimeout(() => {
             setDebouncedQuery(query)
         }, 300)
+
         return () => clearTimeout(timer)
     }, [query])
 
-    // Загружаем историю поиска из localStorage
     useEffect(() => {
         const saved = localStorage.getItem("renohacks-search-history")
         if (saved) {
             try {
                 setRecentSearches(JSON.parse(saved))
             } catch {
-                // Игнорируем ошибки парсинга
+                // Ignore broken localStorage state.
             }
         }
     }, [])
 
-    // Фильтруем посты по запросу с debounce'нным query
     const filteredPosts = useMemo(() => {
         if (!debouncedQuery.trim() || posts.length === 0) return []
-        
+
         const lowerQuery = debouncedQuery.toLowerCase()
         const locale = isEnglish ? "en" : "ru"
-        
+
         return posts
             .filter((post) => {
-                if (post.locale !== locale || post.draft) return false
-                
+                if (post.locale !== locale) return false
+
                 const searchText = `${post.title} ${post.description || ""} ${post.tags?.join(" ") || ""}`.toLowerCase()
                 return searchText.includes(lowerQuery)
             })
-            .slice(0, 8) // Ограничиваем результаты
+            .slice(0, 8)
     }, [debouncedQuery, isEnglish, posts])
 
     const handleSearch = (searchQuery: string) => {
         if (!searchQuery.trim()) return
-        
-        // Сохраняем в историю
-        const updated = [searchQuery, ...recentSearches.filter(s => s !== searchQuery)].slice(0, 5)
+
+        const updated = [searchQuery, ...recentSearches.filter((item) => item !== searchQuery)].slice(0, 5)
         setRecentSearches(updated)
         localStorage.setItem("renohacks-search-history", JSON.stringify(updated))
-        
-        // Переходим на страницу поиска
+
         router.push(`/${isEnglish ? "en/" : ""}search?q=${encodeURIComponent(searchQuery)}`)
         setIsOpen(false)
         setQuery("")
@@ -95,25 +82,25 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
         localStorage.removeItem("renohacks-search-history")
     }
 
-    // Keyboard shortcuts
     useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === "/" && !isOpen && document.activeElement?.tagName !== "INPUT") {
-                e.preventDefault()
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "/" && !isOpen && document.activeElement?.tagName !== "INPUT") {
+                event.preventDefault()
                 setIsOpen(true)
             }
-            if (e.key === "Escape" && isOpen) {
+
+            if (event.key === "Escape" && isOpen) {
                 setIsOpen(false)
                 setQuery("")
             }
         }
+
         window.addEventListener("keydown", handleKeyDown)
         return () => window.removeEventListener("keydown", handleKeyDown)
     }, [isOpen])
 
     return (
         <>
-            {/* Кнопка поиска */}
             <Button
                 variant="ghost"
                 size="icon"
@@ -124,12 +111,11 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
                 <Search className="h-5 w-5" />
             </Button>
 
-            {/* Модальное окно поиска */}
             {isOpen && (
                 <div
                     className="fixed inset-0 z-50 flex items-start justify-center pt-[10vh] sm:pt-[20vh] px-4"
-                    onClick={(e) => {
-                        if (e.target === e.currentTarget) {
+                    onClick={(event) => {
+                        if (event.target === event.currentTarget) {
                             setIsOpen(false)
                             setQuery("")
                         }
@@ -137,18 +123,17 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
                 >
                     <div
                         className="w-full max-w-2xl rounded-2xl border bg-card shadow-2xl backdrop-blur-sm animate-in fade-in slide-in-from-top-4 max-h-[85vh] overflow-hidden flex flex-col"
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={(event) => event.stopPropagation()}
                     >
-                        {/* Поисковая строка */}
                         <div className="flex items-center gap-2 border-b p-4">
                             <Search className="h-5 w-5 text-muted-foreground" />
                             <Input
                                 type="text"
                                 placeholder={isEnglish ? "Search articles..." : "Поиск статей..."}
                                 value={query}
-                                onChange={(e) => setQuery(e.target.value)}
-                                onKeyDown={(e) => {
-                                    if (e.key === "Enter" && filteredPosts.length > 0) {
+                                onChange={(event) => setQuery(event.target.value)}
+                                onKeyDown={(event) => {
+                                    if (event.key === "Enter" && query.trim()) {
                                         handleSearch(query)
                                     }
                                 }}
@@ -168,7 +153,6 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
                             </Button>
                         </div>
 
-                        {/* Результаты */}
                         <div className="flex-1 overflow-y-auto p-4 min-h-0">
                             {debouncedQuery.trim() ? (
                                 filteredPosts.length > 0 ? (
@@ -178,7 +162,7 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
                                         </p>
                                         {filteredPosts.map((post) => (
                                             <Link
-                                                key={post._id}
+                                                key={post.id}
                                                 href={post.url}
                                                 onClick={() => {
                                                     setIsOpen(false)
@@ -231,9 +215,9 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
                                                 </Button>
                                             </div>
                                             <div className="flex flex-wrap gap-2">
-                                                {recentSearches.map((search, i) => (
+                                                {recentSearches.map((search, index) => (
                                                     <Button
-                                                        key={i}
+                                                        key={index}
                                                         variant="outline"
                                                         size="sm"
                                                         onClick={() => handleSearch(search)}
@@ -261,4 +245,3 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
         </>
     )
 }
-

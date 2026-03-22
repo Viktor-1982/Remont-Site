@@ -5,6 +5,9 @@
  */
 
 const INDEXNOW_KEY = "506b8013c6ddcce134765ffa1fc1b102"
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://renohacks.com"
+const SITE_HOSTNAME = new URL(SITE_URL).hostname
+const ALLOWED_HOSTNAMES = new Set([SITE_HOSTNAME, "renohacks.com"])
 const INDEXNOW_ENDPOINTS = [
     "https://api.indexnow.org/indexnow",
     "https://www.bing.com/indexnow",
@@ -14,11 +17,14 @@ const INDEXNOW_ENDPOINTS = [
 /**
  * Валидирует и нормализует URL согласно RFC-3986
  */
-function validateAndNormalizeUrl(url: string): string | null {
+export function validateAndNormalizeUrl(url: string): string | null {
     try {
         const parsed = new URL(url)
         // Проверяем, что протокол http или https
         if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
+            return null
+        }
+        if (!ALLOWED_HOSTNAMES.has(parsed.hostname)) {
             return null
         }
         // Возвращаем нормализованный URL (URL конструктор автоматически кодирует)

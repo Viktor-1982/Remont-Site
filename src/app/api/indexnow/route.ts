@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 import { submitToIndexNow, submitSingleUrlViaGet } from "@/lib/indexnow"
+import { authorizeRequest } from "@/lib/request-auth"
+
+const INDEXNOW_SECRET_ENV_NAMES = ["INDEXNOW_SECRET", "CRON_SECRET"] as const
 
 /**
  * API endpoint для отправки URL в IndexNow
@@ -10,6 +13,11 @@ import { submitToIndexNow, submitSingleUrlViaGet } from "@/lib/indexnow"
  * GET /api/indexnow?url=<encoded-url>
  */
 export async function POST(req: NextRequest) {
+    const auth = authorizeRequest(req, INDEXNOW_SECRET_ENV_NAMES)
+    if (!auth.ok) {
+        return auth.response
+    }
+
     try {
         const body = await req.json()
         const { urls } = body
@@ -71,6 +79,11 @@ export async function POST(req: NextRequest) {
  * 2. Проверки статуса: GET /api/indexnow (без параметров)
  */
 export async function GET(req: NextRequest) {
+    const auth = authorizeRequest(req, INDEXNOW_SECRET_ENV_NAMES)
+    if (!auth.ok) {
+        return auth.response
+    }
+
     const { searchParams } = new URL(req.url)
     const url = searchParams.get("url")
 

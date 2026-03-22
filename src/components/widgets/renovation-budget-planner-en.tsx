@@ -45,8 +45,8 @@ const renovationCategories = [
 
 const currencies = [
   { code: "USD", symbol: "$", name: "US Dollar" },
-  { code: "EUR", symbol: "€", name: "Euro" },
-  { code: "GBP", symbol: "£", name: "British Pound" },
+  { code: "EUR", symbol: "EUR", name: "Euro" },
+  { code: "GBP", symbol: "GBP", name: "British Pound" },
 ]
 
 interface ExpenseItem {
@@ -73,7 +73,7 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
   const [total, setTotal] = useState<number | null>(null)
   const [nextId, setNextId] = useState(2)
 
-  const selectedCurrency = currencies.find(c => c.code === currency) || currencies[0]
+  const selectedCurrency = currencies.find((item) => item.code === currency) || currencies[0]
 
   const addCategory = () => {
     setItems([...items, { id: nextId, category: "", cost: "" }])
@@ -81,7 +81,7 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
   }
 
   const removeCategory = (id: number) => {
-    setItems(items.filter((i) => i.id !== id))
+    setItems(items.filter((item) => item.id !== id))
   }
 
   const updateCategory = (id: number, field: keyof ExpenseItem, value: string) => {
@@ -120,7 +120,7 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
 
     const header =
       total !== null
-        ? `Renovation budget — total ${selectedCurrency.symbol}${total.toLocaleString("en-US")} (reserve ${reserve}%).`
+        ? `Renovation budget - total ${selectedCurrency.symbol}${total.toLocaleString("en-US")} (reserve ${reserve}%).`
         : "Preliminary renovation budget."
 
     return [header, "", "Categories:", ...lines].join("\n")
@@ -130,7 +130,6 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
     if (typeof window === "undefined") return
 
     const summaryText = buildSummary()
-
     const printWindow = window.open("", "_blank", "width=800,height=1000")
     if (!printWindow) return
 
@@ -140,7 +139,7 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
 <html lang="en">
   <head>
     <meta charSet="utf-8" />
-    <title>Renovation budget — renohacks.com</title>
+    <title>Renovation budget - renohacks.com</title>
     <style>
       body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 24px; color: #111827; }
       h1 { font-size: 20px; margin-bottom: 12px; }
@@ -154,7 +153,7 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
     <pre>`)
     doc.write(summaryText)
     doc.write(`</pre>
-    <p class="source">Source: renohacks.com — online calculators and renovation guides.</p>
+    <p class="source">Source: renohacks.com - online calculators and renovation guides.</p>
   </body>
 </html>`)
     doc.close()
@@ -168,36 +167,35 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
     if (navigator.share) {
       try {
         await navigator.share({
-          title: "Renovation budget — Renohacks",
+          title: "Renovation budget - Renohacks",
           text: summary,
         })
         return
       } catch {
-        // user cancelled — continue to clipboard fallback
+        // User cancelled; continue to clipboard fallback.
       }
     }
 
     try {
       await navigator.clipboard.writeText(summary)
     } catch {
-      // clipboard not available — silently ignore
+      // Clipboard not available; ignore.
     }
   }
 
   return (
     <div className="relative w-full max-w-3xl mx-auto">
       <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-r from-primary/15 via-transparent to-accent/20 blur-3xl opacity-60" />
-      {/* 👁 Main UI — only on screen */}
       <div className="no-print relative space-y-6 rounded-[32px] border border-primary/10 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.12),_transparent_45%),_var(--background)] p-6 md:p-8 shadow-[0_25px_80px_-35px_rgba(79,70,229,0.8)] transition">
         <div className="space-y-2">
-        <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-          <Calculator className="h-3.5 w-3.5" /> Renohacks Pro Tool
-        </span>
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground">{t.title}</h2>
-        <p className="text-sm text-muted-foreground">
-          Structure renovation costs by category, add contingency, and get a client-ready total in seconds.
-        </p>
-      </div>
+          <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+            <Calculator className="h-3.5 w-3.5" /> Renohacks Pro Tool
+          </span>
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground">{t.title}</h2>
+          <p className="text-sm text-muted-foreground">
+            Structure renovation costs by category, add contingency, and get a client-ready total in seconds.
+          </p>
+        </div>
 
         <div className="space-y-4">
           {items.map((item, index) => (
@@ -233,13 +231,15 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
                     onChange={(e) => updateCategory(item.id, "category", e.target.value)}
                   />
                   <datalist id={`categories-${item.id}`}>
-                    {renovationCategories.map((cat) => (
-                      <option key={cat} value={cat} />
+                    {renovationCategories.map((category) => (
+                      <option key={category} value={category} />
                     ))}
                   </datalist>
                 </div>
                 <div className="w-full md:w-40">
-                  <label className="text-xs font-medium text-muted-foreground">{t.cost} ({selectedCurrency.symbol})</label>
+                  <label className="text-xs font-medium text-muted-foreground">
+                    {t.cost} ({selectedCurrency.symbol})
+                  </label>
                   <input
                     type="number"
                     min="0"
@@ -264,53 +264,58 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
 
         <div className="grid gap-4 md:grid-cols-2">
           <div className="rounded-2xl border border-border/50 bg-card/80 p-4 shadow-sm">
-          <label className="text-xs font-medium text-muted-foreground">{t.currency}</label>
-          <div className="mt-2 relative">
-            <select
-              className="w-full appearance-none rounded-xl border border-border/70 bg-background/70 px-4 py-3 text-sm font-medium focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-              value={currency}
-              onChange={(e) => setCurrency(e.target.value)}
-            >
-              {currencies.map((curr) => (
-                <option key={curr.code} value={curr.code}>
-                  {curr.symbol} {curr.name}
-                </option>
-              ))}
-            </select>
-            <span className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 text-muted-foreground md:block">⌄</span>
+            <label className="text-xs font-medium text-muted-foreground">{t.currency}</label>
+            <div className="mt-2 relative">
+              <select
+                className="w-full appearance-none rounded-xl border border-border/70 bg-background/70 px-4 py-3 text-sm font-medium focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                value={currency}
+                onChange={(e) => setCurrency(e.target.value)}
+              >
+                {currencies.map((curr) => (
+                  <option key={curr.code} value={curr.code}>
+                    {curr.symbol} {curr.name}
+                  </option>
+                ))}
+              </select>
+              <span className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 text-muted-foreground md:block">
+                v
+              </span>
+            </div>
           </div>
-        </div>
-        <div className="rounded-2xl border border-border/50 bg-card/80 p-4 shadow-sm">
-          <label className="text-xs font-medium text-muted-foreground">{t.reserve}</label>
-          <div className="mt-2 flex items-center gap-3">
-            <input
-              type="number"
-              min="0"
-              max="50"
-              className="w-20 rounded-xl border border-border/70 bg-background/70 px-3 py-2 text-center text-sm font-semibold focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-              value={reserve}
-              onChange={(e) => setReserve(e.target.value)}
-            />
-            <input
-              type="range"
-              min="0"
-              max="50"
-              value={parseInt(reserve || "0", 10)}
-              onChange={(e) => setReserve(e.target.value)}
-              className="flex-1 accent-primary"
-            />
-          </div>
-          <p className="mt-2 text-xs text-muted-foreground">20–25% keeps your remodeling budget safe</p>
-        </div>
-      </div>
 
-      <Button
-        onClick={calculate}
-        className="w-full rounded-2xl bg-gradient-to-r from-primary to-primary/80 py-6 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:translate-y-0 hover:brightness-110"
-        size="lg"
-      >
-        {b.calculate}
-      </Button>
+          <div className="rounded-2xl border border-border/50 bg-card/80 p-4 shadow-sm">
+            <label className="text-xs font-medium text-muted-foreground">{t.reserve}</label>
+            <div className="mt-2 flex items-center gap-3">
+              <input
+                type="number"
+                min="0"
+                max="50"
+                className="w-20 rounded-xl border border-border/70 bg-background/70 px-3 py-2 text-center text-sm font-semibold focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                value={reserve}
+                onChange={(e) => setReserve(e.target.value)}
+              />
+              <input
+                type="range"
+                min="0"
+                max="50"
+                value={parseInt(reserve || "0", 10)}
+                onChange={(e) => setReserve(e.target.value)}
+                className="flex-1 accent-primary"
+              />
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">
+              20-25% keeps your remodeling budget safe
+            </p>
+          </div>
+        </div>
+
+        <Button
+          onClick={calculate}
+          className="w-full rounded-2xl bg-gradient-to-r from-primary to-primary/80 py-6 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:translate-y-0 hover:brightness-110"
+          size="lg"
+        >
+          {b.calculate}
+        </Button>
 
         {total !== null && (
           <>
@@ -341,7 +346,7 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
               </div>
             </div>
 
-            <div className="mt-4 flex flex-col sm:flex-row gap-3">
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
               <Button
                 variant="outline"
                 className="flex-1 rounded-2xl border-primary/40 bg-background/80"
@@ -361,10 +366,9 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
         )}
       </div>
 
-      {/* 🧾 Print / PDF version with only the budget summary */}
       {total !== null && (
         <div className="print-only mt-6 rounded-2xl border border-black/80 bg-white p-6 text-sm text-black">
-          <h2 className="text-xl font-bold mb-2">Renovation budget</h2>
+          <h2 className="mb-2 text-xl font-bold">Renovation budget</h2>
           <p className="mb-1">
             <strong>Currency:</strong> {selectedCurrency.symbol} ({selectedCurrency.code})
           </p>
@@ -381,7 +385,7 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
             {total.toLocaleString("en-US")}
           </p>
           <hr className="my-3" />
-          <h3 className="font-semibold mb-2">Cost categories</h3>
+          <h3 className="mb-2 font-semibold">Cost categories</h3>
           <ul className="space-y-1">
             {items
               .filter((item) => item.category && item.cost)
