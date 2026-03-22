@@ -1,7 +1,7 @@
 ﻿import { getPageMetadata } from "@/lib/seo"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Camera, Wrench, Calculator, Palette, DollarSign, Home, Mail, Target } from "lucide-react"
+import { Camera, Wrench, Calculator, Palette, DollarSign, Home, Target } from "lucide-react"
 import Script from "next/script"
 
 export const metadata = getPageMetadata("/en/about", {
@@ -184,41 +184,6 @@ export default function AboutPage() {
                                 Designers
                             </Badge>
                         </div>
-                    </CardContent>
-                </Card>
-            </div>
-
-            {/* Contact Section */}
-            <div className="mx-auto max-w-4xl">
-                <Card className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10 dark:from-primary/20 dark:via-primary/10 dark:to-accent/20 border-2 border-primary/30 shadow-xl">
-                    {/* Анимированный фон */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.15),transparent_50%)] animate-pulse-slow" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(168,85,247,0.15),transparent_50%)] animate-pulse-slow" style={{ animationDelay: '1s' }} />
-                    
-                    <CardHeader className="relative z-10">
-                        <div className="flex items-center gap-3 mb-2">
-                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/30 to-primary/20 flex items-center justify-center shadow-lg ring-2 ring-primary/20">
-                                <Mail className="w-6 h-6 text-primary" />
-                            </div>
-                            <CardTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                                Contact Us
-                            </CardTitle>
-                        </div>
-                        <CardDescription className="text-base text-lg">
-                            Have questions, suggestions, or ideas for articles?
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="relative z-10">
-                        <p className="text-foreground/70 dark:text-muted-foreground mb-6 text-base">
-                            We&apos;re always open to dialogue and ready to help you with your renovation.
-                        </p>
-                        <a
-                            href="mailto:info@renohacks.com"
-                            className="group inline-flex items-center gap-3 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:scale-105 active:scale-95"
-                        >
-                            <Mail className="w-5 h-5 group-hover:animate-bounce" />
-                            <span>info@renohacks.com</span>
-                        </a>
                     </CardContent>
                 </Card>
             </div>

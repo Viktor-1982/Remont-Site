@@ -100,10 +100,10 @@ export default function PrivacyPage() {
                             subscription-related emails. You can unsubscribe at any time using the
                             link in the email or by contacting us at{" "}
                             <a
-                                href="mailto:info@renohacks.com"
+                        href="mailto:vles8878@gmail.com"
                                 className="text-primary hover:underline"
                             >
-                                info@renohacks.com
+                        vles8878@gmail.com
                             </a>
                             .
                         </p>
@@ -322,11 +322,11 @@ export default function PrivacyPage() {
                             If you have questions about this Privacy Policy, contact us:
                         </p>
                         <a
-                            href="mailto:info@renohacks.com"
+                            href="mailto:vles8878@gmail.com"
                             className="inline-flex items-center gap-2 font-medium text-primary transition-colors hover:text-primary/80"
                         >
                             <Mail className="h-4 w-4" />
-                            info@renohacks.com
+                            vles8878@gmail.com
                         </a>
                     </CardContent>
                 </Card>

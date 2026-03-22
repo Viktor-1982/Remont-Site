@@ -186,7 +186,7 @@ async function sendNotificationsForContent(item: NotifiableContent): Promise<Not
     const contentUrl = `${SITE_URL}${item.url}`
     const { subject, heading, cta } = getContentLabels(item)
     const unsubscribeUrl = (email: string, locale: "ru" | "en") =>
-        buildUnsubscribeUrl(SITE_URL, email, locale) || "mailto:info@renohacks.com"
+        buildUnsubscribeUrl(SITE_URL, email, locale) || "mailto:vles8878@gmail.com"
 
     let successCount = 0
     let errorCount = 0

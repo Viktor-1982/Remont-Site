@@ -350,11 +350,11 @@ export default function TermsOfUsePage() {
               Р•СЃР»Рё Сѓ РІР°СЃ РµСЃС‚СЊ РІРѕРїСЂРѕСЃС‹ Рѕ РїСЂР°РІРёР»Р°С… РїРѕР»СЊР·РѕРІР°РЅРёСЏ, СЃРІСЏР¶РёС‚РµСЃСЊ СЃ РЅР°РјРё:
             </p>
             <a
-              href="mailto:info@renohacks.com"
+                            href="mailto:vles8878@gmail.com"
               className="group inline-flex items-center gap-3 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:scale-105 active:scale-95"
             >
               <Mail className="w-5 h-5 group-hover:animate-bounce" />
-              <span>info@renohacks.com</span>
+                            <span>vles8878@gmail.com</span>
             </a>
           </CardContent>
         </Card>
@@ -393,7 +393,7 @@ export default function TermsOfUsePage() {
               <li className="flex items-start gap-3">
                 <Mail className="w-6 h-6 text-primary mt-0.5 shrink-0" />
                 <div>
-                  <strong className="text-foreground">РЎРІСЏР·СЊ:</strong> info@renohacks.com РґР»СЏ Р»СЋР±С‹С… РІРѕРїСЂРѕСЃРѕРІ
+                    <strong className="text-foreground">РЎРІСЏР·СЊ:</strong> vles8878@gmail.com РґР»СЏ Р»СЋР±С‹С… РІРѕРїСЂРѕСЃРѕРІ
                 </div>
               </li>
             </ul>

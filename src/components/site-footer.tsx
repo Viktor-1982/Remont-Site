@@ -61,27 +61,15 @@ export function SiteFooter() {
                     </ul>
                 </nav>
 
-                {/* 📞 Контакты */}
+                {/* 🔗 Соцсети */}
                 <section aria-labelledby="footer-contacts">
                     <h2
                         id="footer-contacts"
                         className="text-sm font-semibold uppercase tracking-wide text-foreground/90"
                     >
-                        {footer.contactsTitle}
+                        {footer.socialLabel}
                     </h2>
-                    <p className="mt-3 text-sm text-muted-foreground/90">{footer.contactsText}</p>
-                    <p className="mt-2 text-sm">
-                        <a
-                            href="mailto:info@renohacks.com"
-                            aria-label="Email info@renohacks.com"
-                            title="info@renohacks.com"
-                            className="hover:underline"
-                        >
-                            info@renohacks.com
-                        </a>
-                    </p>
 
-                    {/* 🔗 Соцсети (та же логика, что в Header) */}
                     <div className="mt-3 flex gap-6" aria-label={footer.socialLabel}>
                         <DeepLink
                             href={social.instagram}

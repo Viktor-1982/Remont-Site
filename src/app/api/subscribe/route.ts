@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
                         : "С возвращением в Renohacks! 🎉"
                     const unsubscribeUrl =
                         buildUnsubscribeUrl(SITE_URL, email, locale) ||
-                        "mailto:info@renohacks.com"
+                        "mailto:vles8878@gmail.com"
                     
                     const htmlContent = isEnglish
                         ? `
@@ -134,7 +134,7 @@ export async function POST(req: NextRequest) {
                     : "Добро пожаловать в Renohacks! 🎉"
                 const unsubscribeUrl =
                     buildUnsubscribeUrl(SITE_URL, email, locale) ||
-                    "mailto:info@renohacks.com"
+                    "mailto:vles8878@gmail.com"
                 
                 const htmlContent = isEnglish
                     ? `
