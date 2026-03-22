@@ -80,7 +80,7 @@ const calculators = [
         emoji: "🪵",
         icon: Layers,
         desc: "Рассчитайте ламинат, кварцвинил или паркетную доску по площади комнаты, упаковкам, подложке и запасу.",
-        badge: "Ламинат и LVT",
+        badge: "Ламинат и кварцвинил",
         gradient: "from-lime-500/15 via-emerald-400/10 to-teal-400/10",
     },
     {

@@ -21,7 +21,7 @@ const coveringOptions: Array<{
     },
     {
         value: "vinyl",
-        ru: { label: "Кварцвинил / LVT", hint: "Подходит для клеевых и замковых коллекций" },
+        ru: { label: "Кварцвинил", hint: "Подходит для клеевых и замковых коллекций" },
         en: { label: "Vinyl / LVT", hint: "Works for click and glue-down products" },
     },
     {
