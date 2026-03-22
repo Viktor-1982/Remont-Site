@@ -10,8 +10,12 @@ import { computeBaseboard, type BaseboardMode } from "@/lib/calculations"
 const currencyOptions = {
     ru: [
         { code: "RUB", symbol: "₽", name: "Рубль", priceExample: "480" },
+        { code: "BYN", symbol: "Br", name: "Белорусский рубль", priceExample: "16" },
+        { code: "UAH", symbol: "₴", name: "Гривна", priceExample: "250" },
+        { code: "KZT", symbol: "₸", name: "Тенге", priceExample: "2900" },
         { code: "USD", symbol: "$", name: "Доллар США", priceExample: "6" },
         { code: "EUR", symbol: "€", name: "Евро", priceExample: "5.5" },
+        { code: "TRY", symbol: "₺", name: "Турецкая лира", priceExample: "190" },
     ],
     en: [
         { code: "USD", symbol: "$", name: "US Dollar", priceExample: "6" },

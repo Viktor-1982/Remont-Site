@@ -82,9 +82,11 @@ const belowFloorOptions: Array<{
 const currencyOptions = {
     ru: [
         { code: "RUB", symbol: "в‚Ѕ", name: "Р РѕСЃСЃРёР№СЃРєРёР№ СЂСѓР±Р»СЊ", exampleTariff: "6.5" },
+        { code: "BYN", symbol: "Br", name: "Р‘РµР»РѕСЂСѓСЃСЃРєРёР№ СЂСѓР±Р»СЊ", exampleTariff: "0.28" },
         { code: "USD", symbol: "$", name: "Р”РѕР»Р»Р°СЂ РЎРЁРђ", exampleTariff: "0.15" },
         { code: "EUR", symbol: "в‚¬", name: "Р•РІСЂРѕ", exampleTariff: "0.14" },
         { code: "UAH", symbol: "в‚ґ", name: "Р“СЂРёРІРЅР°", exampleTariff: "4.3" },
+        { code: "KZT", symbol: "в‚ё", name: "РўРµРЅРіРµ", exampleTariff: "28" },
         { code: "TRY", symbol: "в‚є", name: "РўСѓСЂРµС†РєР°СЏ Р»РёСЂР°", exampleTariff: "2.4" },
     ],
     en: [

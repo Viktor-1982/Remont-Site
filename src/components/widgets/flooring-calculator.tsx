@@ -56,8 +56,12 @@ const layoutOptions: Array<{
 const currencyOptions = {
     ru: [
         { code: "RUB", symbol: "₽", name: "Рубль", priceExample: "3200" },
+        { code: "BYN", symbol: "Br", name: "Белорусский рубль", priceExample: "110" },
+        { code: "UAH", symbol: "₴", name: "Гривна", priceExample: "1650" },
+        { code: "KZT", symbol: "₸", name: "Тенге", priceExample: "19800" },
         { code: "USD", symbol: "$", name: "Доллар США", priceExample: "42" },
         { code: "EUR", symbol: "€", name: "Евро", priceExample: "39" },
+        { code: "TRY", symbol: "₺", name: "Турецкая лира", priceExample: "1350" },
     ],
     en: [
         { code: "USD", symbol: "$", name: "US Dollar", priceExample: "42" },
