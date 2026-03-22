@@ -301,6 +301,78 @@ export interface UnderfloorHeatingResult {
   estimatedCost?: number
 }
 
+export type FlooringLayout = "straight" | "diagonal" | "herringbone"
+
+export interface FlooringParams {
+  length: number
+  width: number
+  exclusionArea: number
+  plankLengthCm: number
+  plankWidthCm: number
+  packAreaM2: number
+  layout: FlooringLayout
+  additionalWastePercent: number
+  underlayReservePercent?: number
+  pricePerPack?: number
+}
+
+export interface FlooringResult {
+  grossArea: number
+  netArea: number
+  wastePercent: number
+  requiredArea: number
+  plankAreaM2: number
+  planksNeeded: number
+  packsNeeded: number
+  underlayAreaM2: number
+  estimatedCost?: number
+}
+
+export type BaseboardMode = "room" | "custom"
+
+export interface BaseboardParams {
+  mode: BaseboardMode
+  roomLength: number
+  roomWidth: number
+  customPerimeter: number
+  doorways: number
+  doorwayWidth: number
+  profileLengthM: number
+  wastePercent: number
+  pricePerPiece?: number
+}
+
+export interface BaseboardResult {
+  perimeterM: number
+  openingsWidthM: number
+  netLengthM: number
+  totalLengthWithWasteM: number
+  piecesNeeded: number
+  estimatedCost?: number
+}
+
+export type ScreedMixType = "self-leveling" | "cement-sand" | "lightweight"
+
+export interface ScreedParams {
+  length: number
+  width: number
+  thicknessMm: number
+  consumptionKgPerM2Per10Mm: number
+  bagWeightKg: number
+  reservePercent: number
+  waterPerBagL?: number
+  pricePerBag?: number
+}
+
+export interface ScreedResult {
+  areaM2: number
+  volumeM3: number
+  dryMixKg: number
+  bagsNeeded: number
+  waterLiters?: number
+  estimatedCost?: number
+}
+
 export interface VentilationParams {
   length: number
   width: number
@@ -408,6 +480,164 @@ export function computeUnderfloorHeating(
     cableLengthM,
     matAreaM2,
     monthlyKwh,
+    estimatedCost,
+  }
+}
+
+const BASE_WASTE_BY_LAYOUT: Record<FlooringLayout, number> = {
+  straight: 7,
+  diagonal: 12,
+  herringbone: 15,
+}
+
+export function computeFlooring(params: FlooringParams): FlooringResult | null {
+  const {
+    length,
+    width,
+    exclusionArea,
+    plankLengthCm,
+    plankWidthCm,
+    packAreaM2,
+    layout,
+    additionalWastePercent,
+    underlayReservePercent = 3,
+    pricePerPack,
+  } = params
+
+  if (length <= 0 || width <= 0 || length > 100 || width > 100) return null
+  if (exclusionArea < 0 || exclusionArea >= length * width) return null
+  if (plankLengthCm <= 0 || plankWidthCm <= 0) return null
+  if (packAreaM2 <= 0 || packAreaM2 > 20) return null
+  if (additionalWastePercent < 0 || additionalWastePercent > 20) return null
+  if (underlayReservePercent < 0 || underlayReservePercent > 10) return null
+
+  const grossArea = length * width
+  const netArea = Math.max(0, grossArea - exclusionArea)
+  if (netArea <= 0) return null
+
+  const plankAreaM2 = (plankLengthCm / 100) * (plankWidthCm / 100)
+  if (plankAreaM2 <= 0 || plankAreaM2 > 5) return null
+
+  const wastePercent = BASE_WASTE_BY_LAYOUT[layout] + additionalWastePercent
+  const requiredArea = netArea * (1 + wastePercent / 100)
+  const planksNeeded = Math.ceil(requiredArea / plankAreaM2)
+  const packsNeeded = Math.ceil(requiredArea / packAreaM2)
+  const underlayAreaM2 = netArea * (1 + underlayReservePercent / 100)
+
+  if (
+    !Number.isFinite(requiredArea) ||
+    !Number.isFinite(planksNeeded) ||
+    !Number.isFinite(packsNeeded) ||
+    !Number.isFinite(underlayAreaM2)
+  ) {
+    return null
+  }
+
+  const estimatedCost =
+    pricePerPack && pricePerPack > 0 ? packsNeeded * pricePerPack : undefined
+
+  return {
+    grossArea,
+    netArea,
+    wastePercent,
+    requiredArea,
+    plankAreaM2,
+    planksNeeded,
+    packsNeeded,
+    underlayAreaM2,
+    estimatedCost,
+  }
+}
+
+export function computeBaseboard(params: BaseboardParams): BaseboardResult | null {
+  const {
+    mode,
+    roomLength,
+    roomWidth,
+    customPerimeter,
+    doorways,
+    doorwayWidth,
+    profileLengthM,
+    wastePercent,
+    pricePerPiece,
+  } = params
+
+  let perimeterM = 0
+  if (mode === "room") {
+    if (roomLength <= 0 || roomWidth <= 0 || roomLength > 100 || roomWidth > 100) return null
+    perimeterM = 2 * (roomLength + roomWidth)
+  } else {
+    if (customPerimeter <= 0 || customPerimeter > 500) return null
+    perimeterM = customPerimeter
+  }
+
+  if (doorways < 0 || doorways > 50) return null
+  if (doorwayWidth < 0 || doorwayWidth > 5) return null
+  if (profileLengthM <= 0 || profileLengthM > 10) return null
+  if (wastePercent < 0 || wastePercent > 25) return null
+
+  const openingsWidthM = doorways * doorwayWidth
+  if (openingsWidthM >= perimeterM) return null
+
+  const netLengthM = Math.max(0, perimeterM - openingsWidthM)
+  const totalLengthWithWasteM = netLengthM * (1 + wastePercent / 100)
+  const piecesNeeded = Math.ceil(totalLengthWithWasteM / profileLengthM)
+
+  if (!Number.isFinite(piecesNeeded) || piecesNeeded <= 0) return null
+
+  const estimatedCost =
+    pricePerPiece && pricePerPiece > 0 ? piecesNeeded * pricePerPiece : undefined
+
+  return {
+    perimeterM,
+    openingsWidthM,
+    netLengthM,
+    totalLengthWithWasteM,
+    piecesNeeded,
+    estimatedCost,
+  }
+}
+
+export function computeScreed(params: ScreedParams): ScreedResult | null {
+  const {
+    length,
+    width,
+    thicknessMm,
+    consumptionKgPerM2Per10Mm,
+    bagWeightKg,
+    reservePercent,
+    waterPerBagL,
+    pricePerBag,
+  } = params
+
+  if (length <= 0 || width <= 0 || length > 100 || width > 100) return null
+  if (thicknessMm <= 0 || thicknessMm > 300) return null
+  if (consumptionKgPerM2Per10Mm <= 0 || consumptionKgPerM2Per10Mm > 50) return null
+  if (bagWeightKg <= 0 || bagWeightKg > 100) return null
+  if (reservePercent < 0 || reservePercent > 20) return null
+  if (waterPerBagL !== undefined && (waterPerBagL < 0 || waterPerBagL > 20)) return null
+
+  const areaM2 = length * width
+  const volumeM3 = areaM2 * (thicknessMm / 1000)
+  const dryMixKg =
+    areaM2 * (thicknessMm / 10) * consumptionKgPerM2Per10Mm * (1 + reservePercent / 100)
+  const bagsNeeded = Math.ceil(dryMixKg / bagWeightKg)
+
+  if (!Number.isFinite(areaM2) || !Number.isFinite(volumeM3) || !Number.isFinite(dryMixKg)) {
+    return null
+  }
+
+  const waterLiters =
+    waterPerBagL !== undefined && waterPerBagL > 0 ? bagsNeeded * waterPerBagL : undefined
+  const estimatedCost =
+    pricePerBag !== undefined && pricePerBag > 0 ? bagsNeeded * pricePerBag : undefined
+
+  return {
+    areaM2,
+    volumeM3,
+    dryMixKg,
+    bagsNeeded,
+    waterLiters,
     estimatedCost,
   }
 }

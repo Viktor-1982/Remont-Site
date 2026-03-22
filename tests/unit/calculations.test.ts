@@ -5,6 +5,9 @@ import {
   computeTile,
   computeWallpaper,
   computeUnderfloorHeating,
+  computeFlooring,
+  computeBaseboard,
+  computeScreed,
   computeVentilation,
   computeLighting,
 } from "@/lib/calculations"
@@ -288,6 +291,118 @@ describe("computeUnderfloorHeating", () => {
       daysPerMonth: 30,
       loadPercent: 60,
       tariffPerKwh: 6,
+    })
+
+    expect(res).toBeNull()
+  })
+})
+
+describe("computeFlooring", () => {
+  it("calculates packs and planks for straight layout", () => {
+    const res = computeFlooring({
+      length: 5,
+      width: 4,
+      exclusionArea: 1.5,
+      plankLengthCm: 138,
+      plankWidthCm: 19.3,
+      packAreaM2: 2.22,
+      layout: "straight",
+      additionalWastePercent: 2,
+      underlayReservePercent: 3,
+      pricePerPack: 1800,
+    })
+
+    expect(res).not.toBeNull()
+    expect(res!.grossArea).toBe(20)
+    expect(res!.netArea).toBeCloseTo(18.5, 1)
+    expect(res!.packsNeeded).toBeGreaterThan(8)
+    expect(res!.planksNeeded).toBeGreaterThan(60)
+    expect(res!.estimatedCost).toBe(res!.packsNeeded * 1800)
+  })
+
+  it("returns null when exclusion area exceeds the room", () => {
+    const res = computeFlooring({
+      length: 3,
+      width: 3,
+      exclusionArea: 9,
+      plankLengthCm: 120,
+      plankWidthCm: 20,
+      packAreaM2: 2.2,
+      layout: "straight",
+      additionalWastePercent: 0,
+    })
+
+    expect(res).toBeNull()
+  })
+})
+
+describe("computeBaseboard", () => {
+  it("calculates pieces for a rectangular room with one doorway", () => {
+    const res = computeBaseboard({
+      mode: "room",
+      roomLength: 5,
+      roomWidth: 4,
+      customPerimeter: 0,
+      doorways: 1,
+      doorwayWidth: 0.9,
+      profileLengthM: 2.4,
+      wastePercent: 7,
+      pricePerPiece: 350,
+    })
+
+    expect(res).not.toBeNull()
+    expect(res!.perimeterM).toBe(18)
+    expect(res!.openingsWidthM).toBeCloseTo(0.9, 1)
+    expect(res!.piecesNeeded).toBeGreaterThanOrEqual(8)
+    expect(res!.estimatedCost).toBe(res!.piecesNeeded * 350)
+  })
+
+  it("supports custom perimeter mode", () => {
+    const res = computeBaseboard({
+      mode: "custom",
+      roomLength: 0,
+      roomWidth: 0,
+      customPerimeter: 23.5,
+      doorways: 2,
+      doorwayWidth: 0.8,
+      profileLengthM: 2.5,
+      wastePercent: 5,
+    })
+
+    expect(res).not.toBeNull()
+    expect(res!.netLengthM).toBeCloseTo(21.9, 1)
+  })
+})
+
+describe("computeScreed", () => {
+  it("calculates screed mix bags and water", () => {
+    const res = computeScreed({
+      length: 5,
+      width: 4,
+      thicknessMm: 50,
+      consumptionKgPerM2Per10Mm: 18,
+      bagWeightKg: 25,
+      reservePercent: 5,
+      waterPerBagL: 4.5,
+      pricePerBag: 320,
+    })
+
+    expect(res).not.toBeNull()
+    expect(res!.areaM2).toBe(20)
+    expect(res!.volumeM3).toBeCloseTo(1, 2)
+    expect(res!.dryMixKg).toBeGreaterThan(1800)
+    expect(res!.bagsNeeded).toBeGreaterThan(70)
+    expect(res!.waterLiters).toBe(res!.bagsNeeded * 4.5)
+  })
+
+  it("returns null for invalid thickness", () => {
+    const res = computeScreed({
+      length: 5,
+      width: 4,
+      thicknessMm: 0,
+      consumptionKgPerM2Per10Mm: 18,
+      bagWeightKg: 25,
+      reservePercent: 5,
     })
 
     expect(res).toBeNull()
