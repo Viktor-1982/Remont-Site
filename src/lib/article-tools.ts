@@ -224,6 +224,18 @@ const explicitRules: Array<{ test: RegExp; tools: ArticleToolId[] }> = [
         tools: ["flooring", "baseboard", "paint"],
     },
     {
+        test: /(laminat|laminate|kvarcvinil|кварцвинил|lvt|flooring)/,
+        tools: ["flooring", "baseboard", "budget"],
+    },
+    {
+        test: /(plintus|плинтус|baseboard|skirting|trim)/,
+        tools: ["baseboard", "flooring", "budget"],
+    },
+    {
+        test: /(styazhk|стяжк|screed)/,
+        tools: ["screed", "flooring", "budget"],
+    },
+    {
         test: /(modul|cave-living|zhilaya-zona-v-skale)/,
         tools: ["budget", "ventilation", "lighting"],
     },

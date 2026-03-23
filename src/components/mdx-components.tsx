@@ -21,6 +21,18 @@ const WallpaperCalculator = dynamic(
     () => import("@/components/widgets/wallpaper-calculator").then((m) => ({ default: m.WallpaperCalculator })),
     { ssr: true, loading: () => <div className="my-8 h-64 bg-muted/50 rounded-lg animate-pulse" /> }
 )
+const FlooringCalculator = dynamic(
+    () => import("@/components/widgets/flooring-calculator").then((m) => ({ default: m.FlooringCalculator })),
+    { ssr: true, loading: () => <div className="my-8 h-64 bg-muted/50 rounded-lg animate-pulse" /> }
+)
+const BaseboardCalculator = dynamic(
+    () => import("@/components/widgets/baseboard-calculator").then((m) => ({ default: m.BaseboardCalculator })),
+    { ssr: true, loading: () => <div className="my-8 h-64 bg-muted/50 rounded-lg animate-pulse" /> }
+)
+const ScreedCalculator = dynamic(
+    () => import("@/components/widgets/screed-calculator").then((m) => ({ default: m.ScreedCalculator })),
+    { ssr: true, loading: () => <div className="my-8 h-64 bg-muted/50 rounded-lg animate-pulse" /> }
+)
 const BeforeAfterGallery = dynamic(
     () => import("@/components/widgets/before-after-gallery").then((m) => ({ default: m.BeforeAfterGallery })),
     { ssr: true, loading: () => <div className="my-8 h-64 bg-muted/50 rounded-lg animate-pulse" /> }
@@ -257,6 +269,21 @@ export const mdxComponents: MDXComponents = {
     WallpaperCalculator: () => (
         <div className="my-8">
             <WallpaperCalculator />
+        </div>
+    ),
+    FlooringCalculator: () => (
+        <div className="my-8">
+            <FlooringCalculator />
+        </div>
+    ),
+    BaseboardCalculator: () => (
+        <div className="my-8">
+            <BaseboardCalculator />
+        </div>
+    ),
+    ScreedCalculator: () => (
+        <div className="my-8">
+            <ScreedCalculator />
         </div>
     ),
 

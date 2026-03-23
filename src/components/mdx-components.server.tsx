@@ -5,6 +5,9 @@ import type { MDXComponents } from "mdx/types"
 import { PaintCalculator } from "@/components/widgets/paint-calculator"
 import { TileCalculator } from "@/components/widgets/tile-calculator"
 import { WallpaperCalculator } from "@/components/widgets/wallpaper-calculator"
+import { FlooringCalculator } from "@/components/widgets/flooring-calculator"
+import { BaseboardCalculator } from "@/components/widgets/baseboard-calculator"
+import { ScreedCalculator } from "@/components/widgets/screed-calculator"
 import { Checklist } from "@/components/widgets/checklist"
 import { FAQSection } from "@/components/widgets/faq-section"
 import { BeforeAfterGallery } from "@/components/widgets/before-after-gallery"
@@ -64,6 +67,21 @@ export function createMdxComponents(): MDXComponents {
         WallpaperCalculator: () => (
             <div className="my-8">
                 <WallpaperCalculator />
+            </div>
+        ),
+        FlooringCalculator: () => (
+            <div className="my-8">
+                <FlooringCalculator />
+            </div>
+        ),
+        BaseboardCalculator: () => (
+            <div className="my-8">
+                <BaseboardCalculator />
+            </div>
+        ),
+        ScreedCalculator: () => (
+            <div className="my-8">
+                <ScreedCalculator />
             </div>
         ),
         Checklist: (props: {
