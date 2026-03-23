@@ -5,6 +5,7 @@ export type ExtraCalculatorPageKey =
     | "wallpaper"
     | "ventilation"
     | "lighting"
+    | "underfloorHeating"
 
 export const extraCalculatorPageDictionaries: Record<
     CalculatorPageLocale,
@@ -399,6 +400,109 @@ export const extraCalculatorPageDictionaries: Record<
                 },
             ],
         },
+        underfloorHeating: {
+            metadata: {
+                path: "/calculators/underfloor-heating",
+                title: "Калькулятор теплого пола — мощность, кабель, расход | Renohacks",
+                description:
+                    "Калькулятор теплого пола: рассчитайте мощность системы, длину кабеля или площадь матов и примерное энергопотребление. Подходит для плитки, ламината, винила и дерева.",
+                keywords: [
+                    "калькулятор теплого пола",
+                    "расчет теплого пола",
+                    "мощность теплого пола",
+                    "длина кабеля теплого пола",
+                    "энергопотребление теплого пола",
+                ],
+            },
+            share: {
+                url: "/calculators/underfloor-heating",
+                title: "Калькулятор теплого пола — мощность, кабель, расход | Renohacks",
+                description: "Бесплатный калькулятор теплого пола: мощность, длина кабеля или матов и энергопотребление",
+            },
+            hero: {
+                title: "Калькулятор теплого пола",
+                description:
+                    "Рассчитайте мощность системы, длину кабеля или площадь матов и примерное энергопотребление в месяц. Учитываются тип покрытия, режим работы и зона обогрева.",
+                leadClass: "text-lg leading-relaxed",
+            },
+            benefits: {
+                title: "Что учитывает калькулятор теплого пола",
+                items: [
+                    { strong: "Тип покрытия.", text: "Плитка, ламинат, дерево и винил требуют разной рекомендованной мощности." },
+                    { strong: "Режим работы.", text: "Комфортный подогрев и основное отопление дают разные рекомендации по мощности." },
+                    { strong: "Система.", text: "Можно считать длину кабеля либо площадь нагревательных матов." },
+                    { strong: "Энергопотребление.", text: "Учитываются часы, дни и средняя загрузка термостата." },
+                ],
+            },
+            infoCards: {
+                cards: [
+                    {
+                        title: "Подбор мощности",
+                        description: "Для плитки чаще берут 150–180 Вт/м², для ламината и винила — 120–160 Вт/м², для дерева — 100–140 Вт/м².",
+                        icon: "flame",
+                    },
+                    {
+                        title: "Энергопотребление",
+                        description: "Средняя загрузка термостата обычно 50–70% при 5–8 часах работы в день.",
+                        icon: "timer",
+                    },
+                    {
+                        title: "Система и кабель",
+                        description: "Сравните кабель и маты в одном интерфейсе и подберите подходящий сценарий обогрева.",
+                        icon: "zap",
+                    },
+                ],
+            },
+            guide: {
+                title: "Простая инструкция",
+                steps: [
+                    "Введите площадь помещения и долю обогреваемой зоны, обычно это 70–90% от общей площади.",
+                    "Выберите тип покрытия, режим работы и основание под полом.",
+                    "Укажите тип системы и мощность кабеля или мата.",
+                    "Задайте часы работы, дни и среднюю загрузку — калькулятор покажет мощность, длину и энергопотребление.",
+                ],
+            },
+            related: {
+                title: "Другие полезные инструменты",
+                cards: [
+                    {
+                        href: "/calculators/paint",
+                        title: "Калькулятор краски",
+                        description: "Оцените расход краски для стен и потолков с учетом проемов.",
+                        icon: "thermometer",
+                        accentClass: "text-rose-500",
+                    },
+                    {
+                        href: "/calculators/tile",
+                        title: "Калькулятор плитки",
+                        description: "Подсчитайте плитку, запас и клей для пола и стен.",
+                        icon: "zap",
+                        accentClass: "text-sky-500",
+                    },
+                ],
+            },
+            shareTitle: "Поделитесь калькулятором",
+            structuredData: [
+                {
+                    id: "underfloor-schema",
+                    data: {
+                        "@context": "https://schema.org",
+                        "@type": ["SoftwareApplication", "WebApplication"],
+                        name: "Калькулятор теплого пола",
+                        alternateName: "Расчет теплого пола",
+                        operatingSystem: "All",
+                        applicationCategory: ["UtilityApplication", "BusinessApplication"],
+                        offers: { "@type": "Offer", price: "0", priceCurrency: "RUB", availability: "https://schema.org/InStock" },
+                        description:
+                            "Бесплатный онлайн-калькулятор для расчета мощности теплого пола, длины кабеля или матов и ориентировочного энергопотребления.",
+                        url: "https://renohacks.com/calculators/underfloor-heating",
+                        image: "https://renohacks.com/images/og-default.png",
+                        inLanguage: "ru",
+                        isAccessibleForFree: true,
+                    },
+                },
+            ],
+        },
     },
     en: {
         tile: {
@@ -777,6 +881,109 @@ export const extraCalculatorPageDictionaries: Record<
                         offers: { "@type": "Offer", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock" },
                         description: "Online lighting calculator for lumens needed and lamp count by room area and room type.",
                         url: "https://renohacks.com/en/calculators/lighting",
+                        image: "https://renohacks.com/images/og-default.png",
+                        inLanguage: "en",
+                        isAccessibleForFree: true,
+                    },
+                },
+            ],
+        },
+        underfloorHeating: {
+            metadata: {
+                path: "/en/calculators/underfloor-heating",
+                title: "Underfloor Heating Calculator — Power, Cable Length and Energy | Renohacks",
+                description:
+                    "Underfloor heating calculator: estimate system power, cable length or mat area, and monthly energy usage for tile, laminate, vinyl and wood floors.",
+                keywords: [
+                    "underfloor heating calculator",
+                    "floor heating power",
+                    "heating cable length",
+                    "heating mat area",
+                    "floor heating energy consumption",
+                ],
+            },
+            share: {
+                url: "/en/calculators/underfloor-heating",
+                title: "Underfloor Heating Calculator — Power, Cable Length and Energy | Renohacks",
+                description: "Free underfloor heating calculator: power, cable length or mat area, and energy usage",
+            },
+            hero: {
+                title: "Underfloor Heating Calculator",
+                description:
+                    "Estimate system power, cable length or mat area, and monthly energy usage. The calculator accounts for floor finish, heating mode and heated coverage.",
+                leadClass: "text-lg leading-relaxed",
+            },
+            benefits: {
+                title: "What the calculator includes",
+                items: [
+                    { strong: "Floor finish.", text: "Tile, laminate, vinyl and wood have different recommended power levels." },
+                    { strong: "Heating mode.", text: "Comfort heating and primary heating require different output assumptions." },
+                    { strong: "System type.", text: "Choose cable or mat mode and estimate the correct quantity for each system." },
+                    { strong: "Energy usage.", text: "Hours, days and average thermostat load are included in the monthly estimate." },
+                ],
+            },
+            infoCards: {
+                cards: [
+                    {
+                        title: "Power selection",
+                        description: "Typical guidance: 150–180 W/m² for tile, 120–160 W/m² for laminate or vinyl, and 100–140 W/m² for wood.",
+                        icon: "flame",
+                    },
+                    {
+                        title: "Energy estimate",
+                        description: "A thermostat usually keeps average load around 50–70% with 5–8 hours of daily operation.",
+                        icon: "timer",
+                    },
+                    {
+                        title: "System choice",
+                        description: "Compare cable length and mat area in one flow and adjust the result to your installation method.",
+                        icon: "zap",
+                    },
+                ],
+            },
+            guide: {
+                title: "Simple instructions",
+                steps: [
+                    "Enter the room area and heated coverage, usually 70–90% of the room.",
+                    "Choose the floor finish, heating mode and the floor below.",
+                    "Pick cable or mat mode and enter the selected product power.",
+                    "Set hours, days and average load to review power, cable or mat quantity, and energy usage.",
+                ],
+            },
+            related: {
+                title: "More renovation tools",
+                cards: [
+                    {
+                        href: "/en/calculators/paint",
+                        title: "Paint Calculator",
+                        description: "Estimate paint for walls and ceilings while planning the same room.",
+                        icon: "thermometer",
+                        accentClass: "text-rose-500",
+                    },
+                    {
+                        href: "/en/calculators/tile",
+                        title: "Tile Calculator",
+                        description: "Calculate tiles, waste and adhesive for kitchens, bathrooms and heated floors.",
+                        icon: "zap",
+                        accentClass: "text-sky-500",
+                    },
+                ],
+            },
+            shareTitle: "Share the calculator",
+            structuredData: [
+                {
+                    id: "underfloor-schema-en",
+                    data: {
+                        "@context": "https://schema.org",
+                        "@type": ["SoftwareApplication", "WebApplication"],
+                        name: "Underfloor Heating Calculator",
+                        alternateName: "Floor Heating Calculator",
+                        operatingSystem: "All",
+                        applicationCategory: ["UtilityApplication", "BusinessApplication"],
+                        offers: { "@type": "Offer", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock" },
+                        description:
+                            "Free calculator for underfloor heating power, cable length or mat area, and estimated energy use.",
+                        url: "https://renohacks.com/en/calculators/underfloor-heating",
                         image: "https://renohacks.com/images/og-default.png",
                         inLanguage: "en",
                         isAccessibleForFree: true,
