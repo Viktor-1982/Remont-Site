@@ -224,22 +224,24 @@ export function SiteHeader() {
                                                 </button>
                                                 {toolsOpen && (
                                                     <div className="ml-7 flex flex-col gap-2 border-l border-border/50 pl-4">
-                                                        {calculators.map((calc) => {
-                                                            const Icon = toolIcons[calc.icon]
-                                                            return (
-                                                                <Link
-                                                                    key={calc.href}
-                                                                    href={calc.href}
-                                                                    onClick={() => setOpen(false)}
-                                                                    className="flex items-start gap-3 py-1 text-foreground/80 transition-colors hover:text-primary"
-                                                                >
-                                                                    <Icon className="mt-0.5 h-4 w-4 text-primary" />
-                                                                    <div className="min-w-0 flex-1">
-                                                                        <div className="text-base font-medium">{calc.label}</div>
-                                                                    </div>
-                                                                </Link>
-                                                            )
-                                                        })}
+                                                        <div className="-mr-2 flex max-h-[45vh] flex-col gap-2 overflow-y-auto pr-2">
+                                                            {calculators.map((calc) => {
+                                                                const Icon = toolIcons[calc.icon]
+                                                                return (
+                                                                    <Link
+                                                                        key={calc.href}
+                                                                        href={calc.href}
+                                                                        onClick={() => setOpen(false)}
+                                                                        className="flex items-start gap-3 py-1 text-foreground/80 transition-colors hover:text-primary"
+                                                                    >
+                                                                        <Icon className="mt-0.5 h-4 w-4 text-primary" />
+                                                                        <div className="min-w-0 flex-1">
+                                                                            <div className="text-base font-medium">{calc.label}</div>
+                                                                        </div>
+                                                                    </Link>
+                                                                )
+                                                            })}
+                                                        </div>
                                                         <Link
                                                             href={allCalculatorsHref}
                                                             onClick={() => setOpen(false)}

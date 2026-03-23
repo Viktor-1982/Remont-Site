@@ -85,28 +85,33 @@ export function CalculatorsDropdown({ isEnglish = false, className }: Calculator
                     </button>
                 </DropdownMenuTrigger>
             </div>
-            <DropdownMenuContent align="start" className="w-64">
+            <DropdownMenuContent
+                align="start"
+                className="w-72 max-h-[min(30rem,var(--radix-dropdown-menu-content-available-height))] overflow-hidden"
+            >
                 <DropdownMenuLabel className="flex items-center gap-2">
                     <Calculator className="h-4 w-4 text-primary" />
                     {isEnglish ? "Renovation Tools" : "Инструменты для ремонта"}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                {calculators.map((calc) => {
-                    const Icon = toolIcons[calc.icon]
-                    return (
-                        <DropdownMenuItem key={calc.href} asChild>
-                            <Link href={calc.href} className="flex cursor-pointer items-start gap-3">
-                                <div className="mt-0.5">
-                                    <Icon className="h-4 w-4 text-primary" />
-                                </div>
-                                <div className="min-w-0 flex-1">
-                                    <div className="text-sm font-medium">{calc.label}</div>
-                                    <div className="text-xs text-muted-foreground">{calc.desc}</div>
-                                </div>
-                            </Link>
-                        </DropdownMenuItem>
-                    )
-                })}
+                <div className="-mr-1 max-h-[min(22rem,var(--radix-dropdown-menu-content-available-height))] overflow-y-auto pr-1">
+                    {calculators.map((calc) => {
+                        const Icon = toolIcons[calc.icon]
+                        return (
+                            <DropdownMenuItem key={calc.href} asChild>
+                                <Link href={calc.href} className="flex cursor-pointer items-start gap-3">
+                                    <div className="mt-0.5">
+                                        <Icon className="h-4 w-4 text-primary" />
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                        <div className="text-sm font-medium">{calc.label}</div>
+                                        <div className="text-xs text-muted-foreground">{calc.desc}</div>
+                                    </div>
+                                </Link>
+                            </DropdownMenuItem>
+                        )
+                    })}
+                </div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                     <Link href={allCalculatorsHref} className="flex cursor-pointer items-center gap-2 font-semibold text-primary">
