@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import type { Post } from ".contentlayer/generated"
+import { getTagCloudData } from "@/lib/tags"
 
 interface TagCloudProps {
     posts: Post[]
@@ -11,37 +12,8 @@ interface TagCloudProps {
     basePath?: string
 }
 
-interface TagData {
-    name: string
-    count: number
-    size: number // 1-5 для разных размеров
-}
-
-export function TagCloud({ posts, locale, basePath = "" }: TagCloudProps) {
-    // Подсчитываем количество статей для каждого тега
-    const tagCounts = new Map<string, number>()
-    
-    posts.forEach((post) => {
-        if (post.locale === locale && !post.draft && post.tags) {
-            post.tags.forEach((tag) => {
-                tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1)
-            })
-        }
-    })
-
-    // Преобразуем в массив и вычисляем размеры
-    const tags: TagData[] = Array.from(tagCounts.entries())
-        .map(([name, count]) => {
-            // Вычисляем размер на основе количества (1-5)
-            const maxCount = Math.max(...Array.from(tagCounts.values()))
-            const minCount = Math.min(...Array.from(tagCounts.values()))
-            const range = maxCount - minCount || 1
-            const normalized = (count - minCount) / range
-            const size = Math.max(1, Math.min(5, Math.ceil(normalized * 4) + 1))
-            
-            return { name, count, size }
-        })
-        .sort((a, b) => b.count - a.count) // Сортируем по количеству
+export function TagCloud({ posts, locale }: TagCloudProps) {
+    const tags = getTagCloudData(posts, locale)
 
     if (tags.length === 0) {
         return (
@@ -87,8 +59,8 @@ export function TagCloud({ posts, locale, basePath = "" }: TagCloudProps) {
         <div className="flex flex-wrap gap-3 sm:gap-4 justify-center items-center py-8">
             {tags.map((tag) => (
                 <Link
-                    key={tag.name}
-                    href={`${tagPath}/${encodeURIComponent(tag.name)}`}
+                    key={tag.slug}
+                    href={`${tagPath}/${encodeURIComponent(tag.slug)}`}
                     className={cn(
                         "inline-block transition-all duration-300 hover:scale-110 hover:shadow-lg",
                         getOpacityClass(tag.size)
@@ -106,13 +78,10 @@ export function TagCloud({ posts, locale, basePath = "" }: TagCloudProps) {
                         title={`${tag.count} ${locale === "en" ? "articles" : "статей"}`}
                     >
                         #{tag.name}
-                        <span className="ml-2 text-xs opacity-70">
-                            {tag.count}
-                        </span>
+                        <span className="ml-2 text-xs opacity-70">{tag.count}</span>
                     </Badge>
                 </Link>
             ))}
         </div>
     )
 }
-

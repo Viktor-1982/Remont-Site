@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next"
 import { allPosts } from ".contentlayer/generated"
+import { getCanonicalTagSlugs } from "@/lib/tags"
 
 const baseUrl = "https://renohacks.com"
 const publishedPosts = allPosts.filter((post) => !post.draft)
@@ -62,29 +63,18 @@ function getLatestPublishedDate() {
 }
 
 function getTagPages() {
-    const ruTags = new Set(
-        publishedPosts
-            .filter((post) => !post.url.startsWith("/en/"))
-            .flatMap((post) => post.tags || [])
-    )
-    const enTags = new Set(
-        publishedPosts
-            .filter((post) => post.url.startsWith("/en/"))
-            .flatMap((post) => post.tags || [])
-    )
-
-    ruTags.add("novinki")
-
+    const ruTags = getCanonicalTagSlugs(publishedPosts, "ru")
+    const enTags = getCanonicalTagSlugs(publishedPosts, "en")
     const lastModified = getLatestPublishedDate()
 
-    const ruPages = Array.from(ruTags).map((tag) => ({
+    const ruPages = ruTags.map((tag) => ({
         url: `${baseUrl}/tags/${encodeURIComponent(tag)}`,
         lastModified,
         changeFrequency: "weekly" as const,
         priority: 0.5,
     }))
 
-    const enPages = Array.from(enTags).map((tag) => ({
+    const enPages = enTags.map((tag) => ({
         url: `${baseUrl}/en/tags/${encodeURIComponent(tag)}`,
         lastModified,
         changeFrequency: "weekly" as const,

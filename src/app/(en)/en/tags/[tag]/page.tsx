@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getPageMetadata } from "@/lib/seo"
 import { ArticleGrid } from "@/components/article-grid"
+import { findTagDisplayName, getStaticTagParams, normalizeTag } from "@/lib/tags"
 
 type Params = {
     params: Promise<{ tag: string }>
@@ -14,17 +15,18 @@ export const dynamicParams = false
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const { tag } = await params
-    const decodedTag = decodeURIComponent(tag).trim().toLowerCase()
+    const decodedTag = normalizeTag(decodeURIComponent(tag))
     const encodedTag = encodeURIComponent(decodedTag)
+    const displayTag = findTagDisplayName(allPosts, "en", decodedTag)
     const hasRussianTag = allPosts.some(
         (post) =>
             !post.url.startsWith("/en/") &&
             !post.draft &&
-            post.tags?.map((item) => item.toLowerCase()).includes(decodedTag)
+            post.tags?.map((item) => normalizeTag(item)).includes(decodedTag)
     )
 
-    const title = `#${decodedTag} — articles tagged ${decodedTag} | Renohacks`
-    const description = `All articles tagged "${decodedTag}" on Renohacks.com: practical home renovation ideas, interior design tips, and DIY projects. Step-by-step guides, photo tutorials, expert advice, and material reviews.`
+    const title = `#${displayTag} — articles tagged ${displayTag} | Renohacks`
+    const description = `All articles tagged "${displayTag}" on Renohacks.com: practical home renovation ideas, interior design tips, and DIY projects. Step-by-step guides, photo tutorials, expert advice, and material reviews.`
 
     return getPageMetadata(`/en/tags/${encodedTag}`, {
         title,
@@ -49,22 +51,23 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function TagPageEn({ params }: Params) {
     const { tag } = await params
-    const decodedTag = decodeURIComponent(tag)
+    const decodedTag = normalizeTag(decodeURIComponent(tag))
+    const displayTag = findTagDisplayName(allPosts, "en", decodedTag)
 
     const filtered = allPosts.filter(
         (post) =>
             post.url.startsWith("/en/") &&
             !post.draft &&
-            post.tags?.map((t) => t.toLowerCase()).includes(decodedTag.toLowerCase())
+            post.tags?.map((t) => normalizeTag(t)).includes(decodedTag)
     )
 
     if (filtered.length === 0) return notFound()
 
     return (
         <section className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16 max-w-7xl">
-            <h1 className="text-3xl sm:text-4xl font-bold mb-6">#{decodedTag}</h1>
+            <h1 className="text-3xl sm:text-4xl font-bold mb-6">#{displayTag}</h1>
             <p className="text-muted-foreground mb-8 text-sm sm:text-base">
-                All articles tagged <strong>&quot;{decodedTag}&quot;</strong>
+                All articles tagged <strong>&quot;{displayTag}&quot;</strong>
             </p>
             <ArticleGrid posts={filtered} isEnglish={true} />
         </section>
@@ -72,12 +75,5 @@ export default async function TagPageEn({ params }: Params) {
 }
 
 export async function generateStaticParams() {
-    const tags = Array.from(
-        new Set(
-            allPosts
-                .filter((p) => p.url.startsWith("/en/") && !p.draft)
-                .flatMap((p) => p.tags || [])
-        )
-    )
-    return tags.map((tag) => ({ tag }))
+    return getStaticTagParams(allPosts, "en")
 }

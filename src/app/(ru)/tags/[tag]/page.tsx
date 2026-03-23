@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getPageMetadata } from "@/lib/seo"
 import { ArticleGrid } from "@/components/article-grid"
+import { findTagDisplayName, getStaticTagParams, normalizeTag } from "@/lib/tags"
 
 // 🔹 Тип параметров маршрута
 type Params = {
@@ -16,17 +17,18 @@ export const dynamicParams = false
 // 🔹 Генерация метаданных
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const { tag } = await params
-    const decodedTag = decodeURIComponent(tag).trim().toLowerCase()
+    const decodedTag = normalizeTag(decodeURIComponent(tag))
     const encodedTag = encodeURIComponent(decodedTag)
+    const displayTag = findTagDisplayName(allPosts, "ru", decodedTag)
     const hasEnglishTag = allPosts.some(
         (post) =>
             post.url.startsWith("/en/") &&
             !post.draft &&
-            post.tags?.map((item) => item.toLowerCase()).includes(decodedTag)
+            post.tags?.map((item) => normalizeTag(item)).includes(decodedTag)
     )
 
-    const title = `#${decodedTag} — статьи по тегу ${decodedTag} | Renohacks`
-    const description = `Все статьи с тегом «${decodedTag}» на Renohacks.com: практические идеи для ремонта, дизайна интерьера и DIY-проектов. Пошаговые инструкции, фото-гайды, советы экспертов и обзоры материалов.`
+    const title = `#${displayTag} — статьи по тегу ${displayTag} | Renohacks`
+    const description = `Все статьи с тегом «${displayTag}» на Renohacks.com: практические идеи для ремонта, дизайна интерьера и DIY-проектов. Пошаговые инструкции, фото-гайды, советы экспертов и обзоры материалов.`
 
     return getPageMetadata(`/tags/${encodedTag}`, {
         title,
@@ -60,7 +62,8 @@ function isRecent(date?: string) {
 // 🔹 Основной компонент страницы
 export default async function TagPage({ params }: Params) {
     const { tag } = await params
-    const decodedTag = decodeURIComponent(tag).toLowerCase()
+    const decodedTag = normalizeTag(decodeURIComponent(tag))
+    const displayTag = findTagDisplayName(allPosts, "ru", decodedTag)
 
     let filtered: typeof allPosts
 
@@ -81,7 +84,7 @@ export default async function TagPage({ params }: Params) {
                     if (!isRecent(post.date)) return false
                     
                     // Исключаем посты с тегами "тренды" и подобными
-                    const postTags = post.tags?.map((t) => t.toLowerCase()) || []
+                    const postTags = post.tags?.map((t) => normalizeTag(t)) || []
                     const hasExcludedTag = excludedTags.some(tag => 
                         postTags.includes(tag.toLowerCase())
                     )
@@ -103,7 +106,7 @@ export default async function TagPage({ params }: Params) {
             (post) =>
                 !post.url.startsWith("/en/") &&
                 !post.draft &&
-                post.tags?.map((t) => t.toLowerCase()).includes(decodedTag)
+                post.tags?.map((t) => normalizeTag(t)).includes(decodedTag)
         )
     }
 
@@ -118,9 +121,9 @@ export default async function TagPage({ params }: Params) {
 
     return (
         <section className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16 max-w-7xl">
-            <h1 className="text-3xl sm:text-4xl font-bold mb-6">#{decodedTag}</h1>
+            <h1 className="text-3xl sm:text-4xl font-bold mb-6">#{displayTag}</h1>
             <p className="text-muted-foreground mb-8 text-sm sm:text-base">
-                Все статьи с тегом <strong>«{decodedTag}»</strong>
+                Все статьи с тегом <strong>«{displayTag}»</strong>
             </p>
             <ArticleGrid posts={filtered} isEnglish={false} />
         </section>
@@ -129,15 +132,5 @@ export default async function TagPage({ params }: Params) {
 
 // 🔹 Генерация статических путей
 export async function generateStaticParams() {
-    const tags = Array.from(
-        new Set(
-            allPosts
-                .filter((p) => !p.url.startsWith("/en/") && !p.draft)
-                .flatMap((p) => p.tags || [])
-        )
-    )
-    // добавляем "novinki" на всякий случай даже если ни одна статья его не имеет
-    if (!tags.includes("novinki")) tags.push("novinki")
-
-    return tags.map((tag) => ({ tag }))
+    return getStaticTagParams(allPosts, "ru")
 }

@@ -1,0 +1,122 @@
+import type { Post } from ".contentlayer/generated"
+
+export type TagLocale = "ru" | "en"
+
+type TagInfo = {
+    slug: string
+    count: number
+    variants: Set<string>
+}
+
+const specialDisplayNames: Record<TagLocale, Record<string, string>> = {
+    ru: {
+        diy: "DIY",
+        novinki: "Новинки",
+    },
+    en: {
+        diy: "DIY",
+        "soft minimal": "Soft Minimal",
+    },
+}
+
+export function normalizeTag(tag: string) {
+    return tag.trim().toLocaleLowerCase()
+}
+
+function isLocalePost(post: Post, locale: TagLocale) {
+    return locale === "en" ? post.url.startsWith("/en/") : !post.url.startsWith("/en/")
+}
+
+export function collectTagInfo(posts: Post[], locale: TagLocale) {
+    const info = new Map<string, TagInfo>()
+
+    posts.forEach((post) => {
+        if (post.draft || !isLocalePost(post, locale) || !post.tags) return
+
+        post.tags.forEach((tag) => {
+            const slug = normalizeTag(tag)
+            if (!slug) return
+
+            const existing = info.get(slug)
+            if (existing) {
+                existing.count += 1
+                existing.variants.add(tag.trim())
+                return
+            }
+
+            info.set(slug, {
+                slug,
+                count: 1,
+                variants: new Set([tag.trim()]),
+            })
+        })
+    })
+
+    return info
+}
+
+export function getTagDisplayName(
+    slug: string,
+    locale: TagLocale,
+    variants?: Iterable<string>
+) {
+    const special = specialDisplayNames[locale][slug]
+    if (special) return special
+
+    const variantList = variants ? Array.from(variants).filter(Boolean) : []
+    const exactLowercase = variantList.find((variant) => normalizeTag(variant) === slug && variant === slug)
+
+    return exactLowercase ?? slug
+}
+
+export function getTagCloudData(posts: Post[], locale: TagLocale) {
+    const info = collectTagInfo(posts, locale)
+    const counts = Array.from(info.values()).map((item) => item.count)
+    const maxCount = counts.length ? Math.max(...counts) : 1
+    const minCount = counts.length ? Math.min(...counts) : 1
+    const range = maxCount - minCount || 1
+
+    return Array.from(info.values())
+        .map((item) => {
+            const normalized = (item.count - minCount) / range
+            const size = Math.max(1, Math.min(5, Math.ceil(normalized * 4) + 1))
+
+            return {
+                slug: item.slug,
+                name: getTagDisplayName(item.slug, locale, item.variants),
+                count: item.count,
+                size,
+            }
+        })
+        .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, locale))
+}
+
+export function getCanonicalTagSlugs(posts: Post[], locale: TagLocale) {
+    const slugs = Array.from(collectTagInfo(posts, locale).keys())
+    if (locale === "ru" && !slugs.includes("novinki")) slugs.push("novinki")
+    return slugs.sort((a, b) => a.localeCompare(b, locale))
+}
+
+export function getStaticTagParams(posts: Post[], locale: TagLocale) {
+    const params = new Set<string>()
+    const canonical = getCanonicalTagSlugs(posts, locale)
+
+    canonical.forEach((slug) => params.add(slug))
+
+    posts.forEach((post) => {
+        if (post.draft || !isLocalePost(post, locale) || !post.tags) return
+        post.tags.forEach((tag) => {
+            const trimmed = tag.trim()
+            if (trimmed) params.add(trimmed)
+        })
+    })
+
+    if (locale === "ru") params.add("novinki")
+
+    return Array.from(params).map((tag) => ({ tag }))
+}
+
+export function findTagDisplayName(posts: Post[], locale: TagLocale, slug: string) {
+    const info = collectTagInfo(posts, locale).get(slug)
+    return getTagDisplayName(slug, locale, info?.variants)
+}
