@@ -1,7 +1,27 @@
-export type CalculatorPageLocale = "ru" | "en"
-export type CalculatorPageKey = "paint" | "flooring" | "baseboard" | "screed"
+import { extraCalculatorPageDictionaries, type ExtraCalculatorPageKey } from "@/dictionaries/calculator-pages-extra"
 
-type RelatedCardIcon = "grid" | "scrollText" | "layers" | "paintbrush" | "ruler"
+export type CalculatorPageLocale = "ru" | "en"
+export type CalculatorPageKey =
+    | "paint"
+    | "flooring"
+    | "baseboard"
+    | "screed"
+    | ExtraCalculatorPageKey
+
+type RelatedCardIcon =
+    | "airVent"
+    | "flame"
+    | "gauge"
+    | "grid"
+    | "lightbulb"
+    | "layers"
+    | "paintbrush"
+    | "ruler"
+    | "scrollText"
+    | "sun"
+    | "thermometer"
+    | "timer"
+    | "zap"
 
 export type CalculatorRelatedCard = {
     href: string
@@ -11,11 +31,23 @@ export type CalculatorRelatedCard = {
     accentClass: string
 }
 
+export type CalculatorInfoCard = {
+    title: string
+    description: string
+    icon: RelatedCardIcon
+}
+
+export type CalculatorStructuredData = {
+    id: string
+    data: Record<string, unknown>
+}
+
 export type CalculatorPageDictionary = {
     metadata: {
         path: string
         title: string
         description: string
+        keywords?: string[]
     }
     share: {
         url: string
@@ -25,36 +57,45 @@ export type CalculatorPageDictionary = {
     hero: {
         title: string
         description: string
+        leadClass?: string
     }
-    benefits: {
+    benefits?: {
         title: string
         items: Array<{
             strong: string
             text: string
         }>
     }
+    infoCards?: {
+        title?: string
+        cards: CalculatorInfoCard[]
+    }
     guide?: {
         title: string
         steps: string[]
         tip?: string
     }
-    faq: {
+    faq?: {
         title: string
         items: Array<{
             question: string
             answer: string
         }>
     }
-    related: {
+    related?: {
         title: string
         cards: CalculatorRelatedCard[]
     }
     shareTitle: string
+    layout?: {
+        maxWidthClass?: string
+    }
+    structuredData?: CalculatorStructuredData[]
 }
 
 export const calculatorPageDictionaries: Record<
     CalculatorPageLocale,
-    Record<CalculatorPageKey, CalculatorPageDictionary>
+    Partial<Record<CalculatorPageKey, CalculatorPageDictionary>>
 > = {
     ru: {
         paint: {
@@ -502,5 +543,10 @@ export function getCalculatorPageDictionary(
     locale: CalculatorPageLocale,
     key: CalculatorPageKey
 ): CalculatorPageDictionary {
-    return calculatorPageDictionaries[locale][key]
+    const localDictionaries = {
+        ...calculatorPageDictionaries[locale],
+        ...extraCalculatorPageDictionaries[locale],
+    } as Record<CalculatorPageKey, CalculatorPageDictionary>
+
+    return localDictionaries[key]
 }
