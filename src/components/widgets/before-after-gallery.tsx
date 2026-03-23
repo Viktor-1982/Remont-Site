@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react"
 import Image from "next/image"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
 
 interface BeforeAfterImage {
     before: string
@@ -62,16 +61,18 @@ export function BeforeAfterGallery({ images, isEnglish = false }: BeforeAfterGal
             
             if (e.key === "ArrowLeft") {
                 e.preventDefault()
-                prevImage()
+                setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
+                setSliderPosition(50)
             } else if (e.key === "ArrowRight") {
                 e.preventDefault()
-                nextImage()
+                setCurrentIndex((prev) => (prev + 1) % images.length)
+                setSliderPosition(50)
             }
         }
 
         window.addEventListener("keydown", handleKeyDown)
         return () => window.removeEventListener("keydown", handleKeyDown)
-    }, [])
+    }, [images.length])
 
     if (!currentImage) return null
 

@@ -137,7 +137,7 @@ function MdxImage({ alt, src }: { alt?: string; src: string }) {
                         }
                         imgSrc = decodedUrl
                     }
-                } catch (_e) {
+                } catch {
                     // Если не удалось декодировать, пытаемся получить из data-атрибутов
                     const originalSrc = img.getAttribute("data-original-src") || 
                                       img.getAttribute("data-src")

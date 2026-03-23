@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState, useRef } from "react"
-import { usePathname } from "next/navigation"
 import { BookOpen, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import navDataJson from "@/components/messages/nav.json"
@@ -48,7 +47,7 @@ export function ReadingPosition({ slug, locale }: ReadingPositionProps) {
                     setShowBanner(true)
                 }
             }
-        } catch (_e) {
+        } catch {
             // Игнорируем ошибки парсинга
         }
     }, [storageKey])
@@ -76,7 +75,7 @@ export function ReadingPosition({ slug, locale }: ReadingPositionProps) {
                             timestamp: Date.now(),
                         })
                     )
-                } catch (_e) {
+                } catch {
                     // Игнорируем ошибки localStorage (например, если переполнен)
                 }
             }
@@ -138,7 +137,7 @@ export function ReadingPosition({ slug, locale }: ReadingPositionProps) {
         // Удаляем сохраненную позицию при закрытии
         try {
             localStorage.removeItem(storageKey)
-        } catch (e) {
+        } catch {
             // Игнорируем ошибки
         }
     }

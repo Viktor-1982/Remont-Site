@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { Check, X, Minus, Filter } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
 interface ComparisonRow {

@@ -839,7 +839,7 @@ export function MaterialsChecklist({ isEnglish = false }: { isEnglish?: boolean 
             yPos += statsHeight + 5
 
             // Добавляем материалы по категориям
-            Object.entries(materialsByCategory).forEach(([_categoryId, categoryData]) => {
+            Object.values(materialsByCategory).forEach((categoryData) => {
                 // Проверяем, нужна ли новая страница
                 if (yPos > pageHeight - margin - 30) {
                     doc.addPage()
@@ -1382,4 +1382,3 @@ export function MaterialsChecklist({ isEnglish = false }: { isEnglish?: boolean 
         </div>
     )
 }
-

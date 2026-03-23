@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { incrementView, getViewCount } from "@/lib/view-counter"
+import { incrementView } from "@/lib/view-counter"
 import { Eye } from "lucide-react"
 
 interface ViewCounterProps {

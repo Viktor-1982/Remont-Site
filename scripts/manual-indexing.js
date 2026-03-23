@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-unused-vars */
 /**
  * Ручная индексация через Google Search Console
  * Генерирует список URL для копирования в GSC
