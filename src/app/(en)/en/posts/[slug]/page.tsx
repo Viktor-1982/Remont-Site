@@ -13,6 +13,7 @@ import { PostNavigation } from "@/components/post-navigation"
 import { ViewHistoryTracker } from "@/components/view-history-tracker"
 import { ViewHistoryCarousel } from "@/components/view-history-carousel"
 import { EmailSubscription } from "@/components/email-subscription"
+import { ArticleToolCta } from "@/components/article-tool-cta"
 import { getPostMetadata } from "@/lib/seo-post" // ✅ единый SEO-модуль
 import { parseFAQ } from "@/lib/parse-faq"
 import Script from "next/script"
@@ -125,6 +126,10 @@ export default async function PostPage({
                         <TableOfContents items={post.headings} />
                     </div>
                 </aside>
+            </div>
+
+            <div className="max-w-5xl mx-auto">
+                <ArticleToolCta post={post} locale="en" />
             </div>
 
             {/* Навигация между статьями */}
