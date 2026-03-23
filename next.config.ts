@@ -1,10 +1,50 @@
 import type { NextConfig } from "next"
 
+const contentSecurityPolicy = [
+    "default-src 'self'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'self'",
+    "object-src 'none'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://mc.yandex.ru https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://va.vercel-scripts.com https://vitals.vercel-insights.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "img-src 'self' data: blob: https:",
+    "font-src 'self' data: https://fonts.gstatic.com",
+    "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://mc.yandex.ru https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://va.vercel-scripts.com https://vitals.vercel-insights.com https:",
+    "frame-src 'self' https://www.googletagmanager.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.googlesyndication.com https://mc.yandex.ru",
+    "manifest-src 'self'",
+    "media-src 'self' data: blob: https:",
+    "worker-src 'self' blob:",
+    "upgrade-insecure-requests",
+].join("; ")
+
+const securityHeaders = [
+    {
+        key: "Content-Security-Policy",
+        value: contentSecurityPolicy,
+    },
+    {
+        key: "Referrer-Policy",
+        value: "strict-origin-when-cross-origin",
+    },
+    {
+        key: "X-Content-Type-Options",
+        value: "nosniff",
+    },
+    {
+        key: "X-Frame-Options",
+        value: "SAMEORIGIN",
+    },
+    {
+        key: "Permissions-Policy",
+        value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+    },
+]
+
 const nextConfig: NextConfig = {
     images: {
-        // ✅ Конфигурация качеств и форматов изображений для Next.js 16+
         qualities: [50, 75, 85, 90, 95, 100],
-        formats: ["image/webp", "image/avif"], // Приоритет: WebP → AVIF → исходный формат
+        formats: ["image/webp", "image/avif"],
     },
     async headers() {
         return [
@@ -24,11 +64,16 @@ const nextConfig: NextConfig = {
                         key: "Cache-Control",
                         value: "public, max-age=31536000, immutable",
                     },
+                    {
+                        key: "X-Content-Type-Options",
+                        value: "nosniff",
+                    },
                 ],
             },
             {
                 source: "/((?!api|_next).*)",
                 headers: [
+                    ...securityHeaders,
                     {
                         key: "Cache-Control",
                         value: "public, s-maxage=86400, stale-while-revalidate=604800",
@@ -38,7 +83,6 @@ const nextConfig: NextConfig = {
         ]
     },
     webpack: (config, { isServer, webpack }) => {
-        // ✅ process/browser нужен только в браузере
         if (!isServer) {
             config.plugins = config.plugins || []
             config.plugins.push(
@@ -56,7 +100,6 @@ const nextConfig: NextConfig = {
             }
         }
 
-        // Игнорируем предупреждения о oklch - lightningcss обработает это
         config.ignoreWarnings = [
             ...(config.ignoreWarnings || []),
             {

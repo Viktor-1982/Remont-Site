@@ -66,7 +66,9 @@
       "title": "Блог о ремонте, строительстве и дизайне",
       "subtitle": "Фото-гайды, лайфхаки, сметы и калькуляторы для ремонта и дома",
       "ctaTrends": "Новинки ремонта",
-      "ctaDiy": "DIY / Ремонт своими руками"
+      "ctaDiy": "DIY / Ремонт своими руками",
+      "imageAlt": "Renohacks.com — блог о ремонте, строительстве и дизайне",
+      "scrollDownAria": "Прокрутить вниз"
 
     },
     "assistant": {
@@ -184,7 +186,9 @@
       "title": "Home renovation & design blog",
       "subtitle": "Photo guides, hacks, budgets and calculators for your home renovation",
       "ctaTrends": "Trends",
-      "ctaDiy": "DIY projects"
+      "ctaDiy": "DIY projects",
+      "imageAlt": "Renohacks.com — home renovation, construction and design blog",
+      "scrollDownAria": "Scroll down"
     },
     "assistant": {
       "title": "Repair Assistant",

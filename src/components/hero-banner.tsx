@@ -16,6 +16,8 @@ type HeroDict = {
     subtitle: string
     ctaTrends: string
     ctaDiy: string
+    imageAlt: string
+    scrollDownAria: string
 }
 
 type NavData = {
@@ -76,7 +78,7 @@ export function HeroBanner() {
             <motion.div style={{ y }} className="absolute inset-0">
                 <Image
                     src="/images/hero/hero-banner.png"
-                    alt="Renohacks.com — блог о ремонте и строительстве"
+                    alt={t.imageAlt}
                     fill
                     priority
                     className="object-cover object-center brightness-[0.85] saturate-110 will-change-transform"
@@ -155,7 +157,7 @@ export function HeroBanner() {
                 animate={{ y: [0, 6, 0] }}
                 transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                 className="absolute bottom-6 flex flex-col items-center text-white/80 cursor-pointer will-change-transform"
-                aria-label="Прокрутить вниз"
+                aria-label={t.scrollDownAria}
             >
                 <motion.div animate={controls} initial={{ opacity: 1 }}>
                     <ChevronDown className="w-8 h-8" strokeWidth={1.5} />
