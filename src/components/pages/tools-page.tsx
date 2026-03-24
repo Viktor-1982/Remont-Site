@@ -1,4 +1,4 @@
-import type { ToolCard, ToolsDictionary } from "@/dictionaries/tools"
+import type { ToolCard, ToolJourney, ToolScenario, ToolsDictionary } from "@/dictionaries/tools"
 import {
     Calculator,
     Grid3X3,
@@ -92,6 +92,55 @@ function ToolCardLink({ card, ctaLabel }: { card: ToolCard; ctaLabel: string }) 
     )
 }
 
+function ScenarioCard({ item, ctaLabel }: { item: ToolScenario; ctaLabel: string }) {
+    return (
+        <Link
+            href={item.href}
+            className="group rounded-2xl border border-border/70 bg-card/95 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-2xl"
+        >
+            <div className="flex items-start justify-between gap-4">
+                <div>
+                    <h2 className="text-base font-semibold text-foreground sm:text-lg">{item.title}</h2>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                </div>
+                <span className="rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-[11px] font-medium text-primary">
+                    {ctaLabel}
+                </span>
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-2">
+                {item.tools.map((tool) => (
+                    <span
+                        key={tool}
+                        className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
+                    >
+                        {tool}
+                    </span>
+                ))}
+            </div>
+        </Link>
+    )
+}
+
+function JourneyCard({ item }: { item: ToolJourney }) {
+    return (
+        <div className="rounded-2xl border border-border/70 bg-card/95 p-5 shadow-sm">
+            <h3 className="text-base font-semibold text-foreground sm:text-lg">{item.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+            <ol className="mt-4 space-y-2 text-sm text-muted-foreground">
+                {item.steps.map((step, index) => (
+                    <li key={step} className="flex items-start gap-3">
+                        <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+                            {index + 1}
+                        </span>
+                        <span className="pt-0.5">{step}</span>
+                    </li>
+                ))}
+            </ol>
+        </div>
+    )
+}
+
 export function ToolsPageTemplate({ dictionary }: { dictionary: ToolsDictionary }) {
     const breadcrumbSchema = getBreadcrumbSchema(dictionary)
 
@@ -114,6 +163,28 @@ export function ToolsPageTemplate({ dictionary }: { dictionary: ToolsDictionary 
                 {dictionary.cards.map((card) => (
                     <ToolCardLink key={card.href} card={card} ctaLabel={dictionary.ctaLabel} />
                 ))}
+            </section>
+
+            <section className="mt-10 sm:mt-14">
+                <div className="mb-5">
+                    <h2 className="text-xl font-semibold text-foreground sm:text-2xl">{dictionary.scenarios.title}</h2>
+                </div>
+                <div className="grid gap-4 lg:grid-cols-2">
+                    {dictionary.scenarios.items.map((item) => (
+                        <ScenarioCard key={item.title} item={item} ctaLabel={dictionary.ctaLabel} />
+                    ))}
+                </div>
+            </section>
+
+            <section className="mt-10 sm:mt-14">
+                <div className="mb-5">
+                    <h2 className="text-xl font-semibold text-foreground sm:text-2xl">{dictionary.journeys.title}</h2>
+                </div>
+                <div className="grid gap-4 lg:grid-cols-3">
+                    {dictionary.journeys.items.map((item) => (
+                        <JourneyCard key={item.title} item={item} />
+                    ))}
+                </div>
             </section>
 
             <section className="mt-10 rounded-2xl border border-border/60 bg-card/95 p-5 shadow-sm sm:mt-14 sm:p-6">

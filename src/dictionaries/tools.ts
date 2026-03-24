@@ -24,6 +24,19 @@ export type ToolCard = {
     gradient: string
 }
 
+export type ToolScenario = {
+    title: string
+    description: string
+    href: string
+    tools: string[]
+}
+
+export type ToolJourney = {
+    title: string
+    description: string
+    steps: string[]
+}
+
 export type ToolsDictionary = {
     metadata: {
         title: string
@@ -41,6 +54,14 @@ export type ToolsDictionary = {
     }
     cards: ToolCard[]
     ctaLabel: string
+    scenarios: {
+        title: string
+        items: ToolScenario[]
+    }
+    journeys: {
+        title: string
+        items: ToolJourney[]
+    }
     explainer: {
         title: string
         description: string
@@ -185,6 +206,59 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
             },
         ],
         ctaLabel: "Открыть",
+        scenarios: {
+            title: "Выберите сценарий ремонта",
+            items: [
+                {
+                    title: "Для пола",
+                    description:
+                        "Сначала выровняйте основание, потом посчитайте покрытие и сразу доберите плинтус по тому же помещению.",
+                    href: "/calculators/screed",
+                    tools: ["Стяжка пола", "Напольное покрытие", "Плинтус"],
+                },
+                {
+                    title: "Для стен",
+                    description:
+                        "Сравните покраску, обои и плитку, чтобы сразу понять расход материалов по каждой отделке.",
+                    href: "/calculators/paint",
+                    tools: ["Краска", "Обои", "Плитка"],
+                },
+                {
+                    title: "Для ванной",
+                    description:
+                        "Соберите базовый набор расчетов для плитки, теплого пола, вентиляции и света в одном сценарии.",
+                    href: "/calculators/tile",
+                    tools: ["Плитка", "Теплый пол", "Вентиляция", "Освещение"],
+                },
+                {
+                    title: "Для сметы",
+                    description:
+                        "Начните с общей суммы, затем проверьте дорогие категории по отдельным калькуляторам, чтобы не промахнуться с закупкой.",
+                    href: "/calculators/budget",
+                    tools: ["Бюджет", "Краска", "Плитка", "Напольное покрытие"],
+                },
+            ],
+        },
+        journeys: {
+            title: "Популярные сценарии",
+            items: [
+                {
+                    title: "Быстрый расчет пола",
+                    description: "Подходит, если вы уже знаете комнату и хотите быстро собрать закупку по полу.",
+                    steps: ["Стяжка пола", "Напольное покрытие", "Плинтус"],
+                },
+                {
+                    title: "Отделка стен без сюрпризов",
+                    description: "Помогает сравнить финишную отделку и заранее заложить запас на подрезку и второй слой.",
+                    steps: ["Краска", "Обои", "Цветовая палитра"],
+                },
+                {
+                    title: "Ванная под ключ",
+                    description: "Набор инструментов для мокрой зоны, где чаще всего ошибаются с количеством и инженеркой.",
+                    steps: ["Плитка", "Теплый пол", "Вентиляция", "Освещение", "Бюджет"],
+                },
+            ],
+        },
         explainer: {
             title: "Как использовать инструменты Renohacks",
             description:
@@ -328,6 +402,59 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
             },
         ],
         ctaLabel: "Open",
+        scenarios: {
+            title: "Start with a renovation scenario",
+            items: [
+                {
+                    title: "For floors",
+                    description:
+                        "Level the base first, then estimate the finish and close the perimeter with baseboards in the same workflow.",
+                    href: "/en/calculators/screed",
+                    tools: ["Screed", "Flooring", "Baseboard"],
+                },
+                {
+                    title: "For walls",
+                    description:
+                        "Compare paint, wallpaper and tile so you can judge material demand before you choose the finish route.",
+                    href: "/en/calculators/paint",
+                    tools: ["Paint", "Wallpaper", "Tile"],
+                },
+                {
+                    title: "For bathrooms",
+                    description:
+                        "Bundle the most error-prone bathroom calculations: tile, floor heating, ventilation and lighting.",
+                    href: "/en/calculators/tile",
+                    tools: ["Tile", "Underfloor Heating", "Ventilation", "Lighting"],
+                },
+                {
+                    title: "For budgeting",
+                    description:
+                        "Start with the full budget, then validate the expensive finish categories with focused calculators.",
+                    href: "/en/calculators/budget",
+                    tools: ["Budget", "Paint", "Tile", "Flooring"],
+                },
+            ],
+        },
+        journeys: {
+            title: "Popular planning flows",
+            items: [
+                {
+                    title: "Fast floor package",
+                    description: "Best when you already know the room and want a practical purchase list for the floor.",
+                    steps: ["Screed", "Flooring", "Baseboard"],
+                },
+                {
+                    title: "Wall finish comparison",
+                    description: "Use this flow to compare finishes and avoid underestimating reserve, repeat and second coats.",
+                    steps: ["Paint", "Wallpaper", "Color Palette"],
+                },
+                {
+                    title: "Bathroom scope check",
+                    description: "A compact sequence for wet zones where material mistakes and engineering gaps cost the most.",
+                    steps: ["Tile", "Underfloor Heating", "Ventilation", "Lighting", "Budget"],
+                },
+            ],
+        },
         explainer: {
             title: "How to use Renohacks tools",
             description:
