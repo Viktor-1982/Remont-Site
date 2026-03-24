@@ -120,3 +120,77 @@ export function findTagDisplayName(posts: Post[], locale: TagLocale, slug: strin
     const info = collectTagInfo(posts, locale).get(slug)
     return getTagDisplayName(slug, locale, info?.variants)
 }
+
+function getPostsByLocale(posts: Post[], locale: TagLocale) {
+    return posts.filter((post) => !post.draft && isLocalePost(post, locale))
+}
+
+function buildLocaleSlugMap(posts: Post[], locale: TagLocale) {
+    return new Map(getPostsByLocale(posts, locale).map((post) => [post.slug, post]))
+}
+
+function findTranslatedPost(
+    source: Post,
+    targetPostsBySlug: Map<string, Post>,
+    targetLocalePosts: Post[]
+) {
+    if (source.translationOf) {
+        const direct = targetPostsBySlug.get(source.translationOf)
+        if (direct) return direct
+    }
+
+    return targetLocalePosts.find((candidate) => candidate.translationOf === source.slug)
+}
+
+export function findAlternateTagSlug(
+    posts: Post[],
+    sourceLocale: TagLocale,
+    sourceSlug: string,
+    targetLocale: TagLocale
+) {
+    if (sourceLocale === targetLocale) return sourceSlug
+
+    const sourcePosts = getPostsByLocale(posts, sourceLocale).filter((post) =>
+        post.tags?.map((tag) => normalizeTag(tag)).includes(sourceSlug)
+    )
+
+    if (sourcePosts.length === 0) return null
+
+    const targetLocalePosts = getPostsByLocale(posts, targetLocale)
+    const targetPostsBySlug = buildLocaleSlugMap(posts, targetLocale)
+    const alignedTargetTagCounts = new Map<string, number>()
+    const targetTagCounts = new Map<string, number>()
+
+    sourcePosts.forEach((post) => {
+        const translated = findTranslatedPost(post, targetPostsBySlug, targetLocalePosts)
+        if (!translated?.tags?.length) return
+
+        post.tags?.forEach((tag, index) => {
+            if (normalizeTag(tag) !== sourceSlug) return
+            const alignedTag = translated.tags?.[index]
+            if (!alignedTag) return
+
+            const normalizedAlignedTag = normalizeTag(alignedTag)
+            if (!normalizedAlignedTag) return
+
+            alignedTargetTagCounts.set(
+                normalizedAlignedTag,
+                (alignedTargetTagCounts.get(normalizedAlignedTag) ?? 0) + 1
+            )
+        })
+
+        translated.tags.forEach((tag) => {
+            const normalized = normalizeTag(tag)
+            if (!normalized) return
+            targetTagCounts.set(normalized, (targetTagCounts.get(normalized) ?? 0) + 1)
+        })
+    })
+
+    const primaryCounts = alignedTargetTagCounts.size > 0 ? alignedTargetTagCounts : targetTagCounts
+
+    if (primaryCounts.size === 0) return null
+
+    return Array.from(primaryCounts.entries()).sort(
+        (a, b) => b[1] - a[1] || a[0].localeCompare(b[0], targetLocale)
+    )[0]?.[0] ?? null
+}

@@ -3,7 +3,12 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getPageMetadata } from "@/lib/seo"
 import { ArticleGrid } from "@/components/article-grid"
-import { findTagDisplayName, getStaticTagParams, normalizeTag } from "@/lib/tags"
+import {
+    findAlternateTagSlug,
+    findTagDisplayName,
+    getStaticTagParams,
+    normalizeTag,
+} from "@/lib/tags"
 
 type Params = {
     params: Promise<{ tag: string }>
@@ -18,12 +23,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const decodedTag = normalizeTag(decodeURIComponent(tag))
     const encodedTag = encodeURIComponent(decodedTag)
     const displayTag = findTagDisplayName(allPosts, "en", decodedTag)
-    const hasRussianTag = allPosts.some(
-        (post) =>
-            !post.url.startsWith("/en/") &&
-            !post.draft &&
-            post.tags?.map((item) => normalizeTag(item)).includes(decodedTag)
-    )
+    const russianTagSlug = findAlternateTagSlug(allPosts, "en", decodedTag, "ru")
 
     const title = `#${displayTag} — articles tagged ${displayTag} | Renohacks`
     const description = `All articles tagged "${displayTag}" on Renohacks.com: practical home renovation ideas, interior design tips, and DIY projects. Step-by-step guides, photo tutorials, expert advice, and material reviews.`
@@ -37,8 +37,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
         alternates: {
             languages: {
                 en: `https://renohacks.com/en/tags/${encodedTag}`,
-                ...(hasRussianTag
-                    ? { ru: `https://renohacks.com/tags/${encodedTag}` }
+                ...(russianTagSlug
+                    ? { ru: `https://renohacks.com/tags/${encodeURIComponent(russianTagSlug)}` }
                     : {}),
                 "x-default": `https://renohacks.com/en/tags/${encodedTag}`,
             },

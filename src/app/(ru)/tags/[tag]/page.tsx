@@ -3,7 +3,12 @@ import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getPageMetadata } from "@/lib/seo"
 import { ArticleGrid } from "@/components/article-grid"
-import { findTagDisplayName, getStaticTagParams, normalizeTag } from "@/lib/tags"
+import {
+    findAlternateTagSlug,
+    findTagDisplayName,
+    getStaticTagParams,
+    normalizeTag,
+} from "@/lib/tags"
 
 // 🔹 Тип параметров маршрута
 type Params = {
@@ -20,12 +25,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const decodedTag = normalizeTag(decodeURIComponent(tag))
     const encodedTag = encodeURIComponent(decodedTag)
     const displayTag = findTagDisplayName(allPosts, "ru", decodedTag)
-    const hasEnglishTag = allPosts.some(
-        (post) =>
-            post.url.startsWith("/en/") &&
-            !post.draft &&
-            post.tags?.map((item) => normalizeTag(item)).includes(decodedTag)
-    )
+    const englishTagSlug = findAlternateTagSlug(allPosts, "ru", decodedTag, "en")
 
     const title = `#${displayTag} — статьи по тегу ${displayTag} | Renohacks`
     const description = `Все статьи с тегом «${displayTag}» на Renohacks.com: практические идеи для ремонта, дизайна интерьера и DIY-проектов. Пошаговые инструкции, фото-гайды, советы экспертов и обзоры материалов.`
@@ -39,8 +39,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
         alternates: {
             languages: {
                 ru: `https://renohacks.com/tags/${encodedTag}`,
-                ...(hasEnglishTag
-                    ? { en: `https://renohacks.com/en/tags/${encodedTag}` }
+                ...(englishTagSlug
+                    ? { en: `https://renohacks.com/en/tags/${encodeURIComponent(englishTagSlug)}` }
                     : {}),
                 "x-default": `https://renohacks.com/tags/${encodedTag}`,
             },
