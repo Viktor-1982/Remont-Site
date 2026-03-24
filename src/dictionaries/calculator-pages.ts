@@ -1,5 +1,9 @@
 import { extraCalculatorPageDictionaries, type ExtraCalculatorPageKey } from "@/dictionaries/calculator-pages-extra"
 import {
+    calculatorPageNextSteps,
+    type CalculatorPageNextStepKey,
+} from "@/dictionaries/calculator-page-next-steps"
+import {
     calculatorPageInsights,
     type CalculatorPageInsightKey,
 } from "@/dictionaries/calculator-page-insights"
@@ -13,6 +17,7 @@ export type CalculatorPageKey =
     | ExtraCalculatorPageKey
 
 export type InsightCalculatorPageKey = Extract<CalculatorPageKey, CalculatorPageInsightKey>
+export type NextStepCalculatorPageKey = Extract<CalculatorPageKey, CalculatorPageNextStepKey>
 
 type RelatedCardIcon =
     | "airVent"
@@ -94,6 +99,11 @@ export type CalculatorPageDictionary = {
             strong: string
             text: string
         }>
+    }
+    nextSteps?: {
+        title: string
+        description?: string
+        cards: CalculatorRelatedCard[]
     }
     faq?: {
         title: string
@@ -569,9 +579,11 @@ export function getCalculatorPageDictionary(
     } as Record<CalculatorPageKey, CalculatorPageDictionary>
 
     const insightDictionary = calculatorPageInsights[locale][key as InsightCalculatorPageKey]
+    const nextStepDictionary = calculatorPageNextSteps[locale][key as NextStepCalculatorPageKey]
 
     return {
         ...localDictionaries[key],
         ...(insightDictionary ?? {}),
+        ...(nextStepDictionary ?? {}),
     }
 }

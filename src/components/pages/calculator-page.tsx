@@ -140,6 +140,22 @@ export function CalculatorPageTemplate({
 
             {widget}
 
+            {dictionary.nextSteps ? (
+                <section className="mt-10 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-background to-accent/5 px-6 py-8 shadow-lg">
+                    <h2 className="text-xl font-semibold text-foreground">{dictionary.nextSteps.title}</h2>
+                    {dictionary.nextSteps.description ? (
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                            {dictionary.nextSteps.description}
+                        </p>
+                    ) : null}
+                    <div className="mt-5 grid gap-4 md:grid-cols-2">
+                        {dictionary.nextSteps.cards.map((card) => (
+                            <RelatedCard key={`next-${card.href}`} card={card} />
+                        ))}
+                    </div>
+                </section>
+            ) : null}
+
             {dictionary.benefits ? (
                 <section className="mt-10 rounded-2xl border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-primary/5 to-accent/5 px-6 py-8 shadow-xl">
                     <h2 className="mb-4 text-xl font-semibold">{dictionary.benefits.title}</h2>
