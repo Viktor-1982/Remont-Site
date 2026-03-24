@@ -110,6 +110,22 @@ export function ColorPalettePageTemplate({
                 </div>
             </section>
 
+            {dictionary.nextSteps ? (
+                <section className="mt-10">
+                    <h2 className="text-xl font-semibold text-foreground">{dictionary.nextSteps.title}</h2>
+                    {dictionary.nextSteps.description ? (
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                            {dictionary.nextSteps.description}
+                        </p>
+                    ) : null}
+                    <div className="mt-5 grid gap-4 md:grid-cols-2">
+                        {dictionary.nextSteps.cards.map((card) => (
+                            <ResourceCard key={`next-${card.href}`} card={card} ctaLabel={dictionary.nextSteps!.ctaLabel} />
+                        ))}
+                    </div>
+                </section>
+            ) : null}
+
             <section className="mt-12">
                 <h2 className="mb-4 text-xl font-semibold">{dictionary.resources.title}</h2>
                 <div className="grid gap-4 md:grid-cols-2">

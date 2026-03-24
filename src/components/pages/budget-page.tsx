@@ -99,6 +99,22 @@ export function BudgetPageTemplate({
                 </div>
             </section>
 
+            {dictionary.nextSteps ? (
+                <section className="mt-10">
+                    <h2 className="text-xl font-semibold text-foreground">{dictionary.nextSteps.title}</h2>
+                    {dictionary.nextSteps.description ? (
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                            {dictionary.nextSteps.description}
+                        </p>
+                    ) : null}
+                    <div className="mt-5 grid gap-4 md:grid-cols-2">
+                        {dictionary.nextSteps.cards.map((card) => (
+                            <ResourceCard key={`next-${card.href}`} card={card} ctaLabel={dictionary.nextSteps!.ctaLabel} />
+                        ))}
+                    </div>
+                </section>
+            ) : null}
+
             <section className="mt-10 rounded-lg bg-muted/60 px-4 py-6" aria-label={dictionary.guide.title}>
                 <h2 className="mb-3 text-xl font-semibold">{dictionary.guide.title}</h2>
                 <ol className="ml-5 list-decimal space-y-2 text-sm text-muted-foreground">

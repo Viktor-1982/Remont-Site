@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { budgetPageNextSteps } from "@/dictionaries/budget-page-next-steps"
 import { getPageMetadata } from "@/lib/seo"
 
 export type BudgetLocale = "ru" | "en"
@@ -57,6 +58,12 @@ export type BudgetPageDictionary = {
         title: string
         steps: string[]
         tip: string
+    }
+    nextSteps?: {
+        title: string
+        description?: string
+        ctaLabel: string
+        cards: BudgetResourceCard[]
     }
     prose: {
         title: string
@@ -613,7 +620,10 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
 }
 
 export function getBudgetPageDictionary(locale: BudgetLocale): BudgetPageDictionary {
-    return budgetPageDictionaries[locale]
+    return {
+        ...budgetPageDictionaries[locale],
+        ...budgetPageNextSteps[locale],
+    }
 }
 
 export function getBudgetPageMetadata(locale: BudgetLocale): Metadata {

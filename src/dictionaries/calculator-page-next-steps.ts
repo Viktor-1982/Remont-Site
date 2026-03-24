@@ -7,6 +7,11 @@ export type CalculatorPageNextStepKey =
     | "wallpaper"
     | "baseboard"
     | "screed"
+    | "underfloorHeating"
+    | "ventilation"
+    | "lighting"
+    | "budget"
+    | "color-palette"
 
 type NextStepSection = {
     title: string
@@ -181,6 +186,121 @@ export const calculatorPageNextSteps: Record<
                 ],
             },
         },
+        underfloorHeating: {
+            nextSteps: {
+                title: "Следующий шаг после теплого пола",
+                description:
+                    "После мощности и площади обычно проверяют вентиляцию мокрой зоны или сразу собирают бюджет по инженерке.",
+                cards: [
+                    {
+                        href: "/calculators/ventilation",
+                        title: "Калькулятор вентиляции",
+                        description: "Проверьте воздухообмен в ванной, кухне или санузле, если теплый пол идет в мокрой зоне.",
+                        icon: "airVent",
+                        accentClass: "text-sky-500",
+                    },
+                    {
+                        href: "/calculators/budget",
+                        title: "Планировщик бюджета",
+                        description: "Сведите теплый пол, терморегулятор, расходники и монтаж в одну смету.",
+                        icon: "layers",
+                        accentClass: "text-amber-500",
+                    },
+                ],
+            },
+        },
+        ventilation: {
+            nextSteps: {
+                title: "Следующий шаг после вентиляции",
+                description:
+                    "Когда воздухообмен уже понятен, обычно переходят к освещению помещения или к общей инженерной смете.",
+                cards: [
+                    {
+                        href: "/calculators/lighting",
+                        title: "Калькулятор освещенности",
+                        description: "Проверьте световой сценарий для той же комнаты, пока размеры и назначение помещения под рукой.",
+                        icon: "lightbulb",
+                        accentClass: "text-amber-500",
+                    },
+                    {
+                        href: "/calculators/budget",
+                        title: "Планировщик бюджета",
+                        description: "Соберите вентиляцию, освещение и прочие инженерные расходы в одну смету.",
+                        icon: "layers",
+                        accentClass: "text-emerald-500",
+                    },
+                ],
+            },
+        },
+        lighting: {
+            nextSteps: {
+                title: "Следующий шаг после освещения",
+                description:
+                    "После света обычно переходят к палитре комнаты или сводят отделку и электрику в общий бюджет.",
+                cards: [
+                    {
+                        href: "/calculators/color-palette",
+                        title: "Генератор цветовых палитр",
+                        description: "Проверьте, как освещение и цвета комнаты будут работать вместе до покупки отделки.",
+                        icon: "sun",
+                        accentClass: "text-violet-500",
+                    },
+                    {
+                        href: "/calculators/budget",
+                        title: "Планировщик бюджета",
+                        description: "Сведите светильники, лампы, диммеры и монтаж в одну понятную смету.",
+                        icon: "layers",
+                        accentClass: "text-amber-500",
+                    },
+                ],
+            },
+        },
+        budget: {
+            nextSteps: {
+                title: "Что проверить после сметы",
+                description:
+                    "Если итог уже понятен, следующий шаг — перепроверить самые дорогие категории отдельными инструментами.",
+                cards: [
+                    {
+                        href: "/calculators/flooring",
+                        title: "Калькулятор напольного покрытия",
+                        description: "Уточните одну из самых дорогих отделочных позиций по упаковкам, запасу и стоимости.",
+                        icon: "grid",
+                        accentClass: "text-emerald-500",
+                    },
+                    {
+                        href: "/calculators/tile",
+                        title: "Калькулятор плитки",
+                        description: "Перепроверьте плитку, клей и запас отдельно, если именно эта зона тянет смету вверх.",
+                        icon: "grid",
+                        accentClass: "text-sky-500",
+                    },
+                ],
+            },
+        },
+        "color-palette": {
+            nextSteps: {
+                title: "Следующий шаг после палитры",
+                description:
+                    "Когда палитра уже собрана, логично проверить расход краски и затем свести комнату в общий бюджет.",
+                cards: [
+                    {
+                        href: "/calculators/paint",
+                        title: "Калькулятор краски",
+                        description: "Сразу рассчитайте объем краски под выбранную палитру и реальную площадь стен.",
+                        icon: "paintbrush",
+                        accentClass: "text-rose-500",
+                    },
+                    {
+                        href: "/calculators/budget",
+                        title: "Планировщик бюджета",
+                        description: "Сведите краску, текстиль, свет и декоративные акценты в общую смету комнаты.",
+                        icon: "layers",
+                        accentClass: "text-amber-500",
+                    },
+                ],
+            },
+        },
     },
     en: {
         paint: {
@@ -317,6 +437,121 @@ export const calculatorPageNextSteps: Record<
                         title: "Baseboard Calculator",
                         description: "Close the next floor step and complete the room package while the measurements are ready.",
                         icon: "ruler",
+                        accentClass: "text-amber-500",
+                    },
+                ],
+            },
+        },
+        underfloorHeating: {
+            nextSteps: {
+                title: "Next step after underfloor heating",
+                description:
+                    "Once coverage and power are set, the usual follow-up is wet-zone ventilation or a cleaner engineering budget.",
+                cards: [
+                    {
+                        href: "/en/calculators/ventilation",
+                        title: "Ventilation Calculator",
+                        description: "Check airflow for the same bathroom, kitchen or utility room while the room assumptions are still fresh.",
+                        icon: "airVent",
+                        accentClass: "text-sky-500",
+                    },
+                    {
+                        href: "/en/calculators/budget",
+                        title: "Budget Planner",
+                        description: "Roll heating mats, thermostat, accessories and installation into one budget line.",
+                        icon: "layers",
+                        accentClass: "text-amber-500",
+                    },
+                ],
+            },
+        },
+        ventilation: {
+            nextSteps: {
+                title: "Next step after ventilation",
+                description:
+                    "Once airflow is clear, the next useful move is usually lighting or the broader engineering budget.",
+                cards: [
+                    {
+                        href: "/en/calculators/lighting",
+                        title: "Lighting Calculator",
+                        description: "Check the lighting load for the same room while its size and function are already defined.",
+                        icon: "lightbulb",
+                        accentClass: "text-amber-500",
+                    },
+                    {
+                        href: "/en/calculators/budget",
+                        title: "Budget Planner",
+                        description: "Combine ventilation, lighting and related engineering costs in one estimate.",
+                        icon: "layers",
+                        accentClass: "text-emerald-500",
+                    },
+                ],
+            },
+        },
+        lighting: {
+            nextSteps: {
+                title: "Next step after lighting",
+                description:
+                    "Once the light level is set, the next practical step is usually palette work or the full room budget.",
+                cards: [
+                    {
+                        href: "/en/calculators/color-palette",
+                        title: "Color Palette Generator",
+                        description: "Check how light and color will work together before you lock the final room mood.",
+                        icon: "sun",
+                        accentClass: "text-violet-500",
+                    },
+                    {
+                        href: "/en/calculators/budget",
+                        title: "Budget Planner",
+                        description: "Bundle fixtures, lamps, controls and installation into one room-level budget.",
+                        icon: "layers",
+                        accentClass: "text-amber-500",
+                    },
+                ],
+            },
+        },
+        budget: {
+            nextSteps: {
+                title: "What to validate after the budget",
+                description:
+                    "Once the headline number is clear, the best next move is to verify the expensive finish categories one by one.",
+                cards: [
+                    {
+                        href: "/en/calculators/flooring",
+                        title: "Flooring Calculator",
+                        description: "Validate one of the most expensive finish categories by packs, waste and actual floor coverage.",
+                        icon: "grid",
+                        accentClass: "text-emerald-500",
+                    },
+                    {
+                        href: "/en/calculators/tile",
+                        title: "Tile Calculator",
+                        description: "Double-check tile, adhesive and reserve separately if that zone drives the project budget.",
+                        icon: "grid",
+                        accentClass: "text-sky-500",
+                    },
+                ],
+            },
+        },
+        "color-palette": {
+            nextSteps: {
+                title: "Next step after the palette",
+                description:
+                    "Once the palette is set, the natural follow-up is paint quantity and then the broader room budget.",
+                cards: [
+                    {
+                        href: "/en/calculators/paint",
+                        title: "Paint Calculator",
+                        description: "Estimate the actual paint volume for the palette you just chose and the real wall area.",
+                        icon: "paintbrush",
+                        accentClass: "text-rose-500",
+                    },
+                    {
+                        href: "/en/calculators/budget",
+                        title: "Budget Planner",
+                        description: "Roll paint, lighting and decorative accents into one room budget.",
+                        icon: "layers",
                         accentClass: "text-amber-500",
                     },
                 ],

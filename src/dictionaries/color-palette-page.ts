@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { colorPalettePageNextSteps } from "@/dictionaries/color-palette-page-next-steps"
 import { getPageMetadata } from "@/lib/seo"
 
 export type ColorPaletteLocale = "ru" | "en"
@@ -49,6 +50,12 @@ export type ColorPalettePageDictionary = {
     schemes: {
         title: string
         items: SchemeItem[]
+    }
+    nextSteps?: {
+        title: string
+        description?: string
+        ctaLabel: string
+        cards: ResourceItem[]
     }
     resources: {
         title: string
@@ -355,7 +362,10 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
 }
 
 export function getColorPalettePageDictionary(locale: ColorPaletteLocale): ColorPalettePageDictionary {
-    return colorPalettePageDictionaries[locale]
+    return {
+        ...colorPalettePageDictionaries[locale],
+        ...colorPalettePageNextSteps[locale],
+    }
 }
 
 export function getColorPalettePageMetadata(locale: ColorPaletteLocale): Metadata {
