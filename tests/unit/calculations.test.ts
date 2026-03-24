@@ -342,8 +342,10 @@ describe("computeUnderfloorHeating", () => {
 
     expect(res).not.toBeNull()
     expect(res!.heatedArea).toBeCloseTo(14.4, 1)
-    expect(res!.cableLengthM).toBeGreaterThan(80)
-    expect(res!.monthlyKwh).toBeGreaterThan(50)
+    expect(res!.recommendedPowerPerM2).toBeCloseTo(165, 1)
+    expect(res!.cableLengthM).toBeCloseTo(139.76, 2)
+    expect(res!.monthlyKwh).toBeCloseTo(256.608, 3)
+    expect(res!.estimatedCost).toBeCloseTo(1539.648, 3)
   })
 
   it("calculates mat area for mat system", () => {
@@ -365,7 +367,9 @@ describe("computeUnderfloorHeating", () => {
 
     expect(res).not.toBeNull()
     expect(res!.matAreaM2).toBeCloseTo(10.2, 1)
-    expect(res!.totalPowerW).toBeGreaterThan(1000)
+    expect(res!.recommendedPowerPerM2).toBeCloseTo(174.8, 1)
+    expect(res!.totalPowerW).toBeCloseTo(1632, 0)
+    expect(res!.monthlyKwh).toBeCloseTo(122.4, 1)
   })
 
   it("returns null for invalid params", () => {
@@ -407,9 +411,12 @@ describe("computeFlooring", () => {
     expect(res).not.toBeNull()
     expect(res!.grossArea).toBe(20)
     expect(res!.netArea).toBeCloseTo(18.5, 1)
-    expect(res!.packsNeeded).toBeGreaterThan(8)
-    expect(res!.planksNeeded).toBeGreaterThan(60)
-    expect(res!.estimatedCost).toBe(res!.packsNeeded * 1800)
+    expect(res!.wastePercent).toBe(9)
+    expect(res!.requiredArea).toBeCloseTo(20.165, 3)
+    expect(res!.planksNeeded).toBe(76)
+    expect(res!.packsNeeded).toBe(10)
+    expect(res!.underlayAreaM2).toBeCloseTo(19.055, 3)
+    expect(res!.estimatedCost).toBe(18000)
   })
 
   it("returns null when exclusion area exceeds the room", () => {
@@ -445,8 +452,10 @@ describe("computeBaseboard", () => {
     expect(res).not.toBeNull()
     expect(res!.perimeterM).toBe(18)
     expect(res!.openingsWidthM).toBeCloseTo(0.9, 1)
-    expect(res!.piecesNeeded).toBeGreaterThanOrEqual(8)
-    expect(res!.estimatedCost).toBe(res!.piecesNeeded * 350)
+    expect(res!.netLengthM).toBeCloseTo(17.1, 1)
+    expect(res!.totalLengthWithWasteM).toBeCloseTo(18.297, 3)
+    expect(res!.piecesNeeded).toBe(8)
+    expect(res!.estimatedCost).toBe(2800)
   })
 
   it("supports custom perimeter mode", () => {
@@ -482,9 +491,10 @@ describe("computeScreed", () => {
     expect(res).not.toBeNull()
     expect(res!.areaM2).toBe(20)
     expect(res!.volumeM3).toBeCloseTo(1, 2)
-    expect(res!.dryMixKg).toBeGreaterThan(1800)
-    expect(res!.bagsNeeded).toBeGreaterThan(70)
-    expect(res!.waterLiters).toBe(res!.bagsNeeded * 4.5)
+    expect(res!.dryMixKg).toBe(1890)
+    expect(res!.bagsNeeded).toBe(76)
+    expect(res!.waterLiters).toBe(342)
+    expect(res!.estimatedCost).toBe(24320)
   })
 
   it("returns null for invalid thickness", () => {
@@ -514,7 +524,8 @@ describe("computeVentilation", () => {
     expect(res).not.toBeNull()
     expect(res!.volumeM3).toBeCloseTo(54, 1)
     expect(res!.flowM3h).toBeCloseTo(162, 0)
-    expect(res!.flowWithReserveM3h).toBeGreaterThan(res!.flowM3h)
+    expect(res!.flowLs).toBeCloseTo(45, 0)
+    expect(res!.flowWithReserveM3h).toBeCloseTo(178.2, 1)
   })
 
   it("returns null for invalid params", () => {
@@ -543,8 +554,9 @@ describe("computeLighting", () => {
     expect(res).not.toBeNull()
     expect(res!.areaM2).toBe(20)
     expect(res!.targetLux).toBe(150)
-    expect(res!.totalLumens).toBeGreaterThan(3000)
-    expect(res!.numberOfLamps).toBeGreaterThanOrEqual(1)
+    expect(res!.totalLumens).toBe(3600)
+    expect(res!.totalLumensWithReserve).toBe(3960)
+    expect(res!.numberOfLamps).toBe(4)
   })
 
   it("returns null for invalid params", () => {
