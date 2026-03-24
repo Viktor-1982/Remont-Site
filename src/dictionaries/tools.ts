@@ -37,7 +37,10 @@ export type ToolScenario = {
 export type ToolJourney = {
     title: string
     description: string
-    steps: string[]
+    steps: Array<{
+        label: string
+        href: string
+    }>
 }
 
 export type ToolsDictionary = {
@@ -252,17 +255,31 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 {
                     title: "Быстрый расчет пола",
                     description: "Подходит, если вы уже знаете комнату и хотите быстро собрать закупку по полу.",
-                    steps: ["Стяжка пола", "Напольное покрытие", "Плинтус"],
+                    steps: [
+                        { label: "Стяжка пола", href: "/calculators/screed" },
+                        { label: "Напольное покрытие", href: "/calculators/flooring" },
+                        { label: "Плинтус", href: "/calculators/baseboard" },
+                    ],
                 },
                 {
                     title: "Отделка стен без сюрпризов",
                     description: "Помогает сравнить финишную отделку и заранее заложить запас на подрезку и второй слой.",
-                    steps: ["Краска", "Обои", "Цветовая палитра"],
+                    steps: [
+                        { label: "Краска", href: "/calculators/paint" },
+                        { label: "Обои", href: "/calculators/wallpaper" },
+                        { label: "Цветовая палитра", href: "/calculators/color-palette" },
+                    ],
                 },
                 {
                     title: "Ванная под ключ",
                     description: "Набор инструментов для мокрой зоны, где чаще всего ошибаются с количеством и инженеркой.",
-                    steps: ["Плитка", "Теплый пол", "Вентиляция", "Освещение", "Бюджет"],
+                    steps: [
+                        { label: "Плитка", href: "/calculators/tile" },
+                        { label: "Теплый пол", href: "/calculators/underfloor-heating" },
+                        { label: "Вентиляция", href: "/calculators/ventilation" },
+                        { label: "Освещение", href: "/calculators/lighting" },
+                        { label: "Бюджет", href: "/calculators/budget" },
+                    ],
                 },
             ],
         },
@@ -452,17 +469,31 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 {
                     title: "Fast floor package",
                     description: "Best when you already know the room and want a practical purchase list for the floor.",
-                    steps: ["Screed", "Flooring", "Baseboard"],
+                    steps: [
+                        { label: "Screed", href: "/en/calculators/screed" },
+                        { label: "Flooring", href: "/en/calculators/flooring" },
+                        { label: "Baseboard", href: "/en/calculators/baseboard" },
+                    ],
                 },
                 {
                     title: "Wall finish comparison",
                     description: "Use this flow to compare finishes and avoid underestimating reserve, repeat and second coats.",
-                    steps: ["Paint", "Wallpaper", "Color Palette"],
+                    steps: [
+                        { label: "Paint", href: "/en/calculators/paint" },
+                        { label: "Wallpaper", href: "/en/calculators/wallpaper" },
+                        { label: "Color Palette", href: "/en/calculators/color-palette" },
+                    ],
                 },
                 {
                     title: "Bathroom scope check",
                     description: "A compact sequence for wet zones where material mistakes and engineering gaps cost the most.",
-                    steps: ["Tile", "Underfloor Heating", "Ventilation", "Lighting", "Budget"],
+                    steps: [
+                        { label: "Tile", href: "/en/calculators/tile" },
+                        { label: "Underfloor Heating", href: "/en/calculators/underfloor-heating" },
+                        { label: "Ventilation", href: "/en/calculators/ventilation" },
+                        { label: "Lighting", href: "/en/calculators/lighting" },
+                        { label: "Budget", href: "/en/calculators/budget" },
+                    ],
                 },
             ],
         },

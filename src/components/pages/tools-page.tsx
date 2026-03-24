@@ -159,11 +159,16 @@ function JourneyCard({ item }: { item: ToolJourney }) {
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
             <ol className="mt-4 space-y-2 text-sm text-muted-foreground">
                 {item.steps.map((step, index) => (
-                    <li key={step} className="flex items-start gap-3">
+                    <li key={`${item.title}-${step.href}`} className="flex items-start gap-3">
                         <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
                             {index + 1}
                         </span>
-                        <span className="pt-0.5">{step}</span>
+                        <Link
+                            href={step.href}
+                            className="pt-0.5 font-medium text-foreground transition-colors hover:text-primary hover:underline"
+                        >
+                            {step.label}
+                        </Link>
                     </li>
                 ))}
             </ol>
