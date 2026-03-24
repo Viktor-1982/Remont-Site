@@ -1,6 +1,12 @@
 import type { CalculatorPageLocale } from "@/dictionaries/calculator-pages"
 
-export type CalculatorPageInsightKey = "paint" | "flooring" | "tile"
+export type CalculatorPageInsightKey =
+    | "paint"
+    | "flooring"
+    | "tile"
+    | "wallpaper"
+    | "baseboard"
+    | "screed"
 
 type InsightSection = {
     title: string
@@ -128,6 +134,114 @@ export const calculatorPageInsights: Record<
                 ],
             },
         },
+        wallpaper: {
+            mistakes: {
+                title: "Частые ошибки в расчете",
+                items: [
+                    {
+                        strong: "Игнорировать раппорт рисунка.",
+                        text: "Даже красивый точный метраж не спасает, если обои требуют подгонки по рисунку. На этом чаще всего теряют целый рулон.",
+                    },
+                    {
+                        strong: "Слишком сильно вычитать окна и двери.",
+                        text: "Проемы уменьшают расчет, но не так радикально, как кажется по чистой площади. Полотна все равно режутся полосами, и отходы остаются.",
+                    },
+                    {
+                        strong: "Покупать без запаса на партию.",
+                        text: "Если не взять резерв сразу, потом легко столкнуться с тем, что нужной партии уже нет, а оттенок отличается.",
+                    },
+                ],
+            },
+            purchaseChecklist: {
+                title: "Что учесть перед покупкой",
+                items: [
+                    {
+                        strong: "Проверьте ширину и длину именно вашего рулона.",
+                        text: "У разных коллекций рулоны отличаются, и это напрямую влияет на итог по количеству. Лучше вбивать данные с этикетки, а не усредненный формат.",
+                    },
+                    {
+                        strong: "Сверьте раппорт и смещение рисунка.",
+                        text: "Если у рисунка есть смещение, фактический запас нужен больше. Это особенно важно для акцентных стен и крупных орнаментов.",
+                    },
+                    {
+                        strong: "Берите минимум один лишний рулон.",
+                        text: "Запас помогает пережить ошибки поклейки, ремонт углов и будущую замену поврежденного участка без поиска новой партии.",
+                    },
+                ],
+            },
+        },
+        baseboard: {
+            mistakes: {
+                title: "Частые ошибки в расчете",
+                items: [
+                    {
+                        strong: "Считать периметр без вычета проемов.",
+                        text: "В большинстве комнат плинтус не идет через дверной проем. Если не вычитать эти участки, закупка почти всегда получается завышенной.",
+                    },
+                    {
+                        strong: "Не учитывать запилы и углы.",
+                        text: "На коротких стенах и сложных углах потери на подрезку заметнее, чем кажется по сухому периметру комнаты.",
+                    },
+                    {
+                        strong: "Ориентироваться только на метры.",
+                        text: "В магазине вы покупаете планки фиксированной длины. Поэтому важно сразу понимать не только общий метраж, но и количество штук.",
+                    },
+                ],
+            },
+            purchaseChecklist: {
+                title: "Что учесть перед покупкой",
+                items: [
+                    {
+                        strong: "Проверьте длину одной планки.",
+                        text: "Плинтус одной серии может выпускаться в разных длинах. От этого зависит итог по количеству штук и запасу.",
+                    },
+                    {
+                        strong: "Сразу решите вопрос с углами и соединителями.",
+                        text: "Даже если используете скрытый монтаж или запил, полезно заранее понимать, понадобятся ли наружные и внутренние элементы.",
+                    },
+                    {
+                        strong: "Смотрите на совпадение оттенка.",
+                        text: "Для окрашенного и ламинированного плинтуса партии тоже имеют значение. Лучше купить весь объем сразу, особенно на открытые длинные стены.",
+                    },
+                ],
+            },
+        },
+        screed: {
+            mistakes: {
+                title: "Частые ошибки в расчете",
+                items: [
+                    {
+                        strong: "Брать толщину только по одной точке.",
+                        text: "Если основание гуляет, расчет по минимальному или максимальному месту дает сильную ошибку. Для стяжки важна средняя рабочая толщина.",
+                    },
+                    {
+                        strong: "Использовать чужую норму расхода.",
+                        text: "Даже похожие смеси расходуются по-разному. Универсальная цифра удобна для прикидки, но для закупки лучше брать данные с конкретного мешка.",
+                    },
+                    {
+                        strong: "Не закладывать резерв на перепады и потери.",
+                        text: "На больших помещениях и сложном основании дополнительные 5–10% почти всегда оправданы.",
+                    },
+                ],
+            },
+            purchaseChecklist: {
+                title: "Что учесть перед покупкой",
+                items: [
+                    {
+                        strong: "Проверьте расход смеси на 10 мм слоя.",
+                        text: "Именно эта цифра определяет итог по мешкам. Ошибка в норме расхода быстро превращается в недостачу нескольких упаковок.",
+                    },
+                    {
+                        strong: "Сверьте допустимую толщину слоя.",
+                        text: "Не каждая смесь подходит для тонкого выравнивания и не каждая — для толстой стяжки. Это нужно проверить до оплаты.",
+                    },
+                    {
+                        strong: "Сразу считайте доставку и подъем.",
+                        text: "Для стяжки логистика часто стоит заметную сумму. Если считать только мешки, смета получается слишком оптимистичной.",
+                    },
+                ],
+            },
+        },
     },
     en: {
         paint: {
@@ -234,6 +348,114 @@ export const calculatorPageInsights: Record<
                     {
                         strong: "Keep spare tiles for repairs.",
                         text: "A small reserve from the same batch is much easier to store now than to source months later.",
+                    },
+                ],
+            },
+        },
+        wallpaper: {
+            mistakes: {
+                title: "Common calculation mistakes",
+                items: [
+                    {
+                        strong: "Ignoring pattern repeat.",
+                        text: "A neat wall area number means very little if the wallpaper needs pattern matching. That is where people most often lose a full extra roll.",
+                    },
+                    {
+                        strong: "Subtracting openings too aggressively.",
+                        text: "Windows and doors help, but they do not cancel strip-based waste. The result should go down, just not as sharply as raw area math suggests.",
+                    },
+                    {
+                        strong: "Buying with no batch reserve.",
+                        text: "If you run out later, the same design may still exist but the production batch and tone may not match what is already on the wall.",
+                    },
+                ],
+            },
+            purchaseChecklist: {
+                title: "What to check before buying",
+                items: [
+                    {
+                        strong: "Confirm the exact roll size.",
+                        text: "Collections vary in roll width and length, and that changes the final count immediately. Use the label, not a generic assumption.",
+                    },
+                    {
+                        strong: "Check repeat and pattern offset.",
+                        text: "If the pattern is offset, the effective waste is higher than for a simple straight repeat. That matters most on accent walls.",
+                    },
+                    {
+                        strong: "Keep at least one extra roll.",
+                        text: "That reserve covers installation mistakes, later repairs and the very common problem of not finding the same batch again.",
+                    },
+                ],
+            },
+        },
+        baseboard: {
+            mistakes: {
+                title: "Common calculation mistakes",
+                items: [
+                    {
+                        strong: "Using the full perimeter without doorway deductions.",
+                        text: "In most rooms the baseboard does not pass through the doorway, so leaving those openings in the number usually overstates the order.",
+                    },
+                    {
+                        strong: "Ignoring cuts and corners.",
+                        text: "Small walls, awkward corners and outside returns create more waste than the clean perimeter figure suggests.",
+                    },
+                    {
+                        strong: "Thinking only in linear feet.",
+                        text: "You buy fixed-length pieces, not loose footage. The piece count matters just as much as the total perimeter.",
+                    },
+                ],
+            },
+            purchaseChecklist: {
+                title: "What to check before buying",
+                items: [
+                    {
+                        strong: "Verify the length of one piece.",
+                        text: "Baseboards that look similar can come in very different lengths, and that changes the final quantity right away.",
+                    },
+                    {
+                        strong: "Decide on corners and connectors early.",
+                        text: "Even if you plan to miter everything, it is worth deciding up front whether you need matching trim accessories.",
+                    },
+                    {
+                        strong: "Watch the finish and batch.",
+                        text: "Painted and laminated profiles can still vary slightly. Buying the full run in one go is safer, especially for long visible walls.",
+                    },
+                ],
+            },
+        },
+        screed: {
+            mistakes: {
+                title: "Common calculation mistakes",
+                items: [
+                    {
+                        strong: "Using thickness from only one point.",
+                        text: "If the substrate is uneven, a single low or high spot will distort the estimate. Screed planning needs the average working thickness.",
+                    },
+                    {
+                        strong: "Using a generic mix rate.",
+                        text: "Similar products still consume differently. A handy average is fine for a first estimate, but not for the final order.",
+                    },
+                    {
+                        strong: "Skipping a reserve for site losses.",
+                        text: "On large rooms or rough substrates, an extra 5–10% is usually justified and often saves a second delivery.",
+                    },
+                ],
+            },
+            purchaseChecklist: {
+                title: "What to check before buying",
+                items: [
+                    {
+                        strong: "Confirm the product rate per 10 mm.",
+                        text: "That single number drives the entire bag count. If it is wrong, the purchase list is wrong.",
+                    },
+                    {
+                        strong: "Check the allowed layer thickness.",
+                        text: "Not every compound works for a thin skim and not every mix is intended for a thick structural screed.",
+                    },
+                    {
+                        strong: "Include delivery and handling.",
+                        text: "For screed, logistics can be a real cost line. Counting only the bags often makes the budget look cleaner than it really is.",
                     },
                 ],
             },
