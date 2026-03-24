@@ -5,6 +5,7 @@ import { useMemo, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Calculator, Grid3X3, Package, Layers } from "lucide-react"
+import { CalculationResultNotes } from "@/components/widgets/calculation-result-notes"
 import { computeFlooring, type FlooringLayout } from "@/lib/calculations"
 
 type CoveringType = "laminate" | "vinyl" | "engineered"
@@ -127,6 +128,89 @@ export function FlooringCalculator() {
     }
 
     const c = coveringOptions.find((item) => item.value === covering) ?? coveringOptions[0]
+    const activeLayout = layoutOptions.find((item) => item.value === layout) ?? layoutOptions[0]
+    const resultNotes =
+        result !== null
+            ? isEnglish
+                ? {
+                      title: "How to read this result",
+                      intro: `The result already includes ${result.wastePercent}% total waste for the selected layout and gives you packs, planks and underlay separately.`,
+                      sections: [
+                          {
+                              title: "Already included",
+                              items: [
+                                  `Net floor area after exclusions: ${result.netArea.toFixed(2)} m².`,
+                                  `Layout reserve: ${activeLayout.en.hint}, plus your extra waste if added.`,
+                                  "Pack count, plank count and underlay quantity.",
+                                  pricePerPack ? "Estimated cost by pack price." : "Cost is optional until you enter a pack price.",
+                              ],
+                          },
+                          {
+                              title: "Not included automatically",
+                              items: [
+                                  "Transitions, trims, leveling compounds and floor prep.",
+                                  "Batch matching issues if you need material from more than one lot.",
+                                  "Complex cuts around curved walls, columns or irregular niches beyond the reserve you set.",
+                              ],
+                          },
+                          {
+                              title: "Reserve in the number",
+                              items: [
+                                  `The material result already contains ${result.wastePercent}% waste.`,
+                                  `Underlay is calculated with a separate ${underlayReserve || "0"}% reserve.`,
+                                  "If the room has difficult cuts, increase the extra waste instead of subtracting more floor area.",
+                              ],
+                          },
+                          {
+                              title: "Where people miscalculate",
+                              items: [
+                                  "They subtract movable furniture or beds instead of only fixed built-ins.",
+                                  "They confuse pack coverage with plank size and underbuy.",
+                                  "They buy the exact pack count without checking whether the layout is straight, diagonal or herringbone.",
+                              ],
+                          },
+                      ],
+                  }
+                : {
+                      title: "Как читать этот результат",
+                      intro: `В результате уже заложен суммарный запас ${result.wastePercent}% под выбранную схему укладки. Калькулятор отдельно показывает упаковки, планки и подложку.`,
+                      sections: [
+                          {
+                              title: "Что уже учтено",
+                              items: [
+                                  `Чистая площадь после вычета стационарных зон: ${result.netArea.toFixed(2)} м².`,
+                                  `Запас под схему укладки: ${activeLayout.ru.hint.toLowerCase()}.`,
+                                  "Количество упаковок, планок и площадь подложки.",
+                                  pricePerPack ? "Примерная стоимость по цене упаковки." : "Стоимость появится, если указать цену упаковки.",
+                              ],
+                          },
+                          {
+                              title: "Что не учтено автоматически",
+                              items: [
+                                  "Порожки, доборные планки, выравнивание основания и подрезка нестандартных зон сверх заложенного запаса.",
+                                  "Разбивка по партиям и возможная докупка точно в тот же декор.",
+                                  "Потери на сложных нишах, радиусах и кривых стенах, если вы их не добавили в запас.",
+                              ],
+                          },
+                          {
+                              title: "Какой запас уже заложен",
+                              items: [
+                                  `В материал уже включен запас ${result.wastePercent}%`,
+                                  `Подложка считается отдельно с резервом ${underlayReserve || "0"}%.`,
+                                  "Если комната сложная, лучше добавить доп. запас, а не вычитать лишние зоны.",
+                              ],
+                          },
+                          {
+                              title: "Где чаще ошибаются",
+                              items: [
+                                  "Вычитают диваны, кровати и другую подвижную мебель вместо только стационарных встроенных зон.",
+                                  "Путают площадь упаковки с размером одной планки и недокупают материал.",
+                                  "Берут упаковки впритык и забывают, что диагональ и елка требуют большего резерва.",
+                              ],
+                          },
+                      ],
+                  }
+            : null
 
     return (
         <div className="relative w-full max-w-3xl mx-auto">
@@ -295,6 +379,7 @@ export function FlooringCalculator() {
                             </div>
                         </div>
                         <p className="text-xs text-muted-foreground">{isEnglish ? "Tip: subtract only fixed built-ins that will definitely not receive flooring." : "Совет: вычитайте только стационарные зоны, под которые покрытие точно не укладывается."}</p>
+                        {resultNotes ? <CalculationResultNotes {...resultNotes} /> : null}
                     </>
                 )}
             </div>

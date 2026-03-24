@@ -5,6 +5,7 @@ import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Calculator, Grid, Ruler, Square } from "lucide-react"
+import { CalculationResultNotes } from "@/components/widgets/calculation-result-notes"
 import calcDataJson from "@/components/messages/calc.json"
 import type { Locale, CalcData, TilesCalcDict, ButtonsDict } from "@/types/calc"
 import { computeTile } from "@/lib/calculations"
@@ -219,6 +220,94 @@ export function TileCalculator() {
         printWindow.focus()
         printWindow.print()
     }
+
+    const selectedLayout = layoutOptions.find((option) => option.value === layoutType) ?? layoutOptions[0]
+    const resultNotes =
+        result !== null
+            ? isEnglish
+                ? {
+                      title: "How to read this result",
+                      intro: `The tile count already includes ${selectedLayout.waste + (parseFloat(additionalWaste || "0") || 0)}% total waste for the selected layout and any extra reserve you added.`,
+                      sections: [
+                          {
+                              title: "Already included",
+                              items: [
+                                  surfaceType === "floor"
+                                      ? "Floor area minus the bathtub or screen area."
+                                      : "Wall area minus windows and doors.",
+                                  `Grout width: ${groutWidth || "0"} mm.`,
+                                  `Layout reserve: ${selectedLayout.labelEn}.`,
+                                  "Pack count and adhesive estimate.",
+                              ],
+                          },
+                          {
+                              title: "Not included automatically",
+                              items: [
+                                  "Grout, spacers, leveling clips and trims.",
+                                  "Extra loss from cracked tiles, pattern selection by shade or one-off decorative inserts.",
+                                  "Very complex cuts around boxes, niches and corners beyond the reserve you set.",
+                              ],
+                          },
+                          {
+                              title: "Reserve in the result",
+                              items: [
+                                  `Base layout waste: ${selectedLayout.waste}%.`,
+                                  `Extra reserve added manually: ${additionalWaste || "0"}%.`,
+                                  "Adhesive is estimated from net covered area, so it is still worth keeping one bag in reserve on larger jobs.",
+                              ],
+                          },
+                          {
+                              title: "Where people miscalculate",
+                              items: [
+                                  "They use the nominal tile size but ignore the actual grout joint and layout.",
+                                  "They subtract openings too aggressively on walls and end up short after strip cuts.",
+                                  "They buy exact box count without checking whether the batch, shade and caliber can be matched later.",
+                              ],
+                          },
+                      ],
+                  }
+                : {
+                      title: "Как читать этот результат",
+                      intro: `В количестве плитки уже заложен суммарный запас ${selectedLayout.waste + (parseFloat(additionalWaste || "0") || 0)}% под выбранную раскладку и ваш дополнительный резерв.`,
+                      sections: [
+                          {
+                              title: "Что уже учтено",
+                              items: [
+                                  surfaceType === "floor"
+                                      ? "Площадь пола за вычетом ванны или экрана."
+                                      : "Площадь стены за вычетом окон и дверей.",
+                                  `Ширина шва: ${groutWidth || "0"} мм.`,
+                                  `Раскладка: ${selectedLayout.labelRu}.`,
+                                  "Количество упаковок и ориентировочный расход клея.",
+                              ],
+                          },
+                          {
+                              title: "Что не учтено автоматически",
+                              items: [
+                                  "Затирка, крестики, СВП, профили и декоративные вставки.",
+                                  "Потери на бой, подбор рисунка и нестандартные вставки по тону.",
+                                  "Сложные подрезки вокруг коробов, ниш и наружных углов сверх того запаса, который вы добавили.",
+                              ],
+                          },
+                          {
+                              title: "Какой запас уже заложен",
+                              items: [
+                                  `Базовый запас по раскладке: ${selectedLayout.waste}%.`,
+                                  `Дополнительный запас вручную: ${additionalWaste || "0"}%.`,
+                                  "Клей считается по чистой площади, поэтому на больших объемах лучше держать один мешок в резерве.",
+                              ],
+                          },
+                          {
+                              title: "Где чаще ошибаются",
+                              items: [
+                                  "Смотрят только на размер плитки и забывают про шов и способ укладки.",
+                                  "Слишком агрессивно вычитают проемы на стенах и потом не хватает плитки на подрезку.",
+                                  "Покупают коробки впритык, не думая о калибре, тоне и возможной докупке из другой партии.",
+                              ],
+                          },
+                      ],
+                  }
+            : null
 
     return (
         <div className="relative w-full max-w-3xl mx-auto">
@@ -580,6 +669,7 @@ export function TileCalculator() {
                                 {isEnglish ? "Save result as PDF" : "Сохранить результат в PDF"}
                             </Button>
                         </div>
+                        {resultNotes ? <CalculationResultNotes {...resultNotes} /> : null}
                     </>
                 )}
             </div>

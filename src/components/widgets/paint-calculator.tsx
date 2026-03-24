@@ -5,6 +5,7 @@ import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Calculator } from "lucide-react"
+import { CalculationResultNotes } from "@/components/widgets/calculation-result-notes"
 import calcDataJson from "@/components/messages/calc.json"
 import type { Locale, CalcData, PaintCalcDict, ButtonsDict } from "@/types/calc"
 import { computePaintLiters } from "@/lib/calculations"
@@ -157,6 +158,89 @@ export function PaintCalculator() {
         printWindow.print()
     }
 
+    const resultNotes =
+        result !== null
+            ? isEnglish
+                ? {
+                      title: "How to read this result",
+                      intro: `The calculation currently gives ${Math.ceil(result)} L before the safety reserve. It already includes room walls, ceiling area, openings, coats and the paint coverage you entered.`,
+                      sections: [
+                          {
+                              title: "Already included",
+                              items: [
+                                  "Wall perimeter and ceiling area for the same room.",
+                                  `Openings: ${doors} door(s) and ${windows} window(s).`,
+                                  `Number of coats: ${layers}.`,
+                                  `Coverage rate: ${coverage} m²/L.`,
+                              ],
+                          },
+                          {
+                              title: "Not included automatically",
+                              items: [
+                                  "Primer, putty, tinting surcharge and tools.",
+                                  "Extra paint for very porous, textured or freshly patched walls.",
+                                  "Separate paint if you are not painting the ceiling.",
+                              ],
+                          },
+                          {
+                              title: "Reserve to add",
+                              items: [
+                                  "The number shown is the clean estimate, not the final purchase quantity.",
+                                  "For most rooms, buy about 10% extra on top of the calculated liters.",
+                                  "If the color is difficult to match later, round up to the next full can size.",
+                              ],
+                          },
+                          {
+                              title: "Where people miscalculate",
+                              items: [
+                                  "They forget the calculator already includes the ceiling.",
+                                  "They copy the coverage rate from the label without adjusting for a dark base or rough wall.",
+                                  "They buy exactly the shown liters and leave no reserve for the second pass or touch-ups.",
+                              ],
+                          },
+                      ],
+                  }
+                : {
+                      title: "Как читать этот результат",
+                      intro: `Сейчас калькулятор показывает ${Math.ceil(result)} л без страхового запаса. В расчет уже вошли стены по периметру, потолок, проемы, количество слоев и укрывистость, которую вы указали.`,
+                      sections: [
+                          {
+                              title: "Что уже учтено",
+                              items: [
+                                  "Стены по периметру комнаты и площадь потолка.",
+                                  `Проемы: двери ${doors} и окна ${windows}.`,
+                                  `Количество слоев: ${layers}.`,
+                                  `Укрывистость краски: ${coverage} м²/л.`,
+                              ],
+                          },
+                          {
+                              title: "Что не учтено автоматически",
+                              items: [
+                                  "Грунт, шпаклевка, колеровка и расходники.",
+                                  "Дополнительный расход на сильно впитывающие, фактурные или свежешпаклеванные стены.",
+                                  "Отдельная логика, если потолок вы красить не будете.",
+                              ],
+                          },
+                          {
+                              title: "Какой запас добавить",
+                              items: [
+                                  "Показанное число — это чистый расчет, а не финальный объем покупки.",
+                                  "Для обычной комнаты лучше добавить около 10% сверху.",
+                                  "Если цвет сложный или важна точная партия, лучше округлить до следующего полного ведра.",
+                              ],
+                          },
+                          {
+                              title: "Где чаще ошибаются",
+                              items: [
+                                  "Забывают, что калькулятор уже включает потолок.",
+                                  "Берут укрывистость с банки как идеальную и не учитывают темную базу или шероховатую стену.",
+                                  "Покупают ровно по цифре без запаса на второй проход и подкраску.",
+                              ],
+                          },
+                      ],
+                  }
+            : null
+
     return (
         <div className="relative w-full max-w-3xl mx-auto">
             <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-r from-primary/15 via-transparent to-accent/20 blur-3xl opacity-60" />
@@ -270,6 +354,7 @@ export function PaintCalculator() {
                                 {isEnglish ? "Save result as PDF" : "Сохранить результат в PDF"}
                             </Button>
                         </div>
+                        {resultNotes ? <CalculationResultNotes {...resultNotes} /> : null}
                     </>
                 )}
             </div>
