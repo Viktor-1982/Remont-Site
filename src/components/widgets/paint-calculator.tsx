@@ -177,7 +177,7 @@ export function PaintCalculator() {
                     <div className="space-y-2">
                         <label className="text-xs font-medium text-muted-foreground">{t.length}</label>
                         <Input 
-                            placeholder={t.length} 
+                            placeholder="5.0" 
                             value={length} 
                             onChange={(e) => setLength(e.target.value)}
                             className="rounded-xl border-border/60 bg-background/80"
@@ -186,7 +186,7 @@ export function PaintCalculator() {
                     <div className="space-y-2">
                         <label className="text-xs font-medium text-muted-foreground">{t.width}</label>
                         <Input 
-                            placeholder={t.width} 
+                            placeholder="4.0" 
                             value={width} 
                             onChange={(e) => setWidth(e.target.value)}
                             className="rounded-xl border-border/60 bg-background/80"
@@ -195,7 +195,7 @@ export function PaintCalculator() {
                     <div className="space-y-2">
                         <label className="text-xs font-medium text-muted-foreground">{t.height}</label>
                         <Input 
-                            placeholder={t.height} 
+                            placeholder="2.7" 
                             value={height} 
                             onChange={(e) => setHeight(e.target.value)}
                             className="rounded-xl border-border/60 bg-background/80"
@@ -204,7 +204,7 @@ export function PaintCalculator() {
                     <div className="space-y-2">
                         <label className="text-xs font-medium text-muted-foreground">{t.doors}</label>
                         <Input 
-                            placeholder={t.doors} 
+                            placeholder="1" 
                             value={doors} 
                             onChange={(e) => setDoors(e.target.value)}
                             className="rounded-xl border-border/60 bg-background/80"
@@ -213,7 +213,7 @@ export function PaintCalculator() {
                     <div className="space-y-2">
                         <label className="text-xs font-medium text-muted-foreground">{t.windows}</label>
                         <Input 
-                            placeholder={t.windows} 
+                            placeholder="2" 
                             value={windows} 
                             onChange={(e) => setWindows(e.target.value)}
                             className="rounded-xl border-border/60 bg-background/80"
@@ -222,7 +222,7 @@ export function PaintCalculator() {
                     <div className="space-y-2">
                         <label className="text-xs font-medium text-muted-foreground">{t.layers}</label>
                         <Input 
-                            placeholder={t.layers} 
+                            placeholder="2" 
                             value={layers} 
                             onChange={(e) => setLayers(e.target.value)}
                             className="rounded-xl border-border/60 bg-background/80"
@@ -231,7 +231,7 @@ export function PaintCalculator() {
                     <div className="space-y-2 md:col-span-2">
                         <label className="text-xs font-medium text-muted-foreground">{t.coverage}</label>
                         <Input 
-                            placeholder={t.coverage} 
+                            placeholder="10" 
                             value={coverage} 
                             onChange={(e) => setCoverage(e.target.value)}
                             className="rounded-xl border-border/60 bg-background/80"

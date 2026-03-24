@@ -407,14 +407,14 @@ export function WallpaperCalculator() {
                                 <span className="text-xs text-muted-foreground w-8">{index + 1}</span>
                                 <Input
                                     type="number"
-                                    placeholder={isEnglish ? "Width (m)" : "Ширина (м)"}
+                                    placeholder="1.4"
                                     value={window.width}
                                     onChange={(e) => updateWindow(window.id, "width", e.target.value)}
                                     className="flex-1 rounded-xl border-border/60 bg-background/80 text-sm"
                                 />
                                 <Input
                                     type="number"
-                                    placeholder={isEnglish ? "Height (m)" : "Высота (м)"}
+                                    placeholder="1.4"
                                     value={window.height}
                                     onChange={(e) => updateWindow(window.id, "height", e.target.value)}
                                     className="flex-1 rounded-xl border-border/60 bg-background/80 text-sm"
@@ -455,14 +455,14 @@ export function WallpaperCalculator() {
                                 <span className="text-xs text-muted-foreground w-8">{index + 1}</span>
                                 <Input
                                     type="number"
-                                    placeholder={isEnglish ? "Width (m)" : "Ширина (м)"}
+                                    placeholder="0.9"
                                     value={door.width}
                                     onChange={(e) => updateDoor(door.id, "width", e.target.value)}
                                     className="flex-1 rounded-xl border-border/60 bg-background/80 text-sm"
                                 />
                                 <Input
                                     type="number"
-                                    placeholder={isEnglish ? "Height (m)" : "Высота (м)"}
+                                    placeholder="2.0"
                                     value={door.height}
                                     onChange={(e) => updateDoor(door.id, "height", e.target.value)}
                                     className="flex-1 rounded-xl border-border/60 bg-background/80 text-sm"

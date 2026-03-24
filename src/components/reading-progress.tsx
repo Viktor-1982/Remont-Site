@@ -107,7 +107,7 @@ export function ReadingProgress({ readingTimeMinutes, isEnglish = false }: Readi
                     <Clock className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground flex-shrink-0" />
                     <span className="text-xs sm:text-sm font-medium text-foreground whitespace-nowrap">
                         {isEnglish 
-                            ? `${remainingTime} min left`
+                            ? `~${remainingTime} min remaining`
                             : `~${remainingTime} мин`}
                     </span>
                 </div>
