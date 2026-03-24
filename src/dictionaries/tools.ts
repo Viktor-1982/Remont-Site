@@ -14,6 +14,8 @@ type ToolIconName =
     | "sparkles"
     | "shoppingCart"
 
+type ToolScenarioIconName = "floors" | "walls" | "bathroom" | "budget"
+
 export type ToolCard = {
     href: string
     label: string
@@ -29,6 +31,7 @@ export type ToolScenario = {
     description: string
     href: string
     tools: string[]
+    icon: ToolScenarioIconName
 }
 
 export type ToolJourney = {
@@ -215,6 +218,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                         "Сначала выровняйте основание, потом посчитайте покрытие и сразу доберите плинтус по тому же помещению.",
                     href: "/calculators/screed",
                     tools: ["Стяжка пола", "Напольное покрытие", "Плинтус"],
+                    icon: "floors",
                 },
                 {
                     title: "Для стен",
@@ -222,6 +226,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                         "Сравните покраску, обои и плитку, чтобы сразу понять расход материалов по каждой отделке.",
                     href: "/calculators/paint",
                     tools: ["Краска", "Обои", "Плитка"],
+                    icon: "walls",
                 },
                 {
                     title: "Для ванной",
@@ -229,6 +234,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                         "Соберите базовый набор расчетов для плитки, теплого пола, вентиляции и света в одном сценарии.",
                     href: "/calculators/tile",
                     tools: ["Плитка", "Теплый пол", "Вентиляция", "Освещение"],
+                    icon: "bathroom",
                 },
                 {
                     title: "Для сметы",
@@ -236,6 +242,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                         "Начните с общей суммы, затем проверьте дорогие категории по отдельным калькуляторам, чтобы не промахнуться с закупкой.",
                     href: "/calculators/budget",
                     tools: ["Бюджет", "Краска", "Плитка", "Напольное покрытие"],
+                    icon: "budget",
                 },
             ],
         },
@@ -411,6 +418,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                         "Level the base first, then estimate the finish and close the perimeter with baseboards in the same workflow.",
                     href: "/en/calculators/screed",
                     tools: ["Screed", "Flooring", "Baseboard"],
+                    icon: "floors",
                 },
                 {
                     title: "For walls",
@@ -418,6 +426,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                         "Compare paint, wallpaper and tile so you can judge material demand before you choose the finish route.",
                     href: "/en/calculators/paint",
                     tools: ["Paint", "Wallpaper", "Tile"],
+                    icon: "walls",
                 },
                 {
                     title: "For bathrooms",
@@ -425,6 +434,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                         "Bundle the most error-prone bathroom calculations: tile, floor heating, ventilation and lighting.",
                     href: "/en/calculators/tile",
                     tools: ["Tile", "Underfloor Heating", "Ventilation", "Lighting"],
+                    icon: "bathroom",
                 },
                 {
                     title: "For budgeting",
@@ -432,6 +442,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                         "Start with the full budget, then validate the expensive finish categories with focused calculators.",
                     href: "/en/calculators/budget",
                     tools: ["Budget", "Paint", "Tile", "Flooring"],
+                    icon: "budget",
                 },
             ],
         },

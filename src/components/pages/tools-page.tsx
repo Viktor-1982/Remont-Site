@@ -1,16 +1,20 @@
 import type { ToolCard, ToolJourney, ToolScenario, ToolsDictionary } from "@/dictionaries/tools"
 import {
+    Bath,
     Calculator,
     Grid3X3,
     Layers,
     Lightbulb,
     Paintbrush,
+    ReceiptText,
     Palette,
+    PaintRoller,
     Ruler,
     ShoppingCart,
     Sparkles,
     Thermometer,
     Wallet,
+    LucideIcon,
     Wallpaper,
     Wind,
 } from "lucide-react"
@@ -33,6 +37,20 @@ const toolIcons = {
     sparkles: Sparkles,
     shoppingCart: ShoppingCart,
 } as const
+
+const scenarioIcons: Record<ToolScenario["icon"], LucideIcon> = {
+    floors: Layers,
+    walls: PaintRoller,
+    bathroom: Bath,
+    budget: ReceiptText,
+}
+
+const scenarioAccentClasses: Record<ToolScenario["icon"], string> = {
+    floors: "from-emerald-500/15 via-lime-400/10 to-teal-400/10 text-emerald-700 dark:text-emerald-300",
+    walls: "from-amber-500/15 via-orange-400/10 to-rose-400/10 text-amber-700 dark:text-amber-300",
+    bathroom: "from-sky-500/15 via-cyan-400/10 to-blue-400/10 text-sky-700 dark:text-sky-300",
+    budget: "from-violet-500/15 via-fuchsia-400/10 to-rose-400/10 text-violet-700 dark:text-violet-300",
+}
 
 function getBreadcrumbSchema(dictionary: ToolsDictionary) {
     const homePath = dictionary.breadcrumb.pagePath.startsWith("/en") ? "/en" : "/"
@@ -93,22 +111,34 @@ function ToolCardLink({ card, ctaLabel }: { card: ToolCard; ctaLabel: string }) 
 }
 
 function ScenarioCard({ item, ctaLabel }: { item: ToolScenario; ctaLabel: string }) {
+    const Icon = scenarioIcons[item.icon]
+    const accentClass = scenarioAccentClasses[item.icon]
+
     return (
         <Link
             href={item.href}
-            className="group rounded-2xl border border-border/70 bg-card/95 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-2xl"
+            className="group relative overflow-hidden rounded-2xl border border-border/70 bg-card/95 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-2xl"
         >
+            <div
+                className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${accentClass.split(" text-")[0]} opacity-80 transition-opacity duration-300 group-hover:opacity-100`}
+                aria-hidden
+            />
             <div className="flex items-start justify-between gap-4">
-                <div>
+                <div className="relative z-10">
+                    <span
+                        className={`inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-primary/15 bg-background/85 shadow-sm ${accentClass}`}
+                    >
+                        <Icon className="h-5 w-5" />
+                    </span>
                     <h2 className="text-base font-semibold text-foreground sm:text-lg">{item.title}</h2>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
                 </div>
-                <span className="rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-[11px] font-medium text-primary">
+                <span className="relative z-10 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-[11px] font-medium text-primary">
                     {ctaLabel}
                 </span>
             </div>
 
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="relative z-10 mt-4 flex flex-wrap gap-2">
                 {item.tools.map((tool) => (
                     <span
                         key={tool}
