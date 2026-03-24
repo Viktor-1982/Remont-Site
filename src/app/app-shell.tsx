@@ -67,7 +67,6 @@ export function AppShell({
 
                 <link rel="dns-prefetch" href="//www.googletagmanager.com" />
                 <link rel="dns-prefetch" href="//mc.yandex.ru" />
-                <link rel="dns-prefetch" href="//pagead2.googlesyndication.com" />
 
                 <meta
                     name="p:domain_verify"
@@ -116,12 +115,6 @@ export function AppShell({
                                 accurateTrackBounce: true,
                                 trackLinks: true
                             });
-
-                            injectScript(
-                                'google-adsense-runtime',
-                                'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6574921684224364',
-                                'anonymous'
-                            );
                         } catch (_) {}
                     })();
                 `}</Script>
