@@ -67,9 +67,9 @@ export function PaintCalculator() {
         const windowsNum = parseInt(windows.replace(/[^0-9]/g, "") || "0")
 
         if (isEnglish) {
-            lines.push("Paint Calculator — result")
+            lines.push("Paint Calculator Result")
         } else {
-            lines.push("Калькулятор краски — результат")
+            lines.push("Результат расчета краски")
         }
 
         lines.push("")
@@ -101,8 +101,8 @@ export function PaintCalculator() {
         if (coverage) {
             lines.push(
                 isEnglish
-                    ? `Paint coverage: ${coverage || "-"} m²/L.`
-                    : `Покрытие краски: ${coverage || "-"} м²/л.`,
+                    ? `Coverage rate: ${coverage || "-"} m²/L.`
+                    : `Укрывистость краски: ${coverage || "-"} м²/л.`,
             )
         }
 
@@ -111,8 +111,8 @@ export function PaintCalculator() {
             lines.push("")
             lines.push(
                 isEnglish
-                    ? `Estimated paint needed: ${rounded} L (we recommend adding ~10% extra).`
-                    : `Оценочный расход краски: ${rounded} л (рекомендуем добавить ~10% запаса).`,
+                    ? `Estimated paint needed: ${rounded} L. Add about 10% reserve before buying.`
+                    : `Оценочный расход краски: ${rounded} л. Перед покупкой лучше добавить около 10% запаса.`,
             )
         }
 

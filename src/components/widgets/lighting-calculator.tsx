@@ -67,23 +67,23 @@ export function LightingCalculator({ isEnglish = false }: { isEnglish?: boolean 
         if (!result || !preset) return ""
         const lines: string[] = []
         if (isEn) {
-            lines.push("Lighting Calculator — Result")
+            lines.push("Lighting Calculator Result")
             lines.push("")
             lines.push(`Room: ${preset.labelEn}, ${length} m × ${width} m`)
             lines.push(`Area: ${result.areaM2.toFixed(1)} m²`)
             lines.push(`Target illuminance: ${result.targetLux} lux`)
-            lines.push(`Total lumens needed: ${result.totalLumensWithReserve} lm`)
+            lines.push(`Lumens needed with reserve: ${result.totalLumensWithReserve} lm`)
             lines.push(`Lumen per lamp: ${lumenPerLamp} lm`)
-            lines.push(`Number of lamps: ${result.numberOfLamps}`)
+            lines.push(`Lamp count: ${result.numberOfLamps}`)
         } else {
-            lines.push("Калькулятор освещённости — результат")
+            lines.push("Результат расчета освещения")
             lines.push("")
             lines.push(`Помещение: ${preset.labelRu}, ${length} м × ${width} м`)
             lines.push(`Площадь: ${result.areaM2.toFixed(1)} м²`)
             lines.push(`Норма освещённости: ${result.targetLux} лк`)
-            lines.push(`Нужно люмен (с запасом): ${result.totalLumensWithReserve} лм`)
+            lines.push(`Нужно света с запасом: ${result.totalLumensWithReserve} лм`)
             lines.push(`Световой поток одной лампы: ${lumenPerLamp} лм`)
-            lines.push(`Количество ламп: ${result.numberOfLamps}`)
+            lines.push(`Количество светильников или ламп: ${result.numberOfLamps}`)
         }
         lines.push("")
         lines.push(isEn ? "Source: renohacks.com" : "Источник: renohacks.com")
@@ -98,7 +98,7 @@ export function LightingCalculator({ isEnglish = false }: { isEnglish?: boolean 
         if (typeof navigator !== "undefined" && navigator.share) {
             try {
                 await navigator.share({
-                    title: isEn ? "Lighting calculation result" : "Результат расчёта освещения",
+                    title: isEn ? "Lighting Calculator Result" : "Результат расчета освещения",
                     text: sharePayload,
                 })
             } catch {
@@ -134,7 +134,7 @@ export function LightingCalculator({ isEnglish = false }: { isEnglish?: boolean 
         const win = window.open("", "_blank", "width=600,height=500")
         if (!win) return
         win.document.write(
-            `<!DOCTYPE html><html lang="${isEn ? "en" : "ru"}"><head><meta charset="utf-8"><title>${isEn ? "Lighting result" : "Результат освещения"} — Renohacks</title><style>body{font-family:system-ui,sans-serif;margin:24px;color:#111;}pre{white-space:pre-wrap;}</style></head><body><h1>${isEn ? "Lighting calculator result" : "Результат калькулятора освещения"}</h1><pre>${text.replace(/</g, "&lt;")}</pre></body></html>`
+            `<!DOCTYPE html><html lang="${isEn ? "en" : "ru"}"><head><meta charset="utf-8"><title>${isEn ? "Lighting result" : "Результат расчета освещения"} — Renohacks</title><style>body{font-family:system-ui,sans-serif;margin:24px;color:#111;}pre{white-space:pre-wrap;}</style></head><body><h1>${isEn ? "Lighting calculator result" : "Результат расчета освещения"}</h1><pre>${text.replace(/</g, "&lt;")}</pre></body></html>`
         )
         win.document.close()
         win.focus()

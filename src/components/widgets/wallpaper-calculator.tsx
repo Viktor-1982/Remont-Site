@@ -143,9 +143,9 @@ export function WallpaperCalculator() {
         const lines: string[] = []
 
         if (isEnglish) {
-            lines.push("Wallpaper Calculator — result")
+            lines.push("Wallpaper Calculator Result")
         } else {
-            lines.push("Калькулятор обоев — результат")
+            lines.push("Результат расчета обоев")
         }
 
         lines.push("")
@@ -171,8 +171,8 @@ export function WallpaperCalculator() {
         if (windows.length || doors.length) {
             lines.push(
                 isEnglish
-                    ? `Openings: windows ${windows.length}, doors ${doors.length}.`
-                    : `Проёмы: окон ${windows.length}, дверей ${doors.length}.`,
+                    ? `Openings entered: windows ${windows.length}, doors ${doors.length}.`
+                    : `Указанные проемы: окон ${windows.length}, дверей ${doors.length}.`,
             )
         }
 
@@ -202,8 +202,8 @@ export function WallpaperCalculator() {
             lines.push("")
             lines.push(
                 isEnglish
-                    ? `Wallpaper rolls needed: ${result} rolls.`
-                    : `Необходимое количество рулонов обоев: ${result} рулонов.`,
+                    ? `Wallpaper needed: ${result} rolls. If the pattern or shade matters, it is safer to keep one reserve roll from the same batch.`
+                    : `Обоев нужно: ${result} рулонов. Если важен рисунок или оттенок, лучше взять еще один запасной рулон из той же партии.`,
             )
         }
 

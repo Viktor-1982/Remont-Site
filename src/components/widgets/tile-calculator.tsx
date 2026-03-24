@@ -103,9 +103,9 @@ export function TileCalculator() {
         const lines: string[] = []
 
         if (isEnglish) {
-            lines.push("Tile Calculator — result")
+            lines.push("Tile Calculator Result")
         } else {
-            lines.push("Калькулятор плитки — результат")
+            lines.push("Результат расчета плитки")
         }
 
         lines.push("")
@@ -158,24 +158,24 @@ export function TileCalculator() {
             lines.push("")
             lines.push(
                 isEnglish
-                    ? `Tiles needed: ${result} pcs.`
-                    : `Необходимое количество плитки: ${result} шт.`,
+                    ? `Tile quantity: ${result} pcs. Add a few spare tiles from the same batch for future repairs.`
+                    : `Плитки нужно: ${result} шт. Для спокойной докупки и будущего ремонта лучше оставить несколько плиток из той же партии.`,
             )
         }
 
         if (packsNeeded !== null) {
             lines.push(
                 isEnglish
-                    ? `Packs needed: ${packsNeeded} packs.`
-                    : `Необходимое количество упаковок: ${packsNeeded} уп.`,
+                    ? `Pack count: ${packsNeeded} packs.`
+                    : `Количество упаковок: ${packsNeeded} уп.`,
             )
         }
 
         if (glueAmount !== null) {
             lines.push(
                 isEnglish
-                    ? `Adhesive: approximately ${glueAmount} kg.`
-                    : `Клей: ориентировочно ${glueAmount} кг.`,
+                    ? `Adhesive estimate: about ${glueAmount} kg. On larger jobs it is safer to keep one reserve bag.`
+                    : `Клей: ориентировочно ${glueAmount} кг. На большой площади лучше держать один мешок в запасе.`,
             )
         }
 
