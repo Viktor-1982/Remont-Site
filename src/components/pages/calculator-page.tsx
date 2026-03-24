@@ -77,6 +77,34 @@ function InfoCard({ card }: { card: CalculatorInfoCard }) {
     )
 }
 
+function InsightSection({
+    section,
+    tone = "amber",
+}: {
+    section: NonNullable<CalculatorPageDictionary["mistakes"]>
+    tone?: "amber" | "sky"
+}) {
+    const toneClass =
+        tone === "amber"
+            ? "border-amber-200/70 bg-amber-50/60 dark:border-amber-500/20 dark:bg-amber-500/5"
+            : "border-sky-200/70 bg-sky-50/60 dark:border-sky-500/20 dark:bg-sky-500/5"
+
+    return (
+        <section className={`mt-10 rounded-2xl border px-6 py-8 shadow-sm ${toneClass}`}>
+            <h2 className="mb-4 text-xl font-semibold text-foreground">{section.title}</h2>
+            <div className="space-y-4">
+                {section.items.map((item) => (
+                    <div key={item.strong} className="rounded-xl bg-background/80 p-4">
+                        <p className="text-sm leading-relaxed text-muted-foreground">
+                            <span className="font-semibold text-foreground">{item.strong}</span> {item.text}
+                        </p>
+                    </div>
+                ))}
+            </div>
+        </section>
+    )
+}
+
 function StructuredDataScripts({ items }: { items: CalculatorStructuredData[] }) {
     return (
         <>
@@ -150,6 +178,12 @@ export function CalculatorPageTemplate({
                         <p className="mt-3 text-sm text-muted-foreground">{dictionary.guide.tip}</p>
                     ) : null}
                 </section>
+            ) : null}
+
+            {dictionary.mistakes ? <InsightSection section={dictionary.mistakes} tone="amber" /> : null}
+
+            {dictionary.purchaseChecklist ? (
+                <InsightSection section={dictionary.purchaseChecklist} tone="sky" />
             ) : null}
 
             {dictionary.faq ? (
