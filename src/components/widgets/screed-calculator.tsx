@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Calculator, Layers, Package, Droplets } from "lucide-react"
+import { CalculationResultNotes } from "@/components/widgets/calculation-result-notes"
 import { computeScreed, type ScreedMixType } from "@/lib/calculations"
 
 const mixOptions: Array<{
@@ -108,6 +109,90 @@ export function ScreedCalculator() {
         setResult(res)
     }
 
+    const activeMix = mixOptions.find((option) => option.value === mixType) ?? mixOptions[0]
+    const resultNotes =
+        result !== null
+            ? isEnglish
+                ? {
+                      title: "How to read this result",
+                      intro: `The result already includes the area, chosen thickness, dry mix consumption and your reserve percentage. It converts that into bags and optional water and cost.`,
+                      sections: [
+                          {
+                              title: "Already included",
+                              items: [
+                                  `Area: ${result.areaM2.toFixed(2)} m² and volume ${result.volumeM3.toFixed(3)} m³.`,
+                                  `Average thickness: ${thickness || "-"} mm.`,
+                                  `Consumption preset: ${activeMix.en.label}.`,
+                                  `Reserve added: ${reserve || "0"}%.`,
+                              ],
+                          },
+                          {
+                              title: "Not included automatically",
+                              items: [
+                                  "Primer, edge strip, reinforcement mesh, beacons or delivery.",
+                                  "Extra volume for strong floor level differences if the average thickness was underestimated.",
+                                  "Drying time and curing conditions for the selected screed system.",
+                              ],
+                          },
+                          {
+                              title: "Reserve in the number",
+                              items: [
+                                  `The dry mix and bag count already contain ${reserve || "0"}% reserve.`,
+                                  "Water is based only on the liters per bag that you entered.",
+                                  "If the floor level varies a lot, increase thickness or reserve instead of relying on the average only.",
+                              ],
+                          },
+                          {
+                              title: "Where people miscalculate",
+                              items: [
+                                  "They measure one point and miss the real average thickness across the room.",
+                                  "They copy bag consumption from another product line with a different density.",
+                                  "They budget only the mix and forget primers, delivery and pumping or hauling costs.",
+                              ],
+                          },
+                      ],
+                  }
+                : {
+                      title: "Как читать этот результат",
+                      intro: `В результате уже учтены площадь, выбранная толщина, расход смеси и ваш процент запаса. Калькулятор переводит это в мешки, а при необходимости — в воду и стоимость.`,
+                      sections: [
+                          {
+                              title: "Что уже учтено",
+                              items: [
+                                  `Площадь: ${result.areaM2.toFixed(2)} м² и объем ${result.volumeM3.toFixed(3)} м³.`,
+                                  `Средняя толщина: ${thickness || "-"} мм.`,
+                                  `Выбранный тип смеси: ${activeMix.ru.label}.`,
+                                  `Запас: ${reserve || "0"}%.`,
+                              ],
+                          },
+                          {
+                              title: "Что не учтено автоматически",
+                              items: [
+                                  "Грунт, демпферная лента, сетка, маяки, доставка и подъем смеси.",
+                                  "Дополнительный объем на сильные перепады пола, если средняя толщина занижена.",
+                                  "Сроки высыхания и технологические паузы под конкретную смесь.",
+                              ],
+                          },
+                          {
+                              title: "Какой запас уже заложен",
+                              items: [
+                                  `В сухую смесь и мешки уже включен запас ${reserve || "0"}%.`,
+                                  "Вода считается только по той норме на мешок, которую вы ввели.",
+                                  "Если перепады пола большие, лучше увеличить толщину или запас, а не полагаться только на среднее значение.",
+                              ],
+                          },
+                          {
+                              title: "Где чаще ошибаются",
+                              items: [
+                                  "Снимают размер только в одной точке и не видят реальную среднюю толщину по комнате.",
+                                  "Берут расход с другого продукта, у которого плотность и формула смеси отличаются.",
+                                  "Считают только мешки и забывают про грунт, доставку, подъем или работу насосом.",
+                              ],
+                          },
+                      ],
+                  }
+            : null
+
     return (
         <div className="relative w-full max-w-3xl mx-auto">
             <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-r from-primary/15 via-transparent to-accent/20 blur-3xl opacity-60" />
@@ -206,6 +291,7 @@ export function ScreedCalculator() {
                 </Button>
 
                 {result && (
+                    <>
                     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                         <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-emerald-50/20 p-4 shadow-sm dark:to-emerald-500/10">
                             <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
@@ -239,6 +325,8 @@ export function ScreedCalculator() {
                             </p>
                         </div>
                     </div>
+                    {resultNotes ? <CalculationResultNotes {...resultNotes} /> : null}
+                    </>
                 )}
             </div>
         </div>

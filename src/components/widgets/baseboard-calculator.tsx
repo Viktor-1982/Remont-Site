@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Calculator, Ruler, DoorOpen, Package } from "lucide-react"
+import { CalculationResultNotes } from "@/components/widgets/calculation-result-notes"
 import { computeBaseboard, type BaseboardMode } from "@/lib/calculations"
 
 const currencyOptions = {
@@ -76,6 +77,93 @@ export function BaseboardCalculator() {
         if (!res) return
         setResult(res)
     }
+
+    const resultNotes =
+        result !== null
+            ? isEnglish
+                ? {
+                      title: "How to read this result",
+                      intro: `The calculator already subtracts doorway width, adds your waste percentage and converts the total length into full baseboard pieces.`,
+                      sections: [
+                          {
+                              title: "Already included",
+                              items: [
+                                  mode === "room"
+                                      ? `Room perimeter from ${roomLength || "-"} m × ${roomWidth || "-"} m.`
+                                      : `Custom perimeter: ${customPerimeter || "-"} m.`,
+                                  `Doorway deduction: ${doorways || "0"} opening(s) × ${doorwayWidth || "-"} m.`,
+                                  `Waste reserve: ${waste || "0"}%.`,
+                                  `Piece count based on ${profileLength || "-"} m profile length.`,
+                              ],
+                          },
+                          {
+                              title: "Not included automatically",
+                              items: [
+                                  "Outside corners, end caps, connectors or custom decorative moldings.",
+                                  "Additional loss from bad cuts if corners are far from square.",
+                                  "Separate pricing for accessories if the brand sells them outside the main profile.",
+                              ],
+                          },
+                          {
+                              title: "Reserve in the number",
+                              items: [
+                                  `The total already contains ${waste || "0"}% waste.`,
+                                  "That reserve is usually enough for standard rectangular rooms with normal corner cutting.",
+                                  "For complicated hallways or many external corners, increase waste instead of forcing the piece count down.",
+                              ],
+                          },
+                          {
+                              title: "Where people miscalculate",
+                              items: [
+                                  "They subtract every opening but forget returns, corner cuts and short offcuts.",
+                                  "They count linear meters correctly but forget the profile is sold in fixed piece lengths.",
+                                  "They price only the main boards and ignore corner accessories and connectors.",
+                              ],
+                          },
+                      ],
+                  }
+                : {
+                      title: "Как читать этот результат",
+                      intro: `Калькулятор уже вычитает ширину проемов, добавляет ваш запас и переводит общую длину в полные планки плинтуса.`,
+                      sections: [
+                          {
+                              title: "Что уже учтено",
+                              items: [
+                                  mode === "room"
+                                      ? `Периметр комнаты по размерам ${roomLength || "-"} × ${roomWidth || "-"} м.`
+                                      : `Готовый периметр: ${customPerimeter || "-"} м.`,
+                                  `Вычет проемов: ${doorways || "0"} проем(ов) × ${doorwayWidth || "-"} м.`,
+                                  `Запас: ${waste || "0"}%.`,
+                                  `Количество планок по длине профиля ${profileLength || "-"} м.`,
+                              ],
+                          },
+                          {
+                              title: "Что не учтено автоматически",
+                              items: [
+                                  "Наружные углы, заглушки, соединители и декоративные доборы.",
+                                  "Повышенный перерасход, если углы далеки от 90° и резов будет больше обычного.",
+                                  "Отдельная стоимость аксессуаров, если производитель продает их вне основной планки.",
+                              ],
+                          },
+                          {
+                              title: "Какой запас уже заложен",
+                              items: [
+                                  `В расчет уже включен запас ${waste || "0"}%.`,
+                                  "Обычно его хватает для стандартной прямоугольной комнаты с обычной подрезкой углов.",
+                                  "Если коридор сложный или наружных углов много, лучше увеличить запас, а не пытаться ужать число планок.",
+                              ],
+                          },
+                          {
+                              title: "Где чаще ошибаются",
+                              items: [
+                                  "Вычитают все проемы, но забывают про возвраты, запилы на углах и короткие остатки.",
+                                  "Правильно считают погонные метры, но забывают, что плинтус продается фиксированной длиной планки.",
+                                  "Смотрят только на цену основных планок и не добавляют аксессуары.",
+                              ],
+                          },
+                      ],
+                  }
+            : null
 
     return (
         <div className="relative w-full max-w-3xl mx-auto">
@@ -192,6 +280,7 @@ export function BaseboardCalculator() {
                 </Button>
 
                 {result && (
+                    <>
                     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                         <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-emerald-50/20 p-4 shadow-sm dark:to-emerald-500/10">
                             <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
@@ -222,6 +311,8 @@ export function BaseboardCalculator() {
                             </p>
                         </div>
                     </div>
+                    {resultNotes ? <CalculationResultNotes {...resultNotes} /> : null}
+                    </>
                 )}
             </div>
         </div>

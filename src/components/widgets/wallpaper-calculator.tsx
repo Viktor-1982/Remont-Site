@@ -5,6 +5,7 @@ import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Calculator, Home, Ruler, Plus, Trash2, Square } from "lucide-react"
+import { CalculationResultNotes } from "@/components/widgets/calculation-result-notes"
 import calcDataJson from "@/components/messages/calc.json"
 import type { Locale, CalcData, WallpaperCalcDict, ButtonsDict } from "@/types/calc"
 import { computeWallpaper } from "@/lib/calculations"
@@ -247,6 +248,99 @@ export function WallpaperCalculator() {
         printWindow.focus()
         printWindow.print()
     }
+
+    const filledWindows = windows.filter((item) => item.width || item.height).length
+    const filledDoors = doors.filter((item) => item.width || item.height).length
+    const resultNotes =
+        result !== null
+            ? isEnglish
+                ? {
+                      title: "How to read this result",
+                      intro: `The roll count is based on the wall area after openings, the roll size you entered and the pattern repeat settings if they are enabled.`,
+                      sections: [
+                          {
+                              title: "Already included",
+                              items: [
+                                  calculationType === "room"
+                                      ? "Room perimeter and wall height for the whole room."
+                                      : "One wall width and height for a single wall calculation.",
+                                  `Openings entered: ${filledWindows} window(s) and ${filledDoors} door(s).`,
+                                  `Roll size: ${rollWidth || "-"} cm × ${rollLength || "-"} m.`,
+                                  patternRepeat !== "0"
+                                      ? `Pattern repeat: ${patternRepeat} cm${patternOffset ? " with offset." : "."}`
+                                      : "No pattern repeat was added.",
+                              ],
+                          },
+                          {
+                              title: "Not included automatically",
+                              items: [
+                                  "Extra rolls for future repairs if the same batch may disappear.",
+                                  "Waste from badly cut first strips or damaged wallpaper during installation.",
+                                  "Special allowances for murals, panels or matching a complex large pattern manually.",
+                              ],
+                          },
+                          {
+                              title: "Reserve to add",
+                              items: [
+                                  "The shown number is the base purchase quantity from the formula.",
+                                  "For most rooms, one extra roll is still the safest option.",
+                                  "If the wallpaper is expensive or hard to reorder, reserve from the same batch matters more than the last roll price.",
+                              ],
+                          },
+                          {
+                              title: "Where people miscalculate",
+                              items: [
+                                  "They subtract openings too aggressively and ignore strip layout waste.",
+                                  "They forget that pattern repeat reduces the usable strip count per roll.",
+                                  "They buy exactly the result and have nothing left for damaged strips or future repairs.",
+                              ],
+                          },
+                      ],
+                  }
+                : {
+                      title: "Как читать этот результат",
+                      intro: `Количество рулонов считается по чистой площади стен после вычета проемов, по размерам рулона и с учетом раппорта, если он включен.`,
+                      sections: [
+                          {
+                              title: "Что уже учтено",
+                              items: [
+                                  calculationType === "room"
+                                      ? "Периметр комнаты и высота стен для всей комнаты."
+                                      : "Ширина и высота одной стены в режиме расчета по стене.",
+                                  `Введенные проемы: окон ${filledWindows}, дверей ${filledDoors}.`,
+                                  `Размер рулона: ${rollWidth || "-"} см × ${rollLength || "-"} м.`,
+                                  patternRepeat !== "0"
+                                      ? `Раппорт: ${patternRepeat} см${patternOffset ? " со смещением." : "."}`
+                                      : "Раппорт не добавлен.",
+                              ],
+                          },
+                          {
+                              title: "Что не учтено автоматически",
+                              items: [
+                                  "Дополнительные рулоны на будущий ремонт или подбор той же партии позже.",
+                                  "Потери на испорченные первые полосы и ошибки при наклейке.",
+                                  "Отдельные сценарии с панно, фотообоями и сложным крупным рисунком, который выравнивают вручную.",
+                              ],
+                          },
+                          {
+                              title: "Какой запас добавить",
+                              items: [
+                                  "Показанное число — это базовое количество по формуле, а не страховой запас.",
+                                  "Для большинства комнат лучше сразу брать еще один рулон.",
+                                  "Если коллекция дорогая или может быстро пропасть, запас из той же партии важнее цены последнего рулона.",
+                              ],
+                          },
+                          {
+                              title: "Где чаще ошибаются",
+                              items: [
+                                  "Слишком сильно вычитают проемы и забывают про отходы по полосам.",
+                                  "Не учитывают, что раппорт снижает полезное количество полос с рулона.",
+                                  "Покупают ровно по цифре без запаса на испорченные полосы и будущий ремонт.",
+                              ],
+                          },
+                      ],
+                  }
+            : null
 
     return (
         <div className="relative w-full max-w-3xl mx-auto">
@@ -578,6 +672,7 @@ export function WallpaperCalculator() {
                             {isEnglish ? "Save result as PDF" : "Сохранить результат в PDF"}
                         </Button>
                     </div>
+                    {resultNotes ? <CalculationResultNotes {...resultNotes} /> : null}
                 </>
             )}
             </div>
