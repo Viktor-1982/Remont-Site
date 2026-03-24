@@ -41,6 +41,20 @@ describe("computePaintLiters", () => {
     })
     expect(liters).toBe(0)
   })
+
+  it("uses realistic default opening areas in the estimate", () => {
+    const liters = computePaintLiters({
+      length: 4,
+      width: 4,
+      height: 2.7,
+      doors: 1,
+      windows: 1,
+      layers: 2,
+      coverage: 10,
+    })
+
+    expect(liters).toBeCloseTo(11.1, 1)
+  })
 })
 
 describe("computeBudget", () => {
@@ -149,6 +163,46 @@ describe("computeTile", () => {
     expect(withOpenings).not.toBeNull()
     expect(withOpenings!.tilesNeeded).toBeLessThan(withoutOpenings!.tilesNeeded)
   })
+
+  it("does not overcount tiles when grout width is added", () => {
+    const withoutGrout = computeTile({
+      surfaceType: "floor",
+      length: 2,
+      width: 2,
+      bathArea: 0,
+      tileLength: 30,
+      tileWidth: 30,
+      groutWidth: 0,
+      tilesPerPack: 10,
+      windows: 0,
+      doors: 0,
+      windowArea: 0,
+      doorArea: 0,
+      baseWastePercent: 0,
+      additionalWastePercent: 0,
+    })
+
+    const withGrout = computeTile({
+      surfaceType: "floor",
+      length: 2,
+      width: 2,
+      bathArea: 0,
+      tileLength: 30,
+      tileWidth: 30,
+      groutWidth: 3,
+      tilesPerPack: 10,
+      windows: 0,
+      doors: 0,
+      windowArea: 0,
+      doorArea: 0,
+      baseWastePercent: 0,
+      additionalWastePercent: 0,
+    })
+
+    expect(withoutGrout).not.toBeNull()
+    expect(withGrout).not.toBeNull()
+    expect(withGrout!.tilesNeeded).toBeLessThan(withoutGrout!.tilesNeeded)
+  })
 })
 
 describe("computeWallpaper", () => {
@@ -227,6 +281,44 @@ describe("computeWallpaper", () => {
     expect(withOpenings).not.toBeNull()
     expect(withOpenings!.wallArea).toBeLessThan(withoutOpenings!.wallArea)
     expect(withOpenings!.rollsNeeded).toBeLessThan(withoutOpenings!.rollsNeeded)
+  })
+
+  it("reduces wallpaper rolls conservatively when openings are present", () => {
+    const withoutOpenings = computeWallpaper({
+      calculationType: "room",
+      roomWidth: 4,
+      roomLength: 4,
+      roomHeight: 2.7,
+      wallLength: 0,
+      wallHeight: 0,
+      windows: [],
+      doors: [],
+      rollWidthCm: 53,
+      rollLengthM: 10,
+      patternRepeatCm: 0,
+      patternOffset: false,
+    })
+
+    const withStandardOpenings = computeWallpaper({
+      calculationType: "room",
+      roomWidth: 4,
+      roomLength: 4,
+      roomHeight: 2.7,
+      wallLength: 0,
+      wallHeight: 0,
+      windows: [{ width: 2, height: 1.5 }],
+      doors: [{ width: 1, height: 2 }],
+      rollWidthCm: 53,
+      rollLengthM: 10,
+      patternRepeatCm: 0,
+      patternOffset: false,
+    })
+
+    expect(withoutOpenings).not.toBeNull()
+    expect(withStandardOpenings).not.toBeNull()
+    expect(withoutOpenings!.rollsNeeded).toBe(11)
+    expect(withStandardOpenings!.rollsNeeded).toBe(10)
+    expect(withoutOpenings!.rollsNeeded - withStandardOpenings!.rollsNeeded).toBe(1)
   })
 })
 

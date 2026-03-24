@@ -8,6 +8,10 @@ export interface PaintParams {
   coverage: number
 }
 
+const DEFAULT_DOOR_AREA_M2 = 1.9
+const DEFAULT_WINDOW_AREA_M2 = 1.8
+const WALLPAPER_WINDOW_REDUCTION_FACTOR = 0.35
+
 // Литры краски по той же формуле, что в виджете
 export function computePaintLiters(params: PaintParams): number {
   const { length, width, height, doors, windows, layers, coverage } = params
@@ -15,8 +19,8 @@ export function computePaintLiters(params: PaintParams): number {
   if (coverage <= 0) return 0
   if (length <= 0 || width <= 0 || height <= 0 || layers <= 0) return 0
 
-  const d = doors * 2
-  const win = windows * 1.5
+  const d = doors * DEFAULT_DOOR_AREA_M2
+  const win = windows * DEFAULT_WINDOW_AREA_M2
   const wallArea = Math.max(0, 2 * height * (length + width) - (d + win))
   const ceilingArea = length * width
   const area = (wallArea + ceilingArea) * layers
@@ -124,15 +128,14 @@ export function computeTile(params: TileParams): TileResult | null {
     totalArea = Math.max(0, surfaceArea - windowsTotal - doorsTotal)
   }
 
-  const tileAreaM2 = (tileLength / 100) * (tileWidth / 100)
+  const tileLengthM = tileLength / 100
+  const tileWidthM = tileWidth / 100
+  const tileAreaM2 = tileLengthM * tileWidthM
   const groutM = groutWidth / 1000
-  const effectiveTileArea =
-    tileAreaM2 - (groutM * (tileLength / 100 + tileWidth / 100) - groutM * groutM)
+  const moduleAreaM2 = (tileLengthM + groutM) * (tileWidthM + groutM)
+  if (moduleAreaM2 <= 0) return null
 
-  const baseArea = Math.max(effectiveTileArea, tileAreaM2 * 0.95)
-  if (baseArea <= 0) return null
-
-  const tilesWithoutWaste = totalArea / baseArea
+  const tilesWithoutWaste = totalArea / moduleAreaM2
 
   const totalWaste = baseWastePercent + additionalWastePercent
   const tilesWithWaste = Math.ceil(tilesWithoutWaste * (1 + totalWaste / 100))
@@ -241,6 +244,8 @@ export function computeWallpaper(params: WallpaperParams): WallpaperResult | nul
 
   if (rollW <= 0 || rollL <= 0 || rollW > 5 || rollL > 50) return null
 
+  const totalLinearWidth =
+    calculationType === "room" ? 2 * (roomWidth + roomLength) : wallLength
   const refHeight = calculationType === "room" ? roomHeight : wallHeight || 2.7
   let stripsPerRoll = Math.floor(rollL / refHeight)
 
@@ -258,11 +263,26 @@ export function computeWallpaper(params: WallpaperParams): WallpaperResult | nul
     return { wallArea: 0, rollsNeeded: 0 }
   }
 
-  // Convert the remaining wall area into the equivalent width of full-height strips.
-  // This keeps openings and roll consumption aligned instead of subtracting area in the UI
-  // while still calculating rolls from the full perimeter.
-  const equivalentLinearWidth = netWallArea / refHeight
-  const stripsNeeded = Math.ceil(equivalentLinearWidth / rollW)
+  const equivalentLinearWidthByArea = netWallArea / refHeight
+  const doorReductionWidth = doors.reduce((sum, door) => {
+    if (door.width <= 0 || door.height <= 0) return sum
+    const heightFactor = Math.min(door.height / refHeight, 1)
+    return sum + door.width * heightFactor
+  }, 0)
+  const windowReductionWidth = windows.reduce((sum, window) => {
+    if (window.width <= 0 || window.height <= 0) return sum
+    const heightFactor = Math.min(window.height / refHeight, 1)
+    return sum + window.width * heightFactor * WALLPAPER_WINDOW_REDUCTION_FACTOR
+  }, 0)
+
+  // Wallpaper is bought in full-height strips, so openings should reduce the count
+  // more conservatively than a pure area subtraction.
+  const stripBasedLinearWidth = Math.max(
+    0,
+    totalLinearWidth - doorReductionWidth - windowReductionWidth,
+  )
+  const adjustedLinearWidth = Math.max(equivalentLinearWidthByArea, stripBasedLinearWidth)
+  const stripsNeeded = Math.ceil(adjustedLinearWidth / rollW)
   const rollsNeeded = Math.ceil(stripsNeeded / stripsPerRoll)
 
   if (!Number.isFinite(rollsNeeded)) return null
