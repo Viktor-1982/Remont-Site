@@ -138,6 +138,10 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
                                     }
                                 }}
                                 className="border-0 bg-transparent text-lg text-foreground caret-primary placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
+                                autoComplete="off"
+                                autoCorrect="off"
+                                autoCapitalize="none"
+                                spellCheck={false}
                                 autoFocus
                             />
                             <Button

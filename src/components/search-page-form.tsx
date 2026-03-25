@@ -32,6 +32,10 @@ export function SearchPageForm({ isEnglish = false, initialQuery = "" }: SearchP
                     onChange={(event) => setQuery(event.target.value)}
                     placeholder={isEnglish ? "Search articles, tags, topics..." : "Искать статьи, теги, темы..."}
                     className="pl-9 text-foreground caret-primary placeholder:text-muted-foreground"
+                    autoComplete="off"
+                    autoCorrect="off"
+                    autoCapitalize="none"
+                    spellCheck={false}
                     aria-label={isEnglish ? "Search articles" : "Поиск статей"}
                 />
             </div>
