@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useMemo } from "react"
+import { createPortal } from "react-dom"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Search, X, Clock } from "lucide-react"
@@ -14,11 +15,16 @@ interface SearchBarProps {
 
 export function SearchBar({ isEnglish = false }: SearchBarProps) {
     const [isOpen, setIsOpen] = useState(false)
+    const [isMounted, setIsMounted] = useState(false)
     const [query, setQuery] = useState("")
     const [debouncedQuery, setDebouncedQuery] = useState("")
     const [recentSearches, setRecentSearches] = useState<string[]>([])
     const [posts, setPosts] = useState<PostIndexItem[]>([])
     const router = useRouter()
+
+    useEffect(() => {
+        setIsMounted(true)
+    }, [])
 
     useEffect(() => {
         fetchPostIndex()
@@ -111,141 +117,144 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
                 <Search className="h-5 w-5" />
             </Button>
 
-            {isOpen && (
-                <div
-                    className="fixed inset-0 z-[200] flex items-start justify-center bg-background/30 pt-[10vh] sm:pt-[20vh] px-4 backdrop-blur-sm"
-                    onClick={(event) => {
-                        if (event.target === event.currentTarget) {
-                            setIsOpen(false)
-                            setQuery("")
-                        }
-                    }}
-                >
+            {isMounted &&
+                isOpen &&
+                createPortal(
                     <div
-                        className="w-full max-w-2xl rounded-2xl border bg-card shadow-2xl backdrop-blur-sm animate-in fade-in slide-in-from-top-4 max-h-[85vh] overflow-hidden flex flex-col"
-                        onClick={(event) => event.stopPropagation()}
+                        className="fixed inset-0 z-[300] flex items-start justify-center bg-background/55 px-4 pt-[10vh] sm:pt-[20vh]"
+                        onClick={(event) => {
+                            if (event.target === event.currentTarget) {
+                                setIsOpen(false)
+                                setQuery("")
+                            }
+                        }}
                     >
-                        <div className="flex items-center gap-2 border-b p-4">
-                            <Search className="h-5 w-5 text-muted-foreground" />
-                            <Input
-                                type="text"
-                                placeholder={isEnglish ? "Search articles..." : "Поиск статей..."}
-                                value={query}
-                                onChange={(event) => setQuery(event.target.value)}
-                                onKeyDown={(event) => {
-                                    if (event.key === "Enter" && query.trim()) {
-                                        handleSearch(query)
-                                    }
-                                }}
-                                className="border-0 bg-transparent text-lg text-foreground caret-primary placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
-                                autoComplete="off"
-                                autoCorrect="off"
-                                autoCapitalize="none"
-                                spellCheck={false}
-                                autoFocus
-                            />
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                onClick={() => {
-                                    setIsOpen(false)
-                                    setQuery("")
-                                }}
-                                aria-label={isEnglish ? "Close" : "Закрыть"}
-                            >
-                                <X className="h-5 w-5" />
-                            </Button>
-                        </div>
+                        <div
+                            className="relative w-full max-w-2xl animate-in slide-in-from-top-4 fade-in rounded-2xl border bg-card/95 shadow-2xl backdrop-blur-sm max-h-[85vh] overflow-hidden"
+                            onClick={(event) => event.stopPropagation()}
+                        >
+                            <div className="flex items-center gap-2 border-b p-4">
+                                <Search className="h-5 w-5 text-muted-foreground" />
+                                <Input
+                                    type="text"
+                                    placeholder={isEnglish ? "Search articles..." : "Поиск статей..."}
+                                    value={query}
+                                    onChange={(event) => setQuery(event.target.value)}
+                                    onKeyDown={(event) => {
+                                        if (event.key === "Enter" && query.trim()) {
+                                            handleSearch(query)
+                                        }
+                                    }}
+                                    className="border-0 bg-transparent text-lg text-foreground caret-primary placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
+                                    autoComplete="off"
+                                    autoCorrect="off"
+                                    autoCapitalize="none"
+                                    spellCheck={false}
+                                    autoFocus
+                                />
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={() => {
+                                        setIsOpen(false)
+                                        setQuery("")
+                                    }}
+                                    aria-label={isEnglish ? "Close" : "Закрыть"}
+                                >
+                                    <X className="h-5 w-5" />
+                                </Button>
+                            </div>
 
-                        <div className="flex-1 overflow-y-auto p-4 min-h-0">
-                            {debouncedQuery.trim() ? (
-                                filteredPosts.length > 0 ? (
-                                    <div className="space-y-2">
-                                        <p className="text-sm font-semibold text-muted-foreground mb-3">
-                                            {isEnglish ? "Results" : "Результаты"} ({filteredPosts.length})
-                                        </p>
-                                        {filteredPosts.map((post) => (
-                                            <Link
-                                                key={post.id}
-                                                href={post.url}
-                                                onClick={() => {
-                                                    setIsOpen(false)
-                                                    setQuery("")
-                                                }}
-                                                className="block rounded-lg border p-4 transition-all hover:border-primary hover:bg-accent/50"
-                                            >
-                                                <h3 className="font-semibold mb-1 line-clamp-1">{post.title}</h3>
-                                                {post.description && (
-                                                    <p className="text-sm text-muted-foreground line-clamp-2">
-                                                        {post.description}
-                                                    </p>
-                                                )}
-                                                {post.tags && post.tags.length > 0 && (
-                                                    <div className="mt-2 flex flex-wrap gap-1">
-                                                        {post.tags.slice(0, 3).map((tag) => (
-                                                            <span
-                                                                key={tag}
-                                                                className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary"
-                                                            >
-                                                                {tag}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                )}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <div className="text-center py-8 text-muted-foreground">
-                                        <p>{isEnglish ? "No results found" : "Ничего не найдено"}</p>
-                                    </div>
-                                )
-                            ) : (
-                                <div className="space-y-4">
-                                    {recentSearches.length > 0 && (
-                                        <div>
-                                            <div className="flex items-center justify-between mb-3">
-                                                <p className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
-                                                    <Clock className="h-4 w-4" />
-                                                    {isEnglish ? "Recent searches" : "Недавние поиски"}
-                                                </p>
-                                                <Button
-                                                    variant="ghost"
-                                                    size="sm"
-                                                    onClick={clearHistory}
-                                                    className="text-xs h-auto py-1"
+                            <div className="max-h-[calc(85vh-76px)] overflow-y-auto p-4">
+                                {debouncedQuery.trim() ? (
+                                    filteredPosts.length > 0 ? (
+                                        <div className="space-y-2">
+                                            <p className="mb-3 text-sm font-semibold text-muted-foreground">
+                                                {isEnglish ? "Results" : "Результаты"} ({filteredPosts.length})
+                                            </p>
+                                            {filteredPosts.map((post) => (
+                                                <Link
+                                                    key={post.id}
+                                                    href={post.url}
+                                                    onClick={() => {
+                                                        setIsOpen(false)
+                                                        setQuery("")
+                                                    }}
+                                                    className="block rounded-lg border p-4 transition-all hover:border-primary hover:bg-accent/50"
                                                 >
-                                                    {isEnglish ? "Clear" : "Очистить"}
-                                                </Button>
-                                            </div>
-                                            <div className="flex flex-wrap gap-2">
-                                                {recentSearches.map((search, index) => (
-                                                    <Button
-                                                        key={index}
-                                                        variant="outline"
-                                                        size="sm"
-                                                        onClick={() => handleSearch(search)}
-                                                        className="text-xs"
-                                                    >
-                                                        {search}
-                                                    </Button>
-                                                ))}
-                                            </div>
+                                                    <h3 className="mb-1 line-clamp-1 font-semibold">{post.title}</h3>
+                                                    {post.description && (
+                                                        <p className="line-clamp-2 text-sm text-muted-foreground">
+                                                            {post.description}
+                                                        </p>
+                                                    )}
+                                                    {post.tags && post.tags.length > 0 && (
+                                                        <div className="mt-2 flex flex-wrap gap-1">
+                                                            {post.tags.slice(0, 3).map((tag) => (
+                                                                <span
+                                                                    key={tag}
+                                                                    className="rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary"
+                                                                >
+                                                                    {tag}
+                                                                </span>
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </Link>
+                                            ))}
                                         </div>
-                                    )}
-                                    <div className="text-center text-sm text-muted-foreground">
-                                        <p className="mb-2">
-                                            {isEnglish
-                                                ? "Press / to search, Esc to close"
-                                                : "Нажмите / для поиска, Esc для закрытия"}
-                                        </p>
+                                    ) : (
+                                        <div className="py-8 text-center text-muted-foreground">
+                                            <p>{isEnglish ? "No results found" : "Ничего не найдено"}</p>
+                                        </div>
+                                    )
+                                ) : (
+                                    <div className="space-y-4">
+                                        {recentSearches.length > 0 && (
+                                            <div>
+                                                <div className="mb-3 flex items-center justify-between">
+                                                    <p className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
+                                                        <Clock className="h-4 w-4" />
+                                                        {isEnglish ? "Recent searches" : "Недавние поиски"}
+                                                    </p>
+                                                    <Button
+                                                        variant="ghost"
+                                                        size="sm"
+                                                        onClick={clearHistory}
+                                                        className="h-auto py-1 text-xs"
+                                                    >
+                                                        {isEnglish ? "Clear" : "Очистить"}
+                                                    </Button>
+                                                </div>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {recentSearches.map((search, index) => (
+                                                        <Button
+                                                            key={index}
+                                                            variant="outline"
+                                                            size="sm"
+                                                            onClick={() => handleSearch(search)}
+                                                            className="text-xs"
+                                                        >
+                                                            {search}
+                                                        </Button>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+                                        <div className="text-center text-sm text-muted-foreground">
+                                            <p className="mb-2">
+                                                {isEnglish
+                                                    ? "Press / to search, Esc to close"
+                                                    : "Нажмите / для поиска, Esc для закрытия"}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            )}
+                                )}
+                            </div>
                         </div>
-                    </div>
-                </div>
-            )}
+                    </div>,
+                    document.body
+                )}
         </>
     )
 }
