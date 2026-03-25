@@ -1,12 +1,13 @@
-﻿import { getPageMetadata } from "@/lib/seo"
+import { getPageMetadata } from "@/lib/seo"
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileText, CheckCircle, XCircle, Shield, Scale, Mail, Home, Heart, Lightbulb, Users } from "lucide-react"
 import Script from "next/script"
 
 export const metadata = getPageMetadata("/terms", {
-  title: "РџСЂР°РІРёР»Р° РїРѕР»СЊР·РѕРІР°РЅРёСЏ СЃР°Р№С‚РѕРј | Renohacks",
-  description: "РџСЂР°РІРёР»Р° Рё СѓСЃР»РѕРІРёСЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ СЃР°Р№С‚Р° Renohacks.com. РРЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, С‡С‚Рѕ РјРѕР¶РЅРѕ Рё РЅРµР»СЊР·СЏ РґРµР»Р°С‚СЊ РЅР° СЃР°Р№С‚Рµ, РєРѕРЅС„РёРґРµРЅС†РёР°Р»СЊРЅРѕСЃС‚СЊ Рё РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ.",
+  title: "Правила пользования сайтом | Renohacks",
+  description:
+    "Правила и условия использования Renohacks.com. Что можно и нельзя делать на сайте, как мы относимся к конфиденциальности и где проходят границы нашей ответственности.",
   cover: "/images/og-default.png",
   type: "article",
 })
@@ -20,13 +21,13 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 1,
-      name: "Р“Р»Р°РІРЅР°СЏ",
+      name: "Главная",
       item: `${baseUrl}/`,
     },
     {
       "@type": "ListItem",
       position: 2,
-      name: "РџСЂР°РІРёР»Р° РїРѕР»СЊР·РѕРІР°РЅРёСЏ",
+      name: "Правила пользования",
       item: `${baseUrl}/terms`,
     },
   ],
@@ -34,376 +35,436 @@ const breadcrumbSchema = {
 
 export default function TermsOfUsePage() {
   return (
-    <main className="container mx-auto px-4 py-12 md:py-20 max-w-5xl">
-      {/* Hero Section */}
+    <main className="container mx-auto max-w-5xl px-4 py-12 md:py-20">
       <div className="mb-12 text-center">
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 dark:bg-primary/20 mb-6">
-          <FileText className="w-10 h-10 text-primary" />
+        <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-primary/10 dark:bg-primary/20">
+          <FileText className="h-10 w-10 text-primary" />
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-          РџСЂР°РІРёР»Р° РїРѕР»СЊР·РѕРІР°РЅРёСЏ СЃР°Р№С‚РѕРј
+        <h1 className="mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-4xl font-bold text-transparent md:text-5xl">
+          Правила пользования сайтом
         </h1>
-        <p className="text-muted-foreground text-lg">РЈСЃР»РѕРІРёСЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ Renohacks.com</p>
+        <p className="text-lg text-muted-foreground">Условия использования Renohacks.com</p>
       </div>
 
       <div className="space-y-8">
-        {/* Рћ СЃР°Р№С‚Рµ */}
-        <Card className="relative overflow-hidden border-2 border-primary/20 bg-gradient-to-br from-card via-card to-primary/5 dark:to-primary/10 shadow-xl">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <Card className="relative overflow-hidden border-2 border-primary/20 bg-gradient-to-br from-card via-card to-primary/5 shadow-xl dark:to-primary/10">
+          <div className="absolute right-0 top-0 h-64 w-64 translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-3xl" />
           <CardHeader className="relative z-10">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center shadow-lg">
-                <Home className="w-6 h-6 text-primary" />
+            <div className="mb-2 flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 shadow-lg">
+                <Home className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="text-2xl font-bold">Рћ СЃР°Р№С‚Рµ</CardTitle>
+              <CardTitle className="text-2xl font-bold">О сайте</CardTitle>
             </div>
           </CardHeader>
           <CardContent className="relative z-10">
-            <p className="text-muted-foreground leading-relaxed text-base">
-              <strong className="text-foreground">Renohacks.com</strong> вЂ” СЌС‚Рѕ Р±Р»РѕРі Рѕ СЂРµРјРѕРЅС‚Рµ, РґРёР·Р°Р№РЅРµ РёРЅС‚РµСЂСЊРµСЂР° Рё DIY РїСЂРѕРµРєС‚Р°С…. 
-              РњС‹ РїСЂРµРґРѕСЃС‚Р°РІР»СЏРµРј РїСЂР°РєС‚РёС‡РµСЃРєРёРµ СЃРѕРІРµС‚С‹, РїРѕС€Р°РіРѕРІС‹Рµ СЂСѓРєРѕРІРѕРґСЃС‚РІР°, РєР°Р»СЊРєСѓР»СЏС‚РѕСЂС‹ Рё РІРґРѕС…РЅРѕРІРµРЅРёРµ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ СѓСЋС‚РЅРѕРіРѕ РґРѕРјР°.
+            <p className="text-base leading-relaxed text-muted-foreground">
+              <strong className="text-foreground">Renohacks.com</strong> — это блог о ремонте, дизайне интерьера и DIY-проектах.
+              Мы публикуем практические советы, пошаговые инструкции, калькуляторы и подборки идей, которые помогают
+              планировать ремонт спокойнее и принимать более взвешенные решения.
             </p>
           </CardContent>
         </Card>
 
-        {/* Р§С‚Рѕ РјРѕР¶РЅРѕ РґРµР»Р°С‚СЊ */}
-        <Card className="border-2 border-green-500/20 bg-gradient-to-br from-card to-green-500/5 dark:to-green-500/10 shadow-lg">
+        <Card className="border-2 border-green-500/20 bg-gradient-to-br from-card to-green-500/5 shadow-lg dark:to-green-500/10">
           <CardHeader>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/10 flex items-center justify-center shadow-lg">
-                <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
+            <div className="mb-2 flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/10 shadow-lg">
+                <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400" />
               </div>
-              <CardTitle className="text-2xl font-bold">Р§С‚Рѕ РјРѕР¶РЅРѕ РґРµР»Р°С‚СЊ</CardTitle>
+              <CardTitle className="text-2xl font-bold">Что можно делать</CardTitle>
             </div>
           </CardHeader>
           <CardContent className="space-y-6">
             <div>
-              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                <span className="text-2xl">рџ“–</span>
-                РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РєРѕРЅС‚РµРЅС‚Р°
+              <h3 className="mb-3 flex items-center gap-2 text-xl font-semibold">
+                <span className="text-2xl">📖</span>
+                Использование контента
               </h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">Р§РёС‚Р°С‚СЊ СЃС‚Р°С‚СЊРё</strong> Рё СЂСѓРєРѕРІРѕРґСЃС‚РІР° РґР»СЏ Р»РёС‡РЅРѕРіРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ</span>
+                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
+                  <span>
+                    <strong className="text-foreground">Читать статьи</strong> и инструкции для личного использования
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєР°Р»СЊРєСѓР»СЏС‚РѕСЂС‹</strong> РґР»СЏ РїР»Р°РЅРёСЂРѕРІР°РЅРёСЏ СЂРµРјРѕРЅС‚Р°</span>
+                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
+                  <span>
+                    <strong className="text-foreground">Использовать калькуляторы</strong> для планирования ремонта
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">РЎРѕС…СЂР°РЅСЏС‚СЊ СЃСЃС‹Р»РєРё</strong> РЅР° РёРЅС‚РµСЂРµСЃРЅС‹Рµ РјР°С‚РµСЂРёР°Р»С‹</span>
+                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
+                  <span>
+                    <strong className="text-foreground">Сохранять ссылки</strong> на полезные материалы и возвращаться к ним позже
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">Р”РµР»РёС‚СЊСЃСЏ СЃСЃС‹Р»РєР°РјРё</strong> РЅР° СЃС‚Р°С‚СЊРё РІ СЃРѕС†РёР°Р»СЊРЅС‹С… СЃРµС‚СЏС…</span>
+                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
+                  <span>
+                    <strong className="text-foreground">Делиться ссылками</strong> на статьи в социальных сетях и мессенджерах
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 shrink-0" />
-
-                  <span><strong className="text-foreground">РџРµС‡Р°С‚Р°С‚СЊ СЃС‚Р°С‚СЊРё</strong> РґР»СЏ Р»РёС‡РЅРѕРіРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ</span>
+                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
+                  <span>
+                    <strong className="text-foreground">Печатать материалы</strong> для личного использования на объекте или дома
+                  </span>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                <span className="text-2xl">рџ’¬</span>
-                Р’Р·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ
+              <h3 className="mb-3 flex items-center gap-2 text-xl font-semibold">
+                <span className="text-2xl">💬</span>
+                Взаимодействие
               </h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">Задавать вопросы</strong> по email</span>
+                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
+                  <span>
+                    <strong className="text-foreground">Задавать вопросы</strong> по email
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">РџСЂРµРґР»Р°РіР°С‚СЊ С‚РµРјС‹</strong> РґР»СЏ РЅРѕРІС‹С… СЃС‚Р°С‚РµР№</span>
+                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
+                  <span>
+                    <strong className="text-foreground">Предлагать темы</strong> для новых статей и разборов
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">РЎРѕРѕР±С‰Р°С‚СЊ РѕР± РѕС€РёР±РєР°С…</strong> РІ РєР°Р»СЊРєСѓР»СЏС‚РѕСЂР°С… РёР»Рё СЃС‚Р°С‚СЊСЏС…</span>
+                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
+                  <span>
+                    <strong className="text-foreground">Сообщать об ошибках</strong> в статьях, калькуляторах и данных
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">Р”РµР»РёС‚СЊСЃСЏ РѕРїС‹С‚РѕРј</strong> СЂРµРјРѕРЅС‚Р° (С‡РµСЂРµР· РєРѕРЅС‚Р°РєС‚С‹)</span>
+                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
+                  <span>
+                    <strong className="text-foreground">Делиться опытом</strong> ремонта через контакты сайта
+                  </span>
                 </li>
               </ul>
             </div>
           </CardContent>
         </Card>
 
-        {/* Р§С‚Рѕ Р·Р°РїСЂРµС‰РµРЅРѕ */}
-        <Card className="border-2 border-red-500/20 bg-gradient-to-br from-card to-red-500/5 dark:to-red-500/10 shadow-lg">
+        <Card className="border-2 border-red-500/20 bg-gradient-to-br from-card to-red-500/5 shadow-lg dark:to-red-500/10">
           <CardHeader>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-red-500/10 flex items-center justify-center shadow-lg">
-                <XCircle className="w-6 h-6 text-red-600 dark:text-red-400" />
+            <div className="mb-2 flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-red-500/20 to-red-500/10 shadow-lg">
+                <XCircle className="h-6 w-6 text-red-600 dark:text-red-400" />
               </div>
-              <CardTitle className="text-2xl font-bold">Р§С‚Рѕ Р·Р°РїСЂРµС‰РµРЅРѕ</CardTitle>
+              <CardTitle className="text-2xl font-bold">Что запрещено</CardTitle>
             </div>
           </CardHeader>
           <CardContent className="space-y-6">
             <div>
-              <h3 className="text-xl font-semibold mb-3">рџљ« РљРѕРїРёСЂРѕРІР°РЅРёРµ РєРѕРЅС‚РµРЅС‚Р°</h3>
+              <h3 className="mb-3 text-xl font-semibold">🚫 Копирование контента</h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <XCircle className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">РљРѕРїРёСЂРѕРІР°С‚СЊ СЃС‚Р°С‚СЊРё</strong> РїРѕР»РЅРѕСЃС‚СЊСЋ РёР»Рё С‡Р°СЃС‚РёС‡РЅРѕ Р±РµР· СЂР°Р·СЂРµС€РµРЅРёСЏ</span>
+                  <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600 dark:text-red-400" />
+                  <span>
+                    <strong className="text-foreground">Копировать статьи</strong> полностью или частично без разрешения
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <XCircle className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ</strong> РІ РєРѕРјРјРµСЂС‡РµСЃРєРёС… С†РµР»СЏС…</span>
+                  <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600 dark:text-red-400" />
+                  <span>
+                    <strong className="text-foreground">Использовать изображения</strong> в коммерческих целях без согласования
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <XCircle className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">РџРµСЂРµРІРѕРґРёС‚СЊ РєРѕРЅС‚РµРЅС‚</strong> Р±РµР· СЃРѕРіР»Р°СЃРѕРІР°РЅРёСЏ</span>
+                  <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600 dark:text-red-400" />
+                  <span>
+                    <strong className="text-foreground">Переводить контент</strong> и публиковать его без согласования
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <XCircle className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">РЎРѕР·РґР°РІР°С‚СЊ РїСЂРѕРёР·РІРѕРґРЅС‹Рµ СЂР°Р±РѕС‚С‹</strong> РЅР° РѕСЃРЅРѕРІРµ РЅР°С€РёС… РјР°С‚РµСЂРёР°Р»РѕРІ</span>
+                  <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600 dark:text-red-400" />
+                  <span>
+                    <strong className="text-foreground">Создавать производные материалы</strong> на базе нашего контента без разрешения
+                  </span>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold mb-3">рџљ« РўРµС…РЅРёС‡РµСЃРєРёРµ РѕРіСЂР°РЅРёС‡РµРЅРёСЏ</h3>
+              <h3 className="mb-3 text-xl font-semibold">🚫 Технические ограничения</h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <XCircle className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">Р’Р·Р»Р°РјС‹РІР°С‚СЊ СЃР°Р№С‚</strong> РёР»Рё РїС‹С‚Р°С‚СЊСЃСЏ РїРѕР»СѓС‡РёС‚СЊ РЅРµСЃР°РЅРєС†РёРѕРЅРёСЂРѕРІР°РЅРЅС‹Р№ РґРѕСЃС‚СѓРї</span>
+                  <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600 dark:text-red-400" />
+                  <span>
+                    <strong className="text-foreground">Пытаться взломать сайт</strong> или получить несанкционированный доступ
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <XCircle className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ Р°РІС‚РѕРјР°С‚РёР·РёСЂРѕРІР°РЅРЅС‹Рµ СЃРєСЂРёРїС‚С‹</strong> РґР»СЏ СЃР±РѕСЂР° РґР°РЅРЅС‹С…</span>
+                  <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600 dark:text-red-400" />
+                  <span>
+                    <strong className="text-foreground">Использовать автоматизированные инструменты</strong> для агрессивного сбора данных
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <XCircle className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">РџРµСЂРµРіСЂСѓР¶Р°С‚СЊ СЃРµСЂРІРµСЂ</strong> РјРЅРѕР¶РµСЃС‚РІРµРЅРЅС‹РјРё Р·Р°РїСЂРѕСЃР°РјРё</span>
+                  <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600 dark:text-red-400" />
+                  <span>
+                    <strong className="text-foreground">Перегружать сервер</strong> множественными запросами и скриптами
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <XCircle className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 shrink-0" />
-                  <span><strong className="text-foreground">Р Р°СЃРїСЂРѕСЃС‚СЂР°РЅСЏС‚СЊ РІСЂРµРґРѕРЅРѕСЃРЅРѕРµ РџРћ</strong> С‡РµСЂРµР· РЅР°С€ СЃР°Р№С‚</span>
+                  <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600 dark:text-red-400" />
+                  <span>
+                    <strong className="text-foreground">Распространять вредоносное ПО</strong> или использовать сайт во вредоносных сценариях
+                  </span>
                 </li>
               </ul>
             </div>
           </CardContent>
         </Card>
 
-        {/* РљРѕРЅС„РёРґРµРЅС†РёР°Р»СЊРЅРѕСЃС‚СЊ */}
-        <Card className="border-2 border-blue-500/20 bg-gradient-to-br from-card to-blue-500/5 dark:to-blue-500/10 shadow-lg">
+        <Card className="border-2 border-blue-500/20 bg-gradient-to-br from-card to-blue-500/5 shadow-lg dark:to-blue-500/10">
           <CardHeader>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-500/10 flex items-center justify-center shadow-lg">
-                <Shield className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+            <div className="mb-2 flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-500/10 shadow-lg">
+                <Shield className="h-6 w-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <CardTitle className="text-2xl font-bold">РљРѕРЅС„РёРґРµРЅС†РёР°Р»СЊРЅРѕСЃС‚СЊ</CardTitle>
+              <CardTitle className="text-2xl font-bold">Конфиденциальность</CardTitle>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h3 className="text-xl font-semibold mb-3">рџ“Љ РЎР±РѕСЂ РґР°РЅРЅС‹С…</h3>
-              <p className="text-muted-foreground mb-3">РњС‹ СЃРѕР±РёСЂР°РµРј С‚РѕР»СЊРєРѕ РЅРµРѕР±С…РѕРґРёРјС‹Рµ РґР°РЅРЅС‹Рµ:</p>
+              <h3 className="mb-3 text-xl font-semibold">📊 Какие данные мы собираем</h3>
+              <p className="mb-3 text-muted-foreground">Мы стараемся собирать только те данные, которые действительно нужны для работы сайта:</p>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">РђРЅР°Р»РёС‚РёРєР° РїРѕСЃРµС‰РµРЅРёР№</strong> (Р°РЅРѕРЅРёРјРЅР°СЏ СЃС‚Р°С‚РёСЃС‚РёРєР°)</span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Анонимная аналитика</strong> для понимания того, какие страницы и инструменты полезнее всего
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">РљРѕРЅС‚Р°РєС‚РЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ</strong> (С‚РѕР»СЊРєРѕ РїСЂРё РѕР±СЂР°С‰РµРЅРёРё)</span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Контактные данные</strong> только если вы сами отправляете их через форму или письмо
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">Cookies</strong> РґР»СЏ СѓР»СѓС‡С€РµРЅРёСЏ СЂР°Р±РѕС‚С‹ СЃР°Р№С‚Р°</span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Cookies</strong> для корректной работы интерфейса и улучшения пользовательского опыта
+                  </span>
                 </li>
               </ul>
             </div>
-            <div className="mt-4 p-4 rounded-lg bg-primary/5 dark:bg-primary/10 border border-primary/20">
+
+            <div className="rounded-lg border border-primary/20 bg-primary/5 p-4 dark:bg-primary/10">
               <p className="text-sm text-muted-foreground">
-                РџРѕРґСЂРѕР±РЅРµРµ Рѕ РєРѕРЅС„РёРґРµРЅС†РёР°Р»СЊРЅРѕСЃС‚Рё С‡РёС‚Р°Р№С‚Рµ РІ РЅР°С€РµР№{" "}
-                <Link href="/privacy" className="text-primary hover:underline font-medium">РџРѕР»РёС‚РёРєРµ РєРѕРЅС„РёРґРµРЅС†РёР°Р»СЊРЅРѕСЃС‚Рё</Link>.
+                Подробнее о сборе и использовании данных читайте в{" "}
+                <Link href="/privacy" className="font-medium text-primary hover:underline">
+                  Политике конфиденциальности
+                </Link>
+                .
               </p>
             </div>
           </CardContent>
         </Card>
 
-        {/* РћС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ */}
-        <Card className="border-2 border-orange-500/20 bg-gradient-to-br from-card to-orange-500/5 dark:to-orange-500/10 shadow-lg">
+        <Card className="border-2 border-orange-500/20 bg-gradient-to-br from-card to-orange-500/5 shadow-lg dark:to-orange-500/10">
           <CardHeader>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-500/10 flex items-center justify-center shadow-lg">
-                <Scale className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+            <div className="mb-2 flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-500/10 shadow-lg">
+                <Scale className="h-6 w-6 text-orange-600 dark:text-orange-400" />
               </div>
-              <CardTitle className="text-2xl font-bold">РћС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ</CardTitle>
+              <CardTitle className="text-2xl font-bold">Ответственность</CardTitle>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h3 className="text-xl font-semibold mb-3">рџЏ—пёЏ РРЅС„РѕСЂРјР°С†РёСЏ Рѕ СЂРµРјРѕРЅС‚Рµ</h3>
+              <h3 className="mb-3 text-xl font-semibold">🛠 Информация о ремонте</h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">РЎРѕРІРµС‚С‹ РЅРѕСЃСЏС‚ СЂРµРєРѕРјРµРЅРґР°С‚РµР»СЊРЅС‹Р№ С…Р°СЂР°РєС‚РµСЂ</strong></span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Советы и статьи</strong> носят информационный и рекомендательный характер
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅРµСЃРµС‚ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ</strong> Р·Р° СЃРІРѕРё РґРµР№СЃС‚РІРёСЏ</span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Пользователь сам отвечает</strong> за применение этих советов в конкретном проекте
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">Р РµРєРѕРјРµРЅРґСѓРµРј РєРѕРЅСЃСѓР»СЊС‚РёСЂРѕРІР°С‚СЊСЃСЏ</strong> СЃ РїСЂРѕС„РµСЃСЃРёРѕРЅР°Р»Р°РјРё</span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Перед важными решениями</strong> мы рекомендуем консультироваться с профильными специалистами
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">РњС‹ РЅРµ РЅРµСЃРµРј РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚Рё</strong> Р·Р° СѓС‰РµСЂР± РѕС‚ РїСЂРёРјРµРЅРµРЅРёСЏ СЃРѕРІРµС‚РѕРІ</span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Мы не отвечаем</strong> за ущерб, возникший из-за самостоятельного применения рекомендаций
+                  </span>
                 </li>
               </ul>
             </div>
+
             <div>
-              <h3 className="text-xl font-semibold mb-3">рџ”§ РљР°Р»СЊРєСѓР»СЏС‚РѕСЂС‹</h3>
+              <h3 className="mb-3 text-xl font-semibold">🧮 Калькуляторы</h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">Р РµР·СѓР»СЊС‚Р°С‚С‹ РїСЂРёР±Р»РёР·РёС‚РµР»СЊРЅС‹Рµ</strong> Рё РґР»СЏ РїР»Р°РЅРёСЂРѕРІР°РЅРёСЏ</span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Результаты калькуляторов</strong> являются оценочными и подходят для предварительного планирования
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">Р¤Р°РєС‚РёС‡РµСЃРєРёРµ С†РµРЅС‹ РјРѕРіСѓС‚ РѕС‚Р»РёС‡Р°С‚СЊСЃСЏ</strong></span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Фактический расход и цены</strong> могут отличаться из-за материала, региона, подрядчика и условий объекта
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">РЈС‡РёС‚С‹РІР°Р№С‚Рµ СЂРµРіРёРѕРЅР°Р»СЊРЅС‹Рµ РѕСЃРѕР±РµРЅРЅРѕСЃС‚Рё</strong></span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Всегда учитывайте запас</strong> и проверяйте параметры материалов перед покупкой
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">РџСЂРѕРІРµСЂСЏР№С‚Рµ Р°РєС‚СѓР°Р»СЊРЅРѕСЃС‚СЊ С†РµРЅ</strong> СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ</span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Цены и тарифы</strong> нужно перепроверять самостоятельно перед заказом
+                  </span>
                 </li>
               </ul>
             </div>
           </CardContent>
         </Card>
 
-        {/* РќР°С€Рё РїСЂРёРЅС†РёРїС‹ */}
-        <Card className="relative overflow-hidden border-2 bg-gradient-to-br from-card to-secondary/10 dark:to-secondary/20 shadow-lg">
+        <Card className="relative overflow-hidden border-2 bg-gradient-to-br from-card to-secondary/10 shadow-lg dark:to-secondary/20">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)]" />
           <CardHeader className="relative z-10">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center shadow-lg">
-                <Heart className="w-6 h-6 text-primary" />
+            <div className="mb-2 flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 shadow-lg">
+                <Heart className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="text-2xl font-bold">РќР°С€Рё РїСЂРёРЅС†РёРїС‹</CardTitle>
+              <CardTitle className="text-2xl font-bold">Наши принципы</CardTitle>
             </div>
           </CardHeader>
-          <CardContent className="space-y-4 relative z-10">
+          <CardContent className="relative z-10 space-y-4">
             <div>
-              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                <Lightbulb className="w-5 h-5 text-primary" />
-                РњРёСЃСЃРёСЏ
+              <h3 className="mb-3 flex items-center gap-2 text-xl font-semibold">
+                <Lightbulb className="h-5 w-5 text-primary" />
+                Миссия
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                РњС‹ РїРѕРјРѕРіР°РµРј Р»СЋРґСЏРј СЃРѕР·РґР°РІР°С‚СЊ СѓСЋС‚РЅС‹Рµ Рё С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅС‹Рµ РґРѕРјР°, РїСЂРµРґРѕСЃС‚Р°РІР»СЏСЏ РїСЂР°РєС‚РёС‡РµСЃРєРёРµ СЃРѕРІРµС‚С‹ Рё РІРґРѕС…РЅРѕРІРµРЅРёРµ РґР»СЏ СЂРµРјРѕРЅС‚Р° Рё РґРёР·Р°Р№РЅР°.
+              <p className="leading-relaxed text-muted-foreground">
+                Мы хотим помогать людям делать ремонт спокойнее и понятнее: через практические статьи, полезные инструменты и
+                честные рекомендации без лишнего шума.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                <Users className="w-5 h-5 text-primary" />
-                Р¦РµРЅРЅРѕСЃС‚Рё
+              <h3 className="mb-3 flex items-center gap-2 text-xl font-semibold">
+                <Users className="h-5 w-5 text-primary" />
+                Ценности
               </h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">РџСЂР°РєС‚РёС‡РЅРѕСЃС‚СЊ</strong> вЂ” С‚РѕР»СЊРєРѕ РїСЂРѕРІРµСЂРµРЅРЅС‹Рµ СЃРѕРІРµС‚С‹</span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Практичность</strong> — публикуем материалы, которые можно применять в реальном ремонте
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">Р”РѕСЃС‚СѓРїРЅРѕСЃС‚СЊ</strong> вЂ” РїРѕРЅСЏС‚РЅС‹Рµ РёРЅСЃС‚СЂСѓРєС†РёРё РґР»СЏ РІСЃРµС…</span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Доступность</strong> — объясняем сложные вещи простым языком
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">РљР°С‡РµСЃС‚РІРѕ</strong> вЂ” С‚С‰Р°С‚РµР»СЊРЅРѕ РѕС‚РѕР±СЂР°РЅРЅС‹Р№ РєРѕРЅС‚РµРЅС‚</span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Качество</strong> — стараемся поддерживать материалы и калькуляторы в актуальном состоянии
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-primary">вЂў</span>
-                  <span><strong className="text-foreground">Р§РµСЃС‚РЅРѕСЃС‚СЊ</strong> вЂ” РїСЂРѕР·СЂР°С‡РЅРѕСЃС‚СЊ РІ СЂРµРєРѕРјРµРЅРґР°С†РёСЏС…</span>
+                  <span className="text-primary">•</span>
+                  <span>
+                    <strong className="text-foreground">Честность</strong> — не выдаём ориентировочные расчёты за полноценный инженерный проект
+                  </span>
                 </li>
               </ul>
             </div>
           </CardContent>
         </Card>
 
-        {/* РљРѕРЅС‚Р°РєС‚С‹ */}
-        <Card className="bg-primary/5 dark:bg-primary/10 border-primary/20 shadow-xl">
+        <Card className="border-primary/20 bg-primary/5 shadow-xl dark:bg-primary/10">
           <CardHeader>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/30 to-primary/20 flex items-center justify-center shadow-lg ring-2 ring-primary/20">
-                <Mail className="w-6 h-6 text-primary" />
+            <div className="mb-2 flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/30 to-primary/20 shadow-lg ring-2 ring-primary/20">
+                <Mail className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                РљРѕРЅС‚Р°РєС‚С‹
+              <CardTitle className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-2xl font-bold text-transparent">
+                Контакты
               </CardTitle>
             </div>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground mb-4">
-              Р•СЃР»Рё Сѓ РІР°СЃ РµСЃС‚СЊ РІРѕРїСЂРѕСЃС‹ Рѕ РїСЂР°РІРёР»Р°С… РїРѕР»СЊР·РѕРІР°РЅРёСЏ, СЃРІСЏР¶РёС‚РµСЃСЊ СЃ РЅР°РјРё:
+            <p className="mb-4 text-muted-foreground">
+              Если у вас есть вопросы по этим правилам или по использованию сайта, напишите нам:
             </p>
             <a
-                            href="mailto:vles8878@gmail.com"
-              className="group inline-flex items-center gap-3 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium transition-all duration-300 hover:bg-primary/90 hover:shadow-lg hover:scale-105 active:scale-95"
+              href="mailto:vles8878@gmail.com"
+              className="group inline-flex items-center gap-3 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-all duration-300 hover:scale-105 hover:bg-primary/90 hover:shadow-lg active:scale-95"
             >
-              <Mail className="w-5 h-5 group-hover:animate-bounce" />
-                            <span>vles8878@gmail.com</span>
+              <Mail className="h-5 w-5 group-hover:animate-bounce" />
+              <span>vles8878@gmail.com</span>
             </a>
           </CardContent>
         </Card>
 
-        {/* РљСЂР°С‚РєР°СЏ РїР°РјСЏС‚РєР° */}
-        <Card className="bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800 shadow-lg">
+        <Card className="border-2 border-blue-200 bg-blue-50 shadow-lg dark:border-blue-800 dark:bg-blue-900/20">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold">рџ“‹ РљСЂР°С‚РєР°СЏ РїР°РјСЏС‚РєР°</CardTitle>
+            <CardTitle className="text-2xl font-bold">📋 Краткая памятка</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400 mt-0.5 shrink-0" />
+                <CheckCircle className="mt-0.5 h-6 w-6 shrink-0 text-green-600 dark:text-green-400" />
                 <div>
-                  <strong className="text-foreground">РњРѕР¶РЅРѕ:</strong> С‡РёС‚Р°С‚СЊ, РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєР°Р»СЊРєСѓР»СЏС‚РѕСЂС‹, РґРµР»РёС‚СЊСЃСЏ СЃСЃС‹Р»РєР°РјРё
+                  <strong className="text-foreground">Можно:</strong> читать статьи, пользоваться калькуляторами, сохранять и пересылать ссылки
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <XCircle className="w-6 h-6 text-red-600 dark:text-red-400 mt-0.5 shrink-0" />
+                <XCircle className="mt-0.5 h-6 w-6 shrink-0 text-red-600 dark:text-red-400" />
                 <div>
-                  <strong className="text-foreground">РќРµР»СЊР·СЏ:</strong> РєРѕРїРёСЂРѕРІР°С‚СЊ РєРѕРЅС‚РµРЅС‚, РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РІ РєРѕРјРјРµСЂС‡РµСЃРєРёС… С†РµР»СЏС…
+                  <strong className="text-foreground">Нельзя:</strong> копировать контент и использовать материалы в коммерческих целях без согласования
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Shield className="w-6 h-6 text-blue-600 dark:text-blue-400 mt-0.5 shrink-0" />
+                <Shield className="mt-0.5 h-6 w-6 shrink-0 text-blue-600 dark:text-blue-400" />
                 <div>
-                  <strong className="text-foreground">Р‘РµР·РѕРїР°СЃРЅРѕ:</strong> РјС‹ Р·Р°С‰РёС‰Р°РµРј РІР°С€Рё РґР°РЅРЅС‹Рµ
+                  <strong className="text-foreground">Конфиденциальность:</strong> мы стараемся бережно обращаться с данными и не собирать лишнее
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Scale className="w-6 h-6 text-orange-600 dark:text-orange-400 mt-0.5 shrink-0" />
+                <Scale className="mt-0.5 h-6 w-6 shrink-0 text-orange-600 dark:text-orange-400" />
                 <div>
-                  <strong className="text-foreground">РћС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ:</strong> РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅРµСЃРµС‚ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ Р·Р° РїСЂРёРјРµРЅРµРЅРёРµ СЃРѕРІРµС‚РѕРІ
+                  <strong className="text-foreground">Ответственность:</strong> итоговые решения по ремонту и закупке материалов пользователь принимает сам
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Mail className="w-6 h-6 text-primary mt-0.5 shrink-0" />
+                <Mail className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
                 <div>
-                    <strong className="text-foreground">РЎРІСЏР·СЊ:</strong> vles8878@gmail.com РґР»СЏ Р»СЋР±С‹С… РІРѕРїСЂРѕСЃРѕРІ
+                  <strong className="text-foreground">Связь:</strong> vles8878@gmail.com для вопросов по правилам и работе сайта
                 </div>
               </li>
             </ul>
           </CardContent>
         </Card>
 
-        {/* Footer */}
-        <div className="text-center py-8">
-          <p className="text-lg font-medium text-primary mb-2">РЎРїР°СЃРёР±Рѕ Р·Р° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ Renohacks.com! рџЏ вњЁ</p>
-          <p className="text-sm text-muted-foreground">РџРѕСЃР»РµРґРЅРµРµ РѕР±РЅРѕРІР»РµРЅРёРµ: 28 РѕРєС‚СЏР±СЂСЏ 2025 РіРѕРґР°</p>
+        <div className="py-8 text-center">
+          <p className="mb-2 text-lg font-medium text-primary">Спасибо, что пользуетесь Renohacks.com.</p>
+          <p className="text-sm text-muted-foreground">Последнее обновление: 25 марта 2026 года</p>
         </div>
       </div>
 
@@ -418,4 +479,3 @@ export default function TermsOfUsePage() {
     </main>
   )
 }
-
