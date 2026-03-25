@@ -2,6 +2,7 @@ import { getPageMetadata } from "@/lib/seo"
 import { allPosts, type Post } from ".contentlayer/generated"
 import { ArticleCard } from "@/components/article-card"
 import { Search } from "lucide-react"
+import { SearchPageForm } from "@/components/search-page-form"
 import Script from "next/script"
 
 export const metadata = getPageMetadata("/search", {
@@ -78,12 +79,10 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                         Найдено статей: <span className="font-semibold text-foreground">{filteredPosts.length}</span>
                     </p>
                 )}
-                {!query && (
-                    <p className="text-muted-foreground">
-                        Введите запрос в поисковую строку вверху страницы
-                    </p>
-                )}
+                {!query && <p className="text-muted-foreground">Введите запрос и сразу получите подборку релевантных статей.</p>}
             </div>
+
+            <SearchPageForm initialQuery={q || ""} />
 
             {query && filteredPosts.length > 0 && (
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
