@@ -13,7 +13,7 @@ export const revalidate = 86400
 export const dynamic = "force-static"
 
 export const metadata: Metadata = {
-    title: "Renohacks.com - DIY Renovation & Interior Design Blog | Home Ideas 2025",
+    title: "Renohacks.com - DIY Renovation & Interior Design Blog for Home Projects",
     description: "Step-by-step photo guides, DIY hacks, free paint & tile calculators, material reviews. Everything for quality home renovation and apartment design.",
     keywords: [
         "DIY renovation",
@@ -27,12 +27,12 @@ export const metadata: Metadata = {
         "painting walls",
         "bathroom renovation",
         "kitchen renovation",
-        "interior ideas 2025",
+        "interior ideas",
         "design trends",
         "renovation without mistakes",
     ],
     openGraph: {
-        title: "Renohacks.com - DIY Renovation & Interior Design Blog | Home Ideas 2025",
+        title: "Renohacks.com - DIY Renovation & Interior Design Blog for Home Projects",
         description: "Step-by-step photo guides, DIY hacks, free paint & tile calculators, material reviews. Everything for quality home renovation and apartment design.",
         url: "https://renohacks.com/en",
         siteName: "Renohacks.com",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Renohacks.com - DIY Renovation & Interior Design Blog | Home Ideas 2025",
+        title: "Renohacks.com - DIY Renovation & Interior Design Blog for Home Projects",
         description: "Step-by-step photo guides, DIY hacks, free paint & tile calculators, material reviews. Everything for quality home renovation and apartment design.",
         images: ["/images/og-default.png"],
     },
