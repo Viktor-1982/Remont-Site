@@ -113,7 +113,7 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
 
             {isOpen && (
                 <div
-                    className="fixed inset-0 z-50 flex items-start justify-center pt-[10vh] sm:pt-[20vh] px-4"
+                    className="fixed inset-0 z-[200] flex items-start justify-center bg-background/30 pt-[10vh] sm:pt-[20vh] px-4 backdrop-blur-sm"
                     onClick={(event) => {
                         if (event.target === event.currentTarget) {
                             setIsOpen(false)
