@@ -233,9 +233,10 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
                                                             variant="outline"
                                                             size="sm"
                                                             onClick={() => handleSearch(search)}
-                                                            className="text-xs"
+                                                            className="max-w-full justify-start overflow-hidden text-xs"
+                                                            title={search}
                                                         >
-                                                            {search}
+                                                            <span className="block max-w-full truncate">{search}</span>
                                                         </Button>
                                                     ))}
                                                 </div>

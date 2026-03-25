@@ -3,13 +3,13 @@ import { allPosts, type Post } from ".contentlayer/generated"
 import { ArticleCard } from "@/components/article-card"
 import { Search } from "lucide-react"
 import { SearchPageForm } from "@/components/search-page-form"
-import Script from "next/script"
 
 export const metadata = getPageMetadata("/en/search", {
     title: "Search Articles | Renohacks",
     description: "Search articles about renovation, design and DIY on Renohacks.com",
     cover: "/images/og-default.png",
     type: "website",
+    autoAlternateLanguages: false,
     robots: {
         index: false,
         follow: true,
@@ -19,27 +19,6 @@ export const metadata = getPageMetadata("/en/search", {
         },
     },
 })
-
-const baseUrl = "https://renohacks.com"
-
-const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-        {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: `${baseUrl}/en`,
-        },
-        {
-            "@type": "ListItem",
-            position: 2,
-            name: "Search",
-            item: `${baseUrl}/en/search`,
-        },
-    ],
-}
 
 interface SearchPageProps {
     searchParams: Promise<{ q?: string }>
@@ -66,11 +45,11 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     }
 
     return (
-        <main className="container mx-auto px-4 sm:px-6 py-10 sm:py-14 max-w-7xl">
+        <main className="container mx-auto px-4 py-10 sm:px-6 sm:py-14 max-w-7xl">
             <div className="mb-10">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="mb-4 flex items-center gap-3">
                     <Search className="h-6 w-6 text-primary" />
-                    <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                    <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
                         {query ? `Search: "${query}"` : "Search Articles"}
                     </h1>
                 </div>
@@ -79,7 +58,11 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                         Found articles: <span className="font-semibold text-foreground">{filteredPosts.length}</span>
                     </p>
                 )}
-                {!query && <p className="text-muted-foreground">Enter a query to get a focused list of matching articles.</p>}
+                {!query && (
+                    <p className="text-muted-foreground">
+                        Enter a query to get a focused list of matching articles.
+                    </p>
+                )}
             </div>
 
             <SearchPageForm isEnglish initialQuery={q || ""} />
@@ -93,8 +76,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
             )}
 
             {query && filteredPosts.length === 0 && (
-                <div className="text-center py-16">
-                    <p className="text-lg text-muted-foreground mb-4">
+                <div className="py-16 text-center">
+                    <p className="mb-4 text-lg text-muted-foreground">
                         No results found for &quot;{query}&quot;
                     </p>
                     <p className="text-sm text-muted-foreground">
@@ -102,16 +85,6 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                     </p>
                 </div>
             )}
-
-            <Script
-                id="breadcrumb-schema"
-                type="application/ld+json"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(breadcrumbSchema),
-                }}
-            />
         </main>
     )
 }
-
