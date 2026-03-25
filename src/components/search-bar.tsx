@@ -137,7 +137,7 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
                                         handleSearch(query)
                                     }
                                 }}
-                                className="border-0 bg-transparent text-lg focus-visible:ring-0 focus-visible:ring-offset-0"
+                                className="border-0 bg-transparent text-lg text-foreground caret-primary placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
                                 autoFocus
                             />
                             <Button
