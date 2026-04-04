@@ -71,9 +71,6 @@ export default function HomePageEn() {
 
             {/* Main content inside container */}
             <div className="container mx-auto px-4 sm:px-6 py-10 space-y-12 max-w-7xl">
-                {/* Calculators and tools */}
-                <CalculatorsShowcase isEnglish={true} />
-
                 {/* Anchor for the scroll arrow */}
                 <section id="articles">
                     <h2 className="text-3xl font-bold mb-6 text-balance text-center sm:text-left">
@@ -84,6 +81,15 @@ export default function HomePageEn() {
                     {/* Popular posts */}
                     <PopularPosts posts={posts} locale="en" limit={6} />
                 </section>
+
+                {/* Core tools after the editorial block */}
+                <CalculatorsShowcase
+                    isEnglish={true}
+                    limit={4}
+                    title="Popular Renovation Calculators"
+                    subtitle="The four tools most likely to help with planning, materials, and lighting."
+                    badgeLabel="Calculators"
+                />
 
                 {/* Email subscription */}
                 <section className="mt-16 sm:mt-20">

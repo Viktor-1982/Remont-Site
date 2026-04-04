@@ -78,9 +78,6 @@ export default function HomePage() {
 
             {/* Контент внутри контейнера */}
             <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16 max-w-7xl">
-                {/* Калькуляторы и инструменты */}
-                <CalculatorsShowcase isEnglish={false} />
-
                 {/* Якорь для стрелки */}
                 <section id="articles">
                     <div className="mb-10">
@@ -96,6 +93,15 @@ export default function HomePage() {
                     {/* Популярные статьи */}
                     <PopularPosts posts={posts} locale="ru" limit={6} />
                 </section>
+
+                {/* Ключевые инструменты после контентного блока */}
+                <CalculatorsShowcase
+                    isEnglish={false}
+                    limit={4}
+                    title="Популярные калькуляторы для ремонта"
+                    subtitle="Четыре самых полезных инструмента для расчета бюджета, материалов и освещения."
+                    badgeLabel="Калькуляторы"
+                />
 
                 {/* Email-подписка */}
                 <section className="mt-16 sm:mt-20">

@@ -6,6 +6,7 @@ import { Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Calculator, ArrowRight
 import { motion } from "framer-motion"
 
 interface CalculatorItem {
+    id: string
     href: string
     label: string
     emoji: string
@@ -18,6 +19,7 @@ interface CalculatorItem {
 
 const calculators: CalculatorItem[] = [
     {
+        id: "paint",
         href: "/calculators/paint",
         label: "Калькулятор краски",
         emoji: "🎨",
@@ -28,6 +30,7 @@ const calculators: CalculatorItem[] = [
         color: "rose",
     },
     {
+        id: "wallpaper",
         href: "/calculators/wallpaper",
         label: "Калькулятор обоев",
         emoji: "🪟",
@@ -38,6 +41,7 @@ const calculators: CalculatorItem[] = [
         color: "emerald",
     },
     {
+        id: "tile",
         href: "/calculators/tile",
         label: "Калькулятор плитки",
         emoji: "🧱",
@@ -48,6 +52,7 @@ const calculators: CalculatorItem[] = [
         color: "sky",
     },
     {
+        id: "underfloor-heating",
         href: "/calculators/underfloor-heating",
         label: "Калькулятор тёплого пола",
         emoji: "🔥",
@@ -58,6 +63,7 @@ const calculators: CalculatorItem[] = [
         color: "orange",
     },
     {
+        id: "ventilation",
         href: "/calculators/ventilation",
         label: "Калькулятор вентиляции",
         emoji: "🌬️",
@@ -68,6 +74,7 @@ const calculators: CalculatorItem[] = [
         color: "cyan",
     },
     {
+        id: "lighting",
         href: "/calculators/lighting",
         label: "Калькулятор освещённости",
         emoji: "💡",
@@ -78,6 +85,7 @@ const calculators: CalculatorItem[] = [
         color: "amber",
     },
     {
+        id: "budget",
         href: "/calculators/budget",
         label: "Планировщик бюджета",
         emoji: "💰",
@@ -88,6 +96,7 @@ const calculators: CalculatorItem[] = [
         color: "amber",
     },
     {
+        id: "color-palette",
         href: "/calculators/color-palette",
         label: "Генератор цветовых палитр",
         emoji: "🎨",
@@ -98,6 +107,7 @@ const calculators: CalculatorItem[] = [
         color: "purple",
     },
     {
+        id: "quiz",
         href: "/quiz/interior-style",
         label: "Квиз: стиль интерьера",
         emoji: "✨",
@@ -108,6 +118,7 @@ const calculators: CalculatorItem[] = [
         color: "indigo",
     },
     {
+        id: "materials-checklist",
         href: "/tools/materials-checklist",
         label: "Чеклист покупок материалов",
         emoji: "🛒",
@@ -121,6 +132,7 @@ const calculators: CalculatorItem[] = [
 
 const calculatorsEn: CalculatorItem[] = [
     {
+        id: "paint",
         href: "/en/calculators/paint",
         label: "Paint Calculator",
         emoji: "🎨",
@@ -131,6 +143,7 @@ const calculatorsEn: CalculatorItem[] = [
         color: "rose",
     },
     {
+        id: "wallpaper",
         href: "/en/calculators/wallpaper",
         label: "Wallpaper Calculator",
         emoji: "🪟",
@@ -141,6 +154,7 @@ const calculatorsEn: CalculatorItem[] = [
         color: "emerald",
     },
     {
+        id: "tile",
         href: "/en/calculators/tile",
         label: "Tile Calculator",
         emoji: "🧱",
@@ -151,6 +165,7 @@ const calculatorsEn: CalculatorItem[] = [
         color: "sky",
     },
     {
+        id: "underfloor-heating",
         href: "/en/calculators/underfloor-heating",
         label: "Underfloor Heating",
         emoji: "🔥",
@@ -161,6 +176,7 @@ const calculatorsEn: CalculatorItem[] = [
         color: "orange",
     },
     {
+        id: "ventilation",
         href: "/en/calculators/ventilation",
         label: "Ventilation Calculator",
         emoji: "🌬️",
@@ -171,6 +187,7 @@ const calculatorsEn: CalculatorItem[] = [
         color: "cyan",
     },
     {
+        id: "lighting",
         href: "/en/calculators/lighting",
         label: "Lighting Calculator",
         emoji: "💡",
@@ -181,6 +198,7 @@ const calculatorsEn: CalculatorItem[] = [
         color: "amber",
     },
     {
+        id: "budget",
         href: "/en/calculators/budget",
         label: "Budget Planner",
         emoji: "💰",
@@ -191,6 +209,7 @@ const calculatorsEn: CalculatorItem[] = [
         color: "amber",
     },
     {
+        id: "color-palette",
         href: "/en/calculators/color-palette",
         label: "Color Palette Generator",
         emoji: "🎨",
@@ -201,6 +220,7 @@ const calculatorsEn: CalculatorItem[] = [
         color: "purple",
     },
     {
+        id: "quiz",
         href: "/en/quiz/interior-style",
         label: "Interior Style Quiz",
         emoji: "✨",
@@ -211,6 +231,7 @@ const calculatorsEn: CalculatorItem[] = [
         color: "indigo",
     },
     {
+        id: "materials-checklist",
         href: "/en/tools/materials-checklist",
         label: "Materials Purchase Checklist",
         emoji: "🛒",
@@ -224,21 +245,47 @@ const calculatorsEn: CalculatorItem[] = [
 
 interface CalculatorsShowcaseProps {
     isEnglish?: boolean
+    limit?: number
+    title?: string
+    subtitle?: string
+    badgeLabel?: string
 }
 
-export function CalculatorsShowcase({ isEnglish = false }: CalculatorsShowcaseProps) {
+const featuredToolIds = ["budget", "paint", "tile", "lighting"]
+
+export function CalculatorsShowcase({
+    isEnglish = false,
+    limit,
+    title,
+    subtitle,
+    badgeLabel,
+}: CalculatorsShowcaseProps) {
     const router = useRouter()
-    const items = isEnglish ? calculatorsEn : calculators
+    const baseItems = isEnglish ? calculatorsEn : calculators
+    const prioritizedItems =
+        typeof limit === "number"
+            ? [
+                ...featuredToolIds
+                    .map((id) => baseItems.find((item) => item.id === id))
+                    .filter((item): item is CalculatorItem => Boolean(item)),
+                ...baseItems.filter((item) => !featuredToolIds.includes(item.id)),
+            ]
+            : baseItems
+    const items = typeof limit === "number" ? prioritizedItems.slice(0, limit) : prioritizedItems
+    const isCompact = typeof limit === "number" && limit <= 4
     const t = {
-        title: isEnglish ? "Smart Renovation Tools" : "Умные инструменты для ремонта",
-        subtitle: isEnglish 
-            ? "Free calculators and tools to help you plan your renovation project" 
-            : "Бесплатные калькуляторы и инструменты для планирования ремонта",
+        title: title ?? (isEnglish ? "Smart Renovation Tools" : "Умные инструменты для ремонта"),
+        subtitle: subtitle ?? (
+            isEnglish
+                ? "Free calculators and tools to help you plan your renovation project"
+                : "Бесплатные калькуляторы и инструменты для планирования ремонта"
+        ),
         viewAll: isEnglish ? "View all tools" : "Все инструменты",
+        badgeLabel: badgeLabel ?? (isEnglish ? "Free Tools" : "Бесплатные инструменты"),
     }
 
     return (
-        <section className="relative py-16 sm:py-20 overflow-hidden">
+        <section className={`relative overflow-hidden ${isCompact ? "py-10 sm:py-12" : "py-16 sm:py-20"}`}>
             {/* Декоративный фон */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 dark:from-primary/10 dark:via-transparent dark:to-accent/10" />
             <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
@@ -251,11 +298,11 @@ export function CalculatorsShowcase({ isEnglish = false }: CalculatorsShowcasePr
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="text-center mb-12 sm:mb-16"
+                    className={`text-center ${isCompact ? "mb-8 sm:mb-10" : "mb-12 sm:mb-16"}`}
                 >
                     <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-2 text-sm font-medium text-primary mb-6">
                         <Calculator className="w-4 h-4" />
-                        <span>{isEnglish ? "Free Tools" : "Бесплатные инструменты"}</span>
+                        <span>{t.badgeLabel}</span>
                     </div>
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 tracking-tight">
                         <span className="bg-gradient-to-r from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
@@ -268,7 +315,7 @@ export function CalculatorsShowcase({ isEnglish = false }: CalculatorsShowcasePr
                 </motion.div>
 
                 {/* Сетка инструментов */}
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-10">
+                <div className={`grid gap-6 mb-10 ${isCompact ? "sm:grid-cols-2 xl:grid-cols-4" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
                     {items.map((calc, index) => {
                         const Icon = calc.icon
                         return (
@@ -355,4 +402,3 @@ export function CalculatorsShowcase({ isEnglish = false }: CalculatorsShowcasePr
         </section>
     )
 }
-
