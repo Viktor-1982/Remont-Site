@@ -4,7 +4,7 @@ export type TopicHubShortcut = {
     href: string
     label: string
     desc: string
-    icon: "bath" | "lightbulb"
+    icon: "bath" | "lightbulb" | "chefHat"
     cover: string
     highlights: string[]
     accentClass: string
@@ -32,7 +32,8 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
         ariaOpenMenu: "Открыть темы ремонта",
         sectionEyebrow: "Тематические хабы",
         sectionTitle: "Ключевые темы ремонта",
-        sectionSubtitle: "Собранные подборки статей и инструментов, с которых проще начинать планирование по комнате и задаче.",
+        sectionSubtitle:
+            "Собранные подборки статей и инструментов, с которых проще начинать планирование по комнате и задаче.",
         hubBadge: "Хаб",
         ctaLabel: "Открыть хаб",
         items: [
@@ -45,6 +46,16 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 highlights: ["Плитка", "Вентиляция", "Теплый пол"],
                 accentClass: "from-sky-500/20 via-cyan-500/10 to-transparent",
                 iconClass: "text-sky-500",
+            },
+            {
+                href: "/kitchen",
+                label: "Кухня",
+                desc: "Планировка, материалы, маленькая кухня, освещение и бюджет ремонта кухни.",
+                icon: "chefHat",
+                cover: "/images/kitchen-2026/cover-2026.jpg",
+                highlights: ["Планировка", "Материалы", "Свет и бюджет"],
+                accentClass: "from-orange-500/20 via-amber-500/10 to-transparent",
+                iconClass: "text-orange-500",
             },
             {
                 href: "/lighting",
@@ -65,7 +76,8 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
         ariaOpenMenu: "Open renovation topics",
         sectionEyebrow: "Topic Hubs",
         sectionTitle: "Core Renovation Topics",
-        sectionSubtitle: "Curated clusters of articles and tools that make it easier to start planning by room and by task.",
+        sectionSubtitle:
+            "Curated clusters of articles and tools that make it easier to start planning by room and by task.",
         hubBadge: "Hub",
         ctaLabel: "Open hub",
         items: [
@@ -78,6 +90,16 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 highlights: ["Tile", "Ventilation", "Heated floors"],
                 accentClass: "from-sky-500/20 via-cyan-500/10 to-transparent",
                 iconClass: "text-sky-500",
+            },
+            {
+                href: "/en/kitchen",
+                label: "Kitchen",
+                desc: "Kitchen layout, finishes, small-space ideas, lighting, and budget planning.",
+                icon: "chefHat",
+                cover: "/images/kitchen-2026/cover-2026.jpg",
+                highlights: ["Layout", "Finishes", "Lighting and budget"],
+                accentClass: "from-orange-500/20 via-amber-500/10 to-transparent",
+                iconClass: "text-orange-500",
             },
             {
                 href: "/en/lighting",

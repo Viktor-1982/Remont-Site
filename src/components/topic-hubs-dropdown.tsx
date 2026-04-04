@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Bath, ChevronDown, Lightbulb, Sparkles } from "lucide-react"
+import { Bath, ChefHat, ChevronDown, Lightbulb, Sparkles } from "lucide-react"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils"
 const topicHubIcons = {
     bath: Bath,
     lightbulb: Lightbulb,
+    chefHat: ChefHat,
 } as const
 
 interface TopicHubsDropdownProps {

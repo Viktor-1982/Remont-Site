@@ -1,5 +1,6 @@
 import type { Post } from "contentlayer/generated"
 import { bathroomHubSlugs } from "@/lib/bathroom-hub"
+import { kitchenHubSlugs } from "@/lib/kitchen-hub"
 import { lightingHubSlugs } from "@/lib/lighting-hub"
 
 export type ArticleToolLocale = "ru" | "en"
@@ -227,7 +228,7 @@ const toolCatalog: Record<ArticleToolId, ToolDefinition> = {
     },
 }
 
-const hubCatalog: Record<"bathroom" | "lighting", HubDefinition> = {
+const hubCatalog: Record<"bathroom" | "lighting" | "kitchen", HubDefinition> = {
     bathroom: {
         href: { ru: "/bathroom", en: "/en/bathroom" },
         title: { ru: "Хаб по ванной", en: "Bathroom Hub" },
@@ -254,6 +255,19 @@ const hubCatalog: Record<"bathroom" | "lighting", HubDefinition> = {
         gradient: "from-yellow-500/14 via-amber-500/10 to-transparent",
         matches: lightingHubSlugs,
     },
+    kitchen: {
+        href: { ru: "/kitchen", en: "/en/kitchen" },
+        title: { ru: "Хаб по кухне", en: "Kitchen Hub" },
+        description: {
+            ru: "Соберите в одном месте статьи, расчеты и решения по планировке, материалам, свету и бюджету кухни.",
+            en: "Keep kitchen articles, calculators, and the main layout, finish, and budget decisions in one place.",
+        },
+        badge: { ru: "Тема", en: "Topic Hub" },
+        ctaLabel: { ru: "Открыть хаб", en: "Open hub" },
+        icon: "grid3x3",
+        gradient: "from-orange-500/14 via-amber-500/10 to-transparent",
+        matches: kitchenHubSlugs,
+    },
 }
 
 const explicitRules: Array<{ test: RegExp; tools: ArticleToolId[] }> = [
@@ -279,7 +293,7 @@ const explicitRules: Array<{ test: RegExp; tools: ArticleToolId[] }> = [
     },
     {
         test: /(kuhn|kitchen)/,
-        tools: ["tile", "lighting", "budget"],
+        tools: ["budget", "lighting", "tile"],
     },
     {
         test: /(spalni-2026|bedroom-trends-2026)/,
@@ -459,7 +473,7 @@ function buildToolCard(toolId: ArticleToolId, locale: ArticleToolLocale): Articl
 }
 
 function getHubCard(post: Post, locale: ArticleToolLocale): ArticleHubCard | null {
-    for (const key of ["bathroom", "lighting"] as const) {
+    for (const key of ["bathroom", "lighting", "kitchen"] as const) {
         const hub = hubCatalog[key]
         if (hub.matches[locale].includes(post.slug)) {
             return {

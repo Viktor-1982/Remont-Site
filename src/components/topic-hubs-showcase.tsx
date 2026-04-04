@@ -1,12 +1,13 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Bath, Lightbulb, Sparkles } from "lucide-react"
+import { ArrowRight, Bath, ChefHat, Lightbulb, Sparkles } from "lucide-react"
 import { getTopicHubsDictionary, type TopicHubsLocale } from "@/dictionaries/topic-hubs"
 import { cn } from "@/lib/utils"
 
 const topicHubIcons = {
     bath: Bath,
     lightbulb: Lightbulb,
+    chefHat: ChefHat,
 } as const
 
 export function TopicHubsShowcase({ isEnglish = false }: { isEnglish?: boolean }) {
@@ -33,7 +34,7 @@ export function TopicHubsShowcase({ isEnglish = false }: { isEnglish?: boolean }
                 </div>
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                 {dictionary.items.map((item) => {
                     const Icon = topicHubIcons[item.icon]
 

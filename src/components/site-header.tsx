@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 import {
     Bath,
     Calculator,
+    ChefHat,
     ChevronDown,
     ChevronRight,
     Grid3X3,
@@ -57,6 +58,7 @@ const toolIcons = {
 const topicHubIcons = {
     bath: Bath,
     lightbulb: Lightbulb,
+    chefHat: ChefHat,
 } as const
 
 export function SiteHeader() {
