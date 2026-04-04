@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { Calendar } from "lucide-react"
+import { ArticleRubricBadge } from "@/components/article-rubric-badge"
 import { TagList } from "@/components/tag-list"
 import { ShareButton } from "@/components/share-button"
 import { BookmarkButton } from "@/components/bookmark-button"
@@ -73,6 +74,11 @@ export function ArticleHero({ post }: { post: Post }) {
             <header className="space-y-4 max-w-4xl mx-auto w-full">
                 <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
+                        <ArticleRubricBadge
+                            rubric={post.rubric}
+                            isEnglish={isEnglish}
+                            className="mb-3 px-3 py-1 text-xs sm:text-sm"
+                        />
                         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight text-foreground bg-gradient-to-br from-foreground via-foreground to-foreground/80 bg-clip-text">
                             {post.title}
                         </h1>

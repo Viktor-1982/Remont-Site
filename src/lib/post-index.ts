@@ -12,6 +12,7 @@ export interface ArticleCardPost {
     url: string
     date?: string
     readingTime?: string
+    rubric?: string
     tags?: string[]
 }
 
@@ -31,6 +32,7 @@ export function toPostIndexItem(post: Post): PostIndexItem {
         url: post.url,
         date: post.date,
         readingTime: post.readingTime,
+        rubric: post.rubric,
         tags: post.tags ?? [],
     }
 }

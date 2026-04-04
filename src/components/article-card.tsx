@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
+import { ArticleRubricBadge } from "@/components/article-rubric-badge"
 import { TagList } from "@/components/tag-list"
 import { BookmarkButton } from "@/components/bookmark-button"
 import navDataJson from "@/components/messages/nav.json"
@@ -67,6 +68,7 @@ export function ArticleCard({ post }: { post: ArticleCardPost }) {
                 )}
 
                     <CardContent className="relative flex flex-col flex-1 space-y-3 p-5 sm:p-6 bg-transparent">
+                    <ArticleRubricBadge rubric={post.rubric} isEnglish={isEnglish} className="mb-1" />
                     {/* 📅 дата + время чтения */}
                     <div className="text-xs text-muted-foreground/80 font-medium">
                         {formattedDate && <time dateTime={post.date}>{formattedDate}</time>}

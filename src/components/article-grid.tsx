@@ -3,6 +3,7 @@
 import { useState } from "react"
 import type { Post } from ".contentlayer/generated"
 import { ArticleCard } from "@/components/article-card"
+import { ArticleRubricBadge } from "@/components/article-rubric-badge"
 import { ArticleFilters } from "@/components/article-filters"
 import Link from "next/link"
 import Image from "next/image"
@@ -65,6 +66,11 @@ export function ArticleGrid({ posts, isEnglish = false }: { posts: Post[]; isEng
 
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex items-end p-8 sm:p-12">
                                 <div className="text-white max-w-3xl">
+                                    <ArticleRubricBadge
+                                        rubric={latestPost.rubric}
+                                        isEnglish={latestPost.locale === "en"}
+                                        className="mb-4 border-white/20 bg-white/10 text-white backdrop-blur-md"
+                                    />
                                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 leading-tight tracking-tight [text-shadow:_0_2px_20px_rgba(0,0,0,0.5)]">
                                         {latestPost.title}
                                     </h2>
