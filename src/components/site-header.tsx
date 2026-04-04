@@ -28,6 +28,7 @@ import { LanguageSwitcher } from "@/components/language-switcher"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import { DeepLink } from "@/components/deep-link"
 import { SearchBar } from "@/components/search-bar"
+import { SearchPageForm } from "@/components/search-page-form"
 import { CalculatorsDropdown } from "@/components/calculators-dropdown"
 import { FaInstagram, FaPinterest } from "react-icons/fa"
 import navData from "@/types/nav"
@@ -190,8 +191,11 @@ export function SiteHeader() {
                                 </SheetTitle>
                             </div>
                             <nav className="flex flex-1 flex-col gap-4 overflow-y-auto px-6 pb-6 pr-16">
-                                <div className="border-b pb-2">
-                                    <SearchBar isEnglish={isEnglish} />
+                                <div className="border-b pb-4">
+                                    <SearchPageForm
+                                        isEnglish={isEnglish}
+                                        onSubmitted={() => setOpen(false)}
+                                    />
                                 </div>
 
                                 {links.map((link: NavLink) => {

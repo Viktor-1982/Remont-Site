@@ -9,9 +9,14 @@ import { Button } from "@/components/ui/button"
 interface SearchPageFormProps {
     isEnglish?: boolean
     initialQuery?: string
+    onSubmitted?: () => void
 }
 
-export function SearchPageForm({ isEnglish = false, initialQuery = "" }: SearchPageFormProps) {
+export function SearchPageForm({
+    isEnglish = false,
+    initialQuery = "",
+    onSubmitted,
+}: SearchPageFormProps) {
     const [query, setQuery] = useState(initialQuery)
     const router = useRouter()
 
@@ -19,6 +24,7 @@ export function SearchPageForm({ isEnglish = false, initialQuery = "" }: SearchP
         event.preventDefault()
         const trimmed = query.trim()
         const prefix = isEnglish ? "/en/search" : "/search"
+        onSubmitted?.()
         router.push(trimmed ? `${prefix}?q=${encodeURIComponent(trimmed)}` : prefix)
     }
 
