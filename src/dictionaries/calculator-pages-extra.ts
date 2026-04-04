@@ -249,11 +249,11 @@ export const extraCalculatorPageDictionaries: Record<
                         accentClass: "text-rose-500",
                     },
                     {
-                        href: "/calculators/tile",
-                        title: "Калькулятор плитки",
-                        description: "Посчитайте отделку для мокрых зон, кухни или ванной.",
+                        href: "/bathroom",
+                        title: "Хаб по ванной",
+                        description: "Откройте подборку статей про плитку, ошибки, свет и планирование ванной.",
                         icon: "grid",
-                        accentClass: "text-emerald-500",
+                        accentClass: "text-sky-500",
                     },
                     {
                         href: "/calculators",
@@ -295,6 +295,13 @@ export const extraCalculatorPageDictionaries: Record<
             related: {
                 title: "Другие полезные инструменты",
                 cards: [
+                    {
+                        href: "/bathroom",
+                        title: "Хаб по ванной",
+                        description: "Соберите в одном месте статьи про вентиляцию, плитку, свет и ошибки ремонта ванной.",
+                        icon: "airVent",
+                        accentClass: "text-sky-500",
+                    },
                     {
                         href: "/calculators/underfloor-heating",
                         title: "Калькулятор теплого пола",
@@ -362,6 +369,13 @@ export const extraCalculatorPageDictionaries: Record<
             related: {
                 title: "Другие полезные инструменты",
                 cards: [
+                    {
+                        href: "/lighting",
+                        title: "Хаб по освещению",
+                        description: "Откройте подборку статей про свет, сценарии освещения, спальню, ванную и маленькие квартиры.",
+                        icon: "lightbulb",
+                        accentClass: "text-yellow-500",
+                    },
                     {
                         href: "/calculators/ventilation",
                         title: "Калькулятор вентиляции",
@@ -466,11 +480,11 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "Другие полезные инструменты",
                 cards: [
                     {
-                        href: "/calculators/paint",
-                        title: "Калькулятор краски",
-                        description: "Оцените расход краски для стен и потолков с учетом проемов.",
-                        icon: "thermometer",
-                        accentClass: "text-rose-500",
+                        href: "/bathroom",
+                        title: "Хаб по ванной",
+                        description: "Откройте подборку статей про плитку, теплый пол, вентиляцию и планировку ванной.",
+                        icon: "grid",
+                        accentClass: "text-sky-500",
                     },
                     {
                         href: "/calculators/tile",
@@ -737,11 +751,11 @@ export const extraCalculatorPageDictionaries: Record<
                         accentClass: "text-rose-500",
                     },
                     {
-                        href: "/en/calculators/tile",
-                        title: "Tile Calculator",
-                        description: "Estimate finishes for bathrooms, kitchens and other tiled zones.",
+                        href: "/en/bathroom",
+                        title: "Bathroom Hub",
+                        description: "Open the article hub with bathroom planning, tile choices, mistakes, and lighting guidance.",
                         icon: "grid",
-                        accentClass: "text-emerald-500",
+                        accentClass: "text-sky-500",
                     },
                     {
                         href: "/en/calculators",
@@ -783,6 +797,13 @@ export const extraCalculatorPageDictionaries: Record<
             related: {
                 title: "Other useful tools",
                 cards: [
+                    {
+                        href: "/en/bathroom",
+                        title: "Bathroom Hub",
+                        description: "Keep bathroom ventilation, tile, lighting, and layout guidance in one place.",
+                        icon: "airVent",
+                        accentClass: "text-sky-500",
+                    },
                     {
                         href: "/en/calculators/underfloor-heating",
                         title: "Underfloor Heating",
@@ -850,6 +871,13 @@ export const extraCalculatorPageDictionaries: Record<
             related: {
                 title: "Other useful tools",
                 cards: [
+                    {
+                        href: "/en/lighting",
+                        title: "Lighting Hub",
+                        description: "Open the article hub with room-by-room lighting ideas, lighting trends, and practical planning guidance.",
+                        icon: "lightbulb",
+                        accentClass: "text-yellow-500",
+                    },
                     {
                         href: "/en/calculators/ventilation",
                         title: "Ventilation Calculator",
@@ -954,11 +982,11 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "More renovation tools",
                 cards: [
                     {
-                        href: "/en/calculators/paint",
-                        title: "Paint Calculator",
-                        description: "Estimate paint for walls and ceilings while planning the same room.",
-                        icon: "thermometer",
-                        accentClass: "text-rose-500",
+                        href: "/en/bathroom",
+                        title: "Bathroom Hub",
+                        description: "Open the article hub with bathroom tile, heated floors, ventilation, and remodel planning.",
+                        icon: "grid",
+                        accentClass: "text-sky-500",
                     },
                     {
                         href: "/en/calculators/tile",

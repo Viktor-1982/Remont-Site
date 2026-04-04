@@ -54,8 +54,8 @@ export function getPageMetadata(
     const defaultLanguages = autoAlternateLanguages === false
         ? undefined
         : {
-            ru: `${baseUrl}${localePaths.ru}`,
-            en: `${baseUrl}${localePaths.en}`,
+            "ru-RU": `${baseUrl}${localePaths.ru}`,
+            "en-US": `${baseUrl}${localePaths.en}`,
             "x-default": `${baseUrl}${localePaths.ru}`,
         }
 

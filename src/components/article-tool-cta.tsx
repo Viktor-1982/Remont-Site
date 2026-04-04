@@ -14,7 +14,13 @@ import {
     Wind,
 } from "lucide-react"
 import Link from "next/link"
-import { getArticleTools, type ArticleToolCard, type ArticleToolIcon, type ArticleToolLocale } from "@/lib/article-tools"
+import {
+    getArticleTools,
+    type ArticleHubCard,
+    type ArticleToolCard,
+    type ArticleToolIcon,
+    type ArticleToolLocale,
+} from "@/lib/article-tools"
 
 const iconMap: Record<ArticleToolIcon, typeof Paintbrush> = {
     paintbrush: Paintbrush,
@@ -33,11 +39,9 @@ const iconMap: Record<ArticleToolIcon, typeof Paintbrush> = {
 function SecondaryCard({
     card,
     label,
-    buttonLabel,
 }: {
-    card: ArticleToolCard
+    card: ArticleToolCard | ArticleHubCard
     label: string
-    buttonLabel: string
 }) {
     const Icon = iconMap[card.icon]
 
@@ -60,11 +64,14 @@ function SecondaryCard({
                     </span>
                 </div>
 
+                <div className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary/80">
+                    {card.badge}
+                </div>
                 <h3 className="mb-2 text-base font-semibold text-foreground">{card.title}</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">{card.description}</p>
 
                 <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-all group-hover:gap-3">
-                    {buttonLabel}
+                    {card.ctaLabel}
                     <ArrowRight className="h-4 w-4" />
                 </span>
             </div>
@@ -132,21 +139,36 @@ export function ArticleToolCta({
                             </p>
 
                             <div className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all group-hover:gap-3 group-hover:shadow-xl group-hover:shadow-primary/25">
-                                {section.buttonLabel}
+                                {section.primary.ctaLabel}
                                 <ArrowRight className="h-4 w-4" />
                             </div>
                         </div>
                     </Link>
 
                     <div className="grid gap-4">
+                        {section.hub ? <SecondaryCard card={section.hub} label={section.hubLabel} /> : null}
                         {section.secondary.map((card) => (
-                            <SecondaryCard
-                                key={card.id}
-                                card={card}
-                                label={section.secondaryLabel}
-                                buttonLabel={section.buttonLabel}
-                            />
+                            <SecondaryCard key={card.id} card={card} label={section.secondaryLabel} />
                         ))}
+                    </div>
+                </div>
+
+                <div className="relative z-10 mt-6 grid gap-4 border-t border-border/60 pt-6 sm:grid-cols-2">
+                    <div className="rounded-2xl border border-border/60 bg-background/80 px-4 py-4">
+                        <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                            {section.trust.updatedLabel}
+                        </div>
+                        <div className="mt-2 text-sm font-semibold text-foreground sm:text-base">
+                            {section.trust.updatedValue}
+                        </div>
+                    </div>
+                    <div className="rounded-2xl border border-border/60 bg-background/80 px-4 py-4">
+                        <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                            {section.trust.basisLabel}
+                        </div>
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                            {section.trust.basisValue}
+                        </p>
                     </div>
                 </div>
             </div>

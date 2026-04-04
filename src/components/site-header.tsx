@@ -1,9 +1,11 @@
 "use client"
 
+import { Fragment, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import {
+    Bath,
     Calculator,
     ChevronDown,
     ChevronRight,
@@ -30,11 +32,12 @@ import { DeepLink } from "@/components/deep-link"
 import { SearchBar } from "@/components/search-bar"
 import { SearchPageForm } from "@/components/search-page-form"
 import { CalculatorsDropdown } from "@/components/calculators-dropdown"
+import { TopicHubsDropdown } from "@/components/topic-hubs-dropdown"
 import { FaInstagram, FaPinterest } from "react-icons/fa"
 import navData from "@/types/nav"
 import type { Locale, NavData, NavLink } from "@/types/nav"
-import { useState } from "react"
 import { getToolShortcuts } from "@/dictionaries/tool-shortcuts"
+import { getTopicHubsDictionary } from "@/dictionaries/topic-hubs"
 
 const toolIcons = {
     paintbrush: Paintbrush,
@@ -51,15 +54,31 @@ const toolIcons = {
     shoppingCart: ShoppingCart,
 } as const
 
+const topicHubIcons = {
+    bath: Bath,
+    lightbulb: Lightbulb,
+} as const
+
 export function SiteHeader() {
     const pathname = usePathname()
     const isEnglish = pathname.startsWith("/en")
     const locale: Locale = isEnglish ? "en" : "ru"
     const { links, social, header } = (navData as NavData)[locale]
     const [open, setOpen] = useState(false)
+    const [topicsOpen, setTopicsOpen] = useState(false)
     const [toolsOpen, setToolsOpen] = useState(false)
     const calculators = getToolShortcuts(locale)
+    const topicHubs = getTopicHubsDictionary(locale)
     const allCalculatorsHref = isEnglish ? "/en/tools" : "/tools"
+
+    const handleSheetOpenChange = (nextOpen: boolean) => {
+        setOpen(nextOpen)
+
+        if (!nextOpen) {
+            setTopicsOpen(false)
+            setToolsOpen(false)
+        }
+    }
 
     const isActive = (href: string): boolean => {
         const normalizedPathname =
@@ -119,7 +138,12 @@ export function SiteHeader() {
                             link.href === "/calculators" ||
                             link.href === "/en/calculators"
                         ) {
-                            return <CalculatorsDropdown key={link.href} isEnglish={isEnglish} />
+                            return (
+                                <Fragment key={link.href}>
+                                    <TopicHubsDropdown isEnglish={isEnglish} />
+                                    <CalculatorsDropdown isEnglish={isEnglish} />
+                                </Fragment>
+                            )
                         }
 
                         return (
@@ -172,7 +196,7 @@ export function SiteHeader() {
                     <div className="shrink-0">
                         <ThemeSwitcher />
                     </div>
-                    <Sheet open={open} onOpenChange={setOpen}>
+                    <Sheet open={open} onOpenChange={handleSheetOpenChange}>
                         <SheetTrigger asChild>
                             <Button
                                 variant="ghost"
@@ -194,7 +218,7 @@ export function SiteHeader() {
                                 <div className="border-b pb-4">
                                     <SearchPageForm
                                         isEnglish={isEnglish}
-                                        onSubmitted={() => setOpen(false)}
+                                        onSubmitted={() => handleSheetOpenChange(false)}
                                     />
                                 </div>
 
@@ -206,57 +230,105 @@ export function SiteHeader() {
                                         link.href === "/en/calculators"
                                     ) {
                                         return (
-                                            <div key={link.href} className="flex flex-col gap-2">
-                                                <button
-                                                    onClick={() => setToolsOpen(!toolsOpen)}
-                                                    className={cn(
-                                                        "flex items-center justify-between text-lg font-semibold transition-colors hover:text-primary",
-                                                        isActive(link.href)
-                                                            ? "text-primary"
-                                                            : "text-foreground/90 hover:text-foreground"
-                                                    )}
-                                                >
-                                                    <span className="flex items-center gap-2">
-                                                        <Calculator className="h-5 w-5" />
-                                                        {link.label}
-                                                    </span>
-                                                    {toolsOpen ? (
-                                                        <ChevronDown className="h-4 w-4 transition-transform" />
-                                                    ) : (
-                                                        <ChevronRight className="h-4 w-4 transition-transform" />
-                                                    )}
-                                                </button>
-                                                {toolsOpen && (
-                                                    <div className="ml-7 flex flex-col gap-2 border-l border-border/50 pl-4">
-                                                        <div className="-mr-2 flex max-h-[45vh] flex-col gap-2 overflow-y-auto pr-2">
-                                                            {calculators.map((calc) => {
-                                                                const Icon = toolIcons[calc.icon]
+                                            <Fragment key={link.href}>
+                                                <div className="flex flex-col gap-2">
+                                                    <button
+                                                        onClick={() => setTopicsOpen(!topicsOpen)}
+                                                        className={cn(
+                                                            "flex items-center justify-between text-lg font-semibold transition-colors hover:text-primary",
+                                                            topicHubs.items.some((item) => isActive(item.href))
+                                                                ? "text-primary"
+                                                                : "text-foreground/90 hover:text-foreground"
+                                                        )}
+                                                    >
+                                                        <span className="flex items-center gap-2">
+                                                            <Sparkles className="h-5 w-5" />
+                                                            {topicHubs.mobileLabel}
+                                                        </span>
+                                                        {topicsOpen ? (
+                                                            <ChevronDown className="h-4 w-4 transition-transform" />
+                                                        ) : (
+                                                            <ChevronRight className="h-4 w-4 transition-transform" />
+                                                        )}
+                                                    </button>
+                                                    {topicsOpen ? (
+                                                        <div className="ml-7 flex flex-col gap-2 border-l border-border/50 pl-4">
+                                                            {topicHubs.items.map((item) => {
+                                                                const Icon = topicHubIcons[item.icon]
+
                                                                 return (
                                                                     <Link
-                                                                        key={calc.href}
-                                                                        href={calc.href}
-                                                                        onClick={() => setOpen(false)}
+                                                                        key={item.href}
+                                                                        href={item.href}
+                                                                        onClick={() => handleSheetOpenChange(false)}
                                                                         className="flex items-start gap-3 py-1 text-foreground/80 transition-colors hover:text-primary"
                                                                     >
-                                                                        <Icon className="mt-0.5 h-4 w-4 text-primary" />
+                                                                        <Icon className={cn("mt-0.5 h-4 w-4", item.iconClass)} />
                                                                         <div className="min-w-0 flex-1">
-                                                                            <div className="text-base font-medium">{calc.label}</div>
+                                                                            <div className="text-base font-medium">{item.label}</div>
+                                                                            <div className="text-sm text-muted-foreground">
+                                                                                {item.desc}
+                                                                            </div>
                                                                         </div>
                                                                     </Link>
                                                                 )
                                                             })}
                                                         </div>
-                                                        <Link
-                                                            href={allCalculatorsHref}
-                                                            onClick={() => setOpen(false)}
-                                                            className="mt-1 flex items-center gap-2 text-base font-semibold text-primary"
-                                                        >
-                                                            <Calculator className="h-4 w-4" />
-                                                            {isEnglish ? "View all tools" : "Все инструменты"}
-                                                        </Link>
-                                                    </div>
-                                                )}
-                                            </div>
+                                                    ) : null}
+                                                </div>
+
+                                                <div className="flex flex-col gap-2">
+                                                    <button
+                                                        onClick={() => setToolsOpen(!toolsOpen)}
+                                                        className={cn(
+                                                            "flex items-center justify-between text-lg font-semibold transition-colors hover:text-primary",
+                                                            isActive(link.href)
+                                                                ? "text-primary"
+                                                                : "text-foreground/90 hover:text-foreground"
+                                                        )}
+                                                    >
+                                                        <span className="flex items-center gap-2">
+                                                            <Calculator className="h-5 w-5" />
+                                                            {link.label}
+                                                        </span>
+                                                        {toolsOpen ? (
+                                                            <ChevronDown className="h-4 w-4 transition-transform" />
+                                                        ) : (
+                                                            <ChevronRight className="h-4 w-4 transition-transform" />
+                                                        )}
+                                                    </button>
+                                                    {toolsOpen ? (
+                                                        <div className="ml-7 flex flex-col gap-2 border-l border-border/50 pl-4">
+                                                            <div className="-mr-2 flex max-h-[45vh] flex-col gap-2 overflow-y-auto pr-2">
+                                                                {calculators.map((calc) => {
+                                                                    const Icon = toolIcons[calc.icon]
+                                                                    return (
+                                                                        <Link
+                                                                            key={calc.href}
+                                                                            href={calc.href}
+                                                                            onClick={() => handleSheetOpenChange(false)}
+                                                                            className="flex items-start gap-3 py-1 text-foreground/80 transition-colors hover:text-primary"
+                                                                        >
+                                                                            <Icon className="mt-0.5 h-4 w-4 text-primary" />
+                                                                            <div className="min-w-0 flex-1">
+                                                                                <div className="text-base font-medium">{calc.label}</div>
+                                                                            </div>
+                                                                        </Link>
+                                                                    )
+                                                                })}
+                                                            </div>
+                                                            <Link
+                                                                href={allCalculatorsHref}
+                                                                onClick={() => handleSheetOpenChange(false)}
+                                                                className="mt-1 flex items-center gap-2 text-base font-semibold text-primary"
+                                                            >
+                                                                <Calculator className="h-4 w-4" />
+                                                                {isEnglish ? "View all tools" : "Все инструменты"}
+                                                            </Link>
+                                                        </div>
+                                                    ) : null}
+                                                </div>
+                                            </Fragment>
                                         )
                                     }
 
@@ -264,7 +336,7 @@ export function SiteHeader() {
                                         <Link
                                             key={link.href}
                                             href={link.href}
-                                            onClick={() => setOpen(false)}
+                                            onClick={() => handleSheetOpenChange(false)}
                                             className={cn(
                                                 "text-lg font-semibold transition-colors hover:text-primary",
                                                 isActive(link.href)

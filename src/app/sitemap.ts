@@ -50,6 +50,10 @@ const staticPageConfig = [
     { path: "/en/quiz/interior-style", changeFrequency: "monthly" as const, priority: 0.4 },
     { path: "/smety", changeFrequency: "weekly" as const, priority: 0.7 },
     { path: "/en/costs", changeFrequency: "weekly" as const, priority: 0.7 },
+    { path: "/lighting", changeFrequency: "weekly" as const, priority: 0.7 },
+    { path: "/en/lighting", changeFrequency: "weekly" as const, priority: 0.7 },
+    { path: "/bathroom", changeFrequency: "weekly" as const, priority: 0.7 },
+    { path: "/en/bathroom", changeFrequency: "weekly" as const, priority: 0.7 },
 ] as const
 
 function getLatestPublishedDate() {

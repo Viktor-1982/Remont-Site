@@ -6,8 +6,8 @@ import { HomeBackgroundAnimation } from "@/components/home-background-animation"
 import { PopularPosts } from "@/components/popular-posts"
 import { EmailSubscription } from "@/components/email-subscription"
 import { CalculatorsShowcase } from "@/components/calculators-showcase"
+import { TopicHubsShowcase } from "@/components/topic-hubs-showcase"
 
-// Статическая страница с обновлением раз в сутки
 export const revalidate = 86400
 export const dynamic = "force-static"
 
@@ -70,31 +70,26 @@ export default function HomePage() {
 
     return (
         <main>
-            {/* Строительные анимации на фоне */}
             <HomeBackgroundAnimation />
-
-            {/* Баннер во всю ширину */}
             <HeroBanner />
 
-            {/* Контент внутри контейнера */}
-            <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16 max-w-7xl">
-                {/* Якорь для стрелки */}
+            <div className="container mx-auto max-w-7xl space-y-16 px-4 py-12 sm:px-6 sm:py-16">
+                <TopicHubsShowcase />
+
                 <section id="articles">
                     <div className="mb-10">
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-balance tracking-tight text-center sm:text-left">
+                        <h2 className="text-center text-3xl font-bold tracking-tight text-balance sm:text-left sm:text-4xl md:text-5xl">
                             <span className="text-gradient">Статьи с пошаговыми инструкциями</span>
                         </h2>
-                        <p className="text-lg text-muted-foreground/80 max-w-2xl mx-auto sm:mx-0 text-center sm:text-left">
+                        <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-muted-foreground/80 sm:mx-0 sm:text-left">
                             Практические советы, фото-гайды и лайфхаки для качественного ремонта своими руками
                         </p>
                     </div>
-                    <ArticleGrid posts={posts} isEnglish={false} />
 
-                    {/* Популярные статьи */}
+                    <ArticleGrid posts={posts} isEnglish={false} />
                     <PopularPosts posts={posts} locale="ru" limit={6} />
                 </section>
 
-                {/* Ключевые инструменты после контентного блока */}
                 <CalculatorsShowcase
                     isEnglish={false}
                     limit={4}
@@ -103,7 +98,6 @@ export default function HomePage() {
                     badgeLabel="Калькуляторы"
                 />
 
-                {/* Email-подписка */}
                 <section className="mt-16 sm:mt-20">
                     <EmailSubscription locale="ru" variant="default" />
                 </section>

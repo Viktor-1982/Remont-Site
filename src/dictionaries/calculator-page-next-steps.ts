@@ -95,9 +95,9 @@ export const calculatorPageNextSteps: Record<
         },
         tile: {
             nextSteps: {
-                title: "Следующий шаг после плитки",
+                title: "Что проверить после расчета плитки",
                 description:
-                    "После раскладки и коробок обычно нужно проверить инженерку мокрой зоны и итоговую смету.",
+                    "После раскладки и коробок обычно переходят к инженерке мокрой зоны и связанной планировке ванной.",
                 cards: [
                     {
                         href: "/calculators/underfloor-heating",
@@ -108,11 +108,11 @@ export const calculatorPageNextSteps: Record<
                         accentClass: "text-orange-500",
                     },
                     {
-                        href: "/calculators/budget",
-                        title: "Планировщик бюджета",
-                        description: "Сведите плитку, клей, теплый пол и расходники в одну понятную смету.",
-                        icon: "layers",
-                        accentClass: "text-amber-500",
+                        href: "/bathroom",
+                        title: "Хаб по ванной",
+                        description: "Откройте подборку статей про плитку, вентиляцию, свет и ошибки ремонта ванной.",
+                        icon: "grid",
+                        accentClass: "text-sky-500",
                     },
                 ],
             },
@@ -352,9 +352,9 @@ export const calculatorPageNextSteps: Record<
         },
         tile: {
             nextSteps: {
-                title: "Next step after tile",
+                title: "What to review after tile planning",
                 description:
-                    "After box count and layout, the usual follow-up is wet-zone engineering and the full material budget.",
+                    "After tile layout and box count, the usual follow-up is wet-zone engineering and the connected bathroom planning decisions.",
                 cards: [
                     {
                         href: "/en/calculators/underfloor-heating",
@@ -364,11 +364,11 @@ export const calculatorPageNextSteps: Record<
                         accentClass: "text-orange-500",
                     },
                     {
-                        href: "/en/calculators/budget",
-                        title: "Budget Planner",
-                        description: "Roll tile, adhesive, heating and accessories into one cleaner purchase budget.",
-                        icon: "layers",
-                        accentClass: "text-amber-500",
+                        href: "/en/bathroom",
+                        title: "Bathroom Hub",
+                        description: "Open the article hub with bathroom tile, ventilation, lighting, and remodeling guidance.",
+                        icon: "grid",
+                        accentClass: "text-sky-500",
                     },
                 ],
             },
