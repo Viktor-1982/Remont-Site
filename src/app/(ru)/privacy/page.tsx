@@ -6,7 +6,7 @@ import Script from "next/script"
 export const metadata = getPageMetadata("/privacy", {
     title: "Политика конфиденциальности | Renohacks",
     description:
-        "Политика конфиденциальности Renohacks.com: данные подписки, cookies, аналитика и способы управления согласием.",
+        "Политика конфиденциальности Renohacks.com: данные подписки, cookies, аналитика и управление согласием.",
     cover: "/images/og-default.png",
     type: "article",
 })
@@ -60,11 +60,11 @@ export default function PrivacyPage() {
                     <CardContent className="space-y-4">
                         <p className="leading-relaxed text-muted-foreground">
                             Эта Политика конфиденциальности описывает, как{" "}
-                            <strong>renohacks.com</strong> (далее - «Сайт», «мы», «нас») собирает,
-                            использует и защищает информацию посетителей.
+                            <strong>renohacks.com</strong> собирает, использует и
+                            защищает информацию посетителей сайта.
                         </p>
                         <p className="leading-relaxed text-muted-foreground">
-                            Используя Сайт, вы соглашаетесь с условиями этой Политики
+                            Используя сайт, вы соглашаетесь с условиями этой Политики
                             конфиденциальности.
                         </p>
                     </CardContent>
@@ -75,42 +75,47 @@ export default function PrivacyPage() {
                         <div className="flex items-center gap-3">
                             <Lock className="h-6 w-6 text-primary" />
                             <CardTitle className="text-2xl">
-                                2. Сбор персональных данных
+                                2. Какие персональные данные мы собираем
                             </CardTitle>
                         </div>
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <p className="leading-relaxed text-muted-foreground">
-                            Мы собираем минимальный набор персональных данных только для работы
-                            email-подписки:
+                            Мы собираем минимальный набор персональных данных только для
+                            работы email-подписки:
                         </p>
                         <ul className="list-inside list-disc space-y-2 text-muted-foreground">
                             <li>
-                                <strong>Email-адрес</strong> - собирается только при добровольной
-                                подписке через форму
+                                <strong>Email-адрес</strong> — собирается только при
+                                добровольной подписке через форму
                             </li>
                             <li>
-                                <strong>Язык интерфейса</strong> (ru/en) - используется для отправки
-                                писем на нужном языке
+                                <strong>Направление рассылки</strong> — используется,
+                                чтобы отправлять выбранный тип писем: планирование и
+                                бюджет, идеи и тренды или ошибки и гайды
                             </li>
                             <li>
-                                <strong>Дата подписки</strong> - используется для управления
-                                подпиской
+                                <strong>Язык интерфейса</strong> (ru/en) — используется
+                                для отправки писем на нужном языке
+                            </li>
+                            <li>
+                                <strong>Дата подписки</strong> — используется для
+                                управления подпиской
                             </li>
                         </ul>
                         <p className="leading-relaxed text-muted-foreground">
-                            Мы не собираем через Сайт платёжные данные, почтовые адреса и профили
-                            пользователей.
+                            Мы не собираем через сайт платежные данные, почтовые адреса
+                            или пользовательские профили.
                         </p>
                         <p className="leading-relaxed text-muted-foreground">
-                            Email-адреса подписчиков хранятся в Supabase и используются только для
-                            писем, связанных с подпиской. Отписаться можно в любой момент по ссылке
-                            в письме или написав нам на{" "}
+                            Email-адреса подписчиков хранятся в Supabase и используются
+                            только для писем, связанных с подпиской. Отписаться можно в
+                            любой момент по ссылке в письме или написав нам на{" "}
                             <a
-                        href="mailto:vles8878@gmail.com"
+                                href="mailto:vles8878@gmail.com"
                                 className="text-primary hover:underline"
                             >
-                        vles8878@gmail.com
+                                vles8878@gmail.com
                             </a>
                             .
                         </p>
@@ -121,7 +126,7 @@ export default function PrivacyPage() {
                     <CardHeader>
                         <div className="flex items-center gap-3">
                             <Cookie className="h-6 w-6 text-primary" />
-                            <CardTitle className="text-2xl">3. Использование cookies</CardTitle>
+                            <CardTitle className="text-2xl">3. Cookies и local storage</CardTitle>
                         </div>
                     </CardHeader>
                     <CardContent className="space-y-4">
@@ -137,18 +142,19 @@ export default function PrivacyPage() {
                                 </div>
                                 <ul className="ml-7 list-inside list-disc space-y-1 text-sm text-muted-foreground">
                                     <li>
-                                        <strong>Yandex.Metrika</strong> - статистика посещений,
-                                        поведение пользователей и технические метрики
+                                        <strong>Yandex.Metrika</strong> — статистика
+                                        посещений, поведение пользователей и технические
+                                        метрики
                                     </li>
                                     <li>
-                                        <strong>Google Analytics</strong> (через Google Tag Manager)
-                                        - анализ трафика и эффективности контента
+                                        <strong>Google Analytics</strong> (через Google Tag
+                                        Manager) — анализ трафика и эффективности контента
                                     </li>
                                 </ul>
                                 <p className="ml-7 mt-2 text-sm text-muted-foreground">
-                                    Эти сервисы собирают агрегированные или частично анонимизированные
-                                    данные, например тип устройства, браузер, посещённые страницы и
-                                    время на сайте.
+                                    Эти сервисы собирают агрегированные или частично
+                                    анонимизированные данные, например тип устройства,
+                                    браузер, посещенные страницы и время на сайте.
                                 </p>
                             </div>
 
@@ -159,13 +165,14 @@ export default function PrivacyPage() {
                                 </div>
                                 <ul className="ml-7 list-inside list-disc space-y-1 text-sm text-muted-foreground">
                                     <li>
-                                        <strong>Google AdSense</strong> - показ релевантной рекламы
+                                        <strong>Google AdSense</strong> — показ релевантной
+                                        рекламы
                                     </li>
                                 </ul>
                                 <p className="ml-7 mt-2 text-sm text-muted-foreground">
-                                    AdSense использует cookies для персонализации рекламы и измерения
-                                    её эффективности. Мы используем Google Consent Mode, чтобы
-                                    учитывать выбор пользователя.
+                                    AdSense использует cookies для персонализации рекламы
+                                    и измерения ее эффективности. Мы используем Google
+                                    Consent Mode, чтобы учитывать выбор пользователя.
                                 </p>
                             </div>
 
@@ -176,23 +183,24 @@ export default function PrivacyPage() {
                                 </div>
                                 <ul className="ml-7 list-inside list-disc space-y-1 text-sm text-muted-foreground">
                                     <li>
-                                        <strong>Функциональное хранилище</strong> - язык интерфейса,
-                                        статус подписки и защита от повторной подписки
+                                        <strong>Функциональное хранилище</strong> — язык
+                                        интерфейса, выбранное направление писем, статус
+                                        подписки и защита от повторной подписки
                                     </li>
                                 </ul>
                                 <p className="ml-7 mt-2 text-sm text-muted-foreground">
-                                    Эти данные нужны для работы формы подписки и не используются для
-                                    рекламного таргетинга.
+                                    Эти данные нужны для работы формы подписки и не
+                                    используются для рекламного таргетинга.
                                 </p>
                             </div>
                         </div>
 
                         <div className="mt-4 rounded-lg border border-primary/20 bg-primary/5 p-4 dark:bg-primary/10">
                             <p className="text-sm leading-relaxed text-muted-foreground">
-                                <strong>Управление cookies:</strong> при первом посещении баннер
-                                позволяет принять или отклонить аналитические и рекламные cookies.
-                                Если вы захотите изменить выбор позже, очистите данные этого сайта в
-                                браузере и перезагрузите страницу.
+                                <strong>Управление cookies:</strong> при первом посещении
+                                баннер позволяет принять или отклонить аналитические и
+                                рекламные cookies. Чтобы изменить этот выбор позже,
+                                очистите данные сайта в браузере и перезагрузите страницу.
                             </p>
                         </div>
                     </CardContent>
@@ -208,7 +216,7 @@ export default function PrivacyPage() {
                         </p>
                         <ul className="list-inside list-disc space-y-2 text-muted-foreground">
                             <li>
-                                <strong>Yandex.Metrika</strong> -{" "}
+                                <strong>Yandex.Metrika</strong> —{" "}
                                 <a
                                     href="https://yandex.ru/legal/confidential/"
                                     target="_blank"
@@ -219,7 +227,7 @@ export default function PrivacyPage() {
                                 </a>
                             </li>
                             <li>
-                                <strong>Google Analytics / Google Tag Manager</strong> -{" "}
+                                <strong>Google Analytics / Google Tag Manager</strong> —{" "}
                                 <a
                                     href="https://policies.google.com/privacy"
                                     target="_blank"
@@ -230,7 +238,7 @@ export default function PrivacyPage() {
                                 </a>
                             </li>
                             <li>
-                                <strong>Google AdSense</strong> -{" "}
+                                <strong>Google AdSense</strong> —{" "}
                                 <a
                                     href="https://policies.google.com/privacy"
                                     target="_blank"
@@ -241,7 +249,7 @@ export default function PrivacyPage() {
                                 </a>
                             </li>
                             <li>
-                                <strong>Resend</strong> - сервис доставки email-рассылки (
+                                <strong>Resend</strong> — сервис доставки email-рассылки (
                                 <a
                                     href="https://resend.com/legal/privacy-policy"
                                     target="_blank"
@@ -253,7 +261,8 @@ export default function PrivacyPage() {
                                 )
                             </li>
                             <li>
-                                <strong>Supabase</strong> - безопасное хранение данных подписки (
+                                <strong>Supabase</strong> — безопасное хранение данных
+                                подписки (
                                 <a
                                     href="https://supabase.com/privacy"
                                     target="_blank"
@@ -274,12 +283,13 @@ export default function PrivacyPage() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <p className="leading-relaxed text-muted-foreground">
-                            Мы храним email-адреса подписчиков и связанную с подпиской техническую
-                            информацию только в объёме, необходимом для работы подписки.
+                            Мы храним email-адреса подписчиков и связанную с подпиской
+                            техническую информацию только в объеме, необходимом для
+                            работы подписки.
                         </p>
                         <p className="leading-relaxed text-muted-foreground">
-                            Мы применяем стандартные технические и организационные меры, чтобы
-                            снизить риск несанкционированного доступа к этим данным.
+                            Мы применяем стандартные технические и организационные меры,
+                            чтобы снизить риск несанкционированного доступа к этим данным.
                         </p>
                     </CardContent>
                 </Card>
@@ -294,16 +304,16 @@ export default function PrivacyPage() {
                         </p>
                         <ul className="list-inside list-disc space-y-2 text-muted-foreground">
                             <li>
-                                Принять или отклонить аналитические и рекламные cookies при первом
-                                посещении
+                                Принять или отклонить аналитические и рекламные cookies при
+                                первом посещении
                             </li>
                             <li>
-                                Изменить этот выбор позже через очистку данных сайта в браузере и
-                                повторную загрузку страницы
+                                Изменить этот выбор позже, очистив данные сайта в браузере
+                                и снова открыв страницу
                             </li>
                             <li>
-                                Запросить удаление данных email-подписки через ссылку отписки или по
-                                email
+                                Запросить удаление данных email-подписки через ссылку
+                                отписки или по email
                             </li>
                         </ul>
                     </CardContent>
@@ -315,8 +325,8 @@ export default function PrivacyPage() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <p className="leading-relaxed text-muted-foreground">
-                            Мы можем обновлять эту Политику конфиденциальности. Дата последнего
-                            обновления указана в начале страницы.
+                            Мы можем обновлять эту Политику конфиденциальности. Дата
+                            последнего обновления указана в начале страницы.
                         </p>
                     </CardContent>
                 </Card>
@@ -330,8 +340,8 @@ export default function PrivacyPage() {
                     </CardHeader>
                     <CardContent>
                         <p className="mb-4 text-muted-foreground">
-                            Если у вас есть вопросы по этой Политике конфиденциальности, напишите
-                            нам:
+                            Если у вас есть вопросы по этой Политике конфиденциальности,
+                            напишите нам:
                         </p>
                         <a
                             href="mailto:vles8878@gmail.com"

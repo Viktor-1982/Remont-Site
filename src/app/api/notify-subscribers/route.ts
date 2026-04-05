@@ -5,6 +5,7 @@ import { wasNotificationSent, saveNotificationSent } from "@/lib/notifications-r
 import { NOTIFIABLE_CALCULATORS } from "@/lib/notifiable-calculators"
 import { authorizeRequest } from "@/lib/request-auth"
 import { getAllSubscriptions } from "@/lib/subscriptions-repo"
+import { getContentSegments, type SubscriptionSegment } from "@/lib/subscription-segments"
 import { buildUnsubscribeUrl } from "@/lib/unsubscribe-token"
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
@@ -20,6 +21,7 @@ type NotifiableContent = {
     kind: ContentKind
     slug: string
     locale: "ru" | "en"
+    segments: SubscriptionSegment[]
     title: string
     description: string
     url: string
@@ -56,6 +58,12 @@ function mapPostToContent(post: Post): NotifiableContent {
         kind: "article",
         slug: post.slug,
         locale,
+        segments: getContentSegments({
+            kind: "article",
+            slug: post.slug,
+            rubric: post.rubric,
+            series: post.series,
+        }),
         title: post.title,
         description: post.description,
         url: post.url,
@@ -73,6 +81,10 @@ function getAllNotifiableContent(): NotifiableContent[] {
         kind: "calculator",
         slug: calculator.slug,
         locale: calculator.locale,
+        segments: getContentSegments({
+            kind: "calculator",
+            slug: calculator.slug,
+        }),
         title: calculator.title,
         description: calculator.description,
         url: calculator.url,
@@ -164,13 +176,17 @@ async function sendNotificationsForContent(item: NotifiableContent): Promise<Not
         }
     }
 
-    const targetSubscribers = subscribers.filter((subscriber) => subscriber.locale === item.locale)
+    const targetSubscribers = subscribers.filter(
+        (subscriber) =>
+            subscriber.locale === item.locale &&
+            (!subscriber.segment || item.segments.includes(subscriber.segment))
+    )
     if (targetSubscribers.length === 0) {
         return {
             sent: 0,
             failed: 0,
             total: 0,
-            errors: [`No subscribers found for locale "${item.locale}"`],
+            errors: [`No subscribers found for locale "${item.locale}" and matching segment`],
         }
     }
 

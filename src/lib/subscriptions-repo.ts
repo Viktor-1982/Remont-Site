@@ -1,19 +1,31 @@
 import { supabaseAdmin, supabaseReady } from "./supabase-admin"
 import { subscriptions as memoryStore, type Subscription } from "@/app/api/subscriptions/store"
+import {
+    SUBSCRIPTION_SEGMENTS,
+    isSubscriptionSegment,
+    type SubscriptionSegment,
+} from "@/lib/subscription-segments"
 
 type SubscriptionRow = {
     email: string
     locale: "ru" | "en"
+    segment: string | null
     source: string | null
     subscribed_at: string | null
 }
 
 const nowIso = () => new Date().toISOString()
 
+function isMissingSegmentColumnError(error: { message?: string } | null | undefined): boolean {
+    const message = error?.message?.toLowerCase() ?? ""
+    return message.includes("segment") && (message.includes("column") || message.includes("schema"))
+}
+
 function mapRow(row: SubscriptionRow): Subscription {
     return {
         email: row.email,
         locale: row.locale,
+        segment: isSubscriptionSegment(row.segment) ? row.segment : null,
         source: row.source ?? undefined,
         subscribedAt: row.subscribed_at ? new Date(row.subscribed_at).getTime() : Date.now(),
     }
@@ -53,6 +65,7 @@ export async function upsertSubscription(payload: Subscription): Promise<void> {
     const record: SubscriptionRow = {
         email: payload.email.toLowerCase(),
         locale: payload.locale,
+        segment: payload.segment,
         source: payload.source ?? null,
         subscribed_at: new Date(payload.subscribedAt).toISOString(),
     }
@@ -67,6 +80,26 @@ export async function upsertSubscription(payload: Subscription): Promise<void> {
             })
 
             if (error) {
+                if (isMissingSegmentColumnError(error)) {
+                    const { error: retryError } = await supabaseAdmin.from("subscriptions").upsert(
+                        {
+                            email: record.email,
+                            locale: record.locale,
+                            source: record.source,
+                            subscribed_at: nowIso(),
+                        },
+                        {
+                            onConflict: "email",
+                        }
+                    )
+
+                    if (!retryError) {
+                        return
+                    }
+
+                    console.error("Supabase retry without segment failed:", retryError)
+                }
+
                 console.error("Supabase upsertSubscription error:", error)
                 console.error("Error details:", JSON.stringify(error, null, 2))
                 console.error("Record being upserted:", record)
@@ -152,20 +185,57 @@ export async function getAllSubscriptions(): Promise<Subscription[]> {
 
 export async function getStats() {
     if (supabaseReady && supabaseAdmin) {
-        const { data, error } = await supabaseAdmin.from("subscriptions").select("locale")
+        let data: Array<{ locale: "ru" | "en"; segment?: SubscriptionSegment | null }> = []
+
+        const { data: rowsWithSegment, error } = await supabaseAdmin
+            .from("subscriptions")
+            .select("locale, segment")
+
         if (error) {
-            console.error("Supabase getStats error:", error)
-            throw error
+            if (!isMissingSegmentColumnError(error)) {
+                console.error("Supabase getStats error:", error)
+                throw error
+            }
+
+            const { data: rowsWithoutSegment, error: fallbackError } = await supabaseAdmin
+                .from("subscriptions")
+                .select("locale")
+
+            if (fallbackError) {
+                console.error("Supabase fallback getStats error:", fallbackError)
+                throw fallbackError
+            }
+
+            data = rowsWithoutSegment ?? []
+        } else {
+            data = rowsWithSegment ?? []
         }
 
         const ru = data.filter((d) => d.locale === "ru").length
         const en = data.filter((d) => d.locale === "en").length
+        const bySegment = Object.fromEntries(
+            SUBSCRIPTION_SEGMENTS.map((segment) => [
+                segment,
+                data.filter((d) => d.segment === segment).length,
+            ])
+        ) as Record<SubscriptionSegment, number>
+        const unsegmented = data.filter((d) => !isSubscriptionSegment(d.segment)).length
 
         return {
             total: data.length,
             byLocale: { ru, en },
+            bySegment,
+            unsegmented,
         }
     }
+
+    const bySegment = Object.fromEntries(
+        SUBSCRIPTION_SEGMENTS.map((segment) => [
+            segment,
+            memoryStore.filter((s) => s.segment === segment).length,
+        ])
+    ) as Record<SubscriptionSegment, number>
+    const unsegmented = memoryStore.filter((s) => !s.segment).length
 
     return {
         total: memoryStore.length,
@@ -173,6 +243,8 @@ export async function getStats() {
             ru: memoryStore.filter((s) => s.locale === "ru").length,
             en: memoryStore.filter((s) => s.locale === "en").length,
         },
+        bySegment,
+        unsegmented,
     }
 }
 

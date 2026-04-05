@@ -84,6 +84,10 @@ export default function PrivacyPage() {
                                 subscribe through the subscription form
                             </li>
                             <li>
+                                <strong>Newsletter track</strong> - used to send you the segment you
+                                selected: planning and budget, ideas and trends, or mistakes and guides
+                            </li>
+                            <li>
                                 <strong>Interface language</strong> (ru/en) - used to send emails in
                                 the correct language
                             </li>
@@ -169,7 +173,8 @@ export default function PrivacyPage() {
                                 <ul className="ml-7 list-inside list-disc space-y-1 text-sm text-muted-foreground">
                                     <li>
                                         <strong>Functional storage</strong> - language preference,
-                                        subscription status, and duplicate subscription prevention
+                                        selected newsletter track, subscription status, and duplicate
+                                        subscription prevention
                                     </li>
                                 </ul>
                                 <p className="ml-7 mt-2 text-sm text-muted-foreground">

@@ -111,10 +111,27 @@
     },
     "emailSubscription": {
       "title": "Подпишитесь на обновления",
-      "description": "Получайте лучшие статьи о ремонте и дизайне прямо на почту. Без спама, только полезный контент.",
+      "description": "Получайте письма только по той теме ремонта, которая вам действительно нужна.",
+      "segmentLabel": "Что вам присылать",
+      "segmentHint": "Выберите один поток писем, чтобы подписка оставалась полезной.",
+      "missingSegment": "Выберите, какие письма вы хотите получать",
+      "segments": {
+        "planning-budget": {
+          "label": "Планирование и бюджет",
+          "description": "Сметы, инструменты и практичное планирование ремонта."
+        },
+        "ideas-trends": {
+          "label": "Идеи и тренды",
+          "description": "Тренды, вдохновение и визуальные разборы интерьеров."
+        },
+        "mistakes-guides": {
+          "label": "Ошибки и гайды",
+          "description": "Пошаговые статьи, типичные ошибки и рабочие решения."
+        }
+      },
       "placeholder": "Ваш email",
       "button": "Подписаться",
-      "success": "Спасибо за подписку! Вы будете получать лучшие статьи на почту.",
+      "success": "Спасибо за подписку. Мы отправили вам письма по выбранному направлению.",
       "error": "Произошла ошибка. Попробуйте позже.",
       "invalidEmail": "Введите корректный email адрес",
       "alreadySubscribed": "Этот email уже подписан"
@@ -231,10 +248,27 @@
     },
     "emailSubscription": {
       "title": "Subscribe to Updates",
-      "description": "Get the best renovation and design articles delivered to your inbox. No spam, just valuable content.",
+      "description": "Choose the renovation email track you actually want to receive.",
+      "segmentLabel": "What should we send you",
+      "segmentHint": "Pick one email track so the newsletter stays useful.",
+      "missingSegment": "Choose which emails you want to receive",
+      "segments": {
+        "planning-budget": {
+          "label": "Planning and budget",
+          "description": "Estimates, tools, and practical renovation planning."
+        },
+        "ideas-trends": {
+          "label": "Ideas and trends",
+          "description": "Trends, inspiration, and visual room ideas."
+        },
+        "mistakes-guides": {
+          "label": "Mistakes and guides",
+          "description": "Step-by-step articles, common mistakes, and practical fixes."
+        }
+      },
       "placeholder": "Your email",
       "button": "Subscribe",
-      "success": "Thanks for subscribing! You'll receive the best articles in your inbox.",
+      "success": "Thanks for subscribing. We will send you the email track you selected.",
       "error": "An error occurred. Please try again later.",
       "invalidEmail": "Please enter a valid email address",
       "alreadySubscribed": "This email is already subscribed"

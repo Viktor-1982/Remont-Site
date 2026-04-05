@@ -1,6 +1,9 @@
+import { type SubscriptionSegment } from "@/lib/subscription-segments"
+
 export interface Subscription {
     email: string
     locale: "ru" | "en"
+    segment: SubscriptionSegment | null
     subscribedAt: number
     source?: string
 }
