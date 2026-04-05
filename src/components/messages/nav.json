@@ -131,7 +131,7 @@
       },
       "placeholder": "Ваш email",
       "button": "Подписаться",
-      "success": "Спасибо за подписку. Мы отправили вам письма по выбранному направлению.",
+      "success": "Спасибо за подписку. Мы отправили вам письмо по выбранному направлению.",
       "error": "Произошла ошибка. Попробуйте позже.",
       "invalidEmail": "Введите корректный email адрес",
       "alreadySubscribed": "Этот email уже подписан"
@@ -268,7 +268,7 @@
       },
       "placeholder": "Your email",
       "button": "Subscribe",
-      "success": "Thanks for subscribing. We will send you the email track you selected.",
+      "success": "Thanks for subscribing. We sent you a welcome email for the track you selected.",
       "error": "An error occurred. Please try again later.",
       "invalidEmail": "Please enter a valid email address",
       "alreadySubscribed": "This email is already subscribed"
