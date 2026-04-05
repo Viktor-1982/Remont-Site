@@ -54,7 +54,8 @@
       "sections": {
         "kitchen": { "href": "/tags/кухня", "label": "Кухня", "title": "Ремонт кухни" },
         "bathroom": { "href": "/tags/ванная", "label": "Ванная", "title": "Ремонт ванной комнаты" },
-        "walls": { "href": "/tags/стены", "label": "Стены", "title": "Дизайн и отделка стен" }
+        "walls": { "href": "/tags/стены", "label": "Стены", "title": "Дизайн и отделка стен" },
+        "standards": { "href": "/editorial-standards", "label": "Как мы проверяем", "title": "Как Renohacks проверяет материалы и инструменты" }
       },
       "contactsTitle": "Контакты",
       "contactsTitleMobile": "Контакты (моб.)",
@@ -174,7 +175,8 @@
       "sections": {
         "kitchen": { "href": "/en/tags/kitchen", "label": "Kitchen", "title": "Kitchen renovation" },
         "bathroom": { "href": "/en/tags/bathroom", "label": "Bathroom", "title": "Bathroom renovation" },
-        "walls": { "href": "/en/tags/walls", "label": "Walls", "title": "Wall design and finishes" }
+        "walls": { "href": "/en/tags/walls", "label": "Walls", "title": "Wall design and finishes" },
+        "standards": { "href": "/en/editorial-standards", "label": "How we review", "title": "How Renohacks reviews materials and tools" }
       },
       "contactsTitle": "Contacts",
       "contactsTitleMobile": "Contacts (mobile)",

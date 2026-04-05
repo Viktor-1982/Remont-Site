@@ -11,6 +11,8 @@ const staticPageConfig = [
     { path: "/en", changeFrequency: "daily" as const, priority: 1.0 },
     { path: "/about", changeFrequency: "monthly" as const, priority: 0.5 },
     { path: "/en/about", changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/editorial-standards", changeFrequency: "monthly" as const, priority: 0.45 },
+    { path: "/en/editorial-standards", changeFrequency: "monthly" as const, priority: 0.45 },
     { path: "/privacy", changeFrequency: "yearly" as const, priority: 0.2 },
     { path: "/en/privacy", changeFrequency: "yearly" as const, priority: 0.2 },
     { path: "/terms", changeFrequency: "yearly" as const, priority: 0.2 },

@@ -1,7 +1,8 @@
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import type { AboutDictionary, AboutFeature } from "@/dictionaries/about"
-import { Calculator, Camera, DollarSign, Home, Palette, Target, Wrench } from "lucide-react"
+import { Calculator, Camera, DollarSign, Home, Palette, ShieldCheck, Target, Wrench } from "lucide-react"
+import Link from "next/link"
 import Script from "next/script"
 
 const baseUrl = "https://renohacks.com"
@@ -149,6 +150,29 @@ export function AboutPageTemplate({ dictionary }: { dictionary: AboutDictionary 
                                 </Badge>
                             ))}
                         </div>
+                    </CardContent>
+                </Card>
+            </div>
+
+            <div className="mx-auto mb-16 max-w-4xl">
+                <Card className="relative overflow-hidden border border-border/60 bg-card/95 shadow-sm">
+                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.10),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.10),transparent_38%)]" />
+                    <CardHeader className="relative z-10">
+                        <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/15 bg-primary/10 text-primary">
+                            <ShieldCheck className="h-5 w-5" />
+                        </div>
+                        <CardTitle className="text-2xl font-bold">{dictionary.standardsCta.title}</CardTitle>
+                        <CardDescription className="text-base leading-relaxed">
+                            {dictionary.standardsCta.description}
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="relative z-10">
+                        <Link
+                            href={dictionary.standardsCta.href}
+                            className="inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+                        >
+                            {dictionary.standardsCta.buttonLabel}
+                        </Link>
                     </CardContent>
                 </Card>
             </div>

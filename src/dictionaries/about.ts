@@ -36,6 +36,12 @@ export type AboutDictionary = {
         description: string
         badges: string[]
     }
+    standardsCta: {
+        title: string
+        description: string
+        buttonLabel: string
+        href: string
+    }
 }
 
 export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
@@ -103,6 +109,13 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
                 "Дизайнеры",
             ],
         },
+        standardsCta: {
+            title: "Как мы проверяем материалы и инструменты",
+            description:
+                "Объясняем, как готовятся статьи, на чем основаны выводы, как мы проверяем инструменты и где в этом процессе помогает собственный практический опыт ремонта.",
+            buttonLabel: "Открыть страницу",
+            href: "/editorial-standards",
+        },
     },
     en: {
         metadata: {
@@ -167,6 +180,13 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
                 "Homeowners",
                 "Designers",
             ],
+        },
+        standardsCta: {
+            title: "How We Review Materials and Tools",
+            description:
+                "See how we prepare articles, what our recommendations are based on, how tools are checked, and how our own renovation experience fits into that process.",
+            buttonLabel: "Open the page",
+            href: "/en/editorial-standards",
         },
     },
 }

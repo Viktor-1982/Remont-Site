@@ -171,6 +171,15 @@ export function ArticleToolCta({
                         </p>
                     </div>
                 </div>
+                <div className="relative z-10 mt-4">
+                    <Link
+                        href={section.trust.pageHref}
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition hover:text-primary/80"
+                    >
+                        {section.trust.pageLabel}
+                        <ArrowRight className="h-4 w-4" />
+                    </Link>
+                </div>
             </div>
         </section>
     )

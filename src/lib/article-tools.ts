@@ -1,5 +1,6 @@
 import type { Post } from "contentlayer/generated"
 import { bathroomHubSlugs } from "@/lib/bathroom-hub"
+import { getEditorialStandardsDictionary } from "@/dictionaries/editorial-standards"
 import { kitchenHubSlugs } from "@/lib/kitchen-hub"
 import { lightingHubSlugs } from "@/lib/lighting-hub"
 
@@ -57,6 +58,8 @@ export interface ArticleTrustInfo {
     updatedValue: string
     basisLabel: string
     basisValue: string
+    pageLabel: string
+    pageHref: string
 }
 
 export interface ArticleToolSection {
@@ -565,6 +568,7 @@ function getSectionCopy(primaryToolId: ArticleToolId, locale: ArticleToolLocale,
 }
 
 function getTrustInfo(post: Post, locale: ArticleToolLocale): ArticleTrustInfo {
+    const standards = getEditorialStandardsDictionary(locale)
     const basisByRubric = {
         trends: {
             ru: "Материал собран вокруг актуальных трендов, практики по комнатам и решений, которые можно применить в реальном ремонте.",
@@ -604,6 +608,8 @@ function getTrustInfo(post: Post, locale: ArticleToolLocale): ArticleTrustInfo {
         updatedValue: formatDisplayDate(post.date, locale),
         basisLabel: locale === "ru" ? "На чем основан материал" : "What this piece is based on",
         basisValue: basisByRubric[rubricKey][locale],
+        pageLabel: standards.articleLinkLabel,
+        pageHref: standards.path,
     }
 }
 

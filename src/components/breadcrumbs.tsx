@@ -135,6 +135,7 @@ function getLocalizedLabel(segment: string, isEnglish: boolean): string | null {
     const labels: Record<string, { ru: string; en: string }> = {
         posts: { ru: "Статьи", en: "Articles" },
         calculators: { ru: "Инструменты", en: "Tools" },
+        "editorial-standards": { ru: "Как мы проверяем", en: "How we review" },
         tags: { ru: "Теги", en: "Tags" },
         about: { ru: "О проекте", en: "About" },
         privacy: { ru: "Конфиденциальность", en: "Privacy" },
