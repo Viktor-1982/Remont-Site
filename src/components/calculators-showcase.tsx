@@ -277,8 +277,8 @@ export function CalculatorsShowcase({
         title: title ?? (isEnglish ? "Smart Renovation Tools" : "Умные инструменты для ремонта"),
         subtitle: subtitle ?? (
             isEnglish
-                ? "Free calculators and tools to help you plan your renovation project"
-                : "Бесплатные калькуляторы и инструменты для планирования ремонта"
+                ? "Free renovation tools to help you plan materials, lighting, and budget"
+                : "Бесплатные инструменты для планирования бюджета, материалов и освещения"
         ),
         viewAll: isEnglish ? "View all tools" : "Все инструменты",
         badgeLabel: badgeLabel ?? (isEnglish ? "Free Tools" : "Бесплатные инструменты"),

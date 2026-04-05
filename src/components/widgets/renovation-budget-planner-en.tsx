@@ -153,7 +153,7 @@ export function RenovationBudgetPlannerEn({ onCalculate }: RenovationBudgetPlann
     <pre>`)
     doc.write(summaryText)
     doc.write(`</pre>
-    <p class="source">Source: renohacks.com - online calculators and renovation guides.</p>
+    <p class="source">Source: renohacks.com - online renovation tools and guides.</p>
   </body>
 </html>`)
     doc.close()

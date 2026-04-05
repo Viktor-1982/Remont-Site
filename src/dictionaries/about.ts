@@ -43,7 +43,7 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
         metadata: {
             title: "О проекте Renohacks | Блог о ремонте и дизайне",
             description:
-                "Renohacks — ваш гид по ремонту: фото-гайды, DIY советы, бесплатные калькуляторы материалов. Всё для качественного ремонта дома своими руками.",
+                "Renohacks - ваш гид по ремонту: фото-гайды, DIY советы и бесплатные инструменты для расчета материалов. Всё для качественного ремонта дома своими руками.",
         },
         breadcrumb: {
             homeLabel: "Главная",
@@ -52,13 +52,13 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
         },
         hero: {
             title: "О проекте Renohacks",
-            lead: "renohacks.com — блог о ремонте, дизайне интерьера и новинках в строительстве, где мы делимся практическими советами, актуальными трендами, пошаговыми фото-гайдами и бесплатными калькуляторами.",
+            lead: "renohacks.com - блог о ремонте, дизайне интерьера и новинках в строительстве, где мы делимся практическими советами, актуальными трендами, пошаговыми фото-гайдами и бесплатными инструментами для планирования ремонта.",
         },
         mission: {
             title: "Наша цель",
             description:
                 "Помочь вам создать уютный и стильный дом: от качественного ремонта до актуального дизайна",
-            body: "Мы делимся не только практическими советами по ремонту, но и актуальными трендами дизайна интерьера, новинками материалов и технологий. Наша цель — помочь вам создать дом, который будет одновременно функциональным, красивым и недорогим. Главное — правильный подход, практические советы и понимание того, на чём можно сэкономить, а на чём лучше не экономить.",
+            body: "Мы делимся не только практическими советами по ремонту, но и актуальными трендами дизайна интерьера, новинками материалов и технологий. Наша цель - помочь вам создать дом, который будет одновременно функциональным, красивым и недорогим. Главное - правильный подход, практические советы и понимание того, на чем можно сэкономить, а на чем лучше не экономить.",
         },
         features: {
             title: "Что мы делаем",
@@ -75,13 +75,13 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
                 },
                 {
                     icon: "calculator",
-                    title: "Калькуляторы",
-                    description: "Бесплатные инструменты для расчёта краски, обоев, плитки и других материалов",
+                    title: "Инструменты",
+                    description: "Бесплатные инструменты для расчета краски, обоев, плитки, бюджета и других материалов",
                 },
                 {
                     icon: "palette",
                     title: "Идеи дизайна",
-                    description: "Актуальные тренды интерьера 2025–2026 и вдохновляющие идеи для вашего дома",
+                    description: "Актуальные тренды интерьера 2025-2026 и вдохновляющие идеи для вашего дома",
                 },
                 {
                     icon: "dollarSign",
@@ -108,7 +108,7 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
         metadata: {
             title: "About Renohacks | DIY Renovation Blog",
             description:
-                "Renohacks — your renovation guide: photo guides, DIY tips, free material calculators. Everything for quality home renovation by yourself.",
+                "Renohacks - your renovation guide: photo guides, DIY tips, and free planning tools. Everything you need for a better home renovation.",
         },
         breadcrumb: {
             homeLabel: "Home",
@@ -117,7 +117,7 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
         },
         hero: {
             title: "About Renohacks",
-            lead: "renohacks.com — a renovation, interior design, and construction innovations blog where we share practical tips, current trends, step-by-step photo guides, and free calculators.",
+            lead: "renohacks.com is a renovation and interior design blog where we share practical advice, current trends, step-by-step photo guides, and free renovation tools.",
         },
         mission: {
             title: "Our Goal",
@@ -140,13 +140,13 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
                 },
                 {
                     icon: "calculator",
-                    title: "Calculators",
-                    description: "Free tools for calculating paint, wallpaper, tiles and other materials",
+                    title: "Tools",
+                    description: "Free tools for paint, wallpaper, tile, budgeting, and other renovation planning tasks",
                 },
                 {
                     icon: "palette",
                     title: "Design Ideas",
-                    description: "Current interior trends 2025–2026 and inspiring ideas for your home",
+                    description: "Current interior trends 2025-2026 and inspiring ideas for your home",
                 },
                 {
                     icon: "dollarSign",
@@ -158,7 +158,7 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
         audience: {
             title: "Who This Blog Is For",
             description:
-                "Our content is helpful for anyone planning a home renovation, interested in interior design, or following construction and finishing innovations — from quick cosmetic updates to full apartment remodels.",
+                "Our content is helpful for anyone planning a home renovation, interested in interior design, or following construction and finishing innovations - from quick cosmetic updates to full apartment remodels.",
             badges: [
                 "Cosmetic Updates",
                 "Full Remodel",

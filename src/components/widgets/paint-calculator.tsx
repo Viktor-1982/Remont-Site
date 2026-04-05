@@ -119,8 +119,8 @@ export function PaintCalculator() {
         lines.push("")
         lines.push(
             isEnglish
-                ? "Source: renohacks.com — online calculators and renovation guides."
-                : "Источник: renohacks.com — онлайн-калькуляторы и статьи о ремонте.",
+                ? "Source: renohacks.com — online renovation tools and guides."
+                : "Источник: renohacks.com — онлайн-инструменты и статьи о ремонте.",
         )
 
         return lines.join("\n")

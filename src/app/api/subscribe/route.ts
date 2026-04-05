@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
                                     <li>📚 Best renovation and design articles</li>
                                     <li>🛠️ DIY tips and tricks</li>
                                     <li>💡 Latest trends and ideas</li>
-                                    <li>📊 Useful calculators and tools</li>
+                                    <li>📊 Useful renovation tools</li>
                                 </ul>
                                 <p>Thank you for being with us!</p>
                                 <p style="color: #666; font-size: 12px; margin-top: 30px;">
@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
                                     <li>📚 Лучшие статьи о ремонте и дизайне</li>
                                     <li>🛠️ DIY советы и лайфхаки</li>
                                     <li>💡 Последние тренды и идеи</li>
-                                    <li>📊 Полезные калькуляторы и инструменты</li>
+                                    <li>📊 Полезные инструменты для ремонта</li>
                                 </ul>
                                 <p>Спасибо, что остаётесь с нами!</p>
                                 <p style="color: #666; font-size: 12px; margin-top: 30px;">
@@ -145,7 +145,7 @@ export async function POST(req: NextRequest) {
                                 <li>📚 Best renovation and design articles</li>
                                 <li>🛠️ DIY tips and tricks</li>
                                 <li>💡 Latest trends and ideas</li>
-                                <li>📊 Useful calculators and tools</li>
+                                <li>📊 Useful renovation tools</li>
                             </ul>
                             <p>We're excited to share our knowledge with you!</p>
                             <p style="color: #666; font-size: 12px; margin-top: 30px;">
@@ -164,7 +164,7 @@ export async function POST(req: NextRequest) {
                                 <li>📚 Лучшие статьи о ремонте и дизайне</li>
                                 <li>🛠️ DIY советы и лайфхаки</li>
                                 <li>💡 Последние тренды и идеи</li>
-                                <li>📊 Полезные калькуляторы и инструменты</li>
+                                <li>📊 Полезные инструменты для ремонта</li>
                             </ul>
                             <p>Мы рады делиться с вами нашими знаниями!</p>
                             <p style="color: #666; font-size: 12px; margin-top: 30px;">

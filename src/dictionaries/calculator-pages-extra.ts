@@ -257,7 +257,7 @@ export const extraCalculatorPageDictionaries: Record<
                     },
                     {
                         href: "/calculators",
-                        title: "Все калькуляторы",
+                        title: "Все инструменты",
                         description: "Посмотрите весь набор инструментов Renohacks для ремонта.",
                         icon: "scrollText",
                         accentClass: "text-indigo-500",
@@ -759,7 +759,7 @@ export const extraCalculatorPageDictionaries: Record<
                     },
                     {
                         href: "/en/calculators",
-                        title: "All Calculators",
+                        title: "All tools",
                         description: "Open the full Renohacks renovation toolkit.",
                         icon: "scrollText",
                         accentClass: "text-indigo-500",

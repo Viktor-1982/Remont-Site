@@ -134,7 +134,7 @@ function usePathnameBreadcrumbs(pathname: string, isEnglish: boolean): Breadcrum
 function getLocalizedLabel(segment: string, isEnglish: boolean): string | null {
     const labels: Record<string, { ru: string; en: string }> = {
         posts: { ru: "Статьи", en: "Articles" },
-        calculators: { ru: "Калькуляторы", en: "Calculators" },
+        calculators: { ru: "Инструменты", en: "Tools" },
         tags: { ru: "Теги", en: "Tags" },
         about: { ru: "О проекте", en: "About" },
         privacy: { ru: "Конфиденциальность", en: "Privacy" },

@@ -5,7 +5,7 @@ import { AppShell } from "@/app/app-shell"
 export const metadata: Metadata = {
     title: "Renohacks.com - блог о ремонте, дизайне и DIY",
     description:
-        "Фото-гайды по ремонту своими руками, DIY-лайфхаки, бесплатные калькуляторы и обзоры материалов для качественного ремонта.",
+        "Фото-гайды по ремонту своими руками, DIY-лайфхаки, бесплатные инструменты для расчетов и обзоры материалов для качественного ремонта.",
     metadataBase: new URL("https://renohacks.com"),
     icons: {
         icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Renohacks.com - блог о ремонте, дизайне и DIY",
         description:
-            "Фото-гайды по ремонту своими руками, DIY-лайфхаки, бесплатные калькуляторы и обзоры материалов для качественного ремонта.",
+            "Фото-гайды по ремонту своими руками, DIY-лайфхаки, бесплатные инструменты для расчетов и обзоры материалов для качественного ремонта.",
         url: "https://renohacks.com/",
         siteName: "Renohacks.com",
         images: ["/images/og-default.png"],

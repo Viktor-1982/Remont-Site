@@ -162,7 +162,7 @@ export function RenovationBudgetPlanner() {
     <pre>`)
     doc.write(summaryText)
     doc.write(`</pre>
-    <p class="source">Источник: renohacks.com — онлайн-калькуляторы и статьи о ремонте.</p>
+    <p class="source">Источник: renohacks.com — онлайн-инструменты и статьи о ремонте.</p>
   </body>
 </html>`)
     doc.close()

@@ -234,7 +234,7 @@ const hubCatalog: Record<"bathroom" | "lighting" | "kitchen", HubDefinition> = {
         title: { ru: "Хаб по ванной", en: "Bathroom Hub" },
         description: {
             ru: "Соберите в одном месте статьи, расчеты и решения по плитке, вентиляции, свету и теплому полу.",
-            en: "Keep bathroom articles, calculators, and key planning decisions in one place.",
+            en: "Keep bathroom articles, tools, and key planning decisions in one place.",
         },
         badge: { ru: "Тема", en: "Topic Hub" },
         ctaLabel: { ru: "Открыть хаб", en: "Open hub" },
@@ -260,7 +260,7 @@ const hubCatalog: Record<"bathroom" | "lighting" | "kitchen", HubDefinition> = {
         title: { ru: "Хаб по кухне", en: "Kitchen Hub" },
         description: {
             ru: "Соберите в одном месте статьи, расчеты и решения по планировке, материалам, свету и бюджету кухни.",
-            en: "Keep kitchen articles, calculators, and the main layout, finish, and budget decisions in one place.",
+            en: "Keep kitchen articles, tools, and the main layout, finish, and budget decisions in one place.",
         },
         badge: { ru: "Тема", en: "Topic Hub" },
         ctaLabel: { ru: "Открыть хаб", en: "Open hub" },

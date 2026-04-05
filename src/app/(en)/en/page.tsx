@@ -16,14 +16,14 @@ export const dynamic = "force-static"
 export const metadata: Metadata = {
     title: "Renohacks.com - DIY Renovation & Interior Design Blog for Home Projects",
     description:
-        "Step-by-step photo guides, DIY hacks, free paint and tile calculators, and material reviews for better home renovation planning.",
+        "Step-by-step photo guides, DIY hacks, renovation tools for paint, tile, lighting, and budgeting, plus material reviews for better home renovation planning.",
     keywords: [
         "DIY renovation",
         "home improvement",
         "interior design",
         "apartment renovation",
         "renovation guides",
-        "renovation calculators",
+        "renovation tools",
         "renovation tips",
         "material reviews",
         "painting walls",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Renohacks.com - DIY Renovation & Interior Design Blog for Home Projects",
         description:
-            "Step-by-step photo guides, DIY hacks, free paint and tile calculators, and material reviews for better home renovation planning.",
+            "Step-by-step photo guides, DIY hacks, renovation tools for paint, tile, lighting, and budgeting, plus material reviews for better home renovation planning.",
         url: "https://renohacks.com/en",
         siteName: "Renohacks.com",
         locale: "en_US",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Renohacks.com - DIY Renovation & Interior Design Blog for Home Projects",
         description:
-            "Step-by-step photo guides, DIY hacks, free paint and tile calculators, and material reviews for better home renovation planning.",
+            "Step-by-step photo guides, DIY hacks, renovation tools for paint, tile, lighting, and budgeting, plus material reviews for better home renovation planning.",
         images: ["/images/og-default.png"],
     },
     alternates: {
@@ -89,9 +89,9 @@ export default function HomePageEn() {
                 <CalculatorsShowcase
                     isEnglish
                     limit={4}
-                    title="Popular Renovation Calculators"
+                    title="Popular Renovation Tools"
                     subtitle="The four tools most likely to help with planning, materials, and lighting."
-                    badgeLabel="Calculators"
+                    badgeLabel="Tools"
                 />
 
                 <section className="mt-16 sm:mt-20">

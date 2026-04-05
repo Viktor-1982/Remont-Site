@@ -2,9 +2,9 @@
 import Link from "next/link"
 
 export const metadata = getPageMetadata("/calculators", {
-    title: "Онлайн калькуляторы для ремонта | Renohacks",
+    title: "Онлайн инструменты для ремонта | Renohacks",
     description:
-        "Бесплатные калькуляторы для ремонта: краска, обои, плитка. Удобные инструменты для расчётов материалов.",
+        "Онлайн-инструменты для ремонта: планировщик бюджета, калькуляторы и другие сервисы Renohacks для расчетов материалов.",
     cover: "/images/og-default.png",
     type: "website",
 })
@@ -12,9 +12,9 @@ export const metadata = getPageMetadata("/calculators", {
 export default function CalculatorsIndexPage() {
     return (
         <main className="container py-12">
-            <h1 className="text-3xl font-bold mb-6">Калькуляторы ремонта</h1>
+            <h1 className="text-3xl font-bold mb-6">Инструменты для ремонта</h1>
             <p className="mb-8 text-muted-foreground">
-                Выберите калькулятор и быстро рассчитайте количество материалов для вашего ремонта:
+                Выберите инструмент и быстро рассчитайте количество материалов для вашего ремонта:
             </p>
             <ul className="space-y-4 text-lg">
                 <li>

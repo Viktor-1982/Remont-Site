@@ -242,7 +242,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 {
                     title: "Для сметы",
                     description:
-                        "Начните с общей суммы, затем проверьте дорогие категории по отдельным калькуляторам, чтобы не промахнуться с закупкой.",
+                        "Начните с общей суммы, затем проверьте дорогие категории по отдельным инструментам, чтобы не промахнуться с закупкой.",
                     href: "/calculators/budget",
                     tools: ["Бюджет", "Краска", "Плитка", "Напольное покрытие"],
                     icon: "budget",
@@ -456,7 +456,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 {
                     title: "For budgeting",
                     description:
-                        "Start with the full budget, then validate the expensive finish categories with focused calculators.",
+                        "Start with the full budget, then validate the expensive finish categories with focused tools.",
                     href: "/en/calculators/budget",
                     tools: ["Budget", "Paint", "Tile", "Flooring"],
                     icon: "budget",
