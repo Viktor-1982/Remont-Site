@@ -46,6 +46,20 @@ const nextConfig: NextConfig = {
         qualities: [50, 75, 85, 90, 95, 100],
         formats: ["image/webp", "image/avif"],
     },
+    async redirects() {
+        return [
+            {
+                source: "/posts/country-house-trends-2026",
+                destination: "/posts/trendy-zagorodnyh-domov-2026",
+                permanent: true,
+            },
+            {
+                source: "/en/posts/trendy-zagorodnyh-domov-2026",
+                destination: "/en/posts/country-house-trends-2026",
+                permanent: true,
+            },
+        ]
+    },
     async headers() {
         return [
             {
