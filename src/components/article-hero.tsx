@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { Calendar } from "lucide-react"
+import { ArticleSeriesBadge } from "@/components/article-series-badge"
 import { ArticleRubricBadge } from "@/components/article-rubric-badge"
 import { TagList } from "@/components/tag-list"
 import { ShareButton } from "@/components/share-button"
@@ -13,6 +14,7 @@ type Locale = "ru" | "en"
 export function ArticleHero({ post }: { post: Post }) {
     const isEnglish = post.locale === "en"
     const locale: Locale = isEnglish ? "en" : "ru"
+    const hasMetaBadges = Boolean(post.series || post.rubric)
 
     const formattedDate = post.date
         ? new Date(post.date).toLocaleDateString(isEnglish ? "en-US" : "ru-RU", {
@@ -74,11 +76,20 @@ export function ArticleHero({ post }: { post: Post }) {
             <header className="space-y-4 max-w-4xl mx-auto w-full">
                 <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                        <ArticleRubricBadge
-                            rubric={post.rubric}
-                            isEnglish={isEnglish}
-                            className="mb-3 px-3 py-1 text-xs sm:text-sm"
-                        />
+                        {hasMetaBadges ? (
+                            <div className="mb-3 flex flex-wrap gap-2">
+                                <ArticleSeriesBadge
+                                    series={post.series}
+                                    isEnglish={isEnglish}
+                                    className="px-3 py-1 text-xs sm:text-sm"
+                                />
+                                <ArticleRubricBadge
+                                    rubric={post.rubric}
+                                    isEnglish={isEnglish}
+                                    className="px-3 py-1 text-xs sm:text-sm"
+                                />
+                            </div>
+                        ) : null}
                         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight text-foreground bg-gradient-to-br from-foreground via-foreground to-foreground/80 bg-clip-text">
                             {post.title}
                         </h1>

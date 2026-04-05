@@ -4,6 +4,7 @@ import Link from "next/link"
 import Script from "next/script"
 import { ArrowRight, Calculator, Grid, Home, Lightbulb, Sparkles, Wrench } from "lucide-react"
 import { ArticleCard } from "@/components/article-card"
+import { ArticleSeriesBadge } from "@/components/article-series-badge"
 import { ArticleRubricBadge } from "@/components/article-rubric-badge"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { EmailSubscription } from "@/components/email-subscription"
@@ -221,7 +222,12 @@ export function TopicHubPage({
 
                         <div className="flex min-w-0 flex-col justify-center py-1">
                             <div className="mb-4 flex flex-wrap items-center gap-3">
-                                <ArticleRubricBadge rubric={featuredPost.rubric} isEnglish={isEnglish} />
+                                {featuredPost.series || featuredPost.rubric ? (
+                                    <>
+                                        <ArticleSeriesBadge series={featuredPost.series} isEnglish={isEnglish} />
+                                        <ArticleRubricBadge rubric={featuredPost.rubric} isEnglish={isEnglish} />
+                                    </>
+                                ) : null}
                                 <span className="text-xs font-medium text-muted-foreground">
                                     {formatPostDate(featuredPost.date, isEnglish)}
                                     {featuredPost.readingTime ? ` / ${featuredPost.readingTime}` : ""}

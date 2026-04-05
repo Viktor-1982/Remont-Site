@@ -7,6 +7,7 @@ import { HomeBackgroundAnimation } from "@/components/home-background-animation"
 import { PopularPosts } from "@/components/popular-posts"
 import { EmailSubscription } from "@/components/email-subscription"
 import { CalculatorsShowcase } from "@/components/calculators-showcase"
+import { SeriesShowcase } from "@/components/series-showcase"
 import { TopicHubsShowcase } from "@/components/topic-hubs-showcase"
 
 export const revalidate = 86400
@@ -69,6 +70,13 @@ export default function HomePageEn() {
 
             <div className="container mx-auto max-w-7xl space-y-12 px-4 py-10 sm:px-6">
                 <TopicHubsShowcase isEnglish />
+                <SeriesShowcase
+                    posts={posts}
+                    isEnglish
+                    title="Editorial series"
+                    description="Repeatable formats around kitchens, bathrooms, renovation budgeting, and ways to avoid rework."
+                    showAllLink
+                />
 
                 <section id="articles">
                     <h2 className="mb-6 text-center text-3xl font-bold text-balance sm:text-left">

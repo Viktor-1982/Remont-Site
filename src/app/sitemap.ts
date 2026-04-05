@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next"
 import { allPosts } from ".contentlayer/generated"
+import { getAllArticleSeries } from "@/lib/article-series"
 import { getCanonicalTagSlugs } from "@/lib/tags"
 
 const baseUrl = "https://renohacks.com"
@@ -56,6 +57,8 @@ const staticPageConfig = [
     { path: "/en/bathroom", changeFrequency: "weekly" as const, priority: 0.7 },
     { path: "/kitchen", changeFrequency: "weekly" as const, priority: 0.7 },
     { path: "/en/kitchen", changeFrequency: "weekly" as const, priority: 0.7 },
+    { path: "/series", changeFrequency: "weekly" as const, priority: 0.65 },
+    { path: "/en/series", changeFrequency: "weekly" as const, priority: 0.65 },
 ] as const
 
 function getLatestPublishedDate() {
@@ -92,6 +95,20 @@ function getTagPages() {
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const staticLastModified = getLatestPublishedDate()
+    const articleSeriesPages: MetadataRoute.Sitemap = [
+        ...getAllArticleSeries("ru").map((series) => ({
+            url: `${baseUrl}${series.path}`,
+            lastModified: staticLastModified,
+            changeFrequency: "weekly" as const,
+            priority: 0.6,
+        })),
+        ...getAllArticleSeries("en").map((series) => ({
+            url: `${baseUrl}${series.path}`,
+            lastModified: staticLastModified,
+            changeFrequency: "weekly" as const,
+            priority: 0.6,
+        })),
+    ]
 
     const posts: MetadataRoute.Sitemap = publishedPosts.map((post) => ({
         url: `${baseUrl}${post.url}`,
@@ -107,5 +124,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: item.priority,
     }))
 
-    return [...staticPages, ...getTagPages(), ...posts]
+    return [...staticPages, ...articleSeriesPages, ...getTagPages(), ...posts]
 }
