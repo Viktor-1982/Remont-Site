@@ -1,8 +1,13 @@
 import type { Post } from "contentlayer/generated"
+import { bedroomHubSlugs } from "@/lib/bedroom-hub"
+import { budgetPlanningHubSlugs } from "@/lib/budget-planning-hub"
 import { bathroomHubSlugs } from "@/lib/bathroom-hub"
 import { getEditorialStandardsDictionary } from "@/dictionaries/editorial-standards"
+import { flooringHubSlugs } from "@/lib/flooring-hub"
 import { kitchenHubSlugs } from "@/lib/kitchen-hub"
 import { lightingHubSlugs } from "@/lib/lighting-hub"
+import { smallApartmentHubSlugs } from "@/lib/small-apartment-hub"
+import { wallsHubSlugs } from "@/lib/walls-hub"
 
 export type ArticleToolLocale = "ru" | "en"
 
@@ -231,7 +236,10 @@ const toolCatalog: Record<ArticleToolId, ToolDefinition> = {
     },
 }
 
-const hubCatalog: Record<"bathroom" | "lighting" | "kitchen", HubDefinition> = {
+const hubCatalog: Record<
+    "bathroom" | "kitchen" | "budget-planning" | "bedroom" | "walls" | "flooring" | "small-apartment" | "lighting",
+    HubDefinition
+> = {
     bathroom: {
         href: { ru: "/bathroom", en: "/en/bathroom" },
         title: { ru: "Хаб по ванной", en: "Bathroom Hub" },
@@ -245,19 +253,6 @@ const hubCatalog: Record<"bathroom" | "lighting" | "kitchen", HubDefinition> = {
         gradient: "from-sky-500/14 via-cyan-500/10 to-transparent",
         matches: bathroomHubSlugs,
     },
-    lighting: {
-        href: { ru: "/lighting", en: "/en/lighting" },
-        title: { ru: "Хаб по освещению", en: "Lighting Hub" },
-        description: {
-            ru: "Откройте статьи, расчеты и сценарии света по комнатам в одной тематической подборке.",
-            en: "Open the room-by-room lighting cluster with articles, calculations, and planning guidance.",
-        },
-        badge: { ru: "Тема", en: "Topic Hub" },
-        ctaLabel: { ru: "Открыть хаб", en: "Open hub" },
-        icon: "lightbulb",
-        gradient: "from-yellow-500/14 via-amber-500/10 to-transparent",
-        matches: lightingHubSlugs,
-    },
     kitchen: {
         href: { ru: "/kitchen", en: "/en/kitchen" },
         title: { ru: "Хаб по кухне", en: "Kitchen Hub" },
@@ -270,6 +265,84 @@ const hubCatalog: Record<"bathroom" | "lighting" | "kitchen", HubDefinition> = {
         icon: "grid3x3",
         gradient: "from-orange-500/14 via-amber-500/10 to-transparent",
         matches: kitchenHubSlugs,
+    },
+    "budget-planning": {
+        href: { ru: "/budget-planning", en: "/en/budget-planning" },
+        title: { ru: "Хаб по смете и планированию", en: "Planning and Budget Hub" },
+        description: {
+            ru: "Соберите материалы по смете, этапам, экономии и контролю расходов в одной практической подборке.",
+            en: "Keep budgeting, phasing, savings, and renovation cost control in one focused planning cluster.",
+        },
+        badge: { ru: "Тема", en: "Topic Hub" },
+        ctaLabel: { ru: "Открыть хаб", en: "Open hub" },
+        icon: "wallet",
+        gradient: "from-emerald-500/14 via-green-500/10 to-transparent",
+        matches: budgetPlanningHubSlugs,
+    },
+    bedroom: {
+        href: { ru: "/bedroom", en: "/en/bedroom" },
+        title: { ru: "Хаб по спальне", en: "Bedroom Hub" },
+        description: {
+            ru: "Откройте подборку про свет, цвет и спокойные решения, которые делают спальню комфортнее каждый день.",
+            en: "Open the bedroom cluster for calmer lighting, color direction, and comfort-first renovation choices.",
+        },
+        badge: { ru: "Тема", en: "Topic Hub" },
+        ctaLabel: { ru: "Открыть хаб", en: "Open hub" },
+        icon: "lightbulb",
+        gradient: "from-rose-500/14 via-pink-500/10 to-transparent",
+        matches: bedroomHubSlugs,
+    },
+    walls: {
+        href: { ru: "/walls", en: "/en/walls" },
+        title: { ru: "Хаб по стенам и отделке", en: "Walls and Finishes Hub" },
+        description: {
+            ru: "Соберите в одном месте покраску, подготовку стен, обои и цветовые решения без лишних переделок.",
+            en: "Keep paint, wall prep, wallpaper, and color decisions together before the finish stage begins.",
+        },
+        badge: { ru: "Тема", en: "Topic Hub" },
+        ctaLabel: { ru: "Открыть хаб", en: "Open hub" },
+        icon: "paintbrush",
+        gradient: "from-fuchsia-500/14 via-violet-500/10 to-transparent",
+        matches: wallsHubSlugs,
+    },
+    flooring: {
+        href: { ru: "/flooring", en: "/en/flooring" },
+        title: { ru: "Хаб по полам и покрытиям", en: "Flooring Hub" },
+        description: {
+            ru: "Откройте подборку про стяжку, покрытия, плинтус и расчеты по полу от базы до финиша.",
+            en: "Open the flooring cluster for screed, finish floors, baseboards, and the logic of floor calculations.",
+        },
+        badge: { ru: "Тема", en: "Topic Hub" },
+        ctaLabel: { ru: "Открыть хаб", en: "Open hub" },
+        icon: "layers",
+        gradient: "from-lime-500/14 via-emerald-500/10 to-transparent",
+        matches: flooringHubSlugs,
+    },
+    "small-apartment": {
+        href: { ru: "/small-apartment", en: "/en/small-apartment" },
+        title: { ru: "Хаб по маленькой квартире", en: "Small Apartment Hub" },
+        description: {
+            ru: "Соберите статьи про зонирование, свет, хранение и бюджетные решения для небольшой площади.",
+            en: "Keep small-space zoning, lighting, storage, and budget-aware apartment ideas in one place.",
+        },
+        badge: { ru: "Тема", en: "Topic Hub" },
+        ctaLabel: { ru: "Открыть хаб", en: "Open hub" },
+        icon: "lightbulb",
+        gradient: "from-indigo-500/14 via-blue-500/10 to-transparent",
+        matches: smallApartmentHubSlugs,
+    },
+    lighting: {
+        href: { ru: "/lighting", en: "/en/lighting" },
+        title: { ru: "Хаб по освещению", en: "Lighting Hub" },
+        description: {
+            ru: "Откройте статьи, расчеты и сценарии света по комнатам в одной тематической подборке.",
+            en: "Open the room-by-room lighting cluster with articles, calculations, and planning guidance.",
+        },
+        badge: { ru: "Тема", en: "Topic Hub" },
+        ctaLabel: { ru: "Открыть хаб", en: "Open hub" },
+        icon: "lightbulb",
+        gradient: "from-yellow-500/14 via-amber-500/10 to-transparent",
+        matches: lightingHubSlugs,
     },
 }
 
@@ -476,7 +549,16 @@ function buildToolCard(toolId: ArticleToolId, locale: ArticleToolLocale): Articl
 }
 
 function getHubCard(post: Post, locale: ArticleToolLocale): ArticleHubCard | null {
-    for (const key of ["bathroom", "lighting", "kitchen"] as const) {
+    for (const key of [
+        "bathroom",
+        "kitchen",
+        "budget-planning",
+        "bedroom",
+        "walls",
+        "flooring",
+        "small-apartment",
+        "lighting",
+    ] as const) {
         const hub = hubCatalog[key]
         if (hub.matches[locale].includes(post.slug)) {
             return {

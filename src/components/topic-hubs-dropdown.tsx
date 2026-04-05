@@ -2,7 +2,18 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Bath, ChefHat, ChevronDown, Lightbulb, Sparkles } from "lucide-react"
+import {
+    Bath,
+    BedDouble,
+    ChefHat,
+    ChevronDown,
+    House,
+    Layers3,
+    Lightbulb,
+    Paintbrush,
+    Sparkles,
+    Wallet,
+} from "lucide-react"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -18,6 +29,11 @@ const topicHubIcons = {
     bath: Bath,
     lightbulb: Lightbulb,
     chefHat: ChefHat,
+    wallet: Wallet,
+    bed: BedDouble,
+    paintbrush: Paintbrush,
+    layers3: Layers3,
+    house: House,
 } as const
 
 interface TopicHubsDropdownProps {
@@ -51,7 +67,7 @@ export function TopicHubsDropdown({ isEnglish = false, className }: TopicHubsDro
                     </button>
                 </DropdownMenuTrigger>
             </div>
-            <DropdownMenuContent align="start" className="w-80">
+            <DropdownMenuContent align="start" className="max-h-[70vh] w-96 overflow-y-auto">
                 <DropdownMenuLabel className="flex items-center gap-2">
                     <Sparkles className="h-4 w-4 text-primary" />
                     {dictionary.menuLabel}

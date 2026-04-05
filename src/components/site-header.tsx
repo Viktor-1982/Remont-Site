@@ -6,12 +6,15 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import {
     Bath,
+    BedDouble,
     Calculator,
     ChefHat,
     ChevronDown,
     ChevronRight,
     Grid3X3,
+    House,
     Layers,
+    Layers3,
     Lightbulb,
     Menu,
     Paintbrush,
@@ -59,6 +62,11 @@ const topicHubIcons = {
     bath: Bath,
     lightbulb: Lightbulb,
     chefHat: ChefHat,
+    wallet: Wallet,
+    bed: BedDouble,
+    paintbrush: Paintbrush,
+    layers3: Layers3,
+    house: House,
 } as const
 
 export function SiteHeader() {

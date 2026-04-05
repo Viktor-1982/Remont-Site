@@ -1,6 +1,17 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Bath, ChefHat, Lightbulb, Sparkles } from "lucide-react"
+import {
+    ArrowRight,
+    Bath,
+    BedDouble,
+    ChefHat,
+    House,
+    Layers3,
+    Lightbulb,
+    Paintbrush,
+    Sparkles,
+    Wallet,
+} from "lucide-react"
 import { getTopicHubsDictionary, type TopicHubsLocale } from "@/dictionaries/topic-hubs"
 import { cn } from "@/lib/utils"
 
@@ -8,6 +19,11 @@ const topicHubIcons = {
     bath: Bath,
     lightbulb: Lightbulb,
     chefHat: ChefHat,
+    wallet: Wallet,
+    bed: BedDouble,
+    paintbrush: Paintbrush,
+    layers3: Layers3,
+    house: House,
 } as const
 
 export function TopicHubsShowcase({ isEnglish = false }: { isEnglish?: boolean }) {
@@ -34,7 +50,7 @@ export function TopicHubsShowcase({ isEnglish = false }: { isEnglish?: boolean }
                 </div>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
                 {dictionary.items.map((item) => {
                     const Icon = topicHubIcons[item.icon]
 
@@ -57,7 +73,7 @@ export function TopicHubsShowcase({ isEnglish = false }: { isEnglish?: boolean }
                                     alt={item.desc}
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                    sizes="(max-width: 1280px) 50vw, 25vw"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
                             </div>
@@ -67,7 +83,9 @@ export function TopicHubsShowcase({ isEnglish = false }: { isEnglish?: boolean }
                                     <Icon className={cn("h-3.5 w-3.5", item.iconClass)} />
                                     {dictionary.hubBadge}
                                 </div>
-                                <h3 className="text-2xl font-bold tracking-tight text-foreground">{item.label}</h3>
+                                <h3 className="text-2xl font-bold tracking-tight text-foreground">
+                                    {item.label}
+                                </h3>
                                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
                                     {item.desc}
                                 </p>
