@@ -4,12 +4,14 @@ import { getTopicHubPosts, type TopicHubDictionary, type TopicHubLocale } from "
 export const bathroomHubSlugs: Record<TopicHubLocale, string[]> = {
     ru: [
         "trendy-vannoy-2026",
+        "vannaya-v-stile-domashnego-spa-bez-pereplaty",
         "kak-vybrat-plitku",
         "5-oshibok-remonta-vannoy-komnaty",
         "remont-vannoy",
     ],
     en: [
         "bathroom-trends-2026",
+        "spa-like-bathroom-on-a-budget",
         "how-to-choose-bathroom-tiles",
         "5-bathroom-mistakes",
         "diy-bathroom-makeover",
