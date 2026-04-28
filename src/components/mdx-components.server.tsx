@@ -208,6 +208,32 @@ export function createMdxComponents(): MDXComponents {
         blockquote: (props: React.HTMLAttributes<HTMLElement>) => (
             <blockquote className="mt-6 border-l-2 pl-6 italic text-muted-foreground" {...props} />
         ),
+        table: (props: React.TableHTMLAttributes<HTMLTableElement>) => (
+            <div className="my-8 w-full overflow-x-auto rounded-lg border border-border bg-background/70 shadow-sm">
+                <table
+                    className="w-full min-w-[720px] border-collapse text-left text-sm leading-6"
+                    {...props}
+                />
+            </div>
+        ),
+        thead: (props: React.HTMLAttributes<HTMLTableSectionElement>) => (
+            <thead className="bg-muted/70 text-foreground" {...props} />
+        ),
+        tbody: (props: React.HTMLAttributes<HTMLTableSectionElement>) => (
+            <tbody className="divide-y divide-border" {...props} />
+        ),
+        tr: (props: React.HTMLAttributes<HTMLTableRowElement>) => (
+            <tr className="align-top even:bg-muted/20" {...props} />
+        ),
+        th: (props: React.ThHTMLAttributes<HTMLTableCellElement>) => (
+            <th
+                className="border-b border-border px-4 py-3 font-semibold text-foreground"
+                {...props}
+            />
+        ),
+        td: (props: React.TdHTMLAttributes<HTMLTableCellElement>) => (
+            <td className="px-4 py-3 text-foreground/90" {...props} />
+        ),
     }
 }
 
