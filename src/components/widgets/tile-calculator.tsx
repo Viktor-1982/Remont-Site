@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Calculator, Grid, Ruler, Square } from "lucide-react"
+import { Calculator, Grid, Ruler, Square, Coins, Layers, HelpCircle } from "lucide-react"
 import { CalculationResultNotes } from "@/components/widgets/calculation-result-notes"
 import calcDataJson from "@/components/messages/calc.json"
 import type { Locale, CalcData, TilesCalcDict, ButtonsDict } from "@/types/calc"
@@ -30,11 +30,14 @@ export function TileCalculator() {
     const b: ButtonsDict = calcData[locale].calc.buttons
 
     const [surfaceType, setSurfaceType] = useState<"floor" | "wall">("floor")
+    const [wallMode, setWallMode] = useState<"single" | "room">("single")
     const [length, setLength] = useState("")
     const [width, setWidth] = useState("")
+    const [height, setHeight] = useState("2.7") // Для wallMode === "room"
     const [bathArea, setBathArea] = useState("0") // Площадь ванны/экрана
     const [tileLength, setTileLength] = useState("30")
     const [tileWidth, setTileWidth] = useState("30")
+    const [tileThickness, setTileThickness] = useState("8") // Толщина в мм
     const [groutWidth, setGroutWidth] = useState("2") // Ширина шва в мм
     const [tilesPerPack, setTilesPerPack] = useState("11") // Количество плиток в упаковке
     const [layoutType, setLayoutType] = useState<LayoutType>("straight")
@@ -43,11 +46,24 @@ export function TileCalculator() {
     const [doors, setDoors] = useState("0")
     const [windowArea, setWindowArea] = useState("2")
     const [doorArea, setDoorArea] = useState("2")
-    
+
+    // Поля стоимости
+    const [pricePerPack, setPricePerPack] = useState("")
+    const [currency, setCurrency] = useState<"RUB" | "USD" | "EUR">("RUB")
+
     const [result, setResult] = useState<number | null>(null)
     const [packsNeeded, setPacksNeeded] = useState<number | null>(null)
-    const [tileArea, setTileArea] = useState<number | null>(null)
+    const [tileArea, setTileArea] = useState<number | null>(null) // Net area
     const [glueAmount, setGlueAmount] = useState<number | null>(null)
+    const [groutAmount, setGroutAmount] = useState<number | null>(null)
+    const [estimatedCost, setEstimatedCost] = useState<number | null>(null)
+
+    const currencySymbols = {
+        RUB: "₽",
+        USD: "$",
+        EUR: "€",
+    }
+    const currSym = currencySymbols[currency] || ""
 
     const calculate = () => {
         const l = parseFloat(length.replace(",", ".").replace(/[^0-9.-]/g, ""))
@@ -64,6 +80,9 @@ export function TileCalculator() {
         const windowA = windowsNum > 0 ? (windowAParsed > 0 ? windowAParsed : 2) : 0
         const doorA = doorsNum > 0 ? (doorAParsed > 0 ? doorAParsed : 2) : 0
         const addWaste = parseFloat(additionalWaste.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
+        const thick = parseFloat(tileThickness.replace(",", ".").replace(/[^0-9.-]/g, "") || "8")
+        const hVal = surfaceType === "wall" && wallMode === "room" ? parseFloat(height.replace(",", ".").replace(/[^0-9.-]/g, "") || "2.7") : undefined
+        const priceVal = pricePerPack ? parseFloat(pricePerPack.replace(",", ".").replace(/[^0-9.-]/g, "")) : undefined
 
         if (
             [l, w, tl, tw, grout].some((v) => isNaN(v) || !isFinite(v))
@@ -76,11 +95,14 @@ export function TileCalculator() {
 
         const res = computeTile({
             surfaceType,
+            wallMode: surfaceType === "wall" ? wallMode : undefined,
             length: l,
             width: w,
+            height: hVal,
             bathArea: bath,
             tileLength: tl,
             tileWidth: tw,
+            tileThickness: thick,
             groutWidth: grout,
             tilesPerPack: tilesPerP,
             windows: windowsNum,
@@ -89,14 +111,17 @@ export function TileCalculator() {
             doorArea: doorA,
             baseWastePercent: baseWaste,
             additionalWastePercent: addWaste,
+            pricePerPack: priceVal,
         })
 
         if (!res) return
 
         setResult(res.tilesNeeded)
         setPacksNeeded(res.packsNeeded)
-        setTileArea(res.tileArea)
+        setTileArea(res.totalArea) // Это чистая площадь облицовки
         setGlueAmount(res.glueAmountKg)
+        setGroutAmount(res.groutAmountKg)
+        setEstimatedCost(res.estimatedCost || null)
     }
 
     const buildSummary = () => {
@@ -111,15 +136,27 @@ export function TileCalculator() {
         lines.push("")
 
         if (length || width) {
-            lines.push(
-                isEnglish
-                    ? surfaceType === "floor"
+            if (surfaceType === "floor") {
+                lines.push(
+                    isEnglish
                         ? `Floor size: length ${length || "-"} m, width ${width || "-"} m.`
-                        : `Wall size: width ${length || "-"} m, height ${width || "-"} m.`
-                    : surfaceType === "floor"
-                        ? `Размер пола: длина ${length || "-"} м, ширина ${width || "-"} м.`
-                        : `Размер стены: ширина ${length || "-"} м, высота ${width || "-"} м.`,
-            )
+                        : `Размер пола: длина ${length || "-"} м, ширина ${width || "-"} м.`
+                )
+            } else {
+                if (wallMode === "room") {
+                    lines.push(
+                        isEnglish
+                            ? `Room walls: length ${length || "-"} m, width ${width || "-"} m, height ${height || "-"} m.`
+                            : `Стены комнаты: длина ${length || "-"} м, ширина ${width || "-"} м, высота ${height || "-"} м.`
+                    )
+                } else {
+                    lines.push(
+                        isEnglish
+                            ? `Single wall: width ${length || "-"} m, height ${width || "-"} m.`
+                            : `Одна стена: ширина ${length || "-"} м, высота ${width || "-"} м.`
+                    )
+                }
+            }
         }
 
         if (surfaceType === "floor" && bathArea) {
@@ -132,8 +169,8 @@ export function TileCalculator() {
 
         lines.push(
             isEnglish
-                ? `Tile size: ${tileLength || "-"} × ${tileWidth || "-"} cm, grout width: ${groutWidth || "0"} mm.`
-                : `Размер плитки: ${tileLength || "-"} × ${tileWidth || "-"} см, ширина шва: ${groutWidth || "0"} мм.`,
+                ? `Tile size: ${tileLength || "-"} × ${tileWidth || "-"} cm, thickness: ${tileThickness || "8"} mm, grout width: ${groutWidth || "0"} mm.`
+                : `Размер плитки: ${tileLength || "-"} × ${tileWidth || "-"} см, толщина: ${tileThickness || "8"} мм, ширина шва: ${groutWidth || "0"} мм.`,
         )
 
         if (surfaceType === "wall") {
@@ -171,11 +208,35 @@ export function TileCalculator() {
             )
         }
 
+        if (tileArea !== null) {
+            lines.push(
+                isEnglish
+                    ? `Tiling Net Area: ${tileArea.toFixed(2)} m².`
+                    : `Чистая площадь облицовки: ${tileArea.toFixed(2)} м².`,
+            )
+        }
+
         if (glueAmount !== null) {
             lines.push(
                 isEnglish
                     ? `Adhesive estimate: about ${glueAmount} kg. On larger jobs it is safer to keep one reserve bag.`
                     : `Клей: ориентировочно ${glueAmount} кг. На большой площади лучше держать один мешок в запасе.`,
+            )
+        }
+
+        if (groutAmount !== null) {
+            lines.push(
+                isEnglish
+                    ? `Grout needed: about ${groutAmount} kg (with 10% safety margin).`
+                    : `Затирка: ориентировочно ${groutAmount} кг (с учетом 10% запаса).`,
+            )
+        }
+
+        if (estimatedCost !== null) {
+            lines.push(
+                isEnglish
+                    ? `Estimated cost: ${estimatedCost} ${currency}.`
+                    : `Ориентировочная стоимость: ${estimatedCost} ${currency === "RUB" ? "руб." : currency}.`
             )
         }
 
@@ -234,16 +295,19 @@ export function TileCalculator() {
                               items: [
                                   surfaceType === "floor"
                                       ? "Floor area minus the bathtub or screen area."
-                                      : "Wall area minus windows and doors.",
+                                      : (wallMode === "room"
+                                          ? "All room walls area minus windows and doors."
+                                          : "Wall area minus windows and doors."),
+                                  `Tile thickness: ${tileThickness || "8"} mm.`,
                                   `Grout width: ${groutWidth || "0"} mm.`,
                                   `Layout reserve: ${selectedLayout.labelEn}.`,
-                                  "Pack count and adhesive estimate.",
+                                  "Pack count, grout weight, adhesive estimate, and estimated budget.",
                               ],
                           },
                           {
                               title: "Not included automatically",
                               items: [
-                                  "Grout, spacers, leveling clips and trims.",
+                                  "Spacers, leveling clips (clips/wedges), and decorative trims.",
                                   "Extra loss from cracked tiles, pattern selection by shade or one-off decorative inserts.",
                                   "Very complex cuts around boxes, niches and corners beyond the reserve you set.",
                               ],
@@ -254,6 +318,7 @@ export function TileCalculator() {
                                   `Base layout waste: ${selectedLayout.waste}%.`,
                                   `Extra reserve added manually: ${additionalWaste || "0"}%.`,
                                   "Adhesive is estimated from net covered area, so it is still worth keeping one bag in reserve on larger jobs.",
+                                  "Grout weight includes a 10% technological margin.",
                               ],
                           },
                           {
@@ -275,18 +340,21 @@ export function TileCalculator() {
                               items: [
                                   surfaceType === "floor"
                                       ? "Площадь пола за вычетом ванны или экрана."
-                                      : "Площадь стены за вычетом окон и дверей.",
+                                      : (wallMode === "room"
+                                          ? "Площадь всех стен комнаты за вычетом окон и дверей."
+                                          : "Площадь стены за вычетом окон и дверей."),
+                                  `Толщина плитки: ${tileThickness || "8"} мм.`,
                                   `Ширина шва: ${groutWidth || "0"} мм.`,
                                   `Раскладка: ${selectedLayout.labelRu}.`,
-                                  "Количество упаковок и ориентировочный расход клея.",
+                                  "Количество упаковок, расход затирки, ориентировочный расход клея и сметная стоимость.",
                               ],
                           },
                           {
                               title: "Что не учтено автоматически",
                               items: [
-                                  "Затирка, крестики, СВП, профили и декоративные вставки.",
-                                  "Потери на бой, подбор рисунка и нестандартные вставки по тону.",
-                                  "Сложные подрезки вокруг коробов, ниш и наружных углов сверх того запаса, который вы добавили.",
+                                  "Крестики, СВП (клинья/зажимы), уголки и декоративные профили.",
+                                  "Потери на случайный бой при резке, подбор рисунка по тону.",
+                                  "Сложные подрезки вокруг инсталляций, люков-невидимок, ниш и углов под 45 градусов сверх заложенного запаса.",
                               ],
                           },
                           {
@@ -294,7 +362,8 @@ export function TileCalculator() {
                               items: [
                                   `Базовый запас по раскладке: ${selectedLayout.waste}%.`,
                                   `Дополнительный запас вручную: ${additionalWaste || "0"}%.`,
-                                  "Клей считается по чистой площади, поэтому на больших объемах лучше держать один мешок в резерве.",
+                                  "Клей считается по чистой площади облицовки, поэтому на больших объемах лучше держать один мешок в резерве.",
+                                  "Вес затирки включает технологический запас 10%.",
                               ],
                           },
                           {
@@ -328,6 +397,7 @@ export function TileCalculator() {
                 {/* Выбор типа поверхности */}
                 <div className="grid grid-cols-2 gap-3">
                     <button
+                        type="button"
                         onClick={() => setSurfaceType("floor")}
                         className={`relative overflow-hidden rounded-xl border-2 p-4 transition-all ${
                             surfaceType === "floor"
@@ -343,6 +413,7 @@ export function TileCalculator() {
                         </div>
                     </button>
                     <button
+                        type="button"
                         onClick={() => setSurfaceType("wall")}
                         className={`relative overflow-hidden rounded-xl border-2 p-4 transition-all ${
                             surfaceType === "wall"
@@ -359,20 +430,58 @@ export function TileCalculator() {
                     </button>
                 </div>
 
+                {/* Выбор режима укладки стен (если выбрана стена) */}
+                {surfaceType === "wall" && (
+                    <div className="space-y-2">
+                        <label className="text-xs text-muted-foreground">
+                            {isEnglish ? "Wall Calculation Mode" : "Режим расчета стен"}
+                        </label>
+                        <div className="grid grid-cols-2 gap-2">
+                            <button
+                                type="button"
+                                onClick={() => setWallMode("single")}
+                                className={`rounded-xl border-2 p-3 text-xs font-semibold transition-all ${
+                                    wallMode === "single"
+                                        ? "border-primary/50 bg-primary/10 shadow-sm text-primary"
+                                        : "border-border/40 bg-card/50 hover:border-primary/30 text-muted-foreground"
+                                }`}
+                            >
+                                {isEnglish ? "One wall" : "Одна стена"}
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setWallMode("room")}
+                                className={`rounded-xl border-2 p-3 text-xs font-semibold transition-all ${
+                                    wallMode === "room"
+                                        ? "border-primary/50 bg-primary/10 shadow-sm text-primary"
+                                        : "border-border/40 bg-card/50 hover:border-primary/30 text-muted-foreground"
+                                }`}
+                            >
+                                {isEnglish ? "Whole room walls" : "Стены всей комнаты"}
+                            </button>
+                        </div>
+                    </div>
+                )}
+
                 {/* Размеры поверхности */}
                 <div className="rounded-2xl border border-border/50 bg-card/80 p-4 shadow-sm">
                     <label className="text-xs font-medium text-muted-foreground mb-3 block">
                         {surfaceType === "floor"
                             ? (isEnglish ? "Room dimensions" : "Параметры помещения")
-                            : (isEnglish ? "Wall dimensions" : "Параметры стены")}
+                            : (wallMode === "room" 
+                                ? (isEnglish ? "Room dimensions for wall layout" : "Параметры комнаты для облицовки стен")
+                                : (isEnglish ? "Wall dimensions" : "Параметры стены"))}
                     </label>
                     <div className="grid gap-3 md:grid-cols-2">
+                        {/* Длина или Ширина */}
                         <div className="space-y-2">
                             <label className="text-xs text-muted-foreground flex items-center gap-2">
                                 <Ruler className="h-3.5 w-3.5" />
                                 {surfaceType === "floor"
                                     ? (isEnglish ? "Length (m)" : "Длина помещения (м)")
-                                    : (isEnglish ? "Wall width (m)" : "Ширина стены (м)")}
+                                    : (wallMode === "room"
+                                        ? (isEnglish ? "Room length (m)" : "Длина комнаты (м)")
+                                        : (isEnglish ? "Wall width (m)" : "Ширина стены (м)"))}
                             </label>
                             <Input
                                 type="number"
@@ -384,15 +493,21 @@ export function TileCalculator() {
                             <p className="text-xs text-muted-foreground/70">
                                 {surfaceType === "floor"
                                     ? (isEnglish ? "Measure from wall to wall" : "Измерьте рулеткой от стены до стены")
-                                    : (isEnglish ? "Useful width of the wall to be tiled" : "Полезная ширина стены под облицовку")}
+                                    : (wallMode === "room"
+                                        ? (isEnglish ? "Room length along the floor" : "Длина комнаты вдоль пола")
+                                        : (isEnglish ? "Useful width of the wall to be tiled" : "Полезная ширина стены под облицовку"))}
                             </p>
                         </div>
+                        
+                        {/* Ширина или Высота */}
                         <div className="space-y-2">
                             <label className="text-xs text-muted-foreground flex items-center gap-2">
                                 <Ruler className="h-3.5 w-3.5" />
                                 {surfaceType === "floor"
                                     ? (isEnglish ? "Width (m)" : "Ширина помещения (м)")
-                                    : (isEnglish ? "Wall height (m)" : "Высота стены (м)")}
+                                    : (wallMode === "room"
+                                        ? (isEnglish ? "Room width (m)" : "Ширина комнаты (м)")
+                                        : (isEnglish ? "Wall height (m)" : "Высота стены (м)"))}
                             </label>
                             <Input
                                 type="number"
@@ -404,17 +519,33 @@ export function TileCalculator() {
                             <p className="text-xs text-muted-foreground/70">
                                 {surfaceType === "floor"
                                     ? (isEnglish ? "From one wall to another" : "От одной стены к другой")
-                                    : (isEnglish ? "From floor finish to the planned top edge" : "От чистого пола до верхней границы плитки")}
+                                    : (wallMode === "room"
+                                        ? (isEnglish ? "Room width along the floor" : "Ширина комнаты вдоль пола")
+                                        : (isEnglish ? "From floor finish to the planned top edge" : "От чистого пола до верхней границы плитки"))}
                             </p>
                         </div>
                     </div>
-                    {surfaceType === "wall" && (
-                        <p className="mt-3 text-xs text-muted-foreground/70">
-                            {isEnglish
-                                ? "For a full room, calculate each wall separately and sum the results."
-                                : "Для всей комнаты рассчитайте каждую стену отдельно и сложите результаты."}
-                        </p>
+
+                    {/* Высота помещения для режима "Вся комната" */}
+                    {surfaceType === "wall" && wallMode === "room" && (
+                        <div className="mt-3 space-y-2">
+                            <label className="text-xs text-muted-foreground flex items-center gap-2">
+                                <Ruler className="h-3.5 w-3.5" />
+                                {isEnglish ? "Wall height (m)" : "Высота стен (м)"}
+                            </label>
+                            <Input
+                                type="number"
+                                placeholder="2.7"
+                                value={height}
+                                onChange={(e) => setHeight(e.target.value)}
+                                className="rounded-xl border-border/60 bg-background/80"
+                            />
+                            <p className="text-xs text-muted-foreground/70">
+                                {isEnglish ? "Ceiling height or height of tiling coverage" : "Высота потолка или высота облицовки"}
+                            </p>
+                        </div>
                     )}
+
                     {surfaceType === "floor" && (
                         <div className="mt-3 space-y-2">
                             <label className="text-xs text-muted-foreground">
@@ -467,7 +598,20 @@ export function TileCalculator() {
                             </p>
                         </div>
                     </div>
-                    <div className="grid gap-3 md:grid-cols-2 mt-3">
+                    <div className="grid gap-3 md:grid-cols-3 mt-3">
+                        <div className="space-y-2">
+                            <label className="text-xs text-muted-foreground">{isEnglish ? "Tile thickness (mm)" : "Толщина плитки (мм)"}</label>
+                            <Input
+                                type="number"
+                                placeholder="8"
+                                value={tileThickness}
+                                onChange={(e) => setTileThickness(e.target.value)}
+                                className="rounded-xl border-border/60 bg-background/80"
+                            />
+                            <p className="text-xs text-muted-foreground/70">
+                                {isEnglish ? "For grout calculation" : "Для расчета объема затирки"}
+                            </p>
+                        </div>
                         <div className="space-y-2">
                             <label className="text-xs text-muted-foreground">{isEnglish ? "Grout width (mm)" : "Ширина шва (мм)"}</label>
                             <Input
@@ -478,11 +622,11 @@ export function TileCalculator() {
                                 className="rounded-xl border-border/60 bg-background/80"
                             />
                             <p className="text-xs text-muted-foreground/70">
-                                {isEnglish ? "Usually 2–5 mm for ceramic, 1–3 mm for porcelain" : "Обычно 2–5 мм для керамики, 1–3 мм для керамогранита"}
+                                {isEnglish ? "Usually 1.5–3 mm" : "Обычно от 1.5 до 3 мм"}
                             </p>
                         </div>
                         <div className="space-y-2">
-                            <label className="text-xs text-muted-foreground">{isEnglish ? "Tiles per pack (pcs)" : "Количество плиток в упаковке (шт)"}</label>
+                            <label className="text-xs text-muted-foreground">{isEnglish ? "Tiles per pack (pcs)" : "Количество в упаковке (шт)"}</label>
                             <Input
                                 type="number"
                                 placeholder="11"
@@ -491,7 +635,7 @@ export function TileCalculator() {
                                 className="rounded-xl border-border/60 bg-background/80"
                             />
                             <p className="text-xs text-muted-foreground/70">
-                                {isEnglish ? "Indicated on the box; needed for pack calculation" : "Указано на коробке; нужно для расчета упаковок"}
+                                {isEnglish ? "For pack count" : "Нужно для расчета количества упаковок"}
                             </p>
                         </div>
                     </div>
@@ -501,7 +645,7 @@ export function TileCalculator() {
                 {surfaceType === "wall" && (
                     <div className="rounded-2xl border border-border/50 bg-card/80 p-4 shadow-sm space-y-4">
                         <label className="text-xs font-medium text-muted-foreground block">
-                            {isEnglish ? "Windows and doors" : "Окна и двери"}
+                            {isEnglish ? "Windows and doors (Deducted)" : "Окна и двери (будут вычтены)"}
                         </label>
                         <div className="grid gap-3 md:grid-cols-2">
                             <div className="space-y-2">
@@ -548,6 +692,45 @@ export function TileCalculator() {
                     </div>
                 )}
 
+                {/* Цена и смета */}
+                <div className="rounded-2xl border border-border/50 bg-card/80 p-4 shadow-sm space-y-4">
+                    <label className="text-xs font-medium text-muted-foreground flex items-center gap-2">
+                        <Coins className="h-3.5 w-3.5 text-primary" />
+                        {isEnglish ? "Price and Budget (Optional)" : "Стоимость и бюджет (необязательно)"}
+                    </label>
+                    <div className="grid gap-3 md:grid-cols-2">
+                        <div className="space-y-2">
+                            <label className="text-xs text-muted-foreground">{isEnglish ? "Price per pack" : "Цена за упаковку"}</label>
+                            <Input
+                                type="number"
+                                placeholder="1500"
+                                value={pricePerPack}
+                                onChange={(e) => setPricePerPack(e.target.value)}
+                                className="rounded-xl border-border/60 bg-background/80"
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-xs text-muted-foreground">{isEnglish ? "Currency" : "Валюта"}</label>
+                            <div className="grid grid-cols-3 gap-2">
+                                {(["RUB", "USD", "EUR"] as const).map((curr) => (
+                                    <button
+                                        key={curr}
+                                        type="button"
+                                        onClick={() => setCurrency(curr)}
+                                        className={`rounded-xl border p-2.5 text-xs font-semibold transition-all ${
+                                            currency === curr
+                                                ? "border-primary bg-primary/10 text-primary shadow-sm"
+                                                : "border-border/60 bg-card hover:bg-accent text-muted-foreground"
+                                        }`}
+                                    >
+                                        {curr === "RUB" ? "₽ (RUB)" : curr === "USD" ? "$ (USD)" : "€ (EUR)"}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 {/* Способ укладки и запас */}
                 <div className="rounded-2xl border border-border/50 bg-card/80 p-4 shadow-sm space-y-4">
                     <label className="text-xs font-medium text-muted-foreground block">
@@ -559,6 +742,7 @@ export function TileCalculator() {
                             {layoutOptions.map((option) => (
                                 <button
                                     key={option.value}
+                                    type="button"
                                     onClick={() => setLayoutType(option.value)}
                                     className={`relative overflow-hidden rounded-xl border-2 p-3 text-left transition-all ${
                                         layoutType === option.value
@@ -625,37 +809,66 @@ export function TileCalculator() {
 
                 {result !== null && (
                     <>
-                        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            {/* Карточка 1: Плитки нужно */}
                             <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-emerald-50/20 p-4 shadow-sm dark:from-card dark:to-emerald-500/10">
                                 <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
-                                    <Grid className="h-3.5 w-3.5 text-primary" /> {isEnglish ? "Tiles needed" : "Плитки нужно"}
+                                    <Grid className="h-3.5 w-3.5 text-emerald-500" /> {isEnglish ? "Tiles needed" : "Плитки нужно"}
                                 </div>
-                                <p className="mt-2 text-lg font-semibold text-foreground">
+                                <p className="mt-2 text-2xl font-bold text-foreground">
                                     {result} {isEnglish ? "pcs" : "шт"}
                                 </p>
                             </div>
+
+                            {/* Карточка 2: Упаковок нужно */}
                             <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-blue-50/20 p-4 shadow-sm dark:from-card dark:to-blue-500/10">
                                 <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
                                     <Calculator className="h-3.5 w-3.5 text-blue-500" /> {isEnglish ? "Packs needed" : "Упаковок нужно"}
                                 </div>
-                                <p className="mt-2 text-lg font-semibold text-blue-600">
+                                <p className="mt-2 text-2xl font-bold text-blue-600 dark:text-blue-400">
                                     {packsNeeded} {isEnglish ? "packs" : "уп"}
                                 </p>
                             </div>
+
+                            {/* Карточка 3: Площадь облицовки (чистая) */}
                             <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-amber-50/20 p-4 shadow-sm dark:from-card dark:to-amber-500/10">
                                 <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
-                                    <Ruler className="h-3.5 w-3.5 text-amber-500" /> {isEnglish ? "Tile area" : "Площадь плитки"}
+                                    <Ruler className="h-3.5 w-3.5 text-amber-500" /> {isEnglish ? "Tiling Net Area" : "Чистая площадь укладки"}
                                 </div>
-                                <p className="mt-2 text-lg font-semibold text-amber-600">
+                                <p className="mt-2 text-2xl font-bold text-amber-600 dark:text-amber-400">
                                     {tileArea?.toFixed(2)} {isEnglish ? "m²" : "м²"}
                                 </p>
                             </div>
+
+                            {/* Карточка 4: Клей */}
+                            <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-purple-50/20 p-4 shadow-sm dark:from-card dark:to-purple-500/10">
+                                <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
+                                    <Layers className="h-3.5 w-3.5 text-purple-500" /> {isEnglish ? "Adhesive" : "Клей для плитки"}
+                                </div>
+                                <p className="mt-2 text-2xl font-bold text-purple-600 dark:text-purple-400">
+                                    {glueAmount} {isEnglish ? "kg" : "кг"}
+                                </p>
+                            </div>
+
+                            {/* Карточка 5: Затирка */}
+                            <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-card to-indigo-50/20 p-4 shadow-sm dark:from-card dark:to-indigo-500/10">
+                                <div className="flex items-center gap-2 text-xs font-medium uppercase text-muted-foreground">
+                                    <HelpCircle className="h-3.5 w-3.5 text-indigo-500" /> {isEnglish ? "Grout" : "Затирка"}
+                                </div>
+                                <p className="mt-2 text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+                                    {groutAmount} {isEnglish ? "kg" : "кг"}
+                                </p>
+                            </div>
+
+                            {/* Карточка 6: Стоимость */}
                             <div className="rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/15 to-primary/5 p-4 shadow-md">
                                 <div className="flex items-center gap-2 text-xs font-medium uppercase text-primary">
-                                    <Calculator className="h-3.5 w-3.5" /> {isEnglish ? "Adhesive" : "Клей"}
+                                    <Coins className="h-3.5 w-3.5 text-primary" /> {isEnglish ? "Estimated cost" : "Ориентировочная стоимость"}
                                 </div>
                                 <p className="mt-2 text-2xl font-bold text-primary">
-                                    {glueAmount} {isEnglish ? "kg" : "кг"}
+                                    {estimatedCost !== null && estimatedCost !== undefined
+                                        ? `${estimatedCost.toLocaleString()} ${currSym}`
+                                        : `—`}
                                 </p>
                             </div>
                         </div>

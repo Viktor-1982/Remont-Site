@@ -68,11 +68,14 @@ export type LayoutType = "straight" | "diagonal" | "herringbone" | "brick"
 
 export interface TileParams {
   surfaceType: SurfaceType
-  length: number
-  width: number
+  wallMode?: "single" | "room"
+  length: number // длина пола, ширина стены или длина комнаты
+  width: number  // ширина пола, высота стены или ширина комнаты
+  height?: number // высота комнаты (для wallMode === "room")
   bathArea: number
   tileLength: number
   tileWidth: number
+  tileThickness?: number // в мм
   groutWidth: number
   tilesPerPack: number
   windows: number
@@ -81,24 +84,31 @@ export interface TileParams {
   doorArea: number
   baseWastePercent: number
   additionalWastePercent: number
+  pricePerPack?: number
 }
 
 export interface TileResult {
   tilesNeeded: number
   packsNeeded: number
-  tileArea: number
+  singleTileArea: number
+  totalArea: number
   glueAmountKg: number
+  groutAmountKg: number
+  estimatedCost?: number
 }
 
-// Плитка: количество плиток, упаковок и клея
+// Плитка: количество плиток, упаковок, клея, затирки и стоимости
 export function computeTile(params: TileParams): TileResult | null {
   const {
     surfaceType,
+    wallMode = "single",
     length,
     width,
+    height,
     bathArea,
     tileLength,
     tileWidth,
+    tileThickness = 8,
     groutWidth,
     tilesPerPack,
     windows,
@@ -107,6 +117,7 @@ export function computeTile(params: TileParams): TileResult | null {
     doorArea,
     baseWastePercent,
     additionalWastePercent,
+    pricePerPack,
   } = params
 
   if (length <= 0 || width <= 0 || tileLength <= 0 || tileWidth <= 0) return null
@@ -115,10 +126,21 @@ export function computeTile(params: TileParams): TileResult | null {
 
   if (length > 100 || width > 100 || tileLength > 200 || tileWidth > 200) return null
 
-  let surfaceArea = length * width
+  let surfaceArea = 0
 
-  if (surfaceType === "floor" && bathArea > 0) {
-    surfaceArea = Math.max(0, surfaceArea - bathArea)
+  if (surfaceType === "floor") {
+    surfaceArea = length * width
+    if (bathArea > 0) {
+      surfaceArea = Math.max(0, surfaceArea - bathArea)
+    }
+  } else {
+    // surfaceType === "wall"
+    if (wallMode === "room") {
+      const h = height || 2.7
+      surfaceArea = 2 * h * (length + width)
+    } else {
+      surfaceArea = length * width
+    }
   }
 
   let totalArea = surfaceArea
@@ -141,18 +163,44 @@ export function computeTile(params: TileParams): TileResult | null {
   const tilesWithWaste = Math.ceil(tilesWithoutWaste * (1 + totalWaste / 100))
   const packs = Math.ceil(tilesWithWaste / tilesPerPack)
 
-  const gluePerSquareMeter = 4.5
+  // Динамический расчет расхода клея в зависимости от максимального размера плитки
+  const maxDim = Math.max(tileLength, tileWidth)
+  let gluePerSquareMeter = 4.5
+  if (maxDim <= 10) gluePerSquareMeter = 2.5
+  else if (maxDim <= 20) gluePerSquareMeter = 3.5
+  else if (maxDim <= 40) gluePerSquareMeter = 4.5
+  else if (maxDim <= 60) gluePerSquareMeter = 5.5
+  else gluePerSquareMeter = 7.5
+
   const glueNeeded = Math.ceil(totalArea * gluePerSquareMeter)
 
-  if (!Number.isFinite(tilesWithWaste) || !Number.isFinite(packs) || !Number.isFinite(glueNeeded)) {
+  // Расчет затирки по формуле: Расход (кг/м2) = ((A+B)/(A*B)) * C * D * 1.6
+  // A, B, C, D в миллиметрах
+  const tileLengthMm = tileLength * 10
+  const tileWidthMm = tileWidth * 10
+  const thicknessMm = tileThickness
+  const groutConsumption = ((tileLengthMm + tileWidthMm) / (tileLengthMm * tileWidthMm)) * thicknessMm * groutWidth * 1.6
+  const groutNeeded = Math.ceil(totalArea * groutConsumption * 1.1) // 10% запас
+
+  if (
+    !Number.isFinite(tilesWithWaste) ||
+    !Number.isFinite(packs) ||
+    !Number.isFinite(glueNeeded) ||
+    !Number.isFinite(groutNeeded)
+  ) {
     return null
   }
+
+  const estimatedCost = pricePerPack && pricePerPack > 0 ? packs * pricePerPack : undefined
 
   return {
     tilesNeeded: tilesWithWaste,
     packsNeeded: packs,
-    tileArea: tileAreaM2,
+    singleTileArea: tileAreaM2,
+    totalArea,
     glueAmountKg: glueNeeded,
+    groutAmountKg: groutNeeded,
+    estimatedCost,
   }
 }
 
@@ -282,11 +330,7 @@ export function computeWallpaper(params: WallpaperParams): WallpaperResult | nul
     totalLinearWidth - doorReductionWidth - windowReductionWidth,
   )
   const adjustedLinearWidth = Math.max(equivalentLinearWidthByArea, stripBasedLinearWidth)
-  const stripsNeeded = Math.ceil(adjustedLinearWidth / rollW)
-  const rollsNeeded = Math.ceil(stripsNeeded / stripsPerRoll)
-
-  if (!Number.isFinite(rollsNeeded)) return null
-
+  const rollsNeeded = Math.ceil(Math.ceil(adjustedLinearWidth / rollW) / stripsPerRoll)
   return { wallArea: netWallArea, rollsNeeded }
 }
 
