@@ -1,6 +1,7 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest } from "next/server"
 import { Resend } from "resend"
 import { allPosts, type Post } from ".contentlayer/generated"
+import { jsonNoStore } from "@/lib/no-store-response"
 import { wasNotificationSent, saveNotificationSent } from "@/lib/notifications-repo"
 import { NOTIFIABLE_CALCULATORS } from "@/lib/notifiable-calculators"
 import { authorizeRequest } from "@/lib/request-auth"
@@ -334,7 +335,7 @@ export async function POST(req: NextRequest) {
             const pendingItems = await findPendingContent(lookbackHours)
 
             if (pendingItems.length === 0) {
-                return NextResponse.json(
+                return jsonNoStore(
                     {
                         message: `No pending content found within the last ${lookbackHours} hours`,
                         processed: 0,
@@ -352,7 +353,7 @@ export async function POST(req: NextRequest) {
             const totalSent = results.reduce((sum, item) => sum + item.sent, 0)
             const totalFailed = results.reduce((sum, item) => sum + item.failed, 0)
 
-            return NextResponse.json(
+            return jsonNoStore(
                 {
                     message: `Processed ${pendingItems.length} pending content items`,
                     processed: pendingItems.length,
@@ -365,7 +366,7 @@ export async function POST(req: NextRequest) {
         }
 
         if (!slug) {
-            return NextResponse.json(
+            return jsonNoStore(
                 { error: "Slug is required when not in auto mode" },
                 { status: 400 }
             )
@@ -373,7 +374,7 @@ export async function POST(req: NextRequest) {
 
         const item = findRequestedContent(slug, locale, kind)
         if (!item) {
-            return NextResponse.json(
+            return jsonNoStore(
                 { error: `Content with slug "${slug}" not found` },
                 { status: 404 }
             )
@@ -381,7 +382,7 @@ export async function POST(req: NextRequest) {
 
         const result = await sendNotificationsForContent(item)
 
-        return NextResponse.json(
+        return jsonNoStore(
             {
                 message: `Notifications sent: ${result.sent} successful, ${result.failed} failed`,
                 ...formatResult(item, result),
@@ -390,7 +391,7 @@ export async function POST(req: NextRequest) {
         )
     } catch (error) {
         console.error("Notify subscribers error:", error)
-        return NextResponse.json(
+        return jsonNoStore(
             {
                 error: error instanceof Error ? error.message : "An error occurred",
             },
@@ -410,7 +411,7 @@ export async function GET(req: NextRequest) {
         const pendingItems = await findPendingContent(lookbackHours)
 
         if (pendingItems.length === 0) {
-            return NextResponse.json(
+            return jsonNoStore(
                 {
                     message: `No pending content found within the last ${lookbackHours} hours`,
                     processed: 0,
@@ -428,7 +429,7 @@ export async function GET(req: NextRequest) {
         const totalSent = results.reduce((sum, item) => sum + item.sent, 0)
         const totalFailed = results.reduce((sum, item) => sum + item.failed, 0)
 
-        return NextResponse.json(
+        return jsonNoStore(
             {
                 message: `Processed ${pendingItems.length} pending content items`,
                 processed: pendingItems.length,
@@ -440,7 +441,7 @@ export async function GET(req: NextRequest) {
         )
     } catch (error) {
         console.error("Auto notify subscribers error:", error)
-        return NextResponse.json(
+        return jsonNoStore(
             {
                 error: error instanceof Error ? error.message : "An error occurred",
             },

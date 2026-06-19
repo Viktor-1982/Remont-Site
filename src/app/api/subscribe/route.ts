@@ -1,6 +1,7 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest } from "next/server"
 import { Resend } from "resend"
 import { type Subscription } from "../subscriptions/store"
+import { jsonNoStore } from "@/lib/no-store-response"
 import { findSubscription, getStats, upsertSubscription } from "@/lib/subscriptions-repo"
 import { authorizeRequest } from "@/lib/request-auth"
 import { buildUnsubscribeUrl } from "@/lib/unsubscribe-token"
@@ -150,7 +151,7 @@ export async function POST(req: NextRequest) {
         const segment = resolveSegment((body as { segment?: unknown }).segment)
 
         if (!isValidEmail(email)) {
-            return NextResponse.json(
+            return jsonNoStore(
                 {
                     error:
                         locale === "en"
@@ -176,7 +177,7 @@ export async function POST(req: NextRequest) {
             await upsertSubscription(updatedSubscription)
             const emailStatus = await sendWelcomeEmail(email, locale, segment, true)
 
-            return NextResponse.json(
+            return jsonNoStore(
                 {
                     message:
                         locale === "en"
@@ -202,7 +203,7 @@ export async function POST(req: NextRequest) {
         await upsertSubscription(subscription)
         const emailStatus = await sendWelcomeEmail(email, locale, segment, false)
 
-        return NextResponse.json(
+        return jsonNoStore(
             {
                 message:
                     locale === "en" ? "Successfully subscribed." : "Подписка оформлена.",
@@ -216,7 +217,7 @@ export async function POST(req: NextRequest) {
     } catch (error) {
         console.error("Subscription error:", error)
 
-        return NextResponse.json(
+        return jsonNoStore(
             {
                 error:
                     locale === "en"
@@ -241,5 +242,5 @@ export async function GET(req: NextRequest) {
     }
 
     const stats = await getStats()
-    return NextResponse.json(stats)
+    return jsonNoStore(stats)
 }

@@ -6,28 +6,41 @@ export interface PaintParams {
   windows: number
   layers: number
   coverage: number
+  pricePerLiter?: number
+}
+
+export interface PaintResult {
+  litersNeeded: number
+  estimatedCost?: number
 }
 
 const DEFAULT_DOOR_AREA_M2 = 1.9
 const DEFAULT_WINDOW_AREA_M2 = 1.8
 const WALLPAPER_WINDOW_REDUCTION_FACTOR = 0.35
 
-// Литры краски по той же формуле, что в виджете
-export function computePaintLiters(params: PaintParams): number {
-  const { length, width, height, doors, windows, layers, coverage } = params
+// Расчет литров краски и ориентировочной стоимости
+export function computePaintLiters(params: PaintParams): PaintResult | null {
+  const { length, width, height, doors, windows, layers, coverage, pricePerLiter } = params
 
-  if (coverage <= 0) return 0
-  if (length <= 0 || width <= 0 || height <= 0 || layers <= 0) return 0
+  if (coverage <= 0) return null
+  if (length <= 0 || width <= 0 || height <= 0 || layers <= 0) return null
 
   const d = doors * DEFAULT_DOOR_AREA_M2
   const win = windows * DEFAULT_WINDOW_AREA_M2
   const wallArea = Math.max(0, 2 * height * (length + width) - (d + win))
   const ceilingArea = length * width
   const area = (wallArea + ceilingArea) * layers
-  if (area <= 0) return 0
+  if (area <= 0) return null
 
   const liters = area / coverage
-  return Number.isFinite(liters) && liters > 0 ? liters : 0
+  if (!Number.isFinite(liters) || liters <= 0) return null
+
+  const estimatedCost = pricePerLiter && pricePerLiter > 0 ? liters * pricePerLiter : undefined
+
+  return {
+    litersNeeded: liters,
+    estimatedCost,
+  }
 }
 
 export interface BudgetParams {
@@ -219,11 +232,13 @@ export interface WallpaperParams {
   rollLengthM: number
   patternRepeatCm: number
   patternOffset: boolean
+  pricePerRoll?: number
 }
 
 export interface WallpaperResult {
   wallArea: number
   rollsNeeded: number
+  estimatedCost?: number
 }
 
 // Обои: чистая площадь стен и количество рулонов
@@ -331,7 +346,8 @@ export function computeWallpaper(params: WallpaperParams): WallpaperResult | nul
   )
   const adjustedLinearWidth = Math.max(equivalentLinearWidthByArea, stripBasedLinearWidth)
   const rollsNeeded = Math.ceil(Math.ceil(adjustedLinearWidth / rollW) / stripsPerRoll)
-  return { wallArea: netWallArea, rollsNeeded }
+  const estimatedCost = params.pricePerRoll && params.pricePerRoll > 0 ? rollsNeeded * params.pricePerRoll : undefined
+  return { wallArea: netWallArea, rollsNeeded, estimatedCost }
 }
 
 export type FloorCovering = "tile" | "laminate" | "wood" | "vinyl"
@@ -735,6 +751,7 @@ export interface LightingParams {
   roomType: "living" | "kitchen" | "bathroom" | "bedroom" | "office" | "hallway" | "kids"
   lumenPerLamp: number
   reservePercent?: number
+  pricePerLamp?: number
 }
 
 export interface LightingResult {
@@ -743,6 +760,7 @@ export interface LightingResult {
   totalLumens: number
   totalLumensWithReserve: number
   numberOfLamps: number
+  estimatedCost?: number
 }
 
 const LUX_BY_ROOM: Record<LightingParams["roomType"], number> = {
@@ -772,12 +790,15 @@ export function computeLighting(params: LightingParams): LightingResult | null {
 
   if (!Number.isFinite(numberOfLamps) || numberOfLamps <= 0) return null
 
+  const estimatedCost = params.pricePerLamp && params.pricePerLamp > 0 ? numberOfLamps * params.pricePerLamp : undefined
+
   return {
     areaM2,
     targetLux,
     totalLumens: Math.round(totalLumens),
     totalLumensWithReserve: Math.round(totalLumensWithReserve),
     numberOfLamps,
+    estimatedCost,
   }
 }
 

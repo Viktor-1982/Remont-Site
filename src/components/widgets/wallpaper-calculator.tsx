@@ -55,8 +55,13 @@ export function WallpaperCalculator() {
     const [patternRepeat, setPatternRepeat] = useState("0") // см
     const [patternOffset, setPatternOffset] = useState(false)
     
+    const [pricePerRoll, setPricePerRoll] = useState("")
+    const [currency, setCurrency] = useState("₽")
+    const currencies = ["₽", "$", "€", "£", "¥"]
+
     const [result, setResult] = useState<number | null>(null)
     const [wallArea, setWallArea] = useState<number | null>(null)
+    const [estimatedCost, setEstimatedCost] = useState<number | undefined>(undefined)
 
     const addWindow = () => {
         setWindows([...windows, { id: nextWindowId, width: "", height: "" }])
@@ -118,6 +123,8 @@ export function WallpaperCalculator() {
             height: parseFloat(d.height.replace(",", ".").replace(/[^0-9.-]/g, "") || "0"),
         }))
 
+        const price = parseFloat(pricePerRoll.replace(",", ".").replace(/[^0-9.-]/g, "") || "0")
+
         const res = computeWallpaper({
             calculationType,
             roomWidth: roomWidthNum || 0,
@@ -131,12 +138,14 @@ export function WallpaperCalculator() {
             rollLengthM: rollLengthNum,
             patternRepeatCm: patternRepeatNum || 0,
             patternOffset,
+            pricePerRoll: !isNaN(price) && price > 0 ? price : undefined,
         })
 
         if (!res) return
 
         setWallArea(res.wallArea)
         setResult(res.rollsNeeded)
+        setEstimatedCost(res.estimatedCost)
     }
 
     const buildSummary = () => {
@@ -205,6 +214,13 @@ export function WallpaperCalculator() {
                     ? `Wallpaper needed: ${result} rolls. If the pattern or shade matters, it is safer to keep one reserve roll from the same batch.`
                     : `Обоев нужно: ${result} рулонов. Если важен рисунок или оттенок, лучше взять еще один запасной рулон из той же партии.`,
             )
+            if (estimatedCost) {
+                lines.push(
+                    isEnglish
+                        ? `Estimated cost: ~${Math.ceil(estimatedCost).toLocaleString()} ${currency}`
+                        : `Ориентировочная стоимость: ~${Math.ceil(estimatedCost).toLocaleString()} ${currency}`,
+                )
+            }
         }
 
         lines.push("")
@@ -629,6 +645,47 @@ export function WallpaperCalculator() {
                     </div>
                 </div>
 
+                {/* Стоимость */}
+                <div className="rounded-2xl border border-border/50 bg-card/80 p-4 shadow-sm space-y-4">
+                    <label className="text-xs font-medium text-muted-foreground block">
+                        {isEnglish ? "Cost estimation (optional)" : "Оценка стоимости (необязательно)"}
+                    </label>
+                    <div className="grid gap-3 md:grid-cols-2">
+                        <div className="space-y-2">
+                            <label className="text-xs text-muted-foreground">
+                                {isEnglish ? "Price per roll" : "Цена за рулон"}
+                            </label>
+                            <Input
+                                placeholder={isEnglish ? "optional" : "необязательно"}
+                                value={pricePerRoll}
+                                onChange={(e) => setPricePerRoll(e.target.value)}
+                                className="rounded-xl border-border/60 bg-background/80"
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-xs text-muted-foreground">
+                                {isEnglish ? "Currency" : "Валюта"}
+                            </label>
+                            <div className="flex gap-1.5">
+                                {currencies.map((c) => (
+                                    <button
+                                        key={c}
+                                        type="button"
+                                        onClick={() => setCurrency(c)}
+                                        className={`flex-1 rounded-xl border-2 py-2 text-sm font-medium transition ${
+                                            currency === c
+                                                ? "border-primary/50 bg-primary/10 text-primary"
+                                                : "border-border/40 bg-background/80 text-muted-foreground hover:border-primary/30"
+                                        }`}
+                                    >
+                                        {c}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <Button
                     onClick={calculate}
                     className="w-full rounded-2xl bg-gradient-to-r from-primary to-primary/80 py-6 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:translate-y-0 hover:brightness-110"
@@ -657,6 +714,16 @@ export function WallpaperCalculator() {
                             </p>
                         </div>
                     </div>
+                    {estimatedCost && (
+                        <div className="rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 p-4 shadow-md">
+                            <div className="flex items-center gap-2 text-xs font-medium uppercase text-emerald-600 dark:text-emerald-400 mb-2">
+                                {isEnglish ? "Estimated cost" : "Ориентировочная стоимость"}
+                            </div>
+                            <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                                ~{Math.ceil(estimatedCost).toLocaleString()} {currency}
+                            </p>
+                        </div>
+                    )}
                     <p className="mt-3 text-xs text-muted-foreground">
                         {isEnglish
                             ? "Tip: add one extra roll for safety and pattern matching."

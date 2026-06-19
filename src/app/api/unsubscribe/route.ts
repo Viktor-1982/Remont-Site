@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest } from "next/server"
+import { jsonNoStore } from "@/lib/no-store-response"
 import { deleteSubscription, findSubscription } from "@/lib/subscriptions-repo"
 import { verifyUnsubscribeToken } from "@/lib/unsubscribe-token"
 
@@ -45,14 +46,14 @@ export async function POST(req: NextRequest) {
     const verification = verifyUnsubscribeToken(body?.token as string | undefined)
 
     if (!verification.valid) {
-        return NextResponse.json(
+        return jsonNoStore(
             { error: unauthorizedMessage(locale) },
             { status: 401 }
         )
     }
 
     const result = await unsubscribe(verification.email, verification.locale)
-    return NextResponse.json(result.body, { status: result.status })
+    return jsonNoStore(result.body, { status: result.status })
 }
 
 export async function GET(req: NextRequest) {
@@ -62,12 +63,12 @@ export async function GET(req: NextRequest) {
     )
 
     if (!verification.valid) {
-        return NextResponse.json(
+        return jsonNoStore(
             { error: unauthorizedMessage(locale) },
             { status: 401 }
         )
     }
 
     const result = await unsubscribe(verification.email, verification.locale)
-    return NextResponse.json(result.body, { status: result.status })
+    return jsonNoStore(result.body, { status: result.status })
 }

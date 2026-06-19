@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { usePathname } from "next/navigation"
 import { useState } from "react"
@@ -8,7 +8,7 @@ import { Calculator } from "lucide-react"
 import { CalculationResultNotes } from "@/components/widgets/calculation-result-notes"
 import calcDataJson from "@/components/messages/calc.json"
 import type { Locale, CalcData, PaintCalcDict, ButtonsDict } from "@/types/calc"
-import { computePaintLiters } from "@/lib/calculations"
+import { computePaintLiters, type PaintResult } from "@/lib/calculations"
 
 const calcData = calcDataJson as CalcData
 
@@ -27,7 +27,11 @@ export function PaintCalculator() {
     const [windows, setWindows] = useState("0")
     const [layers, setLayers] = useState("2")
     const [coverage, setCoverage] = useState("10")
-    const [result, setResult] = useState<number | null>(null)
+    const [pricePerLiter, setPricePerLiter] = useState("")
+    const [currency, setCurrency] = useState("₽")
+    const [result, setResult] = useState<PaintResult | null>(null)
+
+    const currencies = ["₽", "$", "€", "£", "¥"]
 
     const calculate = () => {
         const l = parseFloat(length.replace(",", ".").replace(/[^0-9.-]/g, ""))
@@ -37,6 +41,7 @@ export function PaintCalculator() {
         const windowsNum = parseInt(windows.replace(/[^0-9]/g, "") || "0")
         const lay = parseInt(layers.replace(/[^0-9]/g, "") || "1")
         const cov = parseFloat(coverage.replace(",", ".").replace(/[^0-9.-]/g, ""))
+        const price = parseFloat(pricePerLiter.replace(",", ".").replace(/[^0-9.-]/g, ""))
         
         if (isNaN(l) || isNaN(w) || isNaN(h) || isNaN(cov) || 
             !isFinite(l) || !isFinite(w) || !isFinite(h) || !isFinite(cov)) return
@@ -47,7 +52,7 @@ export function PaintCalculator() {
         
         if (doorsNum < 0 || windowsNum < 0 || lay < 1 || lay > 10) return
 
-        const liters = computePaintLiters({
+        const res = computePaintLiters({
             length: l,
             width: w,
             height: h,
@@ -55,10 +60,11 @@ export function PaintCalculator() {
             windows: windowsNum,
             layers: lay,
             coverage: cov,
+            pricePerLiter: !isNaN(price) && price > 0 ? price : undefined,
         })
 
-        if (liters <= 0) return
-        setResult(liters)
+        if (!res) return
+        setResult(res)
     }
 
     const buildSummary = () => {
@@ -107,13 +113,20 @@ export function PaintCalculator() {
         }
 
         if (result !== null) {
-            const rounded = Math.ceil(result)
+            const rounded = Math.ceil(result.litersNeeded)
             lines.push("")
             lines.push(
                 isEnglish
                     ? `Estimated paint needed: ${rounded} L. Add about 10% reserve before buying.`
                     : `Оценочный расход краски: ${rounded} л. Перед покупкой лучше добавить около 10% запаса.`,
             )
+            if (result.estimatedCost) {
+                lines.push(
+                    isEnglish
+                        ? `Estimated cost: ~${Math.ceil(result.estimatedCost)} ${currency}`
+                        : `Ориентировочная стоимость: ~${Math.ceil(result.estimatedCost)} ${currency}`,
+                )
+            }
         }
 
         lines.push("")
@@ -163,7 +176,7 @@ export function PaintCalculator() {
             ? isEnglish
                 ? {
                       title: "How to read this result",
-                      intro: `The calculation currently gives ${Math.ceil(result)} L before the safety reserve. It already includes room walls, ceiling area, openings, coats and the paint coverage you entered.`,
+                      intro: `The calculation currently gives ${Math.ceil(result.litersNeeded)} L before the safety reserve. It already includes room walls, ceiling area, openings, coats and the paint coverage you entered.`,
                       sections: [
                           {
                               title: "Already included",
@@ -202,7 +215,7 @@ export function PaintCalculator() {
                   }
                 : {
                       title: "Как читать этот результат",
-                      intro: `Сейчас калькулятор показывает ${Math.ceil(result)} л без страхового запаса. В расчет уже вошли стены по периметру, потолок, проемы, количество слоев и укрывистость, которую вы указали.`,
+                      intro: `Сейчас калькулятор показывает ${Math.ceil(result.litersNeeded)} л без страхового запаса. В расчет уже вошли стены по периметру, потолок, проемы, количество слоев и укрывистость, которую вы указали.`,
                       sections: [
                           {
                               title: "Что уже учтено",
@@ -321,6 +334,38 @@ export function PaintCalculator() {
                             className="rounded-xl border-border/60 bg-background/80"
                         />
                     </div>
+                    <div className="space-y-2">
+                        <label className="text-xs font-medium text-muted-foreground">
+                            {isEnglish ? "Price per liter" : "Цена за литр"}
+                        </label>
+                        <Input
+                            placeholder={isEnglish ? "optional" : "необязательно"}
+                            value={pricePerLiter}
+                            onChange={(e) => setPricePerLiter(e.target.value)}
+                            className="rounded-xl border-border/60 bg-background/80"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-xs font-medium text-muted-foreground">
+                            {isEnglish ? "Currency" : "Валюта"}
+                        </label>
+                        <div className="flex gap-1.5">
+                            {currencies.map((c) => (
+                                <button
+                                    key={c}
+                                    type="button"
+                                    onClick={() => setCurrency(c)}
+                                    className={`flex-1 rounded-xl border-2 py-2 text-sm font-medium transition ${
+                                        currency === c
+                                            ? "border-primary/50 bg-primary/10 text-primary"
+                                            : "border-border/40 bg-background/80 text-muted-foreground hover:border-primary/30"
+                                    }`}
+                                >
+                                    {c}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
                 </div>
 
                 <Button
@@ -333,16 +378,31 @@ export function PaintCalculator() {
 
                 {result !== null && (
                     <>
-                        <div className="rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/15 to-primary/5 p-4 shadow-md">
-                            <div className="flex items-center gap-2 text-xs font-medium uppercase text-primary mb-2">
-                                <Calculator className="h-3.5 w-3.5" /> {t.result}
+                        <div className="grid gap-4 sm:grid-cols-2">
+                            <div className="rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/15 to-primary/5 p-4 shadow-md">
+                                <div className="flex items-center gap-2 text-xs font-medium uppercase text-primary mb-2">
+                                    <Calculator className="h-3.5 w-3.5" /> {t.result}
+                                </div>
+                                <p className="text-2xl font-bold text-primary">
+                                    {Math.ceil(result.litersNeeded)} {isEnglish ? "L" : "л"}
+                                </p>
+                                <p className="text-sm text-muted-foreground mt-2">
+                                    {isEnglish ? "Add 10% extra for safety." : "Добавьте 10% про запас."}
+                                </p>
                             </div>
-                            <p className="text-2xl font-bold text-primary">
-                                {Math.ceil(result)} {isEnglish ? "L" : "л"}
-                            </p>
-                            <p className="text-sm text-muted-foreground mt-2">
-                                {isEnglish ? "Add 10% extra for safety." : "Добавьте 10% про запас."}
-                            </p>
+                            {result.estimatedCost && (
+                                <div className="rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 p-4 shadow-md">
+                                    <div className="flex items-center gap-2 text-xs font-medium uppercase text-emerald-600 dark:text-emerald-400 mb-2">
+                                        {isEnglish ? "Estimated cost" : "Ориентировочная стоимость"}
+                                    </div>
+                                    <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                                        ~{Math.ceil(result.estimatedCost).toLocaleString()} {currency}
+                                    </p>
+                                    <p className="text-sm text-muted-foreground mt-2">
+                                        {isEnglish ? "Based on your price per liter." : "На основе указанной цены за литр."}
+                                    </p>
+                                </div>
+                            )}
                         </div>
 
                         <div className="mt-4 flex flex-col sm:flex-row gap-3">

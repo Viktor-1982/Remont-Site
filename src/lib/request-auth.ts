@@ -1,5 +1,6 @@
 import { timingSafeEqual } from "node:crypto"
 import { NextRequest, NextResponse } from "next/server"
+import { jsonNoStore } from "@/lib/no-store-response"
 
 export function getConfiguredSecret(envNames: readonly string[]): string | null {
     for (const envName of envNames) {
@@ -45,7 +46,7 @@ export function authorizeRequest(
     if (!configuredSecret) {
         return {
             ok: false,
-            response: NextResponse.json(
+            response: jsonNoStore(
                 { error: "Endpoint is not configured" },
                 { status: 503 }
             ),
@@ -57,7 +58,7 @@ export function authorizeRequest(
     if (!requestSecret || !safeEqual(requestSecret, configuredSecret)) {
         return {
             ok: false,
-            response: NextResponse.json({ error: errorMessage }, { status: 401 }),
+            response: jsonNoStore({ error: errorMessage }, { status: 401 }),
         }
     }
 

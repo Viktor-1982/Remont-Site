@@ -1,5 +1,6 @@
-﻿import { NextRequest, NextResponse } from "next/server"
+﻿import { NextRequest } from "next/server"
 import { checkRateLimit } from "@/lib/rate-limit"
+import { jsonNoStore } from "@/lib/no-store-response"
 
 interface ChatCompletionChoice {
     message: {
@@ -33,7 +34,7 @@ export async function POST(req: NextRequest) {
         })
 
         if (!rateLimit.success) {
-            return NextResponse.json(
+            return jsonNoStore(
                 {
                     reply: rateLimit.message || "Too many requests. Please try again later.",
                 },
@@ -54,7 +55,7 @@ export async function POST(req: NextRequest) {
 
         // ✅ Валидация входных данных
         if (!Array.isArray(messages)) {
-            return NextResponse.json(
+            return jsonNoStore(
                 { reply: "Invalid request: messages must be an array" },
                 { status: 400 }
             )
@@ -62,7 +63,7 @@ export async function POST(req: NextRequest) {
 
         // ✅ Ограничение количества сообщений (защита от DoS)
         if (messages.length > 50) {
-            return NextResponse.json(
+            return jsonNoStore(
                 { reply: "Too many messages. Maximum 50 messages allowed." },
                 { status: 400 }
             )
@@ -122,7 +123,7 @@ export async function POST(req: NextRequest) {
             console.log(`Model tried: ${model}`, data)
 
             if (res.ok && data.choices && data.choices[0]) {
-                return NextResponse.json(
+                return jsonNoStore(
                     { reply: data.choices[0].message.content },
                     {
                         headers: {
@@ -137,7 +138,7 @@ export async function POST(req: NextRequest) {
             lastError = data?.error?.message || "неизвестная ошибка"
         }
 
-        return NextResponse.json(
+        return jsonNoStore(
             { reply: validLocale === "en" 
                 ? `❌ All free models are busy. Error: ${lastError}` 
                 : `❌ Все бесплатные модели перегружены. Ошибка: ${lastError}` 
@@ -146,7 +147,7 @@ export async function POST(req: NextRequest) {
         )
     } catch (err) {
         console.error("API route crashed:", err)
-        return NextResponse.json(
+        return jsonNoStore(
             { reply: "❌ Внутренняя ошибка сервера" },
             { status: 500 }
         )

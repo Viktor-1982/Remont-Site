@@ -1,5 +1,6 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest } from "next/server"
 import { submitToIndexNow, submitSingleUrlViaGet } from "@/lib/indexnow"
+import { jsonNoStore } from "@/lib/no-store-response"
 import { authorizeRequest } from "@/lib/request-auth"
 
 const INDEXNOW_SECRET_ENV_NAMES = ["INDEXNOW_SECRET", "CRON_SECRET"] as const
@@ -23,14 +24,14 @@ export async function POST(req: NextRequest) {
         const { urls } = body
 
         if (!urls || !Array.isArray(urls)) {
-            return NextResponse.json(
+            return jsonNoStore(
                 { error: "urls must be an array of URLs" },
                 { status: 400 }
             )
         }
 
         if (urls.length === 0) {
-            return NextResponse.json(
+            return jsonNoStore(
                 { error: "At least one URL is required" },
                 { status: 400 }
             )
@@ -38,7 +39,7 @@ export async function POST(req: NextRequest) {
 
         // Ограничение на количество URL за один запрос (IndexNow рекомендует до 10,000)
         if (urls.length > 10000) {
-            return NextResponse.json(
+            return jsonNoStore(
                 { error: "Maximum 10,000 URLs per request" },
                 { status: 400 }
             )
@@ -47,13 +48,13 @@ export async function POST(req: NextRequest) {
         const result = await submitToIndexNow(urls)
 
         if (result.success) {
-            return NextResponse.json({
+            return jsonNoStore({
                 success: true,
                 message: `Successfully submitted ${urls.length} URL(s) to IndexNow`,
                 urls: urls.length,
             })
         } else {
-            return NextResponse.json(
+            return jsonNoStore(
                 {
                     success: false,
                     error: result.error || "Failed to submit URLs",
@@ -63,7 +64,7 @@ export async function POST(req: NextRequest) {
         }
     } catch (error) {
         console.error("IndexNow API error:", error)
-        return NextResponse.json(
+        return jsonNoStore(
             {
                 success: false,
                 error: error instanceof Error ? error.message : "Unknown error",
@@ -94,14 +95,14 @@ export async function GET(req: NextRequest) {
             const result = await submitSingleUrlViaGet(decodedUrl)
 
             if (result.success) {
-                return NextResponse.json({
+                return jsonNoStore({
                     success: true,
                     message: "Successfully submitted URL to IndexNow",
                     url: decodedUrl,
                     statusCode: result.statusCode,
                 })
             } else {
-                return NextResponse.json(
+                return jsonNoStore(
                     {
                         success: false,
                         error: result.error || "Failed to submit URL",
@@ -112,7 +113,7 @@ export async function GET(req: NextRequest) {
             }
         } catch (error) {
             console.error("IndexNow GET API error:", error)
-            return NextResponse.json(
+            return jsonNoStore(
                 {
                     success: false,
                     error: error instanceof Error ? error.message : "Unknown error",
@@ -123,7 +124,7 @@ export async function GET(req: NextRequest) {
     }
 
     // Если параметр url не передан, возвращаем информацию о сервисе
-    return NextResponse.json({
+    return jsonNoStore({
         service: "IndexNow",
         key: "506b8013c6ddcce134765ffa1fc1b102",
         keyLocation: "https://renohacks.com/506b8013c6ddcce134765ffa1fc1b102.txt",
