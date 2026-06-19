@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import * as React from "react"
 import { useState } from "react"
@@ -250,6 +250,30 @@ function MdxImage({ alt, src }: { alt?: string; src: string }) {
     )
 }
 
+// 🔹 Компонент карточки партнерского товара (Amazon Affiliate)
+function AffiliateCardComponent({ href, title, description }: { href: string; title: string; description: string }) {
+    return (
+        <div className="my-8 p-6 rounded-xl border border-primary/20 bg-primary/5 dark:bg-primary/10">
+            <div className="flex items-start gap-4">
+                <span className="text-2xl mt-0.5">💡</span>
+                <div className="flex-1">
+                    <h4 className="font-semibold text-foreground mt-0 mb-1">{title}</h4>
+                    <p className="text-sm text-muted-foreground mt-1 mb-4 leading-relaxed">{description}</p>
+                    <a
+                        href={href}
+                        target="_blank"
+                        rel="sponsored nofollow"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-semibold no-underline"
+                    >
+                        View on Amazon
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 // 🔹 Словарь компонентов, доступных в MDX
 export const mdxComponents: MDXComponents = {
     // Картинки с поддержкой галереи
@@ -285,6 +309,11 @@ export const mdxComponents: MDXComponents = {
         <div className="my-8">
             <ScreedCalculator />
         </div>
+    ),
+
+    // Карточка партнерского товара
+    AffiliateCard: (props: { href: string; title: string; description: string }) => (
+        <AffiliateCardComponent {...props} />
     ),
 
     // Чеклисты
