@@ -42,7 +42,7 @@ export function LightingCalculator({ isEnglish = false }: { isEnglish?: boolean 
     const [reserve, setReserve] = useState("10")
     const [pricePerLamp, setPricePerLamp] = useState("")
     const [currency, setCurrency] = useState("₽")
-    const currencies = ["₽", "$", "€", "£", "¥"]
+    const currencies = ["₽", "$", "S$", "€", "£", "¥"]
 
     const [result, setResult] = useState<LightingResult | null>(null)
     const [resultCopied, setResultCopied] = useState(false)

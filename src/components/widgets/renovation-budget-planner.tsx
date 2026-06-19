@@ -57,6 +57,7 @@ const currencies = [
   { code: "KZT", symbol: "₸", name: "Тенге" },
   { code: "USD", symbol: "$", name: "Доллар США" },
   { code: "EUR", symbol: "€", name: "Евро" },
+  { code: "SGD", symbol: "S$", name: "Сингапурский доллар" },
 ]
 
 export function RenovationBudgetPlanner() {

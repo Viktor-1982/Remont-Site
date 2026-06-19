@@ -68,6 +68,7 @@ const currencyOptions = {
         { code: "USD", symbol: "$", name: "US Dollar", priceExample: "42" },
         { code: "EUR", symbol: "€", name: "Euro", priceExample: "39" },
         { code: "GBP", symbol: "£", name: "British Pound", priceExample: "34" },
+        { code: "SGD", symbol: "S$", name: "Singapore Dollar", priceExample: "55" },
     ],
 } as const
 

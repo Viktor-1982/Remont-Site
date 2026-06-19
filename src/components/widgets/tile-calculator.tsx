@@ -49,7 +49,7 @@ export function TileCalculator() {
 
     // Поля стоимости
     const [pricePerPack, setPricePerPack] = useState("")
-    const [currency, setCurrency] = useState<"RUB" | "USD" | "EUR">("RUB")
+    const [currency, setCurrency] = useState<"RUB" | "USD" | "EUR" | "SGD">("RUB")
 
     const [result, setResult] = useState<number | null>(null)
     const [packsNeeded, setPacksNeeded] = useState<number | null>(null)
@@ -62,6 +62,7 @@ export function TileCalculator() {
         RUB: "₽",
         USD: "$",
         EUR: "€",
+        SGD: "S$",
     }
     const currSym = currencySymbols[currency] || ""
 
@@ -711,19 +712,19 @@ export function TileCalculator() {
                         </div>
                         <div className="space-y-2">
                             <label className="text-xs text-muted-foreground">{isEnglish ? "Currency" : "Валюта"}</label>
-                            <div className="grid grid-cols-3 gap-2">
-                                {(["RUB", "USD", "EUR"] as const).map((curr) => (
+                            <div className="grid grid-cols-4 gap-1.5">
+                                {([ "RUB", "USD", "EUR", "SGD" ] as const).map((curr) => (
                                     <button
                                         key={curr}
                                         type="button"
                                         onClick={() => setCurrency(curr)}
-                                        className={`rounded-xl border p-2.5 text-xs font-semibold transition-all ${
+                                        className={`rounded-xl border p-2 text-[10px] sm:text-xs font-semibold transition-all ${
                                             currency === curr
                                                 ? "border-primary bg-primary/10 text-primary shadow-sm"
                                                 : "border-border/60 bg-card hover:bg-accent text-muted-foreground"
                                         }`}
                                     >
-                                        {curr === "RUB" ? "₽ (RUB)" : curr === "USD" ? "$ (USD)" : "€ (EUR)"}
+                                        {curr === "RUB" ? "₽ (RUB)" : curr === "USD" ? "$ (USD)" : curr === "EUR" ? "€ (EUR)" : "S$ (SGD)"}
                                     </button>
                                 ))}
                             </div>

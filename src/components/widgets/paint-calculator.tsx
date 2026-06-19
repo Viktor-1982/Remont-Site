@@ -31,7 +31,7 @@ export function PaintCalculator() {
     const [currency, setCurrency] = useState("₽")
     const [result, setResult] = useState<PaintResult | null>(null)
 
-    const currencies = ["₽", "$", "€", "£", "¥"]
+    const currencies = ["₽", "$", "S$", "€", "£", "¥"]
 
     const calculate = () => {
         const l = parseFloat(length.replace(",", ".").replace(/[^0-9.-]/g, ""))

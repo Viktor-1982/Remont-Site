@@ -47,6 +47,7 @@ const currencies = [
   { code: "USD", symbol: "$", name: "US Dollar" },
   { code: "EUR", symbol: "EUR", name: "Euro" },
   { code: "GBP", symbol: "GBP", name: "British Pound" },
+  { code: "SGD", symbol: "S$", name: "Singapore Dollar" },
 ]
 
 interface ExpenseItem {

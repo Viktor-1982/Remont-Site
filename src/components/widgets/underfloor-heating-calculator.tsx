@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { usePathname } from "next/navigation"
 import { useState } from "react"
@@ -93,6 +93,7 @@ const currencyOptions = {
         { code: "USD", symbol: "$", name: "US Dollar", exampleTariff: "0.15" },
         { code: "EUR", symbol: "€", name: "Euro", exampleTariff: "0.14" },
         { code: "GBP", symbol: "£", name: "British Pound", exampleTariff: "0.12" },
+        { code: "SGD", symbol: "S$", name: "Singapore Dollar", exampleTariff: "0.30" },
         { code: "TRY", symbol: "₺", name: "Turkish Lira", exampleTariff: "2.4" },
         { code: "RUB", symbol: "₽", name: "Russian Ruble", exampleTariff: "6.5" },
     ],

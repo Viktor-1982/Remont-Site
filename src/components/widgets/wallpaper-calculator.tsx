@@ -57,7 +57,7 @@ export function WallpaperCalculator() {
     
     const [pricePerRoll, setPricePerRoll] = useState("")
     const [currency, setCurrency] = useState("₽")
-    const currencies = ["₽", "$", "€", "£", "¥"]
+    const currencies = ["₽", "$", "S$", "€", "£", "¥"]
 
     const [result, setResult] = useState<number | null>(null)
     const [wallArea, setWallArea] = useState<number | null>(null)
