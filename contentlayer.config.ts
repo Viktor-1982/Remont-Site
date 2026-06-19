@@ -1,5 +1,6 @@
-﻿import { defineDocumentType, makeSource } from "contentlayer2/source-files"
+import { defineDocumentType, makeSource } from "contentlayer2/source-files"
 import readingTime from "reading-time"
+import remarkGfm from "remark-gfm"
 
 /**
  * Конфигурация типа Post для контента Renohacks.com
@@ -84,4 +85,7 @@ export const Post = defineDocumentType(() => ({
 export default makeSource({
     contentDirPath: "content/posts",
     documentTypes: [Post],
+    mdx: {
+        remarkPlugins: [remarkGfm],
+    },
 })
