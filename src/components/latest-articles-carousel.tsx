@@ -22,8 +22,6 @@ export function LatestArticlesCarousel({ posts, isEnglish = false }: LatestArtic
         .filter((p) => !p.draft)
         .slice(0, 6)
 
-    if (latestPosts.length === 0) return null
-
     // Функция проверки видимости кнопок прокрутки
     const checkScrollButtons = () => {
         if (containerRef.current) {
@@ -63,6 +61,8 @@ export function LatestArticlesCarousel({ posts, isEnglish = false }: LatestArtic
             })
         }
     }
+
+    if (latestPosts.length === 0) return null
 
     return (
         <motion.section 
