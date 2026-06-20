@@ -319,7 +319,7 @@ export const mdxComponents: MDXComponents = {
     ),
 
     // Карточка партнерского товара
-    AffiliateCard: (props: { href: string; title: string; description: string }) => (
+    AffiliateCard: (props: { href: string; title: string; description: string; imgSrc?: string }) => (
         <AffiliateCardComponent {...props} />
     ),
 
