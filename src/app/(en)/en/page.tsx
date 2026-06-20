@@ -9,6 +9,7 @@ import { EmailSubscription } from "@/components/email-subscription"
 import { CalculatorsShowcase } from "@/components/calculators-showcase"
 import { SeriesShowcase } from "@/components/series-showcase"
 import { TopicHubsShowcase } from "@/components/topic-hubs-showcase"
+import { LatestArticlesCarousel } from "@/components/latest-articles-carousel"
 
 export const revalidate = 86400
 export const dynamic = "force-static"
@@ -70,6 +71,7 @@ export default function HomePageEn() {
 
             <div className="container mx-auto max-w-7xl space-y-12 px-4 py-10 sm:px-6">
                 <TopicHubsShowcase isEnglish />
+                <LatestArticlesCarousel posts={posts} isEnglish />
                 <SeriesShowcase
                     posts={posts}
                     isEnglish

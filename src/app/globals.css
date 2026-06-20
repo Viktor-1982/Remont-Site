@@ -523,3 +523,12 @@
         max-width: 36rem !important; /* 576px для квадратных - чуть меньше обычных */
     }
 }
+
+/* 🛠️ Скрытие скроллбара для карусели */
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-none {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
