@@ -37,7 +37,7 @@ export const metadata: Metadata = {
         title: "Renohacks.com - блог о ремонте, дизайне и DIY для дома и квартиры",
         description:
             "Фото-гайды по ремонту своими руками, DIY-лайфхаки, бесплатные инструменты для расчета бюджета, краски, плитки и освещенности, обзоры материалов. Все для качественного ремонта дома и квартиры.",
-        url: "https://renohacks.com/",
+        url: "https://renohacks.com/ru",
         siteName: "Renohacks.com",
         locale: "ru_RU",
         type: "website",
@@ -51,11 +51,11 @@ export const metadata: Metadata = {
         images: ["/images/og-default.png"],
     },
     alternates: {
-        canonical: "https://renohacks.com/",
+        canonical: "https://renohacks.com/ru",
         languages: {
-            ru: "https://renohacks.com/",
-            en: "https://renohacks.com/en",
-            "x-default": "https://renohacks.com/",
+            ru: "https://renohacks.com/ru",
+            en: "https://renohacks.com",
+            "x-default": "https://renohacks.com",
         },
     },
 }

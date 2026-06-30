@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         title: "Renohacks.com - DIY Renovation & Interior Design Blog for Home Projects",
         description:
             "Step-by-step photo guides, DIY hacks, renovation tools for paint, tile, lighting, and budgeting, plus material reviews for better home renovation planning.",
-        url: "https://renohacks.com/en",
+        url: "https://renohacks.com",
         siteName: "Renohacks.com",
         locale: "en_US",
         type: "website",
@@ -52,11 +52,11 @@ export const metadata: Metadata = {
         images: ["/images/og-default.png"],
     },
     alternates: {
-        canonical: "https://renohacks.com/en",
+        canonical: "https://renohacks.com",
         languages: {
-            ru: "https://renohacks.com/",
-            en: "https://renohacks.com/en",
-            "x-default": "https://renohacks.com/",
+            ru: "https://renohacks.com/ru",
+            en: "https://renohacks.com",
+            "x-default": "https://renohacks.com",
         },
     },
 }
