@@ -71,7 +71,7 @@ export default function DeveloperPageEn() {
             />
             <main className="container mx-auto px-4 py-12 max-w-4xl">
                 <Link
-                    href="/en"
+                    href="/"
                     className="text-primary hover:text-primary/80 mb-6 inline-flex items-center gap-2 font-medium transition-colors"
                 >
                     <span>←</span> Back to site

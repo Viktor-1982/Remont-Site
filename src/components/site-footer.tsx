@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -10,13 +10,13 @@ import type { NavData, Locale } from "@/types/nav"
 
 export function SiteFooter() {
     const pathname = usePathname()
-    const isEnglish = pathname.startsWith("/en")
+    const isEnglish = !pathname.startsWith("/ru")
     const locale: Locale = isEnglish ? "en" : "ru"
     const { footer, social } = (navData as NavData)[locale]
 
     // 🔹 Локализованный href
     const localizeHref = (href: string) =>
-        isEnglish ? (href.startsWith("/en") ? href : `/en${href}`) : href.replace(/^\/en/, "")
+        isEnglish ? href.replace(/^\/ru/, "") || "/" : (href.startsWith("/ru") ? href : `/ru${href === "/" ? "" : href}`)
 
     return (
         <footer

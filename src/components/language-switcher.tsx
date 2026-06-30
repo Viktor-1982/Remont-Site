@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -13,8 +13,8 @@ type Locale = {
 }
 
 const locales: Locale[] = [
-    { code: "en", label: "EN", basePath: "/en", active: true },
-    { code: "ru", label: "RU", basePath: "/", active: true },
+    { code: "en", label: "EN", basePath: "/", active: true },
+    { code: "ru", label: "RU", basePath: "/ru", active: true },
 ]
 
 export function LanguageSwitcher() {
@@ -54,7 +54,7 @@ export function LanguageSwitcher() {
         return <div className="w-[120px] h-[36px] animate-pulse bg-muted/50 rounded-full" />
     }
 
-    const currentIsEnglish = /^\/en(\/|$)/.test(pathname)
+    const currentIsEnglish = !/^\/ru(\/|$)/.test(pathname)
 
     return (
         <div

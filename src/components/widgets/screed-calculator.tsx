@@ -54,7 +54,7 @@ const currencyOptions = {
 
 export function ScreedCalculator() {
     const pathname = usePathname()
-    const isEnglish = pathname.startsWith("/en")
+    const isEnglish = !pathname.startsWith("/ru")
     const locale = isEnglish ? "en" : "ru"
     const localeTag = isEnglish ? "en-US" : "ru-RU"
 

@@ -101,7 +101,7 @@ const currencyOptions = {
 
 export function UnderfloorHeatingCalculator() {
     const pathname = usePathname()
-    const isEnglish = pathname.startsWith("/en") || pathname.endsWith("-en")
+    const isEnglish = !pathname.startsWith("/ru") || pathname.endsWith("-en")
     const locale: Locale = isEnglish ? "en" : "ru"
 
     const t: UnderfloorCalcDict = calcData[locale].calc.underfloor

@@ -55,7 +55,12 @@ const nextConfig: NextConfig = {
             },
             {
                 source: "/en/posts/trendy-zagorodnyh-domov-2026",
-                destination: "/en/posts/country-house-trends-2026",
+                destination: "/posts/country-house-trends-2026",
+                permanent: true,
+            },
+            {
+                source: "/en/:path*",
+                destination: "/:path*",
                 permanent: true,
             },
         ]

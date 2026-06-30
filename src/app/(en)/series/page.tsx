@@ -34,8 +34,8 @@ export default function SeriesPageEn() {
         <main className="container mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 md:py-16">
             <Breadcrumbs
                 items={[
-                    { label: "Home", href: "/en" },
-                    { label: "Series", href: "/en/series" },
+                    { label: "Home", href: "/" },
+                    { label: "Series", href: "/series" },
                 ]}
                 isEnglish
             />

@@ -14,7 +14,7 @@ const calcData = calcDataJson as CalcData
 
 export function PaintCalculator() {
     const pathname = usePathname()
-    const isEnglish = pathname.startsWith("/en") || pathname.endsWith("-en")
+    const isEnglish = !pathname.startsWith("/ru") || pathname.endsWith("-en")
     const locale: Locale = isEnglish ? "en" : "ru"
 
     const t: PaintCalcDict = calcData[locale].calc.paint

@@ -53,7 +53,7 @@ const scenarioAccentClasses: Record<ToolScenario["icon"], string> = {
 }
 
 function getBreadcrumbSchema(dictionary: ToolsDictionary) {
-    const homePath = dictionary.breadcrumb.pagePath.startsWith("/en") ? "/en" : "/"
+    const homePath = !dictionary.breadcrumb.pagePath.startsWith("/ru") ? "/" : "/ru"
 
     return {
         "@context": "https://schema.org",

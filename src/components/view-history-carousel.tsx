@@ -111,7 +111,7 @@ export function ViewHistoryCarousel({ locale, limit = 10 }: ViewHistoryCarouselP
     if (history.length === 0) return null
 
     const t = navData[locale].viewHistory
-    const basePath = locale === "en" ? "/en" : ""
+    const basePath = locale === "ru" ? "/ru" : ""
 
     const maxIndex = Math.max(0, history.length - itemsPerView)
 

@@ -1,4 +1,4 @@
-﻿import { notFound } from "next/navigation"
+import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { allPosts } from "contentlayer/generated"
 import { ArticleHero } from "@/components/article-hero"
@@ -43,7 +43,7 @@ export default async function PostPage({
     if (!post) return notFound()
 
     const baseUrl = "https://renohacks.com"
-    const canonical = `${baseUrl}/posts/${slug}`
+    const canonical = `${baseUrl}/ru/posts/${slug}`
     
     // Парсим FAQ из контента
     const faqs = parseFAQ(post.body.raw || "")
@@ -57,13 +57,13 @@ export default async function PostPage({
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Главная",
-                "item": `${baseUrl}/`
+                "item": `${baseUrl}/ru`
             },
             {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Статьи",
-                "item": `${baseUrl}/#articles`
+                "item": `${baseUrl}/ru#articles`
             },
             {
                 "@type": "ListItem",
@@ -100,8 +100,8 @@ export default async function PostPage({
             <Breadcrumbs 
                 isEnglish={false}
                 items={[
-                    { label: "Главная", href: "/" },
-                    { label: "Статьи", href: "/#articles" },
+                    { label: "Главная", href: "/ru" },
+                    { label: "Статьи", href: "/ru#articles" },
                     { label: post.title, href: canonical },
                 ]}
             />
@@ -166,7 +166,7 @@ export default async function PostPage({
                         author: {
                             "@type": "Organization",
                             name: "Renohacks",
-                            url: baseUrl,
+                            url: `${baseUrl}/ru`,
                         },
                         publisher: {
                             "@type": "Organization",

@@ -22,10 +22,10 @@ export const metadata: Metadata = {
         type: "website",
     },
     alternates: {
-        canonical: "https://renohacks.com/",
+        canonical: "https://renohacks.com/ru",
         languages: {
-            ru: "https://renohacks.com/",
-            en: "https://renohacks.com/en",
+            ru: "https://renohacks.com/ru",
+            en: "https://renohacks.com/",
             "x-default": "https://renohacks.com/",
         },
         types: {

@@ -27,7 +27,7 @@ const articleSeries = {
             en: "A focused kitchen series on layout, materials, lighting, and budget-friendly upgrades that actually improve daily use.",
         },
         eyebrow: { ru: "Серия", en: "Series" },
-        path: { ru: "/series/kitchen-breakdown", en: "/en/series/kitchen-breakdown" },
+        path: { ru: "/ru/series/kitchen-breakdown", en: "/series/kitchen-breakdown" },
         icon: "chefHat",
         className:
             "border-amber-500/30 bg-amber-500/10 text-amber-950 dark:border-amber-300/30 dark:bg-amber-300/15 dark:text-amber-100",
@@ -43,7 +43,7 @@ const articleSeries = {
             en: "A practical bathroom series on mistakes, tile, storage, lighting, and lower-stress upgrades without overspending.",
         },
         eyebrow: { ru: "Серия", en: "Series" },
-        path: { ru: "/series/bathroom-breakdown", en: "/en/series/bathroom-breakdown" },
+        path: { ru: "/ru/series/bathroom-breakdown", en: "/series/bathroom-breakdown" },
         icon: "bath",
         className:
             "border-sky-500/30 bg-sky-500/10 text-sky-950 dark:border-sky-300/30 dark:bg-sky-300/15 dark:text-sky-100",
@@ -59,7 +59,7 @@ const articleSeries = {
             en: "A renovation planning series on budgeting, sequencing, and the decisions that keep costs from drifting later.",
         },
         eyebrow: { ru: "Серия", en: "Series" },
-        path: { ru: "/series/budget-planning", en: "/en/series/budget-planning" },
+        path: { ru: "/ru/series/budget-planning", en: "/series/budget-planning" },
         icon: "wallet",
         className:
             "border-emerald-500/30 bg-emerald-500/10 text-emerald-950 dark:border-emerald-300/30 dark:bg-emerald-300/15 dark:text-emerald-100",
@@ -75,7 +75,7 @@ const articleSeries = {
             en: "A series about catching mistakes before finish work so the same room does not have to be redone later.",
         },
         eyebrow: { ru: "Серия", en: "Series" },
-        path: { ru: "/series/avoid-rework", en: "/en/series/avoid-rework" },
+        path: { ru: "/ru/series/avoid-rework", en: "/series/avoid-rework" },
         icon: "alertTriangle",
         className:
             "border-rose-500/30 bg-rose-500/10 text-rose-950 dark:border-rose-300/30 dark:bg-rose-300/15 dark:text-rose-100",

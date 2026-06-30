@@ -198,7 +198,7 @@ function getRecommendations(scheme: ColorScheme, isEnglish: boolean): string[] {
 
 export function ColorPaletteGenerator() {
     const pathname = usePathname()
-    const isEnglish = pathname.startsWith("/en")
+    const isEnglish = !pathname.startsWith("/ru")
     
     const [baseColor, setBaseColor] = useState("#87A96B") // Зеленый авокадо из темы
     const [scheme, setScheme] = useState<ColorScheme>("analogous")

@@ -31,7 +31,7 @@ const roomPresets: Array<{
 
 export function LightingCalculator({ isEnglish = false }: { isEnglish?: boolean }) {
     const pathname = usePathname()
-    const isEn = isEnglish || pathname.startsWith("/en")
+    const isEn = isEnglish || !pathname.startsWith("/ru")
     const locale: Locale = isEn ? "en" : "ru"
     const t: LightingCalcDict = calcData[locale].calc.lighting
 

@@ -30,8 +30,8 @@ const navData = navDataJson as NavData
 
 export function HeroBanner() {
     const pathname = usePathname()
-    const isEnglish = pathname.startsWith("/en")
-    const isHomePage = pathname === "/" || pathname === "/en"
+    const isEnglish = !pathname.startsWith("/ru")
+    const isHomePage = pathname === "/" || pathname === "/ru"
     const t = navData[isEnglish ? "en" : "ru"].hero
 
     const ref = useRef(null)
@@ -126,7 +126,7 @@ export function HeroBanner() {
               hover:shadow-xl hover:shadow-[#87A96B]/40 hover:scale-105 
               transition-smooth backdrop-blur-sm border border-white/20"
                         >
-                            <Link href={isEnglish ? "/en/tools" : "/tools"} prefetch={true}>
+                            <Link href={isEnglish ? "/tools" : "/ru/tools"} prefetch={true}>
                                 {t.ctaTrends} →
                             </Link>
                         </Button>
@@ -143,7 +143,7 @@ export function HeroBanner() {
               hover:shadow-xl hover:shadow-white/20 hover:scale-105 
               transition-smooth"
                         >
-                            <Link href={isEnglish ? "/en/quiz/interior-style" : "/quiz/interior-style"} prefetch={true}>
+                            <Link href={isEnglish ? "/quiz/interior-style" : "/ru/quiz/interior-style"} prefetch={true}>
                                 {t.ctaDiy}
                             </Link>
                         </Button>

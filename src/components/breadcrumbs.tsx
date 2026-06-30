@@ -67,7 +67,7 @@ export function Breadcrumbs({ items, isEnglish = false }: BreadcrumbsProps) {
 
 function usePathnameBreadcrumbs(pathname: string, isEnglish: boolean): BreadcrumbItem[] {
     const items: BreadcrumbItem[] = []
-    const basePath = isEnglish ? "/en" : ""
+    const basePath = isEnglish ? "" : "/ru"
     
     // Главная
     items.push({
@@ -77,7 +77,7 @@ function usePathnameBreadcrumbs(pathname: string, isEnglish: boolean): Breadcrum
 
     // Разбираем pathname
     const segments = pathname
-        .replace(/^\/en/, "")
+        .replace(/^\/ru/, "")
         .split("/")
         .filter(Boolean)
 

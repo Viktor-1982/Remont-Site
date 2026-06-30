@@ -18,8 +18,8 @@ export function ArticleSeriesPage({
     allPosts: Post[]
     isEnglish?: boolean
 }) {
-    const homeHref = isEnglish ? "/en" : "/"
-    const overviewHref = isEnglish ? "/en/series" : "/series"
+    const homeHref = isEnglish ? "/" : "/ru"
+    const overviewHref = isEnglish ? "/series" : "/ru/series"
     const locale = isEnglish ? "en" : "ru"
 
     return (

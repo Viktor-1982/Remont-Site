@@ -15,17 +15,17 @@ export function KeyboardShortcuts({ isEnglish }: KeyboardShortcutsProps) {
     const [showHelp, setShowHelp] = useState(false)
     const [posts, setPosts] = useState<PostIndexItem[]>([])
     const localeIsEnglish =
-        isEnglish ?? (pathname === "/en" || pathname.startsWith("/en/"))
+        isEnglish ?? (pathname !== "/ru" && !pathname.startsWith("/ru/"))
 
     useEffect(() => {
-        if (pathname !== "/" && pathname !== "/en") {
+        if (pathname !== "/" && pathname !== "/ru") {
             return
         }
 
         fetchPostIndex()
             .then((data) => {
                 const filtered = data
-                    .filter((post) => post.locale === (pathname === "/en" ? "en" : "ru"))
+                    .filter((post) => post.locale === (pathname === "/ru" ? "ru" : "en"))
                     .sort((a, b) => {
                         const ta = a.date ? new Date(a.date).getTime() : 0
                         const tb = b.date ? new Date(b.date).getTime() : 0
@@ -49,7 +49,7 @@ export function KeyboardShortcuts({ isEnglish }: KeyboardShortcutsProps) {
                 return
             }
 
-            if ((event.key === "j" || event.key === "k") && (pathname === "/" || pathname === "/en") && posts.length > 0) {
+            if ((event.key === "j" || event.key === "k") && (pathname === "/" || pathname === "/ru") && posts.length > 0) {
                 event.preventDefault()
                 const currentIndex = parseInt(sessionStorage.getItem("currentPostIndex") || "0")
                 let newIndex = currentIndex
@@ -82,7 +82,7 @@ export function KeyboardShortcuts({ isEnglish }: KeyboardShortcutsProps) {
     }, [pathname, posts, router])
 
     useEffect(() => {
-        if (pathname === "/" || pathname === "/en") {
+        if (pathname === "/" || pathname === "/ru") {
             sessionStorage.setItem("currentPostIndex", "0")
         }
     }, [pathname])

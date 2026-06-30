@@ -56,7 +56,7 @@ export function PostNavigation({ currentSlug, locale }: PostNavigationProps) {
     if (!previousPost && !nextPost) return null
 
     const t = navData[locale].postNavigation
-    const basePath = locale === "en" ? "/en" : ""
+    const basePath = locale === "ru" ? "/ru" : ""
 
     return (
         <nav

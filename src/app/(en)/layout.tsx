@@ -11,10 +11,10 @@ export const metadata: Metadata = {
     },
     manifest: "/manifest.json",
     alternates: {
-        canonical: "https://renohacks.com/en",
+        canonical: "https://renohacks.com",
         languages: {
-            en: "https://renohacks.com/en",
-            ru: "https://renohacks.com/",
+            en: "https://renohacks.com",
+            ru: "https://renohacks.com/ru",
             "x-default": "https://renohacks.com/",
         },
         types: {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Renohacks - home renovation & DIY",
         description: "Photo-guides, DIY tips and reviews - English section.",
-        url: "https://renohacks.com/en",
+        url: "https://renohacks.com",
         siteName: "Renohacks",
         images: ["/images/og-default.png"],
         locale: "en_US",

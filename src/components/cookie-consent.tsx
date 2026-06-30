@@ -27,7 +27,7 @@ const consentCopy = {
 
 export function CookieConsent() {
     const pathname = usePathname()
-    const locale = pathname === "/en" || pathname.startsWith("/en/") ? "en" : "ru"
+    const locale = pathname === "/ru" || pathname.startsWith("/ru/") ? "ru" : "en"
     const copy = consentCopy[locale]
     const [showBanner, setShowBanner] = useState(false)
 

@@ -23,7 +23,7 @@ const layoutOptions = [
 
 export function TileCalculator() {
     const pathname = usePathname()
-    const isEnglish = pathname.startsWith("/en") || pathname.endsWith("-en")
+    const isEnglish = !pathname.startsWith("/ru") || pathname.endsWith("-en")
     const locale: Locale = isEnglish ? "en" : "ru"
 
     const t: TilesCalcDict = calcData[locale].calc.tiles

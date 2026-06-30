@@ -62,7 +62,7 @@ const currencies = [
 
 export function RenovationBudgetPlanner() {
   const pathname = usePathname()
-  const isEnglish = pathname.startsWith("/en")
+  const isEnglish = !pathname.startsWith("/ru")
   const locale: Locale = isEnglish ? "en" : "ru"
 
   const t: BudgetCalcDict = calcData[locale].calc.budget

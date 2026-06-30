@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useState, useRef, useEffect } from "react"
 import { Input } from "@/components/ui/input"
@@ -9,9 +9,9 @@ import { usePathname } from "next/navigation"
 type ChatMessage = { role: "user" | "assistant"; content: string }
 
 function getLocaleFromPath(pathname: string): "en" | "ru" {
-    if (pathname.startsWith("/en")) return "en"
+    if (pathname.startsWith("/ru")) return "ru"
     if (pathname.endsWith("-en")) return "en"
-    return "ru"
+    return "en"
 }
 
 const t = {

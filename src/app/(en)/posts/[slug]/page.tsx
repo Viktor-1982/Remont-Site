@@ -1,4 +1,4 @@
-﻿import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 import type { Metadata } from "next"
 import { allPosts } from "contentlayer/generated"
 import { ArticleHero } from "@/components/article-hero"
@@ -31,7 +31,7 @@ export async function generateMetadata({
 
 export const revalidate = 86400
 export const dynamic = "force-static"
-export const dynamicParams = false
+export const dynamicParams = true
 
 export default async function PostPage({
                                            params,
@@ -40,10 +40,18 @@ export default async function PostPage({
 }) {
     const { slug } = await params
     const post = allPosts.find((p) => p.slug === slug && p.locale === "en")
-    if (!post) return notFound()
+    
+    if (!post) {
+        // Проверяем, есть ли такой пост на русском языке
+        const ruPost = allPosts.find((p) => p.slug === slug && p.locale === "ru")
+        if (ruPost) {
+            redirect(`/ru/posts/${slug}`)
+        }
+        return notFound()
+    }
 
     const baseUrl = "https://renohacks.com"
-    const canonical = `${baseUrl}/en/posts/${slug}`
+    const canonical = `${baseUrl}/posts/${slug}`
     
     // Parse FAQ from content
     const faqs = parseFAQ(post.body.raw || "")
@@ -57,13 +65,13 @@ export default async function PostPage({
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": `${baseUrl}/en`
+                "item": `${baseUrl}`
             },
             {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Articles",
-                "item": `${baseUrl}/en#articles`
+                "item": `${baseUrl}/#articles`
             },
             {
                 "@type": "ListItem",
@@ -100,8 +108,8 @@ export default async function PostPage({
             <Breadcrumbs 
                 isEnglish={true}
                 items={[
-                    { label: "Home", href: "/en" },
-                    { label: "Articles", href: "/en#articles" },
+                    { label: "Home", href: "/" },
+                    { label: "Articles", href: "/#articles" },
                     { label: post.title, href: canonical },
                 ]}
             />
@@ -166,7 +174,7 @@ export default async function PostPage({
                         author: {
                             "@type": "Organization",
                             name: "Renohacks",
-                            url: `${baseUrl}/en`,
+                            url: `${baseUrl}`,
                         },
                         publisher: {
                             "@type": "Organization",

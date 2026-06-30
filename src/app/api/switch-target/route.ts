@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { allPosts } from ".contentlayer/generated"
 
 export async function GET(req: Request) {
@@ -8,7 +8,7 @@ export async function GET(req: Request) {
             .split("?")[0]
             .split("#")[0]
 
-        const isEnglish = /^\/en(\/|$)/.test(path)
+        const isEnglish = !/^\/ru(\/|$)/.test(path)
         const targetLocale = isEnglish ? "ru" : "en"
         let targetUrl: string | null = null
 
@@ -17,7 +17,7 @@ export async function GET(req: Request) {
         // ==========================================================
         function extractSlug(p: string) {
             const clean = p.split("?")[0].split("#")[0]
-            if (clean.startsWith("/en/posts/")) return clean.replace("/en/posts/", "")
+            if (clean.startsWith("/ru/posts/")) return clean.replace("/ru/posts/", "")
             if (clean.startsWith("/posts/")) return clean.replace("/posts/", "")
             return null
         }
@@ -43,39 +43,39 @@ export async function GET(req: Request) {
         // ==========================================================
         // 🔹 2. About
         // ==========================================================
-        if (!targetUrl && /^\/(en\/)?about/.test(path)) {
-            targetUrl = targetLocale === "en" ? "/en/about" : "/about"
+        if (!targetUrl && /^\/(ru\/)?about/.test(path)) {
+            targetUrl = targetLocale === "en" ? "/about" : "/ru/about"
         }
 
         // ==========================================================
         // 🔹 2.1 Smety / Costs (нестандартные slug)
         // ==========================================================
-        if (!targetUrl && /^\/(en\/)?(smety|costs)(\/|$)/.test(path)) {
-            targetUrl = targetLocale === "en" ? "/en/costs" : "/smety"
+        if (!targetUrl && /^\/(ru\/)?(smety|costs)(\/|$)/.test(path)) {
+            targetUrl = targetLocale === "en" ? "/costs" : "/ru/smety"
         }
 
         // ==========================================================
         // 🔹 3. 404 / Not-found
         // ==========================================================
         if (!targetUrl && /(404|not-found)/.test(path)) {
-            targetUrl = targetLocale === "en" ? "/en/not-found" : "/not-found"
+            targetUrl = targetLocale === "en" ? "/not-found" : "/ru/not-found"
         }
 
         // ==========================================================
         // 🔹 4. Calculators (учёт подстраниц)
         // ==========================================================
-        if (!targetUrl && /^\/(en\/)?calculators/.test(path)) {
-            const subPath = path.replace(/^\/(en\/)?calculators/, "")
+        if (!targetUrl && /^\/(ru\/)?calculators/.test(path)) {
+            const subPath = path.replace(/^\/(ru\/)?calculators/, "")
             targetUrl =
                 targetLocale === "en"
-                    ? `/en/calculators${subPath}`
-                    : `/calculators${subPath}`
+                    ? `/calculators${subPath}`
+                    : `/ru/calculators${subPath}`
         }
 
         // ==========================================================
         // 🔹 5. Tags
         // ==========================================================
-        if (!targetUrl && /^\/(en\/)?tags\//.test(path)) {
+        if (!targetUrl && /^\/(ru\/)?tags\//.test(path)) {
             // Маппинг тегов: английский -> русский
             const enToRuMap: Record<string, string> = {
                 "interior-design": "интерьер",
@@ -192,14 +192,14 @@ export async function GET(req: Request) {
 
             targetUrl =
                 targetLocale === "en"
-                    ? `/en/tags/${encodeURIComponent(mappedTag)}`
-                    : `/tags/${encodeURIComponent(mappedTag)}`
+                    ? `/tags/${encodeURIComponent(mappedTag)}`
+                    : `/ru/tags/${encodeURIComponent(mappedTag)}`
         }
 
         // ==========================================================
         // 🔹 6. Categories
         // ==========================================================
-        if (!targetUrl && /^\/(en\/)?category\//.test(path)) {
+        if (!targetUrl && /^\/(ru\/)?category\//.test(path)) {
             const categoryMap: Record<string, string> = {
                 novinki: "trends",
                 trends: "novinki",
@@ -229,8 +229,8 @@ export async function GET(req: Request) {
 
             targetUrl =
                 targetLocale === "en"
-                    ? `/en/category/${mappedCat === cat ? encodedCat : mappedCat}`
-                    : `/category/${mappedCat === cat ? encodedCat : mappedCat}`
+                    ? `/category/${mappedCat === cat ? encodedCat : mappedCat}`
+                    : `/ru/category/${mappedCat === cat ? encodedCat : mappedCat}`
         }
 
         // ==========================================================
@@ -238,8 +238,8 @@ export async function GET(req: Request) {
         // ==========================================================
         if (!targetUrl) {
             targetUrl = isEnglish
-                ? path.replace(/^\/en/, "") || "/"
-                : `/en${path === "/" ? "" : path}`
+                ? `/ru${path === "/" ? "" : path}`
+                : path.replace(/^\/ru/, "") || "/"
         }
 
         // ==========================================================
@@ -248,19 +248,19 @@ export async function GET(req: Request) {
         return NextResponse.json({
             success: true,
             targets: {
-                ru: isEnglish
-                    ? targetUrl || path.replace(/^\/en/, "") || "/"
-                    : path,
-                en: !isEnglish
-                    ? targetUrl || `/en${path === "/" ? "" : path}`
-                    : path,
+                ru: !isEnglish
+                    ? path
+                    : targetUrl || `/ru${path === "/" ? "" : path}`,
+                en: isEnglish
+                    ? path
+                    : targetUrl || path.replace(/^\/ru/, "") || "/",
             },
         })
     } catch (e) {
         console.error("❌ Language switch error:", e)
         return NextResponse.json({
             success: false,
-            targets: { ru: "/", en: "/en" },
+            targets: { ru: "/ru", en: "/" },
         })
     }
 }

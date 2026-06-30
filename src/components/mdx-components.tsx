@@ -78,7 +78,7 @@ function MdxImage({ alt, src }: { alt?: string; src: string }) {
     
     // Определяем язык из URL
     React.useEffect(() => {
-        setIsEnglish(window.location.pathname.startsWith("/en"))
+        setIsEnglish(!window.location.pathname.startsWith("/ru"))
     }, [])
     
     // Определяем, является ли изображение квадратным
@@ -505,7 +505,7 @@ export const mdxComponents: MDXComponents = {
         const [isEnglish, setIsEnglish] = useState(false)
         
         React.useEffect(() => {
-            setIsEnglish(window.location.pathname.startsWith("/en"))
+            setIsEnglish(!window.location.pathname.startsWith("/ru"))
         }, [])
 
         // Если items не переданы, пытаемся получить из контекста статьи
@@ -535,7 +535,7 @@ function FAQHeadingWrapper({ headingText, headingId, ...props }: { headingText: 
     const faqContext = React.useContext(FAQContext)
     
     React.useEffect(() => {
-        setIsEnglish(window.location.pathname.startsWith("/en"))
+        setIsEnglish(!window.location.pathname.startsWith("/ru"))
         
         // Используем FAQ из контекста, если доступен
         if (faqContext?.faqItems && faqContext.faqItems.length > 0) {
@@ -611,7 +611,7 @@ export function Mdx({ code }: { code: string }) {
 
     // Определяем язык
     React.useEffect(() => {
-        setIsEnglish(window.location.pathname.startsWith("/en"))
+        setIsEnglish(!window.location.pathname.startsWith("/ru"))
     }, [])
 
     // Слушаем событие открытия галереи

@@ -75,7 +75,7 @@ export function ViewHistory({ locale, limit = 5, showTitle = true, className }: 
     }
 
     const t = navData[locale].viewHistory
-    const basePath = locale === "en" ? "/en" : ""
+    const basePath = locale === "ru" ? "/ru" : ""
 
     if (history.length === 0) {
         if (!showTitle) return null

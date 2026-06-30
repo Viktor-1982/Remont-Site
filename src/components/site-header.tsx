@@ -71,7 +71,7 @@ const topicHubIcons = {
 
 export function SiteHeader() {
     const pathname = usePathname()
-    const isEnglish = pathname.startsWith("/en")
+    const isEnglish = !pathname.startsWith("/ru")
     const locale: Locale = isEnglish ? "en" : "ru"
     const { links, social, header } = (navData as NavData)[locale]
     const [open, setOpen] = useState(false)
@@ -79,7 +79,7 @@ export function SiteHeader() {
     const [toolsOpen, setToolsOpen] = useState(false)
     const calculators = getToolShortcuts(locale)
     const topicHubs = getTopicHubsDictionary(locale)
-    const allCalculatorsHref = isEnglish ? "/en/tools" : "/tools"
+    const allCalculatorsHref = isEnglish ? "/tools" : "/ru/tools"
 
     const handleSheetOpenChange = (nextOpen: boolean) => {
         setOpen(nextOpen)
@@ -92,13 +92,13 @@ export function SiteHeader() {
 
     const isActive = (href: string): boolean => {
         const normalizedPathname =
-            pathname.endsWith("/") && pathname !== "/" && pathname !== "/en" ? pathname.slice(0, -1) : pathname
+            pathname.endsWith("/") && pathname !== "/" && pathname !== "/ru" ? pathname.slice(0, -1) : pathname
 
-        if (href === "/" && !isEnglish) {
+        if (href === "/" && isEnglish) {
             return normalizedPathname === "/" || normalizedPathname === ""
         }
-        if (href === "/en" && isEnglish) {
-            return normalizedPathname === "/en" || normalizedPathname === "/en/"
+        if (href === "/ru" && !isEnglish) {
+            return normalizedPathname === "/ru" || normalizedPathname === "/ru/"
         }
         if (normalizedPathname === href) return true
 
@@ -108,11 +108,11 @@ export function SiteHeader() {
             "/calculators",
             "/tools",
             "/about",
-            "/en/tags",
-            "/en/bookmarks",
-            "/en/calculators",
-            "/en/tools",
-            "/en/about",
+            "/ru/tags",
+            "/ru/bookmarks",
+            "/ru/calculators",
+            "/ru/tools",
+            "/ru/about",
         ]
 
         if (exactMatchPages.includes(href)) {
@@ -134,7 +134,7 @@ export function SiteHeader() {
         <header className="sticky top-0 z-50 border-b border-border/50 bg-background/95 shadow-soft backdrop-blur-md transition-all dark:bg-background/90">
             <div className="container flex h-16 items-center justify-between px-4 sm:px-6">
                 <Link
-                    href={isEnglish ? "/en" : "/"}
+                    href={isEnglish ? "/" : "/ru"}
                     className="inline-flex items-baseline rounded-xl bg-gradient-to-r from-primary/10 via-accent/8 to-primary/10 px-3 py-1.5 text-lg font-bold tracking-tight text-foreground shadow-soft transition-smooth hover:scale-105 hover:from-primary/15 hover:via-accent/12 hover:to-primary/15 dark:from-primary/15 dark:via-accent/12 dark:to-primary/15 dark:hover:from-primary/20 dark:hover:via-accent/18 dark:hover:to-primary/20 sm:px-4 sm:py-2 sm:text-xl"
                 >
                     renohacks.com

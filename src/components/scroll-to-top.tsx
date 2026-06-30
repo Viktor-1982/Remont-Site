@@ -19,7 +19,7 @@ const navData: NavData = navDataJson as NavData
 export function ScrollToTop() {
     const [isVisible, setIsVisible] = useState(false)
     const pathname = usePathname()
-    const locale: Locale = pathname.startsWith("/en") ? "en" : "ru"
+    const locale: Locale = pathname.startsWith("/ru") ? "ru" : "en"
     const t = navData[locale].scrollToTop
 
     useEffect(() => {

@@ -46,7 +46,7 @@ export function TopicHubPage({
     const CalculatorIcon = featureIconMap[dictionary.calculator.icon]
 
     const breadcrumbItems = [
-        { label: isEnglish ? "Home" : "Главная", href: isEnglish ? "/en" : "/" },
+        { label: isEnglish ? "Home" : "Главная", href: isEnglish ? "/" : "/ru" },
         { label: dictionary.breadcrumbLabel, href: dictionary.path },
     ]
 

@@ -18,7 +18,7 @@ const stepIcons = {
 } as const
 
 function getBreadcrumbSchema(dictionary: EditorialStandardsDictionary) {
-    const homePath = dictionary.breadcrumb.pagePath.startsWith("/en") ? "/en" : "/"
+    const homePath = !dictionary.breadcrumb.pagePath.startsWith("/ru") ? "/" : "/ru"
 
     return {
         "@context": "https://schema.org",

@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import React, { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
@@ -38,7 +38,7 @@ export function TableOfContents({
     const [activeId, setActiveId] = useState<string | null>(null)
 
     const pathname = usePathname()
-    const locale: Locale = pathname.startsWith("/en") ? "en" : "ru"
+    const locale: Locale = pathname.startsWith("/ru") ? "ru" : "en"
     const t = navData[locale].toc
 
     // 🧠 Функция для генерации якоря - используем GitHubSlugger для совместимости с mdx-components
