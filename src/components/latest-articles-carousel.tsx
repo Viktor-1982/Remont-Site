@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react"
 import type { Post } from ".contentlayer/generated"
 import { ArticleCard } from "@/components/article-card"
-import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react"
+import { ChevronLeft, ChevronRight, Sparkles, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 
@@ -82,6 +82,21 @@ export function LatestArticlesCarousel({ posts, isEnglish = false }: LatestArtic
                         {isEnglish ? "Latest Articles" : "Свежие публикации"}
                     </h2>
                 </div>
+
+                <a
+                    href="#articles"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-all hover:gap-3 sm:mt-auto"
+                    onClick={(e) => {
+                        e.preventDefault()
+                        const target = document.getElementById("articles")
+                        if (target) {
+                            target.scrollIntoView({ behavior: "smooth" })
+                        }
+                    }}
+                >
+                    {isEnglish ? "All articles" : "Все публикации"}
+                    <ArrowRight className="w-4 h-4" />
+                </a>
             </div>
 
             {/* 📦 Обертка карусели */}

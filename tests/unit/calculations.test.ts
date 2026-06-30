@@ -14,7 +14,7 @@ import {
 
 describe("computePaintLiters", () => {
   it("calculates liters for a simple 4x4x2.7 room, 2 doors, 1 window, 2 layers", () => {
-    const liters = computePaintLiters({
+    const res = computePaintLiters({
       length: 4,
       width: 4,
       height: 2.7,
@@ -25,12 +25,12 @@ describe("computePaintLiters", () => {
     })
 
     // просто проверяем, что число положительное и в разумных пределах
-    expect(liters).toBeGreaterThan(5)
-    expect(liters).toBeLessThan(30)
+    expect(res?.litersNeeded).toBeGreaterThan(5)
+    expect(res?.litersNeeded).toBeLessThan(30)
   })
 
-  it("returns 0 for invalid data", () => {
-    const liters = computePaintLiters({
+  it("returns null for invalid data", () => {
+    const res = computePaintLiters({
       length: -1,
       width: 4,
       height: 2.7,
@@ -39,11 +39,11 @@ describe("computePaintLiters", () => {
       layers: 2,
       coverage: 10,
     })
-    expect(liters).toBe(0)
+    expect(res).toBe(null)
   })
 
   it("uses realistic default opening areas in the estimate", () => {
-    const liters = computePaintLiters({
+    const res = computePaintLiters({
       length: 4,
       width: 4,
       height: 2.7,
@@ -53,7 +53,7 @@ describe("computePaintLiters", () => {
       coverage: 10,
     })
 
-    expect(liters).toBeCloseTo(11.1, 1)
+    expect(res?.litersNeeded).toBeCloseTo(11.1, 1)
   })
 })
 

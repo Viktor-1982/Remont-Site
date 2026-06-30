@@ -78,6 +78,15 @@ export default function HomePage() {
             <div className="container mx-auto max-w-7xl space-y-16 px-4 py-12 sm:px-6 sm:py-16">
                 <TopicHubsShowcase />
                 <LatestArticlesCarousel posts={posts} />
+                
+                <CalculatorsShowcase
+                    isEnglish={false}
+                    limit={4}
+                    title="Популярные инструменты для ремонта"
+                    subtitle="Четыре самых полезных инструмента для расчета бюджета, материалов и освещения."
+                    badgeLabel="Инструменты"
+                />
+
                 <SeriesShowcase
                     posts={posts}
                     title="Серийные разборы"
@@ -98,14 +107,6 @@ export default function HomePage() {
                     <ArticleGrid posts={posts} isEnglish={false} />
                     <PopularPosts posts={posts} locale="ru" limit={6} />
                 </section>
-
-                <CalculatorsShowcase
-                    isEnglish={false}
-                    limit={4}
-                    title="Популярные инструменты для ремонта"
-                    subtitle="Четыре самых полезных инструмента для расчета бюджета, материалов и освещения."
-                    badgeLabel="Инструменты"
-                />
 
                 <section className="mt-16 sm:mt-20">
                     <EmailSubscription locale="ru" variant="default" />

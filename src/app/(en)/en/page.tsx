@@ -72,6 +72,15 @@ export default function HomePageEn() {
             <div className="container mx-auto max-w-7xl space-y-12 px-4 py-10 sm:px-6">
                 <TopicHubsShowcase isEnglish />
                 <LatestArticlesCarousel posts={posts} isEnglish />
+                
+                <CalculatorsShowcase
+                    isEnglish
+                    limit={4}
+                    title="Popular Renovation Tools"
+                    subtitle="The four tools most likely to help with planning, materials, and lighting."
+                    badgeLabel="Tools"
+                />
+
                 <SeriesShowcase
                     posts={posts}
                     isEnglish
@@ -87,14 +96,6 @@ export default function HomePageEn() {
                     <ArticleGrid posts={posts} isEnglish />
                     <PopularPosts posts={posts} locale="en" limit={6} />
                 </section>
-
-                <CalculatorsShowcase
-                    isEnglish
-                    limit={4}
-                    title="Popular Renovation Tools"
-                    subtitle="The four tools most likely to help with planning, materials, and lighting."
-                    badgeLabel="Tools"
-                />
 
                 <section className="mt-16 sm:mt-20">
                     <EmailSubscription locale="en" variant="default" />

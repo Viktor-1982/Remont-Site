@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import Link from "next/link"
 import Image from "next/image"
@@ -116,7 +116,7 @@ export function HeroBanner() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        {/* 🔹 Первая кнопка (Trends) */}
+                        {/* 🔹 Первая кнопка (Tools & Calculators) */}
                         <Button
                             asChild
                             size="lg"
@@ -126,12 +126,12 @@ export function HeroBanner() {
               hover:shadow-xl hover:shadow-[#87A96B]/40 hover:scale-105 
               transition-smooth backdrop-blur-sm border border-white/20"
                         >
-                            <Link href={isEnglish ? "/en/tags/trends" : "/tags/тренды"} prefetch={true}>
+                            <Link href={isEnglish ? "/en/tools" : "/tools"} prefetch={true}>
                                 {t.ctaTrends} →
                             </Link>
                         </Button>
 
-                        {/* 🔹 Вторая кнопка (DIY) */}
+                        {/* 🔹 Вторая кнопка (Quiz) */}
                         <Button
                             asChild
                             size="lg"
@@ -143,7 +143,7 @@ export function HeroBanner() {
               hover:shadow-xl hover:shadow-white/20 hover:scale-105 
               transition-smooth"
                         >
-                            <Link href={isEnglish ? "/en/tags/diy" : "/tags/diy"} prefetch={true}>
+                            <Link href={isEnglish ? "/en/quiz/interior-style" : "/quiz/interior-style"} prefetch={true}>
                                 {t.ctaDiy}
                             </Link>
                         </Button>
