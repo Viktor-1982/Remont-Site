@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Shield, Cookie, BarChart3, Megaphone, Lock, Mail } from "lucide-react"
 import Script from "next/script"
 
-export const metadata = getPageMetadata("/privacy", {
+export const metadata = getPageMetadata("/ru/privacy", {
     title: "Политика конфиденциальности | Renohacks",
     description:
         "Политика конфиденциальности Renohacks.com: данные подписки, cookies, аналитика и управление согласием.",

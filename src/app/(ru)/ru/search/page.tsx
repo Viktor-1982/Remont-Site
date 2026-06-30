@@ -4,7 +4,7 @@ import { ArticleCard } from "@/components/article-card"
 import { Search } from "lucide-react"
 import { SearchPageForm } from "@/components/search-page-form"
 
-export const metadata = getPageMetadata("/search", {
+export const metadata = getPageMetadata("/ru/search", {
     title: "Поиск статей | Renohacks",
     description: "Поиск статей о ремонте, дизайне и DIY на Renohacks.com",
     cover: "/images/og-default.png",

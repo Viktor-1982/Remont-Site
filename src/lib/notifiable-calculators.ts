@@ -13,7 +13,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "ru",
         title: "Калькулятор краски",
         description: "Рассчитывает расход краски для стен и потолков с учетом слоев и проемов.",
-        url: "/calculators/paint",
+        url: "/ru/calculators/paint",
         publishedAt: "2025-09-17",
     },
     {
@@ -21,7 +21,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "en",
         title: "Paint Calculator",
         description: "Estimates paint coverage for walls and ceilings, including coats and openings.",
-        url: "/en/calculators/paint",
+        url: "/calculators/paint",
         publishedAt: "2025-10-01",
     },
     {
@@ -29,7 +29,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "ru",
         title: "Калькулятор обоев",
         description: "Помогает оценить количество рулонов с учетом размеров комнаты, раппорта и проемов.",
-        url: "/calculators/wallpaper",
+        url: "/ru/calculators/wallpaper",
         publishedAt: "2025-09-17",
     },
     {
@@ -37,7 +37,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "en",
         title: "Wallpaper Calculator",
         description: "Estimates the number of wallpaper rolls from room dimensions, repeat, and openings.",
-        url: "/en/calculators/wallpaper",
+        url: "/calculators/wallpaper",
         publishedAt: "2025-10-01",
     },
     {
@@ -45,7 +45,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "ru",
         title: "Калькулятор плитки",
         description: "Считает количество плитки, упаковок и клея для пола или стен с запасом.",
-        url: "/calculators/tile",
+        url: "/ru/calculators/tile",
         publishedAt: "2025-09-17",
     },
     {
@@ -53,7 +53,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "en",
         title: "Tile Calculator",
         description: "Calculates tile count, packs, and adhesive for floors or walls with waste included.",
-        url: "/en/calculators/tile",
+        url: "/calculators/tile",
         publishedAt: "2025-10-01",
     },
     {
@@ -61,7 +61,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "ru",
         title: "Планировщик бюджета ремонта",
         description: "Собирает смету по категориям расходов и показывает резерв на непредвиденные траты.",
-        url: "/calculators/budget",
+        url: "/ru/calculators/budget",
         publishedAt: "2025-10-28",
     },
     {
@@ -69,7 +69,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "en",
         title: "Renovation Budget Planner",
         description: "Builds a renovation estimate by cost category and adds a contingency reserve.",
-        url: "/en/calculators/budget",
+        url: "/calculators/budget",
         publishedAt: "2025-10-28",
     },
     {
@@ -77,7 +77,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "ru",
         title: "Генератор палитр",
         description: "Подбирает цветовые палитры для интерьера и помогает собрать сочетаемые оттенки.",
-        url: "/calculators/color-palette",
+        url: "/ru/calculators/color-palette",
         publishedAt: "2026-01-06",
     },
     {
@@ -85,7 +85,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "en",
         title: "Color Palette Generator",
         description: "Generates interior color palettes and suggests matching shades.",
-        url: "/en/calculators/color-palette",
+        url: "/calculators/color-palette",
         publishedAt: "2026-01-06",
     },
     {
@@ -93,7 +93,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "ru",
         title: "Калькулятор вентиляции",
         description: "Оценивает требуемый воздухообмен по размерам помещения и кратности обмена воздуха.",
-        url: "/calculators/ventilation",
+        url: "/ru/calculators/ventilation",
         publishedAt: "2026-02-02",
     },
     {
@@ -101,7 +101,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "en",
         title: "Ventilation Calculator",
         description: "Estimates required airflow from room size and target air changes per hour.",
-        url: "/en/calculators/ventilation",
+        url: "/calculators/ventilation",
         publishedAt: "2026-02-02",
     },
     {
@@ -109,7 +109,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "ru",
         title: "Калькулятор теплого пола",
         description: "Считает площадь укладки, мощность и ориентировочные ежемесячные затраты.",
-        url: "/calculators/underfloor-heating",
+        url: "/ru/calculators/underfloor-heating",
         publishedAt: "2026-02-02",
     },
     {
@@ -117,7 +117,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "en",
         title: "Underfloor Heating Calculator",
         description: "Calculates heated area, system power, and estimated monthly running cost.",
-        url: "/en/calculators/underfloor-heating",
+        url: "/calculators/underfloor-heating",
         publishedAt: "2026-02-02",
     },
     {
@@ -125,7 +125,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "ru",
         title: "Калькулятор освещения",
         description: "Подбирает необходимый световой поток и количество светильников для комнаты.",
-        url: "/calculators/lighting",
+        url: "/ru/calculators/lighting",
         publishedAt: "2026-02-02",
     },
     {
@@ -133,7 +133,7 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         locale: "en",
         title: "Lighting Calculator",
         description: "Estimates target lumens and fixture count for a room.",
-        url: "/en/calculators/lighting",
+        url: "/calculators/lighting",
         publishedAt: "2026-02-02",
     },
 ]

@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileText, CheckCircle, XCircle, Shield, Scale, Mail, Home } from "lucide-react"
 import Script from "next/script"
 
-export const metadata = getPageMetadata("/en/terms", {
+export const metadata = getPageMetadata("/terms", {
   title: "Terms of Use | Renohacks",
   description: "Terms and conditions for using Renohacks.com. Information about what you can and cannot do on the site, privacy and liability.",
   cover: "/images/og-default.png",
@@ -203,7 +203,7 @@ export default function TermsOfUsePage() {
           <CardContent className="space-y-4">
             <p className="text-muted-foreground leading-relaxed">
               We respect your privacy. For detailed information about data collection and use, 
-              please see our <Link href="/en/privacy" className="text-primary hover:underline font-medium">Privacy Policy</Link>.
+              please see our <Link href="/privacy" className="text-primary hover:underline font-medium">Privacy Policy</Link>.
             </p>
           </CardContent>
         </Card>

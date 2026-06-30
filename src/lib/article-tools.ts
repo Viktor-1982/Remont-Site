@@ -105,7 +105,7 @@ const toolCatalog: Record<ArticleToolId, ToolDefinition> = {
     paint: {
         icon: "paintbrush",
         gradient: "from-amber-500/14 via-orange-500/10 to-transparent",
-        href: { ru: "/calculators/paint", en: "/en/calculators/paint" },
+        href: { ru: "/ru/calculators/paint", en: "/calculators/paint" },
         title: { ru: "Калькулятор краски", en: "Paint Calculator" },
         description: {
             ru: "Быстро посчитайте расход краски по площади, окнам, дверям и количеству слоев.",
@@ -117,7 +117,7 @@ const toolCatalog: Record<ArticleToolId, ToolDefinition> = {
     wallpaper: {
         icon: "wallpaper",
         gradient: "from-violet-500/14 via-fuchsia-500/10 to-transparent",
-        href: { ru: "/calculators/wallpaper", en: "/en/calculators/wallpaper" },
+        href: { ru: "/ru/calculators/wallpaper", en: "/calculators/wallpaper" },
         title: { ru: "Калькулятор обоев", en: "Wallpaper Calculator" },
         description: {
             ru: "Узнайте, сколько рулонов нужно с учетом раппорта, проемов и запаса.",
@@ -129,7 +129,7 @@ const toolCatalog: Record<ArticleToolId, ToolDefinition> = {
     tile: {
         icon: "grid3x3",
         gradient: "from-sky-500/14 via-cyan-500/10 to-transparent",
-        href: { ru: "/calculators/tile", en: "/en/calculators/tile" },
+        href: { ru: "/ru/calculators/tile", en: "/calculators/tile" },
         title: { ru: "Калькулятор плитки", en: "Tile Calculator" },
         description: {
             ru: "Подсчитайте плитку для пола или стен, запас на подрезку и расход клея.",
@@ -141,7 +141,7 @@ const toolCatalog: Record<ArticleToolId, ToolDefinition> = {
     flooring: {
         icon: "layers",
         gradient: "from-emerald-500/14 via-lime-500/10 to-transparent",
-        href: { ru: "/calculators/flooring", en: "/en/calculators/flooring" },
+        href: { ru: "/ru/calculators/flooring", en: "/calculators/flooring" },
         title: { ru: "Калькулятор напольного покрытия", en: "Flooring Calculator" },
         description: {
             ru: "Рассчитайте ламинат, кварцвинил или инженерную доску по упаковкам, подложке и запасу.",
@@ -153,7 +153,7 @@ const toolCatalog: Record<ArticleToolId, ToolDefinition> = {
     baseboard: {
         icon: "ruler",
         gradient: "from-stone-500/14 via-zinc-500/10 to-transparent",
-        href: { ru: "/calculators/baseboard", en: "/en/calculators/baseboard" },
+        href: { ru: "/ru/calculators/baseboard", en: "/calculators/baseboard" },
         title: { ru: "Калькулятор плинтуса", en: "Baseboard Calculator" },
         description: {
             ru: "Посчитайте длину плинтуса, количество планок, вычет проемов и примерную стоимость.",
@@ -165,7 +165,7 @@ const toolCatalog: Record<ArticleToolId, ToolDefinition> = {
     screed: {
         icon: "hammer",
         gradient: "from-slate-500/16 via-neutral-500/12 to-transparent",
-        href: { ru: "/calculators/screed", en: "/en/calculators/screed" },
+        href: { ru: "/ru/calculators/screed", en: "/calculators/screed" },
         title: { ru: "Калькулятор стяжки пола", en: "Screed Calculator" },
         description: {
             ru: "Рассчитайте объем стяжки, количество мешков смеси, воду и ориентировочный бюджет.",
@@ -177,7 +177,7 @@ const toolCatalog: Record<ArticleToolId, ToolDefinition> = {
     "underfloor-heating": {
         icon: "thermometer",
         gradient: "from-rose-500/14 via-orange-500/10 to-transparent",
-        href: { ru: "/calculators/underfloor-heating", en: "/en/calculators/underfloor-heating" },
+        href: { ru: "/ru/calculators/underfloor-heating", en: "/calculators/underfloor-heating" },
         title: { ru: "Калькулятор теплого пола", en: "Underfloor Heating Calculator" },
         description: {
             ru: "Оцените мощность, площадь покрытия, потребление энергии и примерные расходы.",
@@ -189,7 +189,7 @@ const toolCatalog: Record<ArticleToolId, ToolDefinition> = {
     ventilation: {
         icon: "wind",
         gradient: "from-blue-500/14 via-sky-500/10 to-transparent",
-        href: { ru: "/calculators/ventilation", en: "/en/calculators/ventilation" },
+        href: { ru: "/ru/calculators/ventilation", en: "/calculators/ventilation" },
         title: { ru: "Калькулятор вентиляции", en: "Ventilation Calculator" },
         description: {
             ru: "Подберите нужный расход воздуха по объему помещения и кратности воздухообмена.",
@@ -201,7 +201,7 @@ const toolCatalog: Record<ArticleToolId, ToolDefinition> = {
     lighting: {
         icon: "lightbulb",
         gradient: "from-yellow-500/14 via-amber-500/10 to-transparent",
-        href: { ru: "/calculators/lighting", en: "/en/calculators/lighting" },
+        href: { ru: "/ru/calculators/lighting", en: "/calculators/lighting" },
         title: { ru: "Калькулятор освещенности", en: "Lighting Calculator" },
         description: {
             ru: "Узнайте, сколько люменов нужно комнате и сколько светильников стоит закладывать.",
@@ -213,7 +213,7 @@ const toolCatalog: Record<ArticleToolId, ToolDefinition> = {
     budget: {
         icon: "wallet",
         gradient: "from-green-500/14 via-emerald-500/10 to-transparent",
-        href: { ru: "/calculators/budget", en: "/en/calculators/budget" },
+        href: { ru: "/ru/calculators/budget", en: "/calculators/budget" },
         title: { ru: "Планировщик бюджета", en: "Budget Planner" },
         description: {
             ru: "Соберите смету по категориям работ, валюте и резерву, чтобы контролировать весь проект.",
@@ -225,7 +225,7 @@ const toolCatalog: Record<ArticleToolId, ToolDefinition> = {
     "color-palette": {
         icon: "palette",
         gradient: "from-pink-500/14 via-purple-500/10 to-transparent",
-        href: { ru: "/calculators/color-palette", en: "/en/calculators/color-palette" },
+        href: { ru: "/ru/calculators/color-palette", en: "/calculators/color-palette" },
         title: { ru: "Генератор цветовых палитр", en: "Color Palette Generator" },
         description: {
             ru: "Подберите гармоничную палитру и проверьте, как цвета работают вместе до начала ремонта.",
@@ -241,7 +241,7 @@ const hubCatalog: Record<
     HubDefinition
 > = {
     bathroom: {
-        href: { ru: "/bathroom", en: "/en/bathroom" },
+        href: { ru: "/ru/bathroom", en: "/bathroom" },
         title: { ru: "Хаб по ванной", en: "Bathroom Hub" },
         description: {
             ru: "Соберите в одном месте статьи, расчеты и решения по плитке, вентиляции, свету и теплому полу.",
@@ -254,7 +254,7 @@ const hubCatalog: Record<
         matches: bathroomHubSlugs,
     },
     kitchen: {
-        href: { ru: "/kitchen", en: "/en/kitchen" },
+        href: { ru: "/ru/kitchen", en: "/kitchen" },
         title: { ru: "Хаб по кухне", en: "Kitchen Hub" },
         description: {
             ru: "Соберите в одном месте статьи, расчеты и решения по планировке, материалам, свету и бюджету кухни.",
@@ -267,7 +267,7 @@ const hubCatalog: Record<
         matches: kitchenHubSlugs,
     },
     "budget-planning": {
-        href: { ru: "/budget-planning", en: "/en/budget-planning" },
+        href: { ru: "/ru/budget-planning", en: "/budget-planning" },
         title: { ru: "Хаб по смете и планированию", en: "Planning and Budget Hub" },
         description: {
             ru: "Соберите материалы по смете, этапам, экономии и контролю расходов в одной практической подборке.",
@@ -280,7 +280,7 @@ const hubCatalog: Record<
         matches: budgetPlanningHubSlugs,
     },
     bedroom: {
-        href: { ru: "/bedroom", en: "/en/bedroom" },
+        href: { ru: "/ru/bedroom", en: "/bedroom" },
         title: { ru: "Хаб по спальне", en: "Bedroom Hub" },
         description: {
             ru: "Откройте подборку про свет, цвет и спокойные решения, которые делают спальню комфортнее каждый день.",
@@ -293,7 +293,7 @@ const hubCatalog: Record<
         matches: bedroomHubSlugs,
     },
     walls: {
-        href: { ru: "/walls", en: "/en/walls" },
+        href: { ru: "/ru/walls", en: "/walls" },
         title: { ru: "Хаб по стенам и отделке", en: "Walls and Finishes Hub" },
         description: {
             ru: "Соберите в одном месте покраску, подготовку стен, обои и цветовые решения без лишних переделок.",
@@ -306,7 +306,7 @@ const hubCatalog: Record<
         matches: wallsHubSlugs,
     },
     flooring: {
-        href: { ru: "/flooring", en: "/en/flooring" },
+        href: { ru: "/ru/flooring", en: "/flooring" },
         title: { ru: "Хаб по полам и покрытиям", en: "Flooring Hub" },
         description: {
             ru: "Откройте подборку про стяжку, покрытия, плинтус и расчеты по полу от базы до финиша.",
@@ -319,7 +319,7 @@ const hubCatalog: Record<
         matches: flooringHubSlugs,
     },
     "small-apartment": {
-        href: { ru: "/small-apartment", en: "/en/small-apartment" },
+        href: { ru: "/ru/small-apartment", en: "/small-apartment" },
         title: { ru: "Хаб по маленькой квартире", en: "Small Apartment Hub" },
         description: {
             ru: "Соберите статьи про зонирование, свет, хранение и бюджетные решения для небольшой площади.",
@@ -332,7 +332,7 @@ const hubCatalog: Record<
         matches: smallApartmentHubSlugs,
     },
     lighting: {
-        href: { ru: "/lighting", en: "/en/lighting" },
+        href: { ru: "/ru/lighting", en: "/lighting" },
         title: { ru: "Хаб по освещению", en: "Lighting Hub" },
         description: {
             ru: "Откройте статьи, расчеты и сценарии света по комнатам в одной тематической подборке.",

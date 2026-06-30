@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { getPageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = getPageMetadata("/en/bookmarks", {
+export const metadata: Metadata = getPageMetadata("/bookmarks", {
     title: "Bookmarks | Renohacks",
     description: "Saved user articles on Renohacks.",
     type: "website",

@@ -19,7 +19,7 @@ export const smallApartmentHubSlugs: Record<TopicHubLocale, string[]> = {
 const smallApartmentHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "small-apartment",
-        path: "/small-apartment",
+        path: "/ru/small-apartment",
         title: "Маленькая квартира: зонирование, свет и ремонт без перегруза",
         description:
             "Главные материалы Renohacks про маленькую квартиру: студии, малые кухни, свет, хранение и бюджетные решения, которые делают небольшое пространство удобнее.",
@@ -57,7 +57,7 @@ const smallApartmentHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
             title: "Калькулятор освещенности",
             description:
                 "Проверьте свет для студии или маленькой квартиры, чтобы пространство не казалось темным и тесным.",
-            href: "/calculators/lighting",
+            href: "/ru/calculators/lighting",
             buttonLabel: "Открыть калькулятор",
         },
         relatedTitle: "Что еще полезно для маленькой квартиры",
@@ -66,19 +66,19 @@ const smallApartmentHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
                 icon: "calculator",
                 title: "Планировщик бюджета",
                 description: "Сведите обновление квартиры в одну смету и поймите, где вложения дадут лучший эффект.",
-                href: "/calculators/budget",
+                href: "/ru/calculators/budget",
             },
             {
                 icon: "calculator",
                 title: "Генератор цветовых палитр",
                 description: "Проверьте палитру для стен, мебели и текстиля до покупки отделки и декора.",
-                href: "/calculators/color-palette",
+                href: "/ru/calculators/color-palette",
             },
             {
                 icon: "home",
                 title: "Хаб по кухне",
                 description: "Откройте комнатный хаб, если хотите отдельно разобрать маленькую кухню и рабочие зоны.",
-                href: "/kitchen",
+                href: "/ru/kitchen",
             },
         ],
         featuredLabel: "С чего начать",
@@ -118,7 +118,7 @@ const smallApartmentHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
     },
     en: {
         key: "small-apartment",
-        path: "/en/small-apartment",
+        path: "/small-apartment",
         title: "Small Apartment Ideas: Zoning, Lighting, and Renovation Without Overload",
         description:
             "Best Renohacks content on small apartments: studios, small kitchens, lighting, storage, and budget-aware decisions that make compact spaces work better.",
@@ -156,7 +156,7 @@ const smallApartmentHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
             title: "Lighting calculator",
             description:
                 "Check lighting for a studio or compact apartment so the space does not feel dark, flat, or tighter than it is.",
-            href: "/en/calculators/lighting",
+            href: "/calculators/lighting",
             buttonLabel: "Open calculator",
         },
         relatedTitle: "Also useful for small-space planning",
@@ -165,19 +165,19 @@ const smallApartmentHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
                 icon: "calculator",
                 title: "Budget planner",
                 description: "Roll the apartment update into one estimate and see where spending will change daily life the most.",
-                href: "/en/calculators/budget",
+                href: "/calculators/budget",
             },
             {
                 icon: "calculator",
                 title: "Color palette generator",
                 description: "Build the wall, furniture, and textile palette before buying finishes or decor.",
-                href: "/en/calculators/color-palette",
+                href: "/calculators/color-palette",
             },
             {
                 icon: "home",
                 title: "Kitchen hub",
                 description: "Open the room hub if you want to break down a small kitchen and its work zones separately.",
-                href: "/en/kitchen",
+                href: "/kitchen",
             },
         ],
         featuredLabel: "Start here",

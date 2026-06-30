@@ -4,7 +4,7 @@ import { getPageMetadata } from "@/lib/seo"
 
 const dictionary = getAboutDictionary("ru")
 
-export const metadata = getPageMetadata("/about", {
+export const metadata = getPageMetadata("/ru/about", {
     title: dictionary.metadata.title,
     description: dictionary.metadata.description,
     cover: "/images/og-default.png",

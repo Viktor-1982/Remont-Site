@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileText, CheckCircle, XCircle, Shield, Scale, Mail, Home, Heart, Lightbulb, Users } from "lucide-react"
 import Script from "next/script"
 
-export const metadata = getPageMetadata("/terms", {
+export const metadata = getPageMetadata("/ru/terms", {
   title: "Правила пользования сайтом | Renohacks",
   description:
     "Правила и условия использования Renohacks.com. Что можно и нельзя делать на сайте, как мы относимся к конфиденциальности и где проходят границы нашей ответственности.",

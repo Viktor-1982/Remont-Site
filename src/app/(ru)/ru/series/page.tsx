@@ -9,7 +9,7 @@ import { sortPosts } from "@/lib/utils"
 export const revalidate = 86400
 export const dynamic = "force-static"
 
-export const metadata: Metadata = getPageMetadata("/series", {
+export const metadata: Metadata = getPageMetadata("/ru/series", {
     title: "Серии Renohacks: кухня, ванная, план ремонта и решения без переделок",
     description:
         "Редакционные серии Renohacks: разборы кухни и ванной, бюджет и планирование ремонта, решения без дорогих переделок.",

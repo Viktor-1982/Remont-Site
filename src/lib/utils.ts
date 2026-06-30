@@ -26,8 +26,8 @@ export function formatDate(date: string, locale: "ru" | "en"): string {
  * Определяем локаль по pathname (только URL)
  */
 export function getLocaleFromPath(path: string): "ru" | "en" {
-    if (path.startsWith("/en") || path.includes("-en")) return "en"
-    return "ru"
+    if (path.startsWith("/ru")) return "ru"
+    return "en"
 }
 
 /**

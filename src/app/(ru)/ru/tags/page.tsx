@@ -2,7 +2,7 @@ import { getPageMetadata } from "@/lib/seo"
 import { allPosts } from ".contentlayer/generated"
 import { TagCloud } from "@/components/tag-cloud"
 
-export const metadata = getPageMetadata("/tags", {
+export const metadata = getPageMetadata("/ru/tags", {
     title: "Облако тегов — все теги статей | Renohacks.com",
     description: "Визуальное отображение всех тегов статей на Renohacks.com. Размер тега показывает количество статей. Навигация по темам ремонта, дизайна и DIY.",
     cover: "/images/og-default.png",

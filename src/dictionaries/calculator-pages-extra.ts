@@ -872,7 +872,7 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "Other useful tools",
                 cards: [
                     {
-                        href: "/en/lighting",
+                        href: "/lighting",
                         title: "Lighting Hub",
                         description: "Open the article hub with room-by-room lighting ideas, lighting trends, and practical planning guidance.",
                         icon: "lightbulb",

@@ -21,7 +21,7 @@ export const budgetPlanningHubSlugs: Record<TopicHubLocale, string[]> = {
 const budgetPlanningHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "budget-planning",
-        path: "/budget-planning",
+        path: "/ru/budget-planning",
         title: "Смета и планирование ремонта",
         description:
             "Главные материалы Renohacks про бюджет ремонта: смета, этапы, резерв, экономия без потери качества и контроль расходов по ходу проекта.",
@@ -59,7 +59,7 @@ const budgetPlanningHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
             title: "Планировщик бюджета ремонта",
             description:
                 "Соберите смету по работам, материалам, валюте и резерву, чтобы видеть проект целиком еще до закупок.",
-            href: "/calculators/budget",
+            href: "/ru/calculators/budget",
             buttonLabel: "Открыть планировщик",
         },
         relatedTitle: "Что еще полезно для планирования",
@@ -68,19 +68,19 @@ const budgetPlanningHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
                 icon: "grid",
                 title: "Калькулятор напольного покрытия",
                 description: "Проверьте одну из самых дорогих отделочных категорий по упаковкам, запасу и площади.",
-                href: "/calculators/flooring",
+                href: "/ru/calculators/flooring",
             },
             {
                 icon: "calculator",
                 title: "Серия «План и смета»",
                 description: "Откройте материалы про бюджет, этапы ремонта и решения, которые не дают смете расползаться.",
-                href: "/series/budget-planning",
+                href: "/ru/series/budget-planning",
             },
             {
                 icon: "home",
                 title: "Хаб по кухне",
                 description: "Перейдите в комнатный хаб, если хотите разобрать одну из самых дорогих зон ремонта отдельно.",
-                href: "/kitchen",
+                href: "/ru/kitchen",
             },
         ],
         featuredLabel: "С чего начать",
@@ -120,7 +120,7 @@ const budgetPlanningHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
     },
     en: {
         key: "budget-planning",
-        path: "/en/budget-planning",
+        path: "/budget-planning",
         title: "Planning and Budget for Renovation",
         description:
             "Best Renohacks content on renovation budgeting: working estimates, phasing, contingency, cost control, and ways to save without gutting the result.",
@@ -158,7 +158,7 @@ const budgetPlanningHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
             title: "Renovation budget planner",
             description:
                 "Build a room-by-room estimate with work, materials, currency, and contingency before you start ordering.",
-            href: "/en/calculators/budget",
+            href: "/calculators/budget",
             buttonLabel: "Open planner",
         },
         relatedTitle: "Also useful for renovation planning",
@@ -167,19 +167,19 @@ const budgetPlanningHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
                 icon: "grid",
                 title: "Flooring calculator",
                 description: "Validate one of the most expensive finish categories by packs, waste, and real floor coverage.",
-                href: "/en/calculators/flooring",
+                href: "/calculators/flooring",
             },
             {
                 icon: "calculator",
                 title: "Budget and Planning series",
                 description: "Open the series built around budgeting, phasing, and decisions that keep costs from drifting.",
-                href: "/en/series/budget-planning",
+                href: "/series/budget-planning",
             },
             {
                 icon: "home",
                 title: "Kitchen hub",
                 description: "Jump into a room hub if you want to price one of the most expensive remodel zones separately.",
-                href: "/en/kitchen",
+                href: "/kitchen",
             },
         ],
         featuredLabel: "Start here",

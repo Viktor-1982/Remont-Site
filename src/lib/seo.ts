@@ -1,20 +1,20 @@
-﻿// src/lib/seo.ts
+// src/lib/seo.ts
 import type { Metadata } from "next"
 
 const baseUrl = "https://renohacks.com"
 
 const pathLocaleMap: Record<string, { ru: string; en: string }> = {
-    "/smety": { ru: "/smety", en: "/en/costs" },
-    "/en/costs": { ru: "/smety", en: "/en/costs" },
+    "/ru/smety": { ru: "/ru/smety", en: "/costs" },
+    "/costs": { ru: "/ru/smety", en: "/costs" },
 }
 
 function resolveLocalePaths(path: string) {
     const mapped = pathLocaleMap[path]
     if (mapped) return mapped
 
-    const isEnglishPath = path === "/en" || path.startsWith("/en/")
-    const ruPath = isEnglishPath ? path.replace(/^\/en/, "") || "/" : path
-    const enPath = isEnglishPath ? path : `/en${path === "/" ? "" : path}`
+    const isRussianPath = path === "/ru" || path.startsWith("/ru/")
+    const enPath = isRussianPath ? path.replace(/^\/ru/, "") || "/" : path
+    const ruPath = isRussianPath ? path : `/ru${path === "/" ? "" : path}`
     return { ru: ruPath, en: enPath }
 }
 

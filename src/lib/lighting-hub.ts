@@ -61,7 +61,7 @@ const lightingHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             title: "Калькулятор освещенности",
             description:
                 "Посчитайте, сколько люменов и светильников нужно комнате по площади, типу помещения и запасу на высоту потолка.",
-            href: "/calculators/lighting",
+            href: "/ru/calculators/lighting",
             buttonLabel: "Открыть калькулятор",
         },
         featuredLabel: "С чего начать",
@@ -101,7 +101,7 @@ const lightingHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "lighting",
-        path: "/en/lighting",
+        path: "/lighting",
         title: "Lighting for Home Renovation",
         description:
             "Best Renohacks content on home lighting: room-by-room ideas, 2026 lighting trends, small-space solutions, and a calculator for lumens and fixture count.",
@@ -139,7 +139,7 @@ const lightingHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             title: "Lighting calculator",
             description:
                 "Calculate lumens and fixture count by room size, room type, and a ceiling-height reserve before you buy anything.",
-            href: "/en/calculators/lighting",
+            href: "/calculators/lighting",
             buttonLabel: "Open calculator",
         },
         featuredLabel: "Start here",

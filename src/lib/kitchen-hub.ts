@@ -19,7 +19,7 @@ export const kitchenHubSlugs: Record<TopicHubLocale, string[]> = {
 const kitchenHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "kitchen",
-        path: "/kitchen",
+        path: "/ru/kitchen",
         title: "Кухня: планировка, материалы и ремонт без лишних ошибок",
         description:
             "Главные материалы Renohacks по кухне: планировка, маленькая кухня, материалы и поверхности, свет, фартук, плитка и бюджет ремонта.",
@@ -57,7 +57,7 @@ const kitchenHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             title: "Планировщик бюджета кухни",
             description:
                 "Сведите мебель, фартук, технику, свет и отделку в одну понятную смету перед закупкой материалов.",
-            href: "/calculators/budget",
+            href: "/ru/calculators/budget",
             buttonLabel: "Открыть планировщик",
         },
         relatedTitle: "Что еще полезно по кухне",
@@ -66,19 +66,19 @@ const kitchenHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
                 icon: "grid",
                 title: "Калькулятор плитки",
                 description: "Подсчитайте плитку и запас для фартука, пола или акцентной стены кухни.",
-                href: "/calculators/tile",
+                href: "/ru/calculators/tile",
             },
             {
                 icon: "lightbulb",
                 title: "Калькулятор освещенности",
                 description: "Проверьте рабочий и общий свет для кухни, острова и обеденной зоны.",
-                href: "/calculators/lighting",
+                href: "/ru/calculators/lighting",
             },
             {
                 icon: "wrench",
                 title: "Калькулятор вентиляции",
                 description: "Оцените воздухообмен для кухни, особенно если зона готовки объединена с гостиной.",
-                href: "/calculators/ventilation",
+                href: "/ru/calculators/ventilation",
             },
         ],
         featuredLabel: "С чего начать",
@@ -118,7 +118,7 @@ const kitchenHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "kitchen",
-        path: "/en/kitchen",
+        path: "/kitchen",
         title: "Kitchen Remodeling Ideas, Layout, and Practical Planning",
         description:
             "Best Renohacks kitchen content: kitchen layout, small-kitchen upgrades, finishes and surfaces, lighting, backsplash decisions, and renovation budgeting.",
@@ -156,7 +156,7 @@ const kitchenHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             title: "Kitchen budget planner",
             description:
                 "Roll cabinetry, backsplash, lighting, appliances, and finish choices into one cleaner working budget.",
-            href: "/en/calculators/budget",
+            href: "/calculators/budget",
             buttonLabel: "Open planner",
         },
         relatedTitle: "Also useful for kitchen planning",
@@ -165,19 +165,19 @@ const kitchenHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
                 icon: "grid",
                 title: "Tile calculator",
                 description: "Estimate tile and waste for a backsplash, kitchen floor, or accent wall.",
-                href: "/en/calculators/tile",
+                href: "/calculators/tile",
             },
             {
                 icon: "lightbulb",
                 title: "Lighting calculator",
                 description: "Check task and ambient lighting for the kitchen, island, and dining zone.",
-                href: "/en/calculators/lighting",
+                href: "/calculators/lighting",
             },
             {
                 icon: "wrench",
                 title: "Ventilation calculator",
                 description: "Review airflow for a kitchen, especially if it opens into the living area.",
-                href: "/en/calculators/ventilation",
+                href: "/calculators/ventilation",
             },
         ],
         featuredLabel: "Start here",

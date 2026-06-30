@@ -9,7 +9,7 @@ export const wallsHubSlugs: Record<TopicHubLocale, string[]> = {
 const wallsHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "walls",
-        path: "/walls",
+        path: "/ru/walls",
         title: "Стены и отделка: покраска, обои и подготовка без переделок",
         description:
             "Главные материалы Renohacks про стены и отделку: подготовка под покраску, выбор обоев, цветовые решения и практичный порядок работ без лишних переделок.",
@@ -47,7 +47,7 @@ const wallsHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             title: "Калькулятор краски",
             description:
                 "Проверьте расход краски по комнате, проемам и слоям, чтобы не брать материал вслепую.",
-            href: "/calculators/paint",
+            href: "/ru/calculators/paint",
             buttonLabel: "Открыть калькулятор",
         },
         relatedTitle: "Что еще полезно для отделки стен",
@@ -56,19 +56,19 @@ const wallsHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
                 icon: "grid",
                 title: "Калькулятор обоев",
                 description: "Сравните покраску с обоями и посчитайте количество рулонов с учетом рисунка и проемов.",
-                href: "/calculators/wallpaper",
+                href: "/ru/calculators/wallpaper",
             },
             {
                 icon: "calculator",
                 title: "Генератор цветовых палитр",
                 description: "Сведите цвет стен, мебели и акцентов в одну рабочую схему до начала отделки.",
-                href: "/calculators/color-palette",
+                href: "/ru/calculators/color-palette",
             },
             {
                 icon: "wrench",
                 title: "Серия «Без переделок»",
                 description: "Откройте материалы про ошибки и решения, которые особенно важны на этапе подготовки стен.",
-                href: "/series/avoid-rework",
+                href: "/ru/series/avoid-rework",
             },
         ],
         featuredLabel: "С чего начать",
@@ -108,7 +108,7 @@ const wallsHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "walls",
-        path: "/en/walls",
+        path: "/walls",
         title: "Walls and Finishes: Paint, Wallpaper, and Prep Without Rework",
         description:
             "Best Renohacks content on walls and finishes: wall prep, painting, wallpaper choices, color planning, and a cleaner sequence of finish work.",
@@ -146,7 +146,7 @@ const wallsHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             title: "Paint calculator",
             description:
                 "Estimate paint by room size, openings, and coats so you are not buying finish materials blindly.",
-            href: "/en/calculators/paint",
+            href: "/calculators/paint",
             buttonLabel: "Open calculator",
         },
         relatedTitle: "Also useful for wall finishes",
@@ -155,19 +155,19 @@ const wallsHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
                 icon: "grid",
                 title: "Wallpaper calculator",
                 description: "Compare paint against wallpaper and estimate roll count with openings and pattern repeat.",
-                href: "/en/calculators/wallpaper",
+                href: "/calculators/wallpaper",
             },
             {
                 icon: "calculator",
                 title: "Color palette generator",
                 description: "Pull wall color, furnishings, and accents into one working palette before the finish stage.",
-                href: "/en/calculators/color-palette",
+                href: "/calculators/color-palette",
             },
             {
                 icon: "wrench",
                 title: "Avoid Rework series",
                 description: "Open the series focused on mistakes and decisions that matter most during wall prep.",
-                href: "/en/series/avoid-rework",
+                href: "/series/avoid-rework",
             },
         ],
         featuredLabel: "Start here",

@@ -19,7 +19,7 @@ export const flooringHubSlugs: Record<TopicHubLocale, string[]> = {
 const flooringHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "flooring",
-        path: "/flooring",
+        path: "/ru/flooring",
         title: "Полы и покрытия: стяжка, расчет и выбор без лишних ошибок",
         description:
             "Главные материалы Renohacks про полы: стяжка, ламинат, кварцвинил, плинтус, расход материалов и порядок работ по основанию и финишному покрытию.",
@@ -57,7 +57,7 @@ const flooringHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             title: "Калькулятор напольного покрытия",
             description:
                 "Посчитайте покрытие по упаковкам, запасу и подложке, а затем быстро доберите смету по полу.",
-            href: "/calculators/flooring",
+            href: "/ru/calculators/flooring",
             buttonLabel: "Открыть калькулятор",
         },
         relatedTitle: "Что еще полезно по полу",
@@ -66,19 +66,19 @@ const flooringHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
                 icon: "wrench",
                 title: "Калькулятор стяжки пола",
                 description: "Оцените объем смеси и базовые расходы, если работа начинается с чернового основания.",
-                href: "/calculators/screed",
+                href: "/ru/calculators/screed",
             },
             {
                 icon: "calculator",
                 title: "Калькулятор плинтуса",
                 description: "Закройте периметр комнаты и доборные элементы, пока размеры помещения уже под рукой.",
-                href: "/calculators/baseboard",
+                href: "/ru/calculators/baseboard",
             },
             {
                 icon: "calculator",
                 title: "Планировщик бюджета",
                 description: "Сведите покрытие, подложку, стяжку и плинтус в одну понятную смету по полу.",
-                href: "/calculators/budget",
+                href: "/ru/calculators/budget",
             },
         ],
         featuredLabel: "С чего начать",
@@ -118,7 +118,7 @@ const flooringHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "flooring",
-        path: "/en/flooring",
+        path: "/flooring",
         title: "Flooring: Screed, Finish Planning, and Smarter Floor Calculations",
         description:
             "Best Renohacks content on flooring: screed, laminate and LVT calculations, baseboards, floor prep, and the order of work from base to finish.",
@@ -156,7 +156,7 @@ const flooringHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             title: "Flooring calculator",
             description:
                 "Estimate finish flooring by packs, waste, and underlay, then build out the full floor package.",
-            href: "/en/calculators/flooring",
+            href: "/calculators/flooring",
             buttonLabel: "Open calculator",
         },
         relatedTitle: "Also useful for floor planning",
@@ -165,19 +165,19 @@ const flooringHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
                 icon: "wrench",
                 title: "Screed calculator",
                 description: "Estimate mix volume and basic cost if your project starts with the rough floor base.",
-                href: "/en/calculators/screed",
+                href: "/calculators/screed",
             },
             {
                 icon: "calculator",
                 title: "Baseboard calculator",
                 description: "Finish the room perimeter while the floor dimensions are already in front of you.",
-                href: "/en/calculators/baseboard",
+                href: "/calculators/baseboard",
             },
             {
                 icon: "calculator",
                 title: "Budget planner",
                 description: "Roll flooring, underlay, screed, and trim into one clearer room-level estimate.",
-                href: "/en/calculators/budget",
+                href: "/calculators/budget",
             },
         ],
         featuredLabel: "Start here",

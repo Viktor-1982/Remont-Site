@@ -2,7 +2,7 @@ import Link from "next/link"
 import Script from "next/script"
 import { getPageMetadata } from "@/lib/seo"
 
-export const metadata = getPageMetadata("/en/developer", {
+export const metadata = getPageMetadata("/developer", {
     title: "Website Developer | ViktorWebStudio",
     description:
         "Web Development & Design. We create modern, beautiful and functional websites using cutting-edge technologies.",

@@ -24,7 +24,7 @@ export function normalizeTag(tag: string) {
 }
 
 function isLocalePost(post: Post, locale: TagLocale) {
-    return locale === "en" ? post.url.startsWith("/en/") : !post.url.startsWith("/en/")
+    return locale === "ru" ? post.url.startsWith("/ru/") : !post.url.startsWith("/ru/")
 }
 
 export function collectTagInfo(posts: Post[], locale: TagLocale) {

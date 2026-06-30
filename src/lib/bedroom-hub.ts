@@ -9,7 +9,7 @@ export const bedroomHubSlugs: Record<TopicHubLocale, string[]> = {
 const bedroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "bedroom",
-        path: "/bedroom",
+        path: "/ru/bedroom",
         title: "Спальня: свет, цвет и спокойный сценарий ремонта",
         description:
             "Главные материалы Renohacks про спальню: спокойный интерьер, теплый свет, цвет, комфорт и решения, которые реально улучшают отдых.",
@@ -47,7 +47,7 @@ const bedroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             title: "Калькулятор освещенности для спальни",
             description:
                 "Проверьте, сколько света нужно спальне, и соберите спокойный световой сценарий до выбора светильников.",
-            href: "/calculators/lighting",
+            href: "/ru/calculators/lighting",
             buttonLabel: "Открыть калькулятор",
         },
         relatedTitle: "Что еще полезно для спальни",
@@ -56,13 +56,13 @@ const bedroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
                 icon: "calculator",
                 title: "Генератор цветовых палитр",
                 description: "Подберите спокойную палитру для стен, текстиля и акцентов до начала отделки.",
-                href: "/calculators/color-palette",
+                href: "/ru/calculators/color-palette",
             },
             {
                 icon: "calculator",
                 title: "Планировщик бюджета",
                 description: "Сведите спальню в рабочую смету, если хотите заранее понять цену света, текстиля и отделки.",
-                href: "/calculators/budget",
+                href: "/ru/calculators/budget",
             },
             {
                 icon: "lightbulb",
@@ -108,7 +108,7 @@ const bedroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "bedroom",
-        path: "/en/bedroom",
+        path: "/bedroom",
         title: "Bedroom Ideas, Lighting, Color, and Comfort-First Renovation",
         description:
             "Best Renohacks bedroom content: calmer interiors, warmer lighting, color direction, comfort, and the design choices that actually improve rest.",
@@ -146,7 +146,7 @@ const bedroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             title: "Bedroom lighting calculator",
             description:
                 "Check how much light a bedroom really needs and set a calmer lighting plan before choosing fixtures.",
-            href: "/en/calculators/lighting",
+            href: "/calculators/lighting",
             buttonLabel: "Open calculator",
         },
         relatedTitle: "Also useful for bedroom planning",
@@ -155,19 +155,19 @@ const bedroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
                 icon: "calculator",
                 title: "Color palette generator",
                 description: "Build a calmer palette for walls, bedding, and accents before you commit to finishes.",
-                href: "/en/calculators/color-palette",
+                href: "/calculators/color-palette",
             },
             {
                 icon: "calculator",
                 title: "Budget planner",
                 description: "Price lighting, textiles, and finish choices together if you want a cleaner bedroom budget.",
-                href: "/en/calculators/budget",
+                href: "/calculators/budget",
             },
             {
                 icon: "lightbulb",
                 title: "Lighting hub",
                 description: "Open the lighting cluster for layered lighting, lux targets, and room-by-room guidance.",
-                href: "/en/lighting",
+                href: "/lighting",
             },
         ],
         featuredLabel: "Start here",

@@ -2,7 +2,7 @@ import Link from "next/link"
 import Script from "next/script"
 import { getPageMetadata } from "@/lib/seo"
 
-export const metadata = getPageMetadata("/developer", {
+export const metadata = getPageMetadata("/ru/developer", {
     title: "Разработчик сайта Renohacks | ViktorWebStudio",
     description:
         "Веб-разработка и дизайн. Создание современных, красивых и функциональных веб-сайтов с использованием передовых технологий.",

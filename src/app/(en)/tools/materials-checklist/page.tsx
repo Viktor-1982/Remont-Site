@@ -1,7 +1,7 @@
 import { getPageMetadata } from "@/lib/seo"
 import { MaterialsChecklist } from "@/components/materials-checklist"
 
-export const metadata = getPageMetadata("/en/tools/materials-checklist", {
+export const metadata = getPageMetadata("/tools/materials-checklist", {
     title: "Materials Purchase Checklist for Renovation | Renohacks",
     description:
         "Complete list of renovation materials with ability to mark purchased items. Never forget to buy anything for your renovation. Export and import checklist.",

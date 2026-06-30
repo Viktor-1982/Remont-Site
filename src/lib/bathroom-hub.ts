@@ -21,7 +21,7 @@ export const bathroomHubSlugs: Record<TopicHubLocale, string[]> = {
 const bathroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "bathroom",
-        path: "/bathroom",
+        path: "/ru/bathroom",
         title: "Ванная комната: идеи и планирование ремонта",
         description:
             "Лучшие материалы Renohacks про ванную: тренды, плитка, типовые ошибки, вентиляция, теплый пол и практичные инструменты для планирования ремонта.",
@@ -59,7 +59,7 @@ const bathroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             title: "Калькулятор плитки для ванной",
             description:
                 "Посчитайте плитку, запас, упаковки и клей для пола и стен ванной до закупки материалов.",
-            href: "/calculators/tile",
+            href: "/ru/calculators/tile",
             buttonLabel: "Открыть калькулятор",
         },
         relatedTitle: "Что еще посмотреть по ванной",
@@ -68,13 +68,13 @@ const bathroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
                 icon: "wrench",
                 title: "Калькулятор вентиляции",
                 description: "Проверьте воздухообмен для мокрой зоны и душа.",
-                href: "/calculators/ventilation",
+                href: "/ru/calculators/ventilation",
             },
             {
                 icon: "calculator",
                 title: "Калькулятор теплого пола",
                 description: "Оцените мощность и площадь обогрева под плитку.",
-                href: "/calculators/underfloor-heating",
+                href: "/ru/calculators/underfloor-heating",
             },
             {
                 icon: "lightbulb",
@@ -120,7 +120,7 @@ const bathroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "bathroom",
-        path: "/en/bathroom",
+        path: "/bathroom",
         title: "Bathroom Renovation Ideas and Planning",
         description:
             "Best Renohacks bathroom content: bathroom trends, tile selection, common remodeling mistakes, ventilation, heated floors, and practical planning tools.",
@@ -158,7 +158,7 @@ const bathroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             title: "Bathroom tile calculator",
             description:
                 "Estimate tile, waste, packs, and adhesive for bathroom floors and walls before you order materials.",
-            href: "/en/calculators/tile",
+            href: "/calculators/tile",
             buttonLabel: "Open calculator",
         },
         relatedTitle: "Also useful for bathroom planning",
@@ -167,19 +167,19 @@ const bathroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
                 icon: "wrench",
                 title: "Ventilation calculator",
                 description: "Check the airflow you need for a bathroom and shower area.",
-                href: "/en/calculators/ventilation",
+                href: "/calculators/ventilation",
             },
             {
                 icon: "calculator",
                 title: "Underfloor heating calculator",
                 description: "Estimate heating coverage and output under tile before layout is final.",
-                href: "/en/calculators/underfloor-heating",
+                href: "/calculators/underfloor-heating",
             },
             {
                 icon: "lightbulb",
                 title: "Lighting hub",
                 description: "Open the lighting cluster for mirror lighting, warmer evening light, and better bathroom comfort.",
-                href: "/en/lighting",
+                href: "/lighting",
             },
         ],
         featuredLabel: "Start here",
