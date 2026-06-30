@@ -26,6 +26,9 @@ const siteSchema = {
                 "@type": "ImageObject",
                 url: "https://renohacks.com/icon.svg",
             },
+            sameAs: [
+                "https://www.pinterest.com/RenoHacks/"
+            ]
         },
         {
             "@type": "WebSite",
