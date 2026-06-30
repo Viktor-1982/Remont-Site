@@ -37,7 +37,7 @@ const siteSchema = {
                 "@type": "SearchAction",
                 target: [
                     "https://renohacks.com/search?q={search_term_string}",
-                    "https://renohacks.com/en/search?q={search_term_string}",
+                    "https://renohacks.com/ru/search?q={search_term_string}",
                 ],
                 "query-input": "required name=search_term_string",
             },
