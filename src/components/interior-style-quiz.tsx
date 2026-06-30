@@ -454,7 +454,7 @@ export function InteriorStyleQuiz({ isEnglish = false }: { isEnglish?: boolean }
                                 {isEnglish ? "Retake Quiz" : "Пройти заново"}
                             </Button>
                             <Button asChild className="flex-1">
-                                <Link href={isEnglish ? "/en/calculators/color-palette" : "/calculators/color-palette"}>
+                                <Link href={isEnglish ? "/calculators/color-palette" : "/ru/calculators/color-palette"}>
                                     {isEnglish ? "Generate Color Palette" : "Создать цветовую палитру"}
                                 </Link>
                             </Button>

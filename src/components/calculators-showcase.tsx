@@ -20,7 +20,7 @@ interface CalculatorItem {
 const calculators: CalculatorItem[] = [
     {
         id: "paint",
-        href: "/calculators/paint",
+        href: "/ru/calculators/paint",
         label: "Калькулятор краски",
         emoji: "🎨",
         icon: Paintbrush,
@@ -31,7 +31,7 @@ const calculators: CalculatorItem[] = [
     },
     {
         id: "wallpaper",
-        href: "/calculators/wallpaper",
+        href: "/ru/calculators/wallpaper",
         label: "Калькулятор обоев",
         emoji: "🪟",
         icon: Wallpaper,
@@ -42,7 +42,7 @@ const calculators: CalculatorItem[] = [
     },
     {
         id: "tile",
-        href: "/calculators/tile",
+        href: "/ru/calculators/tile",
         label: "Калькулятор плитки",
         emoji: "🧱",
         icon: Grid3X3,
@@ -53,7 +53,7 @@ const calculators: CalculatorItem[] = [
     },
     {
         id: "underfloor-heating",
-        href: "/calculators/underfloor-heating",
+        href: "/ru/calculators/underfloor-heating",
         label: "Калькулятор тёплого пола",
         emoji: "🔥",
         icon: Thermometer,
@@ -64,7 +64,7 @@ const calculators: CalculatorItem[] = [
     },
     {
         id: "ventilation",
-        href: "/calculators/ventilation",
+        href: "/ru/calculators/ventilation",
         label: "Калькулятор вентиляции",
         emoji: "🌬️",
         icon: Wind,
@@ -75,7 +75,7 @@ const calculators: CalculatorItem[] = [
     },
     {
         id: "lighting",
-        href: "/calculators/lighting",
+        href: "/ru/calculators/lighting",
         label: "Калькулятор освещённости",
         emoji: "💡",
         icon: Lightbulb,
@@ -86,7 +86,7 @@ const calculators: CalculatorItem[] = [
     },
     {
         id: "budget",
-        href: "/calculators/budget",
+        href: "/ru/calculators/budget",
         label: "Планировщик бюджета",
         emoji: "💰",
         icon: Wallet,
@@ -97,7 +97,7 @@ const calculators: CalculatorItem[] = [
     },
     {
         id: "color-palette",
-        href: "/calculators/color-palette",
+        href: "/ru/calculators/color-palette",
         label: "Генератор цветовых палитр",
         emoji: "🎨",
         icon: Palette,
@@ -108,7 +108,7 @@ const calculators: CalculatorItem[] = [
     },
     {
         id: "quiz",
-        href: "/quiz/interior-style",
+        href: "/ru/quiz/interior-style",
         label: "Квиз: стиль интерьера",
         emoji: "✨",
         icon: Sparkles,
@@ -119,7 +119,7 @@ const calculators: CalculatorItem[] = [
     },
     {
         id: "materials-checklist",
-        href: "/tools/materials-checklist",
+        href: "/ru/tools/materials-checklist",
         label: "Чеклист покупок материалов",
         emoji: "🛒",
         icon: ShoppingCart,
@@ -133,7 +133,7 @@ const calculators: CalculatorItem[] = [
 const calculatorsEn: CalculatorItem[] = [
     {
         id: "paint",
-        href: "/en/calculators/paint",
+        href: "/calculators/paint",
         label: "Paint Calculator",
         emoji: "🎨",
         icon: Paintbrush,
@@ -144,7 +144,7 @@ const calculatorsEn: CalculatorItem[] = [
     },
     {
         id: "wallpaper",
-        href: "/en/calculators/wallpaper",
+        href: "/calculators/wallpaper",
         label: "Wallpaper Calculator",
         emoji: "🪟",
         icon: Wallpaper,
@@ -155,7 +155,7 @@ const calculatorsEn: CalculatorItem[] = [
     },
     {
         id: "tile",
-        href: "/en/calculators/tile",
+        href: "/calculators/tile",
         label: "Tile Calculator",
         emoji: "🧱",
         icon: Grid3X3,
@@ -166,7 +166,7 @@ const calculatorsEn: CalculatorItem[] = [
     },
     {
         id: "underfloor-heating",
-        href: "/en/calculators/underfloor-heating",
+        href: "/calculators/underfloor-heating",
         label: "Underfloor Heating",
         emoji: "🔥",
         icon: Thermometer,
@@ -177,7 +177,7 @@ const calculatorsEn: CalculatorItem[] = [
     },
     {
         id: "ventilation",
-        href: "/en/calculators/ventilation",
+        href: "/calculators/ventilation",
         label: "Ventilation Calculator",
         emoji: "🌬️",
         icon: Wind,
@@ -188,7 +188,7 @@ const calculatorsEn: CalculatorItem[] = [
     },
     {
         id: "lighting",
-        href: "/en/calculators/lighting",
+        href: "/calculators/lighting",
         label: "Lighting Calculator",
         emoji: "💡",
         icon: Lightbulb,
@@ -199,7 +199,7 @@ const calculatorsEn: CalculatorItem[] = [
     },
     {
         id: "budget",
-        href: "/en/calculators/budget",
+        href: "/calculators/budget",
         label: "Budget Planner",
         emoji: "💰",
         icon: Wallet,
@@ -210,7 +210,7 @@ const calculatorsEn: CalculatorItem[] = [
     },
     {
         id: "color-palette",
-        href: "/en/calculators/color-palette",
+        href: "/calculators/color-palette",
         label: "Color Palette Generator",
         emoji: "🎨",
         icon: Palette,
@@ -221,7 +221,7 @@ const calculatorsEn: CalculatorItem[] = [
     },
     {
         id: "quiz",
-        href: "/en/quiz/interior-style",
+        href: "/quiz/interior-style",
         label: "Interior Style Quiz",
         emoji: "✨",
         icon: Sparkles,
@@ -232,7 +232,7 @@ const calculatorsEn: CalculatorItem[] = [
     },
     {
         id: "materials-checklist",
-        href: "/en/tools/materials-checklist",
+        href: "/tools/materials-checklist",
         label: "Materials Purchase Checklist",
         emoji: "🛒",
         icon: ShoppingCart,
@@ -298,80 +298,65 @@ export function CalculatorsShowcase({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className={`text-center ${isCompact ? "mb-8 sm:mb-10" : "mb-12 sm:mb-16"}`}
+                    className="text-center max-w-3xl mx-auto mb-10 sm:mb-16"
                 >
-                    <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-2 text-sm font-medium text-primary mb-6">
-                        <Calculator className="w-4 h-4" />
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary mb-4">
+                        <Sparkles className="w-3.5 h-3.5 animate-pulse" />
                         <span>{t.badgeLabel}</span>
                     </div>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-                        <span className="bg-gradient-to-r from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
-                            {t.title}
-                        </span>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground mb-4">
+                        {t.title}
                     </h2>
-                    <p className="text-lg text-muted-foreground/80 max-w-2xl mx-auto">
+                    <p className="text-lg text-muted-foreground leading-relaxed">
                         {t.subtitle}
                     </p>
                 </motion.div>
 
                 {/* Сетка инструментов */}
-                <div className={`grid gap-6 mb-10 ${isCompact ? "sm:grid-cols-2 xl:grid-cols-4" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
+                <div className={`grid gap-6 ${isCompact ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"}`}>
                     {items.map((calc, index) => {
                         const Icon = calc.icon
                         return (
                             <motion.div
                                 key={calc.href}
-                                initial={{ opacity: 0, y: 30 }}
+                                initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                transition={{ duration: 0.4, delay: index * 0.05 }}
+                                className="group relative rounded-3xl border border-border/50 bg-card p-6 shadow-soft hover:shadow-soft-lg transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden"
                             >
-                                <Link
-                                    href={calc.href}
-                                    className="group relative block h-full"
-                                >
-                                    <div className="relative h-full rounded-2xl border border-border/60 bg-card/80 dark:bg-card/90 backdrop-blur-sm p-6 sm:p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-primary/50 overflow-hidden">
-                                        {/* Градиентный фон */}
-                                        <div className={`absolute inset-0 bg-gradient-to-br ${calc.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                                        
-                                        {/* Декоративные элементы */}
-                                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 dark:bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500" />
-                                        
-                                        <div className="relative z-10">
-                                            {/* Иконка и бейдж */}
-                                            <div className="flex items-start justify-between mb-4">
-                                                <div className="relative">
-                                                    <div className="absolute inset-0 bg-primary/20 rounded-xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-                                                    <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-2xl border border-primary/20 group-hover:scale-110 transition-transform duration-300">
-                                                        {calc.emoji}
-                                                    </div>
-                                                </div>
-                                                <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary border border-primary/20">
-                                                    <Icon className="w-3 h-3" />
-                                                    {calc.badge}
-                                                </span>
-                                            </div>
-
-                                            {/* Заголовок */}
-                                            <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
-                                                {calc.label}
-                                            </h3>
-
-                                            {/* Описание */}
-                                            <p className="text-sm text-muted-foreground/80 leading-relaxed mb-4 line-clamp-2">
-                                                {calc.desc}
-                                            </p>
-
-                                            {/* Стрелка */}
-                                            <div className="flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 translate-x-0 group-hover:translate-x-1 transition-all duration-300">
-                                                <span className="text-sm font-semibold">
-                                                    {isEnglish ? "Open" : "Открыть"}
-                                                </span>
-                                                <ArrowRight className="w-4 h-4" />
-                                            </div>
+                                {/* Фоновый градиент при наведении */}
+                                <div className={`absolute inset-0 bg-gradient-to-br ${calc.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                                
+                                <div className="relative z-10 flex-grow">
+                                    <div className="flex items-center justify-between mb-4">
+                                        <div className={`p-3 rounded-2xl bg-${calc.color}-500/10 text-${calc.color}-500 group-hover:scale-110 transition-transform duration-300`}>
+                                            <Icon className="w-6 h-6" />
                                         </div>
+                                        <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-muted text-muted-foreground group-hover:bg-background transition-colors">
+                                            {calc.badge}
+                                        </span>
                                     </div>
-                                </Link>
+                                    
+                                    <h3 className="text-xl font-bold text-foreground mb-2 flex items-center gap-2">
+                                        <span>{calc.label}</span>
+                                        <span className="text-lg opacity-80 group-hover:scale-125 transition-transform duration-300">{calc.emoji}</span>
+                                    </h3>
+                                    
+                                    <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                                        {calc.desc}
+                                    </p>
+                                </div>
+                                
+                                <div className="relative z-10 pt-4 border-t border-border/30 group-hover:border-border/10 transition-colors">
+                                    <Link
+                                        href={calc.href}
+                                        className="inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:text-primary-hover"
+                                    >
+                                        <span>{isEnglish ? "Open tool" : "Открыть инструмент"}</span>
+                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    </Link>
+                                </div>
                             </motion.div>
                         )
                     })}
@@ -383,14 +368,14 @@ export function CalculatorsShowcase({
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    className="text-center"
+                    className="text-center mt-12"
                 >
                     <Link
-                        href={isEnglish ? "/en/tools" : "/tools"}
+                        href={isEnglish ? "/tools" : "/ru/tools"}
                         className="group inline-flex items-center gap-2 rounded-xl border-2 border-primary/30 bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 dark:from-primary/20 dark:via-primary/10 dark:to-accent/20 px-6 py-3 font-semibold text-foreground hover:text-primary transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:-translate-y-1"
                         onClick={(e) => {
                             e.preventDefault()
-                            router.push(isEnglish ? "/en/tools" : "/tools")
+                            router.push(isEnglish ? "/tools" : "/ru/tools")
                         }}
                     >
                         <Sparkles className="w-4 h-4 text-primary" />

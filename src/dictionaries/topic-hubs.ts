@@ -46,7 +46,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
         ctaLabel: "Открыть хаб",
         items: [
             {
-                href: "/bathroom",
+                href: "/ru/bathroom",
                 label: "Ванная",
                 desc: "Тренды, плитка, вентиляция, теплый пол и частые ошибки ремонта ванной.",
                 icon: "bath",
@@ -56,7 +56,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 iconClass: "text-sky-500",
             },
             {
-                href: "/kitchen",
+                href: "/ru/kitchen",
                 label: "Кухня",
                 desc: "Планировка, материалы, маленькая кухня, освещение и бюджет ремонта кухни.",
                 icon: "chefHat",
@@ -76,7 +76,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 iconClass: "text-amber-500",
             },
             {
-                href: "/budget-planning",
+                href: "/ru/budget-planning",
                 label: "Смета и планирование",
                 desc: "План ремонта, экономия, резерв бюджета и контроль расходов без хаоса.",
                 icon: "wallet",
@@ -86,7 +86,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 iconClass: "text-emerald-500",
             },
             {
-                href: "/bedroom",
+                href: "/ru/bedroom",
                 label: "Спальня",
                 desc: "Спокойная спальня, свет, цвета и решения, которые реально улучшают отдых.",
                 icon: "bed",
@@ -96,7 +96,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 iconClass: "text-rose-500",
             },
             {
-                href: "/walls",
+                href: "/ru/walls",
                 label: "Стены и отделка",
                 desc: "Покраска, подготовка стен, обои и цветовые решения без лишних переделок.",
                 icon: "paintbrush",
@@ -106,7 +106,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 iconClass: "text-fuchsia-500",
             },
             {
-                href: "/flooring",
+                href: "/ru/flooring",
                 label: "Полы и покрытия",
                 desc: "Стяжка, ламинат, кварцвинил, плинтус и логика расчета пола по шагам.",
                 icon: "layers3",
@@ -116,7 +116,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 iconClass: "text-lime-600",
             },
             {
-                href: "/small-apartment",
+                href: "/ru/small-apartment",
                 label: "Маленькая квартира",
                 desc: "Зонирование, хранение, свет и бюджетные решения для небольшой площади.",
                 icon: "house",
@@ -140,7 +140,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
         ctaLabel: "Open hub",
         items: [
             {
-                href: "/en/bathroom",
+                href: "/bathroom",
                 label: "Bathroom",
                 desc: "Bathroom trends, tile, ventilation, heated floors, and the most common remodel mistakes.",
                 icon: "bath",
@@ -150,7 +150,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 iconClass: "text-sky-500",
             },
             {
-                href: "/en/kitchen",
+                href: "/kitchen",
                 label: "Kitchen",
                 desc: "Kitchen layout, finishes, small-space ideas, lighting, and budget planning.",
                 icon: "chefHat",
@@ -170,7 +170,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 iconClass: "text-amber-500",
             },
             {
-                href: "/en/budget-planning",
+                href: "/budget-planning",
                 label: "Planning and Budget",
                 desc: "Renovation planning, savings, contingency, and cleaner budget control from day one.",
                 icon: "wallet",
@@ -180,7 +180,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 iconClass: "text-emerald-500",
             },
             {
-                href: "/en/bedroom",
+                href: "/bedroom",
                 label: "Bedroom",
                 desc: "Calmer bedroom design, lighting, color, and comfort-first renovation choices.",
                 icon: "bed",
@@ -190,7 +190,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 iconClass: "text-rose-500",
             },
             {
-                href: "/en/walls",
+                href: "/walls",
                 label: "Walls and Finishes",
                 desc: "Painting, wall prep, wallpaper, and color choices without avoidable rework.",
                 icon: "paintbrush",
@@ -200,7 +200,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 iconClass: "text-fuchsia-500",
             },
             {
-                href: "/en/flooring",
+                href: "/flooring",
                 label: "Flooring",
                 desc: "Screed, laminate, LVT, baseboards, and the full logic of floor calculations.",
                 icon: "layers3",
@@ -210,7 +210,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 iconClass: "text-lime-600",
             },
             {
-                href: "/en/small-apartment",
+                href: "/small-apartment",
                 label: "Small Apartment",
                 desc: "Zoning, storage, lighting, and budget-aware ideas for tighter spaces.",
                 icon: "house",

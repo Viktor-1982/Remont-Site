@@ -73,7 +73,7 @@ export type ColorPalettePageDictionary = {
 export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalettePageDictionary> = {
     ru: {
         metadata: {
-            path: "/calculators/color-palette",
+            path: "/ru/calculators/color-palette",
             title: "Генератор цветовых палитр для ремонта — подбор гармоничных цветов | Renohacks",
             description:
                 "Создайте гармоничную цветовую палитру для вашего ремонта. Генератор цветовых схем с рекомендациями по применению. Бесплатный инструмент Renohacks.",
@@ -105,7 +105,7 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
                     },
                     description:
                         "Бесплатный генератор цветовых палитр для ремонта и интерьера. Помогает подобрать гармоничные сочетания цветов и получить рекомендации по применению.",
-                    url: "https://renohacks.com/calculators/color-palette",
+                    url: "https://renohacks.com/ru/calculators/color-palette",
                     image: "https://renohacks.com/images/og-default.png",
                     creator: {
                         "@type": "Organization",
@@ -131,13 +131,13 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
                             "@type": "ListItem",
                             position: 2,
                             name: "Инструменты",
-                            item: "https://renohacks.com/tools",
+                            item: "https://renohacks.com/ru/tools",
                         },
                         {
                             "@type": "ListItem",
                             position: 3,
                             name: "Генератор цветовых палитр",
-                            item: "https://renohacks.com/calculators/color-palette",
+                            item: "https://renohacks.com/ru/calculators/color-palette",
                         },
                     ],
                 },
@@ -193,14 +193,14 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
             ctaLabel: "Открыть",
             cards: [
                 {
-                    href: "/calculators/paint",
+                    href: "/ru/calculators/paint",
                     title: "Калькулятор краски",
                     description: "Рассчитайте расход краски для выбранной цветовой палитры.",
                     icon: "paintbrush",
                     accent: "from-rose-500/15 to-rose-500/5 text-rose-500",
                 },
                 {
-                    href: "/calculators/budget",
+                    href: "/ru/calculators/budget",
                     title: "Планировщик бюджета",
                     description: "Оцените стоимость ремонта с учётом выбранной цветовой концепции.",
                     icon: "layers",
@@ -210,14 +210,14 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
         },
         share: {
             title: "Поделиться генератором",
-            url: "/calculators/color-palette",
+            url: "/ru/calculators/color-palette",
             buttonTitle: "Генератор цветовых палитр для ремонта | Renohacks",
             description: "Создайте гармоничную цветовую палитру для вашего интерьера.",
         },
     },
     en: {
         metadata: {
-            path: "/en/calculators/color-palette",
+            path: "/calculators/color-palette",
             title: "Color Palette Generator for Renovation — Harmonious Color Schemes | Renohacks",
             description:
                 "Create a harmonious color palette for your renovation. Color scheme generator with application recommendations. Free tool by Renohacks.",
@@ -249,7 +249,7 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
                     },
                     description:
                         "Free color palette generator for renovation and interior design. Helps create harmonious schemes and practical application ideas.",
-                    url: "https://renohacks.com/en/calculators/color-palette",
+                    url: "https://renohacks.com/calculators/color-palette",
                     image: "https://renohacks.com/images/og-default.png",
                     creator: {
                         "@type": "Organization",
@@ -275,13 +275,13 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
                             "@type": "ListItem",
                             position: 2,
                             name: "Tools",
-                            item: "https://renohacks.com/en/tools",
+                            item: "https://renohacks.com/tools",
                         },
                         {
                             "@type": "ListItem",
                             position: 3,
                             name: "Color Palette Generator",
-                            item: "https://renohacks.com/en/calculators/color-palette",
+                            item: "https://renohacks.com/calculators/color-palette",
                         },
                     ],
                 },
@@ -337,14 +337,14 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
             ctaLabel: "Open",
             cards: [
                 {
-                    href: "/en/calculators/paint",
+                    href: "/calculators/paint",
                     title: "Paint calculator",
                     description: "Estimate paint needed for the palette you want to apply.",
                     icon: "paintbrush",
                     accent: "from-rose-500/15 to-rose-500/5 text-rose-500",
                 },
                 {
-                    href: "/en/calculators/budget",
+                    href: "/calculators/budget",
                     title: "Budget planner",
                     description: "Estimate renovation costs while factoring in your chosen color direction.",
                     icon: "layers",
@@ -354,7 +354,7 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
         },
         share: {
             title: "Share the generator",
-            url: "/en/calculators/color-palette",
+            url: "/calculators/color-palette",
             buttonTitle: "Color Palette Generator for Renovation | Renohacks",
             description: "Create a harmonious color palette for your interior.",
         },

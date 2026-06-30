@@ -53,7 +53,7 @@ export function TagCloud({ posts, locale }: TagCloudProps) {
         }
     }
 
-    const tagPath = locale === "en" ? "/en/tags" : "/tags"
+    const tagPath = locale === "en" ? "/tags" : "/ru/tags"
 
     return (
         <div className="flex flex-wrap gap-3 sm:gap-4 justify-center items-center py-8">

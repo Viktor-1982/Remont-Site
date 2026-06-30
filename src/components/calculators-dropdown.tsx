@@ -54,7 +54,7 @@ export function CalculatorsDropdown({ isEnglish = false, className }: Calculator
     const pathname = usePathname()
     const locale: ToolsLocale = isEnglish ? "en" : "ru"
     const calculators = getToolShortcuts(locale)
-    const allCalculatorsHref = isEnglish ? "/en/tools" : "/tools"
+    const allCalculatorsHref = isEnglish ? "/tools" : "/ru/tools"
     const isActive = pathname.startsWith(allCalculatorsHref)
 
     return (

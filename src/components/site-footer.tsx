@@ -102,13 +102,13 @@ export function SiteFooter() {
                 <div className="flex w-full flex-wrap items-center justify-center gap-4 px-4 py-6 text-center text-xs text-foreground/70">
                 <span>{footer.rights}</span>
                     <Link 
-                        href={isEnglish ? "/en/privacy" : "/privacy"}
+                        href={isEnglish ? "/privacy" : "/ru/privacy"}
                         className="hover:underline hover:text-foreground transition"
                     >
                         {isEnglish ? "Privacy Policy" : "Конфиденциальность"}
                     </Link>
                 <Link 
-                    href={isEnglish ? "/en/terms" : "/terms"}
+                    href={isEnglish ? "/terms" : "/ru/terms"}
                     className="hover:underline hover:text-foreground transition"
                 >
                     {isEnglish ? "Terms of Use" : "Правила пользования"}
@@ -117,7 +117,7 @@ export function SiteFooter() {
                 <span className="text-muted-foreground">
                     {isEnglish ? "Designed by " : "Разработано "}
                     <Link
-                        href={isEnglish ? "/en/developer" : "/developer"}
+                        href={isEnglish ? "/developer" : "/ru/developer"}
                         className="hover:underline hover:text-foreground transition"
                     >
                         ViktorWebStudio

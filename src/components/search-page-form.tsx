@@ -23,7 +23,7 @@ export function SearchPageForm({
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const trimmed = query.trim()
-        const prefix = isEnglish ? "/en/search" : "/search"
+        const prefix = isEnglish ? "/search" : "/ru/search"
         onSubmitted?.()
         router.push(trimmed ? `${prefix}?q=${encodeURIComponent(trimmed)}` : prefix)
     }

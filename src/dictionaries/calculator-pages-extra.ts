@@ -14,7 +14,7 @@ export const extraCalculatorPageDictionaries: Record<
     ru: {
         tile: {
             metadata: {
-                path: "/calculators/tile",
+                path: "/ru/calculators/tile",
                 title: "Калькулятор плитки онлайн — рассчитать количество для пола и стен | Renohacks",
                 description:
                     "Бесплатный калькулятор плитки: рассчитайте точное количество плитки для пола и стен. Учитывает площадь, размеры плитки, окна, двери и запас на подрезку.",
@@ -28,7 +28,7 @@ export const extraCalculatorPageDictionaries: Record<
                 ],
             },
             share: {
-                url: "/calculators/tile",
+                url: "/ru/calculators/tile",
                 title: "Калькулятор плитки онлайн — рассчитать количество для пола и стен | Renohacks",
                 description: "Бесплатный калькулятор плитки: точный расчет плитки для пола и стен",
             },
@@ -105,28 +105,28 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "Дополнительные ресурсы для планирования ремонта",
                 cards: [
                     {
-                        href: "/calculators/budget",
+                        href: "/ru/calculators/budget",
                         title: "Калькулятор бюджета",
                         description: "Рассчитайте полную стоимость ремонта с учетом материалов, работ и резерва.",
                         icon: "layers",
                         accentClass: "text-amber-500",
                     },
                     {
-                        href: "/calculators/paint",
+                        href: "/ru/calculators/paint",
                         title: "Калькулятор краски",
                         description: "Оцените расход краски для стен и потолков с учетом проемов.",
                         icon: "paintbrush",
                         accentClass: "text-rose-500",
                     },
                     {
-                        href: "/calculators/wallpaper",
+                        href: "/ru/calculators/wallpaper",
                         title: "Калькулятор обоев",
                         description: "Сравните отделочные сценарии и узнайте, сколько рулонов понадобится.",
                         icon: "scrollText",
                         accentClass: "text-indigo-500",
                     },
                     {
-                        href: "/kitchen",
+                        href: "/ru/kitchen",
                         title: "Хаб по кухне",
                         description: "Откройте подборку про планировку, фартук, материалы, свет и бюджет кухни.",
                         icon: "grid",
@@ -153,7 +153,7 @@ export const extraCalculatorPageDictionaries: Record<
                         },
                         description:
                             "Бесплатный онлайн-калькулятор для расчета количества плитки для пола и стен с учетом площади, размеров плитки, отходов и запаса.",
-                        url: "https://renohacks.com/calculators/tile",
+                        url: "https://renohacks.com/ru/calculators/tile",
                         image: "https://renohacks.com/images/og-default.png",
                         inLanguage: "ru",
                         isAccessibleForFree: true,
@@ -163,13 +163,13 @@ export const extraCalculatorPageDictionaries: Record<
         },
         wallpaper: {
             metadata: {
-                path: "/calculators/wallpaper",
+                path: "/ru/calculators/wallpaper",
                 title: "Калькулятор обоев онлайн — рассчитать количество рулонов | Renohacks",
                 description:
                     "Онлайн калькулятор обоев: введите размеры стен и узнайте, сколько рулонов понадобится с учетом проемов и раппорта рисунка.",
             },
             share: {
-                url: "/calculators/wallpaper",
+                url: "/ru/calculators/wallpaper",
                 title: "Калькулятор обоев онлайн — рассчитать количество рулонов | Renohacks",
                 description: "Рассчитайте количество рулонов обоев с учетом высоты стен, проемов и рисунка",
             },
@@ -235,28 +235,28 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "Дополнительные ресурсы для планирования ремонта",
                 cards: [
                     {
-                        href: "/calculators/budget",
+                        href: "/ru/calculators/budget",
                         title: "Калькулятор бюджета",
                         description: "Соберите смету по категориям и держите отделочные расходы под контролем.",
                         icon: "layers",
                         accentClass: "text-amber-500",
                     },
                     {
-                        href: "/calculators/paint",
+                        href: "/ru/calculators/paint",
                         title: "Калькулятор краски",
                         description: "Сравните вариант с покраской стен и оцените расход материалов.",
                         icon: "paintbrush",
                         accentClass: "text-rose-500",
                     },
                     {
-                        href: "/bathroom",
+                        href: "/ru/bathroom",
                         title: "Хаб по ванной",
                         description: "Откройте подборку статей про плитку, ошибки, свет и планирование ванной.",
                         icon: "grid",
                         accentClass: "text-sky-500",
                     },
                     {
-                        href: "/calculators",
+                        href: "/ru/calculators",
                         title: "Все инструменты",
                         description: "Посмотрите весь набор инструментов Renohacks для ремонта.",
                         icon: "scrollText",
@@ -268,14 +268,14 @@ export const extraCalculatorPageDictionaries: Record<
         },
         ventilation: {
             metadata: {
-                path: "/calculators/ventilation",
+                path: "/ru/calculators/ventilation",
                 title: "Калькулятор вентиляции — объем и кратность | Renohacks",
                 description:
                     "Точный калькулятор вентиляции: объем помещения, кратность воздухообмена (ACH) и расход воздуха в м³/ч. Подходит для кухни, ванной, спальни и офиса.",
                 keywords: ["калькулятор вентиляции", "кратность воздухообмена", "расход воздуха", "объем помещения", "ACH"],
             },
             share: {
-                url: "/calculators/ventilation",
+                url: "/ru/calculators/ventilation",
                 title: "Калькулятор вентиляции — объем и кратность | Renohacks",
                 description: "Точный расчет вентиляции по объему помещения и кратности воздухообмена",
             },
@@ -296,21 +296,21 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "Другие полезные инструменты",
                 cards: [
                     {
-                        href: "/bathroom",
+                        href: "/ru/bathroom",
                         title: "Хаб по ванной",
                         description: "Соберите в одном месте статьи про вентиляцию, плитку, свет и ошибки ремонта ванной.",
                         icon: "airVent",
                         accentClass: "text-sky-500",
                     },
                     {
-                        href: "/calculators/underfloor-heating",
+                        href: "/ru/calculators/underfloor-heating",
                         title: "Калькулятор теплого пола",
                         description: "Рассчитайте мощность, длину кабеля и примерное энергопотребление.",
                         icon: "flame",
                         accentClass: "text-orange-500",
                     },
                     {
-                        href: "/calculators/budget",
+                        href: "/ru/calculators/budget",
                         title: "Планировщик бюджета",
                         description: "Соберите смету по категориям и добавьте инженерные работы в общий бюджет.",
                         icon: "layers",
@@ -332,7 +332,7 @@ export const extraCalculatorPageDictionaries: Record<
                         applicationCategory: ["UtilityApplication", "BusinessApplication"],
                         offers: { "@type": "Offer", price: "0", priceCurrency: "RUB", availability: "https://schema.org/InStock" },
                         description: "Онлайн-калькулятор вентиляции: расчет расхода воздуха по объему помещения и кратности воздухообмена (ACH).",
-                        url: "https://renohacks.com/calculators/ventilation",
+                        url: "https://renohacks.com/ru/calculators/ventilation",
                         image: "https://renohacks.com/images/og-default.png",
                         inLanguage: "ru",
                         isAccessibleForFree: true,
@@ -342,14 +342,14 @@ export const extraCalculatorPageDictionaries: Record<
         },
         lighting: {
             metadata: {
-                path: "/calculators/lighting",
+                path: "/ru/calculators/lighting",
                 title: "Калькулятор освещенности — люмены и количество ламп | Renohacks",
                 description:
                     "Рассчитайте, сколько люмен нужно комнате и сколько ламп установить. Нормы по типам помещений и запас на высоту потолка.",
                 keywords: ["калькулятор освещенности", "люмены для комнаты", "сколько ламп нужно", "нормы освещения", "расчет освещения"],
             },
             share: {
-                url: "/calculators/lighting",
+                url: "/ru/calculators/lighting",
                 title: "Калькулятор освещенности — люмены и количество ламп | Renohacks",
                 description: "Рассчитайте, сколько люмен и ламп нужно для комнаты по площади и типу помещения",
             },
@@ -377,14 +377,14 @@ export const extraCalculatorPageDictionaries: Record<
                         accentClass: "text-yellow-500",
                     },
                     {
-                        href: "/calculators/ventilation",
+                        href: "/ru/calculators/ventilation",
                         title: "Калькулятор вентиляции",
                         description: "Рассчитайте воздухообмен для кухни, ванной, спальни и других помещений.",
                         icon: "airVent",
                         accentClass: "text-cyan-500",
                     },
                     {
-                        href: "/calculators/budget",
+                        href: "/ru/calculators/budget",
                         title: "Планировщик бюджета",
                         description: "Добавьте светильники, проводку и монтаж в общую смету ремонта.",
                         icon: "layers",
@@ -406,7 +406,7 @@ export const extraCalculatorPageDictionaries: Record<
                         applicationCategory: ["UtilityApplication", "LifestyleApplication"],
                         offers: { "@type": "Offer", price: "0", priceCurrency: "RUB", availability: "https://schema.org/InStock" },
                         description: "Онлайн-калькулятор освещенности: расчет нужных люмен и количества ламп по площади и типу помещения.",
-                        url: "https://renohacks.com/calculators/lighting",
+                        url: "https://renohacks.com/ru/calculators/lighting",
                         image: "https://renohacks.com/images/og-default.png",
                         inLanguage: "ru",
                         isAccessibleForFree: true,
@@ -416,7 +416,7 @@ export const extraCalculatorPageDictionaries: Record<
         },
         underfloorHeating: {
             metadata: {
-                path: "/calculators/underfloor-heating",
+                path: "/ru/calculators/underfloor-heating",
                 title: "Калькулятор теплого пола — мощность, кабель, расход | Renohacks",
                 description:
                     "Калькулятор теплого пола: рассчитайте мощность системы, длину кабеля или площадь матов и примерное энергопотребление. Подходит для плитки, ламината, винила и дерева.",
@@ -429,7 +429,7 @@ export const extraCalculatorPageDictionaries: Record<
                 ],
             },
             share: {
-                url: "/calculators/underfloor-heating",
+                url: "/ru/calculators/underfloor-heating",
                 title: "Калькулятор теплого пола — мощность, кабель, расход | Renohacks",
                 description: "Бесплатный калькулятор теплого пола: мощность, длина кабеля или матов и энергопотребление",
             },
@@ -480,14 +480,14 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "Другие полезные инструменты",
                 cards: [
                     {
-                        href: "/bathroom",
+                        href: "/ru/bathroom",
                         title: "Хаб по ванной",
                         description: "Откройте подборку статей про плитку, теплый пол, вентиляцию и планировку ванной.",
                         icon: "grid",
                         accentClass: "text-sky-500",
                     },
                     {
-                        href: "/calculators/tile",
+                        href: "/ru/calculators/tile",
                         title: "Калькулятор плитки",
                         description: "Подсчитайте плитку, запас и клей для пола и стен.",
                         icon: "zap",
@@ -509,7 +509,7 @@ export const extraCalculatorPageDictionaries: Record<
                         offers: { "@type": "Offer", price: "0", priceCurrency: "RUB", availability: "https://schema.org/InStock" },
                         description:
                             "Бесплатный онлайн-калькулятор для расчета мощности теплого пола, длины кабеля или матов и ориентировочного энергопотребления.",
-                        url: "https://renohacks.com/calculators/underfloor-heating",
+                        url: "https://renohacks.com/ru/calculators/underfloor-heating",
                         image: "https://renohacks.com/images/og-default.png",
                         inLanguage: "ru",
                         isAccessibleForFree: true,
@@ -521,7 +521,7 @@ export const extraCalculatorPageDictionaries: Record<
     en: {
         tile: {
             metadata: {
-                path: "/en/calculators/tile",
+                path: "/calculators/tile",
                 title: "Tile Calculator Online — Calculate Tiles for Floor and Walls | Renohacks",
                 description:
                     "Free tile calculator: calculate exact tile quantity for floors and walls. Accounts for area, tile size, windows, doors and cutting waste.",
@@ -534,7 +534,7 @@ export const extraCalculatorPageDictionaries: Record<
                 ],
             },
             share: {
-                url: "/en/calculators/tile",
+                url: "/calculators/tile",
                 title: "Tile Calculator Online — Calculate Tiles for Floor and Walls | Renohacks",
                 description: "Free tile calculator for floors and walls with waste, packs and adhesive",
             },
@@ -607,28 +607,28 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "More renovation planning resources",
                 cards: [
                     {
-                        href: "/en/calculators/budget",
+                        href: "/calculators/budget",
                         title: "Budget Calculator",
                         description: "Build a full renovation estimate including material and labor reserve.",
                         icon: "layers",
                         accentClass: "text-amber-500",
                     },
                     {
-                        href: "/en/calculators/paint",
+                        href: "/calculators/paint",
                         title: "Paint Calculator",
                         description: "Compare tile scenarios with painted walls and ceilings.",
                         icon: "paintbrush",
                         accentClass: "text-rose-500",
                     },
                     {
-                        href: "/en/calculators/wallpaper",
+                        href: "/calculators/wallpaper",
                         title: "Wallpaper Calculator",
                         description: "Estimate wallpaper rolls for dry rooms or alternate finish options.",
                         icon: "scrollText",
                         accentClass: "text-indigo-500",
                     },
                     {
-                        href: "/en/kitchen",
+                        href: "/kitchen",
                         title: "Kitchen Hub",
                         description: "Open the kitchen cluster with layout ideas, backsplash decisions, lighting, and budget planning.",
                         icon: "grid",
@@ -655,7 +655,7 @@ export const extraCalculatorPageDictionaries: Record<
                         },
                         description:
                             "Free online calculator to estimate tile quantity for floors and walls with waste, pack count and adhesive.",
-                        url: "https://renohacks.com/en/calculators/tile",
+                        url: "https://renohacks.com/calculators/tile",
                         image: "https://renohacks.com/images/og-default.png",
                         inLanguage: "en",
                         isAccessibleForFree: true,
@@ -665,13 +665,13 @@ export const extraCalculatorPageDictionaries: Record<
         },
         wallpaper: {
             metadata: {
-                path: "/en/calculators/wallpaper",
+                path: "/calculators/wallpaper",
                 title: "Wallpaper Calculator Online — Calculate Rolls Needed | Renohacks",
                 description:
                     "Online wallpaper calculator: estimate how many rolls you need by wall size, openings and pattern repeat.",
             },
             share: {
-                url: "/en/calculators/wallpaper",
+                url: "/calculators/wallpaper",
                 title: "Wallpaper Calculator Online — Calculate Rolls Needed | Renohacks",
                 description: "Estimate wallpaper rolls by wall size, pattern repeat and openings",
             },
@@ -737,28 +737,28 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "More renovation planning resources",
                 cards: [
                     {
-                        href: "/en/calculators/budget",
+                        href: "/calculators/budget",
                         title: "Budget Calculator",
                         description: "Keep finishing costs under control while comparing wallpaper options.",
                         icon: "layers",
                         accentClass: "text-amber-500",
                     },
                     {
-                        href: "/en/calculators/paint",
+                        href: "/calculators/paint",
                         title: "Paint Calculator",
                         description: "Compare wallpaper with painted walls as an alternate finish route.",
                         icon: "paintbrush",
                         accentClass: "text-rose-500",
                     },
                     {
-                        href: "/en/bathroom",
+                        href: "/bathroom",
                         title: "Bathroom Hub",
                         description: "Open the article hub with bathroom planning, tile choices, mistakes, and lighting guidance.",
                         icon: "grid",
                         accentClass: "text-sky-500",
                     },
                     {
-                        href: "/en/calculators",
+                        href: "/calculators",
                         title: "All tools",
                         description: "Open the full Renohacks renovation toolkit.",
                         icon: "scrollText",
@@ -770,14 +770,14 @@ export const extraCalculatorPageDictionaries: Record<
         },
         ventilation: {
             metadata: {
-                path: "/en/calculators/ventilation",
+                path: "/calculators/ventilation",
                 title: "Ventilation Calculator — Volume and ACH | Renohacks",
                 description:
                     "Accurate ventilation calculator: room volume, air changes per hour (ACH) and airflow in m³/h. Works for kitchens, bathrooms, bedrooms and offices.",
                 keywords: ["ventilation calculator", "air changes per hour", "airflow", "room volume", "ACH"],
             },
             share: {
-                url: "/en/calculators/ventilation",
+                url: "/calculators/ventilation",
                 title: "Ventilation Calculator — Volume and ACH | Renohacks",
                 description: "Accurate ventilation calculation based on room volume and air changes per hour",
             },
@@ -798,21 +798,21 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "Other useful tools",
                 cards: [
                     {
-                        href: "/en/bathroom",
+                        href: "/bathroom",
                         title: "Bathroom Hub",
                         description: "Keep bathroom ventilation, tile, lighting, and layout guidance in one place.",
                         icon: "airVent",
                         accentClass: "text-sky-500",
                     },
                     {
-                        href: "/en/calculators/underfloor-heating",
+                        href: "/calculators/underfloor-heating",
                         title: "Underfloor Heating",
                         description: "Estimate power, cable length and energy usage for heated floors.",
                         icon: "flame",
                         accentClass: "text-orange-500",
                     },
                     {
-                        href: "/en/calculators/budget",
+                        href: "/calculators/budget",
                         title: "Budget Planner",
                         description: "Add engineering work and equipment costs to your renovation plan.",
                         icon: "layers",
@@ -834,7 +834,7 @@ export const extraCalculatorPageDictionaries: Record<
                         applicationCategory: ["UtilityApplication", "BusinessApplication"],
                         offers: { "@type": "Offer", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock" },
                         description: "Ventilation calculator based on room volume and air changes per hour (ACH).",
-                        url: "https://renohacks.com/en/calculators/ventilation",
+                        url: "https://renohacks.com/calculators/ventilation",
                         image: "https://renohacks.com/images/og-default.png",
                         inLanguage: "en",
                         isAccessibleForFree: true,
@@ -844,14 +844,14 @@ export const extraCalculatorPageDictionaries: Record<
         },
         lighting: {
             metadata: {
-                path: "/en/calculators/lighting",
+                path: "/calculators/lighting",
                 title: "Lighting Calculator — Lumens and Number of Lamps | Renohacks",
                 description:
                     "Calculate how many lumens your room needs and how many lamps to install. Includes room-type lighting standards and ceiling-height reserve.",
                 keywords: ["lighting calculator", "lumens for room", "how many lamps", "illuminance standards", "lux by room type"],
             },
             share: {
-                url: "/en/calculators/lighting",
+                url: "/calculators/lighting",
                 title: "Lighting Calculator — Lumens and Number of Lamps | Renohacks",
                 description: "Calculate lumens and lamp count for a room by area and room type",
             },
@@ -879,14 +879,14 @@ export const extraCalculatorPageDictionaries: Record<
                         accentClass: "text-yellow-500",
                     },
                     {
-                        href: "/en/calculators/ventilation",
+                        href: "/calculators/ventilation",
                         title: "Ventilation Calculator",
                         description: "Estimate airflow for kitchens, bathrooms, bedrooms and other rooms.",
                         icon: "airVent",
                         accentClass: "text-cyan-500",
                     },
                     {
-                        href: "/en/calculators/budget",
+                        href: "/calculators/budget",
                         title: "Budget Planner",
                         description: "Include fixtures, wiring and installation in your total renovation budget.",
                         icon: "layers",
@@ -908,7 +908,7 @@ export const extraCalculatorPageDictionaries: Record<
                         applicationCategory: ["UtilityApplication", "LifestyleApplication"],
                         offers: { "@type": "Offer", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock" },
                         description: "Online lighting calculator for lumens needed and lamp count by room area and room type.",
-                        url: "https://renohacks.com/en/calculators/lighting",
+                        url: "https://renohacks.com/calculators/lighting",
                         image: "https://renohacks.com/images/og-default.png",
                         inLanguage: "en",
                         isAccessibleForFree: true,
@@ -918,7 +918,7 @@ export const extraCalculatorPageDictionaries: Record<
         },
         underfloorHeating: {
             metadata: {
-                path: "/en/calculators/underfloor-heating",
+                path: "/calculators/underfloor-heating",
                 title: "Underfloor Heating Calculator — Power, Cable Length and Energy | Renohacks",
                 description:
                     "Underfloor heating calculator: estimate system power, cable length or mat area, and monthly energy usage for tile, laminate, vinyl and wood floors.",
@@ -931,7 +931,7 @@ export const extraCalculatorPageDictionaries: Record<
                 ],
             },
             share: {
-                url: "/en/calculators/underfloor-heating",
+                url: "/calculators/underfloor-heating",
                 title: "Underfloor Heating Calculator — Power, Cable Length and Energy | Renohacks",
                 description: "Free underfloor heating calculator: power, cable length or mat area, and energy usage",
             },
@@ -982,14 +982,14 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "More renovation tools",
                 cards: [
                     {
-                        href: "/en/bathroom",
+                        href: "/bathroom",
                         title: "Bathroom Hub",
                         description: "Open the article hub with bathroom tile, heated floors, ventilation, and remodel planning.",
                         icon: "grid",
                         accentClass: "text-sky-500",
                     },
                     {
-                        href: "/en/calculators/tile",
+                        href: "/calculators/tile",
                         title: "Tile Calculator",
                         description: "Calculate tiles, waste and adhesive for kitchens, bathrooms and heated floors.",
                         icon: "zap",
@@ -1011,7 +1011,7 @@ export const extraCalculatorPageDictionaries: Record<
                         offers: { "@type": "Offer", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock" },
                         description:
                             "Free calculator for underfloor heating power, cable length or mat area, and estimated energy use.",
-                        url: "https://renohacks.com/en/calculators/underfloor-heating",
+                        url: "https://renohacks.com/calculators/underfloor-heating",
                         image: "https://renohacks.com/images/og-default.png",
                         inLanguage: "en",
                         isAccessibleForFree: true,

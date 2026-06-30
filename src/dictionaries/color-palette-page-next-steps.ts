@@ -25,14 +25,14 @@ export const colorPalettePageNextSteps: Record<
             ctaLabel: "Открыть",
             cards: [
                 {
-                    href: "/calculators/paint",
+                    href: "/ru/calculators/paint",
                     title: "Калькулятор краски",
                     description: "Сразу рассчитайте объем краски под выбранную палитру и реальную площадь стен.",
                     icon: "paintbrush",
                     accent: "from-rose-500/15 to-rose-500/5 text-rose-500",
                 },
                 {
-                    href: "/calculators/budget",
+                    href: "/ru/calculators/budget",
                     title: "Планировщик бюджета",
                     description: "Сведите краску, текстиль, свет и декоративные акценты в общую смету комнаты.",
                     icon: "layers",
@@ -49,14 +49,14 @@ export const colorPalettePageNextSteps: Record<
             ctaLabel: "Open",
             cards: [
                 {
-                    href: "/en/calculators/paint",
+                    href: "/calculators/paint",
                     title: "Paint Calculator",
                     description: "Estimate the actual paint volume for the palette you just chose and the real wall area.",
                     icon: "paintbrush",
                     accent: "from-rose-500/15 to-rose-500/5 text-rose-500",
                 },
                 {
-                    href: "/en/calculators/budget",
+                    href: "/calculators/budget",
                     title: "Budget Planner",
                     description: "Roll paint, lighting and decorative accents into one room budget.",
                     icon: "layers",

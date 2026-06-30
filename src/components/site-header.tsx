@@ -144,9 +144,9 @@ export function SiteHeader() {
                     {links.map((link: NavLink) => {
                         if (
                             link.href === "/tools" ||
-                            link.href === "/en/tools" ||
+                            link.href === "/ru/tools" ||
                             link.href === "/calculators" ||
-                            link.href === "/en/calculators"
+                            link.href === "/ru/calculators"
                         ) {
                             return (
                                 <Fragment key={link.href}>
@@ -235,9 +235,9 @@ export function SiteHeader() {
                                 {links.map((link: NavLink) => {
                                     if (
                                         link.href === "/tools" ||
-                                        link.href === "/en/tools" ||
+                                        link.href === "/ru/tools" ||
                                         link.href === "/calculators" ||
-                                        link.href === "/en/calculators"
+                                        link.href === "/ru/calculators"
                                     ) {
                                         return (
                                             <Fragment key={link.href}>

@@ -30,7 +30,7 @@ export function SeriesShowcase({
 }) {
     const locale = isEnglish ? "en" : "ru"
     const items = getArticleSeriesOverview(posts, locale, seriesKeys).filter((item) => item.count > 0)
-    const allSeriesHref = isEnglish ? "/en/series" : "/series"
+    const allSeriesHref = isEnglish ? "/series" : "/ru/series"
 
     if (items.length === 0) {
         return null

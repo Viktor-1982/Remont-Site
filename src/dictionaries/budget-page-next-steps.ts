@@ -25,14 +25,14 @@ export const budgetPageNextSteps: Record<
             ctaLabel: "Открыть",
             cards: [
                 {
-                    href: "/calculators/flooring",
+                    href: "/ru/calculators/flooring",
                     title: "Калькулятор напольного покрытия",
                     description: "Уточните упаковки, запас и стоимость покрытия, если именно пол тянет смету вверх.",
                     icon: "grid",
                     accent: "from-emerald-500/15 to-emerald-500/5 text-emerald-500",
                 },
                 {
-                    href: "/calculators/tile",
+                    href: "/ru/calculators/tile",
                     title: "Калькулятор плитки",
                     description:
                         "Перепроверьте плитку, клей и запас отдельно, если мокрые зоны съедают большую часть бюджета.",
@@ -50,14 +50,14 @@ export const budgetPageNextSteps: Record<
             ctaLabel: "Open",
             cards: [
                 {
-                    href: "/en/calculators/flooring",
+                    href: "/calculators/flooring",
                     title: "Flooring Calculator",
                     description: "Validate one of the biggest finish cost lines by packs, waste and actual floor coverage.",
                     icon: "grid",
                     accent: "from-emerald-500/15 to-emerald-500/5 text-emerald-500",
                 },
                 {
-                    href: "/en/calculators/tile",
+                    href: "/calculators/tile",
                     title: "Tile Calculator",
                     description: "Double-check tile, adhesive and reserve separately if that zone drives the renovation total.",
                     icon: "grid",
