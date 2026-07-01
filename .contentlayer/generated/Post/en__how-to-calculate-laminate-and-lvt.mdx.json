@@ -1,0 +1,130 @@
+{
+  "title": "How to Calculate Laminate and LVT Flooring: Area, Packs, Underlayment, and Waste",
+  "description": "A practical guide to calculating laminate or LVT flooring the right way: net area, exclusions, waste by layout, underlayment, and how many packs to buy.",
+  "date": "2026-03-23T00:00:00.000Z",
+  "rubric": "calculations",
+  "tags": [
+    "laminate",
+    "lvt",
+    "flooring",
+    "floor renovation",
+    "calculations",
+    "calculator"
+  ],
+  "cover": "/images/posts/flooring-calculation-guide/cover.png",
+  "author": "Renohacks",
+  "translationOf": "kak-rasschitat-laminat-i-kvarcvinil",
+  "draft": false,
+  "keywords": [
+    "how to calculate laminate flooring",
+    "how to calculate lvt flooring",
+    "how many packs of laminate do i need",
+    "laminate waste allowance",
+    "lvt flooring waste calculation",
+    "how much underlayment do i need",
+    "flooring calculator"
+  ],
+  "body": {
+    "raw": "\n# How to Calculate Laminate and LVT Flooring Without Buying Blind\n\nMost flooring mistakes happen before installation even starts. Someone measures the room, looks at the square footage on the box, buys a rough number of packs, and hopes the waste will somehow sort itself out.\n\nThat usually leads to one of two bad outcomes:\n\n- not enough material when the cuts start getting real;\n- too many extra boxes left over at the end.\n\nThe better approach is simple:\n\n1. calculate the full room area;\n2. subtract only the zones where flooring truly will not go;\n3. add waste based on layout;\n4. convert that result into packs;\n5. calculate underlayment separately.\n\nThat is also the logic built into our flooring calculator, so the numbers below match the tool rather than some generic rule of thumb.\n\n## Start with the room area\n\nThe base formula is:\n\n**room area = length × width**\n\nIf a room is **17.1 ft × 11.2 ft**, the gross area is:\n\n**17.1 × 11.2 = 191.52 sq ft**\n\nThat gives you the starting point, but it is not the final number you should buy against.\n\n## What can be excluded and what should stay in the count\n\nThis is where people often get too aggressive.\n\nIt usually makes sense to subtract:\n\n- a fixed kitchen island base if flooring will not run under it;\n- a built-in closet platform;\n- a permanent shower base;\n- any area that will clearly get a different finish.\n\nIt usually does **not** make sense to subtract:\n\n- a bed;\n- a sofa;\n- a dresser;\n- movable furniture;\n- anything that might be rearranged later.\n\nIf the goal is a continuous floor, count the real usable floor area, not the current furniture plan.\n\n## Waste depends on layout\n\nWaste is not a random extra box. It depends on how the flooring is laid.\n\nOur calculator uses these default assumptions:\n\n- **straight lay**: **7%**\n- **diagonal lay**: **12%**\n- **herringbone**: **15%**\n\nThose numbers are practical because more complicated layouts create more offcuts and more unusable short pieces.\n\nIf the room has alcoves, angled walls, narrow transitions, or other awkward geometry, it is safer to stay close to those values instead of trying to shave them down.\n\n## Worked example for laminate\n\nLet’s use a realistic room:\n\n- gross area: **191.52 sq ft**\n- fixed built-in zone to exclude: **13 sq ft**\n- layout: **straight**\n\nNet area:\n\n**191.52 − 13 = 178.52 sq ft**\n\nAdd 7% waste:\n\n**178.52 × 1.07 = 191.02 sq ft**\n\nThat is the area you should buy for.\n\nIf one pack covers **23.8 sq ft**, then:\n\n**191.02 / 23.8 = 8.02 packs**\n\nAlways round up:\n\n**you need 9 packs**\n\nThat is the part people skip when they try to estimate flooring in their head.\n\n## LVT is calculated almost the same way\n\nLuxury vinyl tile or plank follows the same core structure:\n\n- calculate net floor area;\n- add waste based on layout;\n- divide by the coverage per box.\n\nThe differences are practical rather than mathematical:\n\n- some collections are sold by plank count as well as box coverage;\n- some are glue-down, which adds adhesive and substrate requirements;\n- narrow hallways and tricky room shapes can increase real cutting waste.\n\nSo yes, the math is similar, but installation method still matters.\n\n## How to calculate underlayment\n\nUnderlayment should be based on the **net floor area**, not the flooring area after full layout waste.\n\nIn our calculator, underlayment includes a small working reserve:\n\n**net area × 1.03**\n\nThat gives roughly **3% extra**.\n\nFor the example above:\n\n**178.52 × 1.03 = 183.88 sq ft**\n\nSo you would want about **184 sq ft of underlayment**.\n\nThat small reserve helps with seams, trimming, and real installation conditions.\n\n## Why “just count the boxes” usually fails\n\nPeople often do this:\n\n- room is around 190 square feet;\n- each box covers about 24;\n- eight boxes feels close enough.\n\nBut without the actual sequence, they miss:\n\n- whether any area should be excluded;\n- which layout is planned;\n- whether the waste allowance is enough;\n- how much underlayment is needed separately.\n\nThat is why flooring runs short even in rooms that looked easy on paper.\n\n## Things to confirm before buying\n\nBefore placing an order, check:\n\n- coverage per pack;\n- plank size;\n- layout pattern;\n- subfloor requirements;\n- expansion gap rules;\n- whether the product works with radiant heating;\n- whether you need underlayment, adhesive, or both.\n\nGood flooring will not fix a bad substrate, so the base still matters.\n\n## Common mistakes\n\n### 1. Subtracting all furniture\n\nThat usually underestimates the true material need.\n\n### 2. Using the same waste number for every layout\n\nStraight lay and herringbone do not produce the same offcuts.\n\n### 3. Forgetting underlayment\n\nThe flooring arrives, but the underlayment does not cover the room.\n\n### 4. Not rounding box count up\n\nYou cannot buy 0.2 of a box.\n\n### 5. Ignoring room geometry\n\nThe more awkward the room, the less useful a “perfect” square footage estimate becomes.\n\n## Try the calculation on your own room\n\nUse the calculator below to estimate flooring area, waste, pack count, and underlayment in one pass.\n\n<FlooringCalculator />\n\n## FAQ\n\n### How much extra flooring should I buy?\n\nFor a straight layout, around 7% is a solid starting point. Diagonal layouts usually need more, and herringbone usually needs the most.\n\n### Should I subtract closets or built-ins?\n\nOnly if the flooring truly will not run there. Movable furniture usually should not be subtracted.\n\n### Is underlayment calculated the same way as flooring?\n\nNot exactly. Underlayment is usually based on the net floor area, with a small reserve added for installation.\n\n### How do I figure out how many boxes to buy?\n\nDivide the required flooring area, including waste, by the coverage per box and round up.\n\n## Conclusion\n\nGood flooring math is not complicated, but it does need the right order. Once you calculate net area, add realistic waste, convert to packs, and separate underlayment, the purchase becomes much more predictable.\n\nThat means fewer surprises, fewer emergency trips to the store, and a calmer installation day.\n",
+    "code": "var Component=(()=>{var u=Object.create;var a=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var p=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var y=(r,e)=>()=>(e||r((e={exports:{}}).exports,e),e.exports),b=(r,e)=>{for(var l in e)a(r,l,{get:e[l],enumerable:!0})},i=(r,e,l,o)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let t of p(e))!f.call(r,t)&&t!==l&&a(r,t,{get:()=>e[t],enumerable:!(o=m(e,t))||o.enumerable});return r};var w=(r,e,l)=>(l=r!=null?u(g(r)):{},i(e||!r||!r.__esModule?a(l,\"default\",{value:r,enumerable:!0}):l,r)),v=r=>i(a({},\"__esModule\",{value:!0}),r);var s=y((I,h)=>{h.exports=_jsx_runtime});var T={};b(T,{default:()=>d,frontmatter:()=>x});var n=w(s()),x={title:\"How to Calculate Laminate and LVT Flooring: Area, Packs, Underlayment, and Waste\",description:\"A practical guide to calculating laminate or LVT flooring the right way: net area, exclusions, waste by layout, underlayment, and how many packs to buy.\",date:\"2026-03-23\",rubric:\"calculations\",tags:[\"laminate\",\"lvt\",\"flooring\",\"floor renovation\",\"calculations\",\"calculator\"],cover:\"/images/posts/flooring-calculation-guide/cover.png\",author:\"Renohacks\",translationOf:\"kak-rasschitat-laminat-i-kvarcvinil\",draft:!1,keywords:[\"how to calculate laminate flooring\",\"how to calculate lvt flooring\",\"how many packs of laminate do i need\",\"laminate waste allowance\",\"lvt flooring waste calculation\",\"how much underlayment do i need\",\"flooring calculator\"]};function c(r){let e={h1:\"h1\",h2:\"h2\",h3:\"h3\",li:\"li\",ol:\"ol\",p:\"p\",strong:\"strong\",ul:\"ul\",...r.components},{FlooringCalculator:l}=e;return l||k(\"FlooringCalculator\",!0),(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.h1,{children:\"How to Calculate Laminate and LVT Flooring Without Buying Blind\"}),`\n`,(0,n.jsx)(e.p,{children:\"Most flooring mistakes happen before installation even starts. Someone measures the room, looks at the square footage on the box, buys a rough number of packs, and hopes the waste will somehow sort itself out.\"}),`\n`,(0,n.jsx)(e.p,{children:\"That usually leads to one of two bad outcomes:\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"not enough material when the cuts start getting real;\"}),`\n`,(0,n.jsx)(e.li,{children:\"too many extra boxes left over at the end.\"}),`\n`]}),`\n`,(0,n.jsx)(e.p,{children:\"The better approach is simple:\"}),`\n`,(0,n.jsxs)(e.ol,{children:[`\n`,(0,n.jsx)(e.li,{children:\"calculate the full room area;\"}),`\n`,(0,n.jsx)(e.li,{children:\"subtract only the zones where flooring truly will not go;\"}),`\n`,(0,n.jsx)(e.li,{children:\"add waste based on layout;\"}),`\n`,(0,n.jsx)(e.li,{children:\"convert that result into packs;\"}),`\n`,(0,n.jsx)(e.li,{children:\"calculate underlayment separately.\"}),`\n`]}),`\n`,(0,n.jsx)(e.p,{children:\"That is also the logic built into our flooring calculator, so the numbers below match the tool rather than some generic rule of thumb.\"}),`\n`,(0,n.jsx)(e.h2,{children:\"Start with the room area\"}),`\n`,(0,n.jsx)(e.p,{children:\"The base formula is:\"}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:\"room area = length \\xD7 width\"})}),`\n`,(0,n.jsxs)(e.p,{children:[\"If a room is \",(0,n.jsx)(e.strong,{children:\"17.1 ft \\xD7 11.2 ft\"}),\", the gross area is:\"]}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:\"17.1 \\xD7 11.2 = 191.52 sq ft\"})}),`\n`,(0,n.jsx)(e.p,{children:\"That gives you the starting point, but it is not the final number you should buy against.\"}),`\n`,(0,n.jsx)(e.h2,{children:\"What can be excluded and what should stay in the count\"}),`\n`,(0,n.jsx)(e.p,{children:\"This is where people often get too aggressive.\"}),`\n`,(0,n.jsx)(e.p,{children:\"It usually makes sense to subtract:\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"a fixed kitchen island base if flooring will not run under it;\"}),`\n`,(0,n.jsx)(e.li,{children:\"a built-in closet platform;\"}),`\n`,(0,n.jsx)(e.li,{children:\"a permanent shower base;\"}),`\n`,(0,n.jsx)(e.li,{children:\"any area that will clearly get a different finish.\"}),`\n`]}),`\n`,(0,n.jsxs)(e.p,{children:[\"It usually does \",(0,n.jsx)(e.strong,{children:\"not\"}),\" make sense to subtract:\"]}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"a bed;\"}),`\n`,(0,n.jsx)(e.li,{children:\"a sofa;\"}),`\n`,(0,n.jsx)(e.li,{children:\"a dresser;\"}),`\n`,(0,n.jsx)(e.li,{children:\"movable furniture;\"}),`\n`,(0,n.jsx)(e.li,{children:\"anything that might be rearranged later.\"}),`\n`]}),`\n`,(0,n.jsx)(e.p,{children:\"If the goal is a continuous floor, count the real usable floor area, not the current furniture plan.\"}),`\n`,(0,n.jsx)(e.h2,{children:\"Waste depends on layout\"}),`\n`,(0,n.jsx)(e.p,{children:\"Waste is not a random extra box. It depends on how the flooring is laid.\"}),`\n`,(0,n.jsx)(e.p,{children:\"Our calculator uses these default assumptions:\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"straight lay\"}),\": \",(0,n.jsx)(e.strong,{children:\"7%\"})]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"diagonal lay\"}),\": \",(0,n.jsx)(e.strong,{children:\"12%\"})]}),`\n`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:\"herringbone\"}),\": \",(0,n.jsx)(e.strong,{children:\"15%\"})]}),`\n`]}),`\n`,(0,n.jsx)(e.p,{children:\"Those numbers are practical because more complicated layouts create more offcuts and more unusable short pieces.\"}),`\n`,(0,n.jsx)(e.p,{children:\"If the room has alcoves, angled walls, narrow transitions, or other awkward geometry, it is safer to stay close to those values instead of trying to shave them down.\"}),`\n`,(0,n.jsx)(e.h2,{children:\"Worked example for laminate\"}),`\n`,(0,n.jsx)(e.p,{children:\"Let\\u2019s use a realistic room:\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsxs)(e.li,{children:[\"gross area: \",(0,n.jsx)(e.strong,{children:\"191.52 sq ft\"})]}),`\n`,(0,n.jsxs)(e.li,{children:[\"fixed built-in zone to exclude: \",(0,n.jsx)(e.strong,{children:\"13 sq ft\"})]}),`\n`,(0,n.jsxs)(e.li,{children:[\"layout: \",(0,n.jsx)(e.strong,{children:\"straight\"})]}),`\n`]}),`\n`,(0,n.jsx)(e.p,{children:\"Net area:\"}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:\"191.52 \\u2212 13 = 178.52 sq ft\"})}),`\n`,(0,n.jsx)(e.p,{children:\"Add 7% waste:\"}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:\"178.52 \\xD7 1.07 = 191.02 sq ft\"})}),`\n`,(0,n.jsx)(e.p,{children:\"That is the area you should buy for.\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"If one pack covers \",(0,n.jsx)(e.strong,{children:\"23.8 sq ft\"}),\", then:\"]}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:\"191.02 / 23.8 = 8.02 packs\"})}),`\n`,(0,n.jsx)(e.p,{children:\"Always round up:\"}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:\"you need 9 packs\"})}),`\n`,(0,n.jsx)(e.p,{children:\"That is the part people skip when they try to estimate flooring in their head.\"}),`\n`,(0,n.jsx)(e.h2,{children:\"LVT is calculated almost the same way\"}),`\n`,(0,n.jsx)(e.p,{children:\"Luxury vinyl tile or plank follows the same core structure:\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"calculate net floor area;\"}),`\n`,(0,n.jsx)(e.li,{children:\"add waste based on layout;\"}),`\n`,(0,n.jsx)(e.li,{children:\"divide by the coverage per box.\"}),`\n`]}),`\n`,(0,n.jsx)(e.p,{children:\"The differences are practical rather than mathematical:\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"some collections are sold by plank count as well as box coverage;\"}),`\n`,(0,n.jsx)(e.li,{children:\"some are glue-down, which adds adhesive and substrate requirements;\"}),`\n`,(0,n.jsx)(e.li,{children:\"narrow hallways and tricky room shapes can increase real cutting waste.\"}),`\n`]}),`\n`,(0,n.jsx)(e.p,{children:\"So yes, the math is similar, but installation method still matters.\"}),`\n`,(0,n.jsx)(e.h2,{children:\"How to calculate underlayment\"}),`\n`,(0,n.jsxs)(e.p,{children:[\"Underlayment should be based on the \",(0,n.jsx)(e.strong,{children:\"net floor area\"}),\", not the flooring area after full layout waste.\"]}),`\n`,(0,n.jsx)(e.p,{children:\"In our calculator, underlayment includes a small working reserve:\"}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:\"net area \\xD7 1.03\"})}),`\n`,(0,n.jsxs)(e.p,{children:[\"That gives roughly \",(0,n.jsx)(e.strong,{children:\"3% extra\"}),\".\"]}),`\n`,(0,n.jsx)(e.p,{children:\"For the example above:\"}),`\n`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:\"178.52 \\xD7 1.03 = 183.88 sq ft\"})}),`\n`,(0,n.jsxs)(e.p,{children:[\"So you would want about \",(0,n.jsx)(e.strong,{children:\"184 sq ft of underlayment\"}),\".\"]}),`\n`,(0,n.jsx)(e.p,{children:\"That small reserve helps with seams, trimming, and real installation conditions.\"}),`\n`,(0,n.jsx)(e.h2,{children:\"Why \\u201Cjust count the boxes\\u201D usually fails\"}),`\n`,(0,n.jsx)(e.p,{children:\"People often do this:\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"room is around 190 square feet;\"}),`\n`,(0,n.jsx)(e.li,{children:\"each box covers about 24;\"}),`\n`,(0,n.jsx)(e.li,{children:\"eight boxes feels close enough.\"}),`\n`]}),`\n`,(0,n.jsx)(e.p,{children:\"But without the actual sequence, they miss:\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"whether any area should be excluded;\"}),`\n`,(0,n.jsx)(e.li,{children:\"which layout is planned;\"}),`\n`,(0,n.jsx)(e.li,{children:\"whether the waste allowance is enough;\"}),`\n`,(0,n.jsx)(e.li,{children:\"how much underlayment is needed separately.\"}),`\n`]}),`\n`,(0,n.jsx)(e.p,{children:\"That is why flooring runs short even in rooms that looked easy on paper.\"}),`\n`,(0,n.jsx)(e.h2,{children:\"Things to confirm before buying\"}),`\n`,(0,n.jsx)(e.p,{children:\"Before placing an order, check:\"}),`\n`,(0,n.jsxs)(e.ul,{children:[`\n`,(0,n.jsx)(e.li,{children:\"coverage per pack;\"}),`\n`,(0,n.jsx)(e.li,{children:\"plank size;\"}),`\n`,(0,n.jsx)(e.li,{children:\"layout pattern;\"}),`\n`,(0,n.jsx)(e.li,{children:\"subfloor requirements;\"}),`\n`,(0,n.jsx)(e.li,{children:\"expansion gap rules;\"}),`\n`,(0,n.jsx)(e.li,{children:\"whether the product works with radiant heating;\"}),`\n`,(0,n.jsx)(e.li,{children:\"whether you need underlayment, adhesive, or both.\"}),`\n`]}),`\n`,(0,n.jsx)(e.p,{children:\"Good flooring will not fix a bad substrate, so the base still matters.\"}),`\n`,(0,n.jsx)(e.h2,{children:\"Common mistakes\"}),`\n`,(0,n.jsx)(e.h3,{children:\"1. Subtracting all furniture\"}),`\n`,(0,n.jsx)(e.p,{children:\"That usually underestimates the true material need.\"}),`\n`,(0,n.jsx)(e.h3,{children:\"2. Using the same waste number for every layout\"}),`\n`,(0,n.jsx)(e.p,{children:\"Straight lay and herringbone do not produce the same offcuts.\"}),`\n`,(0,n.jsx)(e.h3,{children:\"3. Forgetting underlayment\"}),`\n`,(0,n.jsx)(e.p,{children:\"The flooring arrives, but the underlayment does not cover the room.\"}),`\n`,(0,n.jsx)(e.h3,{children:\"4. Not rounding box count up\"}),`\n`,(0,n.jsx)(e.p,{children:\"You cannot buy 0.2 of a box.\"}),`\n`,(0,n.jsx)(e.h3,{children:\"5. Ignoring room geometry\"}),`\n`,(0,n.jsx)(e.p,{children:\"The more awkward the room, the less useful a \\u201Cperfect\\u201D square footage estimate becomes.\"}),`\n`,(0,n.jsx)(e.h2,{children:\"Try the calculation on your own room\"}),`\n`,(0,n.jsx)(e.p,{children:\"Use the calculator below to estimate flooring area, waste, pack count, and underlayment in one pass.\"}),`\n`,(0,n.jsx)(l,{}),`\n`,(0,n.jsx)(e.h2,{children:\"FAQ\"}),`\n`,(0,n.jsx)(e.h3,{children:\"How much extra flooring should I buy?\"}),`\n`,(0,n.jsx)(e.p,{children:\"For a straight layout, around 7% is a solid starting point. Diagonal layouts usually need more, and herringbone usually needs the most.\"}),`\n`,(0,n.jsx)(e.h3,{children:\"Should I subtract closets or built-ins?\"}),`\n`,(0,n.jsx)(e.p,{children:\"Only if the flooring truly will not run there. Movable furniture usually should not be subtracted.\"}),`\n`,(0,n.jsx)(e.h3,{children:\"Is underlayment calculated the same way as flooring?\"}),`\n`,(0,n.jsx)(e.p,{children:\"Not exactly. Underlayment is usually based on the net floor area, with a small reserve added for installation.\"}),`\n`,(0,n.jsx)(e.h3,{children:\"How do I figure out how many boxes to buy?\"}),`\n`,(0,n.jsx)(e.p,{children:\"Divide the required flooring area, including waste, by the coverage per box and round up.\"}),`\n`,(0,n.jsx)(e.h2,{children:\"Conclusion\"}),`\n`,(0,n.jsx)(e.p,{children:\"Good flooring math is not complicated, but it does need the right order. Once you calculate net area, add realistic waste, convert to packs, and separate underlayment, the purchase becomes much more predictable.\"}),`\n`,(0,n.jsx)(e.p,{children:\"That means fewer surprises, fewer emergency trips to the store, and a calmer installation day.\"})]})}function d(r={}){let{wrapper:e}=r.components||{};return e?(0,n.jsx)(e,{...r,children:(0,n.jsx)(c,{...r})}):c(r)}function k(r,e){throw new Error(\"Expected \"+(e?\"component\":\"object\")+\" `\"+r+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return v(T);})();\n;return Component;"
+  },
+  "_id": "en/how-to-calculate-laminate-and-lvt.mdx",
+  "_raw": {
+    "sourceFilePath": "en/how-to-calculate-laminate-and-lvt.mdx",
+    "sourceFileName": "how-to-calculate-laminate-and-lvt.mdx",
+    "sourceFileDir": "en",
+    "contentType": "mdx",
+    "flattenedPath": "en/how-to-calculate-laminate-and-lvt"
+  },
+  "type": "Post",
+  "locale": "en",
+  "slug": "how-to-calculate-laminate-and-lvt",
+  "url": "/en/posts/how-to-calculate-laminate-and-lvt",
+  "readingTime": "6 min read",
+  "headings": [
+    {
+      "text": "Start with the room area",
+      "level": 2
+    },
+    {
+      "text": "What can be excluded and what should stay in the count",
+      "level": 2
+    },
+    {
+      "text": "Waste depends on layout",
+      "level": 2
+    },
+    {
+      "text": "Worked example for laminate",
+      "level": 2
+    },
+    {
+      "text": "LVT is calculated almost the same way",
+      "level": 2
+    },
+    {
+      "text": "How to calculate underlayment",
+      "level": 2
+    },
+    {
+      "text": "Why “just count the boxes” usually fails",
+      "level": 2
+    },
+    {
+      "text": "Things to confirm before buying",
+      "level": 2
+    },
+    {
+      "text": "Common mistakes",
+      "level": 2
+    },
+    {
+      "text": "1. Subtracting all furniture",
+      "level": 3
+    },
+    {
+      "text": "2. Using the same waste number for every layout",
+      "level": 3
+    },
+    {
+      "text": "3. Forgetting underlayment",
+      "level": 3
+    },
+    {
+      "text": "4. Not rounding box count up",
+      "level": 3
+    },
+    {
+      "text": "5. Ignoring room geometry",
+      "level": 3
+    },
+    {
+      "text": "Try the calculation on your own room",
+      "level": 2
+    },
+    {
+      "text": "FAQ",
+      "level": 2
+    },
+    {
+      "text": "How much extra flooring should I buy?",
+      "level": 3
+    },
+    {
+      "text": "Should I subtract closets or built-ins?",
+      "level": 3
+    },
+    {
+      "text": "Is underlayment calculated the same way as flooring?",
+      "level": 3
+    },
+    {
+      "text": "How do I figure out how many boxes to buy?",
+      "level": 3
+    },
+    {
+      "text": "Conclusion",
+      "level": 2
+    }
+  ]
+}
