@@ -1,6 +1,6 @@
 "use client"
 
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 
@@ -51,9 +51,12 @@ export function LanguageSwitcher() {
     }, [pathname])
 
     // Explicit language choice: set a cookie so middleware respects it
+    // Use window.location.href (hard navigation) instead of router.push:
+    // Next.js App Router can serve cached RSC payloads that bypass middleware,
+    // causing the cookie to be ignored. Hard reload guarantees middleware runs.
     function handleSwitch(localeCode: string, href: string) {
         document.cookie = `preferred-locale=${localeCode};path=/;max-age=31536000;SameSite=Lax`
-        router.push(href)
+        window.location.href = href
     }
 
     if (loading) {
