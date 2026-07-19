@@ -1,7 +1,6 @@
 import type { Post } from "contentlayer/generated"
 import Image from "next/image"
 import Link from "next/link"
-import Script from "next/script"
 import { ArrowRight, Calculator, Grid, Home, Lightbulb, Sparkles, Wrench } from "lucide-react"
 import { ArticleCard } from "@/components/article-card"
 import { ArticleSeriesBadge } from "@/components/article-series-badge"
