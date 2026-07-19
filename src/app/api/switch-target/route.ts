@@ -37,7 +37,16 @@ export async function GET(req: Request) {
                         (p.translationOf === key || p.slug === key) &&
                         p.locale !== current.locale
                 )
-                if (mirror) targetUrl = mirror.url
+                if (mirror) {
+                    let url = mirror.url
+                    // Normalize EN canonical: strip /en/ prefix (EN posts live at /posts/slug)
+                    url = url.replace(/^\/en\/posts\//, "/posts/")
+                    // Normalize RU canonical: ensure /ru/ prefix (RU posts live at /ru/posts/slug)
+                    if (mirror.locale === "ru" && !url.startsWith("/ru/")) {
+                        url = `/ru${url.startsWith("/") ? url : "/" + url}`
+                    }
+                    targetUrl = url
+                }
             }
         }
 
