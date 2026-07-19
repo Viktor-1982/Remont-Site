@@ -6,7 +6,6 @@ import type {
     StandardsStep,
 } from "@/dictionaries/editorial-standards"
 import { Calculator, ClipboardCheck, FileText, Home, RefreshCw, ShieldCheck } from "lucide-react"
-import Script from "next/script"
 
 const baseUrl = "https://renohacks.com"
 
@@ -169,16 +168,12 @@ export function EditorialStandardsPageTemplate({
                 </div>
             </div>
 
-            <Script
-                id="editorial-standards-breadcrumb-schema"
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
-            <Script
-                id="editorial-standards-faq-schema"
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
             />
         </main>

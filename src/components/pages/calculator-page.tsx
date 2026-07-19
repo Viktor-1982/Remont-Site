@@ -22,7 +22,6 @@ import {
 import Link from "next/link"
 import type { ReactNode } from "react"
 import { ShareButton } from "@/components/share-button"
-import Script from "next/script"
 
 const relatedIcons = {
     airVent: AirVent,
@@ -109,11 +108,9 @@ function StructuredDataScripts({ items }: { items: CalculatorStructuredData[] })
     return (
         <>
             {items.map((item) => (
-                <Script
+                <script
                     key={item.id}
-                    id={item.id}
                     type="application/ld+json"
-                    strategy="afterInteractive"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(item.data) }}
                 />
             ))}

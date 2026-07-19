@@ -19,7 +19,6 @@ import {
     Wind,
 } from "lucide-react"
 import Link from "next/link"
-import Script from "next/script"
 
 const baseUrl = "https://renohacks.com"
 
@@ -229,10 +228,8 @@ export function ToolsPageTemplate({ dictionary }: { dictionary: ToolsDictionary 
                 </p>
             </section>
 
-            <Script
-                id="breadcrumb-schema"
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(breadcrumbSchema),
                 }}

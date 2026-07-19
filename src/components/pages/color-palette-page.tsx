@@ -2,7 +2,6 @@ import type { ColorPalettePageDictionary } from "@/dictionaries/color-palette-pa
 import { Layers, Paintbrush } from "lucide-react"
 import Link from "next/link"
 import type { ReactNode } from "react"
-import Script from "next/script"
 import { ShareButton } from "@/components/share-button"
 
 const resourceIcons = {
@@ -14,11 +13,9 @@ function StructuredDataScripts({ items }: { items: ColorPalettePageDictionary["s
     return (
         <>
             {items.map((item) => (
-                <Script
+                <script
                     key={item.id}
-                    id={item.id}
                     type="application/ld+json"
-                    strategy="afterInteractive"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(item.data) }}
                 />
             ))}

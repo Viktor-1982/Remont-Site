@@ -2,7 +2,6 @@ import type { BudgetPageDictionary } from "@/dictionaries/budget-page"
 import { Grid, Layers, Paintbrush, ScrollText } from "lucide-react"
 import Link from "next/link"
 import type { ReactNode } from "react"
-import Script from "next/script"
 import { ShareButton } from "@/components/share-button"
 
 const resourceIcons = {
@@ -16,11 +15,9 @@ function StructuredDataScripts({ items }: { items: BudgetPageDictionary["structu
     return (
         <>
             {items.map((item) => (
-                <Script
+                <script
                     key={item.id}
-                    id={item.id}
                     type="application/ld+json"
-                    strategy="afterInteractive"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(item.data) }}
                 />
             ))}

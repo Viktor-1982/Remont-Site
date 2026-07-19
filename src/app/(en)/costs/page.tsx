@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { getPageMetadata } from "@/lib/seo"
 import { allPosts } from "contentlayer/generated"
 import { ArticleGrid } from "@/components/article-grid"
-import Script from "next/script"
 
 export const metadata: Metadata = getPageMetadata("/en/costs", {
     title: "Renovation Cost Estimates | Renohacks",
@@ -63,10 +62,8 @@ export default function CostsPage() {
                 </div>
             )}
 
-            <Script
-                id="breadcrumb-schema"
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(breadcrumbSchema),
                 }}

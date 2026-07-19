@@ -3,7 +3,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import type { AboutDictionary, AboutFeature } from "@/dictionaries/about"
 import { Calculator, Camera, DollarSign, Home, Palette, ShieldCheck, Target, Wrench } from "lucide-react"
 import Link from "next/link"
-import Script from "next/script"
 
 const baseUrl = "https://renohacks.com"
 
@@ -177,10 +176,8 @@ export function AboutPageTemplate({ dictionary }: { dictionary: AboutDictionary 
                 </Card>
             </div>
 
-            <Script
-                id="breadcrumb-schema"
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(breadcrumbSchema),
                 }}

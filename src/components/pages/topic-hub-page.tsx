@@ -282,22 +282,16 @@ export function TopicHubPage({
                 <EmailSubscription locale={locale} variant="compact" />
             </section>
 
-            <Script
-                id={`breadcrumb-schema-${locale}-${dictionary.key}`}
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
-            <Script
-                id={`faq-schema-${locale}-${dictionary.key}`}
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
             />
-            <Script
-                id={`collection-schema-${locale}-${dictionary.key}`}
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
             />
         </main>
