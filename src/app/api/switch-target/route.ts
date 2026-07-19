@@ -238,9 +238,10 @@ export async function GET(req: Request) {
         // 🔹 7. Fallback — просто меняем язык
         // ==========================================================
         if (!targetUrl) {
-            targetUrl = isEnglish
-                ? `/ru${path === "/" ? "" : path}`
-                : path.replace(/^\/ru/, "") || "/"
+            const cleanPath = path.replace(/^\/(ru|en)/, "") || "/"
+            targetUrl = targetLocale === "en"
+                ? (cleanPath === "/" ? "/en" : `/en${cleanPath}`)
+                : (cleanPath === "/" ? "/ru" : `/ru${cleanPath}`)
         }
 
         // ==========================================================
