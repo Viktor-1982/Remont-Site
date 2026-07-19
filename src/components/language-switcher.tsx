@@ -18,7 +18,6 @@ const locales: Locale[] = [
 
 export function LanguageSwitcher() {
     const pathname = usePathname() || "/"
-    const router = useRouter()
     const [targetUrls, setTargetUrls] = useState<Record<string, string>>({})
     const [loading, setLoading] = useState(true)
 
