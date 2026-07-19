@@ -14,9 +14,8 @@ import { ViewHistoryTracker } from "@/components/view-history-tracker"
 import { ViewHistoryCarousel } from "@/components/view-history-carousel"
 import { EmailSubscription } from "@/components/email-subscription"
 import { ArticleToolCta } from "@/components/article-tool-cta"
-import { getPostMetadata } from "@/lib/seo-post" // ✅ единый SEO-модуль
+import { getPostMetadata } from "@/lib/seo-post"
 import { parseFAQ } from "@/lib/parse-faq"
-import Script from "next/script"
 
 export async function generateMetadata({
                                            params,
@@ -159,22 +158,26 @@ export default async function PostPage({
                 <EmailSubscription locale="en" variant="compact" />
             </div>
 
-            {/* 🟡 JSON-LD structured data for search engines */}
-            <Script
-                id="blogposting-schema"
+            {/* ✅ JSON-LD inline в HTML — виден Googlebot сразу, без JS */}
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "BlogPosting",
+                        "@id": canonical,
                         headline: post.title,
                         description: post.description,
-                        image: [`${baseUrl}${post.cover || "/images/og-default.png"}`],
+                        image: [{
+                            "@type": "ImageObject",
+                            url: `${baseUrl}${post.cover || "/images/og-default.png"}`,
+                            width: 1200,
+                            height: 675,
+                        }],
                         author: {
                             "@type": "Organization",
                             name: "Renohacks",
-                            url: `${baseUrl}`,
+                            url: baseUrl,
                         },
                         publisher: {
                             "@type": "Organization",
@@ -190,6 +193,7 @@ export default async function PostPage({
                             "@type": "WebPage",
                             "@id": canonical,
                         },
+                        url: canonical,
                         keywords: post.keywords?.join(", "),
                         inLanguage: "en",
                         articleSection: "Home Renovation & Design",
@@ -199,26 +203,18 @@ export default async function PostPage({
                     }),
                 }}
             />
-            
-            {/* BreadcrumbList schema.org */}
-            <Script
-                id="breadcrumb-schema"
+
+            {/* BreadcrumbList — inline в HTML */}
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(breadcrumbSchema),
-                }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
-            
-            {/* FAQPage schema.org */}
+
+            {/* FAQPage — inline в HTML (если есть FAQ) */}
             {faqSchema && (
-                <Script
-                    id="faq-schema"
+                <script
                     type="application/ld+json"
-                    strategy="afterInteractive"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify(faqSchema),
-                    }}
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
                 />
             )}
         </article>
