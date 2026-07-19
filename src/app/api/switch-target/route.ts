@@ -45,14 +45,14 @@ export async function GET(req: Request) {
         // 🔹 2. About
         // ==========================================================
         if (!targetUrl && /^\/(ru\/|en\/)?about/.test(path)) {
-            targetUrl = targetLocale === "en" ? "/en/about" : "/ru/about"
+            targetUrl = targetLocale === "en" ? "/about" : "/ru/about"
         }
 
         // ==========================================================
         // 🔹 2.1 Smety / Costs (нестандартные slug)
         // ==========================================================
         if (!targetUrl && /^\/(ru\/|en\/)?(smety|costs)(\/|$)/.test(path)) {
-            targetUrl = targetLocale === "en" ? "/en/costs" : "/ru/smety"
+            targetUrl = targetLocale === "en" ? "/costs" : "/ru/smety"
         }
 
         // ==========================================================
@@ -65,8 +65,8 @@ export async function GET(req: Request) {
         // ==========================================================
         // 🔹 4. Calculators (учёт подстраниц)
         // ==========================================================
-        if (!targetUrl && /^\/(ru\/)?calculators/.test(path)) {
-            const subPath = path.replace(/^\/(ru\/)?calculators/, "")
+        if (!targetUrl && /^\/(ru\/|en\/)?calculators/.test(path)) {
+            const subPath = path.replace(/^\/(ru\/|en\/)?calculators/, "")
             targetUrl =
                 targetLocale === "en"
                     ? `/calculators${subPath}`
@@ -240,7 +240,7 @@ export async function GET(req: Request) {
         if (!targetUrl) {
             const cleanPath = path.replace(/^\/(ru|en)/, "") || "/"
             targetUrl = targetLocale === "en"
-                ? (cleanPath === "/" ? "/en" : `/en${cleanPath}`)
+                ? (cleanPath === "/" ? "/" : cleanPath)
                 : (cleanPath === "/" ? "/ru" : `/ru${cleanPath}`)
         }
 

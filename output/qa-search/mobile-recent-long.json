@@ -1,0 +1,52 @@
+{
+  "url": "http://localhost:3100/",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "input": {
+    "left": 56.5,
+    "right": 313,
+    "top": 85.390625,
+    "bottom": 121.390625,
+    "width": 256.5,
+    "height": 36,
+    "value": "",
+    "clientWidth": 257,
+    "scrollWidth": 256,
+    "scrollLeft": 0
+  },
+  "close": {
+    "left": 321,
+    "right": 357,
+    "top": 85.390625,
+    "bottom": 121.390625,
+    "width": 36,
+    "height": 36
+  },
+  "inputOverlapsClose": false,
+  "gapBetweenInputAndClose": 8,
+  "chips": [
+    {
+      "text": "very long search query to verify text overflow in the header search input and the recent search chips inside the modal dialog",
+      "left": 33,
+      "right": 715.375,
+      "width": 682.375,
+      "top": 190.390625,
+      "bottom": 222.390625,
+      "clientWidth": 680,
+      "scrollWidth": 680
+    }
+  ],
+  "chipContainer": {
+    "left": 33,
+    "right": 357,
+    "top": 190.390625,
+    "bottom": 222.390625,
+    "width": 324,
+    "height": 32
+  },
+  "chipOverflowCount": 1,
+  "pageHasHorizontalOverflow": false,
+  "modalHasHorizontalOverflow": false
+}

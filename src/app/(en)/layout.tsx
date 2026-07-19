@@ -13,9 +13,9 @@ export const metadata: Metadata = {
     alternates: {
         canonical: "https://renohacks.com",
         languages: {
-            en: "https://renohacks.com",
-            ru: "https://renohacks.com/ru",
-            "x-default": "https://renohacks.com/",
+            en:          "https://renohacks.com",
+            ru:          "https://renohacks.com/ru",
+            "x-default": "https://renohacks.com",
         },
         types: {
             "application/rss+xml": [

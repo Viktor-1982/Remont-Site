@@ -1,0 +1,59 @@
+{
+  "url": "http://localhost:3100/",
+  "viewport": {
+    "width": 1440,
+    "height": 1100
+  },
+  "modal": {
+    "left": 384,
+    "right": 1056,
+    "top": 219.51217651367188,
+    "bottom": 350.5121765136719,
+    "width": 672,
+    "height": 131
+  },
+  "headerRow": {
+    "left": 385,
+    "right": 1055,
+    "top": 220.51217651367188,
+    "bottom": 289.5121765136719,
+    "width": 670,
+    "height": 69
+  },
+  "icon": {
+    "left": 401,
+    "right": 418.734375,
+    "top": 244.51217651367188,
+    "bottom": 264.5121765136719,
+    "width": 17.734375,
+    "height": 20
+  },
+  "input": {
+    "left": 426.734375,
+    "right": 995,
+    "top": 236.51217651367188,
+    "bottom": 272.5121765136719,
+    "width": 568.265625,
+    "height": 36,
+    "value": "",
+    "placeholder": "Поиск статей...",
+    "clientWidth": 568,
+    "scrollWidth": 568,
+    "scrollLeft": 0
+  },
+  "close": {
+    "left": 1003,
+    "right": 1039,
+    "top": 236.51217651367188,
+    "bottom": 272.5121765136719,
+    "width": 36,
+    "height": 36
+  },
+  "inputOverlapsClose": false,
+  "gapBetweenInputAndClose": 8,
+  "chips": [],
+  "chipContainer": null,
+  "chipOverflowCount": 0,
+  "pageHasHorizontalOverflow": false,
+  "modalHasHorizontalOverflow": false
+}

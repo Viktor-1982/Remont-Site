@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
 
     return {
         rules: [
+            // ── Default: all crawlers ─────────────────────────────────────────
             {
                 userAgent: "*",
                 allow: ["/"],
@@ -21,9 +22,39 @@ export default function robots(): MetadataRoute.Robots {
                     "/*?*",
                 ],
             },
+
+            // ── AI Search Engines — explicitly allowed ────────────────────────
+            // These bots index content for AI-powered search (Perplexity, ChatGPT, etc.)
+            // Allowing them increases visibility in AI-generated answers.
+            {
+                userAgent: "GPTBot",        // ChatGPT / OpenAI Search
+                allow: ["/"],
+            },
+            {
+                userAgent: "PerplexityBot", // Perplexity AI Search
+                allow: ["/"],
+            },
+            {
+                userAgent: "ClaudeBot",     // Anthropic / Claude
+                allow: ["/"],
+            },
+            {
+                userAgent: "YouBot",        // You.com AI Search
+                allow: ["/"],
+            },
+            {
+                userAgent: "Applebot",      // Apple Intelligence / Spotlight
+                allow: ["/"],
+            },
+            {
+                userAgent: "anthropic-ai",  // Anthropic crawler (alternate UA)
+                allow: ["/"],
+            },
+            {
+                userAgent: "Google-Extended", // Google Bard / Gemini training
+                allow: ["/"],
+            },
         ],
-        sitemap: [`${baseUrl}/sitemap.xml`], // ✅  sitemap!
-        // host удалён: не является стандартной директивой robots.txt
-        // Поддерживается только Яндексом, но вызывает ошибки в валидаторах
+        sitemap: [`${baseUrl}/sitemap.xml`],
     }
 }

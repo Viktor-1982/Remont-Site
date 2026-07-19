@@ -1,0 +1,34 @@
+{
+  "url": "http://localhost:3100/",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "input": {
+    "left": 56.5,
+    "right": 313,
+    "top": 101.390625,
+    "bottom": 137.390625,
+    "width": 256.5,
+    "height": 36,
+    "value": "",
+    "clientWidth": 257,
+    "scrollWidth": 256,
+    "scrollLeft": 0
+  },
+  "close": {
+    "left": 321,
+    "right": 357,
+    "top": 101.390625,
+    "bottom": 137.390625,
+    "width": 36,
+    "height": 36
+  },
+  "inputOverlapsClose": false,
+  "gapBetweenInputAndClose": 8,
+  "chips": [],
+  "chipContainer": null,
+  "chipOverflowCount": 0,
+  "pageHasHorizontalOverflow": false,
+  "modalHasHorizontalOverflow": false
+}

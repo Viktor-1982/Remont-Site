@@ -1,0 +1,77 @@
+{
+  "url": "http://localhost:3100/search?q=very%20long%20search%20query%20to%20verify%20text%20overflow%20in%20the%20header%20search%20input%20and%20the%20recent%20search%20chips%20inside%20the%20modal%20dialog",
+  "viewport": {
+    "width": 1440,
+    "height": 1100
+  },
+  "modal": {
+    "left": 384,
+    "right": 1056,
+    "top": 204,
+    "bottom": 419,
+    "width": 672,
+    "height": 215
+  },
+  "headerRow": {
+    "left": 385,
+    "right": 1055,
+    "top": 205,
+    "bottom": 274,
+    "width": 670,
+    "height": 69
+  },
+  "icon": {
+    "left": 401,
+    "right": 418.734375,
+    "top": 229,
+    "bottom": 249,
+    "width": 17.734375,
+    "height": 20
+  },
+  "input": {
+    "left": 426.734375,
+    "right": 995,
+    "top": 221,
+    "bottom": 257,
+    "width": 568.265625,
+    "height": 36,
+    "value": "",
+    "placeholder": "Поиск статей...",
+    "clientWidth": 568,
+    "scrollWidth": 568,
+    "scrollLeft": 0
+  },
+  "close": {
+    "left": 1003,
+    "right": 1039,
+    "top": 221,
+    "bottom": 257,
+    "width": 36,
+    "height": 36
+  },
+  "inputOverlapsClose": false,
+  "gapBetweenInputAndClose": 8,
+  "chips": [
+    {
+      "text": "very long search query to verify text overflow in the header search input and the recent search chips inside the modal dialog",
+      "left": 401,
+      "right": 1083.375,
+      "width": 682.375,
+      "top": 326,
+      "bottom": 358,
+      "clientWidth": 680,
+      "scrollWidth": 680
+    }
+  ],
+  "chipContainer": {
+    "left": 401,
+    "right": 1039,
+    "top": 326,
+    "bottom": 358,
+    "width": 638,
+    "height": 32
+  },
+  "chipOverflowCount": 1,
+  "pageHasHorizontalOverflow": false,
+  "modalHasHorizontalOverflow": false
+}

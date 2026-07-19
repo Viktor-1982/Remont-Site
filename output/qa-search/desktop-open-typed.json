@@ -1,0 +1,59 @@
+{
+  "url": "http://localhost:3100/",
+  "viewport": {
+    "width": 1440,
+    "height": 1100
+  },
+  "modal": {
+    "left": 384,
+    "right": 1056,
+    "top": 220,
+    "bottom": 411,
+    "width": 672,
+    "height": 191
+  },
+  "headerRow": {
+    "left": 385,
+    "right": 1055,
+    "top": 221,
+    "bottom": 290,
+    "width": 670,
+    "height": 69
+  },
+  "icon": {
+    "left": 401,
+    "right": 418.734375,
+    "top": 245,
+    "bottom": 265,
+    "width": 17.734375,
+    "height": 20
+  },
+  "input": {
+    "left": 426.734375,
+    "right": 995,
+    "top": 237,
+    "bottom": 273,
+    "width": 568.265625,
+    "height": 36,
+    "value": "very long search query to verify text overflow in the header search input and the recent search chips inside the modal dialog",
+    "placeholder": "Поиск статей...",
+    "clientWidth": 568,
+    "scrollWidth": 790,
+    "scrollLeft": 221
+  },
+  "close": {
+    "left": 1003,
+    "right": 1039,
+    "top": 237,
+    "bottom": 273,
+    "width": 36,
+    "height": 36
+  },
+  "inputOverlapsClose": false,
+  "gapBetweenInputAndClose": 8,
+  "chips": [],
+  "chipContainer": null,
+  "chipOverflowCount": 0,
+  "pageHasHorizontalOverflow": false,
+  "modalHasHorizontalOverflow": false
+}

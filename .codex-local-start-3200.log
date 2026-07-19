@@ -1,0 +1,377 @@
+npm warn config optional Use `--omit=optional` to exclude optional dependencies, or
+npm warn config `--include=optional` to include them.
+npm warn config
+npm warn config       Default value does install optional deps unless otherwise omitted.
+
+> repair-blog@0.1.0 dev
+> concurrently "next dev" "contentlayer2 dev" --hostname 127.0.0.1 --port 3200
+
+[0]    ▲ Next.js 15.5.9
+[0]    - Local:        http://localhost:3000
+[0]    - Network:      http://192.168.1.34:3000
+[0]    - Environments: .env.local
+[0] 
+[0]  ✓ Starting...
+[1] Warning: Contentlayer might not work as expected on Windows
+[1] Contentlayer config change detected. Updating type definitions and data...
+[1] Generated 68 documents in .contentlayer
+[0]  ✓ Ready in 6.5s
+[0]  ○ Compiling / ...
+[0]  ✓ Compiled / in 14.1s (1948 modules)
+[0]  GET / 200 in 20085ms
+[0]  ○ Compiling /icon.svg ...
+[0]  ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[0] Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[0]  ✓ Compiled /api/switch-target in 1830ms (1133 modules)
+[0]  ✓ Compiled in 2.1s (833 modules)
+[0]  GET /api/posts 200 in 3794ms
+[0]  GET /api/switch-target?path=%2F 200 in 3877ms
+[0]  GET /icon.svg 200 in 5042ms
+[0]  GET /api/switch-target?path=%2F 200 in 149ms
+[0]  GET /icon.svg 200 in 576ms
+[0]  GET /api/switch-target?path=%2F 200 in 153ms
+[0]  GET /icon.svg 200 in 112ms
+[0]  GET / 200 in 1616ms
+[0]  GET /icon.svg 200 in 99ms
+[0]  ✓ Compiled in 1169ms (833 modules)
+[0]  ✓ Compiled in 849ms (833 modules)
+[0]  ○ Compiling /en ...
+[0]  ✓ Compiled /en in 2.5s (1947 modules)
+[0]  GET /en 200 in 6266ms
+[0]  ○ Compiling /icon.svg ...
+[0]  ✓ Compiled /icon.svg in 755ms (1143 modules)
+[0]  GET /icon.svg 200 in 1212ms
+[0]  ○ Compiling /api/switch-target ...
+[0]  ✓ Compiled /api/switch-target in 881ms (1148 modules)
+[0]  ✓ Compiled (1150 modules)
+[0]  GET /api/posts 200 in 1763ms
+[0]  GET /api/switch-target?path=%2Fen 200 in 1862ms
+[0]  GET /icon.svg 200 in 1467ms
+[0]  GET /api/switch-target?path=%2Fen 200 in 111ms
+[0]  GET /icon.svg 200 in 125ms
+[0]  GET /api/switch-target?path=%2Fen 200 in 81ms
+[0]  ✓ Compiled in 3.5s (835 modules)
+[0]  ✓ Compiled in 1490ms (835 modules)
+[0]  GET /en 200 in 4491ms
+[0]  GET /icon.svg 200 in 69ms
+[0]  GET /api/switch-target?path=%2Fen 200 in 79ms
+[0]  GET /api/switch-target?path=%2Fen 200 in 65ms
+[0]  GET /api/switch-target?path=%2Fen 200 in 73ms
+[0]  ✓ Compiled in 2.3s (835 modules)
+[0]  ✓ Compiled in 1177ms (835 modules)
+[0]  GET / 200 in 3400ms
+[0]  GET /icon.svg 200 in 90ms
+[0]  GET /api/switch-target?path=%2F 200 in 72ms
+[0]  GET /api/switch-target?path=%2F 200 in 73ms
+[0]  GET /api/switch-target?path=%2F 200 in 68ms
+[0]  ✓ Compiled in 1152ms (835 modules)
+[0]  ✓ Compiled in 869ms (835 modules)
+[0]  ✓ Compiled in 1583ms (835 modules)
+[0]  ✓ Compiled in 1275ms (835 modules)
+[0]  ✓ Compiled in 1003ms (835 modules)
+[0]  ✓ Compiled in 1363ms (835 modules)
+[0]  ✓ Compiled in 1140ms (835 modules)
+[0]  ✓ Compiled in 1566ms (835 modules)
+[0]  ✓ Compiled in 1171ms (835 modules)
+[0]  ✓ Compiled in 964ms (835 modules)
+[0]  ✓ Compiled in 1205ms (835 modules)
+[0]  ✓ Compiled in 1549ms (835 modules)
+[0]  ✓ Compiled in 3.8s (1965 modules)
+[0]  GET / 200 in 4014ms
+[0]  ○ Compiling /icon.svg ...
+[0]  ✓ Compiled /icon.svg in 770ms (1145 modules)
+[0]  GET /icon.svg 200 in 1287ms
+[0]  ○ Compiling /api/switch-target ...
+[0]  ✓ Compiled /api/switch-target in 797ms (1150 modules)
+[0]  ✓ Compiled in 1ms (1152 modules)
+[0]  ✓ Compiled in 1ms (1152 modules)
+[0]  GET /icon.svg 200 in 1747ms
+[0]  ✓ Compiled in 2ms (1152 modules)
+[0]  GET /api/posts 200 in 3466ms
+[0]  GET /api/switch-target?path=%2F 200 in 4356ms
+[0]  GET /icon.svg 200 in 1911ms
+[0]  GET /api/switch-target?path=%2F 200 in 127ms
+[0]  GET /api/switch-target?path=%2F 200 in 79ms
+[0]  ○ Compiling /search ...
+[0]  ✓ Compiled /search in 1732ms (1989 modules)
+[0]  GET / 200 in 2818ms
+[0]  GET /icon.svg 200 in 92ms
+[0]  GET /icon.svg 200 in 67ms
+[0]  GET /icon.svg 200 in 74ms
+[0]  GET /api/posts 200 in 192ms
+[0]  GET /api/switch-target?path=%2F 200 in 294ms
+[0]  GET /api/switch-target?path=%2F 200 in 69ms
+[0]  GET /api/switch-target?path=%2F 200 in 70ms
+[0]  GET /search?q=lighting 200 in 156ms
+[0]  GET /api/switch-target?path=%2Fsearch 200 in 100ms
+[0]  GET /icon.svg 200 in 149ms
+[0]  GET /api/switch-target?path=%2Fsearch 200 in 129ms
+[0]  GET /api/switch-target?path=%2Fsearch 200 in 78ms
+[0]  ✓ Compiled in 1726ms (838 modules)
+[1] Contentlayer config change detected. Updating type definitions and data...
+[0]  ✓ Compiled in 4.7s (1970 modules)
+[1] Generated 68 documents in .contentlayer
+[0]  ✓ Compiled in 1121ms (840 modules)
+[0]  ✓ Compiled in 1432ms (1970 modules)
+[1] 
+[1] File updated: trendy-vannoy-2026.mdx
+[1] 
+[1] File updated: materialy-i-poverkhnosti-2026.mdx
+[1] 
+[1] File updated: osveshchenie-2026-trendy-dlya-kvartiry-i-doma.mdx
+[1] 
+[1] File updated: malenkaya-kvartira-2026-trendy.mdx
+[1] 
+[1] File updated: trendy-spalni-2026.mdx
+[1] 
+[1] File updated: skolko-nuzhno-plintusa.mdx
+[1] 
+[1] File updated: remont-bez-peredelok-2026.mdx
+[1] 
+[1] File updated: kak-rasschitat-styazhku-pola.mdx
+[1] 
+[1] File updated: kak-rasschitat-laminat-i-kvarcvinil.mdx
+[1] 
+[1] File updated: kak-vybrat-plitku.mdx
+[1] 
+[1] File updated: remont-kvartiry-plan-2026.mdx
+[1] 
+[1] File updated: remont-staroy-kvartiry.mdx
+[1] 
+[1] File updated: malenkaya-studiya-dizayn-interera.mdx
+[1] 
+[1] File updated: 5-oshibok-remonta-vannoy-komnaty.mdx
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[0]  ✓ Compiled in 4.6s (1970 modules)
+[0]  ✓ Compiled in 1729ms (1970 modules)
+[1] 
+[1] File updated: en/bathroom-trends-2026.mdx
+[1] 
+[1] File updated: en/material-surface-trends-2026.mdx
+[1] 
+[1] File updated: en/small-apartment-trends-2026.mdx
+[1] 
+[1] File updated: en/lighting-trends-2026-for-home-and-apartment.mdx
+[1] 
+[1] File updated: en/how-much-baseboard-do-you-need.mdx
+[1] 
+[1] File updated: en/how-to-calculate-floor-screed.mdx
+[1] 
+[1] File updated: en/5-bathroom-mistakes.mdx
+[1] 
+[1] File updated: en/how-to-choose-bathroom-tiles.mdx
+[1] 
+[1] File updated: en/how-to-calculate-laminate-and-lvt.mdx
+[1] 
+[1] File updated: en/old-apartment-renovation-guide.mdx
+[1] 
+[1] File updated: en/apartment-renovation-plan-2026.mdx
+[1] 
+[1] File updated: en/small-studio-interior-design.mdx
+[1] 
+[1] File updated: en/bedroom-trends-2026.mdx
+[1] 
+[1] File updated: en/renovation-without-rework-2026.mdx
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[1] Generated 68 documents in .contentlayer
+[0]  ✓ Compiled in 6.3s (1970 modules)
+[0]  ✓ Compiled in 3.5s (1902 modules)
+[0]  ○ Compiling /_not-found ...
+[0]  ✓ Compiled /_not-found in 3.5s (1909 modules)
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0]  ○ Compiling /_error ...
+[0]  ✓ Compiled /_error in 2.4s (2249 modules)
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0]  GET / 500 in 10577ms
+[0]  GET / 500 in 364ms
+[0]  ○ Compiling /favicon.ico ...
+[0]  ✓ Compiled /favicon.ico in 977ms (1271 modules)
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json',
+[0]   page: '/favicon.ico'
+[0] }
+[0]  GET /favicon.ico 500 in 1451ms
+[0]  ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\server\vendor-chunks\lucide-react.js'
+[0]     at <unknown> (C:\Users\Viktor\projects\repair-blog\.next\server\app\(ru)\page.js:927:47)
+[0]     at Object.<anonymous> (C:\Users\Viktor\projects\repair-blog\.next\server\app\(ru)\page.js:930:3) {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\server\\vendor-chunks\\lucide-react.js',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0] Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\server\vendor-chunks\lucide-react.js'
+[0]     at <unknown> (C:\Users\Viktor\projects\repair-blog\.next\server\app\(ru)\page.js:927:47)
+[0]     at Object.<anonymous> (C:\Users\Viktor\projects\repair-blog\.next\server\app\(ru)\page.js:930:3) {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\server\\vendor-chunks\\lucide-react.js',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0]  GET / 500 in 1300ms
+[0]  GET / 500 in 407ms
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json',
+[0]   page: '/favicon.ico'
+[0] }
+[0]  GET /favicon.ico 500 in 265ms
+[0]  ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\server\vendor-chunks\lucide-react.js'
+[0]     at <unknown> (C:\Users\Viktor\projects\repair-blog\.next\server\app\(ru)\page.js:927:47)
+[0]     at Object.<anonymous> (C:\Users\Viktor\projects\repair-blog\.next\server\app\(ru)\page.js:930:3) {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\server\\vendor-chunks\\lucide-react.js',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0] Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\server\vendor-chunks\lucide-react.js'
+[0]     at <unknown> (C:\Users\Viktor\projects\repair-blog\.next\server\app\(ru)\page.js:927:47)
+[0]     at Object.<anonymous> (C:\Users\Viktor\projects\repair-blog\.next\server\app\(ru)\page.js:930:3) {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\server\\vendor-chunks\\lucide-react.js',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0]  GET / 500 in 1044ms
+[0]  GET / 500 in 386ms
+[0]  ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\server\vendor-chunks\lucide-react.js'
+[0]     at <unknown> (C:\Users\Viktor\projects\repair-blog\.next\server\app\(ru)\page.js:927:47)
+[0]     at Object.<anonymous> (C:\Users\Viktor\projects\repair-blog\.next\server\app\(ru)\page.js:930:3) {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\server\\vendor-chunks\\lucide-react.js',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0] Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\server\vendor-chunks\lucide-react.js'
+[0]     at <unknown> (C:\Users\Viktor\projects\repair-blog\.next\server\app\(ru)\page.js:927:47)
+[0]     at Object.<anonymous> (C:\Users\Viktor\projects\repair-blog\.next\server\app\(ru)\page.js:930:3) {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\server\\vendor-chunks\\lucide-react.js',
+[0]   page: '/'
+[0] }
+[0]  ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0] [Error: ENOENT: no such file or directory, open 'C:\Users\Viktor\projects\repair-blog\.next\routes-manifest.json'] {
+[0]   errno: -4058,
+[0]   code: 'ENOENT',
+[0]   syscall: 'open',
+[0]   path: 'C:\\Users\\Viktor\\projects\\repair-blog\\.next\\routes-manifest.json'
+[0] }
+[0]  GET / 500 in 1124ms
+[0]  GET / 500 in 393ms

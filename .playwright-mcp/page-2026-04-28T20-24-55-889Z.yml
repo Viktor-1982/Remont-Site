@@ -1,0 +1,439 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "renohacks.com" [ref=e4] [cursor=pointer]:
+        - /url: /en
+      - navigation [ref=e5]:
+        - link "Home" [ref=e6] [cursor=pointer]:
+          - /url: /en
+        - link "Trends" [ref=e7] [cursor=pointer]:
+          - /url: /en/tags/trends
+        - link "DIY" [ref=e8] [cursor=pointer]:
+          - /url: /en/tags/diy
+        - link "Tags" [ref=e9] [cursor=pointer]:
+          - /url: /en/tags
+        - link "Bookmarks" [ref=e10] [cursor=pointer]:
+          - /url: /en/bookmarks
+        - link "About" [ref=e11] [cursor=pointer]:
+          - /url: /en/about
+        - button "Open renovation topics" [ref=e13]:
+          - img [ref=e14]
+          - generic [ref=e17]: Topics
+          - img [ref=e18]
+        - generic [ref=e20]:
+          - link "Tools" [ref=e21] [cursor=pointer]:
+            - /url: /en/tools
+            - img [ref=e22]
+            - generic [ref=e24]: Tools
+          - button "Open tools menu" [ref=e25]:
+            - img [ref=e26]
+      - generic [ref=e28]:
+        - button "Search" [ref=e29]:
+          - img
+        - button "Toggle theme" [ref=e31]:
+          - img
+        - generic [ref=e32]:
+          - link "Instagram" [ref=e33] [cursor=pointer]:
+            - /url: https://www.instagram.com/reno.hacks
+            - img [ref=e34]
+          - link "Pinterest" [ref=e36] [cursor=pointer]:
+            - /url: https://www.pinterest.com/RenoHacks/
+            - img [ref=e37]
+  - main [ref=e39]:
+    - article [ref=e40]:
+      - navigation "Breadcrumb" [ref=e41]:
+        - list [ref=e42]:
+          - listitem [ref=e43]:
+            - img [ref=e44]
+            - link "Home" [ref=e47] [cursor=pointer]:
+              - /url: /en
+          - listitem [ref=e48]:
+            - img [ref=e49]
+            - link "Articles" [ref=e51] [cursor=pointer]:
+              - /url: /en#articles
+          - listitem [ref=e52]:
+            - img [ref=e53]
+            - generic [ref=e55]: "Home Renovation Costs in 2026: Budget by Room, Materials and Scope"
+      - generic [ref=e56]:
+        - generic [ref=e57]:
+          - 'img "Home Renovation Costs in 2026: Budget by Room, Materials and Scope" [ref=e58]'
+          - generic [ref=e60]:
+            - button "Add to bookmarks" [ref=e62]:
+              - img [ref=e63]
+            - button "Share" [ref=e66]:
+              - img
+              - generic [ref=e67]: Share
+        - generic [ref=e68]:
+          - generic [ref=e69]:
+            - generic [ref=e70]:
+              - generic [ref=e71]:
+                - generic [ref=e72]: Budget and Planning
+                - generic [ref=e73]: Guide
+              - 'heading "Home Renovation Costs in 2026: Budget by Room, Materials and Scope" [level=1] [ref=e74]'
+            - button "Add to bookmarks" [ref=e76]:
+              - img [ref=e77]
+              - generic [ref=e79]: Save
+          - paragraph [ref=e80]: "A practical 2026 renovation cost guide for Western homeowners: realistic budget ranges, room-by-room priorities, hidden costs, planning rules and links to current market sources."
+          - generic [ref=e81]:
+            - generic [ref=e82]:
+              - img [ref=e83]
+              - time [ref=e85]: April 28, 2026
+            - generic [ref=e86]: ·
+            - generic [ref=e87]: 8 min read
+        - generic [ref=e89]:
+          - 'generic "Tag: renovation" [ref=e90]': "#renovation"
+          - 'generic "Tag: budgeting" [ref=e91]': "#budgeting"
+          - 'generic "Tag: home remodel" [ref=e92]': "#home remodel"
+          - 'generic "Tag: materials" [ref=e93]': "#materials"
+          - 'generic "Tag: kitchen" [ref=e94]': "#kitchen"
+          - 'generic "Tag: bathroom" [ref=e95]': "#bathroom"
+      - generic [ref=e96]:
+        - generic [ref=e98]:
+          - 'heading "Home Renovation Costs in 2026: Budget by Room, Materials and Scope" [level=2] [ref=e99]'
+          - blockquote [ref=e100]:
+            - paragraph [ref=e101]: "Short answer: in 2026, the safest renovation budget is not a single cost-per-square-foot number. Build it by scope, room, materials, labor, permits, contingencies and the cost of decisions you postpone."
+          - figure "Home renovation budget planning" [ref=e103]:
+            - img "Home renovation budget planning" [ref=e104]
+            - generic [ref=e105]: Home renovation budget planning
+          - paragraph [ref=e106]: Renovation prices vary sharply between the US, Canada, the UK, Australia and Europe. They also vary by city, labor availability, building age, permit requirements and whether you are renovating a condo, apartment, townhouse or detached home. The useful question is not "what is the average renovation cost?" The useful question is "what scope am I actually buying?"
+          - paragraph [ref=e107]: This guide is written for Western homeowners planning a practical 2026 remodel. It uses current market context from Harvard JCHS, Houzz, NAR, ASID, Zonda, GOV.UK and homeowner research, then turns that into a budget framework you can use before requesting quotes.
+          - heading "2026 market context" [level=2] [ref=e108]
+          - paragraph [ref=e109]:
+            - text: Renovation demand is not disappearing. The
+            - link "Harvard Joint Center for Housing Studies LIRA update" [ref=e110] [cursor=pointer]:
+              - /url: https://www.jchs.harvard.edu/press-releases/remodeling-growth-set-downshift-late-2026
+            - text: projects US homeowner improvement and maintenance spending to keep growing through 2026, even if growth slows later in the year. That means contractors may be more available than in peak overheated periods, but labor and materials are not suddenly cheap.
+          - paragraph [ref=e111]:
+            - text: Homeowners are also renovating because moving is expensive. The
+            - link "2026 State of American Home Renovation report" [ref=e112] [cursor=pointer]:
+              - /url: https://www.greatdayimprovements.com/home-advice/american-home-renovation-report/2026/
+            - text: found that cost remains a major obstacle, but many homeowners still plan meaningful projects. The same report notes that high costs, time pressure and finding trusted professionals are major barriers, which matches what many people feel before a kitchen, bathroom or whole-home remodel.
+          - paragraph [ref=e113]:
+            - text: In the UK, official material data also shows that costs are not flat. The GOV.UK
+            - link "construction building materials commentary for March 2026" [ref=e114] [cursor=pointer]:
+              - /url: https://www.gov.uk/government/statistics/building-materials-and-components-statistics-march-2026/construction-building-materials-commentary-march-2026
+            - text: reported that the "All Work" material price index was up year over year in February 2026, with repair and maintenance also higher.
+          - heading "Quick budget ranges" [level=2] [ref=e115]
+          - paragraph [ref=e116]: Use these as planning ranges, not quotes. Local bids can land outside them.
+          - paragraph [ref=e117]: "| Scope | Typical US planning range | What it usually includes | | --- | ---: | --- | | Cosmetic refresh | $20-$75 per sq ft | Paint, simple flooring, lighting swaps, hardware, minor repairs | | Midrange renovation | $75-$200 per sq ft | Better flooring, kitchen or bath updates, electrical changes, surface prep | | Major gut remodel | $200-$450+ per sq ft | Layout changes, MEP work, structural coordination, higher labor, permits | | High-end custom work | $450+ per sq ft | Custom millwork, premium stone, complex lighting, specialty trades |"
+          - paragraph [ref=e118]: For the UK, Canada, Australia and Europe, use the same scope logic but replace the unit prices with local contractor quotes and official material/labor data. The mistake is using a national average for a local building.
+          - heading "Room-by-room budget priorities" [level=2] [ref=e119]
+          - figure "Renovation material samples and room planning" [ref=e121]:
+            - img "Renovation material samples and room planning" [ref=e122]
+            - generic [ref=e123]: Renovation material samples and room planning
+          - paragraph [ref=e124]: Kitchens and bathrooms carry the highest risk because they combine design, plumbing, electrical, ventilation, waterproofing and expensive fixtures. Bedrooms and living rooms are easier to phase.
+          - paragraph [ref=e125]: "| Area | Budget pressure | Why it costs more than expected | | --- | --- | --- | | Kitchen | Very high | Cabinets, countertops, appliances, lighting, outlets, plumbing, layout decisions | | Bathroom | Very high | Waterproofing, tile, plumbing, ventilation, shower glass, accessibility | | Living areas | Medium | Flooring, surface prep, lighting, built-ins, paint quality | | Entry and hallway | Medium | Durable flooring, storage, doors, trim, lighting controls | | Exterior / envelope | High but strategic | Windows, doors, siding, insulation, water management, resale value | | Hidden work | High risk | Electrical, plumbing, HVAC, framing, subfloor, code upgrades |"
+          - paragraph [ref=e126]:
+            - text: "If you plan to stay in the home for years, spend first on comfort, durability and maintenance. If you may sell soon, compare project value: Zonda's"
+            - link "2025 Cost vs. Value Report" [ref=e127] [cursor=pointer]:
+              - /url: https://zondahome.com/2025-cost-vs-value-report/
+            - text: shows that some replacement and curb-appeal projects can retain more resale value than large discretionary interior remodels.
+          - 'heading "Kitchen costs: where the money goes" [level=2] [ref=e128]'
+          - paragraph [ref=e129]:
+            - text: Kitchen renovation remains one of the biggest interior expenses. Houzz's
+            - link "2026 U.S. Kitchen Trends Study" [ref=e130] [cursor=pointer]:
+              - /url: https://www.houzz.com/magazine/2026-u-s-houzz-kitchen-trends-study-stsetivw-vs~184213864
+            - text: "is useful because it is based on homeowners who are renovating or planning kitchen projects, not only designer mood boards. The study points toward practical kitchens: storage, layout, built-in features, warmer materials and function."
+          - paragraph [ref=e131]:
+            - text: NAR's 2026 kitchen trend analysis also emphasizes
+            - link "smarter layouts, built-in storage and warm materials" [ref=e132] [cursor=pointer]:
+              - /url: https://www.nar.realtor/blogs/styled-staged-sold/designing-a-kitchen-in-2026-six-trends-to-watch
+            - text: . For budgeting, that means the expensive part is not only "style." It is cabinets, drawers, pull-outs, appliances, lighting layers, electrical capacity and installation.
+          - paragraph [ref=e133]: "Kitchen budget rule:"
+          - list [ref=e134]:
+            - listitem [ref=e135]: Keep the footprint if possible.
+            - listitem [ref=e136]: Decide appliances before electrical and cabinetry.
+            - listitem [ref=e137]: Choose cabinet construction before choosing door color.
+            - listitem [ref=e138]: Use a durable countertop you can maintain.
+            - listitem [ref=e139]: Do not order cabinets until final measurements are confirmed.
+            - listitem [ref=e140]: Keep 10-15% of the kitchen budget for install details and fixes.
+          - 'heading "Bathroom costs: why small rooms get expensive" [level=2] [ref=e141]'
+          - paragraph [ref=e142]:
+            - text: A bathroom can be tiny and still costly. It has water, tile, ventilation, waterproofing, drains, lighting, storage, glass and sometimes heated floors. The 2026 direction is less about flashy luxury and more about daily comfort, aging-in-place and wellness. ASID's
+            - link "2026 Trends Outlook" [ref=e143] [cursor=pointer]:
+              - /url: https://www.asid.org/news/asid-releases-2026-trends-outlook-report
+            - text: frames interior design around wellness, technology, long-term use and changing lifestyles.
+          - paragraph [ref=e144]: "Bathroom budget rule:"
+          - list [ref=e145]:
+            - listitem [ref=e146]: Never skip waterproofing.
+            - listitem [ref=e147]: Keep access panels for valves and service points.
+            - listitem [ref=e148]: Plan ventilation before finishes.
+            - listitem [ref=e149]: Use slip-resistant flooring.
+            - listitem [ref=e150]: Decide shower niche, glass and drain location early.
+            - listitem [ref=e151]: If the home is long-term, consider blocking for future grab bars even if you do not install them now.
+          - heading "Hidden costs that break budgets" [level=2] [ref=e152]
+          - figure "Clean rough-in stage of a renovation" [ref=e154]:
+            - img "Clean rough-in stage of a renovation" [ref=e155]
+            - generic [ref=e156]: Clean rough-in stage of a renovation
+          - paragraph [ref=e157]: The visible finish is rarely the main budget risk. Hidden work is.
+          - paragraph [ref=e158]: "Common hidden costs:"
+          - list [ref=e159]:
+            - listitem [ref=e160]: electrical panel upgrades;
+            - listitem [ref=e161]: old plumbing replacement;
+            - listitem [ref=e162]: asbestos, lead paint or mold remediation in older homes;
+            - listitem [ref=e163]: subfloor leveling;
+            - listitem [ref=e164]: structural corrections;
+            - listitem [ref=e165]: permit revisions;
+            - listitem [ref=e166]: HVAC changes;
+            - listitem [ref=e167]: delivery, storage and debris removal;
+            - listitem [ref=e168]: temporary kitchen or temporary housing;
+            - listitem [ref=e169]: change orders from late decisions.
+          - paragraph [ref=e170]: For a narrow, planned project, keep a 10-15% contingency. For an older home, a condo with strict building rules or a gut renovation, use 20-30%.
+          - heading "What to spend on first" [level=2] [ref=e171]
+          - paragraph [ref=e172]: "Spend on the work that is hard to change later:"
+          - list [ref=e173]:
+            - listitem [ref=e174]: electrical capacity and safe circuits;
+            - listitem [ref=e175]: plumbing and shutoff access;
+            - listitem [ref=e176]: waterproofing;
+            - listitem [ref=e177]: insulation and air sealing where relevant;
+            - listitem [ref=e178]: windows, exterior doors and moisture control;
+            - listitem [ref=e179]: subfloor and wall preparation;
+            - listitem [ref=e180]: lighting plan;
+            - listitem [ref=e181]: kitchen measurements and cabinet layout.
+          - paragraph [ref=e182]: "Save on things that can be upgraded later:"
+          - list [ref=e183]:
+            - listitem [ref=e184]: decorative light fixtures;
+            - listitem [ref=e185]: loose furniture;
+            - listitem [ref=e186]: some hardware;
+            - listitem [ref=e187]: paint color changes;
+            - listitem [ref=e188]: nonessential built-ins;
+            - listitem [ref=e189]: premium tile in low-impact areas;
+            - listitem [ref=e190]: smart home devices that do not affect wiring or safety.
+          - paragraph [ref=e191]:
+            - text: If you are remodeling a small home or apartment, pair this guide with our
+            - link "small apartment trends 2026" [ref=e192] [cursor=pointer]:
+              - /url: /en/posts/small-apartment-trends-2026
+            - text: and
+            - link "renovation without rework" [ref=e193] [cursor=pointer]:
+              - /url: /en/posts/renovation-without-rework-2026
+            - text: guides. For material calculations, use the
+            - link "laminate and LVT calculator guide" [ref=e194] [cursor=pointer]:
+              - /url: /en/posts/how-to-calculate-laminate-and-lvt
+            - text: and
+            - link "floor screed guide" [ref=e195] [cursor=pointer]:
+              - /url: /en/posts/how-to-calculate-floor-screed
+            - text: .
+          - heading "A practical budget template" [level=2] [ref=e196]
+          - paragraph [ref=e197]: "Use this structure before talking to contractors:"
+          - paragraph [ref=e198]: "| Line item | Planning share | Notes | | --- | ---: | --- | | Labor | 35-55% | Varies by region and trade availability | | Rough materials | 10-20% | Lumber, drywall, compound, wiring, plumbing, fasteners | | Finish materials | 15-30% | Flooring, tile, paint, trim, counters, fixtures | | Cabinets and millwork | 10-25% | Can dominate kitchen-heavy projects | | Appliances and fixtures | 5-20% | Depends on kitchen, laundry and bath scope | | Permits and professional fees | 2-12% | Higher with structural work, additions or historic rules | | Logistics and cleanup | 3-8% | Delivery, storage, dumpsters, protection | | Contingency | 10-30% | Use the higher end for older homes |"
+          - paragraph [ref=e199]: "The formula:"
+          - code [ref=e201]: Real renovation budget = contractor scope + owner-purchased items + permits + temporary living costs + logistics + contingency
+          - paragraph [ref=e202]: The most common budgeting mistake is comparing one contractor's "labor and rough materials" quote with another contractor's "turnkey" quote. Before comparing prices, normalize the scope.
+          - heading "Questions to ask before accepting a quote" [level=2] [ref=e203]
+          - list [ref=e204]:
+            - listitem [ref=e205]: What is included and excluded?
+            - listitem [ref=e206]: Are permits included?
+            - listitem [ref=e207]: Who buys finish materials?
+            - listitem [ref=e208]: What happens if the subfloor, wiring or plumbing is worse than expected?
+            - listitem [ref=e209]: What is the payment schedule?
+            - listitem [ref=e210]: How are change orders priced?
+            - listitem [ref=e211]: Who handles debris removal?
+            - listitem [ref=e212]: How long will the kitchen or bathroom be unusable?
+            - listitem [ref=e213]: What warranty is provided?
+            - listitem [ref=e214]: What decisions must be finalized before work starts?
+          - heading "Sources and market context" [level=2] [ref=e215]
+          - list [ref=e216]:
+            - listitem [ref=e217]:
+              - 'link "Harvard JCHS: Remodeling Growth Set to Downshift in Late 2026" [ref=e218] [cursor=pointer]':
+                - /url: https://www.jchs.harvard.edu/press-releases/remodeling-growth-set-downshift-late-2026
+            - listitem [ref=e219]:
+              - 'link "Harvard JCHS: Leading Indicator of Remodeling Activity" [ref=e220] [cursor=pointer]':
+                - /url: https://www.jchs.harvard.edu/leading-indicator-remodeling-activity-lira
+            - listitem [ref=e221]:
+              - 'link "Houzz: 2026 U.S. Kitchen Trends Study" [ref=e222] [cursor=pointer]':
+                - /url: https://www.houzz.com/magazine/2026-u-s-houzz-kitchen-trends-study-stsetivw-vs~184213864
+            - listitem [ref=e223]:
+              - 'link "NAR: Designing a Kitchen in 2026" [ref=e224] [cursor=pointer]':
+                - /url: https://www.nar.realtor/blogs/styled-staged-sold/designing-a-kitchen-in-2026-six-trends-to-watch
+            - listitem [ref=e225]:
+              - 'link "ASID: 2026 Trends Outlook Report" [ref=e226] [cursor=pointer]':
+                - /url: https://www.asid.org/news/asid-releases-2026-trends-outlook-report
+            - listitem [ref=e227]:
+              - 'link "GOV.UK: Construction building materials commentary, March 2026" [ref=e228] [cursor=pointer]':
+                - /url: https://www.gov.uk/government/statistics/building-materials-and-components-statistics-march-2026/construction-building-materials-commentary-march-2026
+            - listitem [ref=e229]:
+              - 'link "Zonda: 2025 Cost vs. Value Report" [ref=e230] [cursor=pointer]':
+                - /url: https://zondahome.com/2025-cost-vs-value-report/
+            - listitem [ref=e231]:
+              - 'link "Great Day Improvements: 2026 State of American Home Renovation" [ref=e232] [cursor=pointer]':
+                - /url: https://www.greatdayimprovements.com/home-advice/american-home-renovation-report/2026/
+        - complementary [ref=e233]:
+          - navigation "Table of contents" [ref=e235]:
+            - generic [ref=e236]: Table of contents
+            - list [ref=e237]:
+              - listitem [ref=e238]:
+                - link "2026 market context" [ref=e239] [cursor=pointer]:
+                  - /url: "#2026-market-context"
+              - listitem [ref=e240]:
+                - link "Quick budget ranges" [ref=e241] [cursor=pointer]:
+                  - /url: "#quick-budget-ranges"
+              - listitem [ref=e242]:
+                - link "Room-by-room budget priorities" [ref=e243] [cursor=pointer]:
+                  - /url: "#room-by-room-budget-priorities"
+              - listitem [ref=e244]:
+                - 'link "Kitchen costs: where the money goes" [ref=e245] [cursor=pointer]':
+                  - /url: "#kitchen-costs-where-the-money-goes"
+              - listitem [ref=e246]:
+                - 'link "Bathroom costs: why small rooms get expensive" [ref=e247] [cursor=pointer]':
+                  - /url: "#bathroom-costs-why-small-rooms-get-expensive"
+              - listitem [ref=e248]:
+                - link "Hidden costs that break budgets" [ref=e249] [cursor=pointer]:
+                  - /url: "#hidden-costs-that-break-budgets"
+              - listitem [ref=e250]:
+                - link "What to spend on first" [ref=e251] [cursor=pointer]:
+                  - /url: "#what-to-spend-on-first"
+              - listitem [ref=e252]:
+                - link "A practical budget template" [ref=e253] [cursor=pointer]:
+                  - /url: "#a-practical-budget-template"
+              - listitem [ref=e254]:
+                - link "Questions to ask before accepting a quote" [ref=e255] [cursor=pointer]:
+                  - /url: "#questions-to-ask-before-accepting-a-quote"
+              - listitem [ref=e256]:
+                - link "Sources and market context" [ref=e257] [cursor=pointer]:
+                  - /url: "#sources-and-market-context"
+      - generic [ref=e260]:
+        - generic [ref=e261]:
+          - generic [ref=e263]: Best next step from this article
+          - heading "Turn the idea into a working budget" [level=2] [ref=e264]
+          - paragraph [ref=e265]: Start with the main calculator, then use the two tools that most naturally follow this article.
+        - generic [ref=e266]:
+          - link "Main next step Planner Budget Planner Build a renovation budget by category, currency, and contingency reserve. Plan the budget" [ref=e267] [cursor=pointer]:
+            - /url: /en/calculators/budget
+            - generic [ref=e268]:
+              - generic [ref=e269]:
+                - generic [ref=e270]: Main next step
+                - img [ref=e272]
+              - generic [ref=e275]: Planner
+              - heading "Budget Planner" [level=3] [ref=e276]
+              - paragraph [ref=e277]: Build a renovation budget by category, currency, and contingency reserve.
+              - generic [ref=e278]:
+                - text: Plan the budget
+                - img [ref=e279]
+          - generic [ref=e281]:
+            - link "Useful next Calculator Tile Calculator Estimate wall or floor tile, waste allowance, and adhesive consumption. Calculate tile" [ref=e282] [cursor=pointer]:
+              - /url: /en/calculators/tile
+              - generic [ref=e283]:
+                - generic [ref=e284]:
+                  - generic [ref=e285]: Useful next
+                  - img [ref=e287]
+                - generic [ref=e289]: Calculator
+                - heading "Tile Calculator" [level=3] [ref=e290]
+                - paragraph [ref=e291]: Estimate wall or floor tile, waste allowance, and adhesive consumption.
+                - generic [ref=e292]:
+                  - text: Calculate tile
+                  - img [ref=e293]
+            - link "Useful next Calculator Lighting Calculator Work out how many lumens and fixtures a room really needs. Calculate lighting" [ref=e295] [cursor=pointer]:
+              - /url: /en/calculators/lighting
+              - generic [ref=e296]:
+                - generic [ref=e297]:
+                  - generic [ref=e298]: Useful next
+                  - img [ref=e300]
+                - generic [ref=e302]: Calculator
+                - heading "Lighting Calculator" [level=3] [ref=e303]
+                - paragraph [ref=e304]: Work out how many lumens and fixtures a room really needs.
+                - generic [ref=e305]:
+                  - text: Calculate lighting
+                  - img [ref=e306]
+        - generic [ref=e308]:
+          - generic [ref=e309]:
+            - generic [ref=e310]: Updated
+            - generic [ref=e311]: April 28, 2026
+          - generic [ref=e312]:
+            - generic [ref=e313]: What this piece is based on
+            - paragraph [ref=e314]: This piece is structured as a practical sequence of work, material choices, and decisions without extra steps.
+        - link "How we review materials and tools" [ref=e316] [cursor=pointer]:
+          - /url: /en/editorial-standards
+          - text: How we review materials and tools
+          - img [ref=e317]
+      - complementary [ref=e320]:
+        - heading "Related Articles" [level=3] [ref=e321]
+        - generic [ref=e322]:
+          - 'link "Apartment Renovation 2026: How to Turn Chaos into a Clear Plan A step-by-step apartment renovation guide for 2026: planning, rough-in work, finishes, material choices, budget control, furniture and lighting decisions. Read more →" [ref=e323] [cursor=pointer]':
+            - /url: /en/posts/apartment-renovation-plan-2026
+            - 'heading "Apartment Renovation 2026: How to Turn Chaos into a Clear Plan" [level=4] [ref=e324]'
+            - paragraph [ref=e325]: "A step-by-step apartment renovation guide for 2026: planning, rough-in work, finishes, material choices, budget control, furniture and lighting decisions."
+            - generic [ref=e326]: Read more →
+          - 'link "Lighting Trends 2026: 8 Home Lighting Ideas to Plan Before a Remodel The top lighting trends 2026 for kitchens, bedrooms, bathrooms, and living rooms: layered lighting, warm dimmable light, hidden cabinet lighting, smarter controls, and common remodel mistakes to avoid. Read more →" [ref=e327] [cursor=pointer]':
+            - /url: /en/posts/lighting-trends-2026-for-home-and-apartment
+            - 'heading "Lighting Trends 2026: 8 Home Lighting Ideas to Plan Before a Remodel" [level=4] [ref=e328]'
+            - paragraph [ref=e329]: "The top lighting trends 2026 for kitchens, bedrooms, bathrooms, and living rooms: layered lighting, warm dimmable light, hidden cabinet lighting, smarter controls, and common remodel mistakes to avoid."
+            - generic [ref=e330]: Read more →
+          - 'link "Kitchen 2026: Design Trends, Colors and Materials Kitchen trends 2026: warm earthy colors, durable natural materials, hidden appliances, eco-design and flexible layouts. Concise guide for renovation and inspiration. Read more →" [ref=e331] [cursor=pointer]':
+            - /url: /en/posts/kitchen-trends-2026
+            - 'heading "Kitchen 2026: Design Trends, Colors and Materials" [level=4] [ref=e332]'
+            - paragraph [ref=e333]: "Kitchen trends 2026: warm earthy colors, durable natural materials, hidden appliances, eco-design and flexible layouts. Concise guide for renovation and inspiration."
+            - generic [ref=e334]: Read more →
+          - 'link "Bathroom Trends 2026: 9 Design Ideas for Tile, Lighting and Storage The bathroom trends 2026 that are actually worth using: curbless showers, warm tile, layered lighting, hidden storage, wood vanities and barrier-free design. Read more →" [ref=e335] [cursor=pointer]':
+            - /url: /en/posts/bathroom-trends-2026
+            - 'heading "Bathroom Trends 2026: 9 Design Ideas for Tile, Lighting and Storage" [level=4] [ref=e336]'
+            - paragraph [ref=e337]: "The bathroom trends 2026 that are actually worth using: curbless showers, warm tile, layered lighting, hidden storage, wood vanities and barrier-free design."
+            - generic [ref=e338]: Read more →
+      - generic [ref=e341]:
+        - generic [ref=e342]:
+          - img [ref=e343]
+          - heading "Subscribe to Updates" [level=3] [ref=e346]
+        - paragraph [ref=e347]: Choose the renovation email track you actually want to receive.
+        - group "What should we send you" [ref=e348]:
+          - generic [ref=e349]: What should we send you
+          - paragraph [ref=e350]: Pick one email track so the newsletter stays useful.
+          - generic [ref=e351]:
+            - generic [ref=e352] [cursor=pointer]:
+              - radio "Planning and budget Estimates, tools, and practical renovation planning." [ref=e353]
+              - generic [ref=e354]:
+                - paragraph [ref=e355]: Planning and budget
+                - paragraph [ref=e356]: Estimates, tools, and practical renovation planning.
+            - generic [ref=e357] [cursor=pointer]:
+              - radio "Ideas and trends Trends, inspiration, and visual room ideas." [ref=e358]
+              - generic [ref=e359]:
+                - paragraph [ref=e360]: Ideas and trends
+                - paragraph [ref=e361]: Trends, inspiration, and visual room ideas.
+            - generic [ref=e362] [cursor=pointer]:
+              - radio "Mistakes and guides Step-by-step articles, common mistakes, and practical fixes." [ref=e363]
+              - generic [ref=e364]:
+                - paragraph [ref=e365]: Mistakes and guides
+                - paragraph [ref=e366]: Step-by-step articles, common mistakes, and practical fixes.
+        - generic [ref=e367]:
+          - textbox "Your email" [ref=e368]
+          - button "Subscribe" [ref=e369]
+  - contentinfo [ref=e371]:
+    - generic [ref=e373]:
+      - region "renohacks.com" [ref=e374]:
+        - heading "renohacks.com" [level=2] [ref=e375]
+        - paragraph [ref=e376]: Renohacks — renovation and construction blog. Photo guides, estimates, DIY tips and material reviews.
+      - navigation "Sections" [ref=e377]:
+        - heading "Sections" [level=2] [ref=e378]
+        - list [ref=e379]:
+          - listitem [ref=e380]:
+            - link "Kitchen" [ref=e381] [cursor=pointer]:
+              - /url: /en/tags/kitchen
+          - listitem [ref=e382]:
+            - link "Bathroom" [ref=e383] [cursor=pointer]:
+              - /url: /en/tags/bathroom
+          - listitem [ref=e384]:
+            - link "Walls" [ref=e385] [cursor=pointer]:
+              - /url: /en/tags/walls
+          - listitem [ref=e386]:
+            - link "How we review" [ref=e387] [cursor=pointer]:
+              - /url: /en/editorial-standards
+      - region "Follow us" [ref=e388]:
+        - heading "Follow us" [level=2] [ref=e389]
+        - generic "Follow us" [ref=e390]:
+          - link "Instagram" [ref=e391] [cursor=pointer]:
+            - /url: https://www.instagram.com/reno.hacks
+            - img [ref=e392]
+            - generic [ref=e394]: Instagram
+          - link "Pinterest" [ref=e395] [cursor=pointer]:
+            - /url: https://www.pinterest.com/RenoHacks/
+            - img [ref=e396]
+            - generic [ref=e398]: Pinterest
+    - generic [ref=e400]:
+      - generic [ref=e401]: © 2026 renohacks.com. All rights reserved.
+      - link "Privacy Policy" [ref=e402] [cursor=pointer]:
+        - /url: /en/privacy
+      - link "Terms of Use" [ref=e403] [cursor=pointer]:
+        - /url: /en/terms
+      - generic [ref=e405]:
+        - text: Designed by
+        - link "ViktorWebStudio" [ref=e406] [cursor=pointer]:
+          - /url: /en/developer
+  - region "Notifications alt+T"

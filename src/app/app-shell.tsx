@@ -35,6 +35,8 @@ const siteSchema = {
             "@id": "https://renohacks.com/#website",
             url: "https://renohacks.com/",
             name: "Renohacks",
+            // Tells search engines and AI bots that this site has bilingual content
+            inLanguage: ["en", "ru"],
             publisher: { "@id": "https://renohacks.com/#organization" },
             potentialAction: {
                 "@type": "SearchAction",

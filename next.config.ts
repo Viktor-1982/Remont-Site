@@ -48,6 +48,15 @@ const nextConfig: NextConfig = {
     },
     async redirects() {
         return [
+            // ── Old /en/* links → canonical EN URLs (permanent 301) ───────────
+            // Covers Pinterest pins, old backlinks, bookmarks with /en/ prefix.
+            // Google will transfer all link juice to the canonical URL.
+            {
+                source: "/en/:path*",
+                destination: "/:path*",
+                permanent: true,  // 301 — tells Google the canonical is without /en/
+            },
+            // ── Specific post slug renames ─────────────────────────────────────
             {
                 source: "/posts/country-house-trends-2026",
                 destination: "/posts/trendy-zagorodnyh-domov-2026",
@@ -61,12 +70,8 @@ const nextConfig: NextConfig = {
         ]
     },
     async rewrites() {
-        return [
-            {
-                source: "/en/:path*",
-                destination: "/:path*",
-            },
-        ]
+        // No more /en/* rewrite needed — handled by 301 redirect above.
+        return []
     },
     async headers() {
         return [

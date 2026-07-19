@@ -1,0 +1,120 @@
+npm warn config optional Use `--omit=optional` to exclude optional dependencies, or
+npm warn config `--include=optional` to include them.
+npm warn config
+npm warn config       Default value does install optional deps unless otherwise omitted.
+
+> repair-blog@0.1.0 build
+> contentlayer2 build && node scripts/validate-content.mjs && next build
+
+Warning: Contentlayer might not work as expected on Windows
+Generated 66 documents in .contentlayer
+Content validation passed.
+   ▲ Next.js 15.5.9
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Viktor\projects\repair-blog\.next\cache\webpack\client-production\12.pack_' -> 'C:\Users\Viktor\projects\repair-blog\.next\cache\webpack\client-production\12.pack'
+ ✓ Compiled successfully in 25.6s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/364) ...
+   Generating static pages (91/364) 
+   Generating static pages (182/364) 
+   Generating static pages (273/364) 
+ ✓ Generating static pages (364/364)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                           Size  First Load JS  Revalidate  Expire
+┌ ○ /                                                149 B         183 kB          1d      1y
+├ ○ /_not-found                                       1 kB         103 kB
+├ ○ /about                                         1.78 kB         104 kB
+├ ƒ /api/chat                                        169 B         102 kB
+├ ƒ /api/indexnow                                    169 B         102 kB
+├ ƒ /api/notify-subscribers                          169 B         102 kB
+├ ○ /api/posts                                       169 B         102 kB          1h      1y
+├ ƒ /api/subscribe                                   169 B         102 kB
+├ ƒ /api/switch-target                               169 B         102 kB
+├ ƒ /api/unsubscribe                                 169 B         102 kB
+├ ○ /bookmarks                                     1.85 kB         128 kB
+├ ○ /calculators                                     169 B         102 kB
+├ ○ /calculators/baseboard                           149 B         160 kB
+├ ○ /calculators/budget                            5.38 kB         161 kB
+├ ○ /calculators/color-palette                       149 B         167 kB
+├ ○ /calculators/flooring                            148 B         161 kB
+├ ○ /calculators/lighting                            149 B         161 kB
+├ ○ /calculators/paint                             1.56 kB         161 kB
+├ ○ /calculators/screed                              150 B         161 kB
+├ ○ /calculators/tile                              1.06 kB         164 kB
+├ ○ /calculators/underfloor-heating                  149 B         162 kB
+├ ○ /calculators/ventilation                         149 B         160 kB
+├ ○ /calculators/wallpaper                         1.93 kB         163 kB
+├ ○ /developer                                      1.8 kB         107 kB
+├ ○ /en                                              149 B         183 kB          1d      1y
+├ ○ /en/about                                      1.78 kB         104 kB
+├ ○ /en/bookmarks                                  1.77 kB         128 kB
+├ ○ /en/calculators                                  169 B         102 kB
+├ ○ /en/calculators/baseboard                        149 B         160 kB
+├ ○ /en/calculators/budget                         4.65 kB         160 kB
+├ ○ /en/calculators/color-palette                    149 B         167 kB
+├ ○ /en/calculators/flooring                         148 B         161 kB
+├ ○ /en/calculators/lighting                         149 B         161 kB
+├ ○ /en/calculators/paint                          1.56 kB         161 kB
+├ ○ /en/calculators/screed                           149 B         161 kB
+├ ○ /en/calculators/tile                           1.06 kB         164 kB
+├ ○ /en/calculators/underfloor-heating               149 B         162 kB
+├ ○ /en/calculators/ventilation                      149 B         160 kB
+├ ○ /en/calculators/wallpaper                      1.93 kB         163 kB
+├ ○ /en/costs                                        199 B         133 kB
+├ ○ /en/developer                                   1.8 kB         107 kB
+├ ● /en/posts/[slug]                                 169 B         214 kB          1d      1y
+├   ├ /en/posts/5-apartment-renovation-mistakes                                    1d      1y
+├   ├ /en/posts/5-bathroom-mistakes                                                1d      1y
+├   ├ /en/posts/apartment-renovation-plan-2026                                     1d      1y
+├   └ [+30 more paths]
+├ ○ /en/privacy                                    1.78 kB         104 kB
+├ ○ /en/quiz/interior-style                          138 B         164 kB
+├ ƒ /en/search                                      2.4 kB         129 kB
+├ ○ /en/tags                                       1.91 kB         117 kB          1d      1y
+├ ● /en/tags/[tag]                                 1.32 kB         132 kB          1d      1y
+├   ├ /en/tags/2026                                                                1d      1y
+├   ├ /en/tags/2026 trends                                                         1d      1y
+├   ├ /en/tags/apartment                                                           1d      1y
+├   └ [+116 more paths]
+├ ○ /en/terms                                       1.8 kB         107 kB
+├ ○ /en/tools                                       1.8 kB         107 kB
+├ ○ /en/tools/materials-checklist                    145 B         187 kB
+├ ○ /feed-en.xml                                     169 B         102 kB          1h      1y
+├ ○ /feed.xml                                        169 B         102 kB          1h      1y
+├ ○ /icon.svg                                          0 B            0 B
+├ ● /posts/[slug]                                    169 B         214 kB          1d      1y
+├   ├ /posts/5-oshibok-novichkov-remonta-kvartiry                                  1d      1y
+├   ├ /posts/5-oshibok-remonta-vannoy-komnaty                                      1d      1y
+├   ├ /posts/8-interior-trends-2025                                                1d      1y
+├   └ [+30 more paths]
+├ ○ /privacy                                       1.78 kB         104 kB
+├ ○ /quiz/interior-style                             139 B         164 kB
+├ ○ /robots.txt                                      169 B         102 kB
+├ ƒ /rss.xml                                         169 B         102 kB
+├ ƒ /search                                         2.4 kB         129 kB
+├ ○ /sitemap.xml                                     169 B         102 kB
+├ ○ /smety                                           199 B         133 kB
+├ ○ /tags                                          1.91 kB         117 kB          1d      1y
+├ ● /tags/[tag]                                    1.32 kB         132 kB          1d      1y
+├   ├ /tags/2026                                                                   1d      1y
+├   ├ /tags/архитектура                                                            1d      1y
+├   ├ /tags/биофилия                                                               1d      1y
+├   └ [+111 more paths]
+├ ○ /terms                                          1.8 kB         107 kB
+├ ○ /tools                                          1.8 kB         107 kB
+└ ○ /tools/materials-checklist                       145 B         187 kB
++ First Load JS shared by all                       102 kB
+  ├ chunks/1255-2515ec02460e7abe.js                45.5 kB
+  ├ chunks/4bd1b696-182b6b13bdad92e3.js            54.2 kB
+  └ other shared chunks (total)                    2.21 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

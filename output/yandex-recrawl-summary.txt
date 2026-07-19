@@ -1,0 +1,6 @@
+Priority missing URLs: 106
+Full missing URLs: 318
+Priority static URLs: 44
+Priority series URLs: 8
+Priority post URLs: 54
+Tag URLs excluded from priority list: 212

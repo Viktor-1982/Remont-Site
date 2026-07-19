@@ -1,0 +1,18 @@
+{
+  "value": "very long search query to verify text overflow in the header search input and the recent search chips inside the modal dialog",
+  "input": {
+    "left": 56.5,
+    "right": 313,
+    "width": 256.5
+  },
+  "close": {
+    "left": 321,
+    "right": 357,
+    "width": 36
+  },
+  "gapBetweenInputAndClose": 8,
+  "inputOverlapsClose": false,
+  "scrollWidth": 1008,
+  "clientWidth": 257,
+  "scrollLeft": 0
+}
