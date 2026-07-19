@@ -18,6 +18,7 @@ export async function GET(req: Request) {
         function extractSlug(p: string) {
             const clean = p.split("?")[0].split("#")[0]
             if (clean.startsWith("/ru/posts/")) return clean.replace("/ru/posts/", "")
+            if (clean.startsWith("/en/posts/")) return clean.replace("/en/posts/", "")
             if (clean.startsWith("/posts/")) return clean.replace("/posts/", "")
             return null
         }
