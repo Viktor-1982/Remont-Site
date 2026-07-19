@@ -20,10 +20,7 @@ function stripAlertPrefix(children: React.ReactNode): React.ReactNode {
         return children.replace(/^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*/i, "")
     }
     if (Array.isArray(children)) {
-        return children.map((child, index) => {
-            if (index === 0) return stripAlertPrefix(child)
-            return child
-        })
+        return children.map((child) => stripAlertPrefix(child))
     }
     if (React.isValidElement(children)) {
         const childProps = children.props as { children?: React.ReactNode }
