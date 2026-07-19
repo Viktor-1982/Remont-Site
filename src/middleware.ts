@@ -40,11 +40,19 @@ export function middleware(request: NextRequest) {
     }
 
     // ── Bare paths (no locale prefix) = canonical EN URLs ───────────────────
-    // English users: serve directly — no redirect needed.
-    // Russian browser users: redirect to /ru equivalent.
-    const browserLocale = getBrowserLocale(request)
+    // Priority:
+    //   1. preferred-locale cookie — set by the language switcher (EXPLICIT user choice)
+    //      This MUST take priority so the switcher works for Russian-browser users.
+    //   2. Browser Accept-Language — used only for first-time visitors (no cookie)
+    //   3. Default: EN (serve directly, no redirect)
 
-    if (browserLocale === "ru") {
+    const cookieLocale = request.cookies.get("preferred-locale")?.value
+
+    // If the user explicitly chose a language via the switcher, always respect it.
+    // If no cookie, fall back to browser language for automatic detection.
+    const locale = cookieLocale ?? getBrowserLocale(request)
+
+    if (locale === "ru") {
         const redirectUrl = new URL(
             `/ru${pathname === "/" ? "" : pathname}`,
             request.url
@@ -62,4 +70,3 @@ export function middleware(request: NextRequest) {
 export const config = {
     matcher: ["/((?!api|_next/static|_next/image|images|favicon.ico|manifest.json|robots.txt|sitemap.xml|sw.js).*)"],
 }
-

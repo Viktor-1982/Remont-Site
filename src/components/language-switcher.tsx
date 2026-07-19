@@ -1,8 +1,7 @@
 "use client"
 
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import Link from "next/link"
 import { cn } from "@/lib/utils"
 
 type Locale = {
@@ -19,6 +18,7 @@ const locales: Locale[] = [
 
 export function LanguageSwitcher() {
     const pathname = usePathname() || "/"
+    const router = useRouter()
     const [targetUrls, setTargetUrls] = useState<Record<string, string>>({})
     const [loading, setLoading] = useState(true)
 
@@ -50,6 +50,12 @@ export function LanguageSwitcher() {
         }
     }, [pathname])
 
+    // Explicit language choice: set a cookie so middleware respects it
+    function handleSwitch(localeCode: string, href: string) {
+        document.cookie = `preferred-locale=${localeCode};path=/;max-age=31536000;SameSite=Lax`
+        router.push(href)
+    }
+
     if (loading) {
         return <div className="w-[120px] h-[36px] animate-pulse bg-muted/50 rounded-full" />
     }
@@ -69,21 +75,24 @@ export function LanguageSwitcher() {
                     : locale.code === "ru"
                 const href = isActive
                     ? pathname
-                    : targetUrls?.[locale.code] ?? locale.basePath
+                    : (targetUrls?.[locale.code] ?? locale.basePath)
 
                 return (
-                    <Link
+                    <button
                         key={locale.code}
-                        href={href}
+                        onClick={() => !isActive && handleSwitch(locale.code, href)}
+                        aria-current={isActive ? "page" : undefined}
+                        aria-label={`Switch to ${locale.label}`}
+                        disabled={isActive}
                         className={cn(
                             "px-2.5 sm:px-3 py-1 text-xs sm:text-sm font-semibold rounded-full transition-all duration-200",
                             isActive
-                                ? "bg-gradient-to-r from-orange-400 to-amber-500 text-white shadow scale-[1.05]"
-                                : "text-muted-foreground hover:text-primary hover:bg-white/30 hover:scale-[1.03]"
+                                ? "bg-gradient-to-r from-orange-400 to-amber-500 text-white shadow scale-[1.05] cursor-default"
+                                : "text-muted-foreground hover:text-primary hover:bg-white/30 hover:scale-[1.03] cursor-pointer"
                         )}
                     >
                         {locale.label}
-                    </Link>
+                    </button>
                 )
             })}
         </div>
