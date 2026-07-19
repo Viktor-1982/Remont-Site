@@ -58,10 +58,13 @@ const nextConfig: NextConfig = {
                 destination: "/posts/country-house-trends-2026",
                 permanent: true,
             },
+        ]
+    },
+    async rewrites() {
+        return [
             {
                 source: "/en/:path*",
                 destination: "/:path*",
-                permanent: true,
             },
         ]
     },

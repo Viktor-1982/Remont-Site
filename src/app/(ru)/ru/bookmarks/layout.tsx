@@ -3,7 +3,7 @@ import { getPageMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getPageMetadata("/ru/bookmarks", {
     title: "Закладки | Renohacks",
-    description: "Сохраненные статьи пользователя на Renohacks.",
+    description: "Ваши сохраненные закладки и статьи на Renohacks: быстрый доступ к вашим любимым руководствам по ремонту квартир, DIY-советам и чеклистам.",
     type: "website",
     robots: {
         index: false,

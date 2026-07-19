@@ -20,9 +20,9 @@ const kitchenHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "kitchen",
         path: "/ru/kitchen",
-        title: "Кухня: планировка, материалы и ремонт без лишних ошибок",
+        title: "Планировка и ремонт кухни | Renohacks",
         description:
-            "Главные материалы Renohacks по кухне: планировка, маленькая кухня, материалы и поверхности, свет, фартук, плитка и бюджет ремонта.",
+            "Изучите лучшие статьи Renohacks про ремонт кухни: планировка, дизайн маленькой кухни, выбор материалов, освещение и фартук. Полезные советы экспертов!",
         keywords: [
             "ремонт кухни",
             "дизайн кухни",
@@ -118,10 +118,10 @@ const kitchenHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "kitchen",
-        path: "/kitchen",
-        title: "Kitchen Remodeling Ideas, Layout, and Practical Planning",
+        path: "/en/kitchen",
+        title: "Kitchen Renovation & Layout | Renohacks",
         description:
-            "Best Renohacks kitchen content: kitchen layout, small-kitchen upgrades, finishes and surfaces, lighting, backsplash decisions, and renovation budgeting.",
+            "Explore top Renohacks kitchen design guides: layouts, small-kitchen upgrades, material selections, and lighting standards. Plan your kitchen remodel today!",
         keywords: [
             "kitchen remodel ideas",
             "kitchen layout planning",

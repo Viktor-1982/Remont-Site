@@ -7,7 +7,7 @@ import { getPageMetadata } from "@/lib/seo"
 const dictionary = getBedroomHubDictionary("ru")
 
 export const metadata: Metadata = getPageMetadata(dictionary.path, {
-    title: "Спальня: идеи ремонта, свет, цвет и комфорт | Renohacks",
+    title: dictionary.title,
     description: dictionary.description,
     cover: "/images/posts/bedroom-trends-2026/cover.png",
     type: "website",

@@ -131,15 +131,15 @@ export const calculatorPageDictionaries: Record<
         paint: {
             metadata: {
                 path: "/ru/calculators/paint",
-                title: "Калькулятор краски онлайн — рассчитать расход краски | Renohacks",
+                title: "Калькулятор расхода краски | Renohacks",
                 description:
-                    "Онлайн калькулятор краски: введите размеры комнаты и узнайте, сколько литров краски нужно. Удобный инструмент Renohacks.",
+                    "Бесплатный калькулятор расхода краски: введите размеры комнаты и узнайте, сколько литров краски нужно купить. Рассчитайте краску без ошибок!",
             },
             share: {
                 url: "/ru/calculators/paint",
-                title: "Калькулятор краски онлайн — рассчитать расход краски | Renohacks",
+                title: "Калькулятор расхода краски | Renohacks",
                 description:
-                    "Онлайн калькулятор краски: введите размеры комнаты и узнайте, сколько литров краски нужно",
+                    "Бесплатный калькулятор расхода краски: введите размеры комнаты и узнайте, сколько литров краски нужно купить.",
             },
             hero: {
                 title: "Калькулятор краски",
@@ -201,14 +201,14 @@ export const calculatorPageDictionaries: Record<
         flooring: {
             metadata: {
                 path: "/ru/calculators/flooring",
-                title: "Калькулятор ламината и кварцвинила - упаковки и запас | Renohacks",
+                title: "Калькулятор ламината и кварцвинила | Renohacks",
                 description:
-                    "Онлайн калькулятор ламината, кварцвинила и паркетной доски: площадь, упаковки, подложка и запас на подрезку.",
+                    "Бесплатный калькулятор ламината и кварцвинила: рассчитайте площадь пола, количество упаковок, подложку и запас на подрезку. Читайте наши советы!",
             },
             share: {
                 url: "/ru/calculators/flooring",
-                title: "Калькулятор ламината и кварцвинила - упаковки и запас | Renohacks",
-                description: "Рассчитайте упаковки покрытия, подложку и запас на подрезку",
+                title: "Калькулятор ламината и кварцвинила | Renohacks",
+                description: "Рассчитайте упаковки покрытия, подложку и запас на подрезку.",
             },
             hero: {
                 title: "Калькулятор напольного покрытия",
@@ -251,14 +251,14 @@ export const calculatorPageDictionaries: Record<
         baseboard: {
             metadata: {
                 path: "/ru/calculators/baseboard",
-                title: "Калькулятор плинтуса - длина, планки и стоимость | Renohacks",
+                title: "Калькулятор плинтуса для пола | Renohacks",
                 description:
-                    "Онлайн калькулятор плинтуса: погонные метры, количество планок, вычет проемов, запас и примерная стоимость.",
+                    "Бесплатный калькулятор плинтуса: рассчитайте погонные метры, количество планок с вычетом дверных проемов и запасом. Планируйте расходы легко!",
             },
             share: {
                 url: "/ru/calculators/baseboard",
-                title: "Калькулятор плинтуса - длина, планки и стоимость | Renohacks",
-                description: "Рассчитайте длину, запас и количество планок плинтуса",
+                title: "Калькулятор плинтуса для пола | Renohacks",
+                description: "Рассчитайте погонные метры, количество планок с вычетом дверных проемов и запасом.",
             },
             hero: {
                 title: "Калькулятор плинтуса",
@@ -300,14 +300,14 @@ export const calculatorPageDictionaries: Record<
         screed: {
             metadata: {
                 path: "/ru/calculators/screed",
-                title: "Калькулятор стяжки пола - объем смеси и мешки | Renohacks",
+                title: "Калькулятор стяжки пола | Renohacks",
                 description:
-                    "Онлайн калькулятор стяжки пола: объем, расход сухой смеси, количество мешков, вода на замес и стоимость.",
+                    "Бесплатный калькулятор стяжки пола: рассчитайте объем смеси, количество мешков, воду на замес и примерную стоимость. Сделайте ровный пол без хлопот!",
             },
             share: {
                 url: "/ru/calculators/screed",
-                title: "Калькулятор стяжки пола - объем смеси и мешки | Renohacks",
-                description: "Рассчитайте объем стяжки, сухую смесь и количество мешков",
+                title: "Калькулятор стяжки пола | Renohacks",
+                description: "Рассчитайте объем стяжки, сухую смесь и количество мешков.",
             },
             hero: {
                 title: "Калькулятор стяжки пола",
@@ -350,16 +350,16 @@ export const calculatorPageDictionaries: Record<
     en: {
         paint: {
             metadata: {
-                path: "/calculators/paint",
-                title: "Paint Calculator Online — calculate paint consumption | Renohacks",
+                path: "/en/calculators/paint",
+                title: "Paint Calculator Online | Renohacks",
                 description:
-                    "Online paint calculator: enter your room dimensions and find out how many liters of paint you need. A handy tool by Renohacks.",
+                    "Free online paint calculator: enter your room dimensions and calculate how many liters of paint you need. Plan your renovation materials without errors!",
             },
             share: {
-                url: "/calculators/paint",
-                title: "Paint Calculator Online — calculate paint consumption | Renohacks",
+                url: "/en/calculators/paint",
+                title: "Paint Calculator Online | Renohacks",
                 description:
-                    "Online paint calculator: enter your room dimensions and find out how many liters of paint you need",
+                    "Free online paint calculator: enter your room dimensions and calculate how many liters of paint you need.",
             },
             hero: {
                 title: "Paint Calculator",
@@ -410,25 +410,25 @@ export const calculatorPageDictionaries: Record<
             related: {
                 title: "More renovation planning resources",
                 cards: [
-                    { href: "/calculators/budget", title: "Budget Calculator", description: "Calculate the total renovation cost including all work categories and reserve.", icon: "layers", accentClass: "text-amber-500" },
-                    { href: "/calculators/tile", title: "Tile Calculator", description: "Calculate tile quantity for floors and walls including waste and adhesive.", icon: "grid", accentClass: "text-emerald-500" },
-                    { href: "/calculators/wallpaper", title: "Wallpaper Calculator", description: "Determine the number of wallpaper rolls accounting for wall height and pattern.", icon: "scrollText", accentClass: "text-indigo-500" },
-                    { href: "/calculators", title: "All tools", description: "Explore the full Renohacks toolkit for planning materials.", icon: "paintbrush", accentClass: "text-rose-500" },
+                    { href: "/en/calculators/budget", title: "Budget Calculator", description: "Calculate the total renovation cost including all work categories and reserve.", icon: "layers", accentClass: "text-amber-500" },
+                    { href: "/en/calculators/tile", title: "Tile Calculator", description: "Calculate tile quantity for floors and walls including waste and adhesive.", icon: "grid", accentClass: "text-emerald-500" },
+                    { href: "/en/calculators/wallpaper", title: "Wallpaper Calculator", description: "Determine the number of wallpaper rolls accounting for wall height and pattern.", icon: "scrollText", accentClass: "text-indigo-500" },
+                    { href: "/en/tools", title: "All tools", description: "Explore the full Renohacks toolkit for planning materials.", icon: "paintbrush", accentClass: "text-rose-500" },
                 ],
             },
             shareTitle: "Share the calculator",
         },
         flooring: {
             metadata: {
-                path: "/calculators/flooring",
-                title: "Flooring Calculator - packs, waste and underlay | Renohacks",
+                path: "/en/calculators/flooring",
+                title: "Flooring Pack & Waste Calculator | Renohacks",
                 description:
-                    "Online flooring calculator for laminate, vinyl and engineered wood: area, packs, underlay and cutting waste.",
+                    "Free online flooring calculator for laminate, vinyl, and engineered wood. Calculate packs, underlay, and cutting waste. Plan your flooring project today!",
             },
             share: {
-                url: "/calculators/flooring",
-                title: "Flooring Calculator - packs, waste and underlay | Renohacks",
-                description: "Estimate flooring packs, underlay and waste in minutes",
+                url: "/en/calculators/flooring",
+                title: "Flooring Pack & Waste Calculator | Renohacks",
+                description: "Estimate flooring packs, underlay and waste in minutes.",
             },
             hero: {
                 title: "Flooring Calculator",
@@ -462,23 +462,23 @@ export const calculatorPageDictionaries: Record<
             related: {
                 title: "Related tools",
                 cards: [
-                    { href: "/calculators/baseboard", title: "Baseboard Calculator", description: "Use the same room dimensions to estimate baseboard pieces and linear footage.", icon: "ruler", accentClass: "text-amber-500" },
-                    { href: "/calculators/tile", title: "Tile Calculator", description: "Compare wood-look flooring with tile options for kitchens, bathrooms or entry zones.", icon: "grid", accentClass: "text-emerald-500" },
+                    { href: "/en/calculators/baseboard", title: "Baseboard Calculator", description: "Use the same room dimensions to estimate baseboard pieces and linear footage.", icon: "ruler", accentClass: "text-amber-500" },
+                    { href: "/en/calculators/tile", title: "Tile Calculator", description: "Compare wood-look flooring with tile options for kitchens, bathrooms or entry zones.", icon: "grid", accentClass: "text-emerald-500" },
                 ],
             },
             shareTitle: "Share the calculator",
         },
         baseboard: {
             metadata: {
-                path: "/calculators/baseboard",
-                title: "Baseboard Calculator - length, pieces and cost | Renohacks",
+                path: "/en/calculators/baseboard",
+                title: "Baseboard Length & Cost Calculator | Renohacks",
                 description:
-                    "Online baseboard calculator: estimate linear footage, piece count, waste and approximate cost.",
+                    "Free online baseboard calculator: estimate linear footage, piece count, cutting waste, and approximate cost. Plan your finishing work without mistakes!",
             },
             share: {
-                url: "/calculators/baseboard",
-                title: "Baseboard Calculator - length, pieces and cost | Renohacks",
-                description: "Calculate baseboard length, waste and piece count",
+                url: "/en/calculators/baseboard",
+                title: "Baseboard Length & Cost Calculator | Renohacks",
+                description: "Calculate baseboard length, waste and piece count.",
             },
             hero: {
                 title: "Baseboard Calculator",
@@ -511,23 +511,23 @@ export const calculatorPageDictionaries: Record<
             related: {
                 title: "Related tools",
                 cards: [
-                    { href: "/calculators/flooring", title: "Flooring Calculator", description: "A natural follow-up when you are finishing the same room floor by floor.", icon: "grid", accentClass: "text-emerald-500" },
-                    { href: "/calculators/screed", title: "Screed Calculator", description: "Estimate the floor base first, then the finish and baseboard in one workflow.", icon: "layers", accentClass: "text-amber-500" },
+                    { href: "/en/calculators/flooring", title: "Flooring Calculator", description: "A natural follow-up when you are finishing the same room floor by floor.", icon: "grid", accentClass: "text-emerald-500" },
+                    { href: "/en/calculators/screed", title: "Screed Calculator", description: "Estimate the floor base first, then the finish and baseboard in one workflow.", icon: "layers", accentClass: "text-amber-500" },
                 ],
             },
             shareTitle: "Share the calculator",
         },
         screed: {
             metadata: {
-                path: "/calculators/screed",
-                title: "Screed Calculator - volume, dry mix and bags | Renohacks",
+                path: "/en/calculators/screed",
+                title: "Floor Screed & Bag Calculator | Renohacks",
                 description:
-                    "Online screed calculator: estimate volume, dry mix, number of bags, mixing water and approximate cost.",
+                    "Free floor screed calculator: estimate volume, dry mix consumption, bag count, and mixing water for leveling. Plan your floor base preparation today!",
             },
             share: {
-                url: "/calculators/screed",
-                title: "Screed Calculator - volume, dry mix and bags | Renohacks",
-                description: "Estimate screed volume, dry mix and bag count",
+                url: "/en/calculators/screed",
+                title: "Floor Screed & Bag Calculator | Renohacks",
+                description: "Estimate screed volume, dry mix and bag count.",
             },
             hero: {
                 title: "Screed Calculator",
@@ -560,8 +560,8 @@ export const calculatorPageDictionaries: Record<
             related: {
                 title: "Related tools",
                 cards: [
-                    { href: "/calculators/flooring", title: "Flooring Calculator", description: "Move from floor base to the final finish in one planning workflow.", icon: "grid", accentClass: "text-emerald-500" },
-                    { href: "/calculators/baseboard", title: "Baseboard Calculator", description: "Finish the perimeter once the screed and floor finish are decided.", icon: "ruler", accentClass: "text-amber-500" },
+                    { href: "/en/calculators/flooring", title: "Flooring Calculator", description: "Move from floor base to the final finish in one planning workflow.", icon: "grid", accentClass: "text-emerald-500" },
+                    { href: "/en/calculators/baseboard", title: "Baseboard Calculator", description: "Finish the perimeter once the screed and floor finish are decided.", icon: "ruler", accentClass: "text-amber-500" },
                 ],
             },
             shareTitle: "Share the calculator",

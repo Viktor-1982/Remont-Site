@@ -7,7 +7,7 @@ import { getPageMetadata } from "@/lib/seo"
 const dictionary = getBudgetPlanningHubDictionary("ru")
 
 export const metadata: Metadata = getPageMetadata(dictionary.path, {
-    title: "Смета и планирование ремонта: бюджет, этапы и контроль расходов | Renohacks",
+    title: dictionary.title,
     description: dictionary.description,
     cover: "/images/remont-kvartiry-plan-2026/cover.jpg",
     type: "website",

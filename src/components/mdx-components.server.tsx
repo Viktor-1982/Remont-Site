@@ -32,11 +32,12 @@ const getTextFromChildren = (children: React.ReactNode): string => {
     return ""
 }
 
-function MdxImage({ alt, src }: { alt?: string; src: string }) {
+function MdxImage({ alt, src, isEnglish }: { alt?: string; src: string; isEnglish?: boolean }) {
+    const fallbackAlt = isEnglish ? "Renovation photo" : "Изображение по теме ремонта"
     return (
         <figure className="relative mx-auto my-6 max-w-3xl w-full overflow-hidden rounded-xl bg-background">
             <Image
-                alt={alt && alt.trim() !== "" ? alt : "Изображение по теме ремонта"}
+                alt={alt && alt.trim() !== "" ? alt : fallbackAlt}
                 src={src}
                 width={1200}
                 height={800}
@@ -49,11 +50,11 @@ function MdxImage({ alt, src }: { alt?: string; src: string }) {
     )
 }
 
-export function createMdxComponents(): MDXComponents {
+export function createMdxComponents(isEnglish = false): MDXComponents {
     const slugger = new GitHubSlugger()
 
     return {
-        img: MdxImage,
+        img: (props: { alt?: string; src: string }) => <MdxImage {...props} isEnglish={isEnglish} />,
         PaintCalculator: () => (
             <div className="my-8">
                 <PaintCalculator />

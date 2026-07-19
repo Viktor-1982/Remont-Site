@@ -2,9 +2,9 @@ import { getPageMetadata } from "@/lib/seo"
 import { allPosts } from ".contentlayer/generated"
 import { TagCloud } from "@/components/tag-cloud"
 
-export const metadata = getPageMetadata("/tags", {
-    title: "Tag Cloud — All Article Tags | Renohacks.com",
-    description: "Visual display of all article tags on Renohacks.com. Tag size shows the number of articles. Navigation by renovation, design, and DIY topics.",
+export const metadata = getPageMetadata("/en/tags", {
+    title: "All Article Tags | Renohacks",
+    description: "Explore all tags and topics on Renohacks: find articles, guides, and DIY renovation tips sorted by theme. Navigation by home improvement categories!",
     cover: "/images/og-default.png",
     type: "website",
 })

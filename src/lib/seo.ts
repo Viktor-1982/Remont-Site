@@ -4,8 +4,9 @@ import type { Metadata } from "next"
 const baseUrl = "https://renohacks.com"
 
 const pathLocaleMap: Record<string, { ru: string; en: string }> = {
-    "/ru/smety": { ru: "/ru/smety", en: "/costs" },
-    "/costs": { ru: "/ru/smety", en: "/costs" },
+    "/ru/smety": { ru: "/ru/smety", en: "/en/costs" },
+    "/costs": { ru: "/ru/smety", en: "/en/costs" },
+    "/en/costs": { ru: "/ru/smety", en: "/en/costs" },
 }
 
 function resolveLocalePaths(path: string) {
@@ -13,8 +14,17 @@ function resolveLocalePaths(path: string) {
     if (mapped) return mapped
 
     const isRussianPath = path === "/ru" || path.startsWith("/ru/")
-    const enPath = isRussianPath ? path.replace(/^\/ru/, "") || "/" : path
-    const ruPath = isRussianPath ? path : `/ru${path === "/" ? "" : path}`
+    const isEnglishPath = path === "/en" || path.startsWith("/en/")
+
+    let base = path
+    if (isRussianPath) {
+        base = path.replace(/^\/ru/, "") || "/"
+    } else if (isEnglishPath) {
+        base = path.replace(/^\/en/, "") || "/"
+    }
+
+    const enPath = `/en${base === "/" ? "" : base}`
+    const ruPath = `/ru${base === "/" ? "" : base}`
     return { ru: ruPath, en: enPath }
 }
 
@@ -47,8 +57,10 @@ export function getPageMetadata(
         autoAlternateLanguages?: boolean
     }
 ): Metadata {
-    const url = `${baseUrl}${path}`
     const localePaths = resolveLocalePaths(path)
+    const isRussianPath = path === "/ru" || path.startsWith("/ru/")
+    const canonicalPath = isRussianPath ? localePaths.ru : localePaths.en
+    const url = `${baseUrl}${canonicalPath}`
 
     const defaultImages = [cover ? `${baseUrl}${cover}` : `${baseUrl}/images/og-default.png`]
     const defaultLanguages = autoAlternateLanguages === false
@@ -56,7 +68,7 @@ export function getPageMetadata(
         : {
             "ru-RU": `${baseUrl}${localePaths.ru}`,
             "en-US": `${baseUrl}${localePaths.en}`,
-            "x-default": `${baseUrl}${localePaths.ru}`,
+            "x-default": `${baseUrl}${localePaths.en}`,
         }
 
     const baseOpenGraph: NonNullable<Metadata["openGraph"]> = {

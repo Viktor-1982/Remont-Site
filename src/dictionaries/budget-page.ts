@@ -131,9 +131,9 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
     ru: {
         metadata: {
             path: "/ru/calculators/budget",
-            title: "Планировщик бюджета ремонта | Калькулятор стоимости",
+            title: "Калькулятор бюджета ремонта | Renohacks",
             description:
-                "Удобный планировщик бюджета для ремонта: рассчитайте полную стоимость работ с резервом на непредвиденные расходы. Бесплатный инструмент Renohacks.",
+                "Бесплатный калькулятор бюджета ремонта: рассчитайте полную стоимость работ с резервом на непредвиденные расходы. Спланируйте смету без ошибок!",
             cover: "/images/og-default.png",
             type: "website",
             keywords: [
@@ -329,31 +329,31 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
     },
     en: {
         metadata: {
-            path: "/calculators/budget",
-            title: "Renovation Budget Planner | Cost Calculator",
+            path: "/en/calculators/budget",
+            title: "Renovation Budget Planner | Renohacks",
             description:
-                "Free renovation budget planner: calculate the total cost of your home renovation with a reserve for unexpected expenses. A practical tool by Renohacks.",
+                "Free renovation budget planner: calculate the total cost of your home renovation with a reserve for unexpected expenses. Plan your costs without mistakes!",
             cover: "/images/og-default.png",
             type: "website",
             alternates: {
-                canonical: "https://renohacks.com/calculators/budget",
+                canonical: "https://renohacks.com/en/calculators/budget",
                 languages: {
-                    ru: "https://renohacks.com/calculators/budget",
-                    "x-default": "https://renohacks.com/calculators/budget",
+                    ru: "https://renohacks.com/ru/calculators/budget",
+                    "x-default": "https://renohacks.com/en/calculators/budget",
                 },
             },
             openGraph: {
-                title: "Free Renovation Budget Calculator | Renohacks",
-                description: "Estimate your home renovation costs and plan your budget like a pro.",
-                url: "https://renohacks.com/calculators/budget",
+                title: "Renovation Budget Planner | Renohacks",
+                description: "Free renovation budget planner: calculate the total cost of your home renovation with a reserve for unexpected expenses. Plan your costs without mistakes!",
+                url: "https://renohacks.com/en/calculators/budget",
                 images: ["https://renohacks.com/images/og-default.png"],
                 locale: "en_US",
                 type: "website",
             },
             twitter: {
                 card: "summary_large_image",
-                title: "Renovation Budget Calculator | Renohacks",
-                description: "Plan your renovation costs with ease and accuracy.",
+                title: "Renovation Budget Planner | Renohacks",
+                description: "Free renovation budget planner: calculate the total cost of your home renovation with a reserve for unexpected expenses. Plan your costs without mistakes!",
                 images: ["https://renohacks.com/images/og-default.png"],
             },
             keywords: [
@@ -581,28 +581,28 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
             ctaLabel: "Explore",
             cards: [
                 {
-                    href: "/calculators/paint",
+                    href: "/en/calculators/paint",
                     title: "Paint calculator",
                     description: "Estimate interior and exterior paint coverage by wall or ceiling area.",
                     icon: "paintbrush",
                     accent: "from-rose-500/15 to-rose-500/5 text-rose-500",
                 },
                 {
-                    href: "/calculators/tile",
+                    href: "/en/calculators/tile",
                     title: "Tile calculator",
                     description: "Plan tile layout, waste percentage, and adhesive volume for every surface.",
                     icon: "grid",
                     accent: "from-emerald-500/15 to-emerald-500/5 text-emerald-500",
                 },
                 {
-                    href: "/calculators/wallpaper",
+                    href: "/en/calculators/wallpaper",
                     title: "Wallpaper calculator",
                     description: "Figure out how many wallpaper rolls you need for any room or accent wall.",
                     icon: "scrollText",
                     accent: "from-indigo-500/15 to-indigo-500/5 text-indigo-500",
                 },
                 {
-                    href: "/tools",
+                    href: "/en/tools",
                     title: "All renovation tools",
                     description: "Explore the full Renohacks toolkit for planning materials and renovation costs.",
                     icon: "layers",
@@ -612,7 +612,7 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
         },
         share: {
             title: "Share the calculator",
-            url: "/calculators/budget",
+            url: "/en/calculators/budget",
             buttonTitle: "Free Renovation Budget Planner by Renohacks",
             description: "Plan your renovation costs with this free calculator by Renohacks.",
         },

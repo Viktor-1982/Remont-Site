@@ -7,7 +7,7 @@ import { getPageMetadata } from "@/lib/seo"
 const dictionary = getKitchenHubDictionary("ru")
 
 export const metadata: Metadata = getPageMetadata(dictionary.path, {
-    title: "Кухня: планировка, материалы, свет и бюджет ремонта | Renohacks",
+    title: dictionary.title,
     description: dictionary.description,
     cover: "/images/kitchen-2026/cover-2026.jpg",
     type: "website",

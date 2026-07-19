@@ -23,10 +23,10 @@ export const lightingHubSlugs: Record<TopicHubLocale, string[]> = {
 const lightingHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "lighting",
-        path: "/lighting",
-        title: "Освещение для квартиры и дома",
+        path: "/ru/lighting",
+        title: "Ремонт и расчет освещения | Renohacks",
         description:
-            "Лучшие материалы Renohacks про свет: сценарии освещения, спальня, ванная, маленькие квартиры и расчет освещенности по люксам и люменам.",
+            "Изучите лучшие материалы Renohacks про расчет и сценарии освещения: нормы для спальни, ванной и маленьких квартир. Спланируйте комфортный свет!",
         keywords: [
             "освещение квартиры",
             "освещение дома",
@@ -101,10 +101,10 @@ const lightingHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "lighting",
-        path: "/lighting",
-        title: "Lighting for Home Renovation",
+        path: "/en/lighting",
+        title: "Home Lighting & Standards | Renohacks",
         description:
-            "Best Renohacks content on home lighting: room-by-room ideas, 2026 lighting trends, small-space solutions, and a calculator for lumens and fixture count.",
+            "Explore top Renohacks guides on home lighting: design scenarios, room standards, and lumen calculations. Plan comfort-first lighting for your space!",
         keywords: [
             "home lighting ideas",
             "lighting for renovation",

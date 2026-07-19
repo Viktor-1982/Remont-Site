@@ -7,7 +7,7 @@ import { getWallsHubDictionary, getWallsHubPosts } from "@/lib/walls-hub"
 const dictionary = getWallsHubDictionary("en")
 
 export const metadata: Metadata = getPageMetadata(dictionary.path, {
-    title: "Walls and finishes: paint, wallpaper, and wall prep without rework | Renohacks",
+    title: dictionary.title,
     description: dictionary.description,
     cover: "/images/pokraska/paint_cover.png",
     type: "website",

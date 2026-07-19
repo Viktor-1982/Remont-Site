@@ -7,7 +7,7 @@ import { getSmallApartmentHubDictionary, getSmallApartmentHubPosts } from "@/lib
 const dictionary = getSmallApartmentHubDictionary("ru")
 
 export const metadata: Metadata = getPageMetadata(dictionary.path, {
-    title: "Маленькая квартира: идеи ремонта, зонирование и хранение | Renohacks",
+    title: dictionary.title,
     description: dictionary.description,
     cover: "/images/posts/small-apartment-trends-2026/cover.png",
     type: "website",

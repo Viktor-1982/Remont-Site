@@ -4,7 +4,7 @@ import { MaterialsChecklist } from "@/components/materials-checklist"
 export const metadata = getPageMetadata("/ru/tools/materials-checklist", {
     title: "Чеклист покупок материалов для ремонта | Renohacks",
     description:
-        "Полный список материалов для ремонта с возможностью отмечать купленное. Ничего не забудьте купить для вашего ремонта. Экспорт и импорт чеклиста.",
+        "Интерактивный чеклист покупок материалов для ремонта: составьте полный список, отмечайте купленное, экспортируйте и импортируйте данные. Планируйте закупки!",
     cover: "/images/og-default.png",
     type: "website",
 })

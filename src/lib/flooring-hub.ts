@@ -20,9 +20,9 @@ const flooringHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "flooring",
         path: "/ru/flooring",
-        title: "Полы и покрытия: стяжка, расчет и выбор без лишних ошибок",
+        title: "Ремонт и расчет полов | Renohacks",
         description:
-            "Главные материалы Renohacks про полы: стяжка, ламинат, кварцвинил, плинтус, расход материалов и порядок работ по основанию и финишному покрытию.",
+            "Изучите лучшие материалы Renohacks про ремонт полов: заливка стяжки, расчет расхода ламината, кварцвинила и плинтусов. Читайте практические советы!",
         keywords: [
             "полы и покрытия",
             "стяжка пола",
@@ -118,10 +118,10 @@ const flooringHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "flooring",
-        path: "/flooring",
-        title: "Flooring: Screed, Finish Planning, and Smarter Floor Calculations",
+        path: "/en/flooring",
+        title: "Flooring Renovation & Calculations | Renohacks",
         description:
-            "Best Renohacks content on flooring: screed, laminate and LVT calculations, baseboards, floor prep, and the order of work from base to finish.",
+            "Explore top Renohacks flooring guides: learn how to calculate floor screed, laminate, LVT, and baseboard amounts. Read our expert renovation advice!",
         keywords: [
             "flooring planning",
             "screed calculator",

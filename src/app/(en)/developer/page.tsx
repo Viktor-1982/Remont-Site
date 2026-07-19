@@ -2,16 +2,16 @@ import Link from "next/link"
 import Script from "next/script"
 import { getPageMetadata } from "@/lib/seo"
 
-export const metadata = getPageMetadata("/developer", {
+export const metadata = getPageMetadata("/en/developer", {
     title: "Website Developer | ViktorWebStudio",
     description:
-        "Web Development & Design. We create modern, beautiful and functional websites using cutting-edge technologies.",
+        "Meet the developer behind Renohacks: professional web development, UI/UX design, and SEO-optimized web application solutions. Start your web project today!",
     cover: "/images/og-default.png",
     type: "website",
     alternates: {
         canonical: "https://renohacks.com/en/developer",
         languages: {
-            ru: "https://renohacks.com/developer",
+            ru: "https://renohacks.com/ru/developer",
         },
     },
 })

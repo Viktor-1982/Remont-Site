@@ -10,9 +10,9 @@ export const revalidate = 86400
 export const dynamic = "force-static"
 
 export const metadata: Metadata = getPageMetadata("/ru/series", {
-    title: "Серии Renohacks: кухня, ванная, план ремонта и решения без переделок",
+    title: "Серии статей и руководств о ремонте | Renohacks",
     description:
-        "Редакционные серии Renohacks: разборы кухни и ванной, бюджет и планирование ремонта, решения без дорогих переделок.",
+        "Все серии статей и гайдов от Renohacks: подробные разборы ремонта кухни и ванной комнаты, планирование бюджета и решения для ремонта без лишних переделок.",
     type: "website",
     keywords: [
         "серии о ремонте",

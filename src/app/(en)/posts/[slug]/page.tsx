@@ -126,7 +126,7 @@ export default async function PostPage({
             <div className="grid gap-6 sm:gap-8 md:gap-12 lg:grid-cols-[1fr_280px] mt-8 sm:mt-10 md:mt-12">
                 <div className="min-w-0">
                     <div className="prose prose-sm sm:prose-base md:prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-soft">
-                        <MdxContent code={post.body.code} />
+                        <MdxContent code={post.body.code} isEnglish={true} />
                     </div>
                 </div>
                 <aside className="hidden lg:block">

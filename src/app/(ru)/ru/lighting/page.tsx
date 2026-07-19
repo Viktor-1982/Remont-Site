@@ -7,7 +7,7 @@ import { getPageMetadata } from "@/lib/seo"
 const dictionary = getLightingHubDictionary("ru")
 
 export const metadata: Metadata = getPageMetadata(dictionary.path, {
-    title: "Освещение для квартиры и дома: идеи, нормы и инструменты | Renohacks",
+    title: dictionary.title,
     description: dictionary.description,
     cover: "/images/posts/lighting-trends-2026/photos/01-cover.jpg",
     type: "website",

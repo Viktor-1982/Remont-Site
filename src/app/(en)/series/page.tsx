@@ -9,10 +9,11 @@ import { sortPosts } from "@/lib/utils"
 export const revalidate = 86400
 export const dynamic = "force-static"
 
-export const metadata: Metadata = getPageMetadata("/series", {
-    title: "Renohacks Series: kitchen, bathroom, renovation planning, and no-rework advice",
+export const metadata: Metadata = getPageMetadata("/en/series", {
+    title: "Renovation Series & Guides | Renohacks",
     description:
-        "Editorial series from Renohacks: kitchen breakdowns, bathroom breakdowns, renovation budget and planning, and decisions that help avoid rework.",
+        "Explore our step-by-step home renovation series: detailed guides on kitchen remodeling, bathroom design, budget planning, and how to avoid costly mistakes.",
+    cover: "/images/og-default.png",
     type: "website",
     keywords: [
         "renovation series",

@@ -139,10 +139,10 @@
       "mobile": "Mobile navigation"
     },
     "links": [
-      { "href": "/", "label": "Home", "title": "Renohacks home page" },
-      { "href": "/bookmarks", "label": "Bookmarks", "title": "My saved articles" },
-      { "href": "/about", "label": "About", "title": "About Renohacks project" },
-      { "href": "/tools", "label": "Tools", "title": "Online renovation tools" }
+      { "href": "/en", "label": "Home", "title": "Renohacks home page" },
+      { "href": "/en/bookmarks", "label": "Bookmarks", "title": "My saved articles" },
+      { "href": "/en/about", "label": "About", "title": "About Renohacks project" },
+      { "href": "/en/tools", "label": "Tools", "title": "Online renovation tools" }
     ],
     "social": {
       "instagram": "https://www.instagram.com/reno.hacks",
@@ -183,10 +183,10 @@
       "sectionsTitle": "Sections",
       "sectionsTitleMobile": "Sections (mobile)",
       "sections": {
-        "kitchen": { "href": "/tags/kitchen", "label": "Kitchen", "title": "Kitchen renovation" },
-        "bathroom": { "href": "/tags/bathroom", "label": "Bathroom", "title": "Bathroom renovation" },
-        "walls": { "href": "/tags/walls", "label": "Walls", "title": "Wall design and finishes" },
-        "standards": { "href": "/editorial-standards", "label": "How we review", "title": "How Renohacks reviews materials and tools" }
+        "kitchen": { "href": "/en/tags/kitchen", "label": "Kitchen", "title": "Kitchen renovation" },
+        "bathroom": { "href": "/en/tags/bathroom", "label": "Bathroom", "title": "Bathroom renovation" },
+        "walls": { "href": "/en/tags/walls", "label": "Walls", "title": "Wall design and finishes" },
+        "standards": { "href": "/en/editorial-standards", "label": "How we review", "title": "How Renohacks reviews materials and tools" }
       },
       "contactsTitle": "Contacts",
       "contactsTitleMobile": "Contacts (mobile)",

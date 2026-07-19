@@ -54,7 +54,7 @@ const dictionaries: Record<EditorialStandardsLocale, EditorialStandardsDictionar
         metadata: {
             title: "Как мы проверяем материалы и инструменты | Renohacks",
             description:
-                "Объясняем, как в Renohacks готовятся статьи, на чем основаны выводы, как проверяются инструменты и когда мы обновляем материалы.",
+                "Как мы готовим обзоры и калькуляторы в Renohacks: принципы проверки информации, борьба с ошибками и наш опыт ремонта. Узнайте, почему нам доверяют!",
         },
         breadcrumb: {
             homeLabel: "Главная",
@@ -148,16 +148,16 @@ const dictionaries: Record<EditorialStandardsLocale, EditorialStandardsDictionar
         footerTitle: "Как Renohacks проверяет материалы и инструменты",
     },
     en: {
-        path: "/editorial-standards",
+        path: "/en/editorial-standards",
         metadata: {
             title: "How We Review Materials and Tools | Renohacks",
             description:
-                "See how Renohacks prepares articles, what our recommendations are based on, how tools are checked, and when we update content.",
+                "How we review renovation materials, articles, and calculators at Renohacks: explore our editorial standards, verification process, and DIY guidelines!",
         },
         breadcrumb: {
             homeLabel: "Home",
             pageLabel: "How we review",
-            pagePath: "/editorial-standards",
+            pagePath: "/en/editorial-standards",
         },
         hero: {
             eyebrow: "The Renohacks editorial process",

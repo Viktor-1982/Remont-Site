@@ -6,7 +6,7 @@ import { SearchPageForm } from "@/components/search-page-form"
 
 export const metadata = getPageMetadata("/ru/search", {
     title: "Поиск статей | Renohacks",
-    description: "Поиск статей о ремонте, дизайне и DIY на Renohacks.com",
+    description: "Ищите статьи, калькуляторы и полезные руководства о ремонте квартир, дизайне интерьеров и DIY-проектах на сайте Renohacks. Найдите ответы на свои вопросы!",
     cover: "/images/og-default.png",
     type: "website",
     autoAlternateLanguages: false,

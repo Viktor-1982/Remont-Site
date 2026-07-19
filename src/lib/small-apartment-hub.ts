@@ -20,9 +20,9 @@ const smallApartmentHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
     ru: {
         key: "small-apartment",
         path: "/ru/small-apartment",
-        title: "Маленькая квартира: зонирование, свет и ремонт без перегруза",
+        title: "Ремонт маленькой квартиры | Renohacks",
         description:
-            "Главные материалы Renohacks про маленькую квартиру: студии, малые кухни, свет, хранение и бюджетные решения, которые делают небольшое пространство удобнее.",
+            "Изучите лучшие статьи Renohacks про ремонт маленькой квартиры: зонирование студии, идеи для малой кухни, хранение вещей и освещение. Читайте наши советы!",
         keywords: [
             "маленькая квартира идеи",
             "ремонт маленькой квартиры",
@@ -118,10 +118,10 @@ const smallApartmentHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
     },
     en: {
         key: "small-apartment",
-        path: "/small-apartment",
-        title: "Small Apartment Ideas: Zoning, Lighting, and Renovation Without Overload",
+        path: "/en/small-apartment",
+        title: "Small Apartment Renovation | Renohacks",
         description:
-            "Best Renohacks content on small apartments: studios, small kitchens, lighting, storage, and budget-aware decisions that make compact spaces work better.",
+            "Explore top Renohacks guides on small apartments: studio zoning, small kitchen ideas, lighting standards, and smart storage systems. Read our expert guides!",
         keywords: [
             "small apartment ideas",
             "small apartment renovation",

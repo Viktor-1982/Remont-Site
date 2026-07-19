@@ -7,7 +7,7 @@ import Script from "next/script"
 export const metadata = getPageMetadata("/ru/terms", {
   title: "Правила пользования сайтом | Renohacks",
   description:
-    "Правила и условия использования Renohacks.com. Что можно и нельзя делать на сайте, как мы относимся к конфиденциальности и где проходят границы нашей ответственности.",
+    "Правила и условия использования Renohacks.com: права на контент, отказ от ответственности, авторские права и правила цитирования. Читайте подробнее!",
   cover: "/images/og-default.png",
   type: "article",
 })

@@ -3,7 +3,7 @@ import { InteriorStyleQuiz } from "@/components/interior-style-quiz"
 
 export const metadata = getPageMetadata("/ru/quiz/interior-style", {
     title: "Какой стиль интерьера вам подходит? | Renohacks",
-    description: "Пройдите тест и узнайте, какой стиль интерьера лучше всего подходит вашему вкусу и образу жизни. Получите персональные рекомендации по цветам, материалам и дизайну.",
+    description: "Пройдите тест и узнайте, какой стиль интерьера подходит вашему вкусу и образу жизни. Получите рекомендации по цветам, отделке и дизайну прямо сейчас!",
     cover: "/images/og-default.png",
     type: "website",
 })

@@ -15,9 +15,9 @@ export const revalidate = 86400
 export const dynamic = "force-static"
 
 export const metadata: Metadata = {
-    title: "Renohacks.com - DIY Renovation & Interior Design Blog for Home Projects",
+    title: "DIY Renovation & Design Blog | Renohacks",
     description:
-        "Step-by-step photo guides, DIY hacks, renovation tools for paint, tile, lighting, and budgeting, plus material reviews for better home renovation planning.",
+        "Step-by-step photo guides, DIY hacks, and online calculators for paint, tile, and budgeting. Plan your home renovation project without mistakes!",
     keywords: [
         "DIY renovation",
         "home improvement",
@@ -35,10 +35,10 @@ export const metadata: Metadata = {
         "renovation without mistakes",
     ],
     openGraph: {
-        title: "Renohacks.com - DIY Renovation & Interior Design Blog for Home Projects",
+        title: "DIY Renovation & Design Blog | Renohacks",
         description:
-            "Step-by-step photo guides, DIY hacks, renovation tools for paint, tile, lighting, and budgeting, plus material reviews for better home renovation planning.",
-        url: "https://renohacks.com",
+            "Step-by-step photo guides, DIY hacks, and online calculators for paint, tile, and budgeting. Plan your home renovation project without mistakes!",
+        url: "https://renohacks.com/en",
         siteName: "Renohacks.com",
         locale: "en_US",
         type: "website",
@@ -46,17 +46,17 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Renohacks.com - DIY Renovation & Interior Design Blog for Home Projects",
+        title: "DIY Renovation & Design Blog | Renohacks",
         description:
-            "Step-by-step photo guides, DIY hacks, renovation tools for paint, tile, lighting, and budgeting, plus material reviews for better home renovation planning.",
+            "Step-by-step photo guides, DIY hacks, and online calculators for paint, tile, and budgeting. Plan your home renovation project without mistakes!",
         images: ["/images/og-default.png"],
     },
     alternates: {
-        canonical: "https://renohacks.com",
+        canonical: "https://renohacks.com/en",
         languages: {
             ru: "https://renohacks.com/ru",
-            en: "https://renohacks.com",
-            "x-default": "https://renohacks.com",
+            en: "https://renohacks.com/en",
+            "x-default": "https://renohacks.com/en",
         },
     },
 }

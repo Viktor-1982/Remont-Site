@@ -6,7 +6,7 @@ import Script from "next/script"
 export const metadata = getPageMetadata("/ru/privacy", {
     title: "Политика конфиденциальности | Renohacks",
     description:
-        "Политика конфиденциальности Renohacks.com: данные подписки, cookies, аналитика и управление согласием.",
+        "Прочитайте Политику конфиденциальности Renohacks.com: правила сбора и защиты персональных данных, использование файлов cookies, метрик и аналитики.",
     cover: "/images/og-default.png",
     type: "article",
 })

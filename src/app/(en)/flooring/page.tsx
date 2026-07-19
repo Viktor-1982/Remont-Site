@@ -7,7 +7,7 @@ import { getPageMetadata } from "@/lib/seo"
 const dictionary = getFlooringHubDictionary("en")
 
 export const metadata: Metadata = getPageMetadata(dictionary.path, {
-    title: "Flooring: screed, laminate, LVT, and floor planning | Renohacks",
+    title: dictionary.title,
     description: dictionary.description,
     cover: "/images/posts/flooring-calculation-guide/cover.png",
     type: "website",

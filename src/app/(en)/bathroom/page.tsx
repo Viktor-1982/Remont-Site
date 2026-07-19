@@ -7,7 +7,7 @@ import { getPageMetadata } from "@/lib/seo"
 const dictionary = getBathroomHubDictionary("en")
 
 export const metadata: Metadata = getPageMetadata(dictionary.path, {
-    title: "Bathroom Renovation Ideas, Tile, Mistakes, and Planning Tools | Renohacks",
+    title: dictionary.title,
     description: dictionary.description,
     cover: "/images/posts/bathroom-trends-2026/cover.png",
     type: "website",

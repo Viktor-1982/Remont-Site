@@ -10,9 +10,9 @@ const wallsHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "walls",
         path: "/ru/walls",
-        title: "Стены и отделка: покраска, обои и подготовка без переделок",
+        title: "Отделка и подготовка стен | Renohacks",
         description:
-            "Главные материалы Renohacks про стены и отделку: подготовка под покраску, выбор обоев, цветовые решения и практичный порядок работ без лишних переделок.",
+            "Изучите лучшие статьи Renohacks про ремонт стен: подготовка под покраску, поклейка обоев, сочетания цветов и порядок работ. Читайте советы экспертов!",
         keywords: [
             "покраска стен",
             "подготовка стен под покраску",
@@ -108,10 +108,10 @@ const wallsHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "walls",
-        path: "/walls",
-        title: "Walls and Finishes: Paint, Wallpaper, and Prep Without Rework",
+        path: "/en/walls",
+        title: "Wall Finishes & Preparation | Renohacks",
         description:
-            "Best Renohacks content on walls and finishes: wall prep, painting, wallpaper choices, color planning, and a cleaner sequence of finish work.",
+            "Explore top Renohacks guides on wall prep and finishes: learn about painting walls, wallpaper choices, color tips, and sequencing. Read our expert tips!",
         keywords: [
             "paint walls",
             "wall preparation for paint",

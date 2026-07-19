@@ -7,7 +7,7 @@ import Script from "next/script"
 export const metadata: Metadata = getPageMetadata("/ru/smety", {
     title: "Сметы ремонта и расчёты | Renohacks",
     description:
-        "Готовые сметы на ремонт квартир: материалы, работы, расходы. Реальные примеры бюджетов для разных типов ремонта.",
+        "Посмотрите готовые сметы и подробные расчёты стоимости ремонта квартир: цены на материалы, работы и скрытые расходы. Планируйте свой бюджет с умом!",
     cover: "/images/og-default.png",
     type: "website",
 })

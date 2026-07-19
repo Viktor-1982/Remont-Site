@@ -49,7 +49,7 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
         metadata: {
             title: "О проекте Renohacks | Блог о ремонте и дизайне",
             description:
-                "Renohacks - ваш гид по ремонту: фото-гайды, DIY советы и бесплатные инструменты для расчета материалов. Всё для качественного ремонта дома своими руками.",
+                "Renohacks - ваш гид по ремонту: пошаговые фото-гайды, DIY советы и бесплатные калькуляторы материалов. Узнайте, как сделать качественный ремонт своими руками!",
         },
         breadcrumb: {
             homeLabel: "Главная",
@@ -121,12 +121,12 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
         metadata: {
             title: "About Renohacks | DIY Renovation Blog",
             description:
-                "Renohacks - your renovation guide: photo guides, DIY tips, and free planning tools. Everything you need for a better home renovation.",
+                "Renohacks is your ultimate home improvement guide: explore step-by-step photo guides, DIY tips, and free estimation tools. Start planning your renovation now!",
         },
         breadcrumb: {
             homeLabel: "Home",
             pageLabel: "About",
-            pagePath: "/about",
+            pagePath: "/en/about",
         },
         hero: {
             title: "About Renohacks",
@@ -186,7 +186,7 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
             description:
                 "See how we prepare articles, what our recommendations are based on, how tools are checked, and how our own renovation experience fits into that process.",
             buttonLabel: "Open the page",
-            href: "/editorial-standards",
+            href: "/en/editorial-standards",
         },
     },
 }

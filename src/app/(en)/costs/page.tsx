@@ -4,10 +4,10 @@ import { allPosts } from "contentlayer/generated"
 import { ArticleGrid } from "@/components/article-grid"
 import Script from "next/script"
 
-export const metadata: Metadata = getPageMetadata("/costs", {
+export const metadata: Metadata = getPageMetadata("/en/costs", {
     title: "Renovation Cost Estimates | Renohacks",
     description:
-        "Ready-made renovation cost estimates: materials, labor, expenses. Real budgeting examples for different renovation types.",
+        "Explore real renovation cost estimates, budgets, and detailed material and labor breakdowns. Learn how to plan your home remodeling costs without mistakes!",
     cover: "/images/og-default.png",
     type: "website",
 })

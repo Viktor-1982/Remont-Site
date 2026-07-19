@@ -5,11 +5,11 @@ import { getPageMetadata } from "@/lib/seo"
 export const metadata = getPageMetadata("/ru/developer", {
     title: "Разработчик сайта Renohacks | ViktorWebStudio",
     description:
-        "Веб-разработка и дизайн. Создание современных, красивых и функциональных веб-сайтов с использованием передовых технологий.",
+        "Узнайте больше о разработчике сайта Renohacks: профессиональная веб-разработка, дизайн интерфейсов и современные SEO-оптимизированные сайты под ключ.",
     cover: "/images/og-default.png",
     type: "website",
     alternates: {
-        canonical: "https://renohacks.com/developer",
+        canonical: "https://renohacks.com/ru/developer",
         languages: {
             en: "https://renohacks.com/en/developer",
         },
