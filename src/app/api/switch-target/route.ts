@@ -44,15 +44,15 @@ export async function GET(req: Request) {
         // ==========================================================
         // 🔹 2. About
         // ==========================================================
-        if (!targetUrl && /^\/(ru\/)?about/.test(path)) {
-            targetUrl = targetLocale === "en" ? "/about" : "/ru/about"
+        if (!targetUrl && /^\/(ru\/|en\/)?about/.test(path)) {
+            targetUrl = targetLocale === "en" ? "/en/about" : "/ru/about"
         }
 
         // ==========================================================
         // 🔹 2.1 Smety / Costs (нестандартные slug)
         // ==========================================================
-        if (!targetUrl && /^\/(ru\/)?(smety|costs)(\/|$)/.test(path)) {
-            targetUrl = targetLocale === "en" ? "/costs" : "/ru/smety"
+        if (!targetUrl && /^\/(ru\/|en\/)?(smety|costs)(\/|$)/.test(path)) {
+            targetUrl = targetLocale === "en" ? "/en/costs" : "/ru/smety"
         }
 
         // ==========================================================
