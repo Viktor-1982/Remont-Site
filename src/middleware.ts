@@ -60,7 +60,9 @@ export function middleware(request: NextRequest) {
         redirectUrl.search = request.nextUrl.search
         // Use 307 (temporary) so Russian users on the English canonical can
         // still share/bookmark the EN URL without it being permanently cached.
-        return NextResponse.redirect(redirectUrl, 307)
+        const response = NextResponse.redirect(redirectUrl, 307)
+        response.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate")
+        return response
     }
 
     // English browser (or unknown) → serve the canonical EN path directly
