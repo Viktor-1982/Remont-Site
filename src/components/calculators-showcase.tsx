@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, Calculator, ArrowRight, Sparkles, ShoppingCart, Thermometer, Wind, Lightbulb } from "lucide-react"
+5: import { Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, ArrowRight, Sparkles, ShoppingCart, Thermometer, Wind, Lightbulb } from "lucide-react"
+
 import { motion } from "framer-motion"
 
 interface CalculatorItem {
