@@ -138,10 +138,9 @@ export function AppShell({
                     }
                 `}</Script>
 
-                <Script
+                <script
                     id="site-schema"
                     type="application/ld+json"
-                    strategy="beforeInteractive"
                     dangerouslySetInnerHTML={{
                         __html: JSON.stringify(siteSchema),
                     }}

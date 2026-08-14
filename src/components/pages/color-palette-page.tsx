@@ -3,6 +3,7 @@ import { Layers, Paintbrush } from "lucide-react"
 import Link from "next/link"
 import type { ReactNode } from "react"
 import { ShareButton } from "@/components/share-button"
+import { resolveLocalePaths, baseUrl } from "@/lib/seo"
 
 const resourceIcons = {
     paintbrush: Paintbrush,
@@ -69,9 +70,43 @@ export function ColorPalettePageTemplate({
     widget: ReactNode
     isEnglish?: boolean
 }) {
+    const localePaths = resolveLocalePaths(dictionary.metadata.path)
+    const isRuPage = !isEnglish
+    const canonicalPath = isRuPage ? localePaths.ru : localePaths.en
+    const canonicalUrl = `${baseUrl}${canonicalPath}`
+
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": isEnglish ? "Home" : "Главная",
+                "item": isEnglish ? baseUrl : `${baseUrl}/ru`
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": isEnglish ? "Calculators" : "Калькуляторы",
+                "item": isEnglish ? `${baseUrl}/calculators` : `${baseUrl}/ru/calculators`
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": dictionary.hero.title,
+                "item": canonicalUrl
+            }
+        ]
+    }
+
     return (
         <main className="mx-auto max-w-4xl px-4 py-10">
             <StructuredDataScripts items={dictionary.structuredData} />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
 
             <header className="mb-8">
                 <h1 className="mb-4 text-3xl font-bold">{dictionary.hero.title}</h1>

@@ -1,7 +1,7 @@
 // src/lib/seo.ts
 import type { Metadata } from "next"
 
-const baseUrl = "https://renohacks.com"
+export const baseUrl = "https://renohacks.com"
 
 /**
  * Maps asymmetric paths (smety/costs) to their canonical equivalents.
@@ -21,7 +21,7 @@ const pathLocaleMap: Record<string, { ru: string; en: string }> = {
  *  - Russian                    → /ru/ prefix:        /ru/about, /ru/calculators, /ru
  *  - /en/* paths are treated as EN (backward-compat rewrites), stripped to canonical form
  */
-function resolveLocalePaths(path: string): { ru: string; en: string } {
+export function resolveLocalePaths(path: string): { ru: string; en: string } {
     const mapped = pathLocaleMap[path]
     if (mapped) return mapped
 

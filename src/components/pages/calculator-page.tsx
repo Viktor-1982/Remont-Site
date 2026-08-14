@@ -4,6 +4,7 @@ import type {
     CalculatorRelatedCard,
     CalculatorStructuredData,
 } from "@/dictionaries/calculator-pages"
+import { resolveLocalePaths, baseUrl } from "@/lib/seo"
 import {
     AirVent,
     Flame,
@@ -127,9 +128,97 @@ export function CalculatorPageTemplate({
     widget: ReactNode
     isEnglish?: boolean
 }) {
+    const localePaths = resolveLocalePaths(dictionary.metadata.path)
+    const isRuPage = !isEnglish
+    const canonicalPath = isRuPage ? localePaths.ru : localePaths.en
+    const canonicalUrl = `${baseUrl}${canonicalPath}`
+
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": isEnglish ? "Home" : "Главная",
+                "item": isEnglish ? baseUrl : `${baseUrl}/ru`
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": isEnglish ? "Calculators" : "Калькуляторы",
+                "item": isEnglish ? `${baseUrl}/calculators` : `${baseUrl}/ru/calculators`
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": dictionary.hero.title,
+                "item": canonicalUrl
+            }
+        ]
+    }
+
+    const faqSchema = dictionary.faq && dictionary.faq.items.length > 0 ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": dictionary.faq.items.map(item => ({
+            "@type": "Question",
+            "name": item.question,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": item.answer
+            }
+        }))
+    } : null
+
+    // Check if the dictionary already provides SoftwareApplication/WebApplication schema
+    const hasSoftwareAppSchema = dictionary.structuredData?.some(
+        (item) =>
+            item.data["@type"] === "SoftwareApplication" ||
+            item.data["@type"] === "WebApplication" ||
+            (Array.isArray(item.data["@type"]) &&
+                (item.data["@type"].includes("SoftwareApplication") ||
+                    item.data["@type"].includes("WebApplication")))
+    )
+
+    const fallbackAppSchema = !hasSoftwareAppSchema ? {
+        "@context": "https://schema.org",
+        "@type": ["SoftwareApplication", "WebApplication"],
+        "name": dictionary.hero.title,
+        "operatingSystem": "All",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": isEnglish ? "USD" : "RUB",
+            "availability": "https://schema.org/InStock"
+        },
+        "description": dictionary.metadata.description || dictionary.hero.description,
+        "url": canonicalUrl,
+        "image": `${baseUrl}/images/og-default.png`,
+        "inLanguage": isEnglish ? "en" : "ru",
+        "isAccessibleForFree": true
+    } : null
+
     return (
         <main className={`mx-auto px-4 py-10 ${dictionary.layout?.maxWidthClass ?? "max-w-2xl"}`}>
             {dictionary.structuredData?.length ? <StructuredDataScripts items={dictionary.structuredData} /> : null}
+            {fallbackAppSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(fallbackAppSchema) }}
+                />
+            )}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
+            {faqSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                />
+            )}
             <h1 className="mb-4 text-3xl font-bold">{dictionary.hero.title}</h1>
             <p className={`mb-8 text-muted-foreground ${dictionary.hero.leadClass ?? ""}`.trim()}>
                 {dictionary.hero.description}
