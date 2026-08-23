@@ -336,16 +336,16 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
             cover: "/images/og-default.png",
             type: "website",
             alternates: {
-                canonical: "https://renohacks.com/en/calculators/budget",
+                canonical: "https://renohacks.com/calculators/budget",
                 languages: {
                     ru: "https://renohacks.com/ru/calculators/budget",
-                    "x-default": "https://renohacks.com/en/calculators/budget",
+                    "x-default": "https://renohacks.com/calculators/budget",
                 },
             },
             openGraph: {
                 title: "Renovation Budget Planner | Renohacks",
                 description: "Free renovation budget planner: calculate the total cost of your home renovation with a reserve for unexpected expenses. Plan your costs without mistakes!",
-                url: "https://renohacks.com/en/calculators/budget",
+                url: "https://renohacks.com/calculators/budget",
                 images: ["https://renohacks.com/images/og-default.png"],
                 locale: "en_US",
                 type: "website",

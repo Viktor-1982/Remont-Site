@@ -249,7 +249,7 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
                     },
                     description:
                         "Free color palette generator for renovation and interior design. Helps create harmonious schemes and practical application ideas.",
-                    url: "https://renohacks.com/en/calculators/color-palette",
+                    url: "https://renohacks.com/calculators/color-palette",
                     image: "https://renohacks.com/images/og-default.png",
                     creator: {
                         "@type": "Organization",
@@ -269,19 +269,19 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
                             "@type": "ListItem",
                             position: 1,
                             name: "Renohacks",
-                            item: "https://renohacks.com/en",
+                            item: "https://renohacks.com",
                         },
                         {
                             "@type": "ListItem",
                             position: 2,
                             name: "Tools",
-                            item: "https://renohacks.com/en/tools",
+                            item: "https://renohacks.com/tools",
                         },
                         {
                             "@type": "ListItem",
                             position: 3,
                             name: "Color Palette Generator",
-                            item: "https://renohacks.com/en/calculators/color-palette",
+                            item: "https://renohacks.com/calculators/color-palette",
                         },
                     ],
                 },
