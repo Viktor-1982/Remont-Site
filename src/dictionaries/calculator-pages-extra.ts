@@ -6,6 +6,7 @@ export type ExtraCalculatorPageKey =
     | "ventilation"
     | "lighting"
     | "underfloorHeating"
+    | "soundproofing"
 
 export const extraCalculatorPageDictionaries: Record<
     CalculatorPageLocale,
@@ -517,6 +518,132 @@ export const extraCalculatorPageDictionaries: Record<
                 },
             ],
         },
+        soundproofing: {
+            metadata: {
+                path: "/ru/calculators/soundproofing",
+                title: "Калькулятор звукоизоляции стен, потолка и пола | Renohacks",
+                description:
+                    "Онлайн-калькулятор звукоизоляции: расчёт акустических панелей, минеральной ваты, профилей, виброподвесов, демпферной ленты и герметика для стен, потолка и плавающего пола.",
+                keywords: [
+                    "калькулятор звукоизоляции",
+                    "расчет звукоизоляции стен",
+                    "звукоизоляция потолка расчет материалов",
+                    "шумоизоляция квартиры калькулятор",
+                    "расчет акустической ваты",
+                    "виброподвесы расчет количества",
+                    "звукоизоляция пола стяжка расчет",
+                ],
+            },
+            share: {
+                url: "/ru/calculators/soundproofing",
+                title: "Калькулятор звукоизоляции стен, потолка и пола | Renohacks",
+                description: "Точный инженерный расчёт материалов для звукоизоляции стен, потолка и пола по нормам акустики",
+            },
+            hero: {
+                title: "Калькулятор звукоизоляции",
+                description:
+                    "Рассчитайте полный комплект материалов для каркасной или бескаркасной звукоизоляции стен, потолков на виброподвесах и плавающих полов. Калькулятор рассчитывает листы ГВЛ/ГКЛ, акустическую минвату, профили, виброподвесы, демпферную ленту, акустический герметик и специальный крепёж.",
+                leadClass: "text-lg leading-relaxed",
+            },
+            benefits: {
+                title: "Преимущества инженерного калькулятора звукоизоляции",
+                items: [
+                    {
+                        strong: "Стены, потолок и пол.",
+                        text: "Индивидуальные формулы для каркасных перегородок, потолков на виброподвесах и плавающих стяжек.",
+                    },
+                    {
+                        strong: "Полная ведомость материалов (BOM).",
+                        text: "Расчёт не просто квадратных метров, а реальных пачек ваты, профилей, подвесов, крепежа и туб герметика.",
+                    },
+                    {
+                        strong: "Акустические нормы.",
+                        text: "Соответствует проверенным альбомам инженерных решений (Knauf, Acoustic Group, SoundGuard, ISO 717).",
+                    },
+                    {
+                        strong: "Учёт вычетов и запаса.",
+                        text: "Автоматический вычет дверей и окон для стен с настраиваемым запасом на подрезку 5–10%.",
+                    },
+                ],
+            },
+            guide: {
+                title: "Как рассчитать звукоизоляцию",
+                steps: [
+                    "Выберите конструкцию: Стены, Потолок или Плавающий пол.",
+                    "Выберите тип системы: Независимый каркас, На виброподвесах или Тонкая панельная система.",
+                    "Укажите размеры: длину и высоту (или ширину) в метрах.",
+                    "Для стен добавьте количество дверных и оконных проёмов.",
+                    "Выберите количество слоёв обшивки (1, 2 или 3 слоя с демпфирующей мембраной).",
+                    "Получите готовую спецификацию материалов по категориям со сметой.",
+                ],
+                tip: "Совет: для максимальной защиты стен от воздушного шума выбирайте независимый каркас 50 мм с зашивкой ГВЛВ 12.5 мм + акустический ГКЛ 12.5 мм со смещением швов.",
+            },
+            faq: {
+                title: "Часто задаваемые вопросы о расчёте звукоизоляции",
+                items: [
+                    {
+                        question: "Почему калькулятор считает два разных листовых материала для обшивки?",
+                        answer:
+                            "В профессиональной звукоизоляции сочетают материалы разной плотности: массивный волокнистый ГВЛВ (~1200 кг/м³) для отражения волн и акустический гипсокартон для финиша, чтобы сдвинуть резонансную частоту конструкции.",
+                    },
+                    {
+                        question: "Зачем нужна демпферная лента и почему в 2 слоя?",
+                        answer:
+                            "Демпферная лента развязывает направляющие металлические профили от несущих стен, перекрытий и пола, не давая структурной вибрации переходить на каркас.",
+                    },
+                    {
+                        question: "Сколько виброподвесов нужно на квадратный метр потолка?",
+                        answer:
+                            "В стандартных звукоизоляционных системах потолка (Knauf D112/D113) средний расход составляет 2.8–3.2 виброподвеса на 1 м² при сетке профилей 600х800 мм.",
+                    },
+                    {
+                        question: "Можно ли обойтись обычным силиконовым герметиком?",
+                        answer:
+                            "Нет. Обычные герметики и пена со временем твердеют и превращаются в акустический мостик. Виброакустический герметик остаётся эластичным на протяжении десятилетий.",
+                    },
+                ],
+            },
+            related: {
+                title: "Связанные инструменты и статьи",
+                cards: [
+                    {
+                        href: "/ru/posts/zvukoizolyaciya-kvartiry-2026",
+                        title: "Гид по звукоизоляции квартиры 2026",
+                        description: "Большой экспертный гид: физика шума, проверенные узлы и разбор типичных ошибок.",
+                        icon: "layers",
+                        accentClass: "text-blue-500",
+                    },
+                    {
+                        href: "/ru/calculators/screed",
+                        title: "Калькулятор стяжки пола",
+                        description: "Рассчитайте расход смесей для заливки плавающего пола по акустическим плитам.",
+                        icon: "gauge",
+                        accentClass: "text-amber-500",
+                    },
+                ],
+            },
+            shareTitle: "Поделиться калькулятором звукоизоляции",
+            structuredData: [
+                {
+                    id: "soundproofing-schema",
+                    data: {
+                        "@context": "https://schema.org",
+                        "@type": ["SoftwareApplication", "WebApplication"],
+                        name: "Калькулятор звукоизоляции",
+                        alternateName: "Расчет звукоизоляции стен, потолка и пола",
+                        operatingSystem: "All",
+                        applicationCategory: ["UtilityApplication", "BusinessApplication"],
+                        offers: { "@type": "Offer", price: "0", priceCurrency: "RUB", availability: "https://schema.org/InStock" },
+                        description:
+                            "Бесплатный онлайн-калькулятор звукоизоляции: расчёт акустических плит, ГВЛ/ГКЛ, профилей, виброподвесов и герметика для стен, потолка и пола.",
+                        url: "https://renohacks.com/ru/calculators/soundproofing",
+                        image: "https://renohacks.com/images/og-default.png",
+                        inLanguage: "ru",
+                        isAccessibleForFree: true,
+                    },
+                },
+            ],
+        },
     },
     en: {
         tile: {
@@ -1012,6 +1139,132 @@ export const extraCalculatorPageDictionaries: Record<
                         description:
                             "Free calculator for underfloor heating power, cable length or mat area, and estimated energy use.",
                         url: "https://renohacks.com/en/calculators/underfloor-heating",
+                        image: "https://renohacks.com/images/og-default.png",
+                        inLanguage: "en",
+                        isAccessibleForFree: true,
+                    },
+                },
+            ],
+        },
+        soundproofing: {
+            metadata: {
+                path: "/en/calculators/soundproofing",
+                title: "Apartment Soundproofing & Acoustics Calculator | Renohacks",
+                description:
+                    "Free soundproofing calculator: estimate drywall sheets, cavity mineral wool, steel studs, isolation clips, perimeter tape, and acoustic sealant for walls, ceilings, and floating floors.",
+                keywords: [
+                    "soundproofing calculator",
+                    "wall soundproofing cost calculator",
+                    "ceiling acoustic isolation calculator",
+                    "floating floor screed materials estimate",
+                    "resilient channel calculation",
+                    "acoustic mineral wool packs",
+                    "sound isolation clip quantity",
+                ],
+            },
+            share: {
+                url: "/en/calculators/soundproofing",
+                title: "Apartment Soundproofing & Acoustics Calculator | Renohacks",
+                description: "Architectural soundproofing calculator for walls, ceilings, and floating floors based on tested ASTM/ISO assemblies",
+            },
+            hero: {
+                title: "Soundproofing Calculator",
+                description:
+                    "Calculate the complete bill of materials for decoupled wall framing, resilient drop ceilings, and acoustic floating floors. Computes gypsum fiberboard, acoustic drywall, cavity mineral wool batts, steel channels, resilient isolation clips, perimeter tape, acoustical sealant, and fasteners.",
+                leadClass: "text-lg leading-relaxed",
+            },
+            benefits: {
+                title: "Why professionals rely on this acoustics calculator",
+                items: [
+                    {
+                        strong: "Walls, ceilings, and floating floors.",
+                        text: "Custom engineering logic for independent stud partitions, clip-decoupled ceilings, and wet/dry floating floors.",
+                    },
+                    {
+                        strong: "Complete Bill of Materials (BOM).",
+                        text: "Generates actual sheet counts, insulation packs, linear profile lengths, isolation clips, caulk tubes, and screws.",
+                    },
+                    {
+                        strong: "Tested building assemblies.",
+                        text: "Designed around standardized USG, Knauf, GA-600, ASTM E90/E492, and ISO 717 laboratory benchmarks.",
+                    },
+                    {
+                        strong: "Openings & waste allowances.",
+                        text: "Deducts doors and windows while maintaining configurable 5–10% cutting reserve for sheets and batt insulation.",
+                    },
+                ],
+            },
+            guide: {
+                title: "How to calculate acoustic materials",
+                steps: [
+                    "Select surface type: Walls, Ceiling, or Floating Floor.",
+                    "Choose assembly system: Independent Studs, Resilient Clips, or Direct Sandwich Panels.",
+                    "Enter surface dimensions: length and height/width in meters (or feet).",
+                    "Subtract doors and windows on the partition wall.",
+                    "Choose number of sheathing layers (1 layer, 2 layers staggered, or 3 layers with viscoelastic MLV damping).",
+                    "Review the categorized bill of materials and estimated total project cost.",
+                ],
+                tip: "Pro Tip: For maximum airborne speech isolation on party walls, use an independent 2\" (50 mm) steel stud with 1/2\" GVL + 1/2\" acoustic drywall and perimeter acoustic caulk.",
+            },
+            faq: {
+                title: "Soundproofing calculation FAQs",
+                items: [
+                    {
+                        question: "Why does the calculator recommend two different board materials?",
+                        answer:
+                            "Combining different materials (high-mass gypsum fiberboard ~1200 kg/m³ with acoustic drywall) broadens the transmission loss curve and shifts the coincidence frequency drop outside speech bands.",
+                    },
+                    {
+                        question: "How many sound isolation clips do I need per square meter/foot?",
+                        answer:
+                            "Standard ceiling and wall clip layouts (such as RSIC-1 or GenieClip) use a 24\" x 48\" (600 x 1200 mm) grid, resulting in approximately 2.8 to 3.2 isolation clips per square meter (approx. 0.3 clips per sq ft).",
+                    },
+                    {
+                        question: "Why is perimeter isolation tape required under all tracks?",
+                        answer:
+                            "Perimeter tape breaks mechanical contact between steel channels and the building frame, preventing structure-borne vibrations from flanking into the new acoustic partition.",
+                    },
+                    {
+                        question: "Can I use standard painter's caulk instead of acoustical sealant?",
+                        answer:
+                            "No. Standard painter's caulk cures brittle and cracks during seasonal movement. Acoustical caulk remains permanently elastic, ensuring airtight seals for decades.",
+                    },
+                ],
+            },
+            related: {
+                title: "Related guides and calculators",
+                cards: [
+                    {
+                        href: "/en/posts/apartment-soundproofing-guide-2026",
+                        title: "Apartment Soundproofing Guide 2026",
+                        description: "Deep engineering guide: airborne vs. impact noise, tested assemblies, and jobsite rules.",
+                        icon: "layers",
+                        accentClass: "text-blue-500",
+                    },
+                    {
+                        href: "/en/calculators/screed",
+                        title: "Floor Screed Calculator",
+                        description: "Calculate concrete mix and leveling underlayment for floating floors.",
+                        icon: "gauge",
+                        accentClass: "text-amber-500",
+                    },
+                ],
+            },
+            shareTitle: "Share this soundproofing calculator",
+            structuredData: [
+                {
+                    id: "soundproofing-schema-en",
+                    data: {
+                        "@context": "https://schema.org",
+                        "@type": ["SoftwareApplication", "WebApplication"],
+                        name: "Soundproofing Calculator",
+                        alternateName: "Acoustic Partition & Floor Calculator",
+                        operatingSystem: "All",
+                        applicationCategory: ["UtilityApplication", "BusinessApplication"],
+                        offers: { "@type": "Offer", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock" },
+                        description:
+                            "Free online soundproofing calculator: calculate acoustic drywall, mineral wool, steel studs, isolation clips, and sealant for walls, ceilings, and floors.",
+                        url: "https://renohacks.com/en/calculators/soundproofing",
                         image: "https://renohacks.com/images/og-default.png",
                         inLanguage: "en",
                         isAccessibleForFree: true,

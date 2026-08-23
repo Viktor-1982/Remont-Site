@@ -10,6 +10,7 @@ import {
   computeScreed,
   computeVentilation,
   computeLighting,
+  computeSoundproofing,
 } from "@/lib/calculations"
 
 describe("computePaintLiters", () => {
@@ -571,5 +572,141 @@ describe("computeLighting", () => {
     expect(res).toBeNull()
   })
 })
+
+describe("computeSoundproofing", () => {
+  it("calculates wall materials correctly for a 5x2.7m wall with 1 door and 1 window", () => {
+    const res = computeSoundproofing({
+      surface: "wall",
+      systemType: "independent",
+      length: 5,
+      widthOrHeight: 2.7,
+      doors: 1,
+      windows: 1,
+      layers: 2,
+      reservePercent: 7,
+      pricePerM2: 50,
+    })
+
+    expect(res).not.toBeNull()
+    expect(res!.grossAreaM2).toBe(13.5)
+    expect(res!.netAreaM2).toBe(9.8)
+    expect(res!.perimeterM).toBe(15.4)
+    expect(res!.estimatedCost).toBe(490)
+
+    const gvl = res!.items.find((i) => i.id === "gvl-board")
+    const gkl = res!.items.find((i) => i.id === "acoustic-drywall")
+    const wool = res!.items.find((i) => i.id === "acoustic-wool")
+    const guide = res!.items.find((i) => i.id === "guide-profile")
+    const stud = res!.items.find((i) => i.id === "stud-profile")
+    const tape = res!.items.find((i) => i.id === "damper-tape")
+    const sealant = res!.items.find((i) => i.id === "acoustic-sealant")
+
+    expect(gvl).toBeDefined()
+    expect(gvl!.quantity).toBe(4) // ceil(10 * 1.07 / 3.0) = 4
+    expect(gkl).toBeDefined()
+    expect(gkl!.quantity).toBe(4)
+    expect(wool).toBeDefined()
+    expect(wool!.quantity).toBe(2) // ceil(10.5 / 6) = 2
+    expect(guide).toBeDefined()
+    expect(guide!.quantity).toBe(6) // ceil(15.4 * 1.05 / 3) = 6
+    expect(stud).toBeDefined()
+    expect(stud!.quantity).toBe(13) // (ceil(5/0.6)+1+4)*2.7/3 = 14*2.7/3 = 12.6 -> 13
+    expect(tape).toBeDefined()
+    expect(tape!.quantity).toBe(2) // 32.34m -> 2 rolls of 30m
+    expect(sealant).toBeDefined()
+    expect(sealant!.quantity).toBe(4) // ceil(15.4 * 2 / 10) = 4
+  })
+
+  it("calculates vibromounts when systemType is vibro-mount", () => {
+    const res = computeSoundproofing({
+      surface: "wall",
+      systemType: "vibro-mount",
+      length: 4,
+      widthOrHeight: 2.5,
+      doors: 0,
+      windows: 0,
+      layers: 2,
+    })
+
+    expect(res).not.toBeNull()
+    const mounts = res!.items.find((i) => i.id === "vibro-mounts")
+    expect(mounts).toBeDefined()
+    expect(mounts!.quantity).toBeGreaterThanOrEqual(28)
+  })
+
+  it("calculates ceiling materials for a 5x4m room", () => {
+    const res = computeSoundproofing({
+      surface: "ceiling",
+      systemType: "two-level",
+      length: 5,
+      widthOrHeight: 4,
+      layers: 2,
+      reservePercent: 5,
+    })
+
+    expect(res).not.toBeNull()
+    expect(res!.grossAreaM2).toBe(20)
+    expect(res!.netAreaM2).toBe(20)
+    expect(res!.perimeterM).toBe(18)
+
+    const ceilingMounts = res!.items.find((i) => i.id === "ceiling-vibro-mounts")
+    const pnp = res!.items.find((i) => i.id === "ceiling-guide-profile")
+    const pp = res!.items.find((i) => i.id === "ceiling-main-profile")
+    const crabs = res!.items.find((i) => i.id === "crab-connectors")
+
+    expect(ceilingMounts).toBeDefined()
+    expect(ceilingMounts!.quantity).toBe(58) // ceil(20 * 2.9) = 58
+    expect(pnp).toBeDefined()
+    expect(pnp!.quantity).toBe(7)
+    expect(pp).toBeDefined()
+    expect(pp!.quantity).toBeGreaterThan(15)
+    expect(crabs).toBeDefined()
+    expect(crabs!.quantity).toBe(36)
+  })
+
+  it("calculates wet floating floor screed materials for 20m2", () => {
+    const res = computeSoundproofing({
+      surface: "floor",
+      systemType: "floating-screed",
+      length: 5,
+      widthOrHeight: 4,
+      screedThicknessMm: 50,
+    })
+
+    expect(res).not.toBeNull()
+    const floorSlabs = res!.items.find((i) => i.id === "floor-acoustic-slabs")
+    const membrane = res!.items.find((i) => i.id === "waterproofing-membrane")
+    const screedMix = res!.items.find((i) => i.id === "screed-mix")
+    const mesh = res!.items.find((i) => i.id === "reinforcing-mesh")
+
+    expect(floorSlabs).toBeDefined()
+    expect(floorSlabs!.quantity).toBe(4) // ceil(20*1.05 / 6) = 4
+    expect(membrane).toBeDefined()
+    expect(membrane!.quantity).toBe(23)
+    expect(screedMix).toBeDefined()
+    expect(screedMix!.quantity).toBe(72) // 20 * 5 * 18 = 1800 kg / 25 = 72 bags
+    expect(mesh).toBeDefined()
+    expect(mesh!.quantity).toBe(23)
+  })
+
+  it("returns null for invalid dimensions or inputs", () => {
+    expect(
+      computeSoundproofing({
+        surface: "wall",
+        length: -2,
+        widthOrHeight: 2.7,
+      })
+    ).toBeNull()
+
+    expect(
+      computeSoundproofing({
+        surface: "ceiling",
+        length: 5,
+        widthOrHeight: 0,
+      })
+    ).toBeNull()
+  })
+})
+
 
 

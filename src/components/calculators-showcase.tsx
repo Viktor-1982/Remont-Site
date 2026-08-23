@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, ArrowRight, Sparkles, ShoppingCart, Thermometer, Wind, Lightbulb } from "lucide-react"
+import { Paintbrush, Wallpaper, Grid3X3, Wallet, Palette, ArrowRight, Sparkles, ShoppingCart, Thermometer, Wind, Lightbulb, Volume2 } from "lucide-react"
 import { motion } from "framer-motion"
 
 
@@ -51,6 +51,17 @@ const calculators: CalculatorItem[] = [
         badge: "Пол и стены",
         gradient: "from-sky-500/15 via-sky-400/10 to-indigo-400/10",
         color: "sky",
+    },
+    {
+        id: "soundproofing",
+        href: "/ru/calculators/soundproofing",
+        label: "Калькулятор звукоизоляции",
+        emoji: "🔇",
+        icon: Volume2,
+        desc: "Рассчитайте листы ГВЛ/ГКЛ, акустическую вату, профили, виброподвесы и герметик.",
+        badge: "Акустика и тишина",
+        gradient: "from-blue-500/15 via-indigo-400/10 to-violet-400/10",
+        color: "blue",
     },
     {
         id: "underfloor-heating",

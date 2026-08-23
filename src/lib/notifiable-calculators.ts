@@ -136,4 +136,20 @@ export const NOTIFIABLE_CALCULATORS: NotifiableCalculator[] = [
         url: "/calculators/lighting",
         publishedAt: "2026-02-02",
     },
+    {
+        slug: "soundproofing",
+        locale: "ru",
+        title: "Калькулятор звукоизоляции",
+        description: "Спецификация материалов для стен, потолка и плавающего пола по акустическим нормам.",
+        url: "/ru/calculators/soundproofing",
+        publishedAt: "2026-08-23",
+    },
+    {
+        slug: "soundproofing",
+        locale: "en",
+        title: "Soundproofing Calculator",
+        description: "Calculates drywall, mineral wool, isolation clips, and acoustic sealant for walls, ceilings, and floors.",
+        url: "/calculators/soundproofing",
+        publishedAt: "2026-08-23",
+    },
 ]

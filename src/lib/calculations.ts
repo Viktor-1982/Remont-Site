@@ -722,6 +722,21 @@ export function computeScreed(params: ScreedParams): ScreedResult | null {
   }
 }
 
+export interface VentilationParams {
+  length: number
+  width: number
+  height: number
+  airChangesPerHour: number
+  reservePercent?: number
+}
+
+export interface VentilationResult {
+  volumeM3: number
+  flowM3h: number
+  flowLs: number
+  flowWithReserveM3h: number
+}
+
 export function computeVentilation(params: VentilationParams): VentilationResult | null {
   const { length, width, height, airChangesPerHour, reservePercent = 10 } = params
 
@@ -801,5 +816,579 @@ export function computeLighting(params: LightingParams): LightingResult | null {
     estimatedCost,
   }
 }
+
+// Звукоизоляция: расчёт материалов для стен, потолка и пола
+export type SoundproofingSurface = "wall" | "ceiling" | "floor"
+export type WallSystemType = "independent" | "vibro-mount" | "slim-panel"
+export type CeilingSystemType = "two-level" | "one-level"
+export type FloorSystemType = "floating-screed" | "dry-floor"
+export type SoundproofingSystemType = WallSystemType | CeilingSystemType | FloorSystemType
+
+export interface SoundproofingParams {
+  surface: SoundproofingSurface
+  systemType?: SoundproofingSystemType
+  length: number
+  widthOrHeight: number // height for wall, width for ceiling/floor
+  doors?: number
+  windows?: number
+  layers?: number // 1, 2, or 3
+  studSpacingMm?: 600 | 400
+  screedThicknessMm?: number // for floor (e.g. 50-60)
+  reservePercent?: number // default 5-10%
+  pricePerM2?: number
+}
+
+export interface SoundproofingItem {
+  id: string
+  nameRu: string
+  nameEn: string
+  category: "boards" | "framing" | "insulation" | "fasteners" | "damping"
+  quantity: number
+  unitRu: string
+  unitEn: string
+  descriptionRu?: string
+  descriptionEn?: string
+}
+
+export interface SoundproofingResult {
+  surface: SoundproofingSurface
+  systemType: SoundproofingSystemType
+  grossAreaM2: number
+  netAreaM2: number
+  perimeterM: number
+  reservePercent: number
+  items: SoundproofingItem[]
+  estimatedCost?: number
+}
+
+export function computeSoundproofing(params: SoundproofingParams): SoundproofingResult | null {
+  const {
+    surface,
+    length,
+    widthOrHeight,
+    doors = 0,
+    windows = 0,
+    layers = 2,
+    studSpacingMm = 600,
+    screedThicknessMm = 50,
+    reservePercent = 7,
+    pricePerM2,
+  } = params
+
+  if (length <= 0 || widthOrHeight <= 0 || length > 100 || widthOrHeight > 100) return null
+  if (doors < 0 || windows < 0 || layers < 1 || layers > 3) return null
+  if (reservePercent < 0 || reservePercent > 50) return null
+
+  const grossAreaM2 = Math.round(length * widthOrHeight * 100) / 100
+  const dArea = surface === "wall" ? doors * DEFAULT_DOOR_AREA_M2 : 0
+  const wArea = surface === "wall" ? windows * DEFAULT_WINDOW_AREA_M2 : 0
+  const netAreaM2 = Math.max(0.1, Math.round((grossAreaM2 - (dArea + wArea)) * 100) / 100)
+  const perimeterM = Math.round(2 * (length + widthOrHeight) * 100) / 100
+  const reserveFactor = 1 + reservePercent / 100
+
+  const items: SoundproofingItem[] = []
+
+  // Resolve system type
+  let systemType: SoundproofingSystemType = "independent"
+  if (surface === "wall") {
+    systemType = (params.systemType as WallSystemType) || "independent"
+  } else if (surface === "ceiling") {
+    systemType = (params.systemType as CeilingSystemType) || "two-level"
+  } else {
+    systemType = (params.systemType as FloorSystemType) || "floating-screed"
+  }
+
+  const STANDARD_SHEET_AREA = 3.0 // 1.2m x 2.5m = 3.0 m2
+
+  if (surface === "wall") {
+    const areaWithReserve = netAreaM2 * reserveFactor
+    const sheetsPerLayer = Math.ceil(areaWithReserve / STANDARD_SHEET_AREA)
+
+    if (systemType === "slim-panel") {
+      const panelCount = Math.ceil((netAreaM2 * reserveFactor) / 0.72)
+      items.push({
+        id: "sandwich-panels",
+        nameRu: "Звукоизоляционные сэндвич-панели (ЗИПС 1200х600)",
+        nameEn: "Acoustic Sandwich Panels (ZIPS 1200x600 mm)",
+        category: "boards",
+        quantity: panelCount,
+        unitRu: "шт",
+        unitEn: "pcs",
+        descriptionRu: "Сэндвич-панели со встроенными виброузлами",
+        descriptionEn: "Composite resilient panels with integral vibro-mounts",
+      })
+      items.push({
+        id: "acoustic-drywall",
+        nameRu: "Финишный акустический ГКЛ (12.5 мм, 2500х1200)",
+        nameEn: "Acoustic Drywall 1/2\" (12.5 mm, 2500x1200 mm)",
+        category: "boards",
+        quantity: sheetsPerLayer,
+        unitRu: "листов",
+        unitEn: "sheets",
+        descriptionRu: "Утяжелённый финишный слой обшивки",
+        descriptionEn: "High-density acoustic gypsum face board",
+      })
+    } else {
+      if (layers >= 1) {
+        items.push({
+          id: "gvl-board",
+          nameRu: "Гипсоволокнистый лист ГВЛВ (12.5 мм, 2500х1200)",
+          nameEn: "Gypsum Fiberboard GVL 1/2\" (12.5 mm, 2500x1200 mm)",
+          category: "boards",
+          quantity: sheetsPerLayer,
+          unitRu: "листов",
+          unitEn: "sheets",
+          descriptionRu: "Первый массивный слой обшивки (~1200 кг/м³)",
+          descriptionEn: "High-mass inner sheathing layer (~1200 kg/m³)",
+        })
+      }
+      if (layers >= 2) {
+        items.push({
+          id: "acoustic-drywall",
+          nameRu: "Акустический гипсокартон ГКЛ (12.5 мм, 2500х1200)",
+          nameEn: "Acoustic Gypsum Board 1/2\" (12.5 mm, 2500x1200 mm)",
+          category: "boards",
+          quantity: sheetsPerLayer,
+          unitRu: "листов",
+          unitEn: "sheets",
+          descriptionRu: "Второй финишный слой со смещением швов",
+          descriptionEn: "Dense acoustic gypsum outer layer with staggered seams",
+        })
+      }
+      if (layers >= 3) {
+        items.push({
+          id: "damping-membrane",
+          nameRu: "Вязкоупругая мембрана / демпфирующий слой",
+          nameEn: "Viscoelastic Damping Membrane (MLV)",
+          category: "damping",
+          quantity: Math.ceil(netAreaM2 * reserveFactor),
+          unitRu: "м²",
+          unitEn: "sq m",
+          descriptionRu: "Мембрана между слоями ГВЛ и ГКЛ для гашения вибраций",
+          descriptionEn: "Constrained-layer damping between drywall sheets",
+        })
+      }
+
+      const guideMeters = perimeterM * 1.05
+      const guideProfiles = Math.ceil(guideMeters / 3.0)
+      items.push({
+        id: "guide-profile",
+        nameRu: "Направляющий профиль ПН 50/40 (3 м)",
+        nameEn: "Track / Guide Steel Profile 2\" (50 mm, 3 m / 10 ft)",
+        category: "framing",
+        quantity: guideProfiles,
+        unitRu: "шт",
+        unitEn: "pcs",
+        descriptionRu: "Монтируется по периметру через демпферную ленту",
+        descriptionEn: "Perimeter track decoupled with isolation tape",
+      })
+
+      const stepM = studSpacingMm / 1000
+      const studCount = Math.ceil(length / stepM) + 1 + (doors + windows) * 2
+      const studProfiles = Math.ceil((studCount * widthOrHeight) / 3.0)
+      items.push({
+        id: "stud-profile",
+        nameRu: "Стоечный профиль ПС 50/50 (3 м)",
+        nameEn: "Stud Steel Profile 2\" (50 mm, 3 m / 10 ft)",
+        category: "framing",
+        quantity: studProfiles,
+        unitRu: "шт",
+        unitEn: "pcs",
+        descriptionRu: `Стойки с шагом ${studSpacingMm} мм`,
+        descriptionEn: `Vertical studs at ${studSpacingMm} mm spacing`,
+      })
+
+      const woolArea = Math.round(netAreaM2 * 1.05 * 10) / 10
+      const woolPacks = Math.ceil(woolArea / 6.0)
+      items.push({
+        id: "acoustic-wool",
+        nameRu: "Акустическая минеральная вата 50 мм (упак. 6 м²)",
+        nameEn: "Acoustic Mineral Wool 2\" (50 mm, pack 6 sq m / 65 sq ft)",
+        category: "insulation",
+        quantity: woolPacks,
+        unitRu: "упак",
+        unitEn: "packs",
+        descriptionRu: `Общий объём: ${(woolArea * 0.05).toFixed(2)} м³ (плотность 30–60 кг/м³)`,
+        descriptionEn: `Total volume: ${(woolArea * 0.05).toFixed(2)} cu m (density 30–60 kg/m³)`,
+      })
+
+      if (systemType === "vibro-mount") {
+        const mountsPerStud = Math.ceil(widthOrHeight / 0.75)
+        const totalMounts = Math.max(studCount * mountsPerStud, Math.ceil(netAreaM2 * 2.8))
+        items.push({
+          id: "vibro-mounts",
+          nameRu: "Виброизолирующие подвесы (с эластомером)",
+          nameEn: "Acoustic Isolation Clips (Sylomer / Rubber)",
+          category: "damping",
+          quantity: totalMounts,
+          unitRu: "шт",
+          unitEn: "pcs",
+          descriptionRu: "Виброразвязка стоечного каркаса от стены",
+          descriptionEn: "Resilient mechanical decoupling clips",
+        })
+      }
+    }
+
+    const tapeMeters = Math.round(perimeterM * 2 * 1.05)
+    const tapeRolls = Math.ceil(tapeMeters / 30)
+    items.push({
+      id: "damper-tape",
+      nameRu: "Демпферная лента уплотнительная (рулон 30 м)",
+      nameEn: "Perimeter Isolation Tape (30 m / 100 ft roll)",
+      category: "damping",
+      quantity: tapeRolls,
+      unitRu: "рул",
+      unitEn: "rolls",
+      descriptionRu: `Всего: ${tapeMeters} пог. м (в 2 слоя под направляющие)`,
+      descriptionEn: `Total: ${tapeMeters} linear m (double layer under tracks)`,
+    })
+
+    const sealantTubes = Math.max(1, Math.ceil((perimeterM * layers) / 10))
+    items.push({
+      id: "acoustic-sealant",
+      nameRu: "Виброакустический герметик (туба 310 мл)",
+      nameEn: "Acoustical Sealant (310 ml cartridge)",
+      category: "damping",
+      quantity: sealantTubes,
+      unitRu: "туб",
+      unitEn: "tubes",
+      descriptionRu: "Невысыхающая герметизация швов по периметру",
+      descriptionEn: "Non-hardening elastic acoustic sealant",
+    })
+
+    items.push({
+      id: "screws-layer-1",
+      nameRu: "Саморезы для 1-го слоя (TN 25/30 мм)",
+      nameEn: "Drywall Screws 1\" (TN 25 mm)",
+      category: "fasteners",
+      quantity: Math.ceil(netAreaM2 * 16),
+      unitRu: "шт",
+      unitEn: "pcs",
+      descriptionRu: "Для крепления ГВЛВ к каркасу (шаг 200 мм)",
+      descriptionEn: "For first sheathing layer to framing",
+    })
+
+    if (layers >= 2) {
+      items.push({
+        id: "screws-layer-2",
+        nameRu: "Саморезы для 2-го слоя (TN 35/45 мм)",
+        nameEn: "Drywall Screws 1-1/2\" (TN 35/45 mm)",
+        category: "fasteners",
+        quantity: Math.ceil(netAreaM2 * 20),
+        unitRu: "шт",
+        unitEn: "pcs",
+        descriptionRu: "Для крепления финишного ГКЛ к каркасу",
+        descriptionEn: "For outer drywall layer",
+      })
+    }
+
+    items.push({
+      id: "acoustic-dowels",
+      nameRu: "Акустические дюбель-гвозди для направляющих",
+      nameEn: "Acoustic Track Fasteners / Anchors",
+      category: "fasteners",
+      quantity: Math.ceil(perimeterM / 0.4),
+      unitRu: "шт",
+      unitEn: "pcs",
+      descriptionRu: "Крепление направляющих профилей (шаг 400 мм)",
+      descriptionEn: "Perimeter track anchoring (400 mm spacing)",
+    })
+  } else if (surface === "ceiling") {
+    const areaWithReserve = netAreaM2 * reserveFactor
+    const sheetsPerLayer = Math.ceil(areaWithReserve / STANDARD_SHEET_AREA)
+
+    if (layers >= 1) {
+      items.push({
+        id: "gvl-board",
+        nameRu: "Гипсоволокнистый лист ГВЛВ (12.5 мм, 2500х1200)",
+        nameEn: "Gypsum Fiberboard GVL 1/2\" (12.5 mm, 2500x1200 mm)",
+        category: "boards",
+        quantity: sheetsPerLayer,
+        unitRu: "листов",
+        unitEn: "sheets",
+        descriptionRu: "Внутренний плотный слой звукоизоляции",
+        descriptionEn: "High-mass inner ceiling layer",
+      })
+    }
+    if (layers >= 2) {
+      items.push({
+        id: "acoustic-drywall",
+        nameRu: "Акустический гипсокартон ГКЛ (12.5 мм, 2500х1200)",
+        nameEn: "Acoustic Gypsum Board 1/2\" (12.5 mm, 2500x1200 mm)",
+        category: "boards",
+        quantity: sheetsPerLayer,
+        unitRu: "листов",
+        unitEn: "sheets",
+        descriptionRu: "Второй финишный слой потолка",
+        descriptionEn: "Acoustic drywall outer ceiling layer",
+      })
+    }
+
+    const mountsCount = Math.max(4, Math.ceil(netAreaM2 * 2.9))
+    items.push({
+      id: "ceiling-vibro-mounts",
+      nameRu: "Потолочные виброподвесы (с эластомером Sylomer)",
+      nameEn: "Acoustic Ceiling Isolation Hangers",
+      category: "damping",
+      quantity: mountsCount,
+      unitRu: "шт",
+      unitEn: "pcs",
+      descriptionRu: "Шаг подвесов 600х800 мм (~2.9 шт/м²)",
+      descriptionEn: "Resilient ceiling hangers (~2.9 pcs/m²)",
+    })
+
+    const pnpMeters = perimeterM * 1.05
+    const pnpCount = Math.ceil(pnpMeters / 3.0)
+    items.push({
+      id: "ceiling-guide-profile",
+      nameRu: "Направляющий потолочный профиль ПНП 28/27 (3 м)",
+      nameEn: "Perimeter Ceiling Channel 28/27 (3 m / 10 ft)",
+      category: "framing",
+      quantity: pnpCount,
+      unitRu: "шт",
+      unitEn: "pcs",
+      descriptionRu: "Монтаж по периметру стен через демпферную ленту",
+      descriptionEn: "Perimeter wall track",
+    })
+
+    const mainProfiles = Math.ceil(widthOrHeight / 1.2) * length * 1.05
+    const carrierProfiles = Math.ceil(length / 0.5) * widthOrHeight * 1.05
+    const totalPpProfiles = Math.ceil((mainProfiles + carrierProfiles) / 3.0)
+    items.push({
+      id: "ceiling-main-profile",
+      nameRu: "Потолочный профиль ПП 60/27 (3 м)",
+      nameEn: "Ceiling Main/Carrier Profile CD 60/27 (3 m / 10 ft)",
+      category: "framing",
+      quantity: totalPpProfiles,
+      unitRu: "шт",
+      unitEn: "pcs",
+      descriptionRu: "Основные профили (шаг 1200 мм) + несущие (шаг 500 мм)",
+      descriptionEn: "Main profiles (1200 mm step) & cross-carriers (500 mm step)",
+    })
+
+    items.push({
+      id: "crab-connectors",
+      nameRu: "Одноуровневые соединители («крабы» 60/27)",
+      nameEn: "Crab Cross Connectors 60/27",
+      category: "fasteners",
+      quantity: Math.ceil(netAreaM2 * 1.8),
+      unitRu: "шт",
+      unitEn: "pcs",
+      descriptionRu: "Крестовые соединения профилей каркаса",
+      descriptionEn: "Cross-joints profile connectors",
+    })
+
+    const woolArea = Math.round(netAreaM2 * 1.05 * 10) / 10
+    const woolPacks = Math.ceil(woolArea / 6.0)
+    items.push({
+      id: "acoustic-wool",
+      nameRu: "Акустическая минеральная вата 50 мм (упак. 6 м²)",
+      nameEn: "Acoustic Mineral Wool 2\" (50 mm, pack 6 sq m)",
+      category: "insulation",
+      quantity: woolPacks,
+      unitRu: "упак",
+      unitEn: "packs",
+      descriptionRu: `Общий объём: ${(woolArea * 0.05).toFixed(2)} м³`,
+      descriptionEn: `Total volume: ${(woolArea * 0.05).toFixed(2)} cu m`,
+    })
+
+    items.push({
+      id: "damper-tape",
+      nameRu: "Демпферная лента уплотнительная (рулон 30 м)",
+      nameEn: "Perimeter Isolation Tape (30 m / 100 ft roll)",
+      category: "damping",
+      quantity: Math.ceil((perimeterM * 1.05) / 30),
+      unitRu: "рул",
+      unitEn: "rolls",
+      descriptionRu: `Периметр примыкания: ${perimeterM} пог. м`,
+      descriptionEn: `Perimeter length: ${perimeterM} linear m`,
+    })
+
+    items.push({
+      id: "acoustic-sealant",
+      nameRu: "Виброакустический герметик (туба 310 мл)",
+      nameEn: "Acoustical Sealant (310 ml cartridge)",
+      category: "damping",
+      quantity: Math.max(1, Math.ceil((perimeterM * layers) / 10)),
+      unitRu: "туб",
+      unitEn: "tubes",
+      descriptionRu: "Герметизация примыкания потолка к стенам",
+      descriptionEn: "Acoustic perimeter caulk",
+    })
+
+    items.push({
+      id: "screws-layer-1",
+      nameRu: "Саморезы для ГВЛВ (TN 25 мм)",
+      nameEn: "Drywall Screws 1\" (TN 25 mm)",
+      category: "fasteners",
+      quantity: Math.ceil(netAreaM2 * 16),
+      unitRu: "шт",
+      unitEn: "pcs",
+      descriptionRu: "Крепление первого слоя",
+      descriptionEn: "First layer fasteners",
+    })
+
+    if (layers >= 2) {
+      items.push({
+        id: "screws-layer-2",
+        nameRu: "Саморезы для ГКЛ (TN 35 мм)",
+        nameEn: "Drywall Screws 1-1/2\" (TN 35 mm)",
+        category: "fasteners",
+        quantity: Math.ceil(netAreaM2 * 20),
+        unitRu: "шт",
+        unitEn: "pcs",
+        descriptionRu: "Крепление второго слоя",
+        descriptionEn: "Outer layer fasteners",
+      })
+    }
+  } else {
+    // Floor
+    if (systemType === "floating-screed") {
+      const woolArea = Math.round(netAreaM2 * 1.05 * 10) / 10
+      const woolPacks = Math.ceil(woolArea / 6.0)
+      items.push({
+        id: "floor-acoustic-slabs",
+        nameRu: "Акустические плиты высокой плотности (100–140 кг/м³, 20–30 мм)",
+        nameEn: "High-Density Resilient Floor Boards (100–140 kg/m³, 20–30 mm)",
+        category: "insulation",
+        quantity: woolPacks,
+        unitRu: "упак",
+        unitEn: "packs",
+        descriptionRu: `Общая площадь: ${woolArea} м² упругого звукоизоляционного ковра`,
+        descriptionEn: `Total area: ${woolArea} sq m resilient acoustic underlayment`,
+      })
+
+      const membraneArea = Math.round(netAreaM2 * 1.15)
+      items.push({
+        id: "waterproofing-membrane",
+        nameRu: "Гидроизоляционная мембрана (150–200 мкм)",
+        nameEn: "Waterproofing Vapor Barrier (6 mil / 150–200 µm)",
+        category: "damping",
+        quantity: membraneArea,
+        unitRu: "м²",
+        unitEn: "sq m",
+        descriptionRu: "Защита звукоизоляции от цементного раствора (с нахлёстом 15 см)",
+        descriptionEn: "Protective slurry barrier with 15 cm overlap",
+      })
+
+      const thicknessCm = screedThicknessMm / 10
+      const screedKg = Math.round(netAreaM2 * thicknessCm * 18)
+      const screedBags = Math.ceil(screedKg / 25)
+      items.push({
+        id: "screed-mix",
+        nameRu: `Смесь цементно-песчаная М300 (мешки 25 кг, слой ${screedThicknessMm} мм)`,
+        nameEn: `Cementitious Screed Mix (25 kg bags, ${screedThicknessMm} mm thickness)`,
+        category: "boards",
+        quantity: screedBags,
+        unitRu: "мешков",
+        unitEn: "bags",
+        descriptionRu: `Всего: ${screedKg} кг смеси для плавающей стяжки`,
+        descriptionEn: `Total: ${screedKg} kg dry screed mix`,
+      })
+
+      const meshArea = Math.round(netAreaM2 * 1.15)
+      items.push({
+        id: "reinforcing-mesh",
+        nameRu: "Армирующая металлическая сетка (50х50 мм)",
+        nameEn: "Welded Reinforcing Steel Mesh (50x50 mm)",
+        category: "framing",
+        quantity: meshArea,
+        unitRu: "м²",
+        unitEn: "sq m",
+        descriptionRu: "Фиксация в теле стяжки для предотвращения трещин",
+        descriptionEn: "Embedded within screed for crack control",
+      })
+
+      const edgeTapeM = Math.round(perimeterM * 1.05)
+      items.push({
+        id: "edge-damper-tape",
+        nameRu: "Кромочная демпферная лента для стяжки (100 мм)",
+        nameEn: "Perimeter Expansion Edge Strip (100 mm / 4\")",
+        category: "damping",
+        quantity: Math.ceil(edgeTapeM / 20),
+        unitRu: "рул (по 20м)",
+        unitEn: "rolls (20m)",
+        descriptionRu: `Периметр: ${edgeTapeM} пог. м (выше уровня стяжки)`,
+        descriptionEn: `Perimeter: ${edgeTapeM} linear m along walls`,
+      })
+    } else {
+      const underlaymentArea = Math.round(netAreaM2 * 1.05)
+      items.push({
+        id: "acoustic-underlayment",
+        nameRu: "Акустический виброизолирующий мат / холст",
+        nameEn: "Acoustic Floor Underlayment Mat",
+        category: "insulation",
+        quantity: underlaymentArea,
+        unitRu: "м²",
+        unitEn: "sq m",
+        descriptionRu: "Упругий звукоизоляционный слой под сборный пол",
+        descriptionEn: "Resilient acoustic subfloor underlayment",
+      })
+
+      const superfloorElements = Math.ceil((netAreaM2 * reserveFactor) / 0.72)
+      items.push({
+        id: "superfloor-elements",
+        nameRu: "Элементы пола Кнауф-Суперпол ГВЛВ (1200х600х20 мм)",
+        nameEn: "Dry Screed Gypsum Floor Elements (1200x600x20 mm)",
+        category: "boards",
+        quantity: superfloorElements,
+        unitRu: "шт",
+        unitEn: "pcs",
+        descriptionRu: `Сборное основание пола (${(superfloorElements * 0.72).toFixed(1)} м²)`,
+        descriptionEn: `Interlocking dry floor elements (${(superfloorElements * 0.72).toFixed(1)} sq m)`,
+      })
+
+      items.push({
+        id: "floor-glue",
+        nameRu: "Системный клей для фальцев сборного пола",
+        nameEn: "Joint Adhesive for Dry Floor Elements",
+        category: "damping",
+        quantity: Math.max(1, Math.ceil(netAreaM2 * 0.05)),
+        unitRu: "кг",
+        unitEn: "kg",
+        descriptionRu: "Склеивание фальцев элементов пола",
+        descriptionEn: "Seam gluing adhesive",
+      })
+
+      items.push({
+        id: "floor-screws",
+        nameRu: "Специальные шурупы для ГВЛ (MN 19 мм)",
+        nameEn: "Dry Floor Screws (MN 19 mm)",
+        category: "fasteners",
+        quantity: Math.ceil(netAreaM2 * 15),
+        unitRu: "шт",
+        unitEn: "pcs",
+        descriptionRu: "Скрепление фальцев между собой (шаг 300 мм)",
+        descriptionEn: "For fastening interlocking seams",
+      })
+
+      items.push({
+        id: "edge-damper-tape",
+        nameRu: "Кромочная демпферная лента (рулон 20 м)",
+        nameEn: "Perimeter Isolation Edge Tape (20m roll)",
+        category: "damping",
+        quantity: Math.ceil((perimeterM * 1.05) / 20),
+        unitRu: "рул",
+        unitEn: "rolls",
+        descriptionRu: "Виброразвязка сборного пола от стен",
+        descriptionEn: "Wall perimeter isolation",
+      })
+    }
+  }
+
+  const estimatedCost = pricePerM2 && pricePerM2 > 0 ? Math.round(netAreaM2 * pricePerM2) : undefined
+
+  return {
+    surface,
+    systemType,
+    grossAreaM2,
+    netAreaM2,
+    perimeterM,
+    reservePercent,
+    items,
+    estimatedCost,
+  }
+}
+
 
 

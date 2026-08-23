@@ -7,6 +7,7 @@ export type CalculatorPageInsightKey =
     | "wallpaper"
     | "baseboard"
     | "screed"
+    | "soundproofing"
 
 type InsightSection = {
     title: string
@@ -242,6 +243,42 @@ export const calculatorPageInsights: Record<
                 ],
             },
         },
+        soundproofing: {
+            mistakes: {
+                title: "Частые ошибки в расчёте звукоизоляции",
+                items: [
+                    {
+                        strong: "Игнорировать косвенные пути (Flanking).",
+                        text: "Звук легко обходит идеальную звукоизоляционную стену через общие полые потолки, сквозные розетки, вентканалы и двери.",
+                    },
+                    {
+                        strong: "Жёстко крепить каркас к стене без виброразвязки.",
+                        text: "Каждый саморез без резинового эластомера или демпферной ленты превращается в звуковой мостик и сводит на нет работу минваты.",
+                    },
+                    {
+                        strong: "Забывать про герметизацию стыков.",
+                        text: "Звук проникает везде, где проходит воздух. Микрощель в 1 мм способна снизить эффективность системы на 5–10 дБ.",
+                    },
+                ],
+            },
+            purchaseChecklist: {
+                title: "Чек-лист перед закупкой звукоизоляции",
+                items: [
+                    {
+                        strong: "Купите специализированный виброакустический герметик.",
+                        text: "Обычный силикон или акрил быстро теряют эластичность при температурных колебаниях и трескаются.",
+                    },
+                    {
+                        strong: "Проверьте плотность минеральной ваты (30–60 кг/м³).",
+                        text: "Слишком лёгкая вата плохо поглощает резонансы, а фасадная (>90 кг/м³) может передавать вибрацию.",
+                    },
+                    {
+                        strong: "Берите листы разной толщины или плотности.",
+                        text: "Комбинация ГВЛВ + ГКЛ дает наилучший эффект благодаря разным собственным частотам резонанса.",
+                    },
+                ],
+            },
+        },
     },
     en: {
         paint: {
@@ -456,6 +493,42 @@ export const calculatorPageInsights: Record<
                     {
                         strong: "Include delivery and handling.",
                         text: "For screed, logistics can be a real cost line. Counting only the bags often makes the budget look cleaner than it really is.",
+                    },
+                ],
+            },
+        },
+        soundproofing: {
+            mistakes: {
+                title: "Common soundproofing calculation mistakes",
+                items: [
+                    {
+                        strong: "Ignoring flanking noise paths.",
+                        text: "Sound easily bypasses an STC 55 partition wall via hollow drop ceilings, shared back-to-back electrical boxes, ductwork, and undercut doors.",
+                    },
+                    {
+                        strong: "Rigid mechanical coupling.",
+                        text: "Driving standard screws through resilient channels into framing behind completely destroys the decoupling effect.",
+                    },
+                    {
+                        strong: "Skipping acoustic perimeter caulking.",
+                        text: "Sound travels wherever air can leak. Unsealed perimeter gaps can degrade an assembly's sound isolation performance by 5 to 10 points.",
+                    },
+                ],
+            },
+            purchaseChecklist: {
+                title: "What to verify before purchasing materials",
+                items: [
+                    {
+                        strong: "Choose non-hardening acoustical sealant.",
+                        text: "Standard painter's caulk shrinks and cracks over time. Acoustic caulk stays permanently flexible through building movement.",
+                    },
+                    {
+                        strong: "Verify cavity insulation density (2.0–4.0 lbs/cu ft / 30–60 kg/m³).",
+                        text: "Avoid ultra-dense insulation boards (>90 kg/m³) in wall cavities as they can transmit structural vibration.",
+                    },
+                    {
+                        strong: "Combine high-mass sheets.",
+                        text: "Combining 5/8\" Type X drywall with gypsum fiberboard or viscoelastic damping compounds yields superior low-frequency isolation.",
                     },
                 ],
             },

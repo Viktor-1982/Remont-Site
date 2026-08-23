@@ -148,6 +148,15 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-stone-500/15 via-slate-400/10 to-zinc-400/10",
             },
             {
+                href: "/ru/calculators/soundproofing",
+                label: "Калькулятор звукоизоляции",
+                emoji: "🔇",
+                icon: "layers",
+                desc: "Рассчитайте ГВЛ/ГКЛ, акустическую вату, профили, виброподвесы, ленту и герметик для стен, потолка и пола.",
+                badge: "Акустика и тишина",
+                gradient: "from-blue-500/15 via-indigo-400/10 to-violet-400/10",
+            },
+            {
                 href: "/ru/calculators/underfloor-heating",
                 label: "Калькулятор теплого пола",
                 emoji: "🔥",
@@ -360,6 +369,15 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 desc: "Estimate screed volume, dry mix, bag count, water and approximate cost for floor leveling.",
                 badge: "Floor base",
                 gradient: "from-stone-500/15 via-slate-400/10 to-zinc-400/10",
+            },
+            {
+                href: "/en/calculators/soundproofing",
+                label: "Soundproofing Calculator",
+                emoji: "🔇",
+                icon: "layers",
+                desc: "Calculate drywall sheets, mineral wool, steel studs, isolation clips, and acoustic sealant.",
+                badge: "Acoustics & quiet",
+                gradient: "from-blue-500/15 via-indigo-400/10 to-violet-400/10",
             },
             {
                 href: "/en/calculators/underfloor-heating",

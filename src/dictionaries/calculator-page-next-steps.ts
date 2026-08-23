@@ -12,6 +12,7 @@ export type CalculatorPageNextStepKey =
     | "lighting"
     | "budget"
     | "color-palette"
+    | "soundproofing"
 
 type NextStepSection = {
     title: string
@@ -301,6 +302,29 @@ export const calculatorPageNextSteps: Record<
                 ],
             },
         },
+        soundproofing: {
+            nextSteps: {
+                title: "Что делать после расчёта звукоизоляции",
+                description:
+                    "После спецификации звукоизоляции рассчитайте финишную отделку стен и заливку пола.",
+                cards: [
+                    {
+                        href: "/ru/calculators/screed",
+                        title: "Калькулятор стяжки пола",
+                        description: "Рассчитайте расход смесей для заливки плавающего пола по акустическим плитам.",
+                        icon: "gauge",
+                        accentClass: "text-amber-500",
+                    },
+                    {
+                        href: "/ru/calculators/paint",
+                        title: "Калькулятор краски",
+                        description: "Оцените объем краски и грунтовки для финишной отделки звукоизоляционных стен.",
+                        icon: "paintbrush",
+                        accentClass: "text-rose-500",
+                    },
+                ],
+            },
+        },
     },
     en: {
         paint: {
@@ -553,6 +577,29 @@ export const calculatorPageNextSteps: Record<
                         description: "Roll paint, lighting and decorative accents into one room budget.",
                         icon: "layers",
                         accentClass: "text-amber-500",
+                    },
+                ],
+            },
+        },
+        soundproofing: {
+            nextSteps: {
+                title: "Next steps after soundproofing calculation",
+                description:
+                    "Once acoustic materials are specified, plan for the flooring base and wall finish coatings.",
+                cards: [
+                    {
+                        href: "/calculators/screed",
+                        title: "Floor Screed Calculator",
+                        description: "Calculate concrete and leveling mix requirements for floating acoustic floors.",
+                        icon: "gauge",
+                        accentClass: "text-amber-500",
+                    },
+                    {
+                        href: "/calculators/paint",
+                        title: "Paint Calculator",
+                        description: "Estimate primer and paint coats for the new drywall partitions.",
+                        icon: "paintbrush",
+                        accentClass: "text-rose-500",
                     },
                 ],
             },
