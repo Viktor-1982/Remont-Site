@@ -23,6 +23,7 @@ export type ArticleToolId =
     | "lighting"
     | "budget"
     | "color-palette"
+    | "soundproofing"
 
 export type ArticleToolIcon =
     | "paintbrush"
@@ -234,6 +235,18 @@ const toolCatalog: Record<ArticleToolId, ToolDefinition> = {
         badge: { ru: "Инструмент", en: "Tool" },
         ctaLabel: { ru: "Подобрать палитру", en: "Build a palette" },
     },
+    soundproofing: {
+        icon: "layers",
+        gradient: "from-blue-500/16 via-indigo-500/12 to-transparent",
+        href: { ru: "/ru/calculators/soundproofing", en: "/calculators/soundproofing" },
+        title: { ru: "Калькулятор звукоизоляции", en: "Soundproofing Calculator" },
+        description: {
+            ru: "Рассчитайте листы ГВЛ/ГКЛ, акустическую вату, профили, виброподвесы и герметик для стен, потолка и пола.",
+            en: "Calculate drywall, mineral wool, steel studs, isolation clips, and sealant for acoustic assemblies.",
+        },
+        badge: { ru: "Калькулятор", en: "Calculator" },
+        ctaLabel: { ru: "Посчитать звукоизоляцию", en: "Estimate soundproofing" },
+    },
 }
 
 const hubCatalog: Record<
@@ -348,6 +361,10 @@ const hubCatalog: Record<
 
 const explicitRules: Array<{ test: RegExp; tools: ArticleToolId[] }> = [
     {
+        test: /(soundproofing|zvukoizolyaciya)/,
+        tools: ["soundproofing", "screed", "paint"],
+    },
+    {
         test: /(bathroom|vann)/,
         tools: ["tile", "ventilation", "lighting"],
     },
@@ -414,6 +431,11 @@ const explicitRules: Array<{ test: RegExp; tools: ArticleToolId[] }> = [
 ]
 
 const scoreRules: Array<{ toolId: ArticleToolId; weight: number; patterns: RegExp[] }> = [
+    {
+        toolId: "soundproofing",
+        weight: 30,
+        patterns: [/звукоизоляц/g, /шумоизоляц/g, /soundproof/g, /acoustic/g, /stc/g, /rw/g],
+    },
     {
         toolId: "paint",
         weight: 22,
@@ -630,6 +652,10 @@ function getSectionCopy(primaryToolId: ArticleToolId, locale: ArticleToolLocale,
             ru: "Сведите цвета до покупки материалов",
             en: "Lock in colors before you buy finishes",
         },
+        soundproofing: {
+            ru: "Рассчитайте звукоизоляцию до начала отделки",
+            en: "Calculate soundproofing before starting finish work",
+        },
     }
 
     return {
@@ -639,12 +665,12 @@ function getSectionCopy(primaryToolId: ArticleToolId, locale: ArticleToolLocale,
             locale === "ru"
                 ? hasHub
                     ? "Сначала откройте главный расчет, затем переходите к связанным инструментам и тематическому хабу."
-                    : "Сначала откройте главный расчет, затем используйте еще два инструмента, которые логично идут после этой статьи."
+                    : "Сначала откройте главный расчет, затем используйте дополнительные инструменты, которые логично идут после этой статьи."
                 : hasHub
                   ? "Start with the main calculator, then move into the related tools and the matching topic hub."
                   : "Start with the main calculator, then use the two tools that most naturally follow this article.",
-        primaryLabel: locale === "ru" ? "Главный следующий шаг" : "Main next step",
-        secondaryLabel: locale === "ru" ? "Полезно следом" : "Useful next",
+        primaryLabel: locale === "ru" ? "Основной расчёт" : "Main next step",
+        secondaryLabel: locale === "ru" ? "Также пригодится" : "Useful next",
         hubLabel: locale === "ru" ? "Тематическая подборка" : "Topic hub",
     }
 }
