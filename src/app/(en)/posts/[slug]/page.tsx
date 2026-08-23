@@ -41,7 +41,15 @@ export default async function PostPage({
     const post = allPosts.find((p) => p.slug === slug && p.locale === "en")
     
     if (!post) {
-        // Проверяем, есть ли такой пост на русском языке
+        // Check if there is an English translation if a Russian slug was passed
+        const enTranslation = allPosts.find(
+            (p) => (p.translationOf === slug || p.slug === slug) && p.locale === "en"
+        )
+        if (enTranslation) {
+            redirect(`/posts/${enTranslation.slug}`)
+        }
+
+        // Check if this is a Russian post
         const ruPost = allPosts.find((p) => p.slug === slug && p.locale === "ru")
         if (ruPost) {
             redirect(`/ru/posts/${slug}`)

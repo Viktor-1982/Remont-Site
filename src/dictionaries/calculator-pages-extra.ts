@@ -1235,14 +1235,14 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "Related guides and calculators",
                 cards: [
                     {
-                        href: "/en/posts/apartment-soundproofing-guide-2026",
+                        href: "/posts/apartment-soundproofing-guide-2026",
                         title: "Apartment Soundproofing Guide 2026",
                         description: "Deep engineering guide: airborne vs. impact noise, tested assemblies, and jobsite rules.",
                         icon: "layers",
                         accentClass: "text-blue-500",
                     },
                     {
-                        href: "/en/calculators/screed",
+                        href: "/calculators/screed",
                         title: "Floor Screed Calculator",
                         description: "Calculate concrete mix and leveling underlayment for floating floors.",
                         icon: "gauge",
