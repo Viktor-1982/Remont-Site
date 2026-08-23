@@ -162,38 +162,38 @@ export function SoundproofingCalculator() {
                     <button
                         type="button"
                         onClick={() => handleSurfaceChange("wall")}
-                        className={`flex items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold transition-all ${
+                        className={`flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl py-2.5 sm:py-3 text-xs sm:text-sm font-semibold transition-all ${
                             surface === "wall"
                                 ? "bg-background text-foreground shadow-sm ring-1 ring-border"
                                 : "text-muted-foreground hover:text-foreground"
                         }`}
                     >
-                        <Layers className="h-4 w-4 text-blue-500" />
+                        <Layers className="h-4 w-4 shrink-0 text-blue-500" />
                         <span>{isEnglish ? "Walls" : "Стены"}</span>
                     </button>
                     <button
                         type="button"
                         onClick={() => handleSurfaceChange("ceiling")}
-                        className={`flex items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold transition-all ${
+                        className={`flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl py-2.5 sm:py-3 text-xs sm:text-sm font-semibold transition-all ${
                             surface === "ceiling"
                                 ? "bg-background text-foreground shadow-sm ring-1 ring-border"
                                 : "text-muted-foreground hover:text-foreground"
                         }`}
                     >
-                        <SquareStack className="h-4 w-4 text-indigo-500" />
+                        <SquareStack className="h-4 w-4 shrink-0 text-indigo-500" />
                         <span>{isEnglish ? "Ceiling" : "Потолок"}</span>
                     </button>
                     <button
                         type="button"
                         onClick={() => handleSurfaceChange("floor")}
-                        className={`flex items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold transition-all ${
+                        className={`flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl py-2.5 sm:py-3 text-xs sm:text-sm font-semibold transition-all ${
                             surface === "floor"
                                 ? "bg-background text-foreground shadow-sm ring-1 ring-border"
                                 : "text-muted-foreground hover:text-foreground"
                         }`}
                     >
-                        <Volume2 className="h-4 w-4 text-amber-500" />
-                        <span>{isEnglish ? "Floating Floor" : "Пол"}</span>
+                        <Volume2 className="h-4 w-4 shrink-0 text-amber-500" />
+                        <span>{isEnglish ? "Floor" : "Пол"}</span>
                     </button>
                 </div>
             </div>
@@ -511,11 +511,11 @@ export function SoundproofingCalculator() {
                                 <label className="text-xs font-medium text-muted-foreground">
                                     {isEnglish ? "Sheathing Layers" : "Количество слоёв обшивки"}
                                 </label>
-                                <div className="mt-2 grid grid-cols-3 gap-2">
+                                <div className="mt-2 grid grid-cols-3 gap-1.5 sm:gap-2">
                                     <button
                                         type="button"
                                         onClick={() => setLayers("1")}
-                                        className={`rounded-xl py-2 text-xs font-semibold transition-all ${
+                                        className={`rounded-xl px-1.5 py-2 text-[11px] sm:text-xs font-semibold text-center transition-all ${
                                             layers === "1"
                                                 ? "bg-primary text-primary-foreground"
                                                 : "bg-muted text-muted-foreground hover:text-foreground"
@@ -526,7 +526,7 @@ export function SoundproofingCalculator() {
                                     <button
                                         type="button"
                                         onClick={() => setLayers("2")}
-                                        className={`rounded-xl py-2 text-xs font-semibold transition-all ${
+                                        className={`rounded-xl px-1.5 py-2 text-[11px] sm:text-xs font-semibold text-center transition-all ${
                                             layers === "2"
                                                 ? "bg-primary text-primary-foreground"
                                                 : "bg-muted text-muted-foreground hover:text-foreground"
@@ -537,7 +537,7 @@ export function SoundproofingCalculator() {
                                     <button
                                         type="button"
                                         onClick={() => setLayers("3")}
-                                        className={`rounded-xl py-2 text-xs font-semibold transition-all ${
+                                        className={`rounded-xl px-1.5 py-2 text-[11px] sm:text-xs font-semibold text-center transition-all ${
                                             layers === "3"
                                                 ? "bg-primary text-primary-foreground"
                                                 : "bg-muted text-muted-foreground hover:text-foreground"
