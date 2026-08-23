@@ -64,6 +64,8 @@ const staticPageConfig = [
     { path: "/ru/calculators/lighting",       changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/calculators/color-palette",     changeFrequency: "monthly" as const, priority: 0.5 },
     { path: "/ru/calculators/color-palette",  changeFrequency: "monthly" as const, priority: 0.5 },
+    { path: "/calculators/soundproofing",     changeFrequency: "monthly" as const, priority: 0.6 },
+    { path: "/ru/calculators/soundproofing",  changeFrequency: "monthly" as const, priority: 0.6 },
 
     // ── Tools ────────────────────────────────────────────────────────────────
     { path: "/tools",                         changeFrequency: "monthly" as const, priority: 0.6 },
