@@ -216,7 +216,7 @@ function MdxImage({ alt, src }: { alt?: string; src: string }) {
         >
             <div ref={imageRef} className="relative w-full overflow-hidden rounded-lg">
                 <Image
-                    alt={alt && alt.trim() !== "" ? alt : "Изображение по теме ремонта"}
+                    alt={alt && alt.trim() !== "" ? alt : (isEnglish ? "Renovation theme image" : "Изображение по теме ремонта")}
                     src={src}
                     width={1200}
                     height={800}
