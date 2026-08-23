@@ -610,7 +610,7 @@ describe("computeSoundproofing", () => {
     expect(guide).toBeDefined()
     expect(guide!.quantity).toBe(6) // ceil(15.4 * 1.05 / 3) = 6
     expect(stud).toBeDefined()
-    expect(stud!.quantity).toBe(13) // (ceil(5/0.6)+1+4)*2.7/3 = 14*2.7/3 = 12.6 -> 13
+    expect(stud!.quantity).toBe(14) // 14 studs of 2.7m height = 14 full 3m profiles
     expect(tape).toBeDefined()
     expect(tape!.quantity).toBe(2) // 32.34m -> 2 rolls of 30m
     expect(sealant).toBeDefined()

@@ -985,7 +985,7 @@ export function computeSoundproofing(params: SoundproofingParams): Soundproofing
 
       const stepM = studSpacingMm / 1000
       const studCount = Math.ceil(length / stepM) + 1 + (doors + windows) * 2
-      const studProfiles = Math.ceil((studCount * widthOrHeight) / 3.0)
+      const studProfiles = widthOrHeight <= 3.0 ? studCount : Math.ceil((studCount * widthOrHeight) / 3.0)
       items.push({
         id: "stud-profile",
         nameRu: "Стоечный профиль ПС 50/50 (3 м)",
