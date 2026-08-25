@@ -1,5 +1,5 @@
 import { allPosts } from ".contentlayer/generated"
-import { notFound } from "next/navigation"
+import { notFound, permanentRedirect } from "next/navigation"
 import type { Metadata } from "next"
 import { getPageMetadata } from "@/lib/seo"
 import { ArticleGrid } from "@/components/article-grid"
@@ -16,7 +16,7 @@ type Params = {
 
 export const revalidate = 86400
 export const dynamic = "force-static"
-export const dynamicParams = false
+export const dynamicParams = true
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const { tag } = await params
@@ -61,7 +61,16 @@ export default async function TagPageEn({ params }: Params) {
             post.tags?.map((t) => normalizeTag(t)).includes(decodedTag)
     )
 
-    if (filtered.length === 0) return notFound()
+    if (filtered.length === 0) {
+        // If it's a Russian tag or exists in Russian posts, 301 redirect to /ru/tags/[tag]
+        const hasRuMatch = decodedTag === "novinki" || allPosts.some(
+            (p) => p.locale === "ru" && !p.draft && p.tags?.map((t) => normalizeTag(t)).includes(decodedTag)
+        )
+        if (hasRuMatch || /[а-яА-ЯёЁ]/.test(decodedTag)) {
+            permanentRedirect(`/ru/tags/${encodeURIComponent(decodedTag)}`)
+        }
+        return notFound()
+    }
 
     return (
         <section className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16 max-w-7xl">

@@ -1,5 +1,5 @@
 import { allPosts } from ".contentlayer/generated"
-import { notFound } from "next/navigation"
+import { notFound, permanentRedirect } from "next/navigation"
 import type { Metadata } from "next"
 import { getPageMetadata } from "@/lib/seo"
 import { ArticleGrid } from "@/components/article-grid"
@@ -17,7 +17,7 @@ type Params = {
 
 export const revalidate = 86400
 export const dynamic = "force-static"
-export const dynamicParams = false
+export const dynamicParams = true
 
 // 🔹 Генерация метаданных
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
@@ -109,7 +109,16 @@ export default async function TagPage({ params }: Params) {
         )
     }
 
-    if (filtered.length === 0) return notFound()
+    if (filtered.length === 0) {
+        // If it's an English tag or exists in English posts, 301 redirect to /tags/[tag]
+        const hasEnMatch = allPosts.some(
+            (p) => p.locale === "en" && !p.draft && p.tags?.map((t) => normalizeTag(t)).includes(decodedTag)
+        )
+        if (hasEnMatch || /^[a-z0-9\s-]+$/i.test(decodedTag)) {
+            permanentRedirect(`/tags/${encodeURIComponent(decodedTag)}`)
+        }
+        return notFound()
+    }
 
     // 🔹 Сортируем по дате — свежие первыми
     filtered = filtered.sort((a, b) => {

@@ -56,15 +56,10 @@ const nextConfig: NextConfig = {
                 destination: "/:path*",
                 permanent: true,  // 301 — tells Google the canonical is without /en/
             },
-            // ── Specific post slug renames ─────────────────────────────────────
+            // ── Specific post slug renames / legacy redirects ───────────────────
             {
-                source: "/posts/country-house-trends-2026",
-                destination: "/posts/trendy-zagorodnyh-domov-2026",
-                permanent: true,
-            },
-            {
-                source: "/en/posts/trendy-zagorodnyh-domov-2026",
-                destination: "/posts/country-house-trends-2026",
+                source: "/posts/interior-design-trends-2026-en",
+                destination: "/posts/interior-design-trends-2026",
                 permanent: true,
             },
         ]
