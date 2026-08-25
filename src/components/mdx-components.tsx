@@ -257,10 +257,12 @@ function AffiliateCardComponent({ href, title, description, imgSrc }: { href: st
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
                 {imgSrc ? (
                     <a href={href} target="_blank" rel="sponsored nofollow" className="shrink-0 block w-full sm:w-32 bg-white rounded-lg p-3 border border-border/50 shadow-sm hover:shadow-md transition-shadow">
-                        <img src={imgSrc} alt={title} className="w-full h-auto max-h-40 object-contain mx-auto" loading="lazy" />
+                        <img src={imgSrc} alt={title} className="w-full h-auto max-h-40 object-contain mx-auto" loading="lazy" onError={(e) => { if (e.currentTarget.parentElement) { e.currentTarget.parentElement.style.display = 'none'; } }} />
                     </a>
                 ) : (
-                    <span className="text-3xl sm:mt-1 hidden sm:block">🛒</span>
+                    <div className="shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-[#FF9900]/10 text-[#FF9900] border border-[#FF9900]/20 sm:mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    </div>
                 )}
                 <div className="flex-1 text-center sm:text-left w-full">
                     <h4 className="font-semibold text-foreground text-lg mt-0 mb-2 leading-tight">{title}</h4>
