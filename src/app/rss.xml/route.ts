@@ -1,4 +1,4 @@
-﻿import { allPosts } from ".contentlayer/generated"
+import { allPosts } from ".contentlayer/generated"
 
 function escapeXml(str: string): string {
     return str
@@ -12,7 +12,7 @@ export async function GET() {
     
     // РџРѕР»СѓС‡Р°РµРј РїРѕСЃР»РµРґРЅРёРµ 20 РїРѕСЃС‚РѕРІ
     const recentPosts = allPosts
-        .filter((post) => !post.draft && !post.url.startsWith("/en/"))
+        .filter((post) => !post.draft && post.locale === "ru")
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
         .slice(0, 20)
 

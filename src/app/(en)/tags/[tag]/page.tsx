@@ -1,4 +1,4 @@
-﻿import { allPosts } from ".contentlayer/generated"
+import { allPosts } from ".contentlayer/generated"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getPageMetadata } from "@/lib/seo"
@@ -56,7 +56,7 @@ export default async function TagPageEn({ params }: Params) {
 
     const filtered = allPosts.filter(
         (post) =>
-            post.url.startsWith("/en/") &&
+            post.locale === "en" &&
             !post.draft &&
             post.tags?.map((t) => normalizeTag(t)).includes(decodedTag)
     )

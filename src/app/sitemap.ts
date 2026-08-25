@@ -137,6 +137,17 @@ function getTagPages() {
     return [...ruPages, ...enPages]
 }
 
+function findPostTranslation(post: (typeof publishedPosts)[number]) {
+    if (post.translationOf) {
+        return publishedPosts.find(
+            (p) => p.slug === post.translationOf && p.locale !== post.locale
+        )
+    }
+    return publishedPosts.find(
+        (p) => p.translationOf === post.slug && p.locale !== post.locale
+    )
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
     const staticLastModified = getLatestPublishedDate()
 
@@ -155,12 +166,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
         })),
     ]
 
-    const posts: MetadataRoute.Sitemap = publishedPosts.map((post) => ({
-        url: `${baseUrl}${post.url}`,
-        lastModified: post.date,
-        changeFrequency: "monthly",
-        priority: 0.7,
-    }))
+    const posts: MetadataRoute.Sitemap = publishedPosts.map((post) => {
+        const translation = findPostTranslation(post)
+        const languages: Record<string, string> = {
+            [post.locale]: `${baseUrl}${post.url}`,
+        }
+        if (translation) {
+            languages[translation.locale] = `${baseUrl}${translation.url}`
+        }
+        languages["x-default"] =
+            post.locale === "en"
+                ? `${baseUrl}${post.url}`
+                : translation
+                ? `${baseUrl}${translation.url}`
+                : `${baseUrl}/`
+
+        return {
+            url: `${baseUrl}${post.url}`,
+            lastModified: post.date,
+            changeFrequency: "monthly",
+            priority: 0.7,
+            alternates: {
+                languages,
+            },
+        }
+    })
 
     const staticPages: MetadataRoute.Sitemap = staticPageConfig.map((item) => ({
         url: `${baseUrl}${item.path}`,

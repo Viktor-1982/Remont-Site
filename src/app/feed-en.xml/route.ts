@@ -1,4 +1,4 @@
-﻿import { allPosts } from ".contentlayer/generated"
+import { allPosts } from ".contentlayer/generated"
 
 export const revalidate = 3600
 
@@ -13,7 +13,7 @@ export async function GET() {
   const baseUrl = "https://renohacks.com"
 
   const posts = allPosts
-    .filter((p) => !p.draft && p.url.startsWith("/en/"))
+    .filter((p) => !p.draft && p.locale === "en")
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 20)
 

@@ -49,8 +49,8 @@ export const Post = defineDocumentType(() => ({
             type: "string",
             resolve: (post) =>
                 /(^|[\\/])en[\\/]/.test(post._raw.sourceFilePath)
-                    ? `/en/posts/${post._raw.flattenedPath.replace(/^en[\\/]/, "")}`
-                    : `/posts/${post._raw.flattenedPath}`,
+                    ? `/posts/${post._raw.flattenedPath.replace(/^en[\\/]/, "").replace(/^posts[\\/]/, "")}`
+                    : `/ru/posts/${post._raw.flattenedPath.replace(/^posts[\\/]/, "")}`,
         },
 
         // ⏱️ Время чтения

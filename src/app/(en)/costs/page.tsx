@@ -36,7 +36,7 @@ export default function CostsPage() {
     // Фильтруем только английские статьи со сметами
     const estimates = allPosts.filter(
         (post) =>
-            post.url.startsWith("/en/") &&
+            post.locale === "en" &&
             post.tags?.includes("estimates")
     )
 

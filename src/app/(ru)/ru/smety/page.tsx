@@ -36,7 +36,7 @@ export default function SmetyPage() {
     // Фильтруем только русские статьи со сметами
     const estimates = allPosts.filter(
         (post) =>
-            !post.url.startsWith("/en/") &&
+            post.locale === "ru" &&
             post.tags?.includes("сметы")
     )
 

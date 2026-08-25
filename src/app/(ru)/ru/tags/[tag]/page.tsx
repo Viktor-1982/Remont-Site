@@ -1,4 +1,4 @@
-﻿import { allPosts } from ".contentlayer/generated"
+import { allPosts } from ".contentlayer/generated"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getPageMetadata } from "@/lib/seo"
@@ -58,8 +58,7 @@ function isRecent(date?: string) {
     const diffDays = (Date.now() - published.getTime()) / (1000 * 60 * 60 * 24)
     return diffDays < 10 // младше 10 дней
 }
-
-// 🔹 Основной компонент страницы
+// 🔹 Основной компонент страницы
 export default async function TagPage({ params }: Params) {
     const { tag } = await params
     const decodedTag = normalizeTag(decodeURIComponent(tag))
@@ -77,7 +76,7 @@ export default async function TagPage({ params }: Params) {
             .filter(
                 (post) => {
                     // Только русские посты
-                    if (post.url.startsWith("/en/")) return false
+                    if (post.locale !== "ru") return false
                     // Только опубликованные
                     if (post.draft) return false
                     // Только свежие (младше 10 дней)
@@ -104,7 +103,7 @@ export default async function TagPage({ params }: Params) {
         // 🔸 Обычная логика для других тегов
         filtered = allPosts.filter(
             (post) =>
-                !post.url.startsWith("/en/") &&
+                post.locale === "ru" &&
                 !post.draft &&
                 post.tags?.map((t) => normalizeTag(t)).includes(decodedTag)
         )
