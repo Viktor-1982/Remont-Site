@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const title = `#${displayTag} — articles tagged ${displayTag} | Renohacks`
     const description = `All articles tagged "${displayTag}" on Renohacks.com: practical home renovation ideas, interior design tips, and DIY projects. Step-by-step guides, photo tutorials, expert advice, and material reviews.`
 
-    return getPageMetadata(`/en/tags/${encodedTag}`, {
+    return getPageMetadata(`/tags/${encodedTag}`, {
         title,
         description,
         cover: "/images/og-default.png",
@@ -36,11 +36,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
         autoAlternateLanguages: false,
         alternates: {
             languages: {
-                en: `https://renohacks.com/en/tags/${encodedTag}`,
+                en: `https://renohacks.com/tags/${encodedTag}`,
                 ...(russianTagSlug
-                    ? { ru: `https://renohacks.com/tags/${encodeURIComponent(russianTagSlug)}` }
+                    ? { ru: `https://renohacks.com/ru/tags/${encodeURIComponent(russianTagSlug)}` }
                     : {}),
-                "x-default": `https://renohacks.com/en/tags/${encodedTag}`,
+                "x-default": `https://renohacks.com/tags/${encodedTag}`,
             },
         },
         openGraph: {

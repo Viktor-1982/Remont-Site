@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const title = `#${displayTag} — статьи по тегу ${displayTag} | Renohacks`
     const description = `Все статьи с тегом «${displayTag}» на Renohacks.com: практические идеи для ремонта, дизайна интерьера и DIY-проектов. Пошаговые инструкции, фото-гайды, советы экспертов и обзоры материалов.`
 
-    return getPageMetadata(`/tags/${encodedTag}`, {
+    return getPageMetadata(`/ru/tags/${encodedTag}`, {
         title,
         description,
         cover: "/images/og-default.png",
@@ -38,11 +38,13 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
         autoAlternateLanguages: false,
         alternates: {
             languages: {
-                ru: `https://renohacks.com/tags/${encodedTag}`,
+                ru: `https://renohacks.com/ru/tags/${encodedTag}`,
                 ...(englishTagSlug
-                    ? { en: `https://renohacks.com/en/tags/${encodeURIComponent(englishTagSlug)}` }
+                    ? { en: `https://renohacks.com/tags/${encodeURIComponent(englishTagSlug)}` }
                     : {}),
-                "x-default": `https://renohacks.com/tags/${encodedTag}`,
+                "x-default": englishTagSlug
+                    ? `https://renohacks.com/tags/${encodeURIComponent(englishTagSlug)}`
+                    : `https://renohacks.com/ru/tags/${encodedTag}`,
             },
         },
         openGraph: {
@@ -58,7 +60,7 @@ function isRecent(date?: string) {
     const diffDays = (Date.now() - published.getTime()) / (1000 * 60 * 60 * 24)
     return diffDays < 10 // младше 10 дней
 }
-// 🔹 Основной компонент страницы
+// 🔹 Основной компонент страницы
 export default async function TagPage({ params }: Params) {
     const { tag } = await params
     const decodedTag = normalizeTag(decodeURIComponent(tag))

@@ -46,12 +46,17 @@ export function getPostMetadata(post: Post): Metadata {
         languages["x-default"] = baseUrl + "/" // fallback: EN homepage
     }
 
+    const allKeywords = [
+        ...(post.keywords || []),
+        ...(post.tags || []),
+    ]
+
     return getPageMetadata(post.url, {
         title: post.title,
         description: post.description,
         cover: post.cover,
         type: "article",
-        keywords: post.keywords,
+        keywords: allKeywords.length > 0 ? allKeywords : undefined,
         alternates: {
             canonical: `${baseUrl}${post.url}`,
             languages,
@@ -60,6 +65,7 @@ export function getPostMetadata(post: Post): Metadata {
             type: "article",
             locale: post.locale === "en" ? "en_US" : "ru_RU",
             publishedTime: post.date,
+            tags: post.tags,
             images: [
                 {
                     url: `${baseUrl}${post.cover || "/images/og-default.png"}`,
