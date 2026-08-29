@@ -72,12 +72,12 @@ export function DrywallCalculator() {
     }, [currency, isEnglish])
 
     const calculationResult = useMemo(() => {
-        const numL = parseFloat(length.replace(",", "."))
-        const numH = parseFloat(height.replace(",", "."))
-        const numDoors = parseInt(doorsCount, 10) || 0
-        const numDoorW = parseFloat(doorWidth.replace(",", ".")) || 0.9
-        const numDoorH = parseFloat(doorHeight.replace(",", ".")) || 2.1
-        const numWaste = parseFloat(wastePercent.replace(",", ".")) || 8
+        const numL = Math.min(10000, Math.max(0.1, parseFloat(length.replace(",", ".")) || 0))
+        const numH = Math.min(100, Math.max(0.1, parseFloat(height.replace(",", ".")) || 0))
+        const numDoors = Math.min(100, Math.max(0, parseInt(doorsCount, 10) || 0))
+        const numDoorW = Math.min(10, Math.max(0.3, parseFloat(doorWidth.replace(",", ".")) || 0.9))
+        const numDoorH = Math.min(10, Math.max(0.5, parseFloat(doorHeight.replace(",", ".")) || 2.1))
+        const numWaste = Math.min(50, Math.max(0, parseFloat(wastePercent.replace(",", ".")) || 8))
         const numPriceSheet = parseFloat(pricePerSheet.replace(",", ".")) || undefined
         const numPriceProfile = parseFloat(pricePerProfile.replace(",", ".")) || undefined
 
@@ -118,6 +118,14 @@ export function DrywallCalculator() {
         pricePerSheet,
         pricePerProfile,
     ])
+
+    const formatNumber = (num: number, maxDecimals = 0) => {
+        if (!isFinite(num) || isNaN(num)) return "0"
+        if (num >= 100_000_000) {
+            return new Intl.NumberFormat(localeTag, { notation: "compact", maximumFractionDigits: 2 }).format(num)
+        }
+        return num.toLocaleString(localeTag, { maximumFractionDigits: maxDecimals })
+    }
 
     const filteredMaterials = useMemo(() => {
         if (!calculationResult) return []
@@ -484,75 +492,75 @@ export function DrywallCalculator() {
                 <div className="space-y-6">
                     {/* Top KPI Summary Cards */}
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center">
+                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center min-w-0 overflow-hidden">
                             <span className="text-xs font-semibold text-muted-foreground block">
                                 {isEnglish ? "Net Surface Area" : "Площадь конструкции"}
                             </span>
-                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block">
-                                {calculationResult.surfaceAreaM2.toLocaleString(localeTag)}
+                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block break-words">
+                                {formatNumber(calculationResult.surfaceAreaM2, 1)}
                             </span>
                             <span className="text-xs text-muted-foreground">
                                 {isEnglish ? "sq m (net)" : "м² (чистая)"}
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-primary/10 border-primary/25 p-3.5 sm:p-4 text-center flex flex-col justify-center">
+                        <div className="rounded-xl border bg-primary/10 border-primary/25 p-3.5 sm:p-4 text-center flex flex-col justify-center min-w-0 overflow-hidden">
                             <span className="text-xs font-bold text-primary block">
                                 {isEnglish ? "GKL Boards" : "Листы ГКЛ"}
                             </span>
-                            <span className="text-lg sm:text-2xl font-bold text-primary my-1 font-mono tracking-tight block">
-                                {calculationResult.sheetsCount.toLocaleString(localeTag)}
+                            <span className="text-lg sm:text-2xl font-bold text-primary my-1 font-mono tracking-tight block break-words">
+                                {formatNumber(calculationResult.sheetsCount)}
                             </span>
                             <span className="text-xs font-medium text-primary/80">
-                                {isEnglish ? "pcs" : "шт"} ({calculationResult.grossGklAreaM2.toLocaleString(localeTag)} {isEnglish ? "m² gross" : "м² с запасом"})
+                                {isEnglish ? "pcs" : "шт"} ({formatNumber(calculationResult.grossGklAreaM2, 1)} {isEnglish ? "m² gross" : "м² с запасом"})
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center">
+                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center min-w-0 overflow-hidden">
                             <span className="text-xs font-semibold text-muted-foreground block">
                                 {isEnglish ? "Guide Track Profiles" : "Направляющие ПН"}
                             </span>
-                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block">
-                                {calculationResult.guideProfilesCount.toLocaleString(localeTag)}
+                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block break-words">
+                                {formatNumber(calculationResult.guideProfilesCount)}
                             </span>
                             <span className="text-xs text-muted-foreground">
                                 {isEnglish ? "pcs (3m length)" : "шт (по 3 метра)"}
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center">
+                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center min-w-0 overflow-hidden">
                             <span className="text-xs font-semibold text-muted-foreground block">
                                 {isEnglish ? "Stud / CD Profiles" : "Стоечные ПС / ПП"}
                             </span>
-                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block">
-                                {calculationResult.studProfilesCount.toLocaleString(localeTag)}
+                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block break-words">
+                                {formatNumber(calculationResult.studProfilesCount)}
                             </span>
                             <span className="text-xs text-muted-foreground">
                                 {isEnglish ? "pcs (3m length)" : "шт (по 3 метра)"}
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center">
+                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center min-w-0 overflow-hidden">
                             <span className="text-xs font-semibold text-muted-foreground block">
                                 {isEnglish ? "GKL Screws TN" : "Саморезы TN"}
                             </span>
-                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block">
-                                {(calculationResult.screwsTN25Count + calculationResult.screwsTN35Count).toLocaleString(localeTag)}
+                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block break-words">
+                                {formatNumber(calculationResult.screwsTN25Count + calculationResult.screwsTN35Count)}
                             </span>
                             <span className="text-xs text-muted-foreground">
                                 {isEnglish ? "pcs (total)" : "шт (всего)"}
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center">
+                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center min-w-0 overflow-hidden">
                             <span className="text-xs font-semibold text-muted-foreground block">
                                 {isEnglish ? "Sealing Tape" : "Демпферная лента"}
                             </span>
-                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block">
-                                {calculationResult.sealingTapeRolls.toLocaleString(localeTag)}
+                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block break-words">
+                                {formatNumber(calculationResult.sealingTapeRolls)}
                             </span>
                             <span className="text-xs text-muted-foreground">
-                                {isEnglish ? "rolls" : "рулонов"} ({calculationResult.sealingTapeLengthM.toLocaleString(localeTag)} {isEnglish ? "m" : "м"})
+                                {isEnglish ? "rolls" : "рулонов"} ({formatNumber(calculationResult.sealingTapeLengthM, 1)} {isEnglish ? "m" : "м"})
                             </span>
                         </div>
                     </div>
@@ -567,7 +575,7 @@ export function DrywallCalculator() {
                                 </span>
                             </div>
                             <span className="text-xl sm:text-2xl font-bold text-emerald-700 dark:text-emerald-300 break-all">
-                                {calculationResult.estimatedCost.toLocaleString(localeTag)} {currentCurrency.symbol}
+                                {formatNumber(calculationResult.estimatedCost)} {currentCurrency.symbol}
                             </span>
                         </div>
                     )}
