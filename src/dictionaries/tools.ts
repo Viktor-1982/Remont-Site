@@ -157,6 +157,15 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-blue-500/15 via-indigo-400/10 to-violet-400/10",
             },
             {
+                href: "/ru/calculators/drywall",
+                label: "Калькулятор гипсокартона",
+                emoji: "🏗️",
+                icon: "layers",
+                desc: "Рассчитайте листы ГКЛ, стоечные и направляющие профили Knauf, подвесы, демпферную ленту и крепеж.",
+                badge: "Перегородки и потолки",
+                gradient: "from-indigo-500/15 via-blue-400/10 to-cyan-400/10",
+            },
+            {
                 href: "/ru/calculators/underfloor-heating",
                 label: "Калькулятор теплого пола",
                 emoji: "🔥",
@@ -378,6 +387,15 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 desc: "Calculate drywall sheets, mineral wool, steel studs, isolation clips, and acoustic sealant.",
                 badge: "Acoustics & quiet",
                 gradient: "from-blue-500/15 via-indigo-400/10 to-violet-400/10",
+            },
+            {
+                href: "/en/calculators/drywall",
+                label: "Knauf Drywall Calculator",
+                emoji: "🏗️",
+                icon: "layers",
+                desc: "Estimate drywall boards, steel studs, tracks, acoustic perimeter tape, fasteners, and joint compound.",
+                badge: "Framing & Partitions",
+                gradient: "from-indigo-500/15 via-blue-400/10 to-cyan-400/10",
             },
             {
                 href: "/en/calculators/underfloor-heating",

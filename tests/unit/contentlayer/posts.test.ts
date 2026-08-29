@@ -53,8 +53,8 @@ describe('Contentlayer and MDX Tests', () => {
 
     test('should have valid URLs', () => {
       for (const post of allPosts) {
-        // URL может начинаться с /posts/ или /en/posts/
-        expect(post.url).toMatch(/^(\/en)?\/posts\//);
+        // URL может начинаться с /posts/, /en/posts/ или /ru/posts/
+        expect(post.url).toMatch(/^(\/(ru|en))?\/posts\//);
         expect(post.url).toContain(post.slug);
       }
     });

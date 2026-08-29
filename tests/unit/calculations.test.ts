@@ -11,6 +11,7 @@ import {
   computeVentilation,
   computeLighting,
   computeSoundproofing,
+  computeDrywall,
 } from "@/lib/calculations"
 
 describe("computePaintLiters", () => {
@@ -707,6 +708,92 @@ describe("computeSoundproofing", () => {
     ).toBeNull()
   })
 })
+
+describe("computeDrywall", () => {
+  it("calculates single-layer partition (Knauf W111) correctly", () => {
+    const res = computeDrywall({
+      constructionType: "partition-single",
+      length: 5,
+      height: 2.7,
+      studSpacing: 600,
+      profileWidth: 50,
+      sheetLength: 2.5,
+      sheetWidth: 1.2,
+      doorsCount: 1,
+      doorWidth: 0.9,
+      doorHeight: 2.1,
+      wastePercent: 8,
+      includeInsulation: true,
+      pricePerSheet: 500,
+      pricePerProfile: 350,
+    })
+
+    expect(res).not.toBeNull()
+    expect(res?.surfaceAreaM2).toBeCloseTo(11.61, 1) // 5*2.7 - 1*0.9*2.1 = 13.5 - 1.89 = 11.61
+    expect(res?.sheetsCount).toBeGreaterThanOrEqual(8)
+    expect(res?.guideProfilesCount).toBeGreaterThanOrEqual(3) // (5*2 - 0.9)*1.08 / 3
+    expect(res?.studProfilesCount).toBeGreaterThanOrEqual(10) // ceil(5/0.6)+1 + 3 door studs = 10+3 = 13
+    expect(res?.insulationAreaM2).toBeGreaterThan(10)
+    expect(res?.materials.length).toBeGreaterThanOrEqual(8)
+    expect(res?.estimatedCost).toBeGreaterThan(0)
+  })
+
+  it("calculates double-layer partition (Knauf W112) with 4-layer multiplier and TN35 screws", () => {
+    const res = computeDrywall({
+      constructionType: "partition-double",
+      length: 4,
+      height: 3.0,
+      studSpacing: 600,
+      profileWidth: 75,
+      sheetLength: 2.5,
+      sheetWidth: 1.2,
+      doorsCount: 0,
+    })
+
+    expect(res).not.toBeNull()
+    expect(res?.surfaceAreaM2).toBe(12)
+    expect(res?.grossGklAreaM2).toBeCloseTo(12 * 4 * 1.08, 1) // 51.84 m²
+    expect(res?.sheetsCount).toBe(18) // ceil(51.84 / 3) = 18
+    expect(res?.screwsTN35Count).toBeGreaterThan(0)
+    expect(res?.screwsTN25Count).toBeGreaterThan(0)
+  })
+
+  it("calculates suspended ceiling (Knauf D112) with hangers and crabs", () => {
+    const res = computeDrywall({
+      constructionType: "ceiling",
+      length: 5,
+      height: 4, // 20 m² ceiling
+      studSpacing: 600,
+      sheetLength: 2.5,
+      sheetWidth: 1.2,
+    })
+
+    expect(res).not.toBeNull()
+    expect(res?.surfaceAreaM2).toBe(20)
+    expect(res?.directHangersCount).toBeGreaterThan(20)
+    expect(res?.connectorsCrabsCount).toBeGreaterThan(30)
+    expect(res?.materials.some((m) => m.id === "crab-connectors")).toBe(true)
+  })
+
+  it("returns null for invalid dimensions", () => {
+    expect(
+      computeDrywall({
+        constructionType: "partition-single",
+        length: -5,
+        height: 2.7,
+      })
+    ).toBeNull()
+
+    expect(
+      computeDrywall({
+        constructionType: "wall-lining",
+        length: 5,
+        height: 0,
+      })
+    ).toBeNull()
+  })
+})
+
 
 
 

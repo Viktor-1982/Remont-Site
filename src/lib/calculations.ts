@@ -1390,5 +1390,431 @@ export function computeSoundproofing(params: SoundproofingParams): Soundproofing
   }
 }
 
+// ─── Drywall / Knauf GKL Construction Calculator ────────────────────────────
+
+export type DrywallConstructionType =
+  | "partition-single" // Knauf W111: перегородка 1 слой ГКЛ с двух сторон
+  | "partition-double" // Knauf W112: перегородка 2 слоя ГКЛ с двух сторон
+  | "wall-lining" // Knauf C623: облицовка стены профилями 60x27
+  | "ceiling" // Knauf D113 / D112: подвесной потолок
+
+export type DrywallSheetType = "standard" | "moisture" | "fire" | "acoustic"
+export type StudSpacing = 400 | 600 // шаг стоек в мм
+
+export interface DrywallParams {
+  constructionType: DrywallConstructionType
+  length: number // длина стены / комнаты (м)
+  height: number // высота стены или ширина потолка (м)
+  studSpacing?: StudSpacing // шаг стоек: 400 или 600 мм
+  profileWidth?: 50 | 75 | 100 // ширина профиля ПН/ПС (мм)
+  sheetLength?: 2.5 | 3.0 // длина листа ГКЛ (2.5 м / 3.0 м)
+  sheetWidth?: number // ширина листа (1.2 м)
+  sheetType?: DrywallSheetType
+  layers?: 1 | 2 // для облицовки
+  doorsCount?: number // дверей / проемов
+  doorWidth?: number // ширина двери (м)
+  doorHeight?: number // высота двери (м)
+  wastePercent?: number // запас на раскрой (%)
+  includeInsulation?: boolean // минеральная вата
+  pricePerSheet?: number
+  pricePerProfile?: number
+}
+
+export interface DrywallMaterialItem {
+  id: string
+  nameRu: string
+  nameEn: string
+  category: "sheets" | "profiles" | "fasteners" | "damping" | "finishing" | "insulation"
+  quantity: number
+  unitRu: string
+  unitEn: string
+  descriptionRu?: string
+  descriptionEn?: string
+}
+
+export interface DrywallResult {
+  constructionType: DrywallConstructionType
+  surfaceAreaM2: number
+  grossGklAreaM2: number
+  sheetsCount: number
+  guideProfilesCount: number
+  studProfilesCount: number
+  directHangersCount: number
+  connectorsCrabsCount: number
+  sealingTapeLengthM: number
+  sealingTapeRolls: number
+  dowelNailsCount: number
+  screwsTN25Count: number
+  screwsTN35Count: number
+  screwsLNCount: number
+  jointTapeLengthM: number
+  jointCompoundKg: number
+  insulationAreaM2: number
+  insulationVolumeM3: number
+  materials: DrywallMaterialItem[]
+  estimatedCost?: number
+}
+
+export function computeDrywall(params: DrywallParams): DrywallResult | null {
+  const {
+    constructionType,
+    length,
+    height,
+    studSpacing = 600,
+    profileWidth = 50,
+    sheetLength = 2.5,
+    sheetWidth = 1.2,
+    sheetType = "standard",
+    layers = 1,
+    doorsCount = 0,
+    doorWidth = 0.9,
+    doorHeight = 2.1,
+    wastePercent = 8,
+    includeInsulation = true,
+    pricePerSheet,
+    pricePerProfile,
+  } = params
+
+  if (length <= 0 || height <= 0 || sheetLength <= 0 || sheetWidth <= 0) return null
+  if (studSpacing <= 0) return null
+
+  const safeDoors = Math.max(0, doorsCount)
+  const safeDoorW = Math.max(0.5, doorWidth)
+  const safeDoorH = Math.max(1.5, doorHeight)
+  const doorsArea = safeDoors * (safeDoorW * safeDoorH)
+
+  // Чистая площадь конструкции
+  const rawArea = length * height
+  const surfaceAreaM2 = Math.max(0.1, Number((rawArea - (constructionType !== "ceiling" ? doorsArea : 0)).toFixed(2)))
+
+  // Множитель слоев обшивки
+  let layerMultiplier = 1
+  if (constructionType === "partition-single") layerMultiplier = 2 // 2 стороны по 1 слою
+  else if (constructionType === "partition-double") layerMultiplier = 4 // 2 стороны по 2 слоя
+  else if (constructionType === "wall-lining") layerMultiplier = layers === 2 ? 2 : 1
+  else if (constructionType === "ceiling") layerMultiplier = 1
+
+  const safeWaste = Math.max(0, Math.min(30, wastePercent))
+  const grossGklAreaM2 = Number((surfaceAreaM2 * layerMultiplier * (1 + safeWaste / 100)).toFixed(2))
+  const singleSheetArea = sheetLength * sheetWidth
+  const sheetsCount = Math.ceil(grossGklAreaM2 / singleSheetArea)
+
+  // 1. Профили
+  let guideProfilesCount = 0
+  let studProfilesCount = 0
+  let directHangersCount = 0
+  let connectorsCrabsCount = 0
+
+  if (constructionType === "partition-single" || constructionType === "partition-double") {
+    // Направляющие ПН (UW): пол + потолок минус проемы дверей
+    const guidePerimeter = Math.max(length, length * 2 - safeDoors * safeDoorW)
+    guideProfilesCount = Math.ceil((guidePerimeter * 1.08) / 3.0)
+
+    // Стоечные ПС (CW): шаг 400 или 600 мм + по 2 усиленные стойки на каждый дверной проем
+    const baseStuds = Math.ceil(length / (studSpacing / 1000)) + 1
+    const doorExtraStuds = safeDoors * 2 + safeDoors // 2 боковые стойки + перемычка над дверью
+    const totalStuds = baseStuds + doorExtraStuds
+    const heightFactor = height > 3.0 ? Math.ceil(height / 3.0) : 1
+    studProfilesCount = totalStuds * heightFactor
+  } else if (constructionType === "wall-lining") {
+    // Облицовка стены: направляющий ПНП (UD 28/27) по периметру
+    const perimeter = (length + height) * 2
+    guideProfilesCount = Math.ceil((perimeter * 1.05) / 3.0)
+
+    // Стоечный ПП (CD 60/27): шаг 400 или 600 мм
+    const baseStuds = Math.ceil(length / (studSpacing / 1000)) + 1
+    const heightFactor = height > 3.0 ? Math.ceil(height / 3.0) : 1
+    studProfilesCount = baseStuds * heightFactor
+
+    // Прямые подвесы ES: шаг 700 мм по высоте (на стойку высотой 2.7м идет 4 подвеса)
+    const hangersPerStud = Math.max(2, Math.ceil(height / 0.7))
+    directHangersCount = baseStuds * hangersPerStud
+  } else {
+    // Подвесной потолок Knauf D113/D112
+    const perimeter = (length + height) * 2
+    guideProfilesCount = Math.ceil((perimeter * 1.05) / 3.0)
+
+    // Несущие и основные профили ПП (CD 60/27): ~2.9 - 3.2 пог.м на кв.м
+    const totalProfileMeters = surfaceAreaM2 * 3.1
+    studProfilesCount = Math.ceil(totalProfileMeters / 3.0)
+
+    // Прямые подвесы: ~1.2 подвеса на кв.м
+    directHangersCount = Math.ceil(surfaceAreaM2 * 1.3)
+
+    // Соединители "Краб": ~1.7 шт на кв.м
+    connectorsCrabsCount = Math.ceil(surfaceAreaM2 * 1.7)
+  }
+
+  // 2. Демпферная лента (Диктунгсбанд) под направляющие и пристенные стойки
+  const sealingTapeLengthM = Number((guideProfilesCount * 3.0 + (constructionType.startsWith("partition") ? 2 * height : 0)).toFixed(1))
+  const sealingTapeRolls = Math.ceil(sealingTapeLengthM / 30.0) // рулоны по 30м
+
+  // 3. Крепеж
+  // Дюбель-гвозди 6x40/6x60 (шаг 500 мм для направляющих + по 2 шт на подвес)
+  const guideDowelCount = Math.ceil(guideProfilesCount * 3.0 / 0.5)
+  const hangerDowelCount = directHangersCount * 2
+  const dowelNailsCount = guideDowelCount + hangerDowelCount
+
+  // Саморезы для ГКЛ TN 25 и TN 35
+  let screwsTN25Count = 0
+  let screwsTN35Count = 0
+  if (constructionType === "partition-double") {
+    screwsTN25Count = Math.ceil(surfaceAreaM2 * 2 * 14) // 1-й слой (шаг 500 мм) с двух сторон
+    screwsTN35Count = Math.ceil(surfaceAreaM2 * 2 * 34) // 2-й слой (шаг 250 мм) с двух сторон
+  } else if (constructionType === "partition-single") {
+    screwsTN25Count = Math.ceil(surfaceAreaM2 * 2 * 34) // 1-й слой с двух сторон
+  } else if (constructionType === "wall-lining" && layers === 2) {
+    screwsTN25Count = Math.ceil(surfaceAreaM2 * 14)
+    screwsTN35Count = Math.ceil(surfaceAreaM2 * 34)
+  } else {
+    screwsTN25Count = Math.ceil(surfaceAreaM2 * 34)
+  }
+
+  // Саморезы металл-металл (клопы LN 9/11)
+  const screwsLNCount = (studProfilesCount * 4) + (directHangersCount * 2) + (connectorsCrabsCount * 4)
+
+  // 4. Отделочные материалы швов
+  const jointTapeLengthM = Number((surfaceAreaM2 * (layerMultiplier >= 2 ? 1.4 : 1.2)).toFixed(1))
+  const jointCompoundKg = Number((surfaceAreaM2 * (layerMultiplier >= 2 ? 0.85 : 0.5)).toFixed(1))
+
+  // 5. Звукоизоляция (минвата)
+  const insulationAreaM2 = includeInsulation ? Number((surfaceAreaM2 * 1.05).toFixed(1)) : 0
+  const insulationVolumeM3 = includeInsulation ? Number(((insulationAreaM2 * profileWidth) / 1000).toFixed(2)) : 0
+
+  // Формирование структурированного списка материалов
+  const materials: DrywallMaterialItem[] = []
+
+  const sheetTypeLabelRu =
+    sheetType === "moisture"
+      ? "влагостойкий ГКЛВ"
+      : sheetType === "fire"
+      ? "огнестойкий ГКЛО"
+      : sheetType === "acoustic"
+      ? "акустический Knauf Сапфир"
+      : "стандартный ГСП-А"
+
+  const sheetTypeLabelEn =
+    sheetType === "moisture"
+      ? "Moisture-Resistant (Green Board)"
+      : sheetType === "fire"
+      ? "Fire-Rated Type X"
+      : sheetType === "acoustic"
+      ? "Acoustic Sound-Damped Drywall"
+      : "Standard Drywall"
+
+  materials.push({
+    id: "gkl-sheets",
+    nameRu: `Листы гипсокартона (${sheetTypeLabelRu}, ${sheetLength}x${sheetWidth} м)`,
+    nameEn: `Drywall Boards (${sheetTypeLabelEn}, ${sheetLength}x${sheetWidth}m)`,
+    category: "sheets",
+    quantity: sheetsCount,
+    unitRu: "шт",
+    unitEn: "pcs",
+    descriptionRu: `Площадь: ${grossGklAreaM2} м² (включая ${safeWaste}% запаса)`,
+    descriptionEn: `Total: ${grossGklAreaM2} m² (includes ${safeWaste}% waste allowance)`,
+  })
+
+  const guideProfileNameRu =
+    constructionType === "ceiling" || constructionType === "wall-lining"
+      ? "Профиль направляющий ПНП (UD 28/27, 3 м)"
+      : `Профиль направляющий ПН (UW ${profileWidth}x40, 3 м)`
+  const guideProfileNameEn =
+    constructionType === "ceiling" || constructionType === "wall-lining"
+      ? "Perimeter Track Profile (UD 28/27, 3m)"
+      : `Track Profile (UW ${profileWidth}x40, 3m)`
+
+  materials.push({
+    id: "guide-profiles",
+    nameRu: guideProfileNameRu,
+    nameEn: guideProfileNameEn,
+    category: "profiles",
+    quantity: guideProfilesCount,
+    unitRu: "шт (по 3м)",
+    unitEn: "pcs (3m)",
+    descriptionRu: "Крепится по контуру пола и потолка",
+    descriptionEn: "Floor and ceiling perimeter track",
+  })
+
+  const studProfileNameRu =
+    constructionType === "ceiling" || constructionType === "wall-lining"
+      ? "Профиль потолочный ПП (CD 60/27, 3 м)"
+      : `Профиль стоечный ПС (CW ${profileWidth}x50, 3 м)`
+  const studProfileNameEn =
+    constructionType === "ceiling" || constructionType === "wall-lining"
+      ? "Stud / Channel Profile (CD 60/27, 3m)"
+      : `Stud Profile (CW ${profileWidth}x50, 3m)`
+
+  materials.push({
+    id: "stud-profiles",
+    nameRu: studProfileNameRu,
+    nameEn: studProfileNameEn,
+    category: "profiles",
+    quantity: studProfilesCount,
+    unitRu: "шт (по 3м)",
+    unitEn: "pcs (3m)",
+    descriptionRu: `Шаг установки: ${studSpacing} мм`,
+    descriptionEn: `Stud spacing: ${studSpacing} mm`,
+  })
+
+  if (directHangersCount > 0) {
+    materials.push({
+      id: "direct-hangers",
+      nameRu: "Прямые подвесы с виброизоляцией (ES 60/125)",
+      nameEn: "Direct Acoustic Suspension Hangers (ES 60/125)",
+      category: "profiles",
+      quantity: directHangersCount,
+      unitRu: "шт",
+      unitEn: "pcs",
+      descriptionRu: "Крепление профилей к стене/потолку",
+      descriptionEn: "Fastening profiles to base masonry/ceiling",
+    })
+  }
+
+  if (connectorsCrabsCount > 0) {
+    materials.push({
+      id: "crab-connectors",
+      nameRu: "Одноуровневые соединители профилей «Краб»",
+      nameEn: "Single-Level 'Crab' Profile Cross-Connectors",
+      category: "profiles",
+      quantity: connectorsCrabsCount,
+      unitRu: "шт",
+      unitEn: "pcs",
+      descriptionRu: "Крестообразное соединение профилей CD 60/27",
+      descriptionEn: "Grid cross-joint locking clips",
+    })
+  }
+
+  materials.push({
+    id: "sealing-tape",
+    nameRu: "Демпферная уплотнительная лента Диктунгсбанд",
+    nameEn: "Acoustic Perimeter Sealing Foam Tape (Dichtungsband)",
+    category: "damping",
+    quantity: sealingTapeRolls,
+    unitRu: "рул (по 30м)",
+    unitEn: "rolls (30m)",
+    descriptionRu: `Всего: ${sealingTapeLengthM} пог. м (звукоизоляция примыканий)`,
+    descriptionEn: `Total: ${sealingTapeLengthM} linear meters (perimeter decoupling)`,
+  })
+
+  materials.push({
+    id: "dowel-nails",
+    nameRu: "Дюбель-гвозди 6x40 / 6x60 мм",
+    nameEn: "Hammer-Drive Anchors / Dowels 6x40mm",
+    category: "fasteners",
+    quantity: Math.ceil(dowelNailsCount / 50) * 50,
+    unitRu: "шт",
+    unitEn: "pcs",
+    descriptionRu: "Крепление направляющих профилей и подвесов (шаг 500 мм)",
+    descriptionEn: "Perimeter track and hanger base fixing",
+  })
+
+  materials.push({
+    id: "screws-tn25",
+    nameRu: "Саморезы для ГКЛ Knauf TN 25 мм",
+    nameEn: "Drywall Screws Knauf TN 25mm (1\")",
+    category: "fasteners",
+    quantity: Math.ceil(screwsTN25Count / 100) * 100,
+    unitRu: "шт",
+    unitEn: "pcs",
+    descriptionRu: "Крепление 1-го слоя гипсокартона к металлокаркасу",
+    descriptionEn: "First layer drywall to metal stud fixing",
+  })
+
+  if (screwsTN35Count > 0) {
+    materials.push({
+      id: "screws-tn35",
+      nameRu: "Саморезы для ГКЛ Knauf TN 35 мм",
+      nameEn: "Drywall Screws Knauf TN 35mm (1-3/8\")",
+      category: "fasteners",
+      quantity: Math.ceil(screwsTN35Count / 100) * 100,
+      unitRu: "шт",
+      unitEn: "pcs",
+      descriptionRu: "Крепление 2-го наружного слоя гипсокартона",
+      descriptionEn: "Second layer outer drywall fixing",
+    })
+  }
+
+  materials.push({
+    id: "screws-ln",
+    nameRu: "Саморезы металл-металл клопы LN 3.5x9/11 мм",
+    nameEn: "Framing Metal-to-Metal Screws LN (Pancake Head)",
+    category: "fasteners",
+    quantity: Math.ceil(screwsLNCount / 50) * 50,
+    unitRu: "шт",
+    unitEn: "pcs",
+    descriptionRu: "Скрепление профилей между собой и подвесов",
+    descriptionEn: "Stud-to-track and hanger assembly",
+  })
+
+  materials.push({
+    id: "joint-tape",
+    nameRu: "Армирующая лента для стыков (бумажная Knauf Kurt / серпянка)",
+    nameEn: "Joint Reinforcing Tape (Knauf Kurt / Fiberglass)",
+    category: "finishing",
+    quantity: Math.ceil(jointTapeLengthM / 25) * 25,
+    unitRu: "пог. м",
+    unitEn: "meters",
+    descriptionRu: `Всего: ${jointTapeLengthM} м для армирования заводских и торцевых швов`,
+    descriptionEn: `Total: ${jointTapeLengthM}m for taper and butt joints`,
+  })
+
+  materials.push({
+    id: "joint-compound",
+    nameRu: "Шпатлевка для швов (Knauf Uniflott / Fugen)",
+    nameEn: "Joint Compound (Knauf Uniflott / Setting-Type)",
+    category: "finishing",
+    quantity: jointCompoundKg,
+    unitRu: "кг",
+    unitEn: "kg",
+    descriptionRu: `~${Math.ceil(jointCompoundKg / 5)} уп. по 5 кг или ${Math.ceil(jointCompoundKg / 25)} меш. по 25 кг`,
+    descriptionEn: `Ready-mix or powder setting compound`,
+  })
+
+  if (includeInsulation && insulationAreaM2 > 0) {
+    materials.push({
+      id: "acoustic-insulation",
+      nameRu: `Звукоизоляционная минвата (${profileWidth} мм, плотность 35-45 кг/м³)`,
+      nameEn: `Acoustic Mineral Wool Batts (${profileWidth}mm thick, 35-45 kg/m³)`,
+      category: "insulation",
+      quantity: Math.ceil(insulationAreaM2 / 6),
+      unitRu: "упак (~6 м²)",
+      unitEn: "packs (~6 m²)",
+      descriptionRu: `Общий объем: ${insulationVolumeM3} м³ (площадь: ${insulationAreaM2} м²)`,
+      descriptionEn: `Total volume: ${insulationVolumeM3} m³ (${insulationAreaM2} m²)`,
+    })
+  }
+
+  // Расчет стоимости
+  let estimatedCost: number | undefined
+  if ((pricePerSheet && pricePerSheet > 0) || (pricePerProfile && pricePerProfile > 0)) {
+    const sheetTotal = (pricePerSheet || 0) * sheetsCount
+    const profileTotal = (pricePerProfile || 0) * (guideProfilesCount + studProfilesCount)
+    estimatedCost = Math.round(sheetTotal + profileTotal)
+  }
+
+  return {
+    constructionType,
+    surfaceAreaM2,
+    grossGklAreaM2,
+    sheetsCount,
+    guideProfilesCount,
+    studProfilesCount,
+    directHangersCount,
+    connectorsCrabsCount,
+    sealingTapeLengthM,
+    sealingTapeRolls,
+    dowelNailsCount,
+    screwsTN25Count,
+    screwsTN35Count,
+    screwsLNCount,
+    jointTapeLengthM,
+    jointCompoundKg,
+    insulationAreaM2,
+    insulationVolumeM3,
+    materials,
+    estimatedCost,
+  }
+}
+
 
 

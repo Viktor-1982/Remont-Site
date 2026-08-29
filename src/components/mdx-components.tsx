@@ -33,6 +33,10 @@ const ScreedCalculator = dynamic(
     () => import("@/components/widgets/screed-calculator").then((m) => ({ default: m.ScreedCalculator })),
     { ssr: true, loading: () => <div className="my-8 h-64 bg-muted/50 rounded-lg animate-pulse" /> }
 )
+const DrywallCalculator = dynamic(
+    () => import("@/components/widgets/drywall-calculator").then((m) => ({ default: m.DrywallCalculator })),
+    { ssr: true, loading: () => <div className="my-8 h-64 bg-muted/50 rounded-lg animate-pulse" /> }
+)
 const BeforeAfterGallery = dynamic(
     () => import("@/components/widgets/before-after-gallery").then((m) => ({ default: m.BeforeAfterGallery })),
     { ssr: true, loading: () => <div className="my-8 h-64 bg-muted/50 rounded-lg animate-pulse" /> }
@@ -317,6 +321,11 @@ export const mdxComponents: MDXComponents = {
     ScreedCalculator: () => (
         <div className="my-8">
             <ScreedCalculator />
+        </div>
+    ),
+    DrywallCalculator: () => (
+        <div className="my-8">
+            <DrywallCalculator />
         </div>
     ),
 

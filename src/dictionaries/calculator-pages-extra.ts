@@ -7,6 +7,7 @@ export type ExtraCalculatorPageKey =
     | "lighting"
     | "underfloorHeating"
     | "soundproofing"
+    | "drywall"
 
 export const extraCalculatorPageDictionaries: Record<
     CalculatorPageLocale,
@@ -644,6 +645,181 @@ export const extraCalculatorPageDictionaries: Record<
                 },
             ],
         },
+        drywall: {
+            metadata: {
+                path: "/ru/calculators/drywall",
+                title: "Инженерный калькулятор гипсокартона Knauf (ГКЛ, профили, крепеж) | Renohacks",
+                description:
+                    "Профессиональный онлайн калькулятор гипсокартона: точный расчет листов ГКЛ/ГКЛВ, профилей ПН/ПС/ПП/ПНП, подвесов, крабов, ленты Диктунгсбанд, саморезов и шпатлевки по нормам Knauf (W111, W112, C623, D112).",
+                keywords: [
+                    "калькулятор гипсокартона",
+                    "расчет профилей для гипсокартона",
+                    "калькулятор перегородок knauf",
+                    "расчет гкл онлайн",
+                    "калькулятор потолка из гипсокартона",
+                    "смета гипсокартон",
+                ],
+            },
+            share: {
+                url: "/ru/calculators/drywall",
+                title: "Инженерный калькулятор гипсокартона Knauf | Renohacks",
+                description: "Точный расчет листов ГКЛ, стоечных и направляющих профилей, крепежа и заделки швов",
+            },
+            hero: {
+                title: "Калькулятор гипсокартона и перегородок",
+                description:
+                    "Рассчитайте полную инженерную спецификацию материалов для перегородок в 1 и 2 слоя (Knauf W111/W112), облицовки стен на относе (С623) и одноуровневого подвесного потолка (D112). Калькулятор рассчитывает точное количество листов ГКЛ, профилей, подвесов, демпферной ленты Диктунгсбанд, дюбелей, саморезов TN/LN, армирующей ленты и шпатлевки Uniflott.",
+                leadClass: "text-lg leading-relaxed",
+            },
+            benefits: {
+                title: "Почему строители и проектировщики выбирают этот калькулятор ГКЛ",
+                items: [
+                    {
+                        strong: "Технологические карты Knauf.",
+                        text: "Расчет базируется на официальных формулах Knauf для систем W111, W112, C623 и D112 с учетом шага профилей 400 и 600 мм.",
+                    },
+                    {
+                        strong: "Полная ведомость комплектующих (BOM).",
+                        text: "Вы получаете не просто количество листов, а полную смету всех 10 сопутствующих материалов: от демпферной ленты до саморезов и шпатлевки.",
+                    },
+                    {
+                        strong: "Учет проемов и усилений.",
+                        text: "Автоматический расчет дополнительных стоек для дверных коробок и обрамления проемов.",
+                    },
+                    {
+                        strong: "Акустический расчет и минвата.",
+                        text: "Оценка объема звукоизоляционной минеральной ваты под выбранную толщину профилей (50, 75, 100 мм).",
+                    },
+                ],
+            },
+            infoCards: {
+                title: "Стандарты монтажа гипсокартонных систем",
+                cards: [
+                    {
+                        title: "Шаг стоек 600 vs 400 мм",
+                        description:
+                            "Шаг 600 мм — классический стандарт для стен под покраску. Шаг 400 мм обязателен при укладке плитки, керамогранита или навеске тяжелой мебели.",
+                        icon: "grid",
+                    },
+                    {
+                        title: "Виброразвязка Диктунгсбанд",
+                        description:
+                            "Уплотнительная полимерная лента под направляющие профили обязательна. Без нее перегородка работает как мембрана, передавая структурный шум.",
+                        icon: "layers",
+                    },
+                    {
+                        title: "Разбежка швов от 400 мм",
+                        description:
+                            "Стыки смежных листов гипсокартона должны смещаться минимум на 400 мм. Крестообразные швы гарантированно дают трещины по чистовой отделке.",
+                        icon: "ruler",
+                    },
+                ],
+            },
+            guide: {
+                title: "Пошаговая инструкция по расчету",
+                steps: [
+                    "Выберите тип конструкции: межкомнатная перегородка (1 или 2 слоя ГКЛ), облицовка стены или потолок.",
+                    "Укажите точную длину и высоту стены/комнаты в метрах.",
+                    "Выберите шаг стоек (600 мм стандарт или 400 мм под плитку) и ширину профиля (50, 75 или 100 мм).",
+                    "Укажите количество дверных или оконных проемов для автоматического добавления усиливающих стоек.",
+                    "Скопируйте готовую спецификацию или отправьте список материалов поставщику.",
+                ],
+                tip: "При высоте потолков более 2.5 м выбирайте листы длиной 3.0 м (3000x1200 мм), чтобы избежать лишних поперечных стыков.",
+            },
+            mistakes: {
+                title: "Топ-4 ошибки при монтаже каркаса из ГКЛ",
+                items: [
+                    {
+                        strong: "Монтаж без демпферной ленты.",
+                        text: "Прямой контакт металла со стяжкой и перекрытием сводит на нет звукоизоляцию и приводит к трещинам от температурных деформаций здания.",
+                    },
+                    {
+                        strong: "Использование тонких профилей 0.4 мм.",
+                        text: "Для надежных перегородок применяйте только сертифицированный металл толщиной не менее 0.6 мм (Knauf, Gyproc).",
+                    },
+                    {
+                        strong: "Перетягивание саморезов.",
+                        text: "Шляпка самореза должна быть утоплена ровно на 1 мм. Прорванный картонный слой теряет несущую способность.",
+                    },
+                    {
+                        strong: "Крепление листов «шов в шов».",
+                        text: "Крестообразное пересечение 4 углов запрещено технологией. Все торцевые стыки должны идти с разбежкой.",
+                    },
+                ],
+            },
+            purchaseChecklist: {
+                title: "Чек-лист для закупки материалов на склад",
+                items: [
+                    {
+                        strong: "Листы ГКЛ / ГКЛВ нужного размера",
+                        text: "Влагостойкий ГКЛВ (зеленый) для санузлов и кухни, стандартный ГСП-А (серый) для сухих комнат.",
+                    },
+                    {
+                        strong: "Профили ПН и ПС толщиной 0.6 мм",
+                        text: "Направляющие UW и стоечные CW нужной ширины (50/75/100 мм).",
+                    },
+                    {
+                        strong: "Лента Диктунгсбанд и дюбель-гвозди 6x40 мм",
+                        text: "Для звукоизоляционного контура и надежной фиксации к перекрытиям.",
+                    },
+                    {
+                        strong: "Саморезы Knauf TN 25 и клопы LN 9 мм",
+                        text: "Специальные фосфатированные саморезы для надежного крепежа к металлу.",
+                    },
+                    {
+                        strong: "Лента для швов Knauf Kurt и шпатлевка Uniflott",
+                        text: "Высокопрочная безусадочная система заделки стыков без риска появления волосяных трещин.",
+                    },
+                ],
+            },
+            related: {
+                title: "Связанные строительные калькуляторы",
+                cards: [
+                    {
+                        href: "/ru/calculators/soundproofing",
+                        title: "Калькулятор звукоизоляции",
+                        description: "Расчет виброподвесов, мембран и акустических сэндвич-панелей",
+                        icon: "layers",
+                        accentClass: "text-emerald-500",
+                    },
+                    {
+                        href: "/ru/calculators/paint",
+                        title: "Калькулятор краски",
+                        description: "Расчет расхода краски и грунтовки для финишной отделки ГКЛ",
+                        icon: "paintbrush",
+                        accentClass: "text-blue-500",
+                    },
+                    {
+                        href: "/ru/calculators/tile",
+                        title: "Калькулятор плитки",
+                        description: "Расчет плитки и клея для укладки на влагостойкий гипсокартон",
+                        icon: "grid",
+                        accentClass: "text-indigo-500",
+                    },
+                ],
+            },
+            shareTitle: "Поделиться калькулятором гипсокартона",
+            structuredData: [
+                {
+                    id: "drywall-schema",
+                    data: {
+                        "@context": "https://schema.org",
+                        "@type": ["SoftwareApplication", "WebApplication"],
+                        name: "Калькулятор гипсокартона Knauf",
+                        alternateName: "Расчет перегородок, потолков и профилей ГКЛ",
+                        operatingSystem: "All",
+                        applicationCategory: ["UtilityApplication", "BusinessApplication"],
+                        offers: { "@type": "Offer", price: "0", priceCurrency: "RUB", availability: "https://schema.org/InStock" },
+                        description:
+                            "Бесплатный онлайн-калькулятор гипсокартона: точный расчет листов ГКЛ, профилей, крепежа, ленты Диктунгсбанд и шпатлевки по нормам Knauf.",
+                        url: "https://renohacks.com/ru/calculators/drywall",
+                        image: "https://renohacks.com/images/og-default.png",
+                        inLanguage: "ru",
+                        isAccessibleForFree: true,
+                    },
+                },
+            ],
+        },
     },
     en: {
         tile: {
@@ -1265,6 +1441,181 @@ export const extraCalculatorPageDictionaries: Record<
                         description:
                             "Free online soundproofing calculator: calculate acoustic drywall, mineral wool, steel studs, isolation clips, and sealant for walls, ceilings, and floors.",
                         url: "https://renohacks.com/calculators/soundproofing",
+                        image: "https://renohacks.com/images/og-default.png",
+                        inLanguage: "en",
+                        isAccessibleForFree: true,
+                    },
+                },
+            ],
+        },
+        drywall: {
+            metadata: {
+                path: "/calculators/drywall",
+                title: "Knauf Drywall & Partition Calculator (Boards, Studs, Screws) | Renohacks",
+                description:
+                    "Professional online drywall calculator: compute exact drywall boards (4x8 / 4x10 ft, 2.5/3.0m), steel studs, track channels, acoustic perimeter tape, screws, joint tape, and compound according to Knauf standards (W111, W112, C623, D112).",
+                keywords: [
+                    "drywall calculator",
+                    "stud calculator",
+                    "knauf partition calculator",
+                    "sheetrock calculator",
+                    "drywall screws calculator",
+                    "drywall bill of materials",
+                ],
+            },
+            share: {
+                url: "/calculators/drywall",
+                title: "Knauf Drywall & Partition Calculator | Renohacks",
+                description: "Precise drywall, steel framing, isolation tape, and joint compound estimation",
+            },
+            hero: {
+                title: "Drywall & Partition Calculator",
+                description:
+                    "Calculate the complete engineering bill of materials for drywall partitions (Knauf W111 / W112), framed wall linings (C623), and suspended ceilings (D112). Accurately estimates sheets, metal studs, perimeter tracks, acoustic sealing tape, TN screws, framing screws, joint tape, and setting-type compound.",
+                leadClass: "text-lg leading-relaxed",
+            },
+            benefits: {
+                title: "Why Contractors and Engineers Trust This Drywall Calculator",
+                items: [
+                    {
+                        strong: "Knauf Technological Standard.",
+                        text: "Engineered around official Knauf W111, W112, C623, and D112 systems with selectable 16\" / 24\" (400 / 600 mm) stud spacing.",
+                    },
+                    {
+                        strong: "Complete Bill of Materials (BOM).",
+                        text: "Generates a full itemized specification including all 10 accessories: perimeter isolation tape, fasteners, suspension hangers, and joint compound.",
+                    },
+                    {
+                        strong: "Door & Opening Reinforcement.",
+                        text: "Automatically adds reinforced structural jamb studs and door headers for rough openings.",
+                    },
+                    {
+                        strong: "Dual Global Measurements.",
+                        text: "Seamlessly supports Imperial (sq ft, inches, lbs) and Metric (sq m, mm, kg) standards for USA, European, and Singaporean projects.",
+                    },
+                ],
+            },
+            infoCards: {
+                title: "Drywall Construction & Framing Rules",
+                cards: [
+                    {
+                        title: "16\" vs 24\" (400 vs 600 mm) Stud Spacing",
+                        description:
+                            "24\" (600 mm) spacing is standard for painted partitions. 16\" (400 mm) is mandatory for ceramic tile backing or heavy wall-hung millwork.",
+                        icon: "grid",
+                    },
+                    {
+                        title: "Acoustic Decoupling Tape",
+                        description:
+                            "Never screw steel track directly against subfloors or concrete slabs without resilient perimeter foam tape (Dichtungsband).",
+                        icon: "layers",
+                    },
+                    {
+                        title: "Staggered Joints (Min 16\" / 400 mm)",
+                        description:
+                            "Always stagger horizontal and vertical seams between boards. Four-corner cross intersections cause immediate seam cracking.",
+                        icon: "ruler",
+                    },
+                ],
+            },
+            guide: {
+                title: "Step-by-Step Framing Calculation Guide",
+                steps: [
+                    "Select the construction type: single-layer partition (W111), high-STC double-layer partition (W112), wall lining, or ceiling.",
+                    "Input the exact length and height of the wall or ceiling in meters or feet.",
+                    "Choose the stud spacing (16\" / 400 mm for tiles or 24\" / 600 mm standard) and steel track gauge/width.",
+                    "Enter the number of door openings to automatically add box jamb framing.",
+                    "Copy the itemized bill of materials or export the estimate for your supplier.",
+                ],
+                tip: "For ceiling heights above 8 ft (2.44 m), choose 10 ft (3.0 m) drywall boards to eliminate horizontal butt joints.",
+            },
+            mistakes: {
+                title: "Top 4 Drywall Framing Mistakes to Avoid",
+                items: [
+                    {
+                        strong: "Omitting acoustic perimeter tape.",
+                        text: "Rigid metal-to-concrete contact transmits structural impact noise and causes cracking due to building movement.",
+                    },
+                    {
+                        strong: "Using flimsy 25-gauge (0.4 mm) studs.",
+                        text: "Commercial and quality residential partitions require structural 20-gauge or 0.6 mm galvanized steel framing.",
+                    },
+                    {
+                        strong: "Over-driving drywall screws.",
+                        text: "Screw heads must be countersunk 1/32\" (1 mm) below the face paper without piercing the paper liner.",
+                    },
+                    {
+                        strong: "Aligning seams on door jambs.",
+                        text: "Drywall seams must not align with the vertical edge of door frames. Notch the board in an 'L' shape to prevent corner stress fractures.",
+                    },
+                ],
+            },
+            purchaseChecklist: {
+                title: "Jobsite Procurement Checklist",
+                items: [
+                    {
+                        strong: "Drywall Boards (Standard, Type X Fire, or Green Board)",
+                        text: "Moisture-resistant boards for bathrooms/kitchens; standard or acoustic boards for dry living spaces.",
+                    },
+                    {
+                        strong: "0.6 mm Galvanized Steel Studs & Tracks",
+                        text: "UW runner tracks and CW studs in matched widths (2\" / 50 mm, 3\" / 75 mm, or 4\" / 100 mm).",
+                    },
+                    {
+                        strong: "Resilient Perimeter Decoupling Tape & Drive Pins",
+                        text: "For perimeter isolation and concrete slab fastening.",
+                    },
+                    {
+                        strong: "Knauf TN 25 / TN 35 Drywall Screws & Framing Screws",
+                        text: "Phosphate-coated bugle head screws for secure metal fastening.",
+                    },
+                    {
+                        strong: "Paper Joint Tape (Knauf Kurt) & Setting Compound",
+                        text: "High-tensile reinforcement tape and non-shrinking joint filler for crack-free finishes.",
+                    },
+                ],
+            },
+            related: {
+                title: "Related Construction Calculators",
+                cards: [
+                    {
+                        href: "/calculators/soundproofing",
+                        title: "Soundproofing Calculator",
+                        description: "Calculate isolation clips, acoustic membranes, and sandwich damping systems.",
+                        icon: "layers",
+                        accentClass: "text-emerald-500",
+                    },
+                    {
+                        href: "/calculators/paint",
+                        title: "Paint & Primer Calculator",
+                        description: "Estimate primer and paint coats for fresh Level 4 / Level 5 drywall finishes.",
+                        icon: "paintbrush",
+                        accentClass: "text-blue-500",
+                    },
+                    {
+                        href: "/calculators/tile",
+                        title: "Tile & Mortar Calculator",
+                        description: "Calculate tile quantity and thin-set mortar for cement board or drywall backer.",
+                        icon: "grid",
+                        accentClass: "text-indigo-500",
+                    },
+                ],
+            },
+            shareTitle: "Share this drywall calculator",
+            structuredData: [
+                {
+                    id: "drywall-schema-en",
+                    data: {
+                        "@context": "https://schema.org",
+                        "@type": ["SoftwareApplication", "WebApplication"],
+                        name: "Knauf Drywall & Partition Calculator",
+                        alternateName: "Drywall, Studs & Framing Calculator",
+                        operatingSystem: "All",
+                        applicationCategory: ["UtilityApplication", "BusinessApplication"],
+                        offers: { "@type": "Offer", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock" },
+                        description:
+                            "Free online drywall calculator: calculate drywall boards, steel studs, runner tracks, screws, acoustic tape, and joint compound according to Knauf standards.",
+                        url: "https://renohacks.com/calculators/drywall",
                         image: "https://renohacks.com/images/og-default.png",
                         inLanguage: "en",
                         isAccessibleForFree: true,
