@@ -307,11 +307,14 @@ export function DrywallCalculator() {
                         type="number"
                         step="0.1"
                         min="0.5"
-                        max="50"
+                        max="1000"
                         value={length}
                         onChange={(e) => setLength(e.target.value)}
                         placeholder="5.0"
                     />
+                    <p className="text-[11px] text-muted-foreground mt-1">
+                        {isEnglish ? "From 0.5 to 1,000 m" : "От 0.5 до 1 000 м"}
+                    </p>
                 </div>
 
                 <div>
@@ -324,11 +327,14 @@ export function DrywallCalculator() {
                         type="number"
                         step="0.05"
                         min="1.0"
-                        max="10"
+                        max="20"
                         value={height}
                         onChange={(e) => setHeight(e.target.value)}
                         placeholder="2.7"
                     />
+                    <p className="text-[11px] text-muted-foreground mt-1">
+                        {isEnglish ? "From 1.0 to 20 m" : "От 1.0 до 20 м"}
+                    </p>
                 </div>
 
                 {/* Stud Spacing */}
@@ -344,6 +350,9 @@ export function DrywallCalculator() {
                         <option value={600}>{isEnglish ? "600 mm (Standard drywall)" : "600 мм (Стандарт по Knauf)"}</option>
                         <option value={400}>{isEnglish ? "400 mm (Heavy tile load)" : "400 мм (Под плитку / тяжелые шкафы)"}</option>
                     </select>
+                    <p className="text-[11px] text-muted-foreground mt-1">
+                        {isEnglish ? "400 mm for ceramic tiles" : "400 мм под укладку плитки"}
+                    </p>
                 </div>
 
                 {/* Profile Width */}
@@ -361,6 +370,9 @@ export function DrywallCalculator() {
                             <option value={75}>{isEnglish ? "75 mm (Total wall: 100-125 mm)" : "75 мм (Толщина стены: 100–125 мм)"}</option>
                             <option value={100}>{isEnglish ? "100 mm (Total wall: 125-150 mm)" : "100 мм (Максимальная звукоизоляция)"}</option>
                         </select>
+                        <p className="text-[11px] text-muted-foreground mt-1">
+                            {isEnglish ? "Determines wall thickness" : "Задает общую толщину стены"}
+                        </p>
                     </div>
                 ) : constructionType === "wall-lining" ? (
                     <div>
@@ -375,6 +387,9 @@ export function DrywallCalculator() {
                             <option value={1}>{isEnglish ? "1 Layer (Standard)" : "1 слой (Стандартное выравнивание)"}</option>
                             <option value={2}>{isEnglish ? "2 Layers (Rigid / Soundproof)" : "2 слоя (Повышенная прочность)"}</option>
                         </select>
+                        <p className="text-[11px] text-muted-foreground mt-1">
+                            {isEnglish ? "2 layers for soundproofing" : "2 слоя для звукоизоляции"}
+                        </p>
                     </div>
                 ) : null}
 
@@ -393,6 +408,9 @@ export function DrywallCalculator() {
                         <option value="fire">{isEnglish ? "Fire-Rated GKLO (Pink)" : "Огнестойкий ГКЛО (Розовый)"}</option>
                         <option value="acoustic">{isEnglish ? "Acoustic Knauf Diamant/Sapphire" : "Акустический Knauf Сапфир"}</option>
                     </select>
+                    <p className="text-[11px] text-muted-foreground mt-1">
+                        {isEnglish ? "Green for bathrooms & kitchens" : "ГКЛВ (зеленый) для санузлов"}
+                    </p>
                 </div>
 
                 {/* Sheet Length */}
@@ -408,6 +426,9 @@ export function DrywallCalculator() {
                         <option value={2.5}>{isEnglish ? "2500 x 1200 mm (3.0 m²)" : "2500 x 1200 мм (3.0 м²)"}</option>
                         <option value={3.0}>{isEnglish ? "3000 x 1200 mm (3.6 m²)" : "3000 x 1200 мм (3.6 м²)"}</option>
                     </select>
+                    <p className="text-[11px] text-muted-foreground mt-1">
+                        {isEnglish ? "3.0m for high ceilings" : "3.0 м при высоте от 2.5 м"}
+                    </p>
                 </div>
 
                 {/* Waste */}
@@ -417,12 +438,15 @@ export function DrywallCalculator() {
                     </label>
                     <Input
                         type="number"
-                        min="3"
-                        max="25"
+                        min="0"
+                        max="30"
                         value={wastePercent}
                         onChange={(e) => setWastePercent(e.target.value)}
                         placeholder="8"
                     />
+                    <p className="text-[11px] text-muted-foreground mt-1">
+                        {isEnglish ? "Recommended: 5–12%" : "Рекомендуется: 5–12%"}
+                    </p>
                 </div>
 
                 {/* Doors / Openings for partitions & walls */}
@@ -434,11 +458,14 @@ export function DrywallCalculator() {
                         <Input
                             type="number"
                             min="0"
-                            max="10"
+                            max="50"
                             value={doorsCount}
                             onChange={(e) => setDoorsCount(e.target.value)}
                             placeholder="1"
                         />
+                        <p className="text-[11px] text-muted-foreground mt-1">
+                            {isEnglish ? "Up to 50 openings" : "До 50 проемов"}
+                        </p>
                     </div>
                 )}
             </div>
@@ -470,6 +497,9 @@ export function DrywallCalculator() {
                             value={pricePerSheet}
                             onChange={(e) => setPricePerSheet(e.target.value)}
                         />
+                        <p className="text-[11px] text-muted-foreground mt-1">
+                            {isEnglish ? "Optional for total cost" : "Опционально для сметы"}
+                        </p>
                     </div>
 
                     <div>
@@ -483,6 +513,9 @@ export function DrywallCalculator() {
                             value={pricePerProfile}
                             onChange={(e) => setPricePerProfile(e.target.value)}
                         />
+                        <p className="text-[11px] text-muted-foreground mt-1">
+                            {isEnglish ? "Optional for total cost" : "Опционально для сметы"}
+                        </p>
                     </div>
                 </div>
             </div>
