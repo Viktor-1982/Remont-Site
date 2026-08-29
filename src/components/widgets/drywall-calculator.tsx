@@ -309,11 +309,12 @@ export function DrywallCalculator() {
                         min="0.5"
                         max="1000"
                         value={length}
-                        onChange={(e) => setLength(e.target.value)}
+                        onChange={(e) => setLength(e.target.value.slice(0, 6))}
                         placeholder="5.0"
                     />
                     <p className="text-[11px] text-muted-foreground mt-1">
-                        {isEnglish ? "From 0.5 to 1,000 m" : "От 0.5 до 1 000 м"}
+                        <span className="font-semibold text-foreground/80">{isEnglish ? "Limit: " : "Ограничение: "}</span>
+                        {isEnglish ? "0.5 to 1,000 m" : "от 0.5 до 1 000 м"}
                     </p>
                 </div>
 
@@ -329,11 +330,12 @@ export function DrywallCalculator() {
                         min="1.0"
                         max="20"
                         value={height}
-                        onChange={(e) => setHeight(e.target.value)}
+                        onChange={(e) => setHeight(e.target.value.slice(0, 5))}
                         placeholder="2.7"
                     />
                     <p className="text-[11px] text-muted-foreground mt-1">
-                        {isEnglish ? "From 1.0 to 20 m" : "От 1.0 до 20 м"}
+                        <span className="font-semibold text-foreground/80">{isEnglish ? "Limit: " : "Ограничение: "}</span>
+                        {isEnglish ? "1.0 to 20 m" : "от 1.0 до 20 м"}
                     </p>
                 </div>
 
@@ -441,11 +443,12 @@ export function DrywallCalculator() {
                         min="0"
                         max="30"
                         value={wastePercent}
-                        onChange={(e) => setWastePercent(e.target.value)}
+                        onChange={(e) => setWastePercent(e.target.value.slice(0, 3))}
                         placeholder="8"
                     />
                     <p className="text-[11px] text-muted-foreground mt-1">
-                        {isEnglish ? "Recommended: 5–12%" : "Рекомендуется: 5–12%"}
+                        <span className="font-semibold text-foreground/80">{isEnglish ? "Limit: " : "Ограничение: "}</span>
+                        {isEnglish ? "0% to 30%" : "от 0% до 30%"}
                     </p>
                 </div>
 
@@ -460,11 +463,12 @@ export function DrywallCalculator() {
                             min="0"
                             max="50"
                             value={doorsCount}
-                            onChange={(e) => setDoorsCount(e.target.value)}
+                            onChange={(e) => setDoorsCount(e.target.value.slice(0, 3))}
                             placeholder="1"
                         />
                         <p className="text-[11px] text-muted-foreground mt-1">
-                            {isEnglish ? "Up to 50 openings" : "До 50 проемов"}
+                            <span className="font-semibold text-foreground/80">{isEnglish ? "Limit: " : "Ограничение: "}</span>
+                            {isEnglish ? "0 to 50 openings" : "от 0 до 50 проемов"}
                         </p>
                     </div>
                 )}
@@ -495,10 +499,11 @@ export function DrywallCalculator() {
                             min="0"
                             placeholder={isEnglish ? currentCurrency.sheetExample : currentCurrency.sheetExample}
                             value={pricePerSheet}
-                            onChange={(e) => setPricePerSheet(e.target.value)}
+                            onChange={(e) => setPricePerSheet(e.target.value.slice(0, 7))}
                         />
                         <p className="text-[11px] text-muted-foreground mt-1">
-                            {isEnglish ? "Optional for total cost" : "Опционально для сметы"}
+                            <span className="font-semibold text-foreground/80">{isEnglish ? "Limit: " : "Ограничение: "}</span>
+                            {isEnglish ? "up to 999,999" : "до 999 999"}
                         </p>
                     </div>
 
@@ -511,10 +516,11 @@ export function DrywallCalculator() {
                             min="0"
                             placeholder={isEnglish ? currentCurrency.profileExample : currentCurrency.profileExample}
                             value={pricePerProfile}
-                            onChange={(e) => setPricePerProfile(e.target.value)}
+                            onChange={(e) => setPricePerProfile(e.target.value.slice(0, 7))}
                         />
                         <p className="text-[11px] text-muted-foreground mt-1">
-                            {isEnglish ? "Optional for total cost" : "Опционально для сметы"}
+                            <span className="font-semibold text-foreground/80">{isEnglish ? "Limit: " : "Ограничение: "}</span>
+                            {isEnglish ? "up to 999,999" : "до 999 999"}
                         </p>
                     </div>
                 </div>
