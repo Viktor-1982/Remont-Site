@@ -483,76 +483,76 @@ export function DrywallCalculator() {
             {calculationResult ? (
                 <div className="space-y-6">
                     {/* Top KPI Summary Cards */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-2.5 sm:gap-3">
-                        <div className="rounded-xl border bg-muted/20 p-3 text-center min-w-0 overflow-hidden flex flex-col justify-center">
-                            <span className="text-[11px] font-medium text-muted-foreground truncate block" title={isEnglish ? "Net Surface Area" : "Площадь конструкции"}>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center">
+                            <span className="text-xs font-semibold text-muted-foreground block">
                                 {isEnglish ? "Net Surface Area" : "Площадь конструкции"}
                             </span>
-                            <span className="text-base sm:text-lg xl:text-xl font-bold text-foreground mt-1 truncate block" title={`${calculationResult.surfaceAreaM2.toLocaleString(localeTag)} ${isEnglish ? "sq m" : "м²"}`}>
+                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block">
                                 {calculationResult.surfaceAreaM2.toLocaleString(localeTag)}
                             </span>
-                            <span className="text-[11px] font-medium text-muted-foreground">
-                                {isEnglish ? "sq m" : "м²"}
+                            <span className="text-xs text-muted-foreground">
+                                {isEnglish ? "sq m (net)" : "м² (чистая)"}
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-primary/10 border-primary/20 p-3 text-center min-w-0 overflow-hidden flex flex-col justify-center">
-                            <span className="text-[11px] font-semibold text-primary truncate block" title={isEnglish ? "GKL Boards" : "Листы ГКЛ"}>
+                        <div className="rounded-xl border bg-primary/10 border-primary/25 p-3.5 sm:p-4 text-center flex flex-col justify-center">
+                            <span className="text-xs font-bold text-primary block">
                                 {isEnglish ? "GKL Boards" : "Листы ГКЛ"}
                             </span>
-                            <span className="text-base sm:text-lg xl:text-xl font-bold text-primary mt-1 truncate block" title={`${calculationResult.sheetsCount.toLocaleString(localeTag)} ${isEnglish ? "pcs" : "шт"}`}>
+                            <span className="text-lg sm:text-2xl font-bold text-primary my-1 font-mono tracking-tight block">
                                 {calculationResult.sheetsCount.toLocaleString(localeTag)}
                             </span>
-                            <span className="text-[11px] font-medium text-primary/80 truncate block" title={`${calculationResult.grossGklAreaM2.toLocaleString(localeTag)} ${isEnglish ? "sq m" : "м²"}`}>
-                                {isEnglish ? "pcs" : "шт"} ({calculationResult.grossGklAreaM2.toLocaleString(localeTag)} {isEnglish ? "m²" : "м²"})
+                            <span className="text-xs font-medium text-primary/80">
+                                {isEnglish ? "pcs" : "шт"} ({calculationResult.grossGklAreaM2.toLocaleString(localeTag)} {isEnglish ? "m² gross" : "м² с запасом"})
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-muted/20 p-3 text-center min-w-0 overflow-hidden flex flex-col justify-center">
-                            <span className="text-[11px] font-medium text-muted-foreground truncate block" title={isEnglish ? "Guide Track Profiles" : "Направляющие ПН"}>
+                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center">
+                            <span className="text-xs font-semibold text-muted-foreground block">
                                 {isEnglish ? "Guide Track Profiles" : "Направляющие ПН"}
                             </span>
-                            <span className="text-base sm:text-lg xl:text-xl font-bold text-foreground mt-1 truncate block" title={`${calculationResult.guideProfilesCount.toLocaleString(localeTag)} ${isEnglish ? "pcs" : "шт"}`}>
+                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block">
                                 {calculationResult.guideProfilesCount.toLocaleString(localeTag)}
                             </span>
-                            <span className="text-[11px] font-medium text-muted-foreground">
-                                {isEnglish ? "pcs (3m)" : "шт (3м)"}
+                            <span className="text-xs text-muted-foreground">
+                                {isEnglish ? "pcs (3m length)" : "шт (по 3 метра)"}
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-muted/20 p-3 text-center min-w-0 overflow-hidden flex flex-col justify-center">
-                            <span className="text-[11px] font-medium text-muted-foreground truncate block" title={isEnglish ? "Stud / CD Profiles" : "Стоечные ПС / ПП"}>
+                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center">
+                            <span className="text-xs font-semibold text-muted-foreground block">
                                 {isEnglish ? "Stud / CD Profiles" : "Стоечные ПС / ПП"}
                             </span>
-                            <span className="text-base sm:text-lg xl:text-xl font-bold text-foreground mt-1 truncate block" title={`${calculationResult.studProfilesCount.toLocaleString(localeTag)} ${isEnglish ? "pcs" : "шт"}`}>
+                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block">
                                 {calculationResult.studProfilesCount.toLocaleString(localeTag)}
                             </span>
-                            <span className="text-[11px] font-medium text-muted-foreground">
-                                {isEnglish ? "pcs (3m)" : "шт (3м)"}
+                            <span className="text-xs text-muted-foreground">
+                                {isEnglish ? "pcs (3m length)" : "шт (по 3 метра)"}
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-muted/20 p-3 text-center min-w-0 overflow-hidden flex flex-col justify-center">
-                            <span className="text-[11px] font-medium text-muted-foreground truncate block" title={isEnglish ? "GKL Screws TN" : "Саморезы TN"}>
+                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center">
+                            <span className="text-xs font-semibold text-muted-foreground block">
                                 {isEnglish ? "GKL Screws TN" : "Саморезы TN"}
                             </span>
-                            <span className="text-base sm:text-lg xl:text-xl font-bold text-foreground mt-1 truncate block" title={`${(calculationResult.screwsTN25Count + calculationResult.screwsTN35Count).toLocaleString(localeTag)} ${isEnglish ? "pcs" : "шт"}`}>
+                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block">
                                 {(calculationResult.screwsTN25Count + calculationResult.screwsTN35Count).toLocaleString(localeTag)}
                             </span>
-                            <span className="text-[11px] font-medium text-muted-foreground">
-                                {isEnglish ? "pcs" : "шт"}
+                            <span className="text-xs text-muted-foreground">
+                                {isEnglish ? "pcs (total)" : "шт (всего)"}
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-muted/20 p-3 text-center min-w-0 overflow-hidden flex flex-col justify-center">
-                            <span className="text-[11px] font-medium text-muted-foreground truncate block" title={isEnglish ? "Sealing Tape" : "Демпферная лента"}>
+                        <div className="rounded-xl border bg-muted/20 p-3.5 sm:p-4 text-center flex flex-col justify-center">
+                            <span className="text-xs font-semibold text-muted-foreground block">
                                 {isEnglish ? "Sealing Tape" : "Демпферная лента"}
                             </span>
-                            <span className="text-base sm:text-lg xl:text-xl font-bold text-foreground mt-1 truncate block" title={`${calculationResult.sealingTapeRolls.toLocaleString(localeTag)} ${isEnglish ? "rolls" : "рул"}`}>
+                            <span className="text-lg sm:text-2xl font-bold text-foreground my-1 font-mono tracking-tight block">
                                 {calculationResult.sealingTapeRolls.toLocaleString(localeTag)}
                             </span>
-                            <span className="text-[11px] font-medium text-muted-foreground truncate block" title={`${calculationResult.sealingTapeLengthM.toLocaleString(localeTag)} ${isEnglish ? "m" : "м"}`}>
-                                {isEnglish ? "rolls" : "рул"} ({calculationResult.sealingTapeLengthM.toLocaleString(localeTag)} {isEnglish ? "m" : "м"})
+                            <span className="text-xs text-muted-foreground">
+                                {isEnglish ? "rolls" : "рулонов"} ({calculationResult.sealingTapeLengthM.toLocaleString(localeTag)} {isEnglish ? "m" : "м"})
                             </span>
                         </div>
                     </div>
