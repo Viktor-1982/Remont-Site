@@ -483,78 +483,90 @@ export function DrywallCalculator() {
             {calculationResult ? (
                 <div className="space-y-6">
                     {/* Top KPI Summary Cards */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-                        <div className="rounded-xl border bg-muted/20 p-3.5 text-center">
-                            <span className="text-[11px] font-medium text-muted-foreground block">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-2.5 sm:gap-3">
+                        <div className="rounded-xl border bg-muted/20 p-3 text-center min-w-0 overflow-hidden flex flex-col justify-center">
+                            <span className="text-[11px] font-medium text-muted-foreground truncate block" title={isEnglish ? "Net Surface Area" : "Площадь конструкции"}>
                                 {isEnglish ? "Net Surface Area" : "Площадь конструкции"}
                             </span>
-                            <span className="text-lg sm:text-2xl font-bold text-foreground mt-0.5 block">
-                                {calculationResult.surfaceAreaM2.toLocaleString(localeTag)} {isEnglish ? "m²" : "м²"}
+                            <span className="text-base sm:text-lg xl:text-xl font-bold text-foreground mt-1 truncate block" title={`${calculationResult.surfaceAreaM2.toLocaleString(localeTag)} ${isEnglish ? "sq m" : "м²"}`}>
+                                {calculationResult.surfaceAreaM2.toLocaleString(localeTag)}
+                            </span>
+                            <span className="text-[11px] font-medium text-muted-foreground">
+                                {isEnglish ? "sq m" : "м²"}
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-primary/10 border-primary/20 p-3.5 text-center">
-                            <span className="text-[11px] font-semibold text-primary block">
+                        <div className="rounded-xl border bg-primary/10 border-primary/20 p-3 text-center min-w-0 overflow-hidden flex flex-col justify-center">
+                            <span className="text-[11px] font-semibold text-primary truncate block" title={isEnglish ? "GKL Boards" : "Листы ГКЛ"}>
                                 {isEnglish ? "GKL Boards" : "Листы ГКЛ"}
                             </span>
-                            <span className="text-lg sm:text-2xl font-bold text-primary mt-0.5 block">
-                                {calculationResult.sheetsCount} {isEnglish ? "pcs" : "шт"}
+                            <span className="text-base sm:text-lg xl:text-xl font-bold text-primary mt-1 truncate block" title={`${calculationResult.sheetsCount.toLocaleString(localeTag)} ${isEnglish ? "pcs" : "шт"}`}>
+                                {calculationResult.sheetsCount.toLocaleString(localeTag)}
                             </span>
-                            <span className="text-[10px] text-muted-foreground">
-                                {calculationResult.grossGklAreaM2} {isEnglish ? "m²" : "м²"}
+                            <span className="text-[11px] font-medium text-primary/80 truncate block" title={`${calculationResult.grossGklAreaM2.toLocaleString(localeTag)} ${isEnglish ? "sq m" : "м²"}`}>
+                                {isEnglish ? "pcs" : "шт"} ({calculationResult.grossGklAreaM2.toLocaleString(localeTag)} {isEnglish ? "m²" : "м²"})
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-muted/20 p-3.5 text-center">
-                            <span className="text-[11px] font-medium text-muted-foreground block">
+                        <div className="rounded-xl border bg-muted/20 p-3 text-center min-w-0 overflow-hidden flex flex-col justify-center">
+                            <span className="text-[11px] font-medium text-muted-foreground truncate block" title={isEnglish ? "Guide Track Profiles" : "Направляющие ПН"}>
                                 {isEnglish ? "Guide Track Profiles" : "Направляющие ПН"}
                             </span>
-                            <span className="text-lg sm:text-2xl font-bold text-foreground mt-0.5 block">
-                                {calculationResult.guideProfilesCount} {isEnglish ? "pcs (3m)" : "шт (3м)"}
+                            <span className="text-base sm:text-lg xl:text-xl font-bold text-foreground mt-1 truncate block" title={`${calculationResult.guideProfilesCount.toLocaleString(localeTag)} ${isEnglish ? "pcs" : "шт"}`}>
+                                {calculationResult.guideProfilesCount.toLocaleString(localeTag)}
+                            </span>
+                            <span className="text-[11px] font-medium text-muted-foreground">
+                                {isEnglish ? "pcs (3m)" : "шт (3м)"}
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-muted/20 p-3.5 text-center">
-                            <span className="text-[11px] font-medium text-muted-foreground block">
+                        <div className="rounded-xl border bg-muted/20 p-3 text-center min-w-0 overflow-hidden flex flex-col justify-center">
+                            <span className="text-[11px] font-medium text-muted-foreground truncate block" title={isEnglish ? "Stud / CD Profiles" : "Стоечные ПС / ПП"}>
                                 {isEnglish ? "Stud / CD Profiles" : "Стоечные ПС / ПП"}
                             </span>
-                            <span className="text-lg sm:text-2xl font-bold text-foreground mt-0.5 block">
-                                {calculationResult.studProfilesCount} {isEnglish ? "pcs (3m)" : "шт (3м)"}
+                            <span className="text-base sm:text-lg xl:text-xl font-bold text-foreground mt-1 truncate block" title={`${calculationResult.studProfilesCount.toLocaleString(localeTag)} ${isEnglish ? "pcs" : "шт"}`}>
+                                {calculationResult.studProfilesCount.toLocaleString(localeTag)}
+                            </span>
+                            <span className="text-[11px] font-medium text-muted-foreground">
+                                {isEnglish ? "pcs (3m)" : "шт (3м)"}
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-muted/20 p-3.5 text-center">
-                            <span className="text-[11px] font-medium text-muted-foreground block">
+                        <div className="rounded-xl border bg-muted/20 p-3 text-center min-w-0 overflow-hidden flex flex-col justify-center">
+                            <span className="text-[11px] font-medium text-muted-foreground truncate block" title={isEnglish ? "GKL Screws TN" : "Саморезы TN"}>
                                 {isEnglish ? "GKL Screws TN" : "Саморезы TN"}
                             </span>
-                            <span className="text-lg sm:text-2xl font-bold text-foreground mt-0.5 block">
-                                {calculationResult.screwsTN25Count + calculationResult.screwsTN35Count} {isEnglish ? "pcs" : "шт"}
+                            <span className="text-base sm:text-lg xl:text-xl font-bold text-foreground mt-1 truncate block" title={`${(calculationResult.screwsTN25Count + calculationResult.screwsTN35Count).toLocaleString(localeTag)} ${isEnglish ? "pcs" : "шт"}`}>
+                                {(calculationResult.screwsTN25Count + calculationResult.screwsTN35Count).toLocaleString(localeTag)}
+                            </span>
+                            <span className="text-[11px] font-medium text-muted-foreground">
+                                {isEnglish ? "pcs" : "шт"}
                             </span>
                         </div>
 
-                        <div className="rounded-xl border bg-muted/20 p-3.5 text-center">
-                            <span className="text-[11px] font-medium text-muted-foreground block">
+                        <div className="rounded-xl border bg-muted/20 p-3 text-center min-w-0 overflow-hidden flex flex-col justify-center">
+                            <span className="text-[11px] font-medium text-muted-foreground truncate block" title={isEnglish ? "Sealing Tape" : "Демпферная лента"}>
                                 {isEnglish ? "Sealing Tape" : "Демпферная лента"}
                             </span>
-                            <span className="text-lg sm:text-2xl font-bold text-foreground mt-0.5 block">
-                                {calculationResult.sealingTapeRolls} {isEnglish ? "rolls" : "рул"}
+                            <span className="text-base sm:text-lg xl:text-xl font-bold text-foreground mt-1 truncate block" title={`${calculationResult.sealingTapeRolls.toLocaleString(localeTag)} ${isEnglish ? "rolls" : "рул"}`}>
+                                {calculationResult.sealingTapeRolls.toLocaleString(localeTag)}
                             </span>
-                            <span className="text-[10px] text-muted-foreground">
-                                {calculationResult.sealingTapeLengthM} {isEnglish ? "m" : "м"}
+                            <span className="text-[11px] font-medium text-muted-foreground truncate block" title={`${calculationResult.sealingTapeLengthM.toLocaleString(localeTag)} ${isEnglish ? "m" : "м"}`}>
+                                {isEnglish ? "rolls" : "рул"} ({calculationResult.sealingTapeLengthM.toLocaleString(localeTag)} {isEnglish ? "m" : "м"})
                             </span>
                         </div>
                     </div>
 
                     {/* Estimated Cost Banner if prices entered */}
                     {calculationResult.estimatedCost && (
-                        <div className="flex items-center justify-between p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800">
+                        <div className="flex flex-wrap items-center justify-between gap-2 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 min-w-0">
                             <div className="flex items-center gap-2">
-                                <DollarSign className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                                <DollarSign className="h-5 w-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                                 <span className="font-semibold text-sm sm:text-base text-emerald-950 dark:text-emerald-200">
                                     {isEnglish ? "Estimated Base Materials Cost (Sheets + Profiles):" : "Ориентировочная стоимость основы (ГКЛ + Профили):"}
                                 </span>
                             </div>
-                            <span className="text-xl sm:text-2xl font-bold text-emerald-700 dark:text-emerald-300">
+                            <span className="text-xl sm:text-2xl font-bold text-emerald-700 dark:text-emerald-300 break-all">
                                 {calculationResult.estimatedCost.toLocaleString(localeTag)} {currentCurrency.symbol}
                             </span>
                         </div>
