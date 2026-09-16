@@ -37,17 +37,6 @@ Reinforced concrete slabs and timber joists continually deflect under dead loads
 * Standard design codes permit mid-span deflection ratios between **L/250** and **L/500**. Across a 6-meter (20 ft) span, permissible structural sag reaches **12 to 24 mm (0.5 to 1.0 in)**.
 * **Failure Mode:** If a suspended ceiling grid or partition head track is rigidly fastened to perimeter structural walls without a sliding decoupling joint, slab deflection induces catastrophic vertical shear stresses along the drywall perimeter and first framing run. The joints crack instantly under shear lock.
 
-`
-RIGID LOCK-IN (CRITICAL DEFECT)           KNAUF SLIDING PERIMETER (ENGINEERED)
-  Concrete Ceiling Slab                    Concrete Ceiling Slab
-   │      │ (Deflection ↓)                  │      │ (Deflection ↓)
-   ▼      ▼                                 ▼      ▼
- ┌──────────────┐                         ┌──────────────┐
- ├──────────────┤ ◄─ Rigid Fastening      │  ══════════  │ ◄─ Dichtungsband / 10mm Gap
- │              │    (Shear stress breaks │  ┌────────┐  │    (Grid floats freely
- │  PARTITION   │     gypsum core)        │  │ FRAMING│  │     under live deflection)
-`
-
 ### 1.2. Hygrothermal Movement (Hygric Expansion)
 Gypsum is a hygroscopic, porous crystalline material. As relative humidity (RH) fluctuates between 30% (winter heating season) and 80% (humid summer conditions), the coefficient of hygric expansion equals **0.05–0.08 mm/m (0.006–0.010 in/10 ft) per 10% RH change**.
 * Over a continuous 12-meter (40 ft) ceiling expanse, seasonal linear dimensional shifts can exceed **4 to 6 mm (0.15 to 0.25 in)**.
@@ -72,15 +61,12 @@ Structural rigidity in Knauf systems depends on cold-formed galvanized steel com
   1. *Fastener Stripping:* Self-piercing drywall screws (TN 25) strip out when driven into 0.4 mm steel. The screw spins freely, providing zero pull-out clamp force while appearing set.
   2. *Buckling under Load:* Thin studs buckle under tile dead-load or lateral deflection, causing wide delamination cracks along board edges.
 
-`
-Substructure Load Capacity Comparison (3.0 m / 10 ft stud height):
-┌─────────────────────────┬──────────────────────┬───────────────────┬────────────────────┐
-│ Steel Thickness         │ Moment of Inertia Ix │ Max Clear Height  │ Screw Strip Risk   │
-├─────────────────────────┼──────────────────────┼───────────────────┼────────────────────┤
-│ 0.60 mm (Knauf Standard)│ 4.96 cm⁴             │ Up to 4.50 m (15')│ < 0.2%             │
-│ 0.40 mm (Sub-spec Metal)│ 2.65 cm⁴             │ Up to 2.60 m (8.5)│ > 35% (DEFECT)     │
-└─────────────────────────┴──────────────┴───────────────────┴────────────────────┘
-`
+**Substructure Load Capacity Comparison (3.0 m / 10 ft stud height):**
+
+| Steel Thickness | Moment of Inertia $I_x$ | Max Clear Height | Screw Strip Risk |
+| :--- | :--- | :--- | :--- |
+| **0.60 mm (Knauf Standard)** | 4.96 cm⁴ | Up to 4.50 m (15 ft) | < 0.2% |
+| **0.40 mm (Sub-spec Metal)** | 2.65 cm⁴ | Up to 2.60 m (8.5 ft) | > 35% (CRITICAL DEFECT) |
 
 ### 2.2. Suspended Ceilings: P 112 (Two-Level Grid) vs. P 113 (Single-Level Grid)
 * **Knauf P 113 (Single-Level Grid on Crab Connectors):** 
@@ -89,21 +75,6 @@ Substructure Load Capacity Comparison (3.0 m / 10 ft stud height):
 * **Knauf P 112 (Two-Level Suspended Grid with Cross-Connectors):**
   * Upper primary channels are suspended from the structural slab; lower secondary furring channels are clipped perpendicular below them via double-level spring clips.
   * **Engineering Advantage:** Operates as a statically indeterminate floating truss. Slab deflections are absorbed by micro-flexure across the double-tier clips, isolating the gypsum board plane from structural deflection.
-
-`
-KNAUF P 112 TWO-LEVEL GRID CROSS-SECTION:
-═══════════════════════════════════════ Structural Concrete Slab
-         │                      │        Nonius Hanger / Direct Bracket
-         ▼                      ▼
-    ┌──────────┐           ┌──────────┐
-    │ CD 60/27 │           │ CD 60/27 │  ◄── Primary Channel (Upper Tier)
-    └────┬─────┘           └────┬─────┘
-         │ ◄── Cross-Connector  │
-      ┌──┴──────────────────────┴──┐
-      │          CD 60/27          │     ◄── Furring Channel (Lower Tier, 400 mm / 16 O.C.)
- └────────────────────────────┘
- ============================== ◄── Gypsum Board (EN 520 / Type DF)
-`
 
 ### 2.3. The Sliding Perimeter Joint (Perimeter Decoupling)
 The most widespread framing error is fastening ceiling CD 60/27 furring channels into perimeter UD 28/27 tracks with framing screws (LN 9.5).
@@ -140,29 +111,15 @@ Aligning a drywall seam with the vertical jamb of a door or window opening guara
 * **Protocol:** Panels surrounding openings must be notched out of a single continuous board in an **L-shape (boot cut or flag cut)**, ensuring the board extends past the corner of the rough opening by **at least 150–200 mm (6–8 in)** (300 mm / 12 in recommended).
 * Center the vertical joint above the door header within the middle third of the opening span over an intermediate stud.
 
-`
- CRITICAL FLAW (CRACK GUARANTEED) KNAUF STANDARD (L-SHAPED FLAG CUT)
- ┌──────────────┬──────────────┐ ┌──────────────────┬───────────┐
- │ │ │ │ Continuous │ │
- │ │ │ │ L-shaped │ │
- │ │ │ │ boot-cut │ Joint │
- │ ├──────────────┤ │ panel │ offset │
- │ │ HEADER │ │ ┌───┴───────────┤
- │ DOOR OPENING │ │ │ │ HEADER │
- │ (Slam impact)│ CRACK ⚡ │ │ DOOR OPENING │ │
- │ │ ALONG STRESS│ │ │ NO JOINT IN │
- │ │ LINE │ │ │ STRESS ZONE │
-`
-
 ### 3.3. Fastener Engineering and Depth Precision
 * **Fastener Depth:** Type TN (for 0.6 mm steel) or Type TB (self-drilling for up to 2.0 mm steel) drywall screws must be countersunk to a depth of **exactly 0.8–1.0 mm (1/32 in)** below the paper surface.
 * **Paper Rupture (Overdriving):** The face paper liner provides the entire structural holding power. If the screw head cuts through the paper, the pull-through capacity drops from **320 N (72 lbs) to 0 N**. The board floats unanchored, inducing vibration cracks.
 * **Screw Spacing:**
- * Ceilings: **150–170 mm (6 in)** on center.
- * Partitions & Linings: **250 mm (10 in)** on center for single-layer (500 mm / 20 in for base layer in double-layer systems if face layer is immediately applied).
+  * Ceilings: **150–170 mm (6 in)** on center.
+  * Partitions & Linings: **250 mm (10 in)** on center for single-layer (500 mm / 20 in for base layer in double-layer systems if face layer is immediately applied).
 * **Edge Margins:**
- * Minimum **10 mm (3/8 in)** from factory paper-bound edges.
- * Minimum **15 mm (5/8 in)** from jobsite-cut butt edges.
+  * Minimum **10 mm (3/8 in)** from factory paper-bound edges.
+  * Minimum **15 mm (5/8 in)** from jobsite-cut butt edges.
 
 ---
 
@@ -182,7 +139,7 @@ Aligning a drywall seam with the vertical jamb of a door or window opening guara
 ### 4.1. Edge Preparation: Tapered (HRAK / AK) vs. Cut Butt Edges
 * **Factory Tapered Edge (HRAK / AK / PLUK):** Engineered with a precise recess and unbroken paper liner to embed tape and filler flush with the face plane.
 * **Jobsite Cut Edges (Butt Joints):** Raw cut edges feature square profiles and exposed, porous gypsum core.
- * **Beveling Protocol:** Cut edges must be chamfered with a Knauf Kantenhobel beveling tool at **22.5° (forming a 45° combined V-groove)** down to **2/3 of the board thickness** (~8–9 mm for a 12.5 mm / 1/2 board).
+  * **Beveling Protocol:** Cut edges must be chamfered with a Knauf Kantenhobel beveling tool at **22.5° (forming a 45° combined V-groove)** down to **2/3 of the board thickness** (~8–9 mm for a 12.5 mm / 1/2 in board).
   * **Dust Removal & Priming:** The cut core must be thoroughly dusted with a dry brush and primed with Knauf Tiefengrund penetrative primer. Applying joint compound over dry gypsum dust causes immediate flash-drying and bond delamination.
 
 ---
@@ -195,20 +152,13 @@ Aligning a drywall seam with the vertical jamb of a door or window opening guara
 ### 4.2. The Tape Debate: Why Self-Adhesive Mesh (Serpyanka) Fails
 Self-adhesive fiberglass open-mesh tape (serpyanka) is responsible for a massive percentage of residential joint cracks. Under engineering analysis, mesh fails basic tensile criteria:
 
-`
-TENSILE JOINT REINFORCEMENT TEST (DIN EN 13963):
-┌──────────────────────────────────────┬──────────────────────┬────────────────────────┐
-│ Reinforcement Material               │ Tensile Strength     │ Failure Behavior       │
-├──────────────────────────────────────┼──────────────────────┼────────────────────────┤
-│ Self-Adhesive Fiberglass Mesh        │ ~ 110–130 N/mm²      │ Elongates up to 4%;    │
-│                                      │                      │ core cracks INTERNALLY │
-├──────────────────────────────────────┼──────────────────────┼────────────────────────┤
-│ Glass Non-Woven Fleece (Fleece tape) │ ~ 140–180 N/mm²      │ Brittle shear rupture  │
-├──────────────────────────────────────┼──────────────────────┼────────────────────────┤
-│ Knauf Kurt Micro-Perforated Tape     │ ~ 360–410 N/mm²      │ Rigid composite matrix;│
-│ (Reinforced cellulose-glass blend)   │                      │ absorbs peak shear     │
-└──────────────────────────────────────┴──────────────────────┴────────────────────────┘
-`
+**Tensile Joint Reinforcement Test (DIN EN 13963):**
+
+| Reinforcement Material | Tensile Strength | Failure Behavior |
+| :--- | :--- | :--- |
+| **Self-Adhesive Fiberglass Mesh** | ~ 110–130 N/mm² | Elongates up to 4%; core cracks INTERNALLY |
+| **Glass Non-Woven Fleece (Fleece tape)** | ~ 140–180 N/mm² | Brittle shear rupture under moderate deflection |
+| **Knauf Kurt Micro-Perforated Tape** | ~ 360–410 N/mm² | Rigid composite matrix; absorbs peak shear |
 
 * **Failure Mode of Fiberglass Mesh:**
   1. Fiberglass mesh is applied dry to the board face before compound application. Filler cannot fully encapsulate the back threads, creating micro-voids.
