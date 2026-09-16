@@ -8,6 +8,11 @@ import { WallpaperCalculator } from "@/components/widgets/wallpaper-calculator"
 import { FlooringCalculator } from "@/components/widgets/flooring-calculator"
 import { BaseboardCalculator } from "@/components/widgets/baseboard-calculator"
 import { ScreedCalculator } from "@/components/widgets/screed-calculator"
+import { DrywallCalculator } from "@/components/widgets/drywall-calculator"
+import { SoundproofingCalculator } from "@/components/widgets/soundproofing-calculator"
+import { LightingCalculator } from "@/components/widgets/lighting-calculator"
+import { VentilationCalculator } from "@/components/widgets/ventilation-calculator"
+import { UnderfloorHeatingCalculator } from "@/components/widgets/underfloor-heating-calculator"
 import { Checklist } from "@/components/widgets/checklist"
 import { FAQSection } from "@/components/widgets/faq-section"
 import { BeforeAfterGallery } from "@/components/widgets/before-after-gallery"
@@ -104,6 +109,31 @@ export function createMdxComponents(isEnglish = false): MDXComponents {
         ScreedCalculator: () => (
             <div className="my-8">
                 <ScreedCalculator />
+            </div>
+        ),
+        DrywallCalculator: () => (
+            <div className="my-8">
+                <DrywallCalculator />
+            </div>
+        ),
+        SoundproofingCalculator: () => (
+            <div className="my-8">
+                <SoundproofingCalculator />
+            </div>
+        ),
+        LightingCalculator: () => (
+            <div className="my-8">
+                <LightingCalculator />
+            </div>
+        ),
+        VentilationCalculator: () => (
+            <div className="my-8">
+                <VentilationCalculator />
+            </div>
+        ),
+        UnderfloorHeatingCalculator: () => (
+            <div className="my-8">
+                <UnderfloorHeatingCalculator />
             </div>
         ),
         AffiliateCard: (props: { href: string; title: string; description: string; imgSrc?: string }) => (
