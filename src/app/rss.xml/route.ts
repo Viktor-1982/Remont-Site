@@ -26,12 +26,12 @@ export async function GET() {
 
         return `
     <item>
-        <title><![CDATA[${escapeXml(post.title)}]]></title>
-        <description><![CDATA[${escapeXml(post.description || "")}]]></description>
-        <link>${escapeXml(url)}</link>
-        <guid isPermaLink="true">${escapeXml(url)}</guid>
+        <title><![CDATA[${post.title}]]></title>
+        <description><![CDATA[${post.description || ""}]]></description>
+        <link>${url}</link>
+        <guid isPermaLink="true">${url}</guid>
         <pubDate>${pubDate}</pubDate>
-        <category><![CDATA[${escapeXml(post.tags?.join(", ") || "Ремонт")}]]></category>
+        <category><![CDATA[${post.tags?.join(", ") || "Ремонт"}]]></category>
         ${enclosure}
     </item>`
     }).join('')

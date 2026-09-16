@@ -14,7 +14,7 @@ import Script from "next/script"
 
 const fontClasses = `${GeistSans.variable} ${GeistMono.variable}`
 
-const siteSchema = {
+const getSiteSchema = (lang: "ru" | "en") => ({
     "@context": "https://schema.org",
     "@graph": [
         {
@@ -40,15 +40,14 @@ const siteSchema = {
             publisher: { "@id": "https://renohacks.com/#organization" },
             potentialAction: {
                 "@type": "SearchAction",
-                target: [
-                    "https://renohacks.com/search?q={search_term_string}",
-                    "https://renohacks.com/ru/search?q={search_term_string}",
-                ],
+                target: lang === "ru"
+                    ? "https://renohacks.com/ru/search?q={search_term_string}"
+                    : "https://renohacks.com/search?q={search_term_string}",
                 "query-input": "required name=search_term_string",
             },
         },
     ],
-}
+})
 
 export function AppShell({
     children,
@@ -142,7 +141,7 @@ export function AppShell({
                     id="site-schema"
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
-                        __html: JSON.stringify(siteSchema),
+                        __html: JSON.stringify(getSiteSchema(lang)),
                     }}
                 />
             </head>

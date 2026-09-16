@@ -26,11 +26,11 @@ export async function GET() {
 
       return `
     <item>
-    <title><![CDATA[${escapeXml(p.title)}]]></title>
-    <link>${escapeXml(url)}</link>
-    <guid isPermaLink="true">${escapeXml(url)}</guid>
+    <title><![CDATA[${p.title}]]></title>
+    <link>${url}</link>
+    <guid isPermaLink="true">${url}</guid>
     <pubDate>${new Date(p.date).toUTCString()}</pubDate>
-    <description><![CDATA[${escapeXml(p.description || "")}]]></description>
+    <description><![CDATA[${p.description || ""}]]></description>
     ${enclosure}
     </item>`
     })
@@ -41,14 +41,14 @@ export async function GET() {
   <channel>
     <title>Renohacks — home renovation &amp; interior design</title>
     <description>Latest DIY renovation and design tips</description>
-    <link>${baseUrl}/en</link>
+    <link>${baseUrl}</link>
     <language>en</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/feed-en.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>${baseUrl}/icon.svg</url>
       <title>Renohacks</title>
-      <link>${baseUrl}/en</link>
+      <link>${baseUrl}</link>
     </image>
     ${items}
   </channel>
