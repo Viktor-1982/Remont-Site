@@ -1,6 +1,6 @@
 import { getPageMetadata } from "@/lib/seo"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Shield, Cookie, BarChart3, Megaphone, Lock, Mail } from "lucide-react"
+import { Shield, Cookie, BarChart3, Megaphone, Lock, Mail, Smartphone } from "lucide-react"
 import Script from "next/script"
 
 export const metadata = getPageMetadata("/en/privacy", {
@@ -315,11 +315,36 @@ export default function PrivacyPage() {
                     </CardContent>
                 </Card>
 
+                <Card>
+                    <CardHeader>
+                        <div className="flex items-center gap-3">
+                            <Smartphone className="h-6 w-6 text-primary" />
+                            <CardTitle className="text-2xl">8. Mobile Applications (TileCalc Pro &amp; Utility Apps)</CardTitle>
+                        </div>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <p className="leading-relaxed text-muted-foreground">
+                            Our official Android mobile applications (including <strong>TileCalc Pro</strong> and related construction calculators) operate on an offline-first architecture:
+                        </p>
+                        <ul className="list-inside list-disc space-y-2 text-muted-foreground">
+                            <li>
+                                <strong>Local Computation &amp; Storage:</strong> All room measurements, material specifications, waste percentages, tile layouts, and generated PDF estimates are computed and stored strictly locally on your device. We do not transmit or store your project calculations on external servers.
+                            </li>
+                            <li>
+                                <strong>No Sensitive Permissions:</strong> Our mobile applications do not request access to your contacts, precise GPS location, microphone, camera, or personal photo library.
+                            </li>
+                            <li>
+                                <strong>Third-Party Mobile Services:</strong> In-app billing transactions and optional advertising are handled securely by Google Play Billing and Google AdMob adhering strictly to Google&apos;s Privacy Policy.
+                            </li>
+                        </ul>
+                    </CardContent>
+                </Card>
+
                 <Card className="border-primary/20 bg-primary/5 dark:bg-primary/10">
                     <CardHeader>
                         <div className="flex items-center gap-3">
                             <Mail className="h-6 w-6 text-primary" />
-                            <CardTitle className="text-2xl">8. Contact</CardTitle>
+                            <CardTitle className="text-2xl">9. Contact</CardTitle>
                         </div>
                     </CardHeader>
                     <CardContent>

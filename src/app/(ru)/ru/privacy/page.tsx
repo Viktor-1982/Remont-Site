@@ -1,6 +1,6 @@
 import { getPageMetadata } from "@/lib/seo"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Shield, Cookie, BarChart3, Megaphone, Lock, Mail } from "lucide-react"
+import { Shield, Cookie, BarChart3, Megaphone, Lock, Mail, Smartphone } from "lucide-react"
 import Script from "next/script"
 
 export const metadata = getPageMetadata("/ru/privacy", {
@@ -331,11 +331,49 @@ export default function PrivacyPage() {
                     </CardContent>
                 </Card>
 
+                <Card>
+                    <CardHeader>
+                        <div className="flex items-center gap-3">
+                            <Smartphone className="h-6 w-6 text-primary" />
+                            <CardTitle className="text-2xl">
+                                8. Мобильные приложения (TileCalc Pro и строительные утилиты)
+                            </CardTitle>
+                        </div>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <p className="leading-relaxed text-muted-foreground">
+                            Наши официальные мобильные приложения для Android (включая{" "}
+                            <strong>TileCalc Pro</strong> и сопутствующие калькуляторы)
+                            работают по принципу offline-first:
+                        </p>
+                        <ul className="list-inside list-disc space-y-2 text-muted-foreground">
+                            <li>
+                                <strong>Локальные вычисления и хранение:</strong> Все
+                                замеры помещений, параметры плитки, схемы укладки,
+                                расценки материалов и созданные PDF-сметы обрабатываются
+                                и сохраняются строго локально на вашем устройстве. Мы не
+                                передаем и не храним расчеты ваших проектов на внешних серверах.
+                            </li>
+                            <li>
+                                <strong>Отсутствие конфиденциальных разрешений:</strong>{" "}
+                                Приложения не запрашивают доступ к вашим контактам, точной
+                                GPS-геолокации, камере, микрофону или личным фотографиям.
+                            </li>
+                            <li>
+                                <strong>Сторонние сервисы платформы:</strong> Встроенные
+                                платежи за Pro-версию и показ рекламы осуществляются
+                                через защищенные сервисы Google Play Billing и Google AdMob в
+                                соответствии со стандартной Политикой конфиденциальности Google.
+                            </li>
+                        </ul>
+                    </CardContent>
+                </Card>
+
                 <Card className="border-primary/20 bg-primary/5 dark:bg-primary/10">
                     <CardHeader>
                         <div className="flex items-center gap-3">
                             <Mail className="h-6 w-6 text-primary" />
-                            <CardTitle className="text-2xl">8. Контакты</CardTitle>
+                            <CardTitle className="text-2xl">9. Контакты</CardTitle>
                         </div>
                     </CardHeader>
                     <CardContent>
