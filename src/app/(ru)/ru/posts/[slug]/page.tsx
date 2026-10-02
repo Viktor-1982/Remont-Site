@@ -185,20 +185,23 @@ export default async function PostPage({
                             height: 675,
                         }],
                         author: {
-                            "@type": "Organization",
-                            name: "Renohacks",
-                            url: `${baseUrl}/ru`,
+                            "@type": "Person",
+                            name: "Редакция Renohacks",
+                            url: `${baseUrl}/ru/about`,
                         },
                         publisher: {
                             "@type": "Organization",
+                            "@id": `${baseUrl}/#organization`,
                             name: "Renohacks",
                             logo: {
                                 "@type": "ImageObject",
                                 url: `${baseUrl}/icon.svg`,
+                                width: 512,
+                                height: 512,
                             },
                         },
                         datePublished: post.date,
-                        dateModified: post.date,
+                        dateModified: ("modifiedDate" in post && post.modifiedDate) ? post.modifiedDate : post.date,
                         mainEntityOfPage: {
                             "@type": "WebPage",
                             "@id": canonical,

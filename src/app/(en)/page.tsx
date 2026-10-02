@@ -38,31 +38,72 @@ export const metadata: Metadata = {
         title: "DIY Renovation & Design Blog | Renohacks",
         description:
             "Step-by-step photo guides, DIY hacks, and online calculators for paint, tile, and budgeting. Plan your home renovation project without mistakes!",
-        url: "https://renohacks.com/en",
-        siteName: "Renohacks.com",
+        url: "https://renohacks.com",
+        siteName: "Renohacks",
         locale: "en_US",
         type: "website",
-        images: ["/images/og-default.png"],
+        images: [
+            {
+                url: "https://renohacks.com/images/og-default.png",
+                width: 1200,
+                height: 630,
+                alt: "Renohacks - DIY Renovation & Design Blog",
+            },
+        ],
     },
     twitter: {
         card: "summary_large_image",
         title: "DIY Renovation & Design Blog | Renohacks",
         description:
             "Step-by-step photo guides, DIY hacks, and online calculators for paint, tile, and budgeting. Plan your home renovation project without mistakes!",
-        images: ["/images/og-default.png"],
+        images: ["https://renohacks.com/images/og-default.png"],
     },
     alternates: {
-        canonical: "https://renohacks.com/en",
+        canonical: "https://renohacks.com",
         languages: {
             ru: "https://renohacks.com/ru",
-            en: "https://renohacks.com/en",
-            "x-default": "https://renohacks.com/en",
+            en: "https://renohacks.com",
+            "x-default": "https://renohacks.com",
         },
     },
 }
 
 export default function HomePageEn() {
     const posts = sortPosts(allPosts).filter((p) => p.locale === "en" && !p.draft)
+
+    const websiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://renohacks.com/#website",
+        "name": "Renohacks",
+        "url": "https://renohacks.com",
+        "description": "Step-by-step photo guides, DIY hacks, and online calculators for home renovation.",
+        "inLanguage": ["en", "ru"],
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://renohacks.com/search?q={search_term_string}",
+            },
+            "query-input": "required name=search_term_string",
+        },
+    }
+
+    const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://renohacks.com/#organization",
+        "name": "Renohacks",
+        "url": "https://renohacks.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://renohacks.com/icon.svg",
+            "width": 512,
+            "height": 512,
+        },
+        "sameAs": [],
+        "description": "Independent home renovation & DIY blog with photo guides, calculators, and material reviews.",
+    }
 
     return (
         <main>
@@ -101,6 +142,17 @@ export default function HomePageEn() {
                     <EmailSubscription locale="en" variant="default" />
                 </section>
             </div>
+
+            {/* WebSite schema — enables Google Sitelinks Search Box */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+            />
+            {/* Organization schema — enables Google Knowledge Panel */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+            />
         </main>
     )
 }

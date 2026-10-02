@@ -1,43 +1,56 @@
 {
-  "name": "Renohacks.com — блог о ремонте, дизайне и DIY",
+  "name": "Renohacks — Home Renovation & DIY",
   "short_name": "Renohacks",
-  "description": "Фото-гайды по ремонту своими руками, DIY лайфхаки, бесплатные калькуляторы и обзоры материалов",
+  "description": "Step-by-step photo guides, DIY hacks, free calculators and material reviews for home renovation.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#45B08C",
   "orientation": "portrait-primary",
   "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["lifestyle", "home", "utilities"],
   "icons": [
     {
       "src": "/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/favicon.ico",
       "sizes": "32x32",
       "type": "image/x-icon"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
-  "categories": ["lifestyle", "home", "diy"],
   "screenshots": [],
   "shortcuts": [
     {
-      "name": "Калькуляторы",
-      "short_name": "Калькуляторы",
-      "description": "Калькуляторы для ремонта",
+      "name": "Calculators",
+      "short_name": "Calculators",
+      "description": "Renovation calculators",
       "url": "/calculators",
       "icons": [{ "src": "/icon.svg", "sizes": "any" }]
     },
     {
-      "name": "Закладки",
-      "short_name": "Закладки",
-      "description": "Мои сохраненные статьи",
-      "url": "/bookmarks",
+      "name": "Калькуляторы",
+      "short_name": "Калькуляторы",
+      "description": "Калькуляторы для ремонта",
+      "url": "/ru/calculators",
       "icons": [{ "src": "/icon.svg", "sizes": "any" }]
     }
   ]
 }
-
