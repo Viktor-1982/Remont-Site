@@ -18,12 +18,22 @@ export const revalidate = 86400
 export const dynamic = "force-static"
 export const dynamicParams = true
 
+// Minimum posts required for a tag page to be indexed by Google
+const MIN_POSTS_FOR_INDEX = 3
+
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const { tag } = await params
     const decodedTag = normalizeTag(decodeURIComponent(tag))
     const encodedTag = encodeURIComponent(decodedTag)
     const displayTag = findTagDisplayName(allPosts, "en", decodedTag)
     const russianTagSlug = findAlternateTagSlug(allPosts, "en", decodedTag, "ru")
+
+    // Count published posts for this tag
+    const postCount = allPosts.filter(
+        (p) => p.locale === "en" && !p.draft &&
+            p.tags?.map((t) => normalizeTag(t)).includes(decodedTag)
+    ).length
+    const isThinTag = postCount < MIN_POSTS_FOR_INDEX
 
     const title = `#${displayTag} — articles tagged ${displayTag} | Renohacks`
     const description = `All articles tagged "${displayTag}" on Renohacks.com: practical home renovation ideas, interior design tips, and DIY projects. Step-by-step guides, photo tutorials, expert advice, and material reviews.`
@@ -46,6 +56,10 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
         openGraph: {
             locale: "en_US",
         },
+        // Thin tag pages (< 3 posts) are noindexed to save crawl budget for important pages
+        robots: isThinTag
+            ? { index: false, follow: false }
+            : { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
     })
 }
 

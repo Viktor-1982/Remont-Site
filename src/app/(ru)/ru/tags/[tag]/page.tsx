@@ -19,6 +19,9 @@ export const revalidate = 86400
 export const dynamic = "force-static"
 export const dynamicParams = true
 
+// 🔹 Минимум статей для индексирования тег-страницы Google
+const MIN_POSTS_FOR_INDEX = 3
+
 // 🔹 Генерация метаданных
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const { tag } = await params
@@ -26,6 +29,13 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     const encodedTag = encodeURIComponent(decodedTag)
     const displayTag = findTagDisplayName(allPosts, "ru", decodedTag)
     const englishTagSlug = findAlternateTagSlug(allPosts, "ru", decodedTag, "en")
+
+    // Считаем количество опубликованных статей с этим тегом
+    const postCount = allPosts.filter(
+        (p) => p.locale === "ru" && !p.draft &&
+            p.tags?.map((t) => normalizeTag(t)).includes(decodedTag)
+    ).length
+    const isThinTag = postCount < MIN_POSTS_FOR_INDEX
 
     const title = `#${displayTag} — статьи по тегу ${displayTag} | Renohacks`
     const description = `Все статьи с тегом «${displayTag}» на Renohacks.com: практические идеи для ремонта, дизайна интерьера и DIY-проектов. Пошаговые инструкции, фото-гайды, советы экспертов и обзоры материалов.`
@@ -50,6 +60,10 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
         openGraph: {
             locale: "ru_RU",
         },
+        // Тег-страницы с малым числом статей — не индексируем, не тратим crawl budget
+        robots: isThinTag
+            ? { index: false, follow: false }
+            : { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
     })
 }
 
