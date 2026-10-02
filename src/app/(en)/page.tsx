@@ -101,7 +101,7 @@ export default function HomePageEn() {
             "width": 512,
             "height": 512,
         },
-        "sameAs": [],
+        "sameAs": ["https://www.pinterest.com/renohacks/"],
         "description": "Independent home renovation & DIY blog with photo guides, calculators, and material reviews.",
     }
 
