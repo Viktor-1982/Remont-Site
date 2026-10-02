@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next"
 import { allPosts } from ".contentlayer/generated"
 import { getAllArticleSeries } from "@/lib/article-series"
-import { getCanonicalTagSlugs } from "@/lib/tags"
+import { collectTagInfo } from "@/lib/tags"
 
 const baseUrl = "https://renohacks.com"
 const publishedPosts = allPosts.filter((post) => !post.draft)
@@ -116,9 +116,25 @@ function getLatestPublishedDate() {
         : new Date("2026-01-01T00:00:00.000Z").toISOString()
 }
 
+const MIN_POSTS_FOR_INDEX = 3
+
+function getIndexedTagSlugs(posts: typeof publishedPosts, locale: "ru" | "en") {
+    const info = collectTagInfo(posts, locale)
+    const slugs: string[] = []
+    info.forEach((data, slug) => {
+        if (data.count >= MIN_POSTS_FOR_INDEX) {
+            slugs.push(slug)
+        }
+    })
+    if (locale === "ru" && !slugs.includes("novinki")) {
+        slugs.push("novinki")
+    }
+    return slugs.sort((a, b) => a.localeCompare(b, locale))
+}
+
 function getTagPages() {
-    const ruTags = getCanonicalTagSlugs(publishedPosts, "ru")
-    const enTags = getCanonicalTagSlugs(publishedPosts, "en")
+    const ruTags = getIndexedTagSlugs(publishedPosts, "ru")
+    const enTags = getIndexedTagSlugs(publishedPosts, "en")
     const lastModified = getLatestPublishedDate()
 
     const ruPages = ruTags.map((tag) => ({
