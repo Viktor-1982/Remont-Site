@@ -62,6 +62,12 @@ const nextConfig: NextConfig = {
                 destination: "/posts/interior-design-trends-2026",
                 permanent: true,
             },
+            // ── GSC 404 fixes: latin-slug tags → correct RU tag pages ──────────
+            {
+                source: "/tags/novinki",
+                destination: "/ru/tags/%D0%BD%D0%BE%D0%B2%D0%B8%D0%BD%D0%BA%D0%B8",
+                permanent: true,
+            },
         ]
     },
     async rewrites() {

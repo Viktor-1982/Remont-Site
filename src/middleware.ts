@@ -5,6 +5,11 @@ import type { NextRequest } from "next/server"
 // Russian pages use the /ru/ prefix.
 // /en/* is kept for backward-compat and is rewritten to /* by next.config.ts.
 
+/** Returns true if the string contains at least one Cyrillic character */
+function hasCyrillic(str: string): boolean {
+    return /[а-яёА-ЯЁ]/.test(decodeURIComponent(str))
+}
+
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl
 
@@ -27,14 +32,22 @@ export function middleware(request: NextRequest) {
         return NextResponse.next()
     }
 
-    // ── /en/* → pass through (next.config.ts rewrites /en/* → /*) ──────────
+    // ── /en/* → pass through (next.config.ts redirects /en/* → /*) ──────────
     if (pathname.startsWith("/en/") || pathname === "/en") {
         return NextResponse.next()
     }
 
+    // ── Cyrillic /tags/[slug] → redirect to /ru/tags/[slug] (301) ───────────
+    // Fixes 404s caused by Russian-language tags ending up on the EN /tags/ path.
+    // e.g. /tags/кухня → /ru/tags/кухня
+    if (pathname.startsWith("/tags/") && hasCyrillic(pathname)) {
+        const slug = pathname.slice("/tags/".length)
+        const url = request.nextUrl.clone()
+        url.pathname = `/ru/tags/${slug}`
+        return NextResponse.redirect(url, { status: 301 })
+    }
+
     // ── Bare paths (no locale prefix) = canonical EN URLs ───────────────────
-    // English is served directly as the primary canonical language for global audience / SEO.
-    // Russian content is accessed directly via /ru/* routes.
     return NextResponse.next()
 }
 
