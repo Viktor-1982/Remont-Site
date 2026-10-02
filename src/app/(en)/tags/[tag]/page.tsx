@@ -56,10 +56,26 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
         openGraph: {
             locale: "en_US",
         },
-        // Thin tag pages (< 3 posts) are noindexed to save crawl budget for important pages
+        // Thin tag pages (< 3 posts) are noindexed, but links are followed (noindex, follow)
         robots: isThinTag
-            ? { index: false, follow: false }
-            : { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+            ? {
+                index: false,
+                follow: true,
+                googleBot: {
+                    index: false,
+                    follow: true,
+                },
+            }
+            : {
+                index: true,
+                follow: true,
+                googleBot: {
+                    index: true,
+                    follow: true,
+                    "max-image-preview": "large",
+                    "max-snippet": -1,
+                },
+            },
     })
 }
 

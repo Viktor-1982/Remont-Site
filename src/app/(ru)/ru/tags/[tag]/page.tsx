@@ -60,10 +60,26 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
         openGraph: {
             locale: "ru_RU",
         },
-        // Тег-страницы с малым числом статей — не индексируем, не тратим crawl budget
+        // Тег-страницы с малым числом статей — не индексируем, но разрешаем переход по ссылкам на статьи (noindex, follow)
         robots: isThinTag
-            ? { index: false, follow: false }
-            : { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+            ? {
+                index: false,
+                follow: true,
+                googleBot: {
+                    index: false,
+                    follow: true,
+                },
+            }
+            : {
+                index: true,
+                follow: true,
+                googleBot: {
+                    index: true,
+                    follow: true,
+                    "max-image-preview": "large",
+                    "max-snippet": -1,
+                },
+            },
     })
 }
 
