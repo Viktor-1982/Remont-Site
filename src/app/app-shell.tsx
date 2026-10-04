@@ -78,13 +78,6 @@ export function AppShell({
                 />
 
                 <script
-                    id="google-consent-default"
-                    dangerouslySetInnerHTML={{
-                        __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('consent', 'default', {'ad_storage': 'denied','ad_user_data': 'denied','ad_personalization': 'denied','analytics_storage': 'denied'});`,
-                    }}
-                />
-
-                <script
                     id="site-schema"
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
@@ -108,6 +101,17 @@ export function AppShell({
                 </ThemeProvider>
                 <Analytics />
                 <SpeedInsights />
+
+                <Script id="google-consent-default" strategy="beforeInteractive">{`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('consent', 'default', {
+                        'ad_storage': 'denied',
+                        'ad_user_data': 'denied',
+                        'ad_personalization': 'denied',
+                        'analytics_storage': 'denied'
+                    });
+                `}</Script>
 
                 <Script id="consented-third-party-loaders" strategy="afterInteractive">{`
                     (function () {
