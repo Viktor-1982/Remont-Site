@@ -108,10 +108,14 @@ async function sendWelcomeEmail(
     existing: boolean
 ) {
     // TEMPORARILY DISABLED: Account under investigation by Resend
-    console.log("Email sending temporarily disabled during Resend investigation")
-    return {
-        emailSent: false,
-        resendConfigured: false,
+    const accountUnderInvestigation = true // Set to false after Resend account is reactivated
+
+    if (accountUnderInvestigation) {
+        console.log("Email sending temporarily disabled during Resend investigation")
+        return {
+            emailSent: false,
+            resendConfigured: false,
+        }
     }
 
     const resendConfigured = Boolean(resend) && Boolean(process.env.RESEND_API_KEY)
