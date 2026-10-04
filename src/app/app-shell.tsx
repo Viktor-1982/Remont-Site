@@ -77,16 +77,46 @@ export function AppShell({
                     content="c5936504ab784c7854df0c0807478575"
                 />
 
-                <Script id="google-consent-default" strategy="beforeInteractive">{`
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('consent', 'default', {
-                        'ad_storage': 'denied',
-                        'ad_user_data': 'denied',
-                        'ad_personalization': 'denied',
-                        'analytics_storage': 'denied'
-                    });
-                `}</Script>
+                <script
+                    id="google-consent-default"
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('consent', 'default', {
+                                'ad_storage': 'denied',
+                                'ad_user_data': 'denied',
+                                'ad_personalization': 'denied',
+                                'analytics_storage': 'denied'
+                            });
+                        `,
+                    }}
+                />
+
+                <script
+                    id="site-schema"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(getSiteSchema(lang)),
+                    }}
+                />
+            </head>
+            <body
+                className="min-h-screen bg-background text-foreground font-sans antialiased"
+                suppressHydrationWarning
+            >
+                <ThemeProvider>
+                    <BackgroundAnimation />
+                    <SiteHeader />
+                    <main className="w-full py-6 sm:py-8">{children}</main>
+                    <SiteFooter />
+                    <CookieConsent />
+                    <KeyboardShortcuts />
+                    <ScrollToTop />
+                    <Toaster position="top-center" richColors />
+                </ThemeProvider>
+                <Analytics />
+                <SpeedInsights />
 
                 <Script id="consented-third-party-loaders" strategy="afterInteractive">{`
                     (function () {
@@ -136,31 +166,6 @@ export function AppShell({
                         });
                     }
                 `}</Script>
-
-                <script
-                    id="site-schema"
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify(getSiteSchema(lang)),
-                    }}
-                />
-            </head>
-            <body
-                className="min-h-screen bg-background text-foreground font-sans antialiased"
-                suppressHydrationWarning
-            >
-                <ThemeProvider>
-                    <BackgroundAnimation />
-                    <SiteHeader />
-                    <main className="w-full py-6 sm:py-8">{children}</main>
-                    <SiteFooter />
-                    <CookieConsent />
-                    <KeyboardShortcuts />
-                    <ScrollToTop />
-                    <Toaster position="top-center" richColors />
-                </ThemeProvider>
-                <Analytics />
-                <SpeedInsights />
             </body>
         </html>
     )

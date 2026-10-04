@@ -87,11 +87,16 @@ export function ShareButton({
 
     const copyToClipboard = async () => {
         try {
-            await navigator.clipboard.writeText(fullUrl)
-            setCopied(true)
-            setTimeout(() => setCopied(false), 2000)
+            // Проверяем доступ к clipboard API
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(fullUrl)
+                setCopied(true)
+                setTimeout(() => setCopied(false), 2000)
+            } else {
+                throw new Error("Clipboard API not available")
+            }
         } catch {
-            // Fallback для старых браузеров
+            // Fallback для старых браузеров или когда clipboard недоступен
             const textArea = document.createElement("textarea")
             textArea.value = fullUrl
             textArea.style.position = "fixed"
