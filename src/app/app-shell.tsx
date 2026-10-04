@@ -76,14 +76,6 @@ export function AppShell({
                     name="p:domain_verify"
                     content="c5936504ab784c7854df0c0807478575"
                 />
-
-                <script
-                    id="site-schema"
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify(getSiteSchema(lang)),
-                    }}
-                />
             </head>
             <body
                 className="min-h-screen bg-background text-foreground font-sans antialiased"
@@ -101,6 +93,15 @@ export function AppShell({
                 </ThemeProvider>
                 <Analytics />
                 <SpeedInsights />
+
+                <Script
+                    id="site-schema"
+                    type="application/ld+json"
+                    strategy="beforeInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(getSiteSchema(lang)),
+                    }}
+                />
 
                 <Script id="google-consent-default" strategy="beforeInteractive">{`
                     window.dataLayer = window.dataLayer || [];
