@@ -105,7 +105,7 @@ export function EmailSubscription({
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email, locale, segment }),
+                body: JSON.stringify({ email, locale, segment, honeypot: "" }),
             })
 
             const data = await response.json()
@@ -228,6 +228,15 @@ export function EmailSubscription({
                         )}
                     </Button>
                 </div>
+                {/* Honeypot field */}
+                <input
+                    type="text"
+                    name="honeypot"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    style={{ position: 'absolute', left: '-5000px' }}
+                    aria-hidden="true"
+                />
                 {renderStatus("left")}
             </form>
         )
@@ -275,6 +284,15 @@ export function EmailSubscription({
                             )}
                         </Button>
                     </div>
+                    {/* Honeypot field */}
+                    <input
+                        type="text"
+                        name="honeypot"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        style={{ position: 'absolute', left: '-5000px' }}
+                        aria-hidden="true"
+                    />
                     {renderStatus("left")}
                 </form>
             </div>
@@ -333,6 +351,15 @@ export function EmailSubscription({
                             )}
                         </Button>
                     </div>
+                    {/* Honeypot field - hidden from users, visible to bots */}
+                    <input
+                        type="text"
+                        name="honeypot"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        style={{ position: 'absolute', left: '-5000px' }}
+                        aria-hidden="true"
+                    />
                     {renderStatus("center")}
                 </form>
             </div>

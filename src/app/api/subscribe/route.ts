@@ -185,6 +185,21 @@ export async function POST(req: NextRequest) {
         const email = typeof rawEmail === "string" ? rawEmail.trim().toLowerCase() : ""
         const source = resolveSource((body as { source?: unknown }).source)
         const segment = resolveSegment((body as { segment?: unknown }).segment)
+        const honeypot = (body as { honeypot?: unknown }).honeypot
+
+        // Honeypot check: if honeypot field is filled, it's a bot
+        if (honeypot && typeof honeypot === "string" && honeypot.trim().length > 0) {
+            console.warn("Bot detected via honeypot field")
+            return jsonNoStore(
+                {
+                    message:
+                        locale === "en"
+                            ? "Subscription successful."
+                            : "Подписка оформлена.",
+                },
+                { status: 200 }
+            )
+        }
 
         if (!isValidEmail(email)) {
             return jsonNoStore(
