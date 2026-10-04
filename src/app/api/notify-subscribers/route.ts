@@ -1,3 +1,4 @@
+import { SITE_CONFIG } from "@/lib/site-config"
 import { NextRequest } from "next/server"
 import { Resend } from "resend"
 import { allPosts, type Post } from ".contentlayer/generated"
@@ -203,7 +204,7 @@ async function sendNotificationsForContent(item: NotifiableContent): Promise<Not
     const contentUrl = `${SITE_URL}${item.url}`
     const { subject, heading, cta } = getContentLabels(item)
     const unsubscribeUrl = (email: string, locale: "ru" | "en") =>
-        buildUnsubscribeUrl(SITE_URL, email, locale) || "mailto:vles8878@gmail.com"
+        buildUnsubscribeUrl(SITE_URL, email, locale) || `mailto:${SITE_CONFIG.contactEmail}`
 
     let successCount = 0
     let errorCount = 0

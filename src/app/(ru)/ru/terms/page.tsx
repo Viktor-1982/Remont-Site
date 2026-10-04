@@ -1,3 +1,4 @@
+import { SITE_CONFIG } from "@/lib/site-config"
 import { getPageMetadata } from "@/lib/seo"
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -413,11 +414,11 @@ export default function TermsOfUsePage() {
               Если у вас есть вопросы по этим правилам или по использованию сайта, напишите нам:
             </p>
             <a
-              href="mailto:vles8878@gmail.com"
+              href={`mailto:${SITE_CONFIG.contactEmail}`}
               className="group inline-flex items-center gap-3 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-all duration-300 hover:scale-105 hover:bg-primary/90 hover:shadow-lg active:scale-95"
             >
               <Mail className="h-5 w-5 group-hover:animate-bounce" />
-              <span>vles8878@gmail.com</span>
+              <span>{SITE_CONFIG.contactEmail}</span>
             </a>
           </CardContent>
         </Card>
@@ -455,7 +456,7 @@ export default function TermsOfUsePage() {
               <li className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
                 <div>
-                  <strong className="text-foreground">Связь:</strong> vles8878@gmail.com для вопросов по правилам и работе сайта
+                  <strong className="text-foreground">Связь:</strong> {SITE_CONFIG.contactEmail} для вопросов по правилам и работе сайта
                 </div>
               </li>
             </ul>

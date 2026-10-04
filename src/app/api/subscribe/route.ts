@@ -1,7 +1,9 @@
+import { SITE_CONFIG } from "@/lib/site-config"
 import { NextRequest } from "next/server"
 import { Resend } from "resend"
 import { type Subscription } from "../subscriptions/store"
 import { jsonNoStore } from "@/lib/no-store-response"
+import { checkRateLimit } from "@/lib/rate-limit"
 import { findSubscription, getStats, upsertSubscription } from "@/lib/subscriptions-repo"
 import { authorizeRequest } from "@/lib/request-auth"
 import { buildUnsubscribeUrl } from "@/lib/unsubscribe-token"
@@ -49,7 +51,7 @@ function buildWelcomeEmail({
     const isEnglish = locale === "en"
     const segmentCopy = getSubscriptionSegmentCopy(segment, locale)
     const unsubscribeUrl =
-        buildUnsubscribeUrl(SITE_URL, email, locale) || "mailto:vles8878@gmail.com"
+        buildUnsubscribeUrl(SITE_URL, email, locale) || `mailto:${SITE_CONFIG.contactEmail}`
     const heading = existing
         ? isEnglish
             ? "Your subscription is updated"
@@ -144,6 +146,33 @@ export async function POST(req: NextRequest) {
     try {
         const body = await req.json().catch(() => ({}))
         locale = resolveLocale((body as { locale?: unknown }).locale)
+
+        // ✅ Rate limiting: 10 попыток в минуту с одного IP (защита от спама и исчерпания квот)
+        const rateLimit = checkRateLimit(req, {
+            maxRequests: 10,
+            windowMs: 60 * 1000,
+            message:
+                locale === "en"
+                    ? "Too many subscription attempts. Please try again in a minute."
+                    : "Слишком много попыток подписки. Пожалуйста, повторите через минуту.",
+        })
+
+        if (!rateLimit.success) {
+            return jsonNoStore(
+                {
+                    error: rateLimit.message || "Too many requests. Please try again later.",
+                },
+                {
+                    status: 429,
+                    headers: {
+                        "Retry-After": Math.ceil((rateLimit.resetTime - Date.now()) / 1000).toString(),
+                        "X-RateLimit-Limit": "10",
+                        "X-RateLimit-Remaining": rateLimit.remaining.toString(),
+                        "X-RateLimit-Reset": new Date(rateLimit.resetTime).toISOString(),
+                    },
+                }
+            )
+        }
 
         const rawEmail = (body as { email?: unknown }).email
         const email = typeof rawEmail === "string" ? rawEmail.trim().toLowerCase() : ""

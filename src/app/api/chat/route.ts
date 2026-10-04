@@ -120,7 +120,9 @@ export async function POST(req: NextRequest) {
             })
 
             data = (await res.json()) as ChatCompletionResponse
-            console.log(`Model tried: ${model}`, data)
+            if (process.env.NODE_ENV === "development") {
+                console.log(`Model tried: ${model}`, data)
+            }
 
             if (res.ok && data.choices && data.choices[0]) {
                 return jsonNoStore(

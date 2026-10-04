@@ -1,3 +1,4 @@
+import { SITE_CONFIG } from "@/lib/site-config"
 import { getPageMetadata } from "@/lib/seo"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Shield, Cookie, BarChart3, Megaphone, Lock, Mail, Smartphone } from "lucide-react"
@@ -112,10 +113,10 @@ export default function PrivacyPage() {
                             только для писем, связанных с подпиской. Отписаться можно в
                             любой момент по ссылке в письме или написав нам на{" "}
                             <a
-                                href="mailto:vles8878@gmail.com"
+                                href={`mailto:${SITE_CONFIG.contactEmail}`}
                                 className="text-primary hover:underline"
                             >
-                                vles8878@gmail.com
+                                {SITE_CONFIG.contactEmail}
                             </a>
                             .
                         </p>
@@ -382,11 +383,11 @@ export default function PrivacyPage() {
                             напишите нам:
                         </p>
                         <a
-                            href="mailto:vles8878@gmail.com"
+                            href={`mailto:${SITE_CONFIG.contactEmail}`}
                             className="inline-flex items-center gap-2 font-medium text-primary transition-colors hover:text-primary/80"
                         >
                             <Mail className="h-4 w-4" />
-                            vles8878@gmail.com
+                            {SITE_CONFIG.contactEmail}
                         </a>
                     </CardContent>
                 </Card>
