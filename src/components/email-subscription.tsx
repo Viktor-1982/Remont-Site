@@ -52,6 +52,7 @@ export function EmailSubscription({
     const [segment, setSegment] = useState<SubscriptionSegment | null>(null)
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
     const [errorMessage, setErrorMessage] = useState("")
+    const [honeypot, setHoneypot] = useState("")
     const segmentGroupId = useId()
 
     const t = navData[locale].emailSubscription
@@ -105,7 +106,7 @@ export function EmailSubscription({
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email, locale, segment, honeypot: "" }),
+                body: JSON.stringify({ email, locale, segment, honeypot }),
             })
 
             const data = await response.json()
@@ -234,6 +235,8 @@ export function EmailSubscription({
                     name="honeypot"
                     tabIndex={-1}
                     autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
                     style={{ position: 'absolute', left: '-5000px' }}
                     aria-hidden="true"
                 />
@@ -290,6 +293,8 @@ export function EmailSubscription({
                         name="honeypot"
                         tabIndex={-1}
                         autoComplete="off"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
                         style={{ position: 'absolute', left: '-5000px' }}
                         aria-hidden="true"
                     />
@@ -357,6 +362,8 @@ export function EmailSubscription({
                         name="honeypot"
                         tabIndex={-1}
                         autoComplete="off"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
                         style={{ position: 'absolute', left: '-5000px' }}
                         aria-hidden="true"
                     />
