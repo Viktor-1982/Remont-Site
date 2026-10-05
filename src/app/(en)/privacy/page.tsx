@@ -320,12 +320,12 @@ export default function PrivacyPage() {
                     <CardHeader>
                         <div className="flex items-center gap-3">
                             <Smartphone className="h-6 w-6 text-primary" />
-                            <CardTitle className="text-2xl">8. Mobile Applications (TileCalc Pro &amp; Utility Apps)</CardTitle>
+                            <CardTitle className="text-2xl">8. Mobile Applications (FloorCalc Pro &amp; Utility Apps)</CardTitle>
                         </div>
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <p className="leading-relaxed text-muted-foreground">
-                            Our official Android mobile applications (including <strong>TileCalc Pro</strong> and related construction calculators) operate on an offline-first architecture:
+                            Our official Android mobile applications (including <strong>FloorCalc Pro</strong> and related construction calculators) operate on an offline-first architecture:
                         </p>
                         <ul className="list-inside list-disc space-y-2 text-muted-foreground">
                             <li>

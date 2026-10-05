@@ -337,14 +337,14 @@ export default function PrivacyPage() {
                         <div className="flex items-center gap-3">
                             <Smartphone className="h-6 w-6 text-primary" />
                             <CardTitle className="text-2xl">
-                                8. Мобильные приложения (TileCalc Pro и строительные утилиты)
+                                8. Мобильные приложения (FloorCalc Pro и строительные утилиты)
                             </CardTitle>
                         </div>
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <p className="leading-relaxed text-muted-foreground">
                             Наши официальные мобильные приложения для Android (включая{" "}
-                            <strong>TileCalc Pro</strong> и сопутствующие калькуляторы)
+                            <strong>FloorCalc Pro</strong> и сопутствующие калькуляторы)
                             работают по принципу offline-first:
                         </p>
                         <ul className="list-inside list-disc space-y-2 text-muted-foreground">
