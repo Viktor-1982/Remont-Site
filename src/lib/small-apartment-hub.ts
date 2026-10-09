@@ -65,7 +65,7 @@ const smallApartmentHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
             {
                 icon: "calculator",
                 title: "Планировщик бюджета",
-                description: "Сведите обновление квартиры в одну смету и поймите, где вложения дадут лучший эффект.",
+                description: "Соберите смету на обновление квартиры и поймите, какие решения дадут максимальный эффект.",
                 href: "/ru/calculators/budget",
             },
             {

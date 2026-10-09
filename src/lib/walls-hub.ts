@@ -61,7 +61,7 @@ const wallsHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             {
                 icon: "calculator",
                 title: "Генератор цветовых палитр",
-                description: "Сведите цвет стен, мебели и акцентов в одну рабочую схему до начала отделки.",
+                description: "Соберите цвет стен, мебели и акцентов в единую палитру до начала отделки.",
                 href: "/ru/calculators/color-palette",
             },
             {

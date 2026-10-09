@@ -77,7 +77,7 @@ const flooringHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             {
                 icon: "calculator",
                 title: "Планировщик бюджета",
-                description: "Сведите покрытие, подложку, стяжку и плинтус в одну понятную смету по полу.",
+                description: "Объедините расходы на покрытие, подложку, стяжку и плинтус в общую смету по полу.",
                 href: "/ru/calculators/budget",
             },
         ],

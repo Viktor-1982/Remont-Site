@@ -61,7 +61,7 @@ const bedroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
             {
                 icon: "calculator",
                 title: "Планировщик бюджета",
-                description: "Сведите спальню в рабочую смету, если хотите заранее понять цену света, текстиля и отделки.",
+                description: "Соберите расходы на спальню в понятную смету, чтобы заранее оценить стоимость света, текстиля и отделки.",
                 href: "/ru/calculators/budget",
             },
             {

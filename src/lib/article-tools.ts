@@ -649,7 +649,7 @@ function getSectionCopy(primaryToolId: ArticleToolId, locale: ArticleToolLocale,
             en: "Turn the idea into a working budget",
         },
         "color-palette": {
-            ru: "Сведите цвета до покупки материалов",
+            ru: "Соберите палитру до покупки материалов",
             en: "Lock in colors before you buy finishes",
         },
         soundproofing: {
