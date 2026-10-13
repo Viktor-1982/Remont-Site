@@ -257,29 +257,32 @@ function MdxImage({ alt, src }: { alt?: string; src: string }) {
 // 🔹 Компонент карточки партнерского товара (Amazon Affiliate)
 function AffiliateCardComponent({ href, title, description, imgSrc }: { href: string; title: string; description: string; imgSrc?: string }) {
     return (
-        <div className="my-8 p-5 sm:p-6 rounded-xl border border-primary/20 bg-primary/5 dark:bg-primary/10 transition-colors hover:border-primary/40">
+        <div className="relative my-8 p-5 sm:p-6 rounded-lg border border-border/70 bg-gradient-to-br from-card via-card to-primary/[0.04] dark:to-primary/[0.08] shadow-xs hover:shadow-md hover:border-primary/40 transition-all duration-300">
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
                 {imgSrc ? (
-                    <a href={href} target="_blank" rel="sponsored nofollow" className="shrink-0 block w-full sm:w-32 bg-white rounded-lg p-3 border border-border/50 shadow-sm hover:shadow-md transition-shadow">
-                        <img src={imgSrc} alt={title} className="w-full h-auto max-h-40 object-contain mx-auto" loading="lazy" onError={(e) => { if (e.currentTarget.parentElement) { e.currentTarget.parentElement.style.display = 'none'; } }} />
+                    <a href={href} target="_blank" rel="sponsored nofollow" className="shrink-0 block w-full sm:w-32 bg-white rounded-md p-3 border border-border/60 shadow-xs hover:shadow-sm transition-shadow">
+                        <img src={imgSrc} alt={title} className="w-full h-auto max-h-36 object-contain mx-auto" loading="lazy" onError={(e) => { if (e.currentTarget.parentElement) { e.currentTarget.parentElement.style.display = 'none'; } }} />
                     </a>
                 ) : (
-                    <div className="shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-[#FF9900]/10 text-[#FF9900] border border-[#FF9900]/20 sm:mt-1">
+                    <div className="shrink-0 flex items-center justify-center w-12 h-12 rounded-md bg-primary/10 text-primary border border-primary/20 sm:mt-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
                     </div>
                 )}
                 <div className="flex-1 text-center sm:text-left w-full">
-                    <h4 className="font-semibold text-foreground text-lg mt-0 mb-2 leading-tight">{title}</h4>
+                    <div className="inline-flex items-center gap-1.5 px-2 py-0.5 mb-2 rounded text-[11px] font-medium tracking-wide uppercase bg-primary/10 text-primary border border-primary/20">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                        Verified Choice
+                    </div>
+                    <h4 className="font-semibold text-foreground text-lg mt-0 mb-1.5 leading-snug tracking-tight">{title}</h4>
                     <p className="text-sm text-muted-foreground mt-0 mb-4 leading-relaxed">{description}</p>
                     <a
                         href={href}
                         target="_blank"
                         rel="sponsored nofollow"
-                        style={{ backgroundColor: '#FF9900', color: '#111111' }}
-                        className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg text-sm font-bold no-underline hover:brightness-110 transition-all w-full sm:w-auto"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-semibold text-neutral-900 bg-[#FF9900] hover:bg-[#F79300] shadow-xs hover:shadow-sm active:translate-y-px transition-all w-full sm:w-auto no-underline"
                     >
                         View on Amazon
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
                 </div>
             </div>

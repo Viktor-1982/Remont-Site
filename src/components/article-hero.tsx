@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import Image from "next/image"
 import { Calendar } from "lucide-react"
@@ -27,7 +27,7 @@ export function ArticleHero({ post }: { post: Post }) {
     return (
         <section className="flex flex-col gap-6 sm:gap-8">
             {post.cover && (
-                <div className="relative aspect-[21/9] w-full max-h-[300px] sm:max-h-[400px] md:max-h-[500px] overflow-hidden rounded-xl sm:rounded-2xl mx-auto shadow-2xl border border-border/20 group">
+                <div className="relative aspect-[21/9] w-full max-h-[300px] sm:max-h-[400px] md:max-h-[500px] overflow-hidden rounded-lg sm:rounded-xl mx-auto shadow-lg border border-border/40 group">
                     <Image
                         src={post.cover}
                         alt={post.title}

@@ -58,7 +58,7 @@ export function TopicHubsShowcase({ isEnglish = false }: { isEnglish?: boolean }
                         <Link
                             key={item.href}
                             href={item.href}
-                            className="group relative overflow-hidden rounded-[28px] border border-border/60 bg-card/95 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl"
+                            className="group relative overflow-hidden rounded-xl border border-border/60 bg-card/95 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md"
                         >
                             <div
                                 className={cn(

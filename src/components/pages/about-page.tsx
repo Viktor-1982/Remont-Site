@@ -49,7 +49,7 @@ function FeatureCard({ feature, index }: { feature: AboutFeature; index: number 
     const Icon = featureIcons[feature.icon]
 
     return (
-        <Card className="group relative overflow-hidden border-2 border-border/50 bg-gradient-to-br from-card via-card to-primary/5 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl dark:border-border/30 dark:to-primary/10 dark:shadow-lg dark:hover:border-primary/50">
+        <Card className="group relative overflow-hidden rounded-lg border border-border/60 bg-gradient-to-br from-card via-card to-primary/5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-md dark:border-border/40 dark:to-primary/10">
             <div
                 className={`absolute inset-0 bg-gradient-to-br ${gradients[index % gradients.length]} opacity-30 transition-opacity duration-300 group-hover:opacity-50 dark:opacity-0 dark:group-hover:opacity-100`}
             />

@@ -119,7 +119,7 @@ export function ArticleFilters({ posts, onFilteredPostsChange, isEnglish = false
 
             {/* Панель фильтров */}
             {showFilters && (
-                <div className="rounded-xl border-2 border-border/50 bg-card p-4 sm:p-6 shadow-lg space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-top-2">
+                <div className="rounded-lg border border-border/60 bg-gradient-to-br from-card via-card to-secondary/30 p-4 sm:p-6 shadow-md space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-top-2">
                     {/* Сортировка */}
                     <div className="space-y-3">
                         <div className="flex items-center gap-2">

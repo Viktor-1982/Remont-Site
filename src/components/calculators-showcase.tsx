@@ -335,14 +335,14 @@ export function CalculatorsShowcase({
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                                className="group relative rounded-3xl border border-border/50 bg-card p-6 shadow-soft hover:shadow-soft-lg transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden"
+                                className="group relative rounded-lg border border-border/60 bg-gradient-to-br from-card via-card to-secondary/25 p-6 shadow-xs hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between overflow-hidden"
                             >
                                 {/* Фоновый градиент при наведении */}
                                 <div className={`absolute inset-0 bg-gradient-to-br ${calc.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
                                 
                                 <div className="relative z-10 flex-grow">
                                     <div className="flex items-center justify-between mb-4">
-                                        <div className={`p-3 rounded-2xl bg-${calc.color}-500/10 text-${calc.color}-500 group-hover:scale-110 transition-transform duration-300`}>
+                                        <div className={`p-2.5 rounded-md bg-${calc.color}-500/10 text-${calc.color}-500 group-hover:scale-110 transition-transform duration-300`}>
                                             <Icon className="w-6 h-6" />
                                         </div>
                                         <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-muted text-muted-foreground group-hover:bg-background transition-colors">

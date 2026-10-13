@@ -33,7 +33,7 @@ export function ArticleSeriesPage({
                 isEnglish={isEnglish}
             />
 
-            <section className="overflow-hidden rounded-[28px] border border-border/60 bg-card/95 px-5 py-8 shadow-soft sm:px-7 sm:py-10 lg:px-10">
+            <section className="overflow-hidden rounded-xl border border-border/60 bg-gradient-to-br from-card via-card to-secondary/30 px-5 py-8 shadow-xs sm:px-7 sm:py-10 lg:px-10">
                 <div className="max-w-4xl">
                     <div className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/80">
                         {meta.eyebrow}

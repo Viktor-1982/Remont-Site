@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import Image from "next/image"
 import Link from "next/link"
@@ -42,15 +42,15 @@ export function ArticleCard({ post }: { post: ArticleCardPost }) {
             </div>
             
             <Link href={post.url} className="block h-full" prefetch={true}>
-                <Card className="group relative flex flex-col h-full overflow-hidden transition-transform duration-300 ease-out hover:-translate-y-2 border border-border/60 dark:border-border/30 bg-card/80 dark:bg-card/90 backdrop-blur-sm shadow-soft hover:shadow-lg cursor-pointer rounded-xl will-change-transform">
+                <Card className="group relative flex flex-col h-full overflow-hidden transition-transform duration-300 ease-out hover:-translate-y-1.5 border border-border/60 dark:border-border/30 bg-card/85 dark:bg-card/90 backdrop-blur-sm shadow-xs hover:shadow-md cursor-pointer rounded-lg will-change-transform">
                     {/* Современный градиентный акцент */}
                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/80 via-accent/60 to-primary/80 dark:from-primary/60 dark:via-accent/50 dark:to-primary/60 opacity-70 group-hover:opacity-100 transition-opacity duration-200" />
                     
                     {/* Легкий glassmorphism эффект при наведении */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 dark:from-primary/10 dark:via-transparent dark:to-accent/10 group-hover:from-primary/15 group-hover:via-primary/8 group-hover:to-accent/15 dark:group-hover:from-primary/20 dark:group-hover:via-primary/12 dark:group-hover:to-accent/20 transition-opacity duration-300 rounded-xl pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 dark:from-primary/10 dark:via-transparent dark:to-accent/10 group-hover:from-primary/12 group-hover:via-primary/5 group-hover:to-accent/12 transition-opacity duration-300 rounded-lg pointer-events-none" />
                     
                 {post.cover ? (
-                        <div className="relative aspect-[16/9] w-full overflow-hidden rounded-t-xl bg-muted">
+                        <div className="relative aspect-[16/9] w-full overflow-hidden rounded-t-lg bg-muted">
                         <Image
                             src={post.cover}
                             alt={post.description || post.title}
@@ -66,7 +66,7 @@ export function ArticleCard({ post }: { post: ArticleCardPost }) {
                             <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-white/10 group-hover:from-white/5 group-hover:via-white/0 group-hover:to-white/15 transition-all duration-700 pointer-events-none" />
                     </div>
                 ) : (
-                        <div className="aspect-[16/9] bg-gradient-to-br from-muted via-muted/80 to-muted/60 rounded-t-xl" />
+                        <div className="aspect-[16/9] bg-gradient-to-br from-muted via-muted/80 to-muted/60 rounded-t-lg" />
                 )}
 
                     <CardContent className="relative flex flex-col flex-1 space-y-3 p-5 sm:p-6 bg-transparent">

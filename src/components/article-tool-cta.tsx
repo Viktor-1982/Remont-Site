@@ -48,7 +48,7 @@ function SecondaryCard({
     return (
         <Link
             href={card.href}
-            className="group relative overflow-hidden rounded-2xl border border-border/70 bg-card/95 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-xl"
+            className="group relative overflow-hidden rounded-lg border border-border/70 bg-card/95 p-5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-md"
         >
             <div
                 className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-70 transition-opacity duration-300 group-hover:opacity-100`}
@@ -91,7 +91,7 @@ export function ArticleToolCta({
 
     return (
         <section className="mt-10 sm:mt-12">
-            <div className="relative overflow-hidden rounded-[28px] border border-border/60 bg-card/95 p-5 shadow-soft sm:p-7 lg:p-8">
+            <div className="relative overflow-hidden rounded-xl border border-border/60 bg-gradient-to-br from-card via-card to-secondary/30 p-5 shadow-xs sm:p-7 lg:p-8">
                 <div
                     className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,114,22,0.12),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.10),transparent_36%)]"
                     aria-hidden
@@ -154,7 +154,7 @@ export function ArticleToolCta({
                 </div>
 
                 <div className="relative z-10 mt-6 grid gap-4 border-t border-border/60 pt-6 sm:grid-cols-2">
-                    <div className="rounded-2xl border border-border/60 bg-background/80 px-4 py-4">
+                    <div className="rounded-lg border border-border/60 bg-background/80 px-4 py-4">
                         <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
                             {section.trust.updatedLabel}
                         </div>
@@ -162,7 +162,7 @@ export function ArticleToolCta({
                             {section.trust.updatedValue}
                         </div>
                     </div>
-                    <div className="rounded-2xl border border-border/60 bg-background/80 px-4 py-4">
+                    <div className="rounded-lg border border-border/60 bg-background/80 px-4 py-4">
                         <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
                             {section.trust.basisLabel}
                         </div>

@@ -95,7 +95,7 @@ export function TopicHubPage({
         <main className="container mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 md:py-16">
             <Breadcrumbs items={breadcrumbItems} isEnglish={isEnglish} />
 
-            <section className="relative overflow-hidden rounded-[28px] border border-border/60 bg-card/95 px-5 py-8 shadow-soft sm:px-7 sm:py-10 lg:px-10">
+            <section className="relative overflow-hidden rounded-xl border border-border/60 bg-gradient-to-br from-card via-card to-secondary/30 px-5 py-8 shadow-xs sm:px-7 sm:py-10 lg:px-10">
                 <div
                     className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(250,204,21,0.18),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.10),transparent_36%)]"
                     aria-hidden
@@ -119,9 +119,9 @@ export function TopicHubPage({
                                 return (
                                     <div
                                         key={card.title}
-                                        className="rounded-2xl border border-border/60 bg-background/80 p-4 shadow-sm"
+                                        className="rounded-lg border border-border/60 bg-background/80 p-4 shadow-xs"
                                     >
-                                        <span className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-primary/20 bg-primary/5 text-primary">
+                                        <span className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-md border border-primary/20 bg-primary/5 text-primary">
                                             <Icon className="h-4 w-4" />
                                         </span>
                                         <h2 className="text-base font-semibold text-foreground">{card.title}</h2>
@@ -134,7 +134,7 @@ export function TopicHubPage({
                         </div>
                     </div>
 
-                    <div className="rounded-[28px] border border-primary/20 bg-gradient-to-br from-primary/[0.08] via-background to-amber-500/[0.08] p-6 shadow-lg">
+                    <div className="rounded-lg border border-primary/20 bg-gradient-to-br from-primary/[0.08] via-background to-accent/[0.08] p-6 shadow-md">
                         <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary/90">
                             <CalculatorIcon className="h-3.5 w-3.5" />
                             {dictionary.calculator.eyebrow}
@@ -203,9 +203,9 @@ export function TopicHubPage({
 
                     <Link
                         href={featuredPost.url}
-                        className="group grid gap-6 overflow-hidden rounded-[28px] border border-border/60 bg-card/95 p-4 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:p-5"
+                        className="group grid gap-6 overflow-hidden rounded-xl border border-border/60 bg-gradient-to-br from-card via-card to-secondary/30 p-4 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:p-5"
                     >
-                        <div className="relative aspect-[16/10] overflow-hidden rounded-[22px] bg-muted">
+                        <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-muted">
                             {featuredPost.cover ? (
                                 <Image
                                     src={featuredPost.cover}

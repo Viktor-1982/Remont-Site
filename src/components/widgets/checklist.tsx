@@ -93,7 +93,7 @@ ${checklistItems
     const progress = (checkedCount / checklistItems.length) * 100
 
     return (
-        <div className="my-8 rounded-xl border bg-card p-6 shadow-soft">
+        <div className="my-8 rounded-lg border border-border/60 bg-gradient-to-br from-card via-card to-secondary/30 p-6 shadow-xs">
             <div className="mb-4 flex items-center justify-between">
                 <h3 className="text-xl font-bold">{title}</h3>
                 <div className="flex items-center gap-2">
