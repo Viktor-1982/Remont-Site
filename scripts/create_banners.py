@@ -1,7 +1,7 @@
 import os
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance
 
-def create_banner(input_image_path, output_path, title_text, subtitle_text, lang="ru"):
+def create_banner(input_image_path, output_path, title_lines, subtitle_lines, lang="ru"):
     img = Image.open(input_image_path).convert("RGBA")
     w, h = img.size
 
@@ -30,42 +30,14 @@ def create_banner(input_image_path, output_path, title_text, subtitle_text, lang
     if not os.path.exists(font_path_subtitle):
         font_path_subtitle = "C:/Windows/Fonts/arial.ttf"
 
-    # Precise typography sizing:
-    # Title: Very large, punchy
-    # Subtitle: Clean, concise, secondary
-    title_size = int(w * 0.058)
-    subtitle_size = int(w * 0.032)
+    # Precise typography sizing
+    title_size = int(w * 0.062)
+    subtitle_size = int(w * 0.033)
 
     font_title = ImageFont.truetype(font_path_title, title_size)
     font_subtitle = ImageFont.truetype(font_path_subtitle, subtitle_size)
 
-    margin_x = int(w * 0.08)
-    max_text_width = w - margin_x * 2
-
-    def wrap_text(text, font, max_width):
-        words = text.split()
-        lines = []
-        current_line = []
-        for word in words:
-            test_line = " ".join(current_line + [word])
-            bbox = font.getbbox(test_line)
-            line_w = bbox[2] - bbox[0]
-            if line_w <= max_width:
-                current_line.append(word)
-            else:
-                if current_line:
-                    lines.append(" ".join(current_line))
-                    current_line = [word]
-                else:
-                    lines.append(word)
-        if current_line:
-            lines.append(" ".join(current_line))
-        return lines
-
-    title_lines = wrap_text(title_text, font_title, max_text_width)
-    title_line_h = int(title_size * 1.30)
-
-    subtitle_lines = wrap_text(subtitle_text, font_subtitle, max_text_width)
+    title_line_h = int(title_size * 1.28)
     subtitle_line_h = int(subtitle_size * 1.35)
 
     spacing_title_to_line = int(h * 0.045)
@@ -79,10 +51,9 @@ def create_banner(input_image_path, output_path, title_text, subtitle_text, lang
     )
 
     start_y = int((h - total_h) / 2)
-
     current_y = start_y
 
-    # 1. Draw Title (Large, brilliant white with soft deep shadow)
+    # 1. Draw Title (Centered, brilliant white with soft deep shadow)
     for line in title_lines:
         bbox = font_title.getbbox(line)
         lw = bbox[2] - bbox[0]
@@ -97,7 +68,7 @@ def create_banner(input_image_path, output_path, title_text, subtitle_text, lang
     current_y += spacing_title_to_line
 
     # 2. Draw Subtle Amber Divider
-    line_w = int(w * 0.14)
+    line_w = int(w * 0.15)
     line_x1 = int((w - line_w) / 2)
     line_x2 = line_x1 + line_w
     draw.line([(line_x1, current_y), (line_x2, current_y)], fill=(245, 185, 66, 230), width=3)
@@ -122,20 +93,24 @@ def create_banner(input_image_path, output_path, title_text, subtitle_text, lang
 if __name__ == "__main__":
     base_img = "public/images/formula-uyuta/mid-article-banner-warm-base.jpg"
     
-    # Russian version
+    # Russian version: Explicitly balanced 2 lines!
+    # Line 1: ФОРМУЛА УЮТА
+    # Line 2: В 7 ПРАВИЛАХ
     create_banner(
         base_img,
         "public/images/formula-uyuta/mid-article-banner-ru.jpg",
-        title_text="ФОРМУЛА УЮТА В 7 ПРАВИЛАХ",
-        subtitle_text="Сенсорная архитектура живого дома",
+        title_lines=["ФОРМУЛА УЮТА", "В 7 ПРАВИЛАХ"],
+        subtitle_lines=["Сенсорная архитектура живого дома"],
         lang="ru"
     )
 
-    # English version
+    # English version: Explicitly balanced 2 lines!
+    # Line 1: THE FORMULA OF COZINESS
+    # Line 2: 7 SENSORY RULES
     create_banner(
         base_img,
         "public/images/formula-uyuta/mid-article-banner-en.jpg",
-        title_text="THE FORMULA OF COZINESS: 7 RULES",
-        subtitle_text="Sensory architecture for a living home",
+        title_lines=["THE FORMULA OF COZINESS", "7 SENSORY RULES"],
+        subtitle_lines=["Sensory architecture for a living home"],
         lang="en"
     )
