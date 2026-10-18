@@ -1,7 +1,7 @@
 import os
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance
 
-def create_banner(input_image_path, output_path, title_lines, subtitle_lines, lang="ru"):
+def create_banner(input_image_path, output_path, title_lines, subtitle_lines, font_name="timesbd.ttf", subtitle_font="timesi.ttf", lang="ru"):
     img = Image.open(input_image_path).convert("RGBA")
     w, h = img.size
 
@@ -9,7 +9,7 @@ def create_banner(input_image_path, output_path, title_lines, subtitle_lines, la
     enhancer = ImageEnhance.Color(img)
     img = enhancer.enhance(1.12)
 
-    # Warm gradient overlay (warm dark espresso tones, letting light & flower breathe)
+    # Warm gradient overlay
     overlay = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     draw_overlay = ImageDraw.Draw(overlay)
     
@@ -21,23 +21,17 @@ def create_banner(input_image_path, output_path, title_lines, subtitle_lines, la
     img_combined = Image.alpha_composite(img, overlay)
     draw = ImageDraw.Draw(img_combined)
 
-    # Fonts
-    font_path_title = "C:/Windows/Fonts/georgiab.ttf"
-    if not os.path.exists(font_path_title):
-        font_path_title = "C:/Windows/Fonts/arialbd.ttf"
-    
-    font_path_subtitle = "C:/Windows/Fonts/georgiai.ttf"
-    if not os.path.exists(font_path_subtitle):
-        font_path_subtitle = "C:/Windows/Fonts/arial.ttf"
+    # Fonts: Times New Roman has full-height lining figures (7 aligns perfectly with capital letters!)
+    font_path_title = f"C:/Windows/Fonts/{font_name}"
+    font_path_subtitle = f"C:/Windows/Fonts/{subtitle_font}"
 
-    # Precise typography sizing
-    title_size = int(w * 0.062)
+    title_size = int(w * 0.064)
     subtitle_size = int(w * 0.033)
 
     font_title = ImageFont.truetype(font_path_title, title_size)
     font_subtitle = ImageFont.truetype(font_path_subtitle, subtitle_size)
 
-    title_line_h = int(title_size * 1.28)
+    title_line_h = int(title_size * 1.25)
     subtitle_line_h = int(subtitle_size * 1.35)
 
     spacing_title_to_line = int(h * 0.045)
@@ -53,7 +47,7 @@ def create_banner(input_image_path, output_path, title_lines, subtitle_lines, la
     start_y = int((h - total_h) / 2)
     current_y = start_y
 
-    # 1. Draw Title (Centered, brilliant white with soft deep shadow)
+    # 1. Draw Title
     for line in title_lines:
         bbox = font_title.getbbox(line)
         lw = bbox[2] - bbox[0]
@@ -75,7 +69,7 @@ def create_banner(input_image_path, output_path, title_lines, subtitle_lines, la
 
     current_y += spacing_line_to_subtitle
 
-    # 3. Draw Subtitle (Warm luminous cream, italic, elegant)
+    # 3. Draw Subtitle
     for line in subtitle_lines:
         bbox = font_subtitle.getbbox(line)
         lw = bbox[2] - bbox[0]
@@ -88,29 +82,29 @@ def create_banner(input_image_path, output_path, title_lines, subtitle_lines, la
 
     final_img = img_combined.convert("RGB")
     final_img.save(output_path, "JPEG", quality=95)
-    print(f"Saved banner to {output_path}")
+    print(f"Saved banner with lining figures to {output_path}")
 
 if __name__ == "__main__":
     base_img = "public/images/formula-uyuta/mid-article-banner-warm-base.jpg"
     
-    # Russian version: Explicitly balanced 2 lines!
-    # Line 1: ФОРМУЛА УЮТА
-    # Line 2: В 7 ПРАВИЛАХ
+    # Russian version with Times New Roman Bold (exact baseline alignment for '7')
     create_banner(
         base_img,
         "public/images/formula-uyuta/mid-article-banner-ru.jpg",
         title_lines=["ФОРМУЛА УЮТА", "В 7 ПРАВИЛАХ"],
         subtitle_lines=["Сенсорная архитектура живого дома"],
+        font_name="timesbd.ttf",
+        subtitle_font="timesi.ttf",
         lang="ru"
     )
 
-    # English version: Explicitly balanced 2 lines!
-    # Line 1: THE FORMULA OF COZINESS
-    # Line 2: 7 SENSORY RULES
+    # English version
     create_banner(
         base_img,
         "public/images/formula-uyuta/mid-article-banner-en.jpg",
         title_lines=["THE FORMULA OF COZINESS", "7 SENSORY RULES"],
         subtitle_lines=["Sensory architecture for a living home"],
+        font_name="timesbd.ttf",
+        subtitle_font="timesi.ttf",
         lang="en"
     )
