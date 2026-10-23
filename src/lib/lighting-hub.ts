@@ -101,7 +101,7 @@ const lightingHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "lighting",
-        path: "/en/lighting",
+        path: "/lighting",
         title: "Home Lighting & Standards | Renohacks",
         description:
             "Explore top Renohacks guides on home lighting: design scenarios, room standards, and lumen calculations. Plan comfort-first lighting for your space!",

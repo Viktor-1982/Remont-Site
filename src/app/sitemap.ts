@@ -126,9 +126,6 @@ function getIndexedTagSlugs(posts: typeof publishedPosts, locale: "ru" | "en") {
             slugs.push(slug)
         }
     })
-    if (locale === "ru" && !slugs.includes("novinki")) {
-        slugs.push("novinki")
-    }
     return slugs.sort((a, b) => a.localeCompare(b, locale))
 }
 

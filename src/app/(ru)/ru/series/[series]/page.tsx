@@ -18,16 +18,17 @@ export function generateStaticParams() {
     return getAllArticleSeriesKeys().map((series) => ({ series }))
 }
 
-export function generateMetadata({
-    params,
-}: {
-    params: { series: string }
-}): Metadata {
-    if (!isArticleSeriesKey(params.series)) {
+type PageProps = {
+    params: Promise<{ series: string }>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { series } = await params
+    if (!isArticleSeriesKey(series)) {
         return {}
     }
 
-    const meta = getArticleSeriesMeta(params.series, "ru")
+    const meta = getArticleSeriesMeta(series, "ru")
     if (!meta) {
         return {}
     }
@@ -42,18 +43,15 @@ export function generateMetadata({
     })
 }
 
-export default function SeriesEntryPageRu({
-    params,
-}: {
-    params: { series: string }
-}) {
-    if (!isArticleSeriesKey(params.series)) {
+export default async function SeriesEntryPageRu({ params }: PageProps) {
+    const { series } = await params
+    if (!isArticleSeriesKey(series)) {
         notFound()
     }
 
-    const meta = getArticleSeriesMeta(params.series, "ru")
+    const meta = getArticleSeriesMeta(series, "ru")
     const allRuPosts = sortPosts(allPosts).filter((post) => post.locale === "ru" && !post.draft)
-    const posts = getArticleSeriesPosts(allRuPosts, "ru", params.series)
+    const posts = getArticleSeriesPosts(allRuPosts, "ru", series)
 
     if (!meta || posts.length === 0) {
         notFound()

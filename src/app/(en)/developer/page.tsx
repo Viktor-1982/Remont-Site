@@ -1,19 +1,12 @@
 import Link from "next/link"
-import Script from "next/script"
 import { getPageMetadata } from "@/lib/seo"
 
-export const metadata = getPageMetadata("/en/developer", {
+export const metadata = getPageMetadata("/developer", {
     title: "Website Developer | ViktorWebStudio",
     description:
         "Meet the developer behind Renohacks: professional web development, UI/UX design, and SEO-optimized web application solutions. Start your web project today!",
     cover: "/images/og-default.png",
     type: "website",
-    alternates: {
-        canonical: "https://renohacks.com/en/developer",
-        languages: {
-            ru: "https://renohacks.com/ru/developer",
-        },
-    },
 })
 
 export default function DeveloperPageEn() {
@@ -23,7 +16,7 @@ export default function DeveloperPageEn() {
         name: "ViktorWebStudio",
         jobTitle: "Web Developer",
         description: "Web Development & Design. Creating modern, beautiful and functional websites.",
-        url: "https://renohacks.com/en/developer",
+        url: "https://renohacks.com/developer",
         knowsAbout: [
             "Web Development",
             "Web Design",
@@ -44,29 +37,25 @@ export default function DeveloperPageEn() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: `${baseUrl}/en`,
+                item: baseUrl,
             },
             {
                 "@type": "ListItem",
                 position: 2,
                 name: "Developer",
-                item: `${baseUrl}/en/developer`,
+                item: `${baseUrl}/developer`,
             },
         ],
     }
 
     return (
         <>
-            <Script
-                id="developer-schema-en"
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
             />
-            <Script
-                id="breadcrumb-schema"
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
             <main className="container mx-auto px-4 py-12 max-w-4xl">
@@ -189,4 +178,3 @@ export default function DeveloperPageEn() {
         </>
     )
 }
-

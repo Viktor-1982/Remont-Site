@@ -21,7 +21,7 @@ const getSiteSchema = (lang: "ru" | "en") => ({
             "@type": "Organization",
             "@id": "https://renohacks.com/#organization",
             name: "Renohacks",
-            url: "https://renohacks.com/",
+            url: lang === "ru" ? "https://renohacks.com/ru" : "https://renohacks.com",
             logo: {
                 "@type": "ImageObject",
                 url: "https://renohacks.com/icon.svg",
@@ -33,7 +33,7 @@ const getSiteSchema = (lang: "ru" | "en") => ({
         {
             "@type": "WebSite",
             "@id": "https://renohacks.com/#website",
-            url: "https://renohacks.com/",
+            url: lang === "ru" ? "https://renohacks.com/ru" : "https://renohacks.com",
             name: "Renohacks",
             // Tells search engines and AI bots that this site has bilingual content
             inLanguage: ["en", "ru"],

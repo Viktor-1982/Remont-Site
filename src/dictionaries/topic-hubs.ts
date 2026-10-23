@@ -66,7 +66,7 @@ const topicHubsDictionaries: Record<TopicHubsLocale, TopicHubsDictionary> = {
                 iconClass: "text-orange-500",
             },
             {
-                href: "/lighting",
+                href: "/ru/lighting",
                 label: "Освещение",
                 desc: "Сценарии света, спальня, ванная, маленькие квартиры и расчет освещенности.",
                 icon: "lightbulb",

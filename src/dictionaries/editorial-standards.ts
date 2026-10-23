@@ -148,7 +148,7 @@ const dictionaries: Record<EditorialStandardsLocale, EditorialStandardsDictionar
         footerTitle: "Как Renohacks проверяет материалы и инструменты",
     },
     en: {
-        path: "/en/editorial-standards",
+        path: "/editorial-standards",
         metadata: {
             title: "How We Review Materials and Tools | Renohacks",
             description:
@@ -157,7 +157,7 @@ const dictionaries: Record<EditorialStandardsLocale, EditorialStandardsDictionar
         breadcrumb: {
             homeLabel: "Home",
             pageLabel: "How we review",
-            pagePath: "/en/editorial-standards",
+            pagePath: "/editorial-standards",
         },
         hero: {
             eyebrow: "The Renohacks editorial process",

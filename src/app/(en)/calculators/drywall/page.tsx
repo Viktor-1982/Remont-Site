@@ -13,5 +13,5 @@ export const metadata = getPageMetadata(dictionary.metadata.path, {
 })
 
 export default function DrywallCalculatorPage() {
-    return <CalculatorPageTemplate dictionary={dictionary} widget={<DrywallCalculator />} />
+    return <CalculatorPageTemplate dictionary={dictionary} widget={<DrywallCalculator />} isEnglish />
 }

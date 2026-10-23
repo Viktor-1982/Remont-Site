@@ -316,7 +316,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
         breadcrumb: {
             homeLabel: "Home",
             pageLabel: "Tools",
-            pagePath: "/en/tools",
+            pagePath: "/tools",
         },
         hero: {
             badge: "Renohacks renovation tools",
@@ -326,7 +326,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
         },
         cards: [
             {
-                href: "/en/calculators/paint",
+                href: "/calculators/paint",
                 label: "Paint Calculator",
                 emoji: "🎨",
                 icon: "paintbrush",
@@ -335,7 +335,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-rose-500/15 via-rose-400/10 to-orange-400/10",
             },
             {
-                href: "/en/calculators/wallpaper",
+                href: "/calculators/wallpaper",
                 label: "Wallpaper Calculator",
                 emoji: "🪟",
                 icon: "wallpaper",
@@ -344,7 +344,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-emerald-500/15 via-emerald-400/10 to-teal-400/10",
             },
             {
-                href: "/en/calculators/tile",
+                href: "/calculators/tile",
                 label: "Tile Calculator",
                 emoji: "🧱",
                 icon: "grid3x3",
@@ -353,7 +353,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-sky-500/15 via-sky-400/10 to-indigo-400/10",
             },
             {
-                href: "/en/calculators/flooring",
+                href: "/calculators/flooring",
                 label: "Flooring Calculator",
                 emoji: "🪵",
                 icon: "layers",
@@ -362,7 +362,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-lime-500/15 via-emerald-400/10 to-teal-400/10",
             },
             {
-                href: "/en/calculators/baseboard",
+                href: "/calculators/baseboard",
                 label: "Baseboard Calculator",
                 emoji: "📏",
                 icon: "ruler",
@@ -371,7 +371,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-amber-500/15 via-orange-400/10 to-yellow-400/10",
             },
             {
-                href: "/en/calculators/screed",
+                href: "/calculators/screed",
                 label: "Screed Calculator",
                 emoji: "🧰",
                 icon: "layers",
@@ -380,7 +380,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-stone-500/15 via-slate-400/10 to-zinc-400/10",
             },
             {
-                href: "/en/calculators/soundproofing",
+                href: "/calculators/soundproofing",
                 label: "Soundproofing Calculator",
                 emoji: "🔇",
                 icon: "layers",
@@ -389,7 +389,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-blue-500/15 via-indigo-400/10 to-violet-400/10",
             },
             {
-                href: "/en/calculators/drywall",
+                href: "/calculators/drywall",
                 label: "Knauf Drywall Calculator",
                 emoji: "🏗️",
                 icon: "layers",
@@ -398,7 +398,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-indigo-500/15 via-blue-400/10 to-cyan-400/10",
             },
             {
-                href: "/en/calculators/underfloor-heating",
+                href: "/calculators/underfloor-heating",
                 label: "Underfloor Heating",
                 emoji: "🔥",
                 icon: "thermometer",
@@ -407,7 +407,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-orange-500/15 via-amber-400/10 to-yellow-400/10",
             },
             {
-                href: "/en/calculators/ventilation",
+                href: "/calculators/ventilation",
                 label: "Ventilation Calculator",
                 emoji: "🌬️",
                 icon: "wind",
@@ -416,7 +416,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-cyan-500/15 via-sky-400/10 to-blue-400/10",
             },
             {
-                href: "/en/calculators/lighting",
+                href: "/calculators/lighting",
                 label: "Lighting Calculator",
                 emoji: "💡",
                 icon: "lightbulb",
@@ -425,7 +425,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-amber-500/15 via-yellow-400/10 to-orange-400/10",
             },
             {
-                href: "/en/calculators/budget",
+                href: "/calculators/budget",
                 label: "Budget Planner",
                 emoji: "💰",
                 icon: "wallet",
@@ -434,7 +434,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-amber-500/20 via-orange-400/10 to-rose-400/10",
             },
             {
-                href: "/en/calculators/color-palette",
+                href: "/calculators/color-palette",
                 label: "Color Palette Generator",
                 emoji: "🎨",
                 icon: "palette",
@@ -443,7 +443,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-purple-500/15 via-pink-400/10 to-rose-400/10",
             },
             {
-                href: "/en/quiz/interior-style",
+                href: "/quiz/interior-style",
                 label: "Interior Style Quiz",
                 emoji: "✨",
                 icon: "sparkles",
@@ -452,7 +452,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                 gradient: "from-indigo-500/15 via-purple-400/10 to-pink-400/10",
             },
             {
-                href: "/en/tools/materials-checklist",
+                href: "/tools/materials-checklist",
                 label: "Materials Purchase Checklist",
                 emoji: "🛒",
                 icon: "shoppingCart",
@@ -469,7 +469,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                     title: "For floors",
                     description:
                         "Level the base first, then estimate the finish and close the perimeter with baseboards in the same workflow.",
-                    href: "/en/calculators/screed",
+                    href: "/calculators/screed",
                     tools: ["Screed", "Flooring", "Baseboard"],
                     icon: "floors",
                 },
@@ -477,7 +477,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                     title: "For walls",
                     description:
                         "Compare paint, wallpaper and tile so you can judge material demand before you choose the finish route.",
-                    href: "/en/calculators/paint",
+                    href: "/calculators/paint",
                     tools: ["Paint", "Wallpaper", "Tile"],
                     icon: "walls",
                 },
@@ -485,7 +485,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                     title: "For bathrooms",
                     description:
                         "Bundle the most error-prone bathroom calculations: tile, floor heating, ventilation and lighting.",
-                    href: "/en/calculators/tile",
+                    href: "/calculators/tile",
                     tools: ["Tile", "Underfloor Heating", "Ventilation", "Lighting"],
                     icon: "bathroom",
                 },
@@ -493,7 +493,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                     title: "For budgeting",
                     description:
                         "Start with the full budget, then validate the expensive finish categories with focused tools.",
-                    href: "/en/calculators/budget",
+                    href: "/calculators/budget",
                     tools: ["Budget", "Paint", "Tile", "Flooring"],
                     icon: "budget",
                 },
@@ -506,29 +506,29 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
                     title: "Fast floor package",
                     description: "Best when you already know the room and want a practical purchase list for the floor.",
                     steps: [
-                        { label: "Screed", href: "/en/calculators/screed" },
-                        { label: "Flooring", href: "/en/calculators/flooring" },
-                        { label: "Baseboard", href: "/en/calculators/baseboard" },
+                        { label: "Screed", href: "/calculators/screed" },
+                        { label: "Flooring", href: "/calculators/flooring" },
+                        { label: "Baseboard", href: "/calculators/baseboard" },
                     ],
                 },
                 {
                     title: "Wall finish comparison",
                     description: "Use this flow to compare finishes and avoid underestimating reserve, repeat and second coats.",
                     steps: [
-                        { label: "Paint", href: "/en/calculators/paint" },
-                        { label: "Wallpaper", href: "/en/calculators/wallpaper" },
-                        { label: "Color Palette", href: "/en/calculators/color-palette" },
+                        { label: "Paint", href: "/calculators/paint" },
+                        { label: "Wallpaper", href: "/calculators/wallpaper" },
+                        { label: "Color Palette", href: "/calculators/color-palette" },
                     ],
                 },
                 {
                     title: "Bathroom scope check",
                     description: "A compact sequence for wet zones where material mistakes and engineering gaps cost the most.",
                     steps: [
-                        { label: "Tile", href: "/en/calculators/tile" },
-                        { label: "Underfloor Heating", href: "/en/calculators/underfloor-heating" },
-                        { label: "Ventilation", href: "/en/calculators/ventilation" },
-                        { label: "Lighting", href: "/en/calculators/lighting" },
-                        { label: "Budget", href: "/en/calculators/budget" },
+                        { label: "Tile", href: "/calculators/tile" },
+                        { label: "Underfloor Heating", href: "/calculators/underfloor-heating" },
+                        { label: "Ventilation", href: "/calculators/ventilation" },
+                        { label: "Lighting", href: "/calculators/lighting" },
+                        { label: "Budget", href: "/calculators/budget" },
                     ],
                 },
             ],

@@ -118,7 +118,7 @@ const smallApartmentHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
     },
     en: {
         key: "small-apartment",
-        path: "/en/small-apartment",
+        path: "/small-apartment",
         title: "Small Apartment Renovation | Renohacks",
         description:
             "Explore top Renohacks guides on small apartments: studio zoning, small kitchen ideas, lighting standards, and smart storage systems. Read our expert guides!",

@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Script from "next/script"
 import { getPageMetadata } from "@/lib/seo"
 
 export const metadata = getPageMetadata("/ru/developer", {
@@ -8,12 +7,6 @@ export const metadata = getPageMetadata("/ru/developer", {
         "Узнайте больше о разработчике сайта Renohacks: профессиональная веб-разработка, дизайн интерфейсов и современные SEO-оптимизированные сайты под ключ.",
     cover: "/images/og-default.png",
     type: "website",
-    alternates: {
-        canonical: "https://renohacks.com/ru/developer",
-        languages: {
-            en: "https://renohacks.com/en/developer",
-        },
-    },
 })
 
 export default function DeveloperPage() {
@@ -23,7 +16,7 @@ export default function DeveloperPage() {
         name: "ViktorWebStudio",
         jobTitle: "Web Developer",
         description: "Веб-разработка и дизайн. Создание современных, красивых и функциональных веб-сайтов.",
-        url: "https://renohacks.com/developer",
+        url: "https://renohacks.com/ru/developer",
         knowsAbout: [
             "Web Development",
             "Web Design",
@@ -44,34 +37,30 @@ export default function DeveloperPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Главная",
-                item: `${baseUrl}/`,
+                item: `${baseUrl}/ru`,
             },
             {
                 "@type": "ListItem",
                 position: 2,
                 name: "Разработчик",
-                item: `${baseUrl}/developer`,
+                item: `${baseUrl}/ru/developer`,
             },
         ],
     }
 
     return (
         <>
-            <Script
-                id="developer-schema"
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
             />
-            <Script
-                id="breadcrumb-schema"
+            <script
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
             <main className="container mx-auto px-4 py-12 max-w-4xl">
                 <Link
-                    href="/"
+                    href="/ru"
                     className="text-primary hover:text-primary/80 mb-6 inline-flex items-center gap-2 font-medium transition-colors"
                 >
                     <span>←</span> Вернуться на сайт
@@ -190,4 +179,3 @@ export default function DeveloperPage() {
         </>
     )
 }
-

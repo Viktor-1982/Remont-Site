@@ -3,10 +3,10 @@ import { getPageMetadata } from "@/lib/seo"
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileText, CheckCircle, XCircle, Shield, Scale, Mail, Home } from "lucide-react"
-import Script from "next/script"
 
-export const metadata = getPageMetadata("/en/terms", {
-  title: "Terms of Use | Renohacks",
+
+export const metadata = getPageMetadata("/terms", {
+  title: "Terms of Use & Site Conditions | Renohacks",
   description: "Read the Terms and Conditions of Renohacks.com: guidelines for content use, disclaimer of liability, copyright information, and user agreements.",
   cover: "/images/og-default.png",
   type: "article",
@@ -22,13 +22,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: `${baseUrl}/en`,
+      item: baseUrl,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Terms of Use",
-      item: `${baseUrl}/en/terms`,
+      item: `${baseUrl}/terms`,
     },
   ],
 }
@@ -323,10 +323,10 @@ export default function TermsOfUsePage() {
         </div>
       </div>
 
-        <Script
+        <script
           id="breadcrumb-schema"
           type="application/ld+json"
-          strategy="afterInteractive"
+
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(breadcrumbSchema),
           }}

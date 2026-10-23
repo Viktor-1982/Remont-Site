@@ -40,14 +40,14 @@ export default function BookmarksPage() {
             <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 max-w-4xl">
                 <div className="text-center py-16 sm:py-20">
                     <BookmarkX className="h-16 w-16 sm:h-20 sm:w-20 mx-auto text-muted-foreground/40 mb-6" />
-                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-foreground">
+                    <h1 className="text-2xl sm:text-3xl font-bold mb-4 text-foreground">
                         {t.title}
-                    </h2>
+                    </h1>
                     <p className="text-muted-foreground mb-8 max-w-md mx-auto">
                         {t.emptyDescription}
                     </p>
                     <Link
-                        href="/"
+                        href="/ru"
                         className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
                     >
                         Перейти к статьям

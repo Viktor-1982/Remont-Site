@@ -57,6 +57,7 @@ export function getPostMetadata(post: Post): Metadata {
         cover: post.cover,
         type: "article",
         keywords: allKeywords.length > 0 ? allKeywords : undefined,
+        autoAlternateLanguages: false,
         alternates: {
             canonical: `${baseUrl}${post.url}`,
             languages,

@@ -99,7 +99,7 @@ export default async function TagPage({ params }: Params) {
     let filtered: typeof allPosts
 
     // 🔸 Специальная логика для страницы "новинки"
-    if (decodedTag === "novinki") {
+    if (decodedTag === "novinki" || decodedTag === "новинки") {
         // Исключаем теги, которые не должны попадать в новинки
         const excludedTags = ["тренды", "trends", "2025", "2026"]
         
@@ -131,6 +131,17 @@ export default async function TagPage({ params }: Params) {
             })
             // Берем только последние 4 статьи
             .slice(0, 4)
+
+        if (filtered.length === 0) {
+            filtered = allPosts
+                .filter((post) => post.locale === "ru" && !post.draft)
+                .sort((a, b) => {
+                    const ta = a.date ? new Date(a.date).getTime() : 0
+                    const tb = b.date ? new Date(b.date).getTime() : 0
+                    return tb - ta
+                })
+                .slice(0, 6)
+        }
     } else {
         // 🔸 Обычная логика для других тегов
         filtered = allPosts.filter(

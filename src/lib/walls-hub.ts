@@ -108,7 +108,7 @@ const wallsHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "walls",
-        path: "/en/walls",
+        path: "/walls",
         title: "Wall Finishes & Preparation | Renohacks",
         description:
             "Explore top Renohacks guides on wall prep and finishes: learn about painting walls, wallpaper choices, color tips, and sequencing. Read our expert tips!",

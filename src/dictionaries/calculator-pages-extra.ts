@@ -648,9 +648,9 @@ export const extraCalculatorPageDictionaries: Record<
         drywall: {
             metadata: {
                 path: "/ru/calculators/drywall",
-                title: "Инженерный калькулятор гипсокартона Knauf (ГКЛ, профили, крепеж) | Renohacks",
+                title: "Калькулятор гипсокартона Knauf (ГКЛ и профили) | Renohacks",
                 description:
-                    "Профессиональный онлайн калькулятор гипсокартона: точный расчет листов ГКЛ/ГКЛВ, профилей ПН/ПС/ПП/ПНП, подвесов, крабов, ленты Диктунгсбанд, саморезов и шпатлевки по нормам Knauf (W111, W112, C623, D112).",
+                    "Бесплатный онлайн-калькулятор гипсокартона по нормам Knauf: точный расчет листов ГКЛ, профилей ПН/ПС/ПП, подвесов, ленты, саморезов и шпатлевки.",
                 keywords: [
                     "калькулятор гипсокартона",
                     "расчет профилей для гипсокартона",
@@ -824,7 +824,7 @@ export const extraCalculatorPageDictionaries: Record<
     en: {
         tile: {
             metadata: {
-                path: "/en/calculators/tile",
+                path: "/calculators/tile",
                 title: "Tile Quantity & Adhesive Calculator | Renohacks",
                 description:
                     "Free online tile calculator: calculate exact tile quantity for floors and walls. Estimate waste, packs, and adhesive volume. Plan your tiling now!",
@@ -837,7 +837,7 @@ export const extraCalculatorPageDictionaries: Record<
                 ],
             },
             share: {
-                url: "/en/calculators/tile",
+                url: "/calculators/tile",
                 title: "Tile Quantity & Adhesive Calculator | Renohacks",
                 description: "Free tile calculator for floors and walls with waste, packs and adhesive",
             },
@@ -910,28 +910,28 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "More renovation planning resources",
                 cards: [
                     {
-                        href: "/en/calculators/budget",
+                        href: "/calculators/budget",
                         title: "Budget Calculator",
                         description: "Build a full renovation estimate including material and labor reserve.",
                         icon: "layers",
                         accentClass: "text-amber-500",
                     },
                     {
-                        href: "/en/calculators/paint",
+                        href: "/calculators/paint",
                         title: "Paint Calculator",
                         description: "Compare tile scenarios with painted walls and ceilings.",
                         icon: "paintbrush",
                         accentClass: "text-rose-500",
                     },
                     {
-                        href: "/en/calculators/wallpaper",
+                        href: "/calculators/wallpaper",
                         title: "Wallpaper Calculator",
                         description: "Estimate wallpaper rolls for dry rooms or alternate finish options.",
                         icon: "scrollText",
                         accentClass: "text-indigo-500",
                     },
                     {
-                        href: "/en/kitchen",
+                        href: "/kitchen",
                         title: "Kitchen Hub",
                         description: "Open the kitchen cluster with layout ideas, backsplash decisions, lighting, and budget planning.",
                         icon: "grid",
@@ -968,13 +968,13 @@ export const extraCalculatorPageDictionaries: Record<
         },
         wallpaper: {
             metadata: {
-                path: "/en/calculators/wallpaper",
+                path: "/calculators/wallpaper",
                 title: "Wallpaper Roll & Repeat Calculator | Renohacks",
                 description:
                     "Free online wallpaper calculator: estimate how many rolls you need by wall size, window/door openings, and pattern repeat. Plan your rolls correctly!",
             },
             share: {
-                url: "/en/calculators/wallpaper",
+                url: "/calculators/wallpaper",
                 title: "Wallpaper Roll & Repeat Calculator | Renohacks",
                 description: "Estimate wallpaper rolls by wall size, pattern repeat and openings",
             },
@@ -1040,28 +1040,28 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "More renovation planning resources",
                 cards: [
                     {
-                        href: "/en/calculators/budget",
+                        href: "/calculators/budget",
                         title: "Budget Calculator",
                         description: "Keep finishing costs under control while comparing wallpaper options.",
                         icon: "layers",
                         accentClass: "text-amber-500",
                     },
                     {
-                        href: "/en/calculators/paint",
+                        href: "/calculators/paint",
                         title: "Paint Calculator",
                         description: "Compare wallpaper with painted walls as an alternate finish route.",
                         icon: "paintbrush",
                         accentClass: "text-rose-500",
                     },
                     {
-                        href: "/en/bathroom",
+                        href: "/bathroom",
                         title: "Bathroom Hub",
                         description: "Open the article hub with bathroom planning, tile choices, mistakes, and lighting guidance.",
                         icon: "grid",
                         accentClass: "text-sky-500",
                     },
                     {
-                        href: "/en/calculators",
+                        href: "/tools",
                         title: "All tools",
                         description: "Open the full Renohacks renovation toolkit.",
                         icon: "scrollText",
@@ -1073,14 +1073,14 @@ export const extraCalculatorPageDictionaries: Record<
         },
         ventilation: {
             metadata: {
-                path: "/en/calculators/ventilation",
+                path: "/calculators/ventilation",
                 title: "Ventilation Airflow & ACH Calculator | Renohacks",
                 description:
                     "Free online ventilation calculator: estimate room volume, air changes per hour (ACH), and airflow. Plan kitchen, bathroom, and office ventilation!",
                 keywords: ["ventilation calculator", "air changes per hour", "airflow", "room volume", "ACH"],
             },
             share: {
-                url: "/en/calculators/ventilation",
+                url: "/calculators/ventilation",
                 title: "Ventilation Airflow & ACH Calculator | Renohacks",
                 description: "Accurate ventilation calculation based on room volume and air changes per hour",
             },
@@ -1101,21 +1101,21 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "Other useful tools",
                 cards: [
                     {
-                        href: "/en/bathroom",
+                        href: "/bathroom",
                         title: "Bathroom Hub",
                         description: "Keep bathroom ventilation, tile, lighting, and layout guidance in one place.",
                         icon: "airVent",
                         accentClass: "text-sky-500",
                     },
                     {
-                        href: "/en/calculators/underfloor-heating",
+                        href: "/calculators/underfloor-heating",
                         title: "Underfloor Heating",
                         description: "Estimate power, cable length and energy usage for heated floors.",
                         icon: "flame",
                         accentClass: "text-orange-500",
                     },
                     {
-                        href: "/en/calculators/budget",
+                        href: "/calculators/budget",
                         title: "Budget Planner",
                         description: "Add engineering work and equipment costs to your renovation plan.",
                         icon: "layers",
@@ -1147,14 +1147,14 @@ export const extraCalculatorPageDictionaries: Record<
         },
         lighting: {
             metadata: {
-                path: "/en/calculators/lighting",
+                path: "/calculators/lighting",
                 title: "Lumens & Lamp Count Calculator | Renohacks",
                 description:
                     "Free lighting calculator: find how many lumens your room needs and how many lamps to install. Check room-type lighting standards and height reserve!",
                 keywords: ["lighting calculator", "lumens for room", "how many lamps", "illuminance standards", "lux by room type"],
             },
             share: {
-                url: "/en/calculators/lighting",
+                url: "/calculators/lighting",
                 title: "Lumens & Lamp Count Calculator | Renohacks",
                 description: "Calculate lumens and lamp count for a room by area and room type",
             },
@@ -1175,21 +1175,21 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "Other useful tools",
                 cards: [
                     {
-                        href: "/en/lighting",
+                        href: "/lighting",
                         title: "Lighting Hub",
                         description: "Open the article hub with room-by-room lighting ideas, lighting trends, and practical planning guidance.",
                         icon: "lightbulb",
                         accentClass: "text-yellow-500",
                     },
                     {
-                        href: "/en/calculators/ventilation",
+                        href: "/calculators/ventilation",
                         title: "Ventilation Calculator",
                         description: "Estimate airflow for kitchens, bathrooms, bedrooms and other rooms.",
                         icon: "airVent",
                         accentClass: "text-cyan-500",
                     },
                     {
-                        href: "/en/calculators/budget",
+                        href: "/calculators/budget",
                         title: "Budget Planner",
                         description: "Include fixtures, wiring and installation in your total renovation budget.",
                         icon: "layers",
@@ -1221,7 +1221,7 @@ export const extraCalculatorPageDictionaries: Record<
         },
         underfloorHeating: {
             metadata: {
-                path: "/en/calculators/underfloor-heating",
+                path: "/calculators/underfloor-heating",
                 title: "Underfloor Heating Calculator | Renohacks",
                 description:
                     "Free underfloor heating calculator: estimate power, cable length, mat area, and monthly energy usage for tile, vinyl, and wood floors. Plan energy cost!",
@@ -1234,7 +1234,7 @@ export const extraCalculatorPageDictionaries: Record<
                 ],
             },
             share: {
-                url: "/en/calculators/underfloor-heating",
+                url: "/calculators/underfloor-heating",
                 title: "Underfloor Heating Calculator | Renohacks",
                 description: "Free underfloor heating calculator: power, cable length or mat area, and energy usage",
             },
@@ -1285,14 +1285,14 @@ export const extraCalculatorPageDictionaries: Record<
                 title: "More renovation tools",
                 cards: [
                     {
-                        href: "/en/bathroom",
+                        href: "/bathroom",
                         title: "Bathroom Hub",
                         description: "Open the article hub with bathroom tile, heated floors, ventilation, and remodel planning.",
                         icon: "grid",
                         accentClass: "text-sky-500",
                     },
                     {
-                        href: "/en/calculators/tile",
+                        href: "/calculators/tile",
                         title: "Tile Calculator",
                         description: "Calculate tiles, waste and adhesive for kitchens, bathrooms and heated floors.",
                         icon: "zap",
@@ -1324,7 +1324,7 @@ export const extraCalculatorPageDictionaries: Record<
         },
         soundproofing: {
             metadata: {
-                path: "/en/calculators/soundproofing",
+                path: "/calculators/soundproofing",
                 title: "Apartment Soundproofing & Acoustics Calculator | Renohacks",
                 description:
                     "Free soundproofing calculator: estimate drywall sheets, cavity mineral wool, steel studs, isolation clips, perimeter tape, and acoustic sealant for walls, ceilings, and floating floors.",
@@ -1339,7 +1339,7 @@ export const extraCalculatorPageDictionaries: Record<
                 ],
             },
             share: {
-                url: "/en/calculators/soundproofing",
+                url: "/calculators/soundproofing",
                 title: "Apartment Soundproofing & Acoustics Calculator | Renohacks",
                 description: "Architectural soundproofing calculator for walls, ceilings, and floating floors based on tested ASTM/ISO assemblies",
             },
@@ -1451,9 +1451,9 @@ export const extraCalculatorPageDictionaries: Record<
         drywall: {
             metadata: {
                 path: "/calculators/drywall",
-                title: "Knauf Drywall & Partition Calculator (Boards, Studs, Screws) | Renohacks",
+                title: "Knauf Drywall & Partition Calculator (Studs, Boards) | Renohacks",
                 description:
-                    "Professional online drywall calculator: compute exact drywall boards (4x8 / 4x10 ft, 2.5/3.0m), steel studs, track channels, acoustic perimeter tape, screws, joint tape, and compound according to Knauf standards (W111, W112, C623, D112).",
+                    "Free online drywall calculator by Knauf standards: compute drywall sheets, steel studs, track channels, acoustic tape, screws, and joint compound.",
                 keywords: [
                     "drywall calculator",
                     "stud calculator",

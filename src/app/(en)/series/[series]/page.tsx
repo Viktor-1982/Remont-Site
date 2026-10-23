@@ -18,16 +18,17 @@ export function generateStaticParams() {
     return getAllArticleSeriesKeys().map((series) => ({ series }))
 }
 
-export function generateMetadata({
-    params,
-}: {
-    params: { series: string }
-}): Metadata {
-    if (!isArticleSeriesKey(params.series)) {
+type PageProps = {
+    params: Promise<{ series: string }>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { series } = await params
+    if (!isArticleSeriesKey(series)) {
         return {}
     }
 
-    const meta = getArticleSeriesMeta(params.series, "en")
+    const meta = getArticleSeriesMeta(series, "en")
     if (!meta) {
         return {}
     }
@@ -42,18 +43,15 @@ export function generateMetadata({
     })
 }
 
-export default function SeriesEntryPageEn({
-    params,
-}: {
-    params: { series: string }
-}) {
-    if (!isArticleSeriesKey(params.series)) {
+export default async function SeriesEntryPageEn({ params }: PageProps) {
+    const { series } = await params
+    if (!isArticleSeriesKey(series)) {
         notFound()
     }
 
-    const meta = getArticleSeriesMeta(params.series, "en")
+    const meta = getArticleSeriesMeta(series, "en")
     const allEnPosts = sortPosts(allPosts).filter((post) => post.locale === "en" && !post.draft)
-    const posts = getArticleSeriesPosts(allEnPosts, "en", params.series)
+    const posts = getArticleSeriesPosts(allEnPosts, "en", series)
 
     if (!meta || posts.length === 0) {
         notFound()

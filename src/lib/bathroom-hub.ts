@@ -80,7 +80,7 @@ const bathroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
                 icon: "lightbulb",
                 title: "Хаб по освещению",
                 description: "Подборка материалов про свет у зеркала, цветовую температуру и сценарии света.",
-                href: "/lighting",
+                href: "/ru/lighting",
             },
         ],
         featuredLabel: "С чего начать",
@@ -120,7 +120,7 @@ const bathroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "bathroom",
-        path: "/en/bathroom",
+        path: "/bathroom",
         title: "Bathroom Renovation & Design | Renohacks",
         description:
             "Explore top Renohacks bathroom guides: learn about 2026 trends, tile selection, common renovation mistakes, ventilation, and heated floors. Read our tips!",

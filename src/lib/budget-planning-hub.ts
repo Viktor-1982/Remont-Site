@@ -120,7 +120,7 @@ const budgetPlanningHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
     },
     en: {
         key: "budget-planning",
-        path: "/en/budget-planning",
+        path: "/budget-planning",
         title: "Renovation Budget & Planning | Renohacks",
         description:
             "Explore top Renohacks renovation budgeting guides: learn about estimates, scheduling, cost control, and smart ways to save. Manage your project budget!",

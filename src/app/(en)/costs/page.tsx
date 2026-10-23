@@ -3,7 +3,7 @@ import { getPageMetadata } from "@/lib/seo"
 import { allPosts } from "contentlayer/generated"
 import { ArticleGrid } from "@/components/article-grid"
 
-export const metadata: Metadata = getPageMetadata("/en/costs", {
+export const metadata: Metadata = getPageMetadata("/costs", {
     title: "Renovation Cost Estimates | Renohacks",
     description:
         "Explore real renovation cost estimates, budgets, and detailed material and labor breakdowns. Learn how to plan your home remodeling costs without mistakes!",
@@ -21,13 +21,13 @@ const breadcrumbSchema = {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: `${baseUrl}/en`,
+            item: baseUrl,
         },
         {
             "@type": "ListItem",
             position: 2,
             name: "Cost Estimates",
-            item: `${baseUrl}/en/costs`,
+            item: `${baseUrl}/costs`,
         },
     ],
 }

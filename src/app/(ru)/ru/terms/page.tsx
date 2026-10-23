@@ -3,7 +3,7 @@ import { getPageMetadata } from "@/lib/seo"
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileText, CheckCircle, XCircle, Shield, Scale, Mail, Home, Heart, Lightbulb, Users } from "lucide-react"
-import Script from "next/script"
+
 
 export const metadata = getPageMetadata("/ru/terms", {
   title: "Правила пользования сайтом | Renohacks",
@@ -23,13 +23,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Главная",
-      item: `${baseUrl}/`,
+      item: `${baseUrl}/ru`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Правила пользования",
-      item: `${baseUrl}/terms`,
+      item: `${baseUrl}/ru/terms`,
     },
   ],
 }
@@ -261,7 +261,7 @@ export default function TermsOfUsePage() {
             <div className="rounded-lg border border-primary/20 bg-primary/5 p-4 dark:bg-primary/10">
               <p className="text-sm text-muted-foreground">
                 Подробнее о сборе и использовании данных читайте в{" "}
-                <Link href="/privacy" className="font-medium text-primary hover:underline">
+                <Link href="/ru/privacy" className="font-medium text-primary hover:underline">
                   Политике конфиденциальности
                 </Link>
                 .
@@ -469,10 +469,10 @@ export default function TermsOfUsePage() {
         </div>
       </div>
 
-      <Script
+      <script
         id="breadcrumb-schema"
         type="application/ld+json"
-        strategy="afterInteractive"
+
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),
         }}

@@ -34,8 +34,8 @@ export default function SeriesPageRu() {
         <main className="container mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 md:py-16">
             <Breadcrumbs
                 items={[
-                    { label: "Главная", href: "/" },
-                    { label: "Серии", href: "/series" },
+                    { label: "Главная", href: "/ru" },
+                    { label: "Серии", href: "/ru/series" },
                 ]}
                 isEnglish={false}
             />

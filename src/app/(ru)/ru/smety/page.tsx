@@ -21,13 +21,13 @@ const breadcrumbSchema = {
             "@type": "ListItem",
             position: 1,
             name: "Главная",
-            item: `${baseUrl}/`,
+            item: `${baseUrl}/ru`,
         },
         {
             "@type": "ListItem",
             position: 2,
             name: "Сметы",
-            item: `${baseUrl}/smety`,
+            item: `${baseUrl}/ru/smety`,
         },
     ],
 }

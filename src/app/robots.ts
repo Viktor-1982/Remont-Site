@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
             // ── Default: all crawlers ─────────────────────────────────────────
             {
                 userAgent: "*",
-                allow: ["/"],
+                allow: ["/", "/_next/image/"],
                 disallow: [
                     "/api/",
                     "/private/",
@@ -19,7 +19,7 @@ export default function robots(): MetadataRoute.Robots {
                     "/temp/",
                     "/*?category=",
                     "/*?filter=",
-                    "/*?*",
+                    "/*?q=",
                 ],
             },
 

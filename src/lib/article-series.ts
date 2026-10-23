@@ -19,8 +19,8 @@ const articleSeries = {
     "kitchen-breakdown": {
         label: { ru: "Разбор кухни", en: "Kitchen Breakdown" },
         title: {
-            ru: "Разбор кухни: планировка, материалы и решения без лишних трат",
-            en: "Kitchen Breakdown: layout, materials, and smarter renovation decisions",
+            ru: "Разбор кухни: планировка, материалы и умный бюджет",
+            en: "Kitchen Breakdown: Layout, Materials & Smart Budget",
         },
         description: {
             ru: "Серия о кухнях: удачные планировки, материалы, свет и бюджетные обновления без декоративного шума.",
@@ -35,8 +35,8 @@ const articleSeries = {
     "bathroom-breakdown": {
         label: { ru: "Разбор ванной", en: "Bathroom Breakdown" },
         title: {
-            ru: "Разбор ванной: плитка, хранение, свет и обновления без хаоса",
-            en: "Bathroom Breakdown: tile, lighting, storage, and updates without the chaos",
+            ru: "Разбор ванной: плитка, хранение, свет и обновления",
+            en: "Bathroom Breakdown: Tile, Lighting & Smart Storage",
         },
         description: {
             ru: "Практическая серия про ванную: ошибки, плитка, хранение, свет и косметические обновления без лишней переплаты.",
@@ -51,8 +51,8 @@ const articleSeries = {
     "budget-planning": {
         label: { ru: "План и смета", en: "Budget and Planning" },
         title: {
-            ru: "План и смета: как считать бюджет ремонта и не терять контроль",
-            en: "Budget and Planning: how to price a renovation and stay in control",
+            ru: "План и смета: как считать бюджет и этапы ремонта",
+            en: "Budget & Planning: Pricing Your Renovation Smartly",
         },
         description: {
             ru: "Серия про смету, планирование и порядок работ: где считать заранее и как не раздувать бюджет на ходу.",
@@ -67,8 +67,8 @@ const articleSeries = {
     "avoid-rework": {
         label: { ru: "Без переделок", en: "Avoid Rework" },
         title: {
-            ru: "Без переделок: решения, которые спасают от дорогих ошибок в ремонте",
-            en: "Avoid Rework: decisions that prevent expensive renovation mistakes",
+            ru: "Без переделок: как избежать дорогих ошибок ремонта",
+            en: "Avoid Rework: Prevent Costly Renovation Mistakes",
         },
         description: {
             ru: "Серия про ошибки и решения до финишной отделки: что проверить заранее, чтобы не платить дважды.",

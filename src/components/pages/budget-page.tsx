@@ -90,8 +90,8 @@ export function BudgetPageTemplate({
             {
                 "@type": "ListItem",
                 "position": 2,
-                "name": isEnglish ? "Calculators" : "Калькуляторы",
-                "item": isEnglish ? `${baseUrl}/calculators` : `${baseUrl}/ru/calculators`
+                "name": isEnglish ? "Tools" : "Инструменты",
+                "item": isEnglish ? `${baseUrl}/tools` : `${baseUrl}/ru/tools`
             },
             {
                 "@type": "ListItem",

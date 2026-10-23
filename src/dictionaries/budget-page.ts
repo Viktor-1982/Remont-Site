@@ -190,48 +190,6 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
                     browserRequirements: "Requires JavaScript. Requires HTML5.",
                 },
             },
-            {
-                id: "budget-faq-schema-ru",
-                data: {
-                    "@context": "https://schema.org",
-                    "@type": "FAQPage",
-                    mainEntity: ruFaqItems.map((item) => ({
-                        "@type": "Question",
-                        name: item.question,
-                        acceptedAnswer: {
-                            "@type": "Answer",
-                            text: item.answer,
-                        },
-                    })),
-                },
-            },
-            {
-                id: "budget-breadcrumb-schema-ru",
-                data: {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
-                    itemListElement: [
-                        {
-                            "@type": "ListItem",
-                            position: 1,
-                            name: "Главная",
-                            item: "https://renohacks.com/",
-                        },
-                        {
-                            "@type": "ListItem",
-                            position: 2,
-                            name: "Инструменты",
-                            item: "https://renohacks.com/ru/tools",
-                        },
-                        {
-                            "@type": "ListItem",
-                            position: 3,
-                            name: "Планировщик бюджета ремонта",
-                            item: "https://renohacks.com/ru/calculators/budget",
-                        },
-                    ],
-                },
-            },
         ],
         widgetAriaLabel: "Интерактивный калькулятор бюджета ремонта",
         hero: {
@@ -329,7 +287,7 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
     },
     en: {
         metadata: {
-            path: "/en/calculators/budget",
+            path: "/calculators/budget",
             title: "Renovation Budget Planner | Renohacks",
             description:
                 "Free renovation budget planner: calculate the total cost of your home renovation with a reserve for unexpected expenses. Plan your costs without mistakes!",
@@ -442,48 +400,6 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
                 },
             },
             {
-                id: "budget-faq-schema-en",
-                data: {
-                    "@context": "https://schema.org",
-                    "@type": "FAQPage",
-                    mainEntity: enFaqItems.map((item) => ({
-                        "@type": "Question",
-                        name: item.question,
-                        acceptedAnswer: {
-                            "@type": "Answer",
-                            text: item.answer,
-                        },
-                    })),
-                },
-            },
-            {
-                id: "budget-breadcrumb-schema-en",
-                data: {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
-                    itemListElement: [
-                        {
-                            "@type": "ListItem",
-                            position: 1,
-                            name: "Renohacks",
-                            item: "https://renohacks.com/en",
-                        },
-                        {
-                            "@type": "ListItem",
-                            position: 2,
-                            name: "Calculators",
-                            item: "https://renohacks.com/tools",
-                        },
-                        {
-                            "@type": "ListItem",
-                            position: 3,
-                            name: "Renovation Budget Planner",
-                            item: "https://renohacks.com/calculators/budget",
-                        },
-                    ],
-                },
-            },
-            {
                 id: "budget-howto-schema-en",
                 data: {
                     "@context": "https://schema.org",
@@ -581,28 +497,28 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
             ctaLabel: "Explore",
             cards: [
                 {
-                    href: "/en/calculators/paint",
+                    href: "/calculators/paint",
                     title: "Paint calculator",
                     description: "Estimate interior and exterior paint coverage by wall or ceiling area.",
                     icon: "paintbrush",
                     accent: "from-rose-500/15 to-rose-500/5 text-rose-500",
                 },
                 {
-                    href: "/en/calculators/tile",
+                    href: "/calculators/tile",
                     title: "Tile calculator",
                     description: "Plan tile layout, waste percentage, and adhesive volume for every surface.",
                     icon: "grid",
                     accent: "from-emerald-500/15 to-emerald-500/5 text-emerald-500",
                 },
                 {
-                    href: "/en/calculators/wallpaper",
+                    href: "/calculators/wallpaper",
                     title: "Wallpaper calculator",
                     description: "Figure out how many wallpaper rolls you need for any room or accent wall.",
                     icon: "scrollText",
                     accent: "from-indigo-500/15 to-indigo-500/5 text-indigo-500",
                 },
                 {
-                    href: "/en/tools",
+                    href: "/tools",
                     title: "All renovation tools",
                     description: "Explore the full Renohacks toolkit for planning materials and renovation costs.",
                     icon: "layers",
@@ -612,7 +528,7 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
         },
         share: {
             title: "Share the calculator",
-            url: "/en/calculators/budget",
+            url: "/calculators/budget",
             buttonTitle: "Free Renovation Budget Planner by Renohacks",
             description: "Plan your renovation costs with this free calculator by Renohacks.",
         },

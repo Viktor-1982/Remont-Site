@@ -118,7 +118,7 @@ const flooringHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "flooring",
-        path: "/en/flooring",
+        path: "/flooring",
         title: "Flooring Renovation & Calculations | Renohacks",
         description:
             "Explore top Renohacks flooring guides: learn how to calculate floor screed, laminate, LVT, and baseboard amounts. Read our expert renovation advice!",

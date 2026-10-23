@@ -560,8 +560,23 @@ const categoriesEn: MaterialCategory[] = [
 
 export function MaterialsChecklist({ isEnglish = false }: { isEnglish?: boolean }) {
     const categories = isEnglish ? categoriesEn : categoriesRu
-    const [materials, setMaterials] = useState<MaterialItem[]>([])
-    const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set())
+    const [materials, setMaterials] = useState<MaterialItem[]>(() => {
+        const initial: MaterialItem[] = []
+        categories.forEach((category) => {
+            category.materials.forEach((material) => {
+                initial.push({
+                    id: `${category.id}-${material.name}`,
+                    ...material,
+                    category: category.id,
+                    purchased: false,
+                })
+            })
+        })
+        return initial
+    })
+    const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
+        () => new Set(categories.map((c) => c.id))
+    )
     const [isLoaded, setIsLoaded] = useState(false)
     const [prevIsEnglish, setPrevIsEnglish] = useState(isEnglish)
     const [newMaterialName, setNewMaterialName] = useState("")
@@ -937,12 +952,12 @@ export function MaterialsChecklist({ isEnglish = false }: { isEnglish?: boolean 
                 <CardHeader className="p-4 md:p-6">
                     <div className="flex items-center justify-between">
                         <div className="flex-1 min-w-0">
-                            <CardTitle className="flex items-center gap-2 text-xl md:text-2xl">
+                            <h1 className="flex items-center gap-2 text-xl md:text-2xl font-semibold leading-none tracking-tight">
                                 <ShoppingCart className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                                 <span className="break-words">
-                                {isEnglish ? "Materials Purchase Checklist" : "Чеклист покупок материалов"}
+                                    {isEnglish ? "Materials Purchase Checklist" : "Чеклист покупок материалов"}
                                 </span>
-                            </CardTitle>
+                            </h1>
                             <CardDescription className="mt-2 text-sm md:text-base">
                                 {isEnglish
                                     ? "Track all materials needed for your renovation. Mark items as purchased and never forget anything."

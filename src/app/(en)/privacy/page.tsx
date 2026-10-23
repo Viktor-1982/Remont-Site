@@ -2,10 +2,10 @@ import { SITE_CONFIG } from "@/lib/site-config"
 import { getPageMetadata } from "@/lib/seo"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Shield, Cookie, BarChart3, Megaphone, Lock, Mail, Smartphone } from "lucide-react"
-import Script from "next/script"
 
-export const metadata = getPageMetadata("/en/privacy", {
-    title: "Privacy Policy | Renohacks",
+
+export const metadata = getPageMetadata("/privacy", {
+    title: "Privacy Policy & Data Protection | Renohacks",
     description:
         "Read the Renohacks.com Privacy Policy to understand how we collect, use, and protect your information, cookies, and newsletter subscription data.",
     cover: "/images/og-default.png",
@@ -22,13 +22,13 @@ const breadcrumbSchema = {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: `${baseUrl}/en`,
+            item: baseUrl,
         },
         {
             "@type": "ListItem",
             position: 2,
             name: "Privacy Policy",
-            item: `${baseUrl}/en/privacy`,
+            item: `${baseUrl}/privacy`,
         },
     ],
 }
@@ -363,10 +363,9 @@ export default function PrivacyPage() {
                 </Card>
             </div>
 
-            <Script
+            <script
                 id="breadcrumb-schema"
                 type="application/ld+json"
-                strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(breadcrumbSchema),
                 }}

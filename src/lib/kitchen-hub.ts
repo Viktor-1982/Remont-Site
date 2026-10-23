@@ -118,7 +118,7 @@ const kitchenHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "kitchen",
-        path: "/en/kitchen",
+        path: "/kitchen",
         title: "Kitchen Renovation & Layout | Renohacks",
         description:
             "Explore top Renohacks kitchen design guides: layouts, small-kitchen upgrades, material selections, and lighting standards. Plan your kitchen remodel today!",

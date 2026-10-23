@@ -68,7 +68,7 @@ const bedroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
                 icon: "lightbulb",
                 title: "Хаб по освещению",
                 description: "Откройте подборку про сценарии света, люксы и комфортный вечерний свет по комнатам.",
-                href: "/lighting",
+                href: "/ru/lighting",
             },
         ],
         featuredLabel: "С чего начать",
@@ -108,7 +108,7 @@ const bedroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     },
     en: {
         key: "bedroom",
-        path: "/en/bedroom",
+        path: "/bedroom",
         title: "Bedroom Renovation & Design | Renohacks",
         description:
             "Explore top Renohacks bedroom design guides: warmer lighting setups, soothing color combinations, and layouts optimized for sleep. Read our expert tips!",

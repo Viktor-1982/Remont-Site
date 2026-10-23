@@ -126,7 +126,7 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
         breadcrumb: {
             homeLabel: "Home",
             pageLabel: "About",
-            pagePath: "/en/about",
+            pagePath: "/about",
         },
         hero: {
             title: "About Renohacks",
@@ -186,7 +186,7 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
             description:
                 "See how we prepare articles, what our recommendations are based on, how tools are checked, and how our own renovation experience fits into that process.",
             buttonLabel: "Open the page",
-            href: "/en/editorial-standards",
+            href: "/editorial-standards",
         },
     },
 }

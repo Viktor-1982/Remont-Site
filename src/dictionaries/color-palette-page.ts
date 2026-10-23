@@ -115,33 +115,6 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
                     inLanguage: "ru",
                 },
             },
-            {
-                id: "color-palette-breadcrumb-ru",
-                data: {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
-                    itemListElement: [
-                        {
-                            "@type": "ListItem",
-                            position: 1,
-                            name: "Главная",
-                            item: "https://renohacks.com/",
-                        },
-                        {
-                            "@type": "ListItem",
-                            position: 2,
-                            name: "Инструменты",
-                            item: "https://renohacks.com/ru/tools",
-                        },
-                        {
-                            "@type": "ListItem",
-                            position: 3,
-                            name: "Генератор цветовых палитр",
-                            item: "https://renohacks.com/ru/calculators/color-palette",
-                        },
-                    ],
-                },
-            },
         ],
         hero: {
             title: "Генератор цветовых палитр",
@@ -217,7 +190,7 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
     },
     en: {
         metadata: {
-            path: "/en/calculators/color-palette",
+            path: "/calculators/color-palette",
             title: "Color Palette Generator | Renohacks",
             description:
                 "Free color palette generator: create harmonious color schemes for your home renovation. Get practical application tips. Start design planning now!",
@@ -257,33 +230,6 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
                         url: "https://renohacks.com",
                     },
                     inLanguage: "en",
-                },
-            },
-            {
-                id: "color-palette-breadcrumb-en",
-                data: {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
-                    itemListElement: [
-                        {
-                            "@type": "ListItem",
-                            position: 1,
-                            name: "Renohacks",
-                            item: "https://renohacks.com",
-                        },
-                        {
-                            "@type": "ListItem",
-                            position: 2,
-                            name: "Tools",
-                            item: "https://renohacks.com/tools",
-                        },
-                        {
-                            "@type": "ListItem",
-                            position: 3,
-                            name: "Color Palette Generator",
-                            item: "https://renohacks.com/calculators/color-palette",
-                        },
-                    ],
                 },
             },
         ],
@@ -337,14 +283,14 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
             ctaLabel: "Open",
             cards: [
                 {
-                    href: "/en/calculators/paint",
+                    href: "/calculators/paint",
                     title: "Paint calculator",
                     description: "Estimate paint needed for the palette you want to apply.",
                     icon: "paintbrush",
                     accent: "from-rose-500/15 to-rose-500/5 text-rose-500",
                 },
                 {
-                    href: "/en/calculators/budget",
+                    href: "/calculators/budget",
                     title: "Budget planner",
                     description: "Estimate renovation costs while factoring in your chosen color direction.",
                     icon: "layers",
@@ -354,7 +300,7 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
         },
         share: {
             title: "Share the generator",
-            url: "/en/calculators/color-palette",
+            url: "/calculators/color-palette",
             buttonTitle: "Color Palette Generator for Renovation | Renohacks",
             description: "Create a harmonious color palette for your interior.",
         },
