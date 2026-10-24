@@ -140,7 +140,7 @@ export function SiteHeader() {
                     renohacks.com
                 </Link>
 
-                <nav className="hidden items-center gap-8 md:flex">
+                <nav className="hidden items-center gap-7 lg:gap-8 md:flex">
                     {links.map((link: NavLink) => {
                         if (
                             link.href === "/tools" ||
@@ -161,10 +161,10 @@ export function SiteHeader() {
                                 key={link.href}
                                 href={link.href}
                                 className={cn(
-                                    "text-sm font-medium tracking-wide transition-smooth",
+                                    "relative py-1 text-base font-medium tracking-normal transition-smooth",
                                     isActive(link.href)
-                                        ? "relative font-semibold text-primary after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-primary"
-                                        : "text-foreground/70 hover:text-foreground hover:text-primary/80"
+                                        ? "font-semibold text-primary after:absolute after:-bottom-1 after:left-0 after:h-[2.5px] after:w-full after:rounded-full after:bg-primary"
+                                        : "text-foreground/85 hover:text-primary dark:text-foreground/90"
                                 )}
                             >
                                 {link.label}

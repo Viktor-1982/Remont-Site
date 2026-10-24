@@ -53,17 +53,17 @@ export function TopicHubsDropdown({ isEnglish = false, className }: TopicHubsDro
                 <DropdownMenuTrigger asChild>
                     <button
                         className={cn(
-                            "transition-smooth flex items-center gap-1 pr-1 text-sm font-medium tracking-wide",
+                            "group flex items-center gap-1.5 py-1 pr-1 text-base font-medium tracking-normal transition-smooth",
                             isActive
-                                ? "relative font-semibold text-primary after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-primary"
-                                : "text-foreground/70 hover:text-foreground hover:text-primary/80",
+                                ? "relative font-semibold text-primary after:absolute after:-bottom-1 after:left-0 after:h-[2.5px] after:w-full after:rounded-full after:bg-primary"
+                                : "text-foreground/85 hover:text-primary dark:text-foreground/90",
                             className
                         )}
                         aria-label={dictionary.ariaOpenMenu}
                     >
-                        <Sparkles className="h-4 w-4" />
+                        <Sparkles className={cn("h-[18px] w-[18px] transition-colors", isActive ? "text-primary" : "text-primary/80 group-hover:text-primary")} />
                         <span>{dictionary.navLabel}</span>
-                        <ChevronDown className="h-3 w-3 opacity-70" />
+                        <ChevronDown className="h-4 w-4 opacity-70 transition-transform group-hover:opacity-100 group-hover:translate-y-0.5" />
                     </button>
                 </DropdownMenuTrigger>
             </div>

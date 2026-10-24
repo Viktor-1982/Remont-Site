@@ -63,25 +63,25 @@ export function CalculatorsDropdown({ isEnglish = false, className }: Calculator
                 <Link
                     href={allCalculatorsHref}
                     className={cn(
-                        "transition-smooth flex items-center gap-1 pr-1 text-sm font-medium tracking-wide",
+                        "group flex items-center gap-1.5 py-1 pr-1 text-base font-medium tracking-normal transition-smooth",
                         isActive
-                            ? "relative font-semibold text-primary after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-primary"
-                            : "text-foreground/70 hover:text-foreground hover:text-primary/80",
+                            ? "relative font-semibold text-primary after:absolute after:-bottom-1 after:left-0 after:h-[2.5px] after:w-full after:rounded-full after:bg-primary"
+                            : "text-foreground/85 hover:text-primary dark:text-foreground/90",
                         className
                     )}
                 >
-                    <Calculator className="h-4 w-4" />
+                    <Calculator className={cn("h-[18px] w-[18px] transition-colors", isActive ? "text-primary" : "text-primary/80 group-hover:text-primary")} />
                     <span>{isEnglish ? "Tools" : "Инструменты"}</span>
                 </Link>
                 <DropdownMenuTrigger asChild>
                     <button
                         className={cn(
-                            "ml-0.5 p-0.5 transition-smooth",
-                            isActive ? "text-primary" : "text-foreground/70 hover:text-foreground hover:text-primary/80"
+                            "ml-0.5 p-1 transition-smooth rounded-md hover:bg-muted/60",
+                            isActive ? "text-primary" : "text-foreground/80 hover:text-primary dark:text-foreground/90"
                         )}
                         aria-label={isEnglish ? "Open tools menu" : "Открыть меню инструментов"}
                     >
-                        <ChevronDown className="h-3 w-3 opacity-70" />
+                        <ChevronDown className="h-4 w-4 opacity-70 transition-transform hover:opacity-100" />
                     </button>
                 </DropdownMenuTrigger>
             </div>
