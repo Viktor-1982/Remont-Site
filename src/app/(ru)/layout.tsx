@@ -5,7 +5,7 @@ import { AppShell } from "@/app/app-shell"
 export const metadata: Metadata = {
     title: {
         default: "Renohacks.com - блог о ремонте, дизайне и DIY",
-        // Child pages pass a bare title; the brand suffix is appended here only.
+        // Static pages pass a bare title; article pages opt out via title.absolute.
         template: "%s | Renohacks",
     },
     description:

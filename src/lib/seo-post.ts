@@ -51,7 +51,7 @@ export function getPostMetadata(post: Post): Metadata {
         ...(post.tags || []),
     ]
 
-    return getPageMetadata(post.url, {
+    const metadata = getPageMetadata(post.url, {
         title: post.title,
         description: post.description,
         cover: post.cover,
@@ -77,4 +77,11 @@ export function getPostMetadata(post: Post): Metadata {
             ],
         },
     })
+
+    return {
+        ...metadata,
+        // Article titles stay search-intent first: the layout template must not
+        // append "| Renohacks" and push them past the SERP length limit.
+        title: { absolute: post.title },
+    }
 }
