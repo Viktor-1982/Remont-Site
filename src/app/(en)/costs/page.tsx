@@ -4,7 +4,7 @@ import { allPosts } from "contentlayer/generated"
 import { ArticleGrid } from "@/components/article-grid"
 
 export const metadata: Metadata = getPageMetadata("/costs", {
-    title: "Renovation Cost Estimates | Renohacks",
+    title: "Renovation Cost Estimates",
     description:
         "Explore real renovation cost estimates, budgets, and detailed material and labor breakdowns. Learn how to plan your home remodeling costs without mistakes!",
     cover: "/images/og-default.png",

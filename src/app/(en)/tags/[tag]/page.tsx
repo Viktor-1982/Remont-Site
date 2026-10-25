@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     ).length
     const isThinTag = postCount < MIN_POSTS_FOR_INDEX
 
-    const title = `#${displayTag} — articles tagged ${displayTag} | Renohacks`
+    const title = `#${displayTag} — articles tagged ${displayTag}`
     const description = `All articles tagged "${displayTag}" on Renohacks.com: practical home renovation ideas, interior design tips, and DIY projects. Step-by-step guides, photo tutorials, expert advice, and material reviews.`
 
     return getPageMetadata(`/tags/${encodedTag}`, {

@@ -52,7 +52,7 @@ const dictionaries: Record<EditorialStandardsLocale, EditorialStandardsDictionar
     ru: {
         path: "/ru/editorial-standards",
         metadata: {
-            title: "Как мы проверяем материалы и инструменты | Renohacks",
+            title: "Как мы проверяем материалы и инструменты",
             description:
                 "Как мы готовим обзоры и калькуляторы в Renohacks: принципы проверки информации, борьба с ошибками и наш опыт ремонта. Узнайте, почему нам доверяют!",
         },
@@ -150,7 +150,7 @@ const dictionaries: Record<EditorialStandardsLocale, EditorialStandardsDictionar
     en: {
         path: "/editorial-standards",
         metadata: {
-            title: "How We Review Materials and Tools | Renohacks",
+            title: "How We Review Materials and Tools",
             description:
                 "How we review renovation materials, articles, and calculators at Renohacks: explore our editorial standards, verification process, and DIY guidelines!",
         },

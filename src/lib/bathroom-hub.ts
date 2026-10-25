@@ -22,7 +22,7 @@ const bathroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "bathroom",
         path: "/ru/bathroom",
-        title: "Ремонт ванной комнаты | Renohacks",
+        title: "Ремонт ванной комнаты",
         description:
             "Изучите лучшие материалы Renohacks про ремонт ванной комнаты: тренды, укладка плитки, типичные ошибки, вентиляция и теплый пол. Читайте практические советы!",
         keywords: [
@@ -121,7 +121,7 @@ const bathroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     en: {
         key: "bathroom",
         path: "/bathroom",
-        title: "Bathroom Renovation & Design | Renohacks",
+        title: "Bathroom Renovation & Design",
         description:
             "Explore top Renohacks bathroom guides: learn about 2026 trends, tile selection, common renovation mistakes, ventilation, and heated floors. Read our tips!",
         keywords: [

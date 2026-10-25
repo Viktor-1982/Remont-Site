@@ -10,7 +10,7 @@ const bedroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "bedroom",
         path: "/ru/bedroom",
-        title: "Ремонт и дизайн спальни | Renohacks",
+        title: "Ремонт и дизайн спальни",
         description:
             "Изучите лучшие материалы Renohacks про ремонт спальни: планирование освещения, выбор гармоничных цветов и создание уютной атмосферы. Читайте наши советы!",
         keywords: [
@@ -109,7 +109,7 @@ const bedroomHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     en: {
         key: "bedroom",
         path: "/bedroom",
-        title: "Bedroom Renovation & Design | Renohacks",
+        title: "Bedroom Renovation & Design",
         description:
             "Explore top Renohacks bedroom design guides: warmer lighting setups, soothing color combinations, and layouts optimized for sleep. Read our expert tips!",
         keywords: [

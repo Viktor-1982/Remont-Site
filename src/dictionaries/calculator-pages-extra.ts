@@ -17,7 +17,7 @@ export const extraCalculatorPageDictionaries: Record<
         tile: {
             metadata: {
                 path: "/ru/calculators/tile",
-                title: "Калькулятор плитки для пола и стен | Renohacks",
+                title: "Калькулятор плитки для пола и стен",
                 description:
                     "Бесплатный калькулятор плитки: рассчитайте точное количество плитки для пола и стен. Учитывает площадь, размеры плитки, окна, двери и запас на подрезку.",
                 keywords: [
@@ -166,7 +166,7 @@ export const extraCalculatorPageDictionaries: Record<
         wallpaper: {
             metadata: {
                 path: "/ru/calculators/wallpaper",
-                title: "Калькулятор обоев для стен | Renohacks",
+                title: "Калькулятор обоев для стен",
                 description:
                     "Бесплатный калькулятор обоев: введите размеры стен и узнайте, сколько рулонов нужно купить с учетом проемов и раппорта рисунка. Рассчитайте обои без ошибок!",
             },
@@ -271,7 +271,7 @@ export const extraCalculatorPageDictionaries: Record<
         ventilation: {
             metadata: {
                 path: "/ru/calculators/ventilation",
-                title: "Калькулятор вентиляции воздуха | Renohacks",
+                title: "Калькулятор вентиляции воздуха",
                 description:
                     "Точный калькулятор вентиляции: объем помещения, кратность воздухообмена (ACH) и расход воздуха в м³/ч. Подходит для кухни, ванной, спальни и офиса.",
                 keywords: ["калькулятор вентиляции", "кратность воздухообмена", "расход воздуха", "объем помещения", "ACH"],
@@ -345,7 +345,7 @@ export const extraCalculatorPageDictionaries: Record<
         lighting: {
             metadata: {
                 path: "/ru/calculators/lighting",
-                title: "Калькулятор освещенности комнаты | Renohacks",
+                title: "Калькулятор освещенности комнаты",
                 description:
                     "Бесплатный калькулятор освещенности: рассчитайте нужные люмены и количество ламп для комнаты с учетом норм освещения и высоты потолка. Рассчитайте свет!",
                 keywords: ["калькулятор освещенности", "люмены для комнаты", "сколько ламп нужно", "нормы освещения", "расчет освещения"],
@@ -419,7 +419,7 @@ export const extraCalculatorPageDictionaries: Record<
         underfloorHeating: {
             metadata: {
                 path: "/ru/calculators/underfloor-heating",
-                title: "Калькулятор теплого пола в комнате | Renohacks",
+                title: "Калькулятор теплого пола в комнате",
                 description:
                     "Бесплатный калькулятор теплого пола: рассчитайте мощность системы, длину кабеля, площадь матов и энергопотребление для ламината или плитки. Расчет онлайн!",
                 keywords: [
@@ -522,7 +522,7 @@ export const extraCalculatorPageDictionaries: Record<
         soundproofing: {
             metadata: {
                 path: "/ru/calculators/soundproofing",
-                title: "Калькулятор звукоизоляции стен, потолка и пола | Renohacks",
+                title: "Калькулятор звукоизоляции стен, потолка и пола",
                 description:
                     "Онлайн-калькулятор звукоизоляции: расчёт акустических панелей, минеральной ваты, профилей, виброподвесов, демпферной ленты и герметика для стен, потолка и плавающего пола.",
                 keywords: [
@@ -648,7 +648,7 @@ export const extraCalculatorPageDictionaries: Record<
         drywall: {
             metadata: {
                 path: "/ru/calculators/drywall",
-                title: "Калькулятор гипсокартона Knauf (ГКЛ и профили) | Renohacks",
+                title: "Калькулятор гипсокартона Knauf (ГКЛ и профили)",
                 description:
                     "Бесплатный онлайн-калькулятор гипсокартона по нормам Knauf: точный расчет листов ГКЛ, профилей ПН/ПС/ПП, подвесов, ленты, саморезов и шпатлевки.",
                 keywords: [
@@ -825,7 +825,7 @@ export const extraCalculatorPageDictionaries: Record<
         tile: {
             metadata: {
                 path: "/calculators/tile",
-                title: "Tile Quantity & Adhesive Calculator | Renohacks",
+                title: "Tile Quantity & Adhesive Calculator",
                 description:
                     "Free online tile calculator: calculate exact tile quantity for floors and walls. Estimate waste, packs, and adhesive volume. Plan your tiling now!",
                 keywords: [
@@ -969,7 +969,7 @@ export const extraCalculatorPageDictionaries: Record<
         wallpaper: {
             metadata: {
                 path: "/calculators/wallpaper",
-                title: "Wallpaper Roll & Repeat Calculator | Renohacks",
+                title: "Wallpaper Roll & Repeat Calculator",
                 description:
                     "Free online wallpaper calculator: estimate how many rolls you need by wall size, window/door openings, and pattern repeat. Plan your rolls correctly!",
             },
@@ -1074,7 +1074,7 @@ export const extraCalculatorPageDictionaries: Record<
         ventilation: {
             metadata: {
                 path: "/calculators/ventilation",
-                title: "Ventilation Airflow & ACH Calculator | Renohacks",
+                title: "Ventilation Airflow & ACH Calculator",
                 description:
                     "Free online ventilation calculator: estimate room volume, air changes per hour (ACH), and airflow. Plan kitchen, bathroom, and office ventilation!",
                 keywords: ["ventilation calculator", "air changes per hour", "airflow", "room volume", "ACH"],
@@ -1148,7 +1148,7 @@ export const extraCalculatorPageDictionaries: Record<
         lighting: {
             metadata: {
                 path: "/calculators/lighting",
-                title: "Lumens & Lamp Count Calculator | Renohacks",
+                title: "Lumens & Lamp Count Calculator",
                 description:
                     "Free lighting calculator: find how many lumens your room needs and how many lamps to install. Check room-type lighting standards and height reserve!",
                 keywords: ["lighting calculator", "lumens for room", "how many lamps", "illuminance standards", "lux by room type"],
@@ -1222,7 +1222,7 @@ export const extraCalculatorPageDictionaries: Record<
         underfloorHeating: {
             metadata: {
                 path: "/calculators/underfloor-heating",
-                title: "Underfloor Heating Calculator | Renohacks",
+                title: "Underfloor Heating Calculator",
                 description:
                     "Free underfloor heating calculator: estimate power, cable length, mat area, and monthly energy usage for tile, vinyl, and wood floors. Plan energy cost!",
                 keywords: [
@@ -1325,7 +1325,7 @@ export const extraCalculatorPageDictionaries: Record<
         soundproofing: {
             metadata: {
                 path: "/calculators/soundproofing",
-                title: "Apartment Soundproofing & Acoustics Calculator | Renohacks",
+                title: "Apartment Soundproofing & Acoustics Calculator",
                 description:
                     "Free soundproofing calculator: estimate drywall sheets, cavity mineral wool, steel studs, isolation clips, perimeter tape, and acoustic sealant for walls, ceilings, and floating floors.",
                 keywords: [
@@ -1451,7 +1451,7 @@ export const extraCalculatorPageDictionaries: Record<
         drywall: {
             metadata: {
                 path: "/calculators/drywall",
-                title: "Knauf Drywall & Partition Calculator (Studs, Boards) | Renohacks",
+                title: "Knauf Drywall & Partition Calculator (Studs, Boards)",
                 description:
                     "Free online drywall calculator by Knauf standards: compute drywall sheets, steel studs, track channels, acoustic tape, screws, and joint compound.",
                 keywords: [

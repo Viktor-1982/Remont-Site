@@ -4,7 +4,7 @@ import { allPosts } from "contentlayer/generated"
 import { ArticleGrid } from "@/components/article-grid"
 
 export const metadata: Metadata = getPageMetadata("/ru/smety", {
-    title: "Сметы ремонта и расчёты | Renohacks",
+    title: "Сметы ремонта и расчёты",
     description:
         "Посмотрите готовые сметы и подробные расчёты стоимости ремонта квартир: цены на материалы, работы и скрытые расходы. Планируйте свой бюджет с умом!",
     cover: "/images/og-default.png",

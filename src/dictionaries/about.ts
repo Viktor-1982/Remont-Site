@@ -47,7 +47,7 @@ export type AboutDictionary = {
 export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
     ru: {
         metadata: {
-            title: "О проекте Renohacks | Блог о ремонте и дизайне",
+            title: "О проекте: блог о ремонте и дизайне",
             description:
                 "Renohacks - ваш гид по ремонту: пошаговые фото-гайды, DIY советы и бесплатные калькуляторы материалов. Узнайте, как сделать качественный ремонт своими руками!",
         },
@@ -119,7 +119,7 @@ export const aboutDictionaries: Record<AboutLocale, AboutDictionary> = {
     },
     en: {
         metadata: {
-            title: "About Renohacks | DIY Renovation Blog",
+            title: "About the DIY Renovation Blog",
             description:
                 "Renohacks is your ultimate home improvement guide: explore step-by-step photo guides, DIY tips, and free estimation tools. Start planning your renovation now!",
         },

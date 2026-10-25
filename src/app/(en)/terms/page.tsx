@@ -6,7 +6,7 @@ import { FileText, CheckCircle, XCircle, Shield, Scale, Mail, Home } from "lucid
 
 
 export const metadata = getPageMetadata("/terms", {
-  title: "Terms of Use & Site Conditions | Renohacks",
+  title: "Terms of Use & Site Conditions",
   description: "Read the Terms and Conditions of Renohacks.com: guidelines for content use, disclaimer of liability, copyright information, and user agreements.",
   cover: "/images/og-default.png",
   type: "article",

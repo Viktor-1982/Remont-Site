@@ -20,7 +20,7 @@ const smallApartmentHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
     ru: {
         key: "small-apartment",
         path: "/ru/small-apartment",
-        title: "Ремонт маленькой квартиры | Renohacks",
+        title: "Ремонт маленькой квартиры",
         description:
             "Изучите лучшие статьи Renohacks про ремонт маленькой квартиры: зонирование студии, идеи для малой кухни, хранение вещей и освещение. Читайте наши советы!",
         keywords: [
@@ -119,7 +119,7 @@ const smallApartmentHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
     en: {
         key: "small-apartment",
         path: "/small-apartment",
-        title: "Small Apartment Renovation | Renohacks",
+        title: "Small Apartment Renovation",
         description:
             "Explore top Renohacks guides on small apartments: studio zoning, small kitchen ideas, lighting standards, and smart storage systems. Read our expert guides!",
         keywords: [

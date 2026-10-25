@@ -5,7 +5,7 @@ import { Shield, Cookie, BarChart3, Megaphone, Lock, Mail, Smartphone } from "lu
 
 
 export const metadata = getPageMetadata("/privacy", {
-    title: "Privacy Policy & Data Protection | Renohacks",
+    title: "Privacy Policy & Data Protection",
     description:
         "Read the Renohacks.com Privacy Policy to understand how we collect, use, and protect your information, cookies, and newsletter subscription data.",
     cover: "/images/og-default.png",

@@ -131,7 +131,7 @@ export const calculatorPageDictionaries: Record<
         paint: {
             metadata: {
                 path: "/ru/calculators/paint",
-                title: "Калькулятор расхода краски | Renohacks",
+                title: "Калькулятор расхода краски",
                 description:
                     "Бесплатный калькулятор расхода краски: введите размеры комнаты и узнайте, сколько литров краски нужно купить. Рассчитайте краску без ошибок!",
             },
@@ -201,7 +201,7 @@ export const calculatorPageDictionaries: Record<
         flooring: {
             metadata: {
                 path: "/ru/calculators/flooring",
-                title: "Калькулятор ламината и кварцвинила | Renohacks",
+                title: "Калькулятор ламината и кварцвинила",
                 description:
                     "Бесплатный калькулятор ламината и кварцвинила: рассчитайте площадь пола, количество упаковок, подложку и запас на подрезку. Читайте наши советы!",
             },
@@ -251,7 +251,7 @@ export const calculatorPageDictionaries: Record<
         baseboard: {
             metadata: {
                 path: "/ru/calculators/baseboard",
-                title: "Калькулятор плинтуса для пола | Renohacks",
+                title: "Калькулятор плинтуса для пола",
                 description:
                     "Бесплатный калькулятор плинтуса: рассчитайте погонные метры, количество планок с вычетом дверных проемов и запасом. Планируйте расходы легко!",
             },
@@ -300,7 +300,7 @@ export const calculatorPageDictionaries: Record<
         screed: {
             metadata: {
                 path: "/ru/calculators/screed",
-                title: "Калькулятор стяжки пола | Renohacks",
+                title: "Калькулятор стяжки пола",
                 description:
                     "Бесплатный калькулятор стяжки пола: рассчитайте объем смеси, количество мешков, воду на замес и примерную стоимость. Сделайте ровный пол без хлопот!",
             },
@@ -351,7 +351,7 @@ export const calculatorPageDictionaries: Record<
         paint: {
             metadata: {
                 path: "/calculators/paint",
-                title: "Paint Calculator Online | Renohacks",
+                title: "Paint Calculator Online",
                 description:
                     "Free online paint calculator: enter your room dimensions and calculate how many liters of paint you need. Plan your renovation materials without errors!",
             },
@@ -421,7 +421,7 @@ export const calculatorPageDictionaries: Record<
         flooring: {
             metadata: {
                 path: "/calculators/flooring",
-                title: "Flooring Pack & Waste Calculator | Renohacks",
+                title: "Flooring Pack & Waste Calculator",
                 description:
                     "Free online flooring calculator for laminate, vinyl, and engineered wood. Calculate packs, underlay, and cutting waste. Plan your flooring project today!",
             },
@@ -471,7 +471,7 @@ export const calculatorPageDictionaries: Record<
         baseboard: {
             metadata: {
                 path: "/calculators/baseboard",
-                title: "Baseboard Length & Cost Calculator | Renohacks",
+                title: "Baseboard Length & Cost Calculator",
                 description:
                     "Free online baseboard calculator: estimate linear footage, piece count, cutting waste, and approximate cost. Plan your finishing work without mistakes!",
             },
@@ -520,7 +520,7 @@ export const calculatorPageDictionaries: Record<
         screed: {
             metadata: {
                 path: "/calculators/screed",
-                title: "Floor Screed & Bag Calculator | Renohacks",
+                title: "Floor Screed & Bag Calculator",
                 description:
                     "Free floor screed calculator: estimate volume, dry mix consumption, bag count, and mixing water for leveling. Plan your floor base preparation today!",
             },

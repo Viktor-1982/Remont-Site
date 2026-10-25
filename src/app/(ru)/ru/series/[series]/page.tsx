@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     return getPageMetadata(meta.path, {
-        title: `${meta.title} | Renohacks`,
+        title: `${meta.title}`,
         description: meta.description,
         type: "website",
         openGraph: {

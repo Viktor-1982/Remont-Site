@@ -3,7 +3,11 @@ import "../globals.css"
 import { AppShell } from "@/app/app-shell"
 
 export const metadata: Metadata = {
-    title: "Renohacks - home renovation & DIY",
+    title: {
+        default: "Renohacks - home renovation & DIY",
+        // Child pages pass a bare title; the brand suffix is appended here only.
+        template: "%s | Renohacks",
+    },
     description: "Photo-guides, DIY tips and reviews - English section.",
     metadataBase: new URL("https://renohacks.com"),
     keywords: [

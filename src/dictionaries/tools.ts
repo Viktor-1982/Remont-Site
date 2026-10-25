@@ -77,7 +77,7 @@ export type ToolsDictionary = {
 export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
     ru: {
         metadata: {
-            title: "Калькуляторы и инструменты для ремонта | Renohacks",
+            title: "Калькуляторы и инструменты для ремонта",
             description:
                 "Бесплатные онлайн-калькуляторы для ремонта: рассчитайте расход плитки, краски, обоев, теплого пола, стяжки и составьте смету. Планируйте без лишних трат!",
         },
@@ -309,7 +309,7 @@ export const toolsDictionaries: Record<ToolsLocale, ToolsDictionary> = {
     },
     en: {
         metadata: {
-            title: "Renovation Calculators & Planning Tools | Renohacks",
+            title: "Renovation Calculators & Planning Tools",
             description:
                 "Free online renovation calculators: estimate paint, tile, flooring, wallpaper, baseboard, floor heating, and screed. Plan your budget without mistakes!",
         },

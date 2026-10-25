@@ -5,7 +5,7 @@ import { Search } from "lucide-react"
 import { SearchPageForm } from "@/components/search-page-form"
 
 export const metadata = getPageMetadata("/search", {
-    title: "Search Renovation Articles & Guides | Renohacks",
+    title: "Search Renovation Articles & Guides",
     description: "Search all articles, calculators, and guides about home renovation, interior design, and DIY projects on Renohacks. Find what you need for your remodel!",
     cover: "/images/og-default.png",
     type: "website",

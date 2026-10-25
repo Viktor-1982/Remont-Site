@@ -20,7 +20,7 @@ const flooringHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "flooring",
         path: "/ru/flooring",
-        title: "Ремонт и расчет полов | Renohacks",
+        title: "Ремонт и расчет полов",
         description:
             "Изучите лучшие материалы Renohacks про ремонт полов: заливка стяжки, расчет расхода ламината, кварцвинила и плинтусов. Читайте практические советы!",
         keywords: [
@@ -119,7 +119,7 @@ const flooringHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     en: {
         key: "flooring",
         path: "/flooring",
-        title: "Flooring Renovation & Calculations | Renohacks",
+        title: "Flooring Renovation & Calculations",
         description:
             "Explore top Renohacks flooring guides: learn how to calculate floor screed, laminate, LVT, and baseboard amounts. Read our expert renovation advice!",
         keywords: [

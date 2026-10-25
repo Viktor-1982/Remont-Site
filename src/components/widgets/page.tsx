@@ -2,7 +2,7 @@
 import Link from "next/link"
 
 export const metadata = getPageMetadata("/calculators", {
-    title: "Онлайн инструменты для ремонта | Renohacks",
+    title: "Онлайн инструменты для ремонта",
     description:
         "Онлайн-инструменты для ремонта: планировщик бюджета, калькуляторы и другие сервисы Renohacks для расчетов материалов.",
     cover: "/images/og-default.png",

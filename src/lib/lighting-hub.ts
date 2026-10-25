@@ -24,7 +24,7 @@ const lightingHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     ru: {
         key: "lighting",
         path: "/ru/lighting",
-        title: "Ремонт и расчет освещения | Renohacks",
+        title: "Ремонт и расчет освещения",
         description:
             "Изучите лучшие материалы Renohacks про расчет и сценарии освещения: нормы для спальни, ванной и маленьких квартир. Спланируйте комфортный свет!",
         keywords: [
@@ -102,7 +102,7 @@ const lightingHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> = {
     en: {
         key: "lighting",
         path: "/lighting",
-        title: "Home Lighting & Standards | Renohacks",
+        title: "Home Lighting & Standards",
         description:
             "Explore top Renohacks guides on home lighting: design scenarios, room standards, and lumen calculations. Plan comfort-first lighting for your space!",
         keywords: [

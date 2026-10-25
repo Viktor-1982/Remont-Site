@@ -6,7 +6,7 @@ import { FileText, CheckCircle, XCircle, Shield, Scale, Mail, Home, Heart, Light
 
 
 export const metadata = getPageMetadata("/ru/terms", {
-  title: "Правила пользования сайтом | Renohacks",
+  title: "Правила пользования сайтом",
   description:
     "Правила и условия использования Renohacks.com: права на контент, отказ от ответственности, авторские права и правила цитирования. Читайте подробнее!",
   cover: "/images/og-default.png",

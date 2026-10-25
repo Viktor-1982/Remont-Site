@@ -131,7 +131,7 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
     ru: {
         metadata: {
             path: "/ru/calculators/budget",
-            title: "Калькулятор бюджета ремонта | Renohacks",
+            title: "Калькулятор бюджета ремонта",
             description:
                 "Бесплатный калькулятор бюджета ремонта: рассчитайте полную стоимость работ с резервом на непредвиденные расходы. Спланируйте смету без ошибок!",
             cover: "/images/og-default.png",
@@ -288,7 +288,7 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
     en: {
         metadata: {
             path: "/calculators/budget",
-            title: "Renovation Budget Planner | Renohacks",
+            title: "Renovation Budget Planner",
             description:
                 "Free renovation budget planner: calculate the total cost of your home renovation with a reserve for unexpected expenses. Plan your costs without mistakes!",
             cover: "/images/og-default.png",

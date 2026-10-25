@@ -15,7 +15,7 @@ export const revalidate = 86400
 export const dynamic = "force-static"
 
 export const metadata: Metadata = {
-    title: "DIY Renovation & Design Blog | Renohacks",
+    title: { absolute: "DIY Renovation & Design Blog | Renohacks" },
     description:
         "Step-by-step photo guides, DIY hacks, and online calculators for paint, tile, and budgeting. Plan your home renovation project without mistakes!",
     keywords: [

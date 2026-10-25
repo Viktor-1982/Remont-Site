@@ -2,7 +2,7 @@ import { getPageMetadata } from "@/lib/seo"
 import { InteriorStyleQuiz } from "@/components/interior-style-quiz"
 
 export const metadata = getPageMetadata("/ru/quiz/interior-style", {
-    title: "Какой стиль интерьера вам подходит? | Renohacks",
+    title: "Какой стиль интерьера вам подходит?",
     description: "Пройдите тест и узнайте, какой стиль интерьера подходит вашему вкусу и образу жизни. Получите рекомендации по цветам, отделке и дизайну прямо сейчас!",
     cover: "/images/og-default.png",
     type: "website",

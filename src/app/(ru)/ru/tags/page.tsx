@@ -3,7 +3,7 @@ import { allPosts } from ".contentlayer/generated"
 import { TagCloud } from "@/components/tag-cloud"
 
 export const metadata = getPageMetadata("/ru/tags", {
-    title: "Все теги статей о ремонте | Renohacks",
+    title: "Все теги статей о ремонте",
     description: "Все темы и категории статей на Renohacks: найдите нужные руководства по ремонту квартир, дизайну интерьеров и DIY-советам с помощью удобного поиска по тегам!",
     cover: "/images/og-default.png",
     type: "website",

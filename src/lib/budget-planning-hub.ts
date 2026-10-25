@@ -22,7 +22,7 @@ const budgetPlanningHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
     ru: {
         key: "budget-planning",
         path: "/ru/budget-planning",
-        title: "Бюджет и планирование ремонта | Renohacks",
+        title: "Бюджет и планирование ремонта",
         description:
             "Изучите лучшие материалы Renohacks про бюджет ремонта: составление сметы, этапы работ, резервный фонд и экономия. Контролируйте расходы правильно!",
         keywords: [
@@ -121,7 +121,7 @@ const budgetPlanningHubDictionaries: Record<TopicHubLocale, TopicHubDictionary> 
     en: {
         key: "budget-planning",
         path: "/budget-planning",
-        title: "Renovation Budget & Planning | Renohacks",
+        title: "Renovation Budget & Planning",
         description:
             "Explore top Renohacks renovation budgeting guides: learn about estimates, scheduling, cost control, and smart ways to save. Manage your project budget!",
         keywords: [
