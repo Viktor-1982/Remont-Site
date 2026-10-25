@@ -52,13 +52,29 @@ const nextConfig: NextConfig = {
     },
     async redirects() {
         return [
-            // ── Old /en/* links → canonical EN URLs (permanent 301) ───────────
+            // ── Bare /en → home ───────────────────────────────────────────────
+            // Explicit rule: the generic /en/:path* pattern produces an empty
+            // Location for the bare /en path on some Next versions.
+            {
+                source: "/en",
+                destination: "/",
+                permanent: true,
+            },
+            // ── Old English-prefixed link to a Russian article ─────────────────
+            // The slug is Russian, so send the visitor to the Russian page.
+            // This must run before the generic /en/* rule below.
+            {
+                source: "/en/posts/trendy-zagorodnyh-domov-2026",
+                destination: "/ru/posts/trendy-zagorodnyh-domov-2026",
+                permanent: true,
+            },
+            // ── Old /en/* links → canonical EN URLs (permanent 308) ───────────
             // Covers Pinterest pins, old backlinks, bookmarks with /en/ prefix.
             // Google will transfer all link juice to the canonical URL.
             {
                 source: "/en/:path*",
                 destination: "/:path*",
-                permanent: true,  // 301 — tells Google the canonical is without /en/
+                permanent: true,  // 308 — tells Google the canonical is without /en/
             },
             // ── Specific post slug renames / legacy redirects ───────────────────
             {
@@ -75,7 +91,7 @@ const nextConfig: NextConfig = {
         ]
     },
     async rewrites() {
-        // No more /en/* rewrite needed — handled by 301 redirect above.
+        // No more /en/* rewrite needed — handled by the permanent redirect above.
         return []
     },
     async headers() {

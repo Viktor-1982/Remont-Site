@@ -1,4 +1,4 @@
-import { notFound, redirect } from "next/navigation"
+import { notFound, permanentRedirect } from "next/navigation"
 import type { Metadata } from "next"
 import { allPosts } from "contentlayer/generated"
 import { ArticleHero } from "@/components/article-hero"
@@ -41,19 +41,22 @@ export default async function PostPage({
     const post = allPosts.find((p) => p.slug === slug && p.locale === "en")
     
     if (!post) {
-        // Check if there is an English translation if a Russian slug was passed
-        const enTranslation = allPosts.find(
-            (p) => (p.translationOf === slug || p.slug === slug) && p.locale === "en"
-        )
-        if (enTranslation) {
-            redirect(`/posts/${enTranslation.slug}`)
-        }
-
-        // Check if this is a Russian post
+        // Legacy Russian URLs lived at /posts/<ru-slug> before the /ru prefix.
+        // Resolve them to Russian first; otherwise they are mistaken for the
+        // English translation and RU visitors land on the English article.
         const ruPost = allPosts.find((p) => p.slug === slug && p.locale === "ru")
         if (ruPost) {
-            redirect(`/ru/posts/${slug}`)
+            permanentRedirect(`/ru/posts/${slug}`)
         }
+
+        // Fallback for renamed RU slugs that only exist as an EN translation.
+        const enTranslation = allPosts.find(
+            (p) => p.translationOf === slug && p.locale === "en"
+        )
+        if (enTranslation) {
+            permanentRedirect(`/posts/${enTranslation.slug}`)
+        }
+
         return notFound()
     }
 
