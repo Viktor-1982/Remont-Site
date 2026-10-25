@@ -53,12 +53,10 @@ export const metadata: Metadata = {
         type: "website",
     },
     alternates: {
-        canonical: "https://renohacks.com/ru",
-        languages: {
-            ru: "https://renohacks.com/ru",
-            en: "https://renohacks.com/",
-            "x-default": "https://renohacks.com/",
-        },
+        // No canonical/languages here on purpose: a layout-level canonical
+        // would point every metadata-less page at the homepage. Pages own
+        // their canonical and hreflang values. Only the RSS discovery link
+        // stays as a layout-level fallback.
         types: {
             "application/rss+xml": "https://renohacks.com/rss.xml",
         },

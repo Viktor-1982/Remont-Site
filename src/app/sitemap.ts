@@ -40,8 +40,8 @@ const staticPageConfig = [
     { path: "/ru/tags",       changeFrequency: "weekly"  as const, priority: 0.6 },
 
     // ── Calculators ──────────────────────────────────────────────────────────
-    { path: "/calculators",                   changeFrequency: "weekly"  as const, priority: 0.7 },
-    { path: "/ru/calculators",                changeFrequency: "weekly"  as const, priority: 0.7 },
+    // NOTE: /calculators and /ru/calculators are permanent redirects to /tools
+    // and /ru/tools; they must not be listed in the sitemap.
     { path: "/calculators/paint",             changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/ru/calculators/paint",          changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/calculators/tile",              changeFrequency: "monthly" as const, priority: 0.6 },
