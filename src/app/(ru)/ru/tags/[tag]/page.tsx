@@ -160,7 +160,7 @@ export default async function TagPage({ params }: Params) {
         if (hasEnMatch || /^[a-z0-9\s-]+$/i.test(decodedTag)) {
             permanentRedirect(`/tags/${encodeURIComponent(decodedTag)}`)
         }
-        return notFound()
+        permanentRedirect("/ru/tags")
     }
 
     // 🔹 Сортируем по дате — свежие первыми

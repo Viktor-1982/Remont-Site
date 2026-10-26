@@ -99,7 +99,7 @@ export default async function TagPageEn({ params }: Params) {
         if (hasRuMatch || /[а-яА-ЯёЁ]/.test(decodedTag)) {
             permanentRedirect(`/ru/tags/${encodeURIComponent(decodedTag)}`)
         }
-        return notFound()
+        permanentRedirect("/tags")
     }
 
     return (

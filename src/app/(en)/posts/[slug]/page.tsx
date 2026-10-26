@@ -57,6 +57,17 @@ export default async function PostPage({
             permanentRedirect(`/posts/${enTranslation.slug}`)
         }
 
+        // Fallback for legacy URLs ending with -en (e.g. interior-design-trends-2026-en)
+        if (slug.endsWith("-en")) {
+            const stripped = slug.replace(/-en$/, "")
+            const match = allPosts.find(
+                (p) => p.slug === stripped && p.locale === "en"
+            )
+            if (match) {
+                permanentRedirect(`/posts/${stripped}`)
+            }
+        }
+
         return notFound()
     }
 
