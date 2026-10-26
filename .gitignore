@@ -49,3 +49,13 @@ next-env.d.ts
 # Contentlayer generated
 .contentlayer/
 .vercel
+
+scratch/
+Edge_AI.bat
+scripts/gsc_data/
+scripts/click_*.py
+scripts/get_*.py
+scripts/parse_*.py
+scripts/inspect_*.py
+scripts/safe_*.py
+scripts/extract_*.py
