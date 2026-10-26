@@ -59,3 +59,11 @@ scripts/parse_*.py
 scripts/inspect_*.py
 scripts/safe_*.py
 scripts/extract_*.py
+scripts/check_*.py
+scripts/extended_*.py
+scripts/fast_*.py
+scripts/find_*.py
+scripts/submit_*.py
+scripts/request_*.py
+scripts/inspect_and_request_*.py
+scripts/gsc_all_remaining.py
