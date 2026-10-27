@@ -7,6 +7,7 @@ import { FaInstagram, FaPinterest } from "react-icons/fa"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import navData from "@/types/nav" // ✅ типизированный импорт
 import type { NavData, Locale } from "@/types/nav"
+import { FloorCalcAppBanner } from "@/components/floorcalc-app-banner"
 
 export function SiteFooter() {
     const pathname = usePathname()
@@ -29,6 +30,11 @@ export function SiteFooter() {
             </div>
 
             <div className="relative w-full">
+                {/* 📱 Официальное приложение FloorCalc Pro в Google Play */}
+                <div className="mx-auto max-w-7xl px-4 pt-10 pb-4 sm:px-6 md:px-8 lg:px-12">
+                    <FloorCalcAppBanner lang={locale} variant="compact" />
+                </div>
+
                 <div className="w-full grid gap-8 px-4 py-12 sm:px-6 md:px-8 lg:px-12 sm:grid-cols-2 md:grid-cols-3 border-b border-border/40 bg-card/80 dark:bg-card/70 backdrop-blur-sm shadow-soft">
                 {/* 📝 О проекте */}
                 <section aria-labelledby="footer-about">

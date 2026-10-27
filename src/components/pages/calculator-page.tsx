@@ -23,6 +23,7 @@ import {
 import Link from "next/link"
 import type { ReactNode } from "react"
 import { ShareButton } from "@/components/share-button"
+import { FloorCalcAppBanner } from "@/components/floorcalc-app-banner"
 
 const relatedIcons = {
     airVent: AirVent,
@@ -225,6 +226,15 @@ export function CalculatorPageTemplate({
             </p>
 
             {widget}
+
+            {(dictionary.metadata.path.includes("tile") ||
+                dictionary.metadata.path.includes("flooring") ||
+                dictionary.metadata.path.includes("screed") ||
+                dictionary.metadata.path.includes("baseboard")) && (
+                <div className="mt-10">
+                    <FloorCalcAppBanner lang={isEnglish ? "en" : "ru"} variant="card" />
+                </div>
+            )}
 
             {dictionary.nextSteps ? (
                 <section className="mt-10 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-background to-accent/5 px-6 py-8 shadow-lg">

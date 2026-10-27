@@ -51,6 +51,7 @@ import { Checklist } from "@/components/widgets/checklist"
 import { FAQSection } from "@/components/widgets/faq-section"
 import { ImageGallery } from "@/components/image-gallery"
 import { parseFAQ } from "@/lib/parse-faq"
+import { FloorCalcAppBanner } from "@/components/floorcalc-app-banner"
 
 // 🔹 Вспомогательная функция для извлечения текста из children
 const getTextFromChildren = (children: React.ReactNode): string => {
@@ -329,6 +330,18 @@ export const mdxComponents: MDXComponents = {
     DrywallCalculator: () => (
         <div className="my-8">
             <DrywallCalculator />
+        </div>
+    ),
+
+    // 📱 Мобильное приложение FloorCalc Pro (баннер с Google Play)
+    FloorCalcAppBanner: (props: { variant?: "card" | "compact"; lang?: "ru" | "en" }) => (
+        <div className="my-8 not-prose">
+            <FloorCalcAppBanner {...props} />
+        </div>
+    ),
+    FloorCalcPromo: (props: { variant?: "card" | "compact"; lang?: "ru" | "en" }) => (
+        <div className="my-8 not-prose">
+            <FloorCalcAppBanner {...props} />
         </div>
     ),
 
