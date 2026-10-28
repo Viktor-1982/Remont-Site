@@ -17,6 +17,7 @@ import { Checklist } from "@/components/widgets/checklist"
 import { FAQSection } from "@/components/widgets/faq-section"
 import { BeforeAfterGallery } from "@/components/widgets/before-after-gallery"
 import { ComparisonTable } from "@/components/widgets/comparison-table"
+import { FloorCalcAppBanner } from "@/components/floorcalc-app-banner"
 import { cn } from "@/lib/utils"
 import { AlertCircle, AlertTriangle, Info, Lightbulb, ShieldAlert } from "lucide-react"
 
@@ -134,6 +135,16 @@ export function createMdxComponents(isEnglish = false): MDXComponents {
         UnderfloorHeatingCalculator: () => (
             <div className="my-8">
                 <UnderfloorHeatingCalculator />
+            </div>
+        ),
+        FloorCalcAppBanner: (props: { variant?: "card" | "compact"; lang?: "ru" | "en" }) => (
+            <div className="my-8 not-prose">
+                <FloorCalcAppBanner {...props} />
+            </div>
+        ),
+        FloorCalcPromo: (props: { variant?: "card" | "compact"; lang?: "ru" | "en" }) => (
+            <div className="my-8 not-prose">
+                <FloorCalcAppBanner {...props} />
             </div>
         ),
         AffiliateCard: (props: { href: string; title: string; description: string; imgSrc?: string }) => (
