@@ -16,6 +16,7 @@ export type Post = {
   title: string
   description: string
   date: IsoDateTimeString
+  modifiedDate?: IsoDateTimeString | undefined
   rubric?: string | undefined
   series?: string | undefined
   tags?: string[] | undefined

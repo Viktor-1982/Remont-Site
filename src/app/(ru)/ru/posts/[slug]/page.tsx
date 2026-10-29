@@ -138,10 +138,8 @@ export default async function PostPage({
                         <MdxContent code={post.body.code} />
                     </div>
                 </div>
-                <aside className="hidden lg:block">
-                    <div className="sticky top-24">
-                        <TableOfContents items={post.headings} />
-                    </div>
+                <aside>
+                    <TableOfContents items={post.headings} />
                 </aside>
             </div>
 
@@ -201,7 +199,7 @@ export default async function PostPage({
                             },
                         },
                         datePublished: post.date,
-                        dateModified: ("modifiedDate" in post && post.modifiedDate) ? post.modifiedDate : post.date,
+                        dateModified: post.modifiedDate || post.date,
                         mainEntityOfPage: {
                             "@type": "WebPage",
                             "@id": canonical,

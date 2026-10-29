@@ -198,7 +198,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
         return {
             url: `${baseUrl}${post.url}`,
-            lastModified: post.date,
+            lastModified: post.modifiedDate || post.date,
             changeFrequency: "monthly",
             priority: 0.7,
             alternates: {

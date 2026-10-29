@@ -115,18 +115,20 @@ export function TableOfContents({
                 ariaLabel={open ? t.ariaClose : t.ariaOpen}
             />
 
-            {/* 📱 Mobile */}
             <nav
-                aria-label={t.mobile}
+                aria-label={t.open}
                 className={cn(
-                    "fixed top-16 bottom-0 right-0 w-64 bg-card text-card-foreground border-l shadow-lg transform transition-transform duration-300 lg:hidden overflow-y-auto",
-                    open ? "translate-x-0" : "translate-x-full"
+                    "fixed top-16 bottom-0 right-0 z-40 w-64 overflow-y-auto border-l bg-card text-card-foreground shadow-lg transform-gpu transition-transform duration-300 [will-change:transform]",
+                    open ? "translate-x-0" : "translate-x-full",
+                    "lg:sticky lg:top-24 lg:bottom-auto lg:right-auto lg:z-auto lg:max-h-[45vh] lg:translate-x-0 lg:rounded-xl lg:border lg:border-border/50 lg:bg-card/80 lg:shadow-soft lg:backdrop-blur-sm"
                 )}
-                style={{ transform: 'translateZ(0)', willChange: 'transform' }}
             >
                 <div className="p-4">
-                    <h2 className="font-semibold mb-2 text-foreground">{t.mobile}</h2>
-                    <ul className="space-y-1 text-sm">
+                    <h2 className="mb-2 font-semibold text-foreground">
+                        <span className="lg:hidden">{t.mobile}</span>
+                        <span className="hidden lg:inline">{t.open}</span>
+                    </h2>
+                    <ul className="space-y-1.5 text-sm">
                         {items.map((h, i) => {
                             const slug = makeSlug(h.text)
                             return (
@@ -154,38 +156,6 @@ export function TableOfContents({
                 </div>
             </nav>
 
-            {/* 💻 Desktop */}
-            <nav
-                aria-label={t.open}
-                className="sticky top-24 hidden lg:block max-h-[45vh] w-64 shrink-0 overflow-auto rounded-xl border border-border/50 p-4 text-sm bg-card/80 backdrop-blur-sm shadow-soft"
-            >
-                <div className="mb-3 font-semibold text-foreground">{t.open}</div>
-                <ul className="space-y-1.5">
-                    {items.map((h, i) => {
-                        const slug = makeSlug(h.text)
-                        return (
-                            <li key={`${slug}-${i}`} className={h.level === 3 ? "ml-4" : "ml-0"}>
-                                <a
-                                    href={`#${slug}`}
-                                    onClick={(e) => {
-                                        e.preventDefault()
-                                        handleClick(slug)
-                                    }}
-                                    aria-current={activeId === slug ? "true" : undefined}
-                                    className={cn(
-                                        "transition-colors block py-1 px-2 rounded-md",
-                                        activeId === slug
-                                            ? "text-primary font-semibold bg-primary/10 border-l-2 border-primary"
-                                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                                    )}
-                                >
-                                    {h.text}
-                                </a>
-                            </li>
-                        )
-                    })}
-                </ul>
-            </nav>
         </>
     )
 }
