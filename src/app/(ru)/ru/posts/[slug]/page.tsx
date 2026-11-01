@@ -14,6 +14,7 @@ import { ViewHistoryTracker } from "@/components/view-history-tracker"
 import { ViewHistoryCarousel } from "@/components/view-history-carousel"
 import { EmailSubscription } from "@/components/email-subscription"
 import { ArticleToolCta } from "@/components/article-tool-cta"
+import { SidebarToolWidget } from "@/components/sidebar-tool-widget"
 import { getPostMetadata } from "@/lib/seo-post" // ✅ используем общий SEO-модуль
 import { parseFAQ } from "@/lib/parse-faq"
 
@@ -138,8 +139,9 @@ export default async function PostPage({
                         <MdxContent code={post.body.code} />
                     </div>
                 </div>
-                <aside>
+                <aside className="lg:sticky lg:top-24 lg:self-start space-y-6">
                     <TableOfContents items={post.headings} />
+                    <SidebarToolWidget post={post} locale="ru" />
                 </aside>
             </div>
 

@@ -1,7 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import { Calendar } from "lucide-react"
+import Link from "next/link"
+import { Calendar, ShieldCheck } from "lucide-react"
 import { ArticleSeriesBadge } from "@/components/article-series-badge"
 import { ArticleRubricBadge } from "@/components/article-rubric-badge"
 import { TagList } from "@/components/tag-list"
@@ -116,12 +117,20 @@ export function ArticleHero({ post }: { post: Post }) {
                         <>
                             <span className="text-muted-foreground/40">·</span>
                             <span className="text-foreground/70">
-                {locale === "en"
-                    ? post.readingTime.replace("мин", "min read")
-                    : `${post.readingTime} чтения`}
-              </span>
+                                {locale === "en"
+                                    ? post.readingTime.replace("мин", "min read")
+                                    : `${post.readingTime} чтения`}
+                            </span>
                         </>
                     )}
+                    <span className="text-muted-foreground/40">·</span>
+                    <Link
+                        href={isEnglish ? "/editorial-standards" : "/ru/editorial-standards"}
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-primary/90 hover:text-primary transition-colors"
+                    >
+                        <ShieldCheck className="h-4 w-4 text-primary" />
+                        <span>{isEnglish ? "Fact-checked & Standards" : "Проверено по стандартам"}</span>
+                    </Link>
                 </div>
             </header>
 
