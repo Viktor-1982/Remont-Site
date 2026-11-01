@@ -37,7 +37,7 @@ export function PopularPosts({ posts, locale, limit = 5 }: PopularPostsProps) {
 
         // Prefetch популярных статей для улучшения производительности
         popularPostsData.forEach((post) => {
-            const href = `/${locale === "en" ? "en/" : ""}posts/${post.slug}`
+            const href = post.url
             router.prefetch(href)
         })
     }, [posts, locale, limit, router])

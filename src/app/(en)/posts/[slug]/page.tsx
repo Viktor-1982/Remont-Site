@@ -23,7 +23,7 @@ export async function generateMetadata({
     params: Promise<{ slug: string }>
 }): Promise<Metadata> {
     const { slug } = await params
-    const post = allPosts.find((p) => p.slug === slug && p.locale === "en")
+    const post = allPosts.find((p) => !p.draft && p.slug === slug && p.locale === "en")
     if (!post) return {}
     return getPostMetadata(post) // ✅ единая SEO-логика
 }
@@ -38,20 +38,20 @@ export default async function PostPage({
     params: Promise<{ slug: string }>
 }) {
     const { slug } = await params
-    const post = allPosts.find((p) => p.slug === slug && p.locale === "en")
+    const post = allPosts.find((p) => !p.draft && p.slug === slug && p.locale === "en")
     
     if (!post) {
         // Legacy Russian URLs lived at /posts/<ru-slug> before the /ru prefix.
         // Resolve them to Russian first; otherwise they are mistaken for the
         // English translation and RU visitors land on the English article.
-        const ruPost = allPosts.find((p) => p.slug === slug && p.locale === "ru")
+        const ruPost = allPosts.find((p) => !p.draft && p.slug === slug && p.locale === "ru")
         if (ruPost) {
             permanentRedirect(`/ru/posts/${slug}`)
         }
 
         // Fallback for renamed RU slugs that only exist as an EN translation.
         const enTranslation = allPosts.find(
-            (p) => p.translationOf === slug && p.locale === "en"
+            (p) => !p.draft && p.translationOf === slug && p.locale === "en"
         )
         if (enTranslation) {
             permanentRedirect(`/posts/${enTranslation.slug}`)
@@ -61,7 +61,7 @@ export default async function PostPage({
         if (slug.endsWith("-en")) {
             const stripped = slug.replace(/-en$/, "")
             const match = allPosts.find(
-                (p) => p.slug === stripped && p.locale === "en"
+                (p) => !p.draft && p.slug === stripped && p.locale === "en"
             )
             if (match) {
                 permanentRedirect(`/posts/${stripped}`)

@@ -59,8 +59,8 @@ export function AppShell({
     return (
         <html lang={lang} suppressHydrationWarning className={fontClasses}>
             <head>
-                <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-                <link rel="manifest" href="/manifest.json" />
+
+
 
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link

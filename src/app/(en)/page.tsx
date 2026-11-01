@@ -72,7 +72,7 @@ export default function HomePageEn() {
     const posts = sortPosts(allPosts).filter((p) => p.locale === "en" && !p.draft)
 
     return (
-        <main>
+        <div>
             <HomeBackgroundAnimation />
             <HeroBanner />
 
@@ -108,6 +108,6 @@ export default function HomePageEn() {
                     <EmailSubscription locale="en" variant="default" />
                 </section>
             </div>
-        </main>
+        </div>
     )
 }

@@ -12,12 +12,12 @@ function findTranslation(post: Post): Post | undefined {
     if (post.translationOf) {
         // This is a translation — find the original
         return allPosts.find(
-            (p) => p.slug === post.translationOf && p.locale !== post.locale
+            (p) => !p.draft && p.slug === post.translationOf && p.locale !== post.locale
         )
     } else {
         // This is the original — find the translation
         return allPosts.find(
-            (p) => p.translationOf === post.slug && p.locale !== post.locale
+            (p) => !p.draft && p.translationOf === post.slug && p.locale !== post.locale
         )
     }
 }
@@ -37,13 +37,13 @@ export function getPostMetadata(post: Post): Metadata {
 
     // x-default = EN version (EN is the primary language of this site)
     // If this post is EN → x-default = this post
-    // If this post is RU → x-default = EN translation (if exists), else EN homepage
+    // If this post is RU → x-default = EN translation (if exists), else this post (reciprocal hreflang)
     if (post.locale === "en") {
         languages["x-default"] = `${baseUrl}${post.url}`
     } else if (translation && translation.locale === "en") {
         languages["x-default"] = `${baseUrl}${translation.url}`
     } else {
-        languages["x-default"] = baseUrl + "/" // fallback: EN homepage
+        languages["x-default"] = `${baseUrl}${post.url}`
     }
 
     const metadata = getPageMetadata(post.url, {

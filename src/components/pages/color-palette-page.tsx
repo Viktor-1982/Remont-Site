@@ -3,6 +3,7 @@ import { Layers, Paintbrush } from "lucide-react"
 import Link from "next/link"
 import type { ReactNode } from "react"
 import { ShareButton } from "@/components/share-button"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 import { resolveLocalePaths, baseUrl } from "@/lib/seo"
 
 const resourceIcons = {
@@ -101,11 +102,20 @@ export function ColorPalettePageTemplate({
     }
 
     return (
-        <main className="mx-auto max-w-4xl px-4 py-10">
+        <div className="mx-auto max-w-4xl px-4 py-10">
             <StructuredDataScripts items={dictionary.structuredData} />
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
+
+            <Breadcrumbs
+                isEnglish={isEnglish}
+                items={[
+                    { label: isEnglish ? "Home" : "Главная", href: isEnglish ? "/" : "/ru" },
+                    { label: isEnglish ? "Tools" : "Инструменты", href: isEnglish ? "/tools" : "/ru/tools" },
+                    { label: dictionary.hero.title, href: canonicalPath },
+                ]}
             />
 
             <header className="mb-8">
@@ -179,6 +189,6 @@ export function ColorPalettePageTemplate({
                     />
                 </div>
             </section>
-        </main>
+        </div>
     )
 }

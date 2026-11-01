@@ -19,6 +19,7 @@ import {
     Wind,
 } from "lucide-react"
 import Link from "next/link"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 
 const baseUrl = "https://renohacks.com"
 
@@ -177,9 +178,18 @@ function JourneyCard({ item }: { item: ToolJourney }) {
 
 export function ToolsPageTemplate({ dictionary }: { dictionary: ToolsDictionary }) {
     const breadcrumbSchema = getBreadcrumbSchema(dictionary)
+    const isEnglish = !dictionary.breadcrumb.pagePath.startsWith("/ru")
+    const homePath = isEnglish ? "/" : "/ru"
 
     return (
-        <main className="container mx-auto px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+        <div className="container mx-auto px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+            <Breadcrumbs
+                isEnglish={isEnglish}
+                items={[
+                    { label: dictionary.breadcrumb.homeLabel, href: homePath },
+                    { label: dictionary.breadcrumb.pageLabel, href: dictionary.breadcrumb.pagePath },
+                ]}
+            />
             <section className="mb-10 sm:mb-14">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1 text-xs font-medium text-primary">
                     <Calculator className="h-3.5 w-3.5" />
@@ -234,6 +244,6 @@ export function ToolsPageTemplate({ dictionary }: { dictionary: ToolsDictionary 
                     __html: JSON.stringify(breadcrumbSchema),
                 }}
             />
-        </main>
+        </div>
     )
 }

@@ -71,7 +71,7 @@ export default function HomePage() {
         })
 
     return (
-        <main>
+        <div>
             <HomeBackgroundAnimation />
             <HeroBanner />
 
@@ -112,6 +112,6 @@ export default function HomePage() {
                     <EmailSubscription locale="ru" variant="default" />
                 </section>
             </div>
-        </main>
+        </div>
     )
 }

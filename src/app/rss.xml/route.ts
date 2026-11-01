@@ -41,14 +41,14 @@ export async function GET() {
     <channel>
         <title>Renohacks - Ремонт и дизайн</title>
         <description>Полезные советы по ремонту квартир, дизайну интерьера и DIY-проектам</description>
-        <link>${baseUrl}</link>
+        <link>${baseUrl}/ru</link>
         <language>ru</language>
         <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
         <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml" />
         <image>
             <url>${baseUrl}/icon.svg</url>
             <title>Renohacks</title>
-            <link>${baseUrl}</link>
+            <link>${baseUrl}/ru</link>
         </image>
         ${rssItems}
     </channel>

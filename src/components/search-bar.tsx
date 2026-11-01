@@ -78,7 +78,7 @@ export function SearchBar({ isEnglish = false }: SearchBarProps) {
         setRecentSearches(updated)
         localStorage.setItem("renohacks-search-history", JSON.stringify(updated))
 
-        router.push(`/${isEnglish ? "en/" : ""}search?q=${encodeURIComponent(searchQuery)}`)
+        router.push(`${isEnglish ? "/search" : "/ru/search"}?q=${encodeURIComponent(searchQuery)}`)
         setIsOpen(false)
         setQuery("")
     }

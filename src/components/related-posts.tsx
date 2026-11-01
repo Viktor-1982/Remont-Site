@@ -104,7 +104,7 @@ export function RelatedPosts({ currentSlug, locale, limit = 4 }: RelatedPostsPro
                 {relatedPosts.map((post) => (
                     <Link
                         key={post.slug}
-                        href={`/${locale === "en" ? "en/" : ""}posts/${post.slug}`}
+                        href={post.url}
                         className="group block p-4 sm:p-5 bg-card/60 dark:bg-card/50 rounded-lg border-2 border-border/60 dark:border-border/40 hover:border-primary/60 dark:hover:border-primary/50 hover:bg-card dark:hover:bg-card/70 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
                         prefetch={true}
                     >

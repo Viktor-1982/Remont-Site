@@ -1,4 +1,4 @@
-import { notFound, redirect } from "next/navigation"
+import { notFound, permanentRedirect } from "next/navigation"
 import type { Metadata } from "next"
 import { allPosts } from "contentlayer/generated"
 import { ArticleHero } from "@/components/article-hero"
@@ -25,7 +25,7 @@ export async function generateMetadata({
     params: Promise<{ slug: string }>
 }): Promise<Metadata> {
     const { slug } = await params
-    const post = allPosts.find((p) => p.slug === slug && p.locale === "ru")
+    const post = allPosts.find((p) => !p.draft && p.slug === slug && p.locale === "ru")
     if (!post) return {}
     return getPostMetadata(post) // ✅ автоматическое SEO
 }
@@ -40,20 +40,20 @@ export default async function PostPage({
     params: Promise<{ slug: string }>
 }) {
     const { slug } = await params
-    const post = allPosts.find((p) => p.slug === slug && p.locale === "ru")
+    const post = allPosts.find((p) => !p.draft && p.slug === slug && p.locale === "ru")
     if (!post) {
         // 1. Проверяем, есть ли русская версия, если передан английский slug
         const ruTranslation = allPosts.find(
-            (p) => (p.translationOf === slug || p.slug === slug) && p.locale === "ru"
+            (p) => !p.draft && (p.translationOf === slug || p.slug === slug) && p.locale === "ru"
         )
         if (ruTranslation) {
-            redirect(`/ru/posts/${ruTranslation.slug}`)
+            permanentRedirect(`/ru/posts/${ruTranslation.slug}`)
         }
 
         // 2. Если русской версии нет, но есть статья на английском — перенаправляем на оригинал
-        const enPost = allPosts.find((p) => p.slug === slug && p.locale === "en")
+        const enPost = allPosts.find((p) => !p.draft && p.slug === slug && p.locale === "en")
         if (enPost) {
-            redirect(`/posts/${slug}`)
+            permanentRedirect(`/posts/${slug}`)
         }
 
         return notFound()

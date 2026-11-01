@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import type { AboutDictionary, AboutFeature } from "@/dictionaries/about"
 import { Calculator, Camera, DollarSign, Home, Palette, ShieldCheck, Target, Wrench } from "lucide-react"
 import Link from "next/link"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 
 const baseUrl = "https://renohacks.com"
 
@@ -77,9 +78,20 @@ function FeatureCard({ feature, index }: { feature: AboutFeature; index: number 
 
 export function AboutPageTemplate({ dictionary }: { dictionary: AboutDictionary }) {
     const breadcrumbSchema = getBreadcrumbSchema(dictionary)
+    const isEnglish = !dictionary.breadcrumb.pagePath.startsWith("/ru")
+    const homePath = isEnglish ? "/" : "/ru"
 
     return (
-        <main className="container mx-auto px-4 py-12 md:py-20">
+        <div className="container mx-auto px-4 py-12 md:py-20">
+            <div className="mx-auto max-w-4xl">
+                <Breadcrumbs
+                    isEnglish={isEnglish}
+                    items={[
+                        { label: dictionary.breadcrumb.homeLabel, href: homePath },
+                        { label: dictionary.breadcrumb.pageLabel, href: dictionary.breadcrumb.pagePath },
+                    ]}
+                />
+            </div>
             <div className="mx-auto mb-16 max-w-4xl text-center">
                 <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-primary/10 dark:bg-primary/20">
                     <Home className="h-10 w-10 text-primary" />
@@ -182,6 +194,6 @@ export function AboutPageTemplate({ dictionary }: { dictionary: AboutDictionary 
                     __html: JSON.stringify(breadcrumbSchema),
                 }}
             />
-        </main>
+        </div>
     )
 }

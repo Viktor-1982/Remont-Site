@@ -7,6 +7,8 @@ import { EmailSubscription } from "@/components/email-subscription"
 import { SeriesShowcase } from "@/components/series-showcase"
 import { getAllArticleSeriesKeys, type ArticleSeriesMeta } from "@/lib/article-series"
 
+const baseUrl = "https://renohacks.com"
+
 export function ArticleSeriesPage({
     meta,
     posts,
@@ -21,17 +23,46 @@ export function ArticleSeriesPage({
     const homeHref = isEnglish ? "/" : "/ru"
     const overviewHref = isEnglish ? "/series" : "/ru/series"
     const locale = isEnglish ? "en" : "ru"
+    const canonical = `${baseUrl}${meta.path}`
+
+    const breadcrumbItems = [
+        { label: isEnglish ? "Home" : "Главная", href: homeHref },
+        { label: isEnglish ? "Series" : "Серии", href: overviewHref },
+        { label: meta.label, href: meta.path },
+    ]
+
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumbItems.map((item, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: item.label,
+            item: `${baseUrl}${item.href}`,
+        })),
+    }
+
+    const collectionSchema = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: meta.title,
+        description: meta.description,
+        url: canonical,
+        inLanguage: isEnglish ? "en-US" : "ru-RU",
+        mainEntity: {
+            "@type": "ItemList",
+            itemListElement: posts.map((post, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: `${baseUrl}${post.url}`,
+                name: post.title,
+            })),
+        },
+    }
 
     return (
-        <main className="container mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 md:py-16">
-            <Breadcrumbs
-                items={[
-                    { label: isEnglish ? "Home" : "Главная", href: homeHref },
-                    { label: isEnglish ? "Series" : "Серии", href: overviewHref },
-                    { label: meta.label, href: meta.path },
-                ]}
-                isEnglish={isEnglish}
-            />
+        <div className="container mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 md:py-16">
+            <Breadcrumbs items={breadcrumbItems} isEnglish={isEnglish} />
 
             <section className="overflow-hidden rounded-xl border border-border/60 bg-gradient-to-br from-card via-card to-secondary/30 px-5 py-8 shadow-xs sm:px-7 sm:py-10 lg:px-10">
                 <div className="max-w-4xl">
@@ -74,6 +105,15 @@ export function ArticleSeriesPage({
             <section className="mx-auto mt-14 max-w-4xl">
                 <EmailSubscription locale={locale} variant="compact" />
             </section>
-        </main>
+
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+            />
+        </div>
     )
 }

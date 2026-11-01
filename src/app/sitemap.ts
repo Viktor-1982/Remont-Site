@@ -194,7 +194,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
                 ? `${baseUrl}${post.url}`
                 : translation
                 ? `${baseUrl}${translation.url}`
-                : `${baseUrl}/`
+                : `${baseUrl}${post.url}`
 
         return {
             url: `${baseUrl}${post.url}`,

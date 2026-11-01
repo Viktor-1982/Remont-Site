@@ -92,6 +92,7 @@ export function getPageMetadata(
         description,
         url,
         siteName: "Renohacks",
+        locale: isRuPage ? "ru_RU" : "en_US",
         type: type ?? "website",
         images: defaultImages,
     }

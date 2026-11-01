@@ -12,6 +12,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
+      'contentlayer/generated': resolve(__dirname, './.contentlayer/generated'),
+      '.contentlayer/generated': resolve(__dirname, './.contentlayer/generated'),
     },
   },
 })

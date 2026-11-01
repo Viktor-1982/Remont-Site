@@ -24,6 +24,7 @@ import Link from "next/link"
 import type { ReactNode } from "react"
 import { ShareButton } from "@/components/share-button"
 import { FloorCalcAppBanner } from "@/components/floorcalc-app-banner"
+import { Breadcrumbs } from "@/components/breadcrumbs"
 
 const relatedIcons = {
     airVent: AirVent,
@@ -202,7 +203,7 @@ export function CalculatorPageTemplate({
     } : null
 
     return (
-        <main className={`mx-auto px-4 py-10 ${dictionary.layout?.maxWidthClass ?? "max-w-2xl"}`}>
+        <div className={`mx-auto px-4 py-10 ${dictionary.layout?.maxWidthClass ?? "max-w-2xl"}`}>
             {dictionary.structuredData?.length ? <StructuredDataScripts items={dictionary.structuredData} /> : null}
             {fallbackAppSchema && (
                 <script
@@ -220,6 +221,14 @@ export function CalculatorPageTemplate({
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
                 />
             )}
+            <Breadcrumbs
+                isEnglish={isEnglish}
+                items={[
+                    { label: isEnglish ? "Home" : "Главная", href: isEnglish ? "/" : "/ru" },
+                    { label: isEnglish ? "Tools" : "Инструменты", href: isEnglish ? "/tools" : "/ru/tools" },
+                    { label: dictionary.hero.title, href: canonicalPath },
+                ]}
+            />
             <h1 className="mb-4 text-3xl font-bold">{dictionary.hero.title}</h1>
             <p className={`mb-8 text-muted-foreground ${dictionary.hero.leadClass ?? ""}`.trim()}>
                 {dictionary.hero.description}
@@ -334,6 +343,6 @@ export function CalculatorPageTemplate({
                     isEnglish={isEnglish}
                 />
             </section>
-        </main>
+        </div>
     )
 }

@@ -1,9 +1,11 @@
 /**
  * Парсит FAQ секцию из MDX контента
- * Поддерживает разные форматы:
- * - ## ❓ FAQ\n\n**Вопрос?**\nОтвет
- * - ## ❓ Частые вопросы\n\n**Вопрос?**\n\nОтвет
- * - ## ❓ Частые вопросы\n\nВопрос?\n\nОтвет (без жирного текста)
+ * Поддерживает форматы:
+ * - <FAQSection items={[{ question: "...", answer: "..." }]} />
+ * - ## ❓ FAQ / ## Frequently Asked Questions / ## Частые вопросы
+ *   - ### Вопрос?\nОтвет
+ *   - **Вопрос?**\nОтвет
+ *   - Вопрос?\nОтвет
  */
 
 export interface FAQItem {
@@ -11,92 +13,122 @@ export interface FAQItem {
     answer: string
 }
 
-export function parseFAQ(content: string): FAQItem[] {
+function cleanText(text: string): string {
+    return text
+        .replace(/<[^>]+>/g, " ")
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+        .replace(/\*\*([^*]+)\*\*/g, "$1")
+        .replace(/\*([^*]+)\*/g, "$1")
+        .replace(/`([^`]+)`/g, "$1")
+        .replace(/^>\s*/gm, "")
+        .replace(/^(?:A|О|Ответ|Answer):\s*/i, "")
+        .replace(/\s+/g, " ")
+        .trim()
+}
+
+function cleanQuestion(text: string): string {
+    return cleanText(text)
+        .replace(/^#+\s*/, "")
+        .replace(/^(?:\d+[\.\)]\s*|[-*•]\s*)/, "")
+        .replace(/^(?:Q|В|Вопрос|Question):\s*/i, "")
+        .trim()
+}
+
+export function parseFAQ(rawContent: string): FAQItem[] {
     const faqs: FAQItem[] = []
-    
-    // Ищем секцию FAQ (может быть ## ❓ FAQ, ## FAQ, ## 💬 FAQ, ## ❓ Частые вопросы и т.д.)
-    const faqMatch = content.match(/##\s*[❓💬]?\s*(?:FAQ|Частые вопросы|частые вопросы|часто задаваемые вопросы|Ответы на частые вопросы)[\s\S]*?(?=##|$)/i)
-    if (!faqMatch) return faqs
-    
-    const faqSection = faqMatch[0]
-    
-    // Паттерн 1: **Вопрос?** или **Вопрос** (жирный текст) - самый распространенный формат
-    // Улучшенный паттерн: поддерживает один или два переноса строки между вопросом и ответом
-    const questionPattern1 = /\*\*([^*]+?)\*\*\s*\n+([^\n]+(?:\n(?!\*\*)[^\n]+)*?)(?=\n\*\*|\n---|$)/g
-    let match
-    
-    while ((match = questionPattern1.exec(faqSection)) !== null) {
-        const question = match[1].trim()
-        const answer = match[2]
-            .trim()
-            .replace(/\*\*/g, '') // Убираем жирный текст из ответа
-            .replace(/\n\n+/g, ' ') // Заменяем множественные переносы на пробелы
-            .replace(/\n/g, ' ')
-            .trim()
-        
+    if (!rawContent) return faqs
+
+    const content = rawContent.replace(/\r\n/g, "\n")
+
+    // 1. Поддержка JSX-компонента <FAQSection items={[...]} />
+    const jsxFaqMatch = content.match(/<FAQSection[\s\S]*?items=\{\s*\[([\s\S]*?)\]\s*\}[\s\S]*?\/>/)
+    if (jsxFaqMatch) {
+        const itemsBlock = jsxFaqMatch[1]
+        const itemRegex = /\{\s*question:\s*(["'`])([\s\S]*?)\1\s*,\s*answer:\s*(["'`])([\s\S]*?)\3\s*,?\s*\}/g
+        let itemMatch: RegExpExecArray | null
+        while ((itemMatch = itemRegex.exec(itemsBlock)) !== null) {
+            const question = cleanQuestion(itemMatch[2])
+            const answer = cleanText(itemMatch[4])
+            if (question && answer) {
+                faqs.push({ question, answer })
+            }
+        }
+        if (faqs.length > 0) return faqs
+    }
+
+    // 2. Ищем Markdown-секцию FAQ до следующего заголовка второго уровня (## ) или конца статьи
+    const faqSectionMatch = content.match(
+        /(?:^|\n)##\s+[^\n]*(?:FAQ|Frequently Asked Questions|Common Questions|Частые вопросы|Часто задаваемые вопросы|Ответы на частые вопросы)[^\n]*\n([\s\S]*?)(?=\n##\s+|$)/i
+    )
+    if (!faqSectionMatch) return faqs
+
+    // Отрезаем завершающие JSX-виджеты (например <SimpleNewsletter />, <ComparisonTable />) в конце секции
+    const faqBody = faqSectionMatch[1].split(/\n<(?:SimpleNewsletter|ComparisonTable|MaterialComparison|ToolCTA|Calculator)\b/)[0]
+
+    // 2a. Если внутри секции используются подзаголовки ### Вопрос
+    if (/^###\s+/m.test(faqBody)) {
+        const blocks = faqBody.split(/^###\s+/m).slice(1)
+        for (const block of blocks) {
+            const lines = block.split("\n")
+            const rawQuestion = lines[0]?.trim() || ""
+            const rawAnswer = lines
+                .slice(1)
+                .filter((line) => !line.trim().startsWith("---") && !line.trim().startsWith("<"))
+                .join(" ")
+            const question = cleanQuestion(rawQuestion)
+            const answer = cleanText(rawAnswer)
+            if (question && answer) {
+                faqs.push({ question, answer })
+            }
+        }
+        if (faqs.length > 0) return faqs
+    }
+
+    // 2b. Паттерн с жирным вопросом **Вопрос?**
+    const boldQuestionRegex = /\*\*([^*\n]+?)\*\*\s*\n+([^\n]+(?:\n(?!\*\*|---|###|##)[^\n]+)*)/g
+    let match: RegExpExecArray | null
+    while ((match = boldQuestionRegex.exec(faqBody)) !== null) {
+        const question = cleanQuestion(match[1])
+        const rawAnswer = match[2]
+            .split("\n")
+            .filter((line) => !line.trim().startsWith("---") && !line.trim().startsWith("<"))
+            .join(" ")
+        const answer = cleanText(rawAnswer)
         if (question && answer) {
             faqs.push({ question, answer })
         }
     }
-    
-    // Паттерн 2: Если первый паттерн ничего не нашел, пробуем парсить построчно
-    if (faqs.length === 0) {
-        const lines = faqSection.split('\n')
-        let currentQuestion = ''
-        let currentAnswer: string[] = []
-        
-        for (let i = 0; i < lines.length; i++) {
-            const line = lines[i].trim()
-            
-            // Пропускаем заголовок секции
-            if (line.startsWith('##')) continue
-            
-            // Если строка заканчивается на "?" и содержит **, это вопрос в жирном тексте
-            if (line.match(/^\*\*.*\?\*\*$/)) {
-                // Сохраняем предыдущий вопрос-ответ, если есть
-                if (currentQuestion && currentAnswer.length > 0) {
-                    faqs.push({
-                        question: currentQuestion.replace(/\*\*/g, ''),
-                        answer: currentAnswer.join(' ').trim()
-                    })
-                }
-                currentQuestion = line
-                currentAnswer = []
-            } 
-            // Если строка заканчивается на "?" и не содержит **, это вопрос без форматирования
-            else if (line.endsWith('?') && !line.includes('**')) {
-                // Сохраняем предыдущий вопрос-ответ, если есть
-                if (currentQuestion && currentAnswer.length > 0) {
-                    faqs.push({
-                        question: currentQuestion.replace(/\*\*/g, ''),
-                        answer: currentAnswer.join(' ').trim()
-                    })
-                }
-                currentQuestion = line
-                currentAnswer = []
-            } 
-            // Если есть текущий вопрос и строка не пустая, это часть ответа
-            else if (currentQuestion && line && !line.startsWith('##') && !line.startsWith('---')) {
-                currentAnswer.push(line.replace(/\*\*/g, ''))
-            }
-            // Если встретили разделитель или новый заголовок, сохраняем последний FAQ
-            else if ((line.startsWith('---') || line.startsWith('##')) && currentQuestion && currentAnswer.length > 0) {
-                faqs.push({
-                    question: currentQuestion.replace(/\*\*/g, ''),
-                    answer: currentAnswer.join(' ').trim()
-                })
-                break
-            }
-        }
-        
-        // Сохраняем последний FAQ, если есть
+    if (faqs.length > 0) return faqs
+
+    // 2c. Построчный fallback (вопросы без жирного выделения, заканчивающиеся на ?)
+    const lines = faqBody.split("\n")
+    let currentQuestion = ""
+    let currentAnswer: string[] = []
+
+    const flush = () => {
         if (currentQuestion && currentAnswer.length > 0) {
-            faqs.push({
-                question: currentQuestion.replace(/\*\*/g, ''),
-                answer: currentAnswer.join(' ').trim()
-            })
+            const question = cleanQuestion(currentQuestion)
+            const answer = cleanText(currentAnswer.join(" "))
+            if (question && answer) {
+                faqs.push({ question, answer })
+            }
         }
     }
-    
+
+    for (const rawLine of lines) {
+        const line = rawLine.trim()
+        if (!line || line.startsWith("---")) continue
+        if (line.startsWith("<")) continue
+
+        if (line.endsWith("?")) {
+            flush()
+            currentQuestion = line
+            currentAnswer = []
+        } else if (currentQuestion) {
+            currentAnswer.push(line)
+        }
+    }
+    flush()
+
     return faqs
 }
