@@ -131,17 +131,19 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
     ru: {
         metadata: {
             path: "/ru/calculators/budget",
-            title: "Калькулятор бюджета ремонта",
+            title: "Калькулятор бюджета ремонта квартиры: расчет сметы онлайн",
             description:
-                "Бесплатный калькулятор бюджета ремонта: рассчитайте полную стоимость работ с резервом на непредвиденные расходы. Спланируйте смету без ошибок!",
+                "Бесплатный онлайн-калькулятор бюджета ремонта квартиры: рассчитайте полную смету работ, материалов и мебели с резервом на непредвиденные расходы.",
             cover: "/images/og-default.png",
             type: "website",
             keywords: [
+                "калькулятор бюджета ремонта",
                 "калькулятор ремонта",
                 "планировщик бюджета ремонта",
                 "смета ремонта квартиры",
                 "расчёт стоимости ремонта",
                 "калькулятор сметы ремонта",
+                "ремонт квартир 2026",
             ],
         },
         structuredData: [
@@ -288,9 +290,9 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
     en: {
         metadata: {
             path: "/calculators/budget",
-            title: "Renovation Budget Planner",
+            title: "Renovation Budget Planner: DIY Remodeling Cost & Reserve Calculator",
             description:
-                "Free renovation budget planner: calculate the total cost of your home renovation with a reserve for unexpected expenses. Plan your costs without mistakes!",
+                "Plan your renovation budget without draining savings: free DIY remodeling cost estimator with contingency reserves, room breakdown, and overage tracking.",
             cover: "/images/og-default.png",
             type: "website",
             alternates: {
@@ -301,8 +303,8 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
                 },
             },
             openGraph: {
-                title: "Renovation Budget Planner | Renohacks",
-                description: "Free renovation budget planner: calculate the total cost of your home renovation with a reserve for unexpected expenses. Plan your costs without mistakes!",
+                title: "Renovation Budget Planner: DIY Remodeling Cost & Reserve Calculator",
+                description: "Plan your renovation budget without draining savings: free DIY remodeling cost estimator with contingency reserves and overage tracking.",
                 url: "https://renohacks.com/calculators/budget",
                 images: ["https://renohacks.com/images/og-default.png"],
                 locale: "en_US",
@@ -310,17 +312,20 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
             },
             twitter: {
                 card: "summary_large_image",
-                title: "Renovation Budget Planner | Renohacks",
-                description: "Free renovation budget planner: calculate the total cost of your home renovation with a reserve for unexpected expenses. Plan your costs without mistakes!",
+                title: "Renovation Budget Planner: DIY Remodeling Cost & Reserve Calculator",
+                description: "Plan your renovation budget without draining savings: free DIY remodeling cost estimator with contingency reserves.",
                 images: ["https://renohacks.com/images/og-default.png"],
             },
             keywords: [
+                "renovation budget",
+                "diy renovation budget tool",
+                "remodeling budget planner",
+                "what is a realistic renovation budget",
+                "plan your renovation budget",
+                "remodeling budget control",
                 "renovation budget planner",
                 "home renovation cost calculator",
                 "remodeling budget estimator",
-                "calculate renovation costs online",
-                "budget calculator for renovation",
-                "Renohacks renovation tools",
             ],
             robots: {
                 index: true,

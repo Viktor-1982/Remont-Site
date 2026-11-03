@@ -17,16 +17,19 @@ export const extraCalculatorPageDictionaries: Record<
         tile: {
             metadata: {
                 path: "/ru/calculators/tile",
-                title: "Калькулятор плитки для пола и стен",
+                title: "Калькулятор плитки на пол и стены: расчет раскладки онлайн",
                 description:
-                    "Бесплатный калькулятор плитки: рассчитайте точное количество плитки для пола и стен. Учитывает площадь, размеры плитки, окна, двери и запас на подрезку.",
+                    "Бесплатный онлайн-калькулятор расчета плитки на пол и стены со схемой укладки: запас на подрезку, количество упаковок, расход клея и затирки.",
                 keywords: [
+                    "раскладка плитки на пол онлайн бесплатно",
+                    "расчет плитки на пол калькулятор со схемой укладки",
+                    "раскладка плитки онлайн на пол",
+                    "программа для расчета плитки на пол онлайн",
+                    "как рассчитать сколько нужно плитки калькулятор",
+                    "калькулятор раскладки плитки",
                     "калькулятор плитки",
-                    "расчет плитки",
-                    "сколько нужно плитки",
+                    "расчет плиточного клея",
                     "калькулятор плитки для ванной",
-                    "калькулятор плитки для кухни",
-                    "онлайн калькулятор плитки",
                 ],
             },
             share: {
@@ -90,6 +93,16 @@ export const extraCalculatorPageDictionaries: Record<
                         question: "Какой запас на подрезку нужен?",
                         answer:
                             "Для прямой укладки обычно достаточно 10%, для диагонали — около 15%, для елочки — около 20%. Если помещение сложное, добавьте дополнительный запас вручную.",
+                    },
+                    {
+                        question: "Какой процент запаса (tile overage) закладывать на раскладку плитки?",
+                        answer:
+                            "Для стандартной прямой укладки плитки на пол закладывайте 7–10% запаса. Для диагональной раскладки, укладки «елочкой» или крупноформатного керамогранита с запилом углов под 45° запас должен составлять 12–15%. Это защитит от нехватки материала из-за сколов и сложной подрезки.",
+                    },
+                    {
+                        question: "Как рассчитать расход плиточного клея на м²?",
+                        answer:
+                            "Расход сухого плиточного клея зависит от размера зуба шпателя и формата плитки: для плитки до 30×30 см (шпатель 6 мм) требуется ~3.5 кг/м², для керамогранита 60×60 см (шпатель 8–10 мм) — около 4.5–5 кг/м². На мешок 25 кг обычно приходится 5–6 м² облицовки.",
                     },
                     {
                         question: "Зачем указывать ширину шва?",
@@ -345,10 +358,17 @@ export const extraCalculatorPageDictionaries: Record<
         lighting: {
             metadata: {
                 path: "/ru/calculators/lighting",
-                title: "Калькулятор освещенности комнаты",
+                title: "Калькулятор освещения комнаты: расчет люменов и люксов онлайн",
                 description:
-                    "Бесплатный калькулятор освещенности: рассчитайте нужные люмены и количество ламп для комнаты с учетом норм освещения и высоты потолка. Рассчитайте свет!",
-                keywords: ["калькулятор освещенности", "люмены для комнаты", "сколько ламп нужно", "нормы освещения", "расчет освещения"],
+                    "Бесплатный калькулятор освещенности: рассчитайте сколько люменов (лм) и люксов (лк) нужно на комнату по СНиП/СанПиН, и сколько светодиодных ламп установить.",
+                keywords: [
+                    "калькулятор освещения",
+                    "калькулятор люменов",
+                    "расчет освещенности комнаты",
+                    "сколько люменов нужно на комнату",
+                    "расчет ламп для комнаты",
+                    "нормы освещения люксы",
+                ],
             },
             share: {
                 url: "/ru/calculators/lighting",
@@ -648,16 +668,17 @@ export const extraCalculatorPageDictionaries: Record<
         drywall: {
             metadata: {
                 path: "/ru/calculators/drywall",
-                title: "Калькулятор гипсокартона Knauf (ГКЛ и профили)",
+                title: "Калькулятор гипсокартона и профиля Кнауф (ГКЛ, перегородки и стены)",
                 description:
-                    "Бесплатный онлайн-калькулятор гипсокартона по нормам Knauf: точный расчет листов ГКЛ, профилей ПН/ПС/ПП, подвесов, ленты, саморезов и шпатлевки.",
+                    "Онлайн-расчет гипсокартона и профилей Knauf для стен и перегородок: точный калькулятор листов ГКЛ, стоечных (ПС/CW) и направляющих (ПН/UW) профилей, крепежа и Uniflott.",
                 keywords: [
+                    "расчет гипсокартона и профиля калькулятор кнауф",
+                    "расчет профилей для гипсокартона калькулятор кнауф",
+                    "кнауф калькулятор",
+                    "калькулятор стен кнауф гипсокартон стены",
+                    "калькулятор профиля для гипсокартона на стены",
                     "калькулятор гипсокартона",
-                    "расчет профилей для гипсокартона",
-                    "калькулятор перегородок knauf",
                     "расчет гкл онлайн",
-                    "калькулятор потолка из гипсокартона",
-                    "смета гипсокартон",
                 ],
             },
             share: {
@@ -825,21 +846,25 @@ export const extraCalculatorPageDictionaries: Record<
         tile: {
             metadata: {
                 path: "/calculators/tile",
-                title: "Tile Quantity & Adhesive Calculator",
+                title: "Tile Calculator: Floor & Wall Tile Overage, Layout & Adhesive",
                 description:
-                    "Free online tile calculator: calculate exact tile quantity for floors and walls. Estimate waste, packs, and adhesive volume. Plan your tiling now!",
+                    "Free tile calculator: calculate tile overage percentage, square footage, box count, and adhesive required for floor and wall layouts without shortages.",
                 keywords: [
+                    "tile overage percentage",
+                    "how to calculate tile floor thickness",
                     "tile calculator",
-                    "tile calculation",
+                    "calculating tile",
+                    "how to calculate tile square feet",
+                    "tile adhesive calculator",
+                    "floor tiles calculation formula",
                     "how many tiles do I need",
                     "bathroom tile calculator",
-                    "kitchen tile calculator",
                 ],
             },
             share: {
                 url: "/calculators/tile",
-                title: "Tile Quantity & Adhesive Calculator | Renohacks",
-                description: "Free tile calculator for floors and walls with waste, packs and adhesive",
+                title: "Tile Calculator: Floor & Wall Tile Overage | Renohacks",
+                description: "Free tile calculator for floors and walls with overage, layout, boxes and adhesive",
             },
             hero: {
                 title: "Tile Calculator",
@@ -888,6 +913,16 @@ export const extraCalculatorPageDictionaries: Record<
                         question: "How do I estimate the right number of tiles?",
                         answer:
                             "Enter accurate dimensions, tile size, grout width and layout pattern. The calculator then adds waste and gives you a practical result in tiles, packs and adhesive.",
+                    },
+                    {
+                        question: "What is the standard tile overage percentage?",
+                        answer:
+                            "The industry standard is 10% overage for simple straight layouts. For diagonal, herringbone, offset brick patterns, or rooms with multiple alcoves and niches, increase the overage to 15%. This accounts for cut waste, breakages, and future tile repairs from the same production dye lot.",
+                    },
+                    {
+                        question: "How do I calculate total tile floor thickness?",
+                        answer:
+                            "Finished tile floor thickness equals: tile thickness (typically 5/16\" to 3/8\" or 8–10 mm for porcelain) + compressed thinset adhesive mortar bed (typically 3/32\" to 1/8\" or 2.5–3.5 mm) + uncoupling membrane / underlayment (if installed, 1/8\" or 3 mm). The total floor height build-up usually ranges between 1/2\" and 5/8\" (13–16 mm).",
                     },
                     {
                         question: "How much waste should I allow?",
@@ -969,14 +1004,23 @@ export const extraCalculatorPageDictionaries: Record<
         wallpaper: {
             metadata: {
                 path: "/calculators/wallpaper",
-                title: "Wallpaper Roll & Repeat Calculator",
+                title: "Wallpaper Calculator with Pattern Repeat & Roll Estimator",
                 description:
-                    "Free online wallpaper calculator: estimate how many rolls you need by wall size, window/door openings, and pattern repeat. Plan your rolls correctly!",
+                    "Free wallpaper calculator with repeat: calculate exact roll count considering wall dimensions, windows, doors, pattern drop match, and cutting waste.",
+                keywords: [
+                    "wallpaper calculator with repeat",
+                    "wallpaper calculator",
+                    "wallpaper calculator with pattern repeat",
+                    "wallpaper calculator repeat",
+                    "wallpaper roll calculator",
+                    "wallpaper calculator with repeat uk",
+                    "wallpaper estimator",
+                ],
             },
             share: {
                 url: "/calculators/wallpaper",
-                title: "Wallpaper Roll & Repeat Calculator | Renohacks",
-                description: "Estimate wallpaper rolls by wall size, pattern repeat and openings",
+                title: "Wallpaper Calculator with Pattern Repeat | Renohacks",
+                description: "Estimate wallpaper rolls by wall size, pattern repeat match and openings",
             },
             hero: {
                 title: "Wallpaper Calculator",
@@ -1148,15 +1192,24 @@ export const extraCalculatorPageDictionaries: Record<
         lighting: {
             metadata: {
                 path: "/calculators/lighting",
-                title: "Lumens & Lamp Count Calculator",
+                title: "Lighting Calculator: Lumens & Lux Level Room Estimator",
                 description:
-                    "Free lighting calculator: find how many lumens your room needs and how many lamps to install. Check room-type lighting standards and height reserve!",
-                keywords: ["lighting calculator", "lumens for room", "how many lamps", "illuminance standards", "lux by room type"],
+                    "Free lighting calculator: calculate total lumens and lux levels (lx) required by room dimensions, room type standards (kitchen, bedroom, bath), and lamp wattage.",
+                keywords: [
+                    "lighting calculator",
+                    "lumen calculator",
+                    "lux and lumens calculator",
+                    "lux level calculator",
+                    "room lighting calculator",
+                    "lumens calculator room size",
+                    "high bay lighting calculator",
+                    "how many lamps",
+                ],
             },
             share: {
                 url: "/calculators/lighting",
-                title: "Lumens & Lamp Count Calculator | Renohacks",
-                description: "Calculate lumens and lamp count for a room by area and room type",
+                title: "Lighting Calculator: Lumens & Lux Levels | Renohacks",
+                description: "Calculate room lumens, lux levels and fixture count by area and ceiling height",
             },
             hero: {
                 title: "Lighting Calculator",

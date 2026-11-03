@@ -131,9 +131,16 @@ export const calculatorPageDictionaries: Record<
         paint: {
             metadata: {
                 path: "/ru/calculators/paint",
-                title: "Калькулятор расхода краски",
+                title: "Калькулятор краски для стен и потолка: расчет расхода в литрах",
                 description:
-                    "Бесплатный калькулятор расхода краски: введите размеры комнаты и узнайте, сколько литров краски нужно купить. Рассчитайте краску без ошибок!",
+                    "Бесплатный онлайн-калькулятор краски: рассчитайте сколько литров краски нужно на стены и потолок с учетом площади, количества слоев, окон, дверей и запаса.",
+                keywords: [
+                    "калькулятор краски для стен",
+                    "калькулятор краски",
+                    "расчет краски для стен",
+                    "расход краски на м2",
+                    "сколько краски нужно на комнату",
+                ],
             },
             share: {
                 url: "/ru/calculators/paint",
@@ -201,19 +208,28 @@ export const calculatorPageDictionaries: Record<
         flooring: {
             metadata: {
                 path: "/ru/calculators/flooring",
-                title: "Калькулятор ламината и кварцвинила",
+                title: "Калькулятор ламината и кварцвинила на пол: расчет упаковок и м²",
                 description:
-                    "Бесплатный калькулятор ламината и кварцвинила: рассчитайте площадь пола, количество упаковок, подложку и запас на подрезку. Читайте наши советы!",
+                    "Онлайн-калькулятор расчета ламината и кварцвинила (SPC/LVT) на пол: точный расчет площади, количества упаковок, планок, подложки и запаса на подрезку.",
+                keywords: [
+                    "рассчитать ламинат на пол калькулятор",
+                    "расчет кварцвинила на пол",
+                    "как рассчитать кварц винил на пол калькулятор",
+                    "калькулятор кварцвиниловой плитки",
+                    "калькулятор ламината на пол",
+                    "раскладка кварцвинила онлайн",
+                    "как рассчитать сколько нужно кварцвинила на пол",
+                ],
             },
             share: {
                 url: "/ru/calculators/flooring",
-                title: "Калькулятор ламината и кварцвинила | Renohacks",
+                title: "Калькулятор ламината и кварцвинила на пол | Renohacks",
                 description: "Рассчитайте упаковки покрытия, подложку и запас на подрезку.",
             },
             hero: {
                 title: "Калькулятор напольного покрытия",
                 description:
-                    "Рассчитайте ламинат, кварцвинил или паркетную доску по площади комнаты, схеме укладки, упаковкам и запасу на подрезку. Подходит для прямой укладки, диагонали и елки.",
+                    "Рассчитайте ламинат, кварцвинил (SPC/LVT) или паркетную доску по площади комнаты, схеме укладки, упаковкам и запасу на подрезку. Подходит для прямой укладки, диагонали и елки.",
             },
             benefits: {
                 title: "Что учитывает калькулятор покрытия",
@@ -228,9 +244,14 @@ export const calculatorPageDictionaries: Record<
                 title: "Частые вопросы",
                 items: [
                     {
+                        question: "Как рассчитать сколько нужно кварцвинила или ламината на пол?",
+                        answer:
+                            "Умножьте длину комнаты на ширину для получения чистой площади (м²), добавьте запас на подрезку (5–7% для прямой укладки, 10% для диагонали, 12–15% для английской или венгерской елочки) и разделите на площадь одной упаковки материала (указана на коробке, обычно 1.6–2.4 м²). Итоговое число упаковок всегда округляйте вверх до целой пачки.",
+                    },
+                    {
                         question: "Какой запас брать на ламинат или кварцвинил?",
                         answer:
-                            "Для прямой укладки обычно хватает 7%. Для диагонали нужен больший запас, а для елки он еще выше из-за подрезки.",
+                            "Для прямой укладки обычно хватает 5–7%. Для диагонали нужен запас 10%, а для елки — 12–15% из-за большого количества угловых запилов.",
                     },
                     {
                         question: "Нужно ли вычитать шкафы и кухню?",
@@ -251,19 +272,29 @@ export const calculatorPageDictionaries: Record<
         baseboard: {
             metadata: {
                 path: "/ru/calculators/baseboard",
-                title: "Калькулятор плинтуса для пола",
+                title: "Калькулятор плинтуса напольного: расчет погонных метров и планок",
                 description:
-                    "Бесплатный калькулятор плинтуса: рассчитайте погонные метры, количество планок с вычетом дверных проемов и запасом. Планируйте расходы легко!",
+                    "Онлайн-калькулятор плинтуса для пола: рассчитайте сколько нужно плинтуса на комнату (20, 40 м²), погонные метры, количество планок с вычетом дверей и запасом.",
+                keywords: [
+                    "калькулятор плинтуса напольного",
+                    "сколько нужно плинтуса на комнату",
+                    "сколько нужно плинтуса на 40 квадратов",
+                    "сколько нужно плинтуса на 20 квадратных метров",
+                    "как посчитать погонные метры плинтуса",
+                    "как рассчитать плинтус на пол",
+                    "расчет плинтуса по периметру",
+                    "погонный метр плинтуса",
+                ],
             },
             share: {
                 url: "/ru/calculators/baseboard",
-                title: "Калькулятор плинтуса для пола | Renohacks",
+                title: "Калькулятор плинтуса напольного | Renohacks",
                 description: "Рассчитайте погонные метры, количество планок с вычетом дверных проемов и запасом.",
             },
             hero: {
                 title: "Калькулятор плинтуса",
                 description:
-                    "Рассчитайте плинтус по размерам комнаты или готовому периметру. Калькулятор вычитает дверные проемы, добавляет запас и показывает, сколько планок нужно купить.",
+                    "Рассчитайте напольный плинтус по размерам комнаты или готовому периметру. Калькулятор вычитает дверные проемы, добавляет запас и показывает точное количество планок к покупке.",
             },
             benefits: {
                 title: "Когда этот расчет особенно полезен",
@@ -277,6 +308,16 @@ export const calculatorPageDictionaries: Record<
                 title: "Частые вопросы",
                 items: [
                     {
+                        question: "Сколько нужно плинтуса на 20 или 40 квадратных метров?",
+                        answer:
+                            "Количество плинтуса рассчитывается не по площади пола (м²), а по периметру стен за вычетом ширины дверей. Например, для комнаты 20 м² (4×5 м) чистый периметр с вычетом одной стандартной двери (0.9 м) составляет ~17.1 м. С запасом 7% потребуется 18.3 м, или 8 планок по 2.5 м (либо 9 планок по 2.2 м). Для 40 м² (5×8 м) потребуется ~26 м (11 планок по 2.5 м).",
+                    },
+                    {
+                        question: "Как посчитать погонные метры плинтуса на пол?",
+                        answer:
+                            "Сложите длины всех стен комнаты (периметр P = 2 × (a + b)), вычтите ширину каждого дверного проема и умножьте на коэффициент запаса 1.05–1.08 (5–8% на запилы углов).",
+                    },
+                    {
                         question: "Нужно ли вычитать дверные проемы?",
                         answer:
                             "Да. Обычно плинтус не проходит через дверной проем, поэтому эту длину лучше вычесть.",
@@ -284,7 +325,7 @@ export const calculatorPageDictionaries: Record<
                     {
                         question: "Какой запас брать на плинтус?",
                         answer:
-                            "Для обычной комнаты часто хватает 5-7%. Если много подрезки, углов и нестандартных узлов, запас можно увеличить.",
+                            "Для обычной прямоугольной комнаты хватает 5–7%. Если много внутренних и наружных углов, выступов или колонн, закладывайте 10%.",
                     },
                 ],
             },
@@ -300,19 +341,28 @@ export const calculatorPageDictionaries: Record<
         screed: {
             metadata: {
                 path: "/ru/calculators/screed",
-                title: "Калькулятор стяжки пола",
+                title: "Калькулятор стяжки пола: расчет сухой смеси и мешков онлайн",
                 description:
-                    "Бесплатный калькулятор стяжки пола: рассчитайте объем смеси, количество мешков, воду на замес и примерную стоимость. Сделайте ровный пол без хлопот!",
+                    "Рассчитайте количество сухой смеси для стяжки пола: точный расчет мешков (25 и 50 кг), объем раствора в м³, воду на замес и среднюю толщину слоя по маякам.",
+                keywords: [
+                    "рассчитать количество сухой смеси для стяжки пола",
+                    "расчёт сухой смеси для стяжки пола",
+                    "расчёт количества смеси для стяжки пола",
+                    "расчёт смеси для стяжки пола",
+                    "калькулятор стяжки пола",
+                    "как рассчитать стяжку пола",
+                    "расчет мешков стяжки",
+                ],
             },
             share: {
                 url: "/ru/calculators/screed",
-                title: "Калькулятор стяжки пола | Renohacks",
+                title: "Калькулятор стяжки пола онлайн | Renohacks",
                 description: "Рассчитайте объем стяжки, сухую смесь и количество мешков.",
             },
             hero: {
                 title: "Калькулятор стяжки пола",
                 description:
-                    "Рассчитайте объем стяжки, расход сухой смеси, количество мешков и воду на замес. Подходит для цементной стяжки, наливного пола и облегченных смесей.",
+                    "Рассчитайте объем стяжки, расход сухой смеси, количество мешков и воду на замес. Подходит для цементной стяжки (ЦПС), наливного пола и облегченных смесей.",
             },
             benefits: {
                 title: "Что важно перед расчетом стяжки",
@@ -325,6 +375,11 @@ export const calculatorPageDictionaries: Record<
             faq: {
                 title: "Частые вопросы",
                 items: [
+                    {
+                        question: "Как рассчитать количество сухой смеси для стяжки пола?",
+                        answer:
+                            "Умножьте площадь помещения (м²) на среднюю толщину слоя (в мм) и на паспортный расход смеси (для ЦПС обычно 18–20 кг/м² на каждые 10 мм толщины слоя, для самовыравнивающегося наливного пола — 14–16 кг/м²). Полученную массу разделите на вес одного мешка (обычно 25 кг) и добавьте 5–7% запаса на неровности плит перекрытия.",
+                    },
                     {
                         question: "Чем объем отличается от расхода смеси?",
                         answer:
@@ -351,15 +406,23 @@ export const calculatorPageDictionaries: Record<
         paint: {
             metadata: {
                 path: "/calculators/paint",
-                title: "Paint Calculator Online",
+                title: "Paint Calculator: Volume, Coverage per Liter & Wall Area",
                 description:
-                    "Free online paint calculator: enter your room dimensions and calculate how many liters of paint you need. Plan your renovation materials without errors!",
+                    "Free paint volume calculator: calculate how many liters or gallons of paint you need by room area, wall height, coats, and coverage per liter with reserve.",
+                keywords: [
+                    "paint volume calculator",
+                    "paint coverage per liter",
+                    "calculate paint required",
+                    "paint calculator per wall",
+                    "paint calculator",
+                    "wall paint estimator",
+                ],
             },
             share: {
                 url: "/calculators/paint",
-                title: "Paint Calculator Online | Renohacks",
+                title: "Paint Calculator: Volume & Coverage | Renohacks",
                 description:
-                    "Free online paint calculator: enter your room dimensions and calculate how many liters of paint you need.",
+                    "Free paint volume calculator: calculate paint liters or gallons by room area and coverage rate.",
             },
             hero: {
                 title: "Paint Calculator",
@@ -421,9 +484,17 @@ export const calculatorPageDictionaries: Record<
         flooring: {
             metadata: {
                 path: "/calculators/flooring",
-                title: "Flooring Pack & Waste Calculator",
+                title: "Flooring Calculator: Laminate, LVT & SPC Vinyl Plank Packs",
                 description:
-                    "Free online flooring calculator for laminate, vinyl, and engineered wood. Calculate packs, underlay, and cutting waste. Plan your flooring project today!",
+                    "Free flooring calculator: calculate how many packs of laminate, SPC or LVT vinyl planks you need by room area, installation pattern, and cutting reserve.",
+                keywords: [
+                    "how many packs of laminate do i need",
+                    "how many boxes of laminate flooring do i need",
+                    "flooring waste calculator",
+                    "spc flooring vs porcelain tiles",
+                    "laminate flooring calculator",
+                    "vinyl plank calculator",
+                ],
             },
             share: {
                 url: "/calculators/flooring",
@@ -448,6 +519,11 @@ export const calculatorPageDictionaries: Record<
                 title: "FAQs",
                 items: [
                     {
+                        question: "How many packs of laminate or vinyl flooring do I need?",
+                        answer:
+                            "Calculate your total net floor area, add a cutting waste factor (7% for straight plank layout, 10% for diagonal, 15% for herringbone), and divide by the square footage or square meters contained in one pack (typically 18–24 sq ft or 1.6–2.2 m²). Always round up to the nearest whole pack.",
+                    },
+                    {
                         question: "How much waste should I allow for laminate or vinyl?",
                         answer:
                             "Straight layouts usually need less waste than diagonal or herringbone patterns. The calculator applies a layout-based base percentage and lets you add extra waste if needed.",
@@ -471,19 +547,29 @@ export const calculatorPageDictionaries: Record<
         baseboard: {
             metadata: {
                 path: "/calculators/baseboard",
-                title: "Baseboard Length & Cost Calculator",
+                title: "Baseboard Calculator: Shadow Gap, Skirting & Trim Length",
                 description:
-                    "Free online baseboard calculator: estimate linear footage, piece count, cutting waste, and approximate cost. Plan your finishing work without mistakes!",
+                    "Free online baseboard calculator: estimate shadow gap baseboards, perimeter linear feet/meters, trim piece count, and cutting waste. Fast and accurate.",
+                keywords: [
+                    "shadow gap baseboard",
+                    "shadow gap baseboards",
+                    "shadow baseboard",
+                    "shadow gap baseboard trim",
+                    "shadow line baseboard",
+                    "how much baseboard do i need for a 1500 sq ft house",
+                    "how much baseboard do i need",
+                    "how to calculate how much baseboard i need",
+                ],
             },
             share: {
                 url: "/calculators/baseboard",
-                title: "Baseboard Length & Cost Calculator | Renohacks",
-                description: "Calculate baseboard length, waste and piece count.",
+                title: "Baseboard Calculator: Shadow Gap & Skirting | Renohacks",
+                description: "Calculate baseboard length, shadow gap trim, waste and piece count.",
             },
             hero: {
                 title: "Baseboard Calculator",
                 description:
-                    "Calculate baseboard by room size or known perimeter. The tool deducts doorway widths, adds waste and shows how many pieces you should buy.",
+                    "Calculate baseboard and shadow gap trim by room size or known perimeter. The tool deducts doorway widths, adds cutting waste and shows how many pieces you should buy.",
             },
             benefits: {
                 title: "When this estimate is most useful",
@@ -496,6 +582,16 @@ export const calculatorPageDictionaries: Record<
             faq: {
                 title: "FAQs",
                 items: [
+                    {
+                        question: "Can this calculator be used for shadow gap baseboards (concealed skirting)?",
+                        answer:
+                            "Yes. For shadow gap baseboards and drywall reveal trim profiles, calculate the perimeter of all finished walls and subtract doorway openings. Because aluminum shadow profiles and drywall trims require precise miter joints at inside and outside corners, we recommend selecting an 8–10% cutting allowance.",
+                    },
+                    {
+                        question: "How much baseboard do I need for a 1,500 sq ft house?",
+                        answer:
+                            "A typical 1,500 sq ft house has multiple rooms and hallways with an average interior perimeter between 350 and 420 linear feet (105–130 m). After subtracting approximately 8 to 12 interior door openings (each 30–36 inches or 0.8–0.9 m) and adding 8% for corner cuts, you will generally need 340–380 linear feet (about 43 to 48 eight-foot trim pieces).",
+                    },
                     {
                         question: "Should I deduct door openings?",
                         answer:
@@ -520,19 +616,29 @@ export const calculatorPageDictionaries: Record<
         screed: {
             metadata: {
                 path: "/calculators/screed",
-                title: "Floor Screed & Bag Calculator",
+                title: "Floor Screed & Concrete Leveler Calculator: Bags & Thickness",
                 description:
-                    "Free floor screed calculator: estimate volume, dry mix consumption, bag count, and mixing water for leveling. Plan your floor base preparation today!",
+                    "Free floor screed calculator: estimate how much concrete leveler, self-leveling underlayment (50 lb bags), and screed mix you need by area and thickness.",
+                keywords: [
+                    "floor screed calculator",
+                    "how much concrete leveler do i need",
+                    "how much self leveling concrete",
+                    "screed calculator",
+                    "screed mix calculator",
+                    "self leveling screed coverage calculator",
+                    "floor screed thickness",
+                    "how much screed do i need",
+                ],
             },
             share: {
                 url: "/calculators/screed",
-                title: "Floor Screed & Bag Calculator | Renohacks",
-                description: "Estimate screed volume, dry mix and bag count.",
+                title: "Floor Screed & Leveler Calculator | Renohacks",
+                description: "Estimate screed volume, self-leveling mix and bag count.",
             },
             hero: {
-                title: "Screed Calculator",
+                title: "Screed & Floor Leveler Calculator",
                 description:
-                    "Calculate screed volume, dry mix consumption, bag count and mixing water for floor leveling. Suitable for cement screed, self-leveling compounds and lightweight mixes.",
+                    "Calculate screed volume, dry mix consumption, bag count (50 lb & 25 kg) and mixing water for floor leveling. Suitable for cement screeds, self-leveling underlayments, and lightweight mixes.",
             },
             benefits: {
                 title: "What matters before you estimate screed",
@@ -545,6 +651,16 @@ export const calculatorPageDictionaries: Record<
             faq: {
                 title: "FAQs",
                 items: [
+                    {
+                        question: "How much concrete leveler or self-leveling compound do I need?",
+                        answer:
+                            "For standard US 50 lb (22.7 kg) bags of self-leveling underlayment (such as LevelQuik or Custom), one bag covers approximately 50 sq ft (4.6 m²) at 1/8-inch (3 mm) thickness, or 25 sq ft at 1/4-inch (6 mm). In metric systems, 1 bag of 25 kg screed mix covers ~1.4 m² at 10 mm thickness. Always add 7–10% contingency for subfloor dips.",
+                    },
+                    {
+                        question: "What is the recommended floor screed thickness?",
+                        answer:
+                            "Traditional bonded sand-cement screeds require a minimum thickness of 1.2 to 1.5 inches (30–40 mm) to prevent cracking. Unbonded or floating screeds over insulation require at least 2 inches (50 mm). High-flow self-leveling compounds can be feathered from 1/8 inch (3 mm) up to 1–1.5 inches (25–38 mm).",
+                    },
                     {
                         question: "What is the difference between volume and dry mix consumption?",
                         answer:
