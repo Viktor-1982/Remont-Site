@@ -54,7 +54,9 @@ export const metadata: Metadata = {
         canonical: "https://renohacks.com/ru",
         languages: {
             ru: "https://renohacks.com/ru",
+            "ru-RU": "https://renohacks.com/ru",
             en: "https://renohacks.com",
+            "en-US": "https://renohacks.com",
             "x-default": "https://renohacks.com",
         },
     },

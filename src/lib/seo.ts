@@ -83,7 +83,9 @@ export function getPageMetadata(
         ? undefined
         : {
             "ru":        `${baseUrl}${localePaths.ru}`,
+            "ru-RU":     `${baseUrl}${localePaths.ru}`,
             "en":        `${baseUrl}${localePaths.en}`,
+            "en-US":     `${baseUrl}${localePaths.en}`,
             "x-default": `${baseUrl}${localePaths.en}`,  // EN = primary language ✅
         }
 

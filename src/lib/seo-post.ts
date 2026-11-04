@@ -26,13 +26,24 @@ export function getPostMetadata(post: Post): Metadata {
     const translation = findTranslation(post)
 
     // Build hreflang language map
-    const languages: Record<string, string> = {
-        [post.locale]: `${baseUrl}${post.url}`,
+    const languages: Record<string, string> = {}
+
+    if (post.locale === "ru") {
+        languages["ru"] = `${baseUrl}${post.url}`
+        languages["ru-RU"] = `${baseUrl}${post.url}`
+    } else {
+        languages["en"] = `${baseUrl}${post.url}`
+        languages["en-US"] = `${baseUrl}${post.url}`
     }
 
     if (translation) {
-        const altLocale = post.locale === "en" ? "ru" : "en"
-        languages[altLocale] = `${baseUrl}${translation.url}`
+        if (translation.locale === "ru") {
+            languages["ru"] = `${baseUrl}${translation.url}`
+            languages["ru-RU"] = `${baseUrl}${translation.url}`
+        } else {
+            languages["en"] = `${baseUrl}${translation.url}`
+            languages["en-US"] = `${baseUrl}${translation.url}`
+        }
     }
 
     // x-default = EN version (EN is the primary language of this site)

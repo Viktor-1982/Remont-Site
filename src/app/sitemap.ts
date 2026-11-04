@@ -1,7 +1,8 @@
 import { MetadataRoute } from "next"
 import { allPosts } from ".contentlayer/generated"
-import { getAllArticleSeries } from "@/lib/article-series"
+import { getAllArticleSeries, getArticleSeriesMeta } from "@/lib/article-series"
 import { collectTagInfo } from "@/lib/tags"
+import { resolveLocalePaths } from "@/lib/seo"
 
 const baseUrl = "https://renohacks.com"
 const publishedPosts = allPosts.filter((post) => !post.draft)
@@ -167,28 +168,66 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const staticLastModified = getLatestPublishedDate()
 
     const articleSeriesPages: MetadataRoute.Sitemap = [
-        ...getAllArticleSeries("ru").map((series) => ({
-            url: `${baseUrl}${series.path}`,
-            lastModified: staticLastModified,
-            changeFrequency: "weekly" as const,
-            priority: 0.6,
-        })),
-        ...getAllArticleSeries("en").map((series) => ({
-            url: `${baseUrl}${series.path}`,
-            lastModified: staticLastModified,
-            changeFrequency: "weekly" as const,
-            priority: 0.6,
-        })),
+        ...getAllArticleSeries("ru").map((series) => {
+            const enMeta = getArticleSeriesMeta(series.key, "en")
+            return {
+                url: `${baseUrl}${series.path}`,
+                lastModified: staticLastModified,
+                changeFrequency: "weekly" as const,
+                priority: 0.6,
+                alternates: {
+                    languages: {
+                        ru: `${baseUrl}${series.path}`,
+                        "ru-RU": `${baseUrl}${series.path}`,
+                        en: `${baseUrl}${enMeta?.path || series.path}`,
+                        "en-US": `${baseUrl}${enMeta?.path || series.path}`,
+                        "x-default": `${baseUrl}${enMeta?.path || series.path}`,
+                    },
+                },
+            }
+        }),
+        ...getAllArticleSeries("en").map((series) => {
+            const ruMeta = getArticleSeriesMeta(series.key, "ru")
+            return {
+                url: `${baseUrl}${series.path}`,
+                lastModified: staticLastModified,
+                changeFrequency: "weekly" as const,
+                priority: 0.6,
+                alternates: {
+                    languages: {
+                        ru: `${baseUrl}${ruMeta?.path || series.path}`,
+                        "ru-RU": `${baseUrl}${ruMeta?.path || series.path}`,
+                        en: `${baseUrl}${series.path}`,
+                        "en-US": `${baseUrl}${series.path}`,
+                        "x-default": `${baseUrl}${series.path}`,
+                    },
+                },
+            }
+        }),
     ]
 
     const posts: MetadataRoute.Sitemap = publishedPosts.map((post) => {
         const translation = findPostTranslation(post)
-        const languages: Record<string, string> = {
-            [post.locale]: `${baseUrl}${post.url}`,
+        const languages: Record<string, string> = {}
+
+        if (post.locale === "ru") {
+            languages["ru"] = `${baseUrl}${post.url}`
+            languages["ru-RU"] = `${baseUrl}${post.url}`
+        } else {
+            languages["en"] = `${baseUrl}${post.url}`
+            languages["en-US"] = `${baseUrl}${post.url}`
         }
+
         if (translation) {
-            languages[translation.locale] = `${baseUrl}${translation.url}`
+            if (translation.locale === "ru") {
+                languages["ru"] = `${baseUrl}${translation.url}`
+                languages["ru-RU"] = `${baseUrl}${translation.url}`
+            } else {
+                languages["en"] = `${baseUrl}${translation.url}`
+                languages["en-US"] = `${baseUrl}${translation.url}`
+            }
         }
+
         languages["x-default"] =
             post.locale === "en"
                 ? `${baseUrl}${post.url}`
@@ -207,12 +246,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
         }
     })
 
-    const staticPages: MetadataRoute.Sitemap = staticPageConfig.map((item) => ({
-        url: `${baseUrl}${item.path}`,
-        lastModified: staticLastModified,
-        changeFrequency: item.changeFrequency,
-        priority: item.priority,
-    }))
+    const staticPages: MetadataRoute.Sitemap = staticPageConfig.map((item) => {
+        const localePaths = resolveLocalePaths(item.path)
+        return {
+            url: `${baseUrl}${item.path}`,
+            lastModified: staticLastModified,
+            changeFrequency: item.changeFrequency,
+            priority: item.priority,
+            alternates: {
+                languages: {
+                    ru: `${baseUrl}${localePaths.ru}`,
+                    "ru-RU": `${baseUrl}${localePaths.ru}`,
+                    en: `${baseUrl}${localePaths.en}`,
+                    "en-US": `${baseUrl}${localePaths.en}`,
+                    "x-default": `${baseUrl}${localePaths.en}`,
+                },
+            },
+        }
+    })
 
     return [...staticPages, ...articleSeriesPages, ...getTagPages(), ...posts]
 }
