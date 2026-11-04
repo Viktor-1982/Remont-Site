@@ -42,7 +42,9 @@ describe("SEO & Routing Regression Suite", () => {
             expect(meta.alternates?.canonical).toBe(`${baseUrl}/calculators/tile`)
             expect(meta.alternates?.languages).toEqual({
                 en: `${baseUrl}/calculators/tile`,
+                "en-US": `${baseUrl}/calculators/tile`,
                 ru: `${baseUrl}/ru/calculators/tile`,
+                "ru-RU": `${baseUrl}/ru/calculators/tile`,
                 "x-default": `${baseUrl}/calculators/tile`,
             })
             expect((meta.openGraph as { locale?: string })?.locale).toBe("en_US")
@@ -56,7 +58,9 @@ describe("SEO & Routing Regression Suite", () => {
             expect(meta.alternates?.canonical).toBe(`${baseUrl}/ru/calculators/tile`)
             expect(meta.alternates?.languages).toEqual({
                 en: `${baseUrl}/calculators/tile`,
+                "en-US": `${baseUrl}/calculators/tile`,
                 ru: `${baseUrl}/ru/calculators/tile`,
+                "ru-RU": `${baseUrl}/ru/calculators/tile`,
                 "x-default": `${baseUrl}/calculators/tile`,
             })
             expect((meta.openGraph as { locale?: string })?.locale).toBe("ru_RU")
