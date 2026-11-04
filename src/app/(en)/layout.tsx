@@ -55,7 +55,14 @@ export const metadata: Metadata = {
         description: "Photo-guides, DIY tips and reviews - English section.",
         url: "https://renohacks.com",
         siteName: "Renohacks",
-        images: ["/images/og-default.png"],
+        images: [
+            {
+                url: "https://renohacks.com/images/og-default.jpg",
+                width: 1200,
+                height: 630,
+                alt: "Renohacks - home renovation & DIY",
+            },
+        ],
         locale: "en_US",
         type: "website",
     },

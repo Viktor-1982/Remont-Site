@@ -5,7 +5,7 @@ export const metadata = getPageMetadata("/ru/tools/materials-checklist", {
     title: "Чеклист покупок материалов для ремонта",
     description:
         "Интерактивный чеклист покупок материалов для ремонта: составьте полный список, отмечайте купленное, экспортируйте и импортируйте данные. Планируйте закупки!",
-    cover: "/images/og-default.png",
+    cover: "/images/calculators/budget.jpg",
     type: "website",
 })
 

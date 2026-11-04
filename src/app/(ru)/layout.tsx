@@ -48,7 +48,14 @@ export const metadata: Metadata = {
             "Фото-гайды по ремонту своими руками, DIY-лайфхаки, бесплатные инструменты для расчетов и обзоры материалов для качественного ремонта.",
         url: "https://renohacks.com/ru",
         siteName: "Renohacks.com",
-        images: ["/images/og-default.png"],
+        images: [
+            {
+                url: "https://renohacks.com/images/og-default.jpg",
+                width: 1200,
+                height: 630,
+                alt: "Renohacks.com - блог о ремонте, дизайне и DIY",
+            },
+        ],
         locale: "ru_RU",
         type: "website",
     },

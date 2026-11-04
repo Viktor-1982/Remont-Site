@@ -77,7 +77,7 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
             title: "Генератор цветовых палитр",
             description:
                 "Создайте гармоничную цветовую палитру для вашего ремонта. Генератор цветовых схем с рекомендациями по применению. Бесплатный инструмент Renohacks.",
-            cover: "/images/og-default.png",
+            cover: "/images/calculators/color-palette.jpg",
             type: "website",
             keywords: [
                 "генератор цветовой палитры",
@@ -194,7 +194,7 @@ export const colorPalettePageDictionaries: Record<ColorPaletteLocale, ColorPalet
             title: "Color Palette Generator",
             description:
                 "Free color palette generator: create harmonious color schemes for your home renovation. Get practical application tips. Start design planning now!",
-            cover: "/images/og-default.png",
+            cover: "/images/calculators/color-palette.jpg",
             type: "website",
             keywords: [
                 "color palette generator",

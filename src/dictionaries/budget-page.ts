@@ -134,7 +134,7 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
             title: "Калькулятор бюджета ремонта квартиры: расчет сметы онлайн",
             description:
                 "Бесплатный онлайн-калькулятор бюджета ремонта квартиры: рассчитайте полную смету работ, материалов и мебели с резервом на непредвиденные расходы.",
-            cover: "/images/og-default.png",
+            cover: "/images/calculators/budget.jpg",
             type: "website",
             keywords: [
                 "калькулятор бюджета ремонта",
@@ -293,7 +293,7 @@ export const budgetPageDictionaries: Record<BudgetLocale, BudgetPageDictionary> 
             title: "Renovation Budget Planner: DIY Remodeling Cost & Reserve Calculator",
             description:
                 "Plan your renovation budget without draining savings: free DIY remodeling cost estimator with contingency reserves, room breakdown, and overage tracking.",
-            cover: "/images/og-default.png",
+            cover: "/images/calculators/budget.jpg",
             type: "website",
             alternates: {
                 canonical: "https://renohacks.com/calculators/budget",

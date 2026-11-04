@@ -75,7 +75,23 @@ export function getPageMetadata(
     const canonicalPath = isRuPage ? localePaths.ru : localePaths.en
     const url = `${baseUrl}${canonicalPath}`
 
-    const defaultImages = [cover ? `${baseUrl}${cover}` : `${baseUrl}/images/og-default.png`]
+    const imageUrl = cover
+        ? (cover.startsWith("http") ? cover : `${baseUrl}${cover}`)
+        : `${baseUrl}/images/og-default.jpg`
+    const isPng = imageUrl.endsWith(".png")
+    const isJpg = imageUrl.endsWith(".jpg") || imageUrl.endsWith(".jpeg")
+    const imageMimeType = isPng ? "image/png" : isJpg ? "image/jpeg" : "image/webp"
+
+    const defaultOgImages: NonNullable<Metadata["openGraph"]>["images"] = [
+        {
+            url: imageUrl,
+            width: 1200,
+            height: 630,
+            alt: title,
+            type: imageMimeType,
+        },
+    ]
+    const defaultTwitterImages = [imageUrl]
 
     // hreflang alternate languages
     // x-default always points to EN (primary language) per Google best practices
@@ -96,7 +112,7 @@ export function getPageMetadata(
         siteName: "Renohacks",
         locale: isRuPage ? "ru_RU" : "en_US",
         type: type ?? "website",
-        images: defaultImages,
+        images: defaultOgImages,
     }
 
     const mergedOpenGraph: Metadata["openGraph"] = {
@@ -109,7 +125,7 @@ export function getPageMetadata(
         card: "summary_large_image",
         title,
         description,
-        images: defaultImages,
+        images: defaultTwitterImages,
     }
 
     const mergedTwitter: Metadata["twitter"] = {

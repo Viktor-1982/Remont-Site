@@ -8,7 +8,7 @@ const dictionary = getCalculatorPageDictionary("ru", "wallpaper")
 export const metadata = getPageMetadata(dictionary.metadata.path, {
     title: dictionary.metadata.title,
     description: dictionary.metadata.description,
-    cover: "/images/og-default.png",
+    cover: "/images/calculators/wallpaper.jpg",
     type: "website",
     keywords: dictionary.metadata.keywords,
 })

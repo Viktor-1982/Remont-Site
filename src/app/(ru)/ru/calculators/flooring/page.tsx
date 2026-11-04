@@ -9,7 +9,7 @@ export const metadata = getPageMetadata(dictionary.metadata.path, {
     title: dictionary.metadata.title,
     description: dictionary.metadata.description,
     keywords: dictionary.metadata.keywords,
-    cover: "/images/og-default.png",
+    cover: "/images/calculators/flooring.jpg",
     type: "website",
 })
 

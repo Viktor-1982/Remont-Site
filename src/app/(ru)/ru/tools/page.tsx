@@ -7,7 +7,7 @@ const dictionary = getToolsDictionary("ru")
 export const metadata = getPageMetadata("/ru/tools", {
     title: dictionary.metadata.title,
     description: dictionary.metadata.description,
-    cover: "/images/og-default.png",
+    cover: "/images/calculators/calculators-hub.jpg",
     type: "website",
 })
 

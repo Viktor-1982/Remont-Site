@@ -8,7 +8,7 @@ const dictionary = getCalculatorPageDictionary("ru", "soundproofing")
 export const metadata = getPageMetadata(dictionary.metadata.path, {
     title: dictionary.metadata.title,
     description: dictionary.metadata.description,
-    cover: "/images/posts/soundproofing-2026/cover-soundproofing.jpg",
+    cover: "/images/calculators/soundproofing.jpg",
     type: "website",
 })
 
